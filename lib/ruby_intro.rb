@@ -3,7 +3,7 @@
 # Part 1
 
 def sum arr
-  # YOUR CODE HERE
+  return 0
 end
 
 def max_2_sum arr
