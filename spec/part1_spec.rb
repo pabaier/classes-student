@@ -27,6 +27,7 @@ describe 'Ruby intro part 1' do
     it "returns the correct sum [7 points]" , points: 7 do
       expect(max_2_sum([1,2,3,4,5])).to be_a_kind_of Fixnum
       expect(max_2_sum([1,-2,-3,-4,-5])).to eq(-1)
+
     end
     it 'works even if 2 largest values are the same [3 points]' , points: 3 do
       expect(max_2_sum([1,2,3,3])).to eq(6)
