@@ -64,6 +64,7 @@ def starts_with_consonant? s
   s.downcase!
   s[0] =~ /[bcdfghjklmnpqrstvwxyz]/
   
+  # Non-Ruby-Like Code
   # start = "bcdfghjklmnpqrstvwxyz"
   # start.each_char { |x|
   #   if s.start_with?(x)
@@ -84,6 +85,7 @@ def binary_multiple_of_4? s
   
   s =~ /00$/
   
+  # Non-Ruby-Like Code
   # binary = s.to_i(2)
   # if binary == 0
   #   return false
