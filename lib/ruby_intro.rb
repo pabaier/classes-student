@@ -61,8 +61,11 @@ def starts_with_consonant? s
     return false
   end
   
-  s.downcase!
-  s[0] =~ /[bcdfghjklmnpqrstvwxyz]/
+  
+  s[0] =~ /[bcdfghjklmnpqrstvwxyz]/i
+  
+  # s.downcase!
+  # s[0] =~ /[bcdfghjklmnpqrstvwxyz]/
   
   # Non-Ruby-Like Code
   # start = "bcdfghjklmnpqrstvwxyz"
