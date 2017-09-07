@@ -1,6 +1,6 @@
 class Dessert
   def initialize(name, calories)
-    # your code here
+    @name = name
   end
   def healthy?
     # your code here
