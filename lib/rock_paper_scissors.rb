@@ -1,14 +1,39 @@
 class RockPaperScissors
 
   # Exceptions this class can raise:
-  class NoSuchStrategyError < StandardError ; end
+  class NoSuchStrategyError < StandardError
+    def initialize(msg = "Strategy must be one of R,P,S")
+      super
+    end
+  end
 
   def self.winner(player1, player2)
-    # YOUR CODE HERE
+    if player1[1] =~ /[^RPS]/
+      raise NoSuchStrategyError #"Strategy must be one of R,P,S."
+    end
+    raise NoSuchStrategyError unless #"Strategy must be one of R,P,S." unless 
+      player2[1] =~ /[RPS]/
+      
+    p1_win = [["R", "R"], ["P", "P"], ["S", "S"], ["R", "S"], ["S", "P"], ["P", "R"]]
+    game = [player1[1], player2[1]]
+ 
+    p1_win.each do |check|
+      if check == game
+        return player1
+      end
+    end
+    return player2
+
   end
 
   def self.tournament_winner(tournament)
-    # YOUR CODE HERE
+    if tournament[0][0].is_a? String
+      return RockPaperScissors.winner(tournament[0], tournament[1])
+    else
+      return RockPaperScissors.winner(self.tournament_winner(tournament[0]), 
+                                      self.tournament_winner(tournament[1]))
+    end
+
   end
 
 end

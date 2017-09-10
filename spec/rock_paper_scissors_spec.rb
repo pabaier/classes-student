@@ -2,7 +2,7 @@ require 'rock_paper_scissors'
 require 'byebug'
 RSpec.configure { |config| config.expect_with(:rspec) { |c| c.syntax = :should }}
 
-describe RockPaperScissors, :pending => true do
+describe RockPaperScissors do
   before(:each) do
     @rock = ['Armando','R'] ; @paper = ['Dave','P'] ; @scissors = ['Sam','S']
   end
