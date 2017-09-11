@@ -8,11 +8,12 @@ class RockPaperScissors
   end
 
   def self.winner(player1, player2)
-    if player1[1] =~ /[^RPS]/
-      raise NoSuchStrategyError #"Strategy must be one of R,P,S."
-    end
-    raise NoSuchStrategyError unless #"Strategy must be one of R,P,S." unless 
-      player2[1] =~ /[RPS]/
+    raise NoSuchStrategyError unless 
+      player2[1] =~ /[RPS]/ and player1[1] =~ /[RPS]/
+
+    # if player1[1] =~ /[^RPS]/
+    #   raise NoSuchStrategyError #"Strategy must be one of R,P,S."
+    # end
       
     p1_win = [["R", "R"], ["P", "P"], ["S", "S"], ["R", "S"], ["S", "P"], ["P", "R"]]
     game = [player1[1], player2[1]]
@@ -23,7 +24,6 @@ class RockPaperScissors
       end
     end
     return player2
-
   end
 
   def self.tournament_winner(tournament)
@@ -33,7 +33,6 @@ class RockPaperScissors
       return RockPaperScissors.winner(self.tournament_winner(tournament[0]), 
                                       self.tournament_winner(tournament[1]))
     end
-
   end
 
 end
