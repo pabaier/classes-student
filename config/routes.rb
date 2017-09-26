@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :movies
+  root :to => redirect('/movies')
+end
+
+# Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -14,7 +19,7 @@ Rails.application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :movies
+  # resources :movies
   
   # Example resource route with options:
   #   resources :products do
@@ -55,4 +60,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
+# end

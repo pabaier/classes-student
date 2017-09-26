@@ -13,7 +13,33 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    sort = params[:sort]
+    # @rating_hash = params[:ratings] || {}
+    @all_ratings = Movie.all_ratings # string array of ratings
+
+    if params[:ratings] == nil
+      @rating_keys = @all_ratings
+    else
+      @rating_keys = params[:ratings].keys # array of strings
+    end
+        
+    # if @rating_hash == {}
+    #   @rating_hash = Hash[@all_ratings.map{|rating| [rating, rating]}]
+    # end
+    
+    if sort == 'title'
+      ordering = {:title => :asc}
+      @title_header = 'hilite'
+    elsif sort == 'release_date'
+      ordering = {:release_date => :asc}
+      @release_header = 'hilite'
+    end
+    
+    #@movies = Movie.order(ordering)
+    @movies = Movie.where(rating: @rating_keys).order(ordering)
+    
+    
+    
   end
 
   def new
