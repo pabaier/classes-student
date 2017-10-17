@@ -11,3 +11,4 @@ Then /the director of "(.*)" should be "(.*)"/ do |movie, director|
    step %Q{I should see "#{director}"} 
 end
 
+
