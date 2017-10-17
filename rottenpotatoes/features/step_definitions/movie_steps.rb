@@ -11,4 +11,6 @@ Then /the director of "(.*)" should be "(.*)"/ do |movie, director|
    step %Q{I should see "#{director}"} 
 end
 
-
+Then /^(?:|I )should see "([^"]*)" followed by "([^"]*)"$/ do |movieA, movieB|
+   step %Q{I should see /#{movieA}.*#{movieB}/}
+end
