@@ -68,6 +68,7 @@ public class HW_2_grader
             loopTotal += drawLowestElevPathTest(g, starting_row[i]);
             // indexOfLowestElevPath test
             loopTotal += indexOfLowestElevPathTest(g);
+            returnOutput();
             // draw a greedy path test
             // g.setColor(Color.WHITE); //can set the color of the 'brush' before drawing, then method doesn't need to worry about it
 
@@ -247,8 +248,6 @@ public class HW_2_grader
                 System.out.println("\t\t+" + 0 + " Failed random paths");
             }
 
-
-
             return p;
         }
         else {
@@ -285,7 +284,7 @@ public class HW_2_grader
         int p = 0;
 
         System.out.println("\tindexOfLowestElevPath() test - /" + outOf);
-        
+
         stealOutput();
         int solution_value = solution.indexOfLowestElevPath(g);
         returnOutput();
@@ -307,6 +306,7 @@ public class HW_2_grader
             }
         }
         catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
+            returnOutput();
             System.out.println("\t\t+0 Error running test");
         }
         return p;
