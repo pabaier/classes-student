@@ -1,0 +1,14 @@
+	YatesC
++50 for submission
+Could not run
+    missing semicolon line 8, 52, 53
+    for loops not declared properly - declare i within loop conditions
+    line 55 variable declared twice
+    methods not called / min, max, average, variance variables not set
+    line 14 Lab4.maximum(data)
+
++3 method calls and final output (out of 6)
++5 for name in java file
++0 for description
++0 submission issues
+	did not submit a zipped folder, just a zipped file

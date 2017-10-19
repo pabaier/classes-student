@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Lab4
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Lab4\ here.\r\n\r\n\ Michael\ Dudley\r\n\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=x
+comment2.target=double\ minimum(double[])
+numComments=3

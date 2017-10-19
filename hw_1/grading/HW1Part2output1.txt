@@ -1,0 +1,2961 @@
+D:\School\221\hw_1\hw1_submissions\PappasS\
+Enter a num
+Enter another num
+9
+
+Enter a num
+Enter another num
+15
+
+Enter a num
+Enter another num
+17
+
+Enter a num
+Enter another num
+122
+
+Enter a num
+Enter another num
+99
+
+Enter a num
+Enter another num
+141
+
+Enter a num
+Enter another num
+100
+
+Enter a num
+Enter another num
+1440
+
+Enter a num
+Enter another num
+1500
+
+Enter a num
+Enter another num
+1855
+
+Enter a num
+Enter another num
+1242
+
+Enter a num
+Enter another num
+16
+
+Enter a num
+Enter another num
+1536
+
+Enter a num
+Enter another num
+12341
+
+Enter a num
+Enter another num
+10000
+
+Enter a num
+Enter another num
+188858
+
+Enter a num
+Enter another num
+1001
+
+Enter a num
+Enter another num
+2147483648
+
+Enter a num
+Enter another num
+Error
+
+Enter a num
+Enter another num
+Error
+
+D:\School\221\hw_1\hw1_submissions\YibJ\
+Enter the first number: 
+Enter a second number: 
+7
++ 2
+is 99
+
+Enter the first number: 
+Enter a second number: 
+8
++ 7
+is 65
+
+Enter the first number: 
+Enter a second number: 
+12
++ 5
+is 667
+
+Enter the first number: 
+Enter a second number: 
+13
++ 9
+is 212
+
+Enter the first number: 
+Enter a second number: 
+23
++ 76
+is 999
+
+Enter the first number: 
+Enter a second number: 
+83
++ 58
+is 541
+
+Enter the first number: 
+Enter a second number: 
+100
++ 0
+is 1100
+
+Enter the first number: 
+Enter a second number: 
+333
++ 7
+is 2110
+
+Enter the first number: 
+Enter a second number: 
+472
++ 28
+is 7700
+
+Enter the first number: 
+Enter a second number: 
+648
++ 107
+is 7755
+
+Enter the first number: 
+Enter a second number: 
+897
++ 345
+is 3242
+
+Enter the first number: 
+Enter a second number: 
+3
++ 13
+is 446
+
+Enter the first number: 
+Enter a second number: 
+9
++ 427
+is 5426
+
+Enter the first number: 
+Enter a second number: 
+7
++ 1234
+is 99011
+
+Enter the first number: 
+Enter a second number: 
+2
++ 9998
+is 32220
+
+Enter the first number: 
+Enter a second number: 
+81
++ 77777
+is 766658
+
+Enter the first number: 
+Enter a second number: 
+137
++ 864
+is 1001
+
+Enter the first number: 
+Enter a second number: 
+2147483647
++ 1
+is 33258594758
+
+Enter the first number: 
+Enter a second number: 
+49
++ b
+is 1499
+
+Enter the first number: 
+Enter a second number: 
+789
++ 7g7
+is 2046
+
+D:\School\221\hw_1\hw1_submissions\CordobaG\
+Enter two numbers: 
+7 + 2 = 9
+
+Enter two numbers: 
+8 + 7 = 15
+
+Enter two numbers: 
+12 + 5 = 17
+
+Enter two numbers: 
+13 + 9 = 22
+
+Enter two numbers: 
+23 + 76 = 99
+
+Enter two numbers: 
+83 + 58 = 141
+
+Enter two numbers: 
+100 + 0 = 100
+
+Enter two numbers: 
+333 + 7 = 340
+
+Enter two numbers: 
+472 + 28 = 500
+
+Enter two numbers: 
+648 + 107 = 755
+
+Enter two numbers: 
+897 + 345 = 1242
+
+Enter two numbers: 
+3 + 13 = 16
+
+Enter two numbers: 
+9 + 427 = 436
+
+Enter two numbers: 
+7 + 1234 = 1241
+
+Enter two numbers: 
+2 + 9998 = 10000
+
+Enter two numbers: 
+81 + 77777 = 77858
+
+Enter two numbers: 
+137 + 864 = 1001
+
+Enter two numbers: 
+2147483647 + 1 = -2147483648
+
+Enter two numbers: 
+
+Enter two numbers: 
+
+D:\School\221\hw_1\hw1_submissions\GerwatowskiC\
+19
+15
+117
+122
+199
+141
+1100
+1340
+1500
+1755
+1242
+116
+1436
+11241
+10000
+177858
+1001
+12147483648
+Enter only digits
+15a
+Enter only digits
+15f6
+D:\School\221\hw_1\hw1_submissions\RobinsonA\
+Please enter a number
+Please enter another number
+The sum is: 9
+
+Please enter a number
+Please enter another number
+The sum is: 15
+
+Please enter a number
+Please enter another number
+The sum is: 17
+
+Please enter a number
+Please enter another number
+The sum is: 22
+
+Please enter a number
+Please enter another number
+The sum is: 99
+
+Please enter a number
+Please enter another number
+The sum is: 141
+
+Please enter a number
+Please enter another number
+The sum is: 100
+
+Please enter a number
+Please enter another number
+The sum is: 340
+
+Please enter a number
+Please enter another number
+The sum is: 500
+
+Please enter a number
+Please enter another number
+The sum is: 755
+
+Please enter a number
+Please enter another number
+The sum is: 1242
+
+Please enter a number
+Please enter another number
+The sum is: 16
+
+Please enter a number
+Please enter another number
+The sum is: 436
+
+Please enter a number
+Please enter another number
+The sum is: 1241
+
+Please enter a number
+Please enter another number
+The sum is: 10000
+
+Please enter a number
+Please enter another number
+The sum is: 77858
+
+Please enter a number
+Please enter another number
+The sum is: 1001
+
+Please enter a number
+Please enter another number
+The sum is: 2147483648
+
+Please enter a number
+Please enter another number
+Error
+
+Please enter a number
+Please enter another number
+Error
+
+D:\School\221\hw_1\hw1_submissions\MatthewsC\
+Enter a number: 
+Enter another number: 
+7 + 2
+7
+2
+
+Enter a number: 
+Enter another number: 
+8 + 7
+8
+7
+
+Enter a number: 
+Enter another number: 
+12 + 5
+21
+5
+6
+6
+
+Enter a number: 
+Enter another number: 
+13 + 9
+31
+9
+10
+10
+
+Enter a number: 
+Enter another number: 
+23 + 76
+32
+67
+
+Enter a number: 
+Enter another number: 
+83 + 58
+38
+85
+
+Enter a number: 
+Enter another number: 
+100 + 0
+001
+0
+1
+1
+1
+
+Enter a number: 
+Enter another number: 
+333 + 7
+333
+7
+10
+10
+10
+
+Enter a number: 
+Enter another number: 
+472 + 28
+274
+82
+6
+6
+6
+
+Enter a number: 
+Enter another number: 
+648 + 107
+846
+701
+
+Enter a number: 
+Enter another number: 
+897 + 345
+798
+543
+
+Enter a number: 
+Enter another number: 
+3 + 13
+3
+31
+
+Enter a number: 
+Enter another number: 
+9 + 427
+9
+724
+
+Enter a number: 
+Enter another number: 
+7 + 1234
+7
+4321
+
+Enter a number: 
+Enter another number: 
+2 + 9998
+2
+8999
+
+Enter a number: 
+Enter another number: 
+81 + 77777
+18
+77777
+
+Enter a number: 
+Enter another number: 
+137 + 864
+731
+468
+
+Enter a number: 
+Enter another number: 
+2147483647 + 1
+7463847412
+1
+3
+3
+3
+3
+3
+3
+3
+3
+3
+3
+
+Enter a number: 
+Enter another number: 
+49 + b
+94
+Error: Input 2 contains character that is not digit
+
+4
+4
+
+Enter a number: 
+Enter another number: 
+789 + 7g7
+987
+7Error: Input 2 contains character that is not digit
+
+
+D:\School\221\hw_1\hw1_submissions\MarshallR\
+Please enter the first number to be added:
+Please enter the second number to be added:
+7 + 2 = 9
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+8 + 7 = 15
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+12 + 5 = 17
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+13 + 9 = 22
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+23 + 76 = 99
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+83 + 58 = 141
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+100 + 0 = 100
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+333 + 7 = 340
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+472 + 28 = 500
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+648 + 107 = 755
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+897 + 345 = 1242
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+3 + 13 = 16
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+9 + 427 = 436
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+7 + 1234 = 1241
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+2 + 9998 = 10000
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+81 + 77777 = 77858
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+137 + 864 = 1001
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+2147483647 + 1 = 2147483648
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+Invalid input. Please be sure to only enter a positive integer with no spaces.
+Please enter the first number to be added:
+
+Please enter the first number to be added:
+Please enter the second number to be added:
+Invalid input. Please be sure to only enter a positive integer with no spaces.
+Please enter the first number to be added:
+
+D:\School\221\hw_1\hw1_submissions\GandyWellsO\
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 9
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 15
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 17
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 22
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 99
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 141
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 100
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 340
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 500
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 755
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 1242
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 16
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 436
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 1241
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 10000
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 77858
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 1001
+
+Enter a number: 
+Enter another number: 
+The two strings sum up to: 2147483648
+
+Enter a number: 
+Enter another number: 
+Invalid entry. Not a numberThe two strings sum up to: 5a
+
+Enter a number: 
+Enter another number: 
+Invalid entry. Not a numberThe two strings sum up to: 15f6
+
+D:\School\221\hw_1\hw1_submissions\RabiuJ\
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 9
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 15
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 17
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 112
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 99
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 1311
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 100
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 3310
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 49
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 7415
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 111312
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 16
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 4216
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 12311
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 99910
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 77715
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 9911
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 2147483648
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 459
+
+Enter any nonnegative number without commas
+Enter another nonnegative number without commas
+
+The sum of those numbers are 146316
+
+D:\School\221\hw_1\hw1_submissions\LingenfelterA\
+Please enter a number: 
+Please enter second number: 
+the sum of 7 + 2 is: 9
+
+Please enter a number: 
+Please enter second number: 
+the sum of 8 + 7 is: 15
+
+Please enter a number: 
+Please enter second number: 
+the sum of 12 + 05 is: 17
+
+Please enter a number: 
+Please enter second number: 
+the sum of 13 + 09 is: 22
+
+Please enter a number: 
+Please enter second number: 
+the sum of 23 + 76 is: 99
+
+Please enter a number: 
+Please enter second number: 
+the sum of 83 + 58 is: 141
+
+Please enter a number: 
+Please enter second number: 
+the sum of 100 + 000 is: 100
+
+Please enter a number: 
+Please enter second number: 
+the sum of 333 + 007 is: 340
+
+Please enter a number: 
+Please enter second number: 
+the sum of 472 + 028 is: 500
+
+Please enter a number: 
+Please enter second number: 
+the sum of 648 + 107 is: 755
+
+Please enter a number: 
+Please enter second number: 
+the sum of 897 + 345 is: 1242
+
+Please enter a number: 
+Please enter second number: 
+the sum of 03 + 13 is: 16
+
+Please enter a number: 
+Please enter second number: 
+the sum of 009 + 427 is: 436
+
+Please enter a number: 
+Please enter second number: 
+the sum of 0007 + 1234 is: 1241
+
+Please enter a number: 
+Please enter second number: 
+the sum of 0002 + 9998 is: 10000
+
+Please enter a number: 
+Please enter second number: 
+the sum of 00081 + 77777 is: 77858
+
+Please enter a number: 
+Please enter second number: 
+the sum of 137 + 864 is: 1001
+
+Please enter a number: 
+Please enter second number: 
+the sum of 2147483647 + 0000000001 is: 2147483648
+
+Please enter a number: 
+Please enter second number: 
+Invalid Entry:b
+
+Please enter a number: 
+Please enter second number: 
+Invalid Entry:g
+
+D:\School\221\hw_1\hw1_submissions\HaleyJ\
+D:\School\221\hw_1\hw1_submissions\WoodsA\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D:\School\221\hw_1\hw1_submissions\MainarS\
+Enter first value: 
+Enter second value: 
+The answer is: 9
+
+Enter first value: 
+Enter second value: 
+The answer is: 15
+
+Enter first value: 
+Enter second value: 
+The answer is: 17
+
+Enter first value: 
+Enter second value: 
+The answer is: 22
+
+Enter first value: 
+Enter second value: 
+The answer is: 99
+
+Enter first value: 
+Enter second value: 
+The answer is: 141
+
+Enter first value: 
+Enter second value: 
+The answer is: 100
+
+Enter first value: 
+Enter second value: 
+The answer is: 340
+
+Enter first value: 
+Enter second value: 
+The answer is: 500
+
+Enter first value: 
+Enter second value: 
+The answer is: 755
+
+Enter first value: 
+Enter second value: 
+The answer is: 1242
+
+Enter first value: 
+Enter second value: 
+The answer is: 16
+
+Enter first value: 
+Enter second value: 
+The answer is: 436
+
+Enter first value: 
+Enter second value: 
+The answer is: 1241
+
+Enter first value: 
+Enter second value: 
+The answer is: 10000
+
+Enter first value: 
+Enter second value: 
+The answer is: 77858
+
+Enter first value: 
+Enter second value: 
+The answer is: 1001
+
+Enter first value: 
+Enter second value: 
+The answer is: 2147483648
+
+Enter first value: 
+Enter second value: 
+Error
+Enter first value: 
+
+Enter first value: 
+Enter second value: 
+Error
+Enter first value: 
+
+D:\School\221\hw_1\hw1_submissions\DudleyM\
+number 1: 7
+number 2: 2
+Total Number: 9
+
+number 1: 8
+number 2: 7
+Total Number: 5
+
+
+
+number 1: 23
+number 2: 76
+Total Number: 99
+
+number 1: 83
+number 2: 58
+Total Number: 41
+
+
+
+
+number 1: 648
+number 2: 107
+Total Number: 755
+
+number 1: 897
+number 2: 345
+Total Number: 242
+
+number 1: 3
+number 2: 13
+Total Number: 4
+
+number 1: 9
+number 2: 427
+Total Number: 3
+
+number 1: 7
+number 2: 1234
+Total Number: 8
+
+number 1: 2
+number 2: 9998
+Total Number: 1
+
+number 1: 81
+number 2: 77777
+Total Number: 58
+
+number 1: 137
+number 2: 864
+Total Number: 001
+
+
+
+number 1: 789
+number 2: 7g7
+Total Number: 5456
+
+D:\School\221\hw_1\hw1_submissions\HigginsS\
+Enter your first number: 
+Enter your second number: 
+9
+
+Enter your first number: 
+Enter your second number: 
+15
+
+Enter your first number: 
+Enter your second number: 
+17
+
+Enter your first number: 
+Enter your second number: 
+22
+
+Enter your first number: 
+Enter your second number: 
+99
+
+Enter your first number: 
+Enter your second number: 
+141
+
+Enter your first number: 
+Enter your second number: 
+100
+
+Enter your first number: 
+Enter your second number: 
+340
+
+Enter your first number: 
+Enter your second number: 
+500
+
+Enter your first number: 
+Enter your second number: 
+755
+
+Enter your first number: 
+Enter your second number: 
+1242
+
+Enter your first number: 
+Enter your second number: 
+16
+
+Enter your first number: 
+Enter your second number: 
+436
+
+Enter your first number: 
+Enter your second number: 
+1241
+
+Enter your first number: 
+Enter your second number: 
+10000
+
+Enter your first number: 
+Enter your second number: 
+77858
+
+Enter your first number: 
+Enter your second number: 
+1001
+
+Enter your first number: 
+Enter your second number: 
+2147483648
+
+Enter your first number: 
+Enter your second number: 
+549
+
+Enter your first number: 
+Enter your second number: 
+15546
+
+D:\School\221\hw_1\hw1_submissions\AndersonJ\
+D:\School\221\hw_1\hw1_submissions\KoB\
+Please enter two numbers to add, followed by Enter
+9
+
+Please enter two numbers to add, followed by Enter
+15
+
+Please enter two numbers to add, followed by Enter
+17
+
+Please enter two numbers to add, followed by Enter
+22
+
+Please enter two numbers to add, followed by Enter
+99
+
+Please enter two numbers to add, followed by Enter
+141
+
+Please enter two numbers to add, followed by Enter
+100
+
+Please enter two numbers to add, followed by Enter
+340
+
+Please enter two numbers to add, followed by Enter
+500
+
+Please enter two numbers to add, followed by Enter
+755
+
+Please enter two numbers to add, followed by Enter
+1242
+
+Please enter two numbers to add, followed by Enter
+16
+
+Please enter two numbers to add, followed by Enter
+436
+
+Please enter two numbers to add, followed by Enter
+1241
+
+Please enter two numbers to add, followed by Enter
+10000
+
+Please enter two numbers to add, followed by Enter
+77858
+
+Please enter two numbers to add, followed by Enter
+1001
+
+Please enter two numbers to add, followed by Enter
+2147483648
+
+Please enter two numbers to add, followed by Enter
+99
+Error at least one of the strings has a letter
+
+Please enter two numbers to add, followed by Enter
+2046
+Error at least one of the strings has a letter
+
+D:\School\221\hw_1\hw1_submissions\JacksonS\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D:\School\221\hw_1\hw1_submissions\HartungL\
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+9 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+5 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+17 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+22 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+99 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+41 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+100 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+340 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+4010 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+755 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+242 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+16 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+436 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+1241 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+99010 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+77858 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+9011 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+2147483648 
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+Invalid Number
+
+I will add two numbers for you.
+What is the first number?
+What is the second number?
+Invalid Number
+
+D:\School\221\hw_1\hw1_submissions\MattoxJ\
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+9
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+15
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+17
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+22
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+99
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+141
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+100
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+340
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+500
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+755
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+1242
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+16
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+436
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+1241
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+10000
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+77858
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+1001
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+2147483648
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+Error: You entered a non-numeric string character
+
+Please enter second numeric string: 
+
+This program will add two numerics using grade school math
+
+Please enter first numeric string: 
+Please enter second numeric string: 
+Error: You entered a non-numeric string character
+
+Please enter second numeric string: 
+
+D:\School\221\hw_1\hw1_submissions\GrayT\
+Please enter the first number for calculation
+Please enter the second number for calculation
+7 plus 2 equals 9
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+8 plus 7 equals 15
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+12 plus 5 equals 17
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+13 plus 9 equals 22
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+23 plus 76 equals 99
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+83 plus 58 equals 141
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+100 plus 0 equals 100
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+333 plus 7 equals 340
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+472 plus 28 equals 500
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+648 plus 107 equals 755
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+897 plus 345 equals 1242
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+3 plus 13 equals 16
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+9 plus 427 equals 436
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+7 plus 1234 equals 1241
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+2 plus 9998 equals 10000
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+81 plus 77777 equals 77858
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+137 plus 864 equals 1001
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+2147483647 plus 1 equals 2147483648
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+ERROR: INPUT WASN'T A VALID NUMBER
+Please enter the second number for calculation
+
+Please enter the first number for calculation
+Please enter the second number for calculation
+ERROR: INPUT WASN'T A VALID NUMBER
+Please enter the second number for calculation
+
+D:\School\221\hw_1\hw1_submissions\BarberC\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D:\School\221\hw_1\hw1_submissions\TaylorC\
+D:\School\221\hw_1\hw1_submissions\BarrettR\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D:\School\221\hw_1\hw1_submissions\WashingtonM\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D:\School\221\hw_1\hw1_submissions\GabrielA\
+Enter first number.
+Enter second number.
+9
+Enter first number.
+Enter second number.
+15
+Enter first number.
+Enter second number.
+17
+Enter first number.
+Enter second number.
+22
+Enter first number.
+Enter second number.
+99
+Enter first number.
+Enter second number.
+141
+Enter first number.
+Enter second number.
+100
+Enter first number.
+Enter second number.
+340
+Enter first number.
+Enter second number.
+500
+Enter first number.
+Enter second number.
+755
+Enter first number.
+Enter second number.
+1242
+Enter first number.
+Enter second number.
+16
+Enter first number.
+Enter second number.
+436
+Enter first number.
+Enter second number.
+1241
+Enter first number.
+Enter second number.
+10000
+Enter first number.
+Enter second number.
+77858
+Enter first number.
+Enter second number.
+1001
+Enter first number.
+Enter second number.
+2147483648
+Enter first number.
+Enter second number.
+549
+Enter first number.
+Enter second number.
+15546
+D:\School\221\hw_1\hw1_submissions\DzierzkoA\
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+9
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+15
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+17
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+22
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+99
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+141
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+100
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+340
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+500
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+755
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+1242
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+16
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+436
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+1241
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+10000
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+77858
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+1001
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+2147483648
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+Entered string is not numeric, please enter the string again: 
+
+This program will add two numeric Strings
+Please enter the first numeric string:
+Please enter the second numeric string:
+Entered string is not numeric, please enter the string again: 
+
+D:\School\221\hw_1\hw1_submissions\RodriguezA\
+Enter first positive number: 7
+Enter second positive number: 2
+Error
+
+Enter first positive number: 8
+Enter second positive number: 7
+Error
+
+Enter first positive number: 12
+Enter second positive number: 5
+Error
+
+Enter first positive number: 13
+Enter second positive number: 9
+Error
+
+Enter first positive number: 23
+Enter second positive number: 76
+Error
+
+Enter first positive number: 83
+Enter second positive number: 58
+Error
+
+Enter first positive number: 100
+Enter second positive number: 0
+Error
+
+Enter first positive number: 333
+Enter second positive number: 7
+Error
+
+Enter first positive number: 472
+Enter second positive number: 28
+Error
+
+Enter first positive number: 648
+Enter second positive number: 107
+Error
+
+Enter first positive number: 897
+Enter second positive number: 345
+Error
+
+Enter first positive number: 3
+Enter second positive number: 13
+Error
+
+Enter first positive number: 9
+Enter second positive number: 427
+Error
+
+Enter first positive number: 7
+Enter second positive number: 1234
+Error
+
+Enter first positive number: 2
+Enter second positive number: 9998
+Error
+
+Enter first positive number: 81
+Enter second positive number: 77777
+Error
+
+Enter first positive number: 137
+Enter second positive number: 864
+Error
+
+Enter first positive number: 2147483647
+Enter second positive number: 1
+Error
+
+Enter first positive number: 49
+Enter second positive number: b
+Error
+
+Enter first positive number: 789
+Enter second positive number: 7g7
+Error
+
+D:\School\221\hw_1\hw1_submissions\JureckiG\
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+12
+
+D:\School\221\hw_1\hw1_submissions\PerrymanA\
+Enter your first number: Enter your second number:  
+The sum is 9
+
+Enter your first number: Enter your second number:  
+The sum is 15
+
+Enter your first number: Enter your second number:  
+The sum is 17
+
+Enter your first number: Enter your second number:  
+The sum is 22
+
+Enter your first number: Enter your second number:  
+The sum is 99
+
+Enter your first number: Enter your second number:  
+The sum is 141
+
+Enter your first number: Enter your second number:  
+The sum is 100
+
+Enter your first number: Enter your second number:  
+The sum is 340
+
+Enter your first number: Enter your second number:  
+The sum is 500
+
+Enter your first number: Enter your second number:  
+The sum is 755
+
+Enter your first number: Enter your second number:  
+The sum is 1242
+
+Enter your first number: Enter your second number: 
+Enter your first number: Enter your second number:  
+The sum is 436
+
+Enter your first number: Enter your second number:  
+The sum is 1241
+
+Enter your first number: Enter your second number:  
+The sum is 10000
+
+Enter your first number: Enter your second number:  
+The sum is 77858
+
+Enter your first number: Enter your second number:  
+The sum is 1001
+
+Enter your first number: Enter your second number:  
+The sum is 2147483648
+
+Enter your first number: Enter your second number: Enter a different number: 
+Enter your first number: Enter your second number: Enter a different number: 
+D:\School\221\hw_1\hw1_submissions\HancockM\
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+test a: 5 b: 9 c: 14 carry: 0
+test a: 0 b: 0 c: 1 carry: 1
+test a: 0 b: 0 c: 0 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+test a: 1 b: 1 c: 2 carry: 0
+test a: 0 b: 0 c: 0 carry: 0
+20014
+D:\School\221\hw_1\hw1_submissions\MooreR\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D:\School\221\hw_1\hw1_submissions\PembertonE\
+D:\School\221\hw_1\hw1_submissions\MayersE\
+D:\School\221\hw_1\hw1_submissions\VellofS\
+Enter a number: 
+Enter a second number: 
+9
+
+Enter a number: 
+Enter a second number: 
+15
+
+Enter a number: 
+Enter a second number: 
+17
+
+Enter a number: 
+Enter a second number: 
+22
+
+Enter a number: 
+Enter a second number: 
+99
+
+Enter a number: 
+Enter a second number: 
+141
+
+Enter a number: 
+Enter a second number: 
+100
+
+Enter a number: 
+Enter a second number: 
+340
+
+Enter a number: 
+Enter a second number: 
+500
+
+Enter a number: 
+Enter a second number: 
+755
+
+Enter a number: 
+Enter a second number: 
+1242
+
+Enter a number: 
+Enter a second number: 
+16
+
+Enter a number: 
+Enter a second number: 
+436
+
+Enter a number: 
+Enter a second number: 
+1241
+
+Enter a number: 
+Enter a second number: 
+10000
+
+Enter a number: 
+Enter a second number: 
+77858
+
+Enter a number: 
+Enter a second number: 
+1001
+
+Enter a number: 
+Enter a second number: 
+-2147483648
+
+Enter a number: 
+Enter a second number: 
+
+Enter a number: 
+Enter a second number: 
+
+D:\School\221\hw_1\hw1_submissions\WinsteadK\
+Please enter two positive numbers: 
+9
+
+Please enter two positive numbers: 
+15
+
+Please enter two positive numbers: 
+17
+
+Please enter two positive numbers: 
+22
+
+Please enter two positive numbers: 
+99
+
+Please enter two positive numbers: 
+141
+
+Please enter two positive numbers: 
+100
+
+Please enter two positive numbers: 
+340
+
+Please enter two positive numbers: 
+500
+
+Please enter two positive numbers: 
+755
+
+Please enter two positive numbers: 
+1242
+
+Please enter two positive numbers: 
+16
+
+Please enter two positive numbers: 
+436
+
+Please enter two positive numbers: 
+1241
+
+Please enter two positive numbers: 
+10000
+
+Please enter two positive numbers: 
+77858
+
+Please enter two positive numbers: 
+1001
+
+Please enter two positive numbers: 
+Error
+Please enter two positive numbers: 
+
+Please enter two positive numbers: 
+
+D:\School\221\hw_1\hw1_submissions\HodgesM\
+Enter a numeric string: 
+Enter a numeric string: 
+9
+
+Enter a numeric string: 
+Enter a numeric string: 
+15
+
+Enter a numeric string: 
+Enter a numeric string: 
+17
+
+Enter a numeric string: 
+Enter a numeric string: 
+
+Enter a numeric string: 
+Enter a numeric string: 
+99
+
+Enter a numeric string: 
+Enter a numeric string: 
+141
+
+Enter a numeric string: 
+Enter a numeric string: 
+100
+
+Enter a numeric string: 
+Enter a numeric string: 
+40
+
+Enter a numeric string: 
+Enter a numeric string: 
+
+Enter a numeric string: 
+Enter a numeric string: 
+755
+
+Enter a numeric string: 
+Enter a numeric string: 
+1242
+
+Enter a numeric string: 
+Enter a numeric string: 
+16
+
+Enter a numeric string: 
+Enter a numeric string: 
+36
+
+Enter a numeric string: 
+Enter a numeric string: 
+141
+
+Enter a numeric string: 
+Enter a numeric string: 
+
+Enter a numeric string: 
+Enter a numeric string: 
+7858
+
+Enter a numeric string: 
+Enter a numeric string: 
+1001
+
+Enter a numeric string: 
+Enter a numeric string: 
+2147483648
+
+Enter a numeric string: 
+Enter a numeric string: 
+Invalid String
+
+Enter a numeric string: 
+Enter a numeric string: 
+15f6
+
+
+D:\School\221\hw_1\hw1_submissions\HaleyJ\
+
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 1
+        at HWPart2.main(HWPart2.java:67)
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 9
+
+Enter a number:
+Enter a number:
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 17
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 22
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 99
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 13
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 100
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 340
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 4100
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 755
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 112
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 16
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 436
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 1241
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 99100
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 77858
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 9101
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 2147483648
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 549
+
+Enter a number:
+Enter a number:
+The sum of those two numbers is: 146
+
+
+D:\School\221\hw_1\hw1_submissions\WoodsA\
+Please enter the first number: Please enter the second number:
+7 + 2 = 9
+Please enter the first number: Please enter the second number:
+8 + 7 = 15
+Please enter the first number: Please enter the second number:
+12 + 5 = 17
+Please enter the first number: Please enter the second number:
+13 + 9 = 22
+Please enter the first number: Please enter the second number:
+23 + 76 = 99
+Please enter the first number: Please enter the second number:
+83 + 58 = 141
+Please enter the first number: Please enter the second number:
+100 + 0 = 100
+Please enter the first number: Please enter the second number:
+333 + 7 = 340
+Please enter the first number: Please enter the second number:
+472 + 28 = 500
+Please enter the first number: Please enter the second number:
+648 + 107 = 755
+Please enter the first number: Please enter the second number:
+897 + 345 = 1242
+Please enter the first number: Please enter the second number:
+3 + 13 = 16
+Please enter the first number: Please enter the second number:
+9 + 427 = 436
+Please enter the first number: Please enter the second number:
+7 + 1234 = 1241
+Please enter the first number: Please enter the second number:
+2 + 9998 = 10000
+Please enter the first number: Please enter the second number:
+81 + 77777 = 77858
+Please enter the first number: Please enter the second number:
+137 + 864 = 1001
+Please enter the first number: Please enter the second number:
+2147483647 + 1 = 2147483648
+Please enter the first number: Please enter the second number: There was an error
+Please enter the first number: Please enter the second number: There was an error
+
+D:\School\221\hw_1\hw1_submissions\MooreR\
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+7
+Enter the second number to be added:
+2
+9
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+8
+Enter the second number to be added:
+7
+5
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+12
+Enter the second number to be added:
+5
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 1
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:31)
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+13
+Enter the second number to be added:
+9
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 1
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:31)
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+23
+Enter the second number to be added:
+76
+99
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+83
+Enter the second number to be added:
+58
+41
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+100
+Enter the second number to be added:
+0
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 2
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:31)
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+333
+Enter the second number to be added:
+7
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 2
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:31)
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+472
+Enter the second number to be added:
+28
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 2
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:31)
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+648
+Enter the second number to be added:
+107
+755
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+897
+Enter the second number to be added:
+345
+242
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+3
+Enter the second number to be added:
+13
+4
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+9
+Enter the second number to be added:
+427
+3
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+7
+Enter the second number to be added:
+1234
+8
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+2
+Enter the second number to be added:
+9998
+1
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+81
+Enter the second number to be added:
+77777
+58
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+137
+Enter the second number to be added:
+864
+001
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+2147483647
+Enter the second number to be added:
+1
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 9
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:31)
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+a
+Enter the second number to be added:
+5
+44
+
+D:\School\221\hw_1\hw1_submissions\MooreR>java HW1Part2
+Enter the first number to be added:
+7
+Enter the second number to be added:
+a
+46
+
+D:\School\221\hw_1\hw1_submissions\WashingtonM\
+Please enter your first string
+Please enter your second string.
+9
+
+Please enter your first string
+Please enter your second string.
+15
+
+Please enter your first string
+Please enter your second string.
+17
+
+Please enter your first string
+Please enter your second string.
+22
+
+Please enter your first string
+Please enter your second string.
+99
+
+Please enter your first string
+Please enter your second string.
+141
+
+Please enter your first string
+Please enter your second string.
+100
+
+Please enter your first string
+Please enter your second string.
+340
+
+Please enter your first string
+Please enter your second string.
+500
+
+Please enter your first string
+Please enter your second string.
+755
+
+Please enter your first string
+Please enter your second string.
+1242
+
+Please enter your first string
+Please enter your second string.
+16
+
+Please enter your first string
+Please enter your second string.
+436
+
+Please enter your first string
+Please enter your second string.
+1241
+
+Please enter your first string
+Please enter your second string.
+10000
+
+Please enter your first string
+Please enter your second string.
+77858
+
+Please enter your first string
+Please enter your second string.
+1001
+
+Please enter your first string
+Please enter your second string.
+2147483648
+
+Please enter your first string
+Please enter your second string.
+Please enter in only numbers in string two.
+49
+
+Please enter your first string
+Please enter your second string.
+Please enter in only numbers in string two.
+1496
+
+D:\School\221\hw_1\hw1_submissions\BarrettR\
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 7 and 2 is 9
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 8 and 7 is 15
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 12 and 5 is 17
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 13 and 9 is 22
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 23 and 76 is 99
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 83 and 58 is 141
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 100 and 0 is 100
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 333 and 7 is 340
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 472 and 28 is 500
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 648 and 107 is 755
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 897 and 345 is 1242
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 3 and 13 is 16
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 9 and 427 is 436
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 7 and 1234 is 1241
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 2 and 9998 is 10000
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 81 and 77777 is 77858
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 137 and 864 is 1001
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: The total of 2147483647 and 1 is 2147483648
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: One of your numbers contained a non-digit character.
+
+Enter a number with no non-digit characters: Enter a second number with no non-digit characters: One of your numbers contained a non-digit character.
+
+D:\School\221\hw_1\hw1_submissions\BarberC\
+
+Please enter the first number.
+7
+Please enter the second number.
+2
+Sum = 9
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+8
+Please enter the second number.
+7
+Sum = 15
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+12
+Please enter the second number.
+5
+Sum = 17
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+13
+Please enter the second number.
+9
+Sum = 22
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+23
+Please enter the second number.
+76
+Sum = 99
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+83
+Please enter the second number.
+58
+Sum = 141
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+100
+Please enter the second number.
+0
+Sum = 100
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+333
+Please enter the second number.
+7
+Sum = 340
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+472
+Please enter the second number.
+28
+Sum = 500
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+648
+Please enter the second number.
+187
+Sum = 835
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+648
+Please enter the second number.
+107
+Sum = 755
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+897
+Please enter the second number.
+345
+Sum = 1242
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+3
+Please enter the second number.
+13
+Sum = 16
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+9
+Please enter the second number.
+427
+Sum = 436
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+7
+Please enter the second number.
+1234
+Sum = 1241
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+2
+Please enter the second number.
+9998
+Sum = 10000
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+81
+Please enter the second number.
+77777
+Sum = 77858
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+137
+Please enter the second number.
+864
+Sum = 1001
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+2147483647
+Please enter the second number.
+1
+Sum = 2147483648
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+p
+Error: p is not a valid number.
+Please enter the second number.
+7
+Exception in thread "main" java.lang.NullPointerException
+        at HW1Part2.stringAddition(HW1Part2.java:39)
+        at HW1Part2.main(HW1Part2.java:16)
+
+D:\School\221\hw_1\hw1_submissions\BarberC>java HW1Part2
+Please enter the first number.
+7
+Please enter the second number.
+p
+Error: p is not a valid number.
+Exception in thread "main" java.lang.NullPointerException
+        at HW1Part2.stringAddition(HW1Part2.java:39)
+        at HW1Part2.main(HW1Part2.java:16)
+
+D:\School\221\hw_1\hw1_submissions\JacksonS\
+Enter a number:
+7
+Enter another number:
+2
+9
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+8
+Enter another number:
+7
+5
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+12
+Enter another number:
+5
+12
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+13
+Enter another number:
+9
+13
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+23
+Enter another number:
+76
+99
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+83
+Enter another number:
+58
+41
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+100
+Enter another number:
+0
+100
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+333
+Enter another number:
+7
+333
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+472
+Enter another number:
+28
+474
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+648
+Enter another number:
+107
+755
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+897
+Enter another number:
+345
+242
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+3
+Enter another number:
+13
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+9
+Enter another number:
+427
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+7
+Enter another number:
+1234
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+2
+Enter another number:
+9998
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+81
+Enter another number:
+77777
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+137
+Enter another number:
+864
+9:1
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+2147483647
+Enter another number:
+1
+2147483647
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+p
+Enter another number:
+7
+Error: Input must be integers.
+
+
+D:\School\221\hw_1\hw1_submissions\JacksonS>java HW1Part2
+Enter a number:
+7
+Enter another number:
+p
+Error: Input must be integers.
+
+D:\School\221\hw_1\hw1_submissions\AndersonJ\
+
+
+

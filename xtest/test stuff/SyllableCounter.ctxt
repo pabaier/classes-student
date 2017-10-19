@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=SyllableCounter
+comment0.text=\n\ class\ SyllableCounter\ uses\ a\ heuristic\ to\ estimate\n\ \ \ the\ number\ of\ syllables\ in\ a\ word\n\n\ @author\ (McCauley)\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=what
+comment2.target=boolean\ isAVowel(char)
+numComments=3

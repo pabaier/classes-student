@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=HW1Part2
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=value
+comment2.target=boolean\ isGoodInput(java.lang.String)
+comment3.params=value1\ value2
+comment3.target=java.lang.String\ add(java.lang.String,\ java.lang.String)
+comment4.params=vals1\ vals2
+comment4.target=char[]\ sameLength(char[],\ char[])
+numComments=5

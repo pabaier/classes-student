@@ -1,0 +1,752 @@
+D:\School\221\DemoLab\1030\
+
+	CordobaG
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 50
+
+	GerwatowskiC
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 50
+
+	Lab4
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 0.000
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+0 Minimum Method Failed
+		Expected Value: -5.0
+		Returned Value: 7.0
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+0 Minimum Method Failed
+		Expected Value: -73.0
+		Returned Value: 0.0
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+0 Minimum Method Failed
+		Expected Value: -2.0
+		Returned Value: 163.0
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+0 Minimum Method Failed
+		Expected Value: -700.0
+		Returned Value: -7.0
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+0 Minimum Method Failed
+		Expected Value: 1.0
+		Returned Value: 243.0
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+Total: 28
+
+	GandyWellsO
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 50
+
+	HancockM
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+Total: 26
+
+	HaleyJ
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 50
+
+	WoodsA
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+Total: 38
+
+DudleyM error with file name
+
+	HigginsS
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 0.000
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 Variance Method Failed
+		Expected Value: 5448.138888888889
+		Returned Value: 0.0
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 Variance Method Failed
+		Expected Value: 886.5555555555557
+		Returned Value: 0.0
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 Variance Method Failed
+		Expected Value: 2184408.076388889
+		Returned Value: 0.0
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 Variance Method Failed
+		Expected Value: 2154904.628099174
+		Returned Value: 0.0
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 Variance Method Failed
+		Expected Value: 2044285.4214876038
+		Returned Value: 0.0
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 Variance Method Failed
+		Expected Value: 2463146.6942148763
+		Returned Value: 0.0
+Total: 38
+
+	MayersE
++2 for dispalying results
+Min = 0.000, Max = 0.000, Mean = 0.000, Variance = 0.000
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+0 Minimum Method Failed
+		Expected Value: -5.0
+		Returned Value: 0.0
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+0 Minimum Method Failed
+		Expected Value: -73.0
+		Returned Value: 0.0
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+0 Minimum Method Failed
+		Expected Value: -2.0
+		Returned Value: 0.0
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+0 Minimum Method Failed
+		Expected Value: -700.0
+		Returned Value: 0.0
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+0 Minimum Method Failed
+		Expected Value: -7.0
+		Returned Value: 0.0
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+0 Minimum Method Failed
+		Expected Value: 1.0
+		Returned Value: 0.0
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+Total: 2
+
+	HodgesM
++2 for dispalying results
+Min = -3.300, Max = -3.300, Mean = 3.050, Variance = 25.702
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+0 No Minimum Method Defined or array index out of bounds
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+0 No Minimum Method Defined or array index out of bounds
+	+0 No Maximum Method Defined or array index out of bounds
+	+0 No Average Method Defined or array index out of bounds
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+0 Maximum Method Failed
+		Expected Value: 5432.0
+		Returned Value: -2.0
+	+0 No Average Method Defined or array index out of bounds
+	+0 Variance Method Failed
+		Expected Value: 2184408.076388889
+		Returned Value: 2584601.840277778
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+0 Maximum Method Failed
+		Expected Value: 5000.0
+		Returned Value: -700.0
+	+0 No Average Method Defined or array index out of bounds
+	+0 Variance Method Failed
+		Expected Value: 2154904.628099174
+		Returned Value: 2346491.8809917355
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+0 Minimum Method Failed
+		Expected Value: -7.0
+		Returned Value: 2.0
+	+0 Maximum Method Failed
+		Expected Value: 5000.0
+		Returned Value: 2.0
+	+0 No Average Method Defined or array index out of bounds
+	+0 Variance Method Failed
+		Expected Value: 2044285.4214876038
+		Returned Value: 2218112.9512396697
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+0 Maximum Method Failed
+		Expected Value: 5234.0
+		Returned Value: 1.0
+	+0 No Average Method Defined or array index out of bounds
+	+0 Variance Method Failed
+		Expected Value: 2463146.6942148763
+		Returned Value: 2678638.678512397
+Total: 8
+
+	KoB
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 0.000
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+0 No Variance Method Defined or array index out of bounds
+Total: 38
+
+jacksonsd error with file name
+
+	MattoxJ
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 50
+
+	BarberC
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.702
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 50
+
+TaylorC error with file name
+
+	GabrielA
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 50
+
+	Lab4JureckiG
++2 for dispalying results
+Min = -3.300, Max = 12.200, Mean = 3.050, Variance = 25.703
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+2 Minimum Method Passed!
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+0 Minimum Method Failed
+		Expected Value: 1.0
+		Returned Value: 0.0
+	+2 Maximum Method Passed!
+	+2 Average Method Passed!
+	+2 Variance Method Passed!
+Total: 48
+

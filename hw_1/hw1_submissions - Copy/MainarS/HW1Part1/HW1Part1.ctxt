@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=HW1Part1
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=c
+comment2.target=boolean\ isVowel(char)
+comment3.params=word
+comment3.target=int\ countSyllables(java.lang.String)
+comment4.params=word
+comment4.target=boolean\ isAlpha(java.lang.String)
+numComments=5

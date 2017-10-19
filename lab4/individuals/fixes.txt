@@ -1,0 +1,17 @@
+AndersonJ
+    redeclared method parameters in method - would not compile
+    arrayindexoutofbounds
+DudleyM
+    Variance method only had one parameter - two needed
+    return statements misplaced within methods
+DunlapJ
+    Variance divided by 0
+RodriguezA
+    Method parameters not correct
+    Variance method incorrectly calling average method
+YatesC
+    missing semicolon line 8, 52, 53
+    for loops not declared properly - declare i within loop conditions
+    line 55 variable declared twice
+    methods not called / min, max, average, variance variables not set
+    line 14 Lab4.maximum(data)

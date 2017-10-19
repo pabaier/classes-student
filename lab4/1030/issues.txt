@@ -1,0 +1,16 @@
+PembertonE did not submit a zipped folder, just a zipped file
+YatesC did not submit a zipped folder, just a zipped file
+    compiling error
+MooreR named the folder Lab4 instead of LastNameFirstInitial
+DudleyM had a subfolder named Lab4.java within LastNameFirstInitial folder
+JacksonsD had a subfolder named Lab4 within LastNameFirstInitial folder
+TaylorC had a subfolder named Lab4.java within LastNameFirstInitial folder
+MooreE had zip files within zip files within folders
+JureckiG named the folder Lab4JureckiG
+AndersonJ
+    compiling error
+DunlapJ
+    runtime error
+RodriguezA
+    compiling error
+MarshallR named the folder Lab4 instead of LastNameFirstInitial

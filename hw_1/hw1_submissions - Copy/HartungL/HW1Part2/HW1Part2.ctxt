@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=HW1Part2
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=num
+comment2.target=boolean\ isNumValid(java.lang.String)
+comment3.params=ch
+comment3.target=int\ charToNum(char)
+comment4.params=little
+comment4.target=java.lang.String\ makeBigger(java.lang.String)
+numComments=5

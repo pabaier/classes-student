@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Lab4
+comment0.text=\r\n\ This\ program\ finds\ minimum,\ maximum,\ average,\ and\ variance\ of\ a\ set\ of\ data\r\n\r\n\ Lexus\ Hartung\r\n\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=x
+comment2.target=double\ minimum(double[])
+comment3.params=x
+comment3.target=double\ maximum(double[])
+comment4.params=x
+comment4.target=double\ average(double[])
+comment5.params=x\ avg
+comment5.target=double\ variance(double[],\ double)
+numComments=6

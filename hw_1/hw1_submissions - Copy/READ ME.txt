@@ -1,0 +1,13 @@
+HW1Part1
+Discussed with Shaina different ways to check if values were all letters only. I also discussed
+why i needed to make everything upper or lowercase in the method in part one. Discussed with Stefan and
+Connor to figure out how to get started and go over ideas on different java classes that may work. 
+
+
+
+HW1Part2
+Angelica gave me advice to look at the Java API for the Interger.valueOf command.
+
+
+Did research in the java api to assist with coding techniques on part two. went through
+zybooks and discussed with a small group on different ways to do part one and two

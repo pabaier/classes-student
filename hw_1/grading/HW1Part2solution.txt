@@ -1,0 +1,111 @@
+Enter a number: Enter another number: The sum of the numbers below:
+         7
+         2
+        --------------
+         09
+
+Enter a number: Enter another number: The sum of the numbers below:
+         8
+         7
+        --------------
+         15
+
+Enter a number: Enter another number: The sum of the numbers below:
+         12
+         05
+        --------------
+         017
+
+Enter a number: Enter another number: The sum of the numbers below:
+         13
+         09
+        --------------
+         022
+
+Enter a number: Enter another number: The sum of the numbers below:
+         23
+         76
+        --------------
+         099
+
+Enter a number: Enter another number: The sum of the numbers below:
+         83
+         58
+        --------------
+         141
+
+Enter a number: Enter another number: The sum of the numbers below:
+         100
+         000
+        --------------
+         0100
+
+Enter a number: Enter another number: The sum of the numbers below:
+         333
+         007
+        --------------
+         0340
+
+Enter a number: Enter another number: The sum of the numbers below:
+         472
+         028
+        --------------
+         0500
+
+Enter a number: Enter another number: The sum of the numbers below:
+         648
+         107
+        --------------
+         0755
+
+Enter a number: Enter another number: The sum of the numbers below:
+         897
+         345
+        --------------
+         1242
+
+Enter a number: Enter another number: The sum of the numbers below:
+         03
+         13
+        --------------
+         016
+
+Enter a number: Enter another number: The sum of the numbers below:
+         009
+         427
+        --------------
+         0436
+
+Enter a number: Enter another number: The sum of the numbers below:
+         0007
+         1234
+        --------------
+         01241
+
+Enter a number: Enter another number: The sum of the numbers below:
+         0002
+         9998
+        --------------
+         10000
+
+Enter a number: Enter another number: The sum of the numbers below:
+         00081
+         77777
+        --------------
+         077858
+
+Enter a number: Enter another number: The sum of the numbers below:
+         137
+         864
+        --------------
+         1001
+
+Enter a number: Enter another number: The sum of the numbers below:
+         2147483647
+         0000000001
+        --------------
+         02147483648
+
+Enter a number: Enter another number: Error in input, one or more inputs invalid.
+
+Enter a number: Enter another number: Error in input, one or more inputs invalid.
