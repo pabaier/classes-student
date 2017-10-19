@@ -67,6 +67,9 @@ public class HW_2_grader
             // drawLowestElevationPath test
             loopTotal += drawLowestElevPathTest(g, starting_row[i]);
             // indexOfLowestElevPath test
+                DrawingPanel panel = new DrawingPanel(width, height);
+                panel.setVisible(false);
+                Graphics g = panel.getGraphics();
             loopTotal += indexOfLowestElevPathTest(g);
             // draw a greedy path test
             // g.setColor(Color.WHITE); //can set the color of the 'brush' before drawing, then method doesn't need to worry about it
