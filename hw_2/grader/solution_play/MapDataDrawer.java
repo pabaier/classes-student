@@ -157,7 +157,7 @@ public class MapDataDrawer
         // if down/up are the same and the minimum then flip a coin.
         if(difWithDown == minDif && up==down){
             if(Math.random()<0.5){
-                dir = 1;
+                dir = 2;
             }
             else{
                 dir = -1;
