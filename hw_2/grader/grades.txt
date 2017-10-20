@@ -1,0 +1,2046 @@
+PappasS 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 6
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 0
+		Returned Value: 7
+	section total: 9/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 81/90
+" " 
+DunlapJ 
+
+Testing Given Data Set
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 2000
+		Returned Value: 0
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 2564
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 9
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	section total: 0/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 2576
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 2
+		Returned Value: 1
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 7
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 0
+	section total: 3/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 1634
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 7
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	section total: 3/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 2496
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 2
+		Returned Value: 8
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 7
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 1933
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 8
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	section total: 0/18
+Total Score: 12/90
+" " 
+GerwatowskiC 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 1933
+		Returned Value: 1903
+	indexOfMinRow() test - /2
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 11/18
+Total Score: 63/90
+" " 
+RobinsonA 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 7
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 2
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 1437
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 7/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 8
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 6
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 4/18
+Total Score: 52/90
+" " 
+MatthewsC 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 30/90
+" " 
+MarshallR 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 6
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 84/90
+" " 
+GandyWellsO 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 2564
+		Returned Value: 2532
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 9
+		Returned Value: 1
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 198
+		Returned Value: 448
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 5/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 1001
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 2576
+		Returned Value: 2541
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 0
+		Returned Value: 1003
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 5494
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 3/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 1002
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 1427
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 7/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 5712
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 9/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 1933
+		Returned Value: 1872
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 6
+		Returned Value: 1
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 2/18
+Total Score: 26/90
+" " 
+RabiuJ 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 0
+		Returned Value: 7
+	section total: 15/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 87/90
+" " 
+LingenfelterA 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 198
+		Returned Value: 1930
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 8
+	section total: 9/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 7254
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 8
+	section total: 9/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 820
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 8
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 2754
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 0
+		Returned Value: 1408
+	section total: 9/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 1903
+	section total: 6/18
+Total Score: 42/90
+" " 
+HancockM 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 1739
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 9/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 51/90
+" " 
+HaleyJ 
+
+Testing Given Data Set
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Random Choice
+	findMin() test - /2
+		+6 One of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 9/18
+Total Score: 57/90
+" " 
+WoodsA 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 90/90
+" " 
+PerrymanA 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 198
+		Returned Value: 795
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	section total: 9/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 4
+	section total: 9/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 0
+		Returned Value: 8
+	section total: 9/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	section total: 6/18
+Total Score: 42/90
+" " 
+MainarS 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	section total: 15/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 1001
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 2576
+		Returned Value: 2541
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 0
+	section total: 11/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 1000
+		Returned Value: 1002
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	section total: 13/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 1933
+		Returned Value: 1903
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	section total: 13/18
+Total Score: 70/90
+" " 
+HigginsS 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+3 Failed
+		Expected Value: 198
+		Returned Value: 558
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	section total: 7/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 36
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 0
+	section total: 7/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 54
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	section total: 7/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 260
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 10/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	section total: 4/18
+Total Score: 35/90
+" " 
+HodgesM 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 30/90
+" " 
+jackson 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	section total: 13/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 332
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 0
+	section total: 7/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 68
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	section total: 7/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 153
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 10/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	section total: 4/18
+Total Score: 41/90
+" " 
+HartungL 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 90/90
+" " 
+MattoxJ 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 90/90
+" " 
+GrayT 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	section total: 15/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 0
+	section total: 15/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	section total: 15/18
+Total Score: 69/90
+" " 
+BarberC 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 90/90
+" " 
+BarrettR 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 90/90
+" " 
+WashingtonM 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 90/90
+" " 
+GabrielA 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 30/90
+" " 
+DzierzkoA 
+
+Testing Given Data Set
+	findMin() test - /2
+		+0 Failed
+		Expected Value: 2000
+		Returned Value: 2001
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 198
+		Returned Value: 896
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 7
+	section total: 7/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 12
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 9/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+0 Failed
+		Expected Value: 1634
+		Returned Value: 1589
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 540
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 7/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 6
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 9/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 9/18
+Total Score: 41/90
+" " 
+RodriguezA 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 198
+		Returned Value: 45
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	section total: 9/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 30
+		Returned Value: 2155
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 0
+	section total: 9/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 32
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 0
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 24
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	section total: 6/18
+Total Score: 45/90
+" " 
+JureckiG 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 9
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 2
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 6
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 66
+		Returned Value: 1507
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 10/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+Total Score: 74/90
+" " 
+CraggD 
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 9
+	section total: 15/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 1
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 3
+		Returned Value: 9
+	section total: 13/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+3 Failed
+		Expected Value: 26
+		Returned Value: 518
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 5
+		Returned Value: 9
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 4
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 0
+		Returned Value: 9
+	section total: 13/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+0 Failed random paths
+	indexOfLowestElevPath() test - /3
+		+0 Failed
+		Expected Value: 8
+		Returned Value: 9
+	section total: 4/18
+Total Score: 54/90
+" " 
