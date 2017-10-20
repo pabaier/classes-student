@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Driver
+comment0.text=\n\ This\ driver\ program\ uses\ the\ MapDataDrawer\ class\ to\n\ compute\ various\ statistics\ and\ paths\ given\ a\ grid\ of\n\ elevation\ data\ for\ some\ territory.\n\n\ This\ code\ should\ not\ be\ changed\ in\ solving\ HW\ problem\ 2\ \n\ (except\ of\ course\ to\ add\ your\ name).\n\ \n\ Thomas\ Dunlap\n\ HW\ 2\ -\ this\ code\ provided\ by\ instructor.\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+numComments=2
