@@ -30,21 +30,22 @@ public class MapDataDrawer_grader
     
     public static void main(String[] args) throws Exception{
 
+/*
+        String lastName = args[0].substring(0,args[0].length() - 2);
         String fileString = getFileString("MapDataDrawer.java");
-        Pattern p = Pattern.compile("(?i)" + args[0]);
+        Pattern p = Pattern.compile("(?i).*?" + lastName + ".*");
         Matcher m = p.matcher(fileString);
         if(m.find()) {
             System.out.println("\t\t+5" + " Name in file - /5");
             points += 5;
         }
         else {
-            System.out.println("\t\t+0" + " Name missing from file.");
+            System.out.println("\t\t+0" + " Name missing from file - /5");
         }
         
         System.out.println("\t\t+5" + " Submitted Properly - /5");
         points += 5;
 
-/*
         //construct DrawingPanel, and get its Graphics context
         stealOutput();
 
@@ -334,7 +335,10 @@ public class MapDataDrawer_grader
                 p += outOf;
             }
             else {
-                System.out.println("\t\t+0 Failed");
+                points += (outOf/2);
+                p += (outOf/2);
+                System.out.println("\t\t+" + (outOf/2) + " for running method");
+                System.out.println("\t\t Values Incorrect");
                 System.out.println("\t\tExpected Value: " + solution_value);
                 System.out.println("\t\tReturned Value: " + submission_value);
             }

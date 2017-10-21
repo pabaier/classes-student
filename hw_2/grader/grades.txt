@@ -1,30 +1,2248 @@
 PappasS 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 6
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 0
+		Returned Value: 7
+	section total: 11/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 93/100
+ 
+ 
 DunlapJ 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2000
+		Returned Value: 0
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2564
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 6
+	drawLowestElevPath() test - /9
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 2/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2576
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1
+		Returned Value: 2
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 7
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1634
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 5
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 7
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2496
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 2
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 7
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 8/18
+
+Testing Random Choice
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 0
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1933
+		Returned Value: 1562
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 4
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 2/18
+Total Score: 34/100
+ 
+ 
 GerwatowskiC 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 13/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1933
+		Returned Value: 1903
+	indexOfMinRow() test - /2
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 11/18
+Total Score: 73/100
+ 
+ 
 RobinsonA 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 1437
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 10/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 4/18
+Total Score: 69/100
+ 
+ 
 MatthewsC 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 40/100
+ 
+ 
 MarshallR 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 0
+		Returned Value: 7
+	section total: 16/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 98/100
+ 
+ 
 GandyWellsO 
-ECHO is off.
-ECHO is off.
+		+0 Name missing from file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2564
+		Returned Value: 2532
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 1
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 448
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 1001
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2576
+		Returned Value: 2541
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 5494
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 7/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 1002
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 1427
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 5712
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 10/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1933
+		Returned Value: 1872
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 1
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 2/18
+Total Score: 39/100
+ 
+ 
 RabiuJ 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 100/100
+ 
+ 
 LingenfelterA 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 1930
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 8
+	section total: 11/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 7254
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 8
+	section total: 11/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 820
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 8
+	section total: 11/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 2754
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 0
+		Returned Value: 1408
+	section total: 11/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 1903
+	section total: 7/18
+Total Score: 61/100
+ 
+ 
 HancockM 
-ECHO is off.
-ECHO is off.
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 1739
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 10/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 15/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 62/100
+ 
+ 
+HaleyJ 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Random Choice
+	findMin() test - /2
+		+6 One of two correct random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 9/18
+Total Score: 67/100
+ 
+ 
+WoodsA 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 100/100
+ 
+ 
+PerrymanA 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 795
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 11/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 4
+	section total: 11/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 11/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 0
+		Returned Value: 8
+	section total: 11/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 7/18
+Total Score: 61/100
+ 
+ 
+MainarS 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 16/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 1001
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2576
+		Returned Value: 2541
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 13/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1000
+		Returned Value: 1002
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 15/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1933
+		Returned Value: 1903
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 14/18
+Total Score: 86/100
+ 
+ 
+HigginsS 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 558
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 9/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 36
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 9/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 54
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 260
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 11/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 5/18
+Total Score: 53/100
+ 
+ 
+HodgesM 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 40/100
+ 
+ 
+jackson 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 14/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 332
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 9/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 68
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 153
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 11/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 5/18
+Total Score: 58/100
+ 
+ 
+HartungL 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 100/100
+ 
+ 
+MattoxJ 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 100/100
+ 
+ 
+GrayT 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 16/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 16/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 7/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 16/18
+Total Score: 83/100
+ 
+ 
+BarberC 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 100/100
+ 
+ 
+BarrettR 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 100/100
+ 
+ 
+WashingtonM 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 18/18
+Total Score: 100/100
+ 
+ 
+GabrielA 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+	section total: 6/18
+Total Score: 40/100
+ 
+ 
+DzierzkoA 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2000
+		Returned Value: 2001
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 896
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 7
+	section total: 10/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 12
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 10/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1634
+		Returned Value: 1589
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 540
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 8/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 6
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+	section total: 10/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 9/18
+Total Score: 57/100
+ 
+ 
+RodriguezA 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 45
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 11/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 2155
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 11/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 32
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 11/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 24
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 13/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 7/18
+Total Score: 63/100
+ 
+ 
+JureckiG 
+		+0 Name missing from file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 1507
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 11/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+9 Passed! Two of two random paths taken
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 16/18
+Total Score: 80/100
+ 
+ 
+CraggD 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 9
+	section total: 16/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 9
+	section total: 14/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 518
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 9
+	section total: 9/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 7
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 0
+		Returned Value: 9
+	section total: 14/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 9
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 9
+	section total: 5/18
+Total Score: 68/100
+ 
+ 

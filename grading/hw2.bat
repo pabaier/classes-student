@@ -19,7 +19,6 @@ for /d %%j in (%submissions%"*") do (
 )
 
 REM echo %n%
-REM print all submission folders
 cd %graderdir%
 set /A n-=1
 for /L %%k in (0, 1, %n%) do (
@@ -29,9 +28,9 @@ for /L %%k in (0, 1, %n%) do (
 	del %graderdir%%classfile%
 	xcopy !subarray[%%k]!\%javafile% %graderdir%
 	javac -cp %graderdir% %javafile%
-	java -classpath %graderdir% %graderfile% >> %output%
-	echo  >> %output%
-	echo  >> %output%
+	java -classpath %graderdir% %graderfile% !name[%%k]! >> %output%
+	echo. >> %output%
+	echo. >> %output%
 	echo "done"
 )
 
