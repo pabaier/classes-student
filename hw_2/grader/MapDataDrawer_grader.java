@@ -12,14 +12,15 @@ import java.lang.ArrayIndexOutOfBoundsException;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
-
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class MapDataDrawer_grader
 {
     // note: test data should be 10 x 10
 
     public static int points = 0;
-    public static int totalPoints = 90;
+    public static int totalPoints = 100;
     public static int sectionPoints = 18;
     public static int width = 10;
     public static int height = 10;
@@ -28,6 +29,21 @@ public class MapDataDrawer_grader
     public static PrintStream originalPrintStream = System.out;
     
     public static void main(String[] args) throws Exception{
+
+        String fileString = getFileString("MapDataDrawer.java");
+        Pattern p = Pattern.compile("(?i)" + args[0]);
+        Matcher m = p.matcher(fileString);
+        if(m.find()) {
+            System.out.println("\t\t+5" + " Name in file - /5");
+            points += 5;
+        }
+        else {
+            System.out.println("\t\t+0" + " Name missing from file.");
+        }
+        
+        System.out.println("\t\t+5" + " Submitted Properly - /5");
+        points += 5;
+
 /*
         //construct DrawingPanel, and get its Graphics context
         stealOutput();
@@ -88,7 +104,6 @@ public class MapDataDrawer_grader
         panel.actionPerformed(a);
         System.exit(0);
 */
-        System.out.println(getFileString("MapDataDrawer.java"));
     }
 
     public static int minTest() {
@@ -110,9 +125,12 @@ public class MapDataDrawer_grader
                 p +=  outOf;
             }
             else {
-                System.out.println("\t\t+0 Failed");
+                System.out.println("\t\t+" + (outOf/2) + " for running method");
+                System.out.println("\t\t Values Incorrect");
                 System.out.println("\t\tExpected Value: " + min_solution);
                 System.out.println("\t\tReturned Value: " + min);
+                points += (outOf/2);
+                p +=  (outOf/2);
             }
         }
         catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
@@ -142,7 +160,8 @@ public class MapDataDrawer_grader
                 p += outOf;
             }
             else {
-                System.out.println("\t\t+0 Failed");
+                System.out.println("\t\t+" + (outOf/2) + " for running method");
+                System.out.println("\t\t Values Incorrect");
                 System.out.println("\t\tExpected Value: " + solution_value);
                 System.out.println("\t\tReturned Value: " + submission_value);
             }
@@ -177,7 +196,8 @@ public class MapDataDrawer_grader
                 p+= outOf;
             }
             else {
-                System.out.println("\t\t+0 Failed");
+                System.out.println("\t\t+" + (outOf/2) + " for running method");
+                System.out.println("\t\t Values Incorrect");
                 System.out.println("\t\tExpected Value: " + solution_value);
                 System.out.println("\t\tReturned Value: " + submission_value);
             }
@@ -210,6 +230,7 @@ public class MapDataDrawer_grader
             boolean firstValue = false;
             boolean secondValue = false;
             boolean otherValue = false;
+            boolean error = false;
 
             for(int i = 0; i < 20; i++) {
                 try {
@@ -229,7 +250,7 @@ public class MapDataDrawer_grader
                 }
                 catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
                     System.out.println("\t\t Error running test");
-                    otherValue = true;
+                    error = true;
 
                 }
             }
@@ -241,17 +262,21 @@ public class MapDataDrawer_grader
                 p += outOf;
             }
             else if (firstValue || secondValue && !otherValue) {
-                System.out.println("\t\t+" + ((outOf * 2)/3) + " One of two random paths taken");
+                System.out.println("\t\t+" + ((outOf * 2)/3) + " One of two correct random paths taken");
                 p += (outOf * 2)/3;
                 points += (outOf * 2)/3;
             }
             else if (firstValue || secondValue && otherValue) {
-                System.out.println("\t\t+" + (outOf / 2) + " One of two random paths and one wrong path taken");
-                p += outOf / 2;
-                points += outOf / 2;
+                System.out.println("\t\t+" + ((outOf / 2) + 1) + " One of two random paths and one wrong path taken");
+                p += ((outOf / 2) + 1);
+                points += ((outOf / 2) + 1);
             }
-            else {
-                System.out.println("\t\t+" + 0 + " Failed random paths");
+            else if (otherValue && !error) {
+                System.out.println("\t\t+" + (outOf/2) + " for running method");
+                System.out.println("\t\t Values Incorrect");
+            }
+            else if (error) {
+                System.out.println("\t\t+0 Error running test");
             }
 
             return p;
@@ -273,9 +298,10 @@ public class MapDataDrawer_grader
                     p += outOf;
                 }
                 else {
-                    points += 3;
-                    p += 3;
-                    System.out.println("\t\t+3 Failed");
+                    points += (outOf/2);
+                    p += (outOf/2);
+                    System.out.println("\t\t+" + (outOf/2) + " for running method");
+                    System.out.println("\t\t Values Incorrect");
                     System.out.println("\t\tExpected Value: " + solution_value);
                     System.out.println("\t\tReturned Value: " + submission_value);
                 }
