@@ -10,6 +10,9 @@ import java.io.FileNotFoundException;
 import java.lang.NoSuchMethodError;
 import java.lang.ArrayIndexOutOfBoundsException;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 
 public class MapDataDrawer_grader
 {
@@ -25,7 +28,7 @@ public class MapDataDrawer_grader
     public static PrintStream originalPrintStream = System.out;
     
     public static void main(String[] args) throws Exception{
-
+/*
         //construct DrawingPanel, and get its Graphics context
         stealOutput();
 
@@ -36,7 +39,7 @@ public class MapDataDrawer_grader
         // action event to autoexit panel
         ActionEvent a = new ActionEvent(panel, 0, "Exit");
 
-        returnOutput();
+        restoreOutput();
 
         String[] test_data = {"test_Data_1.dat",
                                 "test_Data_2.dat", 
@@ -68,7 +71,7 @@ public class MapDataDrawer_grader
             loopTotal += drawLowestElevPathTest(g, starting_row[i]);
             // indexOfLowestElevPath test
             loopTotal += indexOfLowestElevPathTest(g);
-            returnOutput();
+            restoreOutput();
             // draw a greedy path test
             // g.setColor(Color.WHITE); //can set the color of the 'brush' before drawing, then method doesn't need to worry about it
 
@@ -84,6 +87,8 @@ public class MapDataDrawer_grader
         // exit panel
         panel.actionPerformed(a);
         System.exit(0);
+*/
+        System.out.println(getFileString("MapDataDrawer.java"));
     }
 
     public static int minTest() {
@@ -93,12 +98,12 @@ public class MapDataDrawer_grader
 
         stealOutput();
         int min_solution = solution.findMin();
-        returnOutput();
+        restoreOutput();
         int min = 0;
         try {
             stealOutput();
             min = map.findMin();
-            returnOutput();
+            restoreOutput();
             if (min == min_solution) {
                 System.out.println("\t\t+" + outOf + " Passed!");
                 points += outOf;
@@ -123,13 +128,13 @@ public class MapDataDrawer_grader
 
         stealOutput();
         int solution_value = solution.findMax();
-        returnOutput();
+        restoreOutput();
         
         int submission_value = 0;
         try {
             stealOutput();
             submission_value = map.findMax();
-            returnOutput();
+            restoreOutput();
             
             if (submission_value == solution_value) {
                 System.out.println("\t\t+" + outOf + " Passed!");
@@ -158,13 +163,13 @@ public class MapDataDrawer_grader
         
         stealOutput();
         int solution_value = solution.indexOfMinRow(r);
-        returnOutput();
+        restoreOutput();
         
         int submission_value = 0;
         try {
             stealOutput();
             submission_value = map.indexOfMinRow(r);
-            returnOutput();
+            restoreOutput();
 
             if (submission_value == solution_value) {
                 System.out.println("\t\t+" + outOf + " Passed!");
@@ -210,7 +215,7 @@ public class MapDataDrawer_grader
                 try {
                     stealOutput();
                     int submission_value = map.drawLowestElevPath(g, minRow);
-                    returnOutput();
+                    restoreOutput();
                     
                     if (submission_value == possibleValues[0]) {
                         firstValue = true;
@@ -254,13 +259,13 @@ public class MapDataDrawer_grader
         else {
             stealOutput();
             int solution_value = solution.drawLowestElevPath(g, minRow);
-            returnOutput();
+            restoreOutput();
 
             int submission_value = 0;
             try {
                 stealOutput();
                 submission_value = map.drawLowestElevPath(g, minRow);
-                returnOutput();
+                restoreOutput();
                 
                 if (submission_value == solution_value) {
                     System.out.println("\t\t+" + outOf + " Passed!");
@@ -290,12 +295,12 @@ public class MapDataDrawer_grader
 
         stealOutput();
         int solution_value = solution.indexOfLowestElevPath(g);
-        returnOutput();
+        restoreOutput();
         int submission_value = 0;
         try {
             stealOutput();
             submission_value = map.indexOfLowestElevPath(g);
-            returnOutput();
+            restoreOutput();
             
             if (submission_value == solution_value) {
                 System.out.println("\t\t+" + outOf + " Passed!");
@@ -309,7 +314,7 @@ public class MapDataDrawer_grader
             }
         }
         catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
-            returnOutput();
+            restoreOutput();
             System.out.println("\t\t+0 Error running test");
         }
         return p;
@@ -320,7 +325,25 @@ public class MapDataDrawer_grader
 
     }
 
-    public static void returnOutput() {
+    public static void restoreOutput() {
         System.setOut(originalPrintStream);
+    }
+
+    public static String getFileString(String name) {
+        StringBuilder fileContents = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(name));
+            String line;
+            while((line = reader.readLine()) != null) {
+                fileContents.append(line);
+            }
+            reader.close();
+        }
+        catch (Exception e) {
+            System.out.println("File not found: " + name);
+        }
+
+        
+        return fileContents.toString();
     }
 }
