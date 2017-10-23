@@ -32,14 +32,16 @@ def run(full_file_path="", test_input_file="", java_path = "\"C:\\Program Files\
     for i in range(0, len(test_input),2):
         print("\trunning...")
         proc = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-        output.append(proc.communicate(input=test_input[i])[0])
+        output.append((proc.communicate()[0]))
         # output.append(proc.communicate(input=test_input[i]+""+test_input[i+1])[0])
-        proc.wait()
         err = proc.communicate()[1]
+        proc.wait()
         if len(err) > 0:
             print("\t" + proc.communicate()[1])
         else:
             print("\tSuccess!")
+        # output = subprocess.check_output(cmd, shell = True)
+
 
     return output
 
