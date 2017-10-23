@@ -19,7 +19,7 @@ public class MapDataDrawer
   
    public MapDataDrawer(String filename, int rows, int cols) throws Exception{
       // initialize grid 
-      grid = new int[rows][cols];
+      grid = new int[480][844];
       //read the data from the file into the grid
       Scanner S = new Scanner(new File("Colorado_844x480.dat"));    
       

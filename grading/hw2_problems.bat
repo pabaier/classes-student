@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableDelayedExpansion
 set n=0
-set submissions=D:\School\221\hw_2\hw2\
+set submissions=D:\School\221\hw_2\problems\
 set graderdir=D:\School\221\hw_2\grader\
-set javafile="MapDataDrawer.java"
-set classfile="MapDataDrawer.class"
+set javafile=MapDataDrawer.java
+set classfile=MapDataDrawer.class
 set graderfile=MapDataDrawer_grader
 set javapath=C:\Program Files\Java\jdk1.8.0_131\bin\java.exe
-set output=D:\School\221\hw_2\hw2\grades.txt
+set output=D:\School\221\hw_2\problems\grades.txt
 
 REM use one > to overwrite or >> do append
 echo. > %output%

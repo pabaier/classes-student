@@ -6,9 +6,9 @@ import java.util.Random;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
+// import java.io.FileNotFoundException;
 import java.lang.NoSuchMethodError;
-import java.lang.ArrayIndexOutOfBoundsException;
+// import java.lang.ArrayIndexOutOfBoundsException;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -30,7 +30,6 @@ public class MapDataDrawer_grader
     
     public static void main(String[] args) throws Exception{
 
-/*
         String lastName = args[0].substring(0,args[0].length() - 2);
         String fileString = getFileString("MapDataDrawer.java");
         Pattern p = Pattern.compile("(?i).*?" + lastName + ".*");
@@ -104,7 +103,7 @@ public class MapDataDrawer_grader
         // exit panel
         panel.actionPerformed(a);
         System.exit(0);
-*/
+
     }
 
     public static int minTest() {
@@ -134,8 +133,10 @@ public class MapDataDrawer_grader
                 p +=  (outOf/2);
             }
         }
-        catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
+        catch (Exception e) {
+            restoreOutput();
             System.out.println("\t\t+0 Error running test");
+            System.out.println("\t\t " + e);
         }
         return p;
     }
@@ -161,14 +162,18 @@ public class MapDataDrawer_grader
                 p += outOf;
             }
             else {
+                p += (outOf/2);
+                points += (outOf/2);
                 System.out.println("\t\t+" + (outOf/2) + " for running method");
                 System.out.println("\t\t Values Incorrect");
                 System.out.println("\t\tExpected Value: " + solution_value);
                 System.out.println("\t\tReturned Value: " + submission_value);
             }
         }
-        catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
+        catch (Exception e) {
+            restoreOutput();
             System.out.println("\t\t+0 Error running test");
+            System.out.println("\t\t " + e);
         }
         return p;
     }
@@ -194,17 +199,21 @@ public class MapDataDrawer_grader
             if (submission_value == solution_value) {
                 System.out.println("\t\t+" + outOf + " Passed!");
                 points += outOf;
-                p+= outOf;
+                p += outOf;
             }
             else {
+                p += (outOf/2);
+                points += (outOf/2);
                 System.out.println("\t\t+" + (outOf/2) + " for running method");
                 System.out.println("\t\t Values Incorrect");
                 System.out.println("\t\tExpected Value: " + solution_value);
                 System.out.println("\t\tReturned Value: " + submission_value);
             }
         }
-        catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
+        catch (Exception e) {
+            restoreOutput();
             System.out.println("\t\t+0 Error running test");
+            System.out.println("\t\t " + e);
         }
         return p;
     }
@@ -232,6 +241,7 @@ public class MapDataDrawer_grader
             boolean secondValue = false;
             boolean otherValue = false;
             boolean error = false;
+            String er = "";
 
             for(int i = 0; i < 20; i++) {
                 try {
@@ -249,8 +259,9 @@ public class MapDataDrawer_grader
                         otherValue = true;
                     }
                 }
-                catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
-                    System.out.println("\t\t Error running test");
+                catch (Exception e) {
+                    restoreOutput();
+                    er = e.toString();
                     error = true;
 
                 }
@@ -273,11 +284,14 @@ public class MapDataDrawer_grader
                 points += ((outOf / 2) + 1);
             }
             else if (otherValue && !error) {
+                p += (outOf/2);
+                points += (outOf/2);
                 System.out.println("\t\t+" + (outOf/2) + " for running method");
                 System.out.println("\t\t Values Incorrect");
             }
             else if (error) {
                 System.out.println("\t\t+0 Error running test");
+                System.out.println("\t\t " + er);
             }
 
             return p;
@@ -307,8 +321,10 @@ public class MapDataDrawer_grader
                     System.out.println("\t\tReturned Value: " + submission_value);
                 }
             }
-            catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
+            catch (Exception e) {
+                restoreOutput();
                 System.out.println("\t\t+0 Error running test");
+                System.out.println("\t\t " + e);
             }
             return p;
         }
@@ -343,9 +359,10 @@ public class MapDataDrawer_grader
                 System.out.println("\t\tReturned Value: " + submission_value);
             }
         }
-        catch (NoSuchMethodError | ArrayIndexOutOfBoundsException e) {
+        catch (Exception e) {
             restoreOutput();
             System.out.println("\t\t+0 Error running test");
+            System.out.println("\t\t " + e);
         }
         return p;
     }
@@ -376,4 +393,31 @@ public class MapDataDrawer_grader
         
         return fileContents.toString();
     }
+
+    /*
+            DrawingPanel panel = new DrawingPanel(width, height);
+        panel.setVisible(false);
+        Graphics g = panel.getGraphics();
+        // action event to autoexit panel
+        ActionEvent a = new ActionEvent(panel, 0, "Exit");
+
+        String[] test_data = {"test_Data_1.dat",
+                                "test_Data_2.dat", 
+                                "test_Data_3.dat", 
+                                "test_Data_4.dat",
+                                "test_Data_5.dat" };
+
+        solution = new MapDataDrawer_solution(test_data[3], 10, 10);
+
+        for(int i = 0; i < 500; i++) {
+            stealOutput();
+            int one = solution.findMin();
+            int two = solution.findMax();
+            int three = solution.indexOfMinRow(2);
+            int four = solution.drawLowestElevPath(g, 7);
+            int five = solution.indexOfLowestElevPath(g);
+            restoreOutput();
+            System.out.println( one + ", " + two + ", " + three + ", " + four + ", " + five + ", ");
+        }
+    */
 }
