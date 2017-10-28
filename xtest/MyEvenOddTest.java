@@ -1,18 +1,17 @@
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import java.util.ArrayList;
  
 public class MyEvenOddTest {
  
-    @Test
-    public void testEvenOddNumber(){
-        MyEvenOdd meo = new MyEvenOdd();
-        System.out.println("Check EvenOdd Test:");
-        try {
-            assertEquals("10 is a even number", true, meo.isEvenNumber(10));
-            System.out.println("\tEvenOdd test passed - 10 points");
+   public static void main(String[] args) {
+       ArrayList<MyEvenOdd> meo = new ArrayList<>();
+       meo.add(new MyEvenOdd());
+       meo.add(new MyEvenOdd());
+       meo.add(new MyEvenOdd());
+       meo.add(new MyEvenOdd());
+
+        for(int i = 0; i < meo.size(); i ++) {
+            if(meo.get(i).isEvenNumber(i))
+                System.out.println(i);
         }
-        catch (AssertionError e) {
-            System.out.println("\tEvenOdd test failed - 0 points");
-        }
-    }
+   }
 }

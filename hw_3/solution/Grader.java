@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Grader {
 
@@ -13,7 +15,7 @@ public class Grader {
         // set input
         InputStream originalInput = System.in;
         // FileInputStream in = new FileInputStream(new File("input"));
-        System.setIn(bais("2 2 1985"));
+        System.setIn(bais("7 12 1985"));
 
         // get output
         PrintStream originalOutput = System.out;
@@ -25,14 +27,26 @@ public class Grader {
         BirthDateSolution bds = new BirthDateSolution();
         SampleDate sd = new SampleDate(1985, 2, 2);
 
+        // need to get the date out
+        Pattern pattern_main_correct = Pattern.compile("\\d{4}/\\d{1,2}/\\d{1,2}");
+        Pattern pattern_main_partial_a = Pattern.compile("\\d{1,2}/\\d{1,2}/\\d{4}");
+        // Matcher pattern_answerMatcher = null;
+        String pattern_main_correct = "\\d{4}/\\d{1,2}/\\d{1,2}";
+        String pattern_main_partial_a = "\\d{1,2}/\\d{1,2}/\\d{4}";
+
         // main();
         BirthDateSolution.main(null);
         System.out.flush();
         System.setOut(originalOutput);
         String outstuff = baos.toString();
         String[] lines = outstuff.split("\\n");
-        for(String st : lines)
+        for(String st : lines){
+            // answerMatcher = answerPattern.matcher(st);
+                // if (answerMatcher.find())
+                if (Pattern.matches(pattern_main_correct, st))
+                    System.out.println("Found! " + answerMatcher.group());
             System.out.println(st);
+        }
 
         // accessing private methods!
         Class[] cArg = new Class[1];
