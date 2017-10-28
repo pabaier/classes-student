@@ -8,6 +8,21 @@ import java.io.FileInputStream;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
+// needs to test
+    // 1. getBirthDate method
+            // should take in month, day, year
+            // return SampleDate object
+    // 2. details(SampleDate) method
+            // should print: "You were born on _______ which was a _______"
+            // might print: "___(year)___ was a leap year."
+    // 3. daysUntilBirthday(SampleDate)
+            // should print a happy birthday message
+                // or
+            // the number of days until the next birthday
+    // 4. daysOld(SampleDate)
+            // should print: "You are _______ days old."
+
+
 public class BirthDate_Grader {
 
     public static void main (String[] args) throws Exception {
@@ -28,11 +43,9 @@ public class BirthDate_Grader {
         SampleDate sd = new SampleDate(1985, 2, 2);
 
         // need to get the date out
-        // Pattern pattern_main_correct = Pattern.compile("\\d{4}/\\d{1,2}/\\d{1,2}");
-        // Pattern pattern_main_partial_a = Pattern.compile("\\d{1,2}/\\d{1,2}/\\d{4}");
-        // Matcher pattern_answerMatcher = null;
-        String pattern_main_correct = "\\d{4}/\\d{1,2}/\\d{1,2}";
-        String pattern_main_partial_a = "\\d{1,2}/\\d{1,2}/\\d{4}";
+        Pattern pattern_main_correct = Pattern.compile("\\d{4}/\\d{1,2}/\\d{1,2}");
+        Pattern pattern_main_partial_a = Pattern.compile("\\d{1,2}/\\d{1,2}/\\d{4}");
+        Matcher pattern_answerMatcher = null;
 
         // main();
         BirthDateSolution.main(null);
@@ -69,8 +82,6 @@ public class BirthDate_Grader {
         
         // details.invoke(bds, returned);
 
-        // test CalendarDate class
-        CalendarDateSolution cds = new CalendarDateSolution();
     }
 
     // public static void stealOutput() {
