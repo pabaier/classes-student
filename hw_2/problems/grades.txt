@@ -1,0 +1,662 @@
+ 
+AndersonJ 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 4
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	section total: 10/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 634
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	section total: 10/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	section total: 15/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 13/18
+Total Score: 64/100
+ 
+ 
+YibJ 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: -1
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 6/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 1
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 6
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 6/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 8/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 6/18
+Total Score: 42/100
+ 
+ 
+WinsteadK 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 45
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 11/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 3079
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 11/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 32
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 11/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 24
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 13/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 11/18
+Total Score: 67/100
+ 
+ 
+VeloffS 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 9
+	section total: 16/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 9
+	section total: 16/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 9
+	section total: 16/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+9 Passed!
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 0
+		Returned Value: 9
+	section total: 16/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+6 One of two correct random paths taken
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 9
+	section total: 13/18
+Total Score: 87/100
+ 
+ 
+MayersE 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 10/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 30
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 10/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 9
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 10/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 2
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 66
+		Returned Value: 0
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 12/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 10/18
+Total Score: 62/100
+ 
+ 
+MooreR 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 198
+		Returned Value: 597
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: -2
+	section total: 10/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: -2
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: -2
+	section total: 6/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+		Expected Value: 26
+		Returned Value: 531
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 4
+	section total: 11/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: -2
+	indexOfLowestElevPath() test - /3
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: -2
+	section total: 6/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+4 for running method
+		 Values Incorrect
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 9
+	section total: 11/18
+Total Score: 54/100
+ 
+ 
+MooreW 
+		+0 Name missing from file - /5
+		+5 Submitted Properly - /5
+
+Testing Given Data Set
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 4
+		Returned Value: 0
+	section total: 7/18
+
+Testing Top Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 3
+		Returned Value: 0
+	section total: 7/18
+
+Testing Bottom Row Path
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 5
+		Returned Value: 0
+	section total: 7/18
+
+Testing When Choices are the Same
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+3 Passed!
+	section total: 9/18
+
+Testing Random Choice
+	findMin() test - /2
+		+2 Passed!
+	findMax() test - /2
+		+2 Passed!
+	indexOfMinRow() test - /2
+		+2 Passed!
+	drawLowestElevPath() test - /9
+		+0 Error running test
+		 java.lang.ArrayIndexOutOfBoundsException: 10
+	indexOfLowestElevPath() test - /3
+		+1 for running method
+		 Values Incorrect
+		Expected Value: 8
+		Returned Value: 0
+	section total: 7/18
+Total Score: 42/100
+ 
+ 
+TaylorC 
+		+5 Name in file - /5
+		+5 Submitted Properly - /5
+ 
+ 

@@ -1,0 +1,2 @@
+Collaboration policy
+I have spoken with TA Paul and have gotten help with my drawLowestElevationPath method.  I knew how to logically think through the process but couldn't figure out a way to code it where it made sense. He helped me think through how to make the computer understand what I mean.  He also helped me locate the files on my computer because I had changed the save directory a few times.
