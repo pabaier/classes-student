@@ -37,18 +37,115 @@ public class BirthDate_Grader {
         public static PrintStream output = new PrintStream(baos);
 
     public static void main (String[] args) throws Exception {
+        int totalPoints = 0;
         System.setOut(output);
 
         // test classes
+        System.out.println("BirthDate Class Tests:");
         BirthDateSolution birthDate_Solution = new BirthDateSolution();
-        BirthDate studentWork = new BirthDate();
+        BirthDate birthDate_Student = new BirthDate();
         
-        mainTest();
+        // main() test
+        // mainTest();
+
+        // getBirthdate() test
+        totalPoints += getBirthDateTest(birthDate_Solution, birthDate_Student);
+
+        // details() test
+        totalPoints += getDetails(birthDate_Solution, birthDate_Student);
+
+        // daysUntilBirthday test
+        // getBirthDateTest(birthDate_Solution, birthDate_Student);
+
+        // daysOld test
+        // getBirthDateTest(birthDate_Solution, birthDate_Student);
 
 
             
 
 
+    }
+
+    public static int getDetails(BirthDateSolution solution, BirthDate student) {
+        restoreOutput();
+        System.out.println("\tTesting details()");
+        int points = 0;
+        int full = 3;
+        int half = 2;
+        resetInputOutput();
+        SampleDate test_sd = new SampleDate(2004, 11, 18);
+        restoreOutput();
+        solution.details(test_sd);
+
+        return points;
+    }
+
+    public static int getBirthDateTest(BirthDateSolution solution, BirthDate student) {
+        restoreOutput();
+        System.out.println("\tTesting getBirthdate()");
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        resetInputOutput();
+        System.setIn(bais("2 3 1945"));
+        SampleDate solution_sd = solution.getBirthdate();
+        resetInputOutput();
+        SampleDate student_sd = student.getBirthdate();
+        
+        restoreOutput();
+        // check day getDay()
+        if(student_sd.getDay() != solution_sd.getDay()) {
+            if(student_sd.getDay() == solution_sd.getMonth() || student_sd.getDay() == solution_sd.getYear()) {
+                System.out.println("\t\tDay is correct but in the wrong format - " + half + "/" + full);
+                points += half;
+            }
+            else
+                System.out.println("\t\tIncorrect Day - 0/" + full);
+
+            System.out.println("\t\t\tYour output: " + student_sd);
+            System.out.println("\t\t\tExpected output: " + solution_sd);
+        }
+        else {
+            System.out.println("\t\tCorrect Day - " + full + "/" + full);
+            points += full;
+        }
+
+        // check month getMonth()
+        if(student_sd.getMonth() != solution_sd.getMonth()) {
+            if(student_sd.getMonth() == solution_sd.getDay() || student_sd.getMonth() == solution_sd.getYear()) {
+                System.out.println("\t\tMonth is correct but in the wrong format - " + half + "/" + full);
+                points += half;
+            }
+            else
+                System.out.println("\t\tIncorrect Month - 0/" + full);
+
+            System.out.println("\t\t\tYour output: " + student_sd);
+            System.out.println("\t\t\tExpected output: " + solution_sd);
+        }
+        else {
+            System.out.println("\t\tCorrect Month - " + full + "/" + full);
+            points += full;
+        }
+        // check year getYear()
+        if(student_sd.getYear() != solution_sd.getYear()) {
+            if(student_sd.getYear() == solution_sd.getDay() || student_sd.getYear() == solution_sd.getMonth()) {
+                System.out.println("\t\tYear is correct but in the wrong format - " + half + "/" + full);
+                points += half;
+            }
+            else
+                System.out.println("\t\tIncorrect Year - 0/" + full);
+
+            System.out.println("\t\t\tYour output: " + student_sd);
+            System.out.println("\t\t\tExpected output: " + solution_sd);
+        }
+        else {
+            System.out.println("\t\tCorrect Year - " + full + "/" + full);
+            points += full;
+        }
+
+        System.out.println("\t\t" + points + "/" + (full * 3));
+        return points;
     }
 
     public static int mainTest() throws Exception {
@@ -130,6 +227,18 @@ public class BirthDate_Grader {
         return results;
     }
 
+    public static void resetInputOutput() {
+        baos.reset();
+        System.setOut(output);
+        try {
+            System.in.reset();
+        }
+        catch (Exception e){};
+    }
+
+    public static void restoreOutput() {
+        System.setOut(originalOutput);
+    }
 
     public static ByteArrayInputStream bais(String inpt) {
         try {
