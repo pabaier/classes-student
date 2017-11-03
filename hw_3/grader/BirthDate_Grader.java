@@ -30,7 +30,7 @@ public class BirthDate_Grader {
         // set input
         InputStream originalInput = System.in;
         // FileInputStream in = new FileInputStream(new File("input"));
-        System.setIn(bais("7 12 1985"));
+        System.setIn(bais("12 17 1985"));
 
         // get output
         PrintStream originalOutput = System.out;
@@ -38,59 +38,49 @@ public class BirthDate_Grader {
         PrintStream output = new PrintStream(baos);
         System.setOut(output);
 
-        // test BirthDate class
-        BirthDateSolution bds = new BirthDateSolution();
-        SampleDate sd = new SampleDate(1985, 2, 2);
+        // test classes
+        BirthDateSolution birthDate_Solution = new BirthDateSolution();
+        BirthDate studentWork = new BirthDate();
+        // SampleDate sd = new SampleDate(1985, 2, 2);
 
-        // need to get the date out
-        Pattern pattern_main_correct = Pattern.compile("\\d{4}/\\d{1,2}/\\d{1,2}");
-        Pattern pattern_main_partial_a = Pattern.compile("\\d{1,2}/\\d{1,2}/\\d{4}");
-        Matcher pattern_answerMatcher = null;
+        // get date out of solution
+        Pattern answer_main_combo = Pattern.compile("(.*?)" +
+                                                    "(\\d{4}/\\d{1,2}/\\d{1,2})" + "(.*?)" +
+                                                    "(Monday?|Tuesday?|Wednesday?|Thursday?|Friday?|Saturday?|Sunday?)" + "(.*?)" +
+                                                    "(\\d+)" + "(.*?)" +
+                                                    "(\\d+)" + "(.*)", 
+                                                     Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
         // main();
         BirthDateSolution.main(null);
         System.out.flush();
         System.setOut(originalOutput);
         String outstuff = baos.toString();
-        String[] lines = outstuff.split("\\n");
-        for(String st : lines){
-            // answerMatcher = answerPattern.matcher(st);
-                // if (answerMatcher.find())
-                if (Pattern.matches(pattern_main_correct, st))
-                    System.out.println("Found! ");// + answerMatcher.group());
-            // System.out.println(st);
-        }
 
-        // // accessing private methods!
-        // Class[] cArg = new Class[1];
-        // cArg[0] = SampleDate.class;
-
-        // Method getBirthdate = BirthDateSolution.class.getDeclaredMethod("getBirthdate");
-        // Method details = BirthDateSolution.class.getDeclaredMethod("details", cArg);
-        // Method daysUntilBirthday = BirthDateSolution.class.getDeclaredMethod("daysUntilBirthday", cArg);
-        // Method daysOld = BirthDateSolution.class.getDeclaredMethod("daysOld", cArg);
-
-        // getBirthdate.setAccessible(true);
-        // details.setAccessible(true);
-        // daysUntilBirthday.setAccessible(true);
-        // daysOld.setAccessible(true);
-
-        // // System.setIn(originalInput);
-        // System.setIn(bais("7 12 1988"));
-        // SampleDate returned = (SampleDate)getBirthdate.invoke(bds);
-        // System.out.println();
+        System.out.println(outstuff);
         
-        // details.invoke(bds, returned);
+        // Matcher matcher = pattern_main_days_until.matcher(outstuff);
+        Matcher matcher = answer_main_combo.matcher(outstuff);
+        matcher.matches();
+        System.out.println(matcher.group(2));
+        System.out.println(matcher.group(4));
+        System.out.println(matcher.group(6));
+        System.out.println(matcher.group(8));
+        
+        // System.out.println("Here it is:\n" + answer_date);
+        
+        
+        // String[] lines = outstuff.split("\\n");
+        // for(String st : lines){
+        //     // answerMatcher = answerPattern.matcher(st);
+        //         // if (answerMatcher.find())
+        //         if (Pattern.matches(pattern_main_correct, st))
+        //             System.out.println("Found! ");// + answerMatcher.group());
+        //     // System.out.println(st);
+        // }
 
     }
 
-    // public static void stealOutput() {
-    //     System.setOut(new PrintStream(new ByteArrayOutputStream()));
-    // }
-
-    // public static void returnOutput() {
-    //     System.setOut(originalPrintStream);
-    // }
 
     public static ByteArrayInputStream bais(String inpt) {
         try {
@@ -101,4 +91,34 @@ public class BirthDate_Grader {
             return null;
         }
     }
+
+    // public static void stealOutput() {
+    //     System.setOut(new PrintStream(new ByteArrayOutputStream()));
+    // }
+
+    // public static void returnOutput() {
+    //     System.setOut(originalPrintStream);
+    // }
+
+    // // accessing private methods!
+    // Class[] cArg = new Class[1];
+    // cArg[0] = SampleDate.class;
+
+    // Method getBirthdate = BirthDateSolution.class.getDeclaredMethod("getBirthdate");
+    // Method details = BirthDateSolution.class.getDeclaredMethod("details", cArg);
+    // Method daysUntilBirthday = BirthDateSolution.class.getDeclaredMethod("daysUntilBirthday", cArg);
+    // Method daysOld = BirthDateSolution.class.getDeclaredMethod("daysOld", cArg);
+
+    // getBirthdate.setAccessible(true);
+    // details.setAccessible(true);
+    // daysUntilBirthday.setAccessible(true);
+    // daysOld.setAccessible(true);
+
+    // // System.setIn(originalInput);
+    // System.setIn(bais("7 12 1988"));
+    // SampleDate returned = (SampleDate)getBirthdate.invoke(bds);
+    // System.out.println();
+    
+    // details.invoke(bds, returned);
+
 }

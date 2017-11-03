@@ -29,7 +29,7 @@ public class BirthDate {
     /*
      * prompt user for their birthdate and return it as a CalendarDate
      */ 
-    public static SampleDate getBirthdate() {
+    private static SampleDate getBirthdate() {
         Scanner console = new Scanner(System.in);
         System.out.print("What month, day, and year were you born? ");
         int month = console.nextInt();
@@ -40,7 +40,7 @@ public class BirthDate {
     }
     
     // print stats about user's birthdate
-    public static void details(SampleDate birthdate) {
+    private static void details(SampleDate birthdate) {
         System.out.print("You were born on " + birthdate + ", which was a ");
         System.out.println(birthdate.getDayOfWeek() + ".");
         if (birthdate.isLeapYear()) {
@@ -52,7 +52,7 @@ public class BirthDate {
      * Count # days until next birthday
      * Complete the following method
      */ 
-    public static void daysUntilBirthday(SampleDate birthdate) {
+    private static void daysUntilBirthday(SampleDate birthdate) {
         SampleDate today = new SampleDate();
         int daysUntilBirthday = 0;
         while (today.getDay() != birthdate.getDay() || 
@@ -73,7 +73,7 @@ public class BirthDate {
     }
     
     // count # days old this person is
-    public static void daysOld(SampleDate birthdate) {
+    private static void daysOld(SampleDate birthdate) {
         int daysOld = 0;
         SampleDate today = new SampleDate();
         while (!birthdate.equals(today)) {

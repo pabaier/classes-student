@@ -17,7 +17,7 @@
 
 import java.util.*;
 
-public class BirthDate {
+public class BirthDateSolution {
     public static void main(String[] args) {
         
         SampleDate birthdate = getBirthdate();
