@@ -5,13 +5,14 @@
   * Program to prompt the user for the date of their birth and tell them 
   * something about that date.
   * 
+  * 
   * Base code provided by instructor. The following updates 
   * 
   *    <List updates here> 
   * 
   * were added by
   * 
-  *   <Your name goes here>
+  *   <Your name goes here
   */ 
 
 import java.util.*;
@@ -29,8 +30,13 @@ public class BirthDate {
      * prompt user for their birthdate and return it as a CalendarDate
      */ 
     private static SampleDate getBirthdate() {
-        /* Your solution goes here and change the return */
-        return null; 
+        Scanner console = new Scanner(System.in);
+        System.out.print("What month, day, and year were you born? ");
+        int month = console.nextInt();
+        int day = console.nextInt();
+        int year = console.nextInt();
+        SampleDate birthdate = new SampleDate(year, month, day);
+        return birthdate;
     }
     
     // print stats about user's birthdate
@@ -47,24 +53,34 @@ public class BirthDate {
      * Complete the following method
      */ 
     private static void daysUntilBirthday(SampleDate birthdate) {
-        /* Your solution goes here and replaces the declaration and
-         * initialization of daysUntilBirthday */
-         
+        SampleDate today = new SampleDate();
         int daysUntilBirthday = 0;
-        // Hint: count the days from today's date until the user's next birthday
-        // If today is the birthday, print Happy Birthday message
-        // if not print the message stating the number of days until the user's
-        // next birthday
+        while (today.getDay() != birthdate.getDay() || 
+               today.getMonth() != birthdate.getMonth()) {
+            today.nextDay();
+            daysUntilBirthday++;
+        }
+        if (daysUntilBirthday == 0) {
+            int age = (today.getYear() - birthdate.getYear());
+            System.out.println("Happy birthday!  You are now age " + age + ".");
+        } else {
+            System.out.print("It will be your birthday in " + daysUntilBirthday + " day");
+            if (daysUntilBirthday > 1) {
+                System.out.print("s");  // no 's' for 1 day
+            }
+            System.out.println(".");
+        }
     }
     
-        
-    /*
-     * count # days old this person is
-     */ 
+    // count # days old this person is
     private static void daysOld(SampleDate birthdate) {
-        
         int daysOld = 0;
-        // Hint: count the days from birthdate to today's date
+        SampleDate today = new SampleDate();
+        while (!birthdate.equals(today)) {
+            birthdate.nextDay();
+            daysOld++;
+        }
+        
         System.out.println("You are " + daysOld + " days old.");
     }
 }
