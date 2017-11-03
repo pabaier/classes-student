@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.Arrays;
+import java.util.List;
 
 // needs to test
     // 1. getBirthDate method
@@ -25,60 +27,107 @@ import java.util.regex.Matcher;
 
 public class BirthDate_Grader {
 
-    public static void main (String[] args) throws Exception {
-
         // set input
-        InputStream originalInput = System.in;
+        public static InputStream originalInput = System.in;
         // FileInputStream in = new FileInputStream(new File("input"));
-        System.setIn(bais("12 17 1985"));
 
         // get output
-        PrintStream originalOutput = System.out;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        PrintStream output = new PrintStream(baos);
+        public static PrintStream originalOutput = System.out;
+        public static ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        public static PrintStream output = new PrintStream(baos);
+
+    public static void main (String[] args) throws Exception {
         System.setOut(output);
 
         // test classes
         BirthDateSolution birthDate_Solution = new BirthDateSolution();
         BirthDate studentWork = new BirthDate();
-        // SampleDate sd = new SampleDate(1985, 2, 2);
+        
+        mainTest();
 
-        // get date out of solution
-        Pattern answer_main_combo = Pattern.compile("(.*?)" +
-                                                    "(\\d{4}/\\d{1,2}/\\d{1,2})" + "(.*?)" +
-                                                    "(Monday?|Tuesday?|Wednesday?|Thursday?|Friday?|Saturday?|Sunday?)" + "(.*?)" +
-                                                    "(\\d+)" + "(.*?)" +
-                                                    "(\\d+)" + "(.*)", 
-                                                     Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-        // main();
+            
+
+
+    }
+
+    public static int mainTest() throws Exception {
+        System.setIn(bais("12 17 1985"));
+        
+        // main() answer
         BirthDateSolution.main(null);
         System.out.flush();
         System.setOut(originalOutput);
-        String outstuff = baos.toString();
+        String answer_main_string = baos.toString();
+        System.out.println(answer_main_string);
 
-        System.out.println(outstuff);
+        // reset input/output
+        baos.reset();
+        System.setOut(output);
+        System.in.reset();
         
-        // Matcher matcher = pattern_main_days_until.matcher(outstuff);
-        Matcher matcher = answer_main_combo.matcher(outstuff);
-        matcher.matches();
-        System.out.println(matcher.group(2));
-        System.out.println(matcher.group(4));
-        System.out.println(matcher.group(6));
-        System.out.println(matcher.group(8));
-        
-        // System.out.println("Here it is:\n" + answer_date);
-        
-        
-        // String[] lines = outstuff.split("\\n");
-        // for(String st : lines){
-        //     // answerMatcher = answerPattern.matcher(st);
-        //         // if (answerMatcher.find())
-        //         if (Pattern.matches(pattern_main_correct, st))
-        //             System.out.println("Found! ");// + answerMatcher.group());
-        //     // System.out.println(st);
-        // }
+        // main() student
+        BirthDate.main(null);
+        System.out.flush();
+        System.setOut(originalOutput);
+        String student_main_string = baos.toString();
+        System.out.println(student_main_string);
 
+        // get results
+        String[] answer_main_results = mainMatcher(answer_main_string);
+        String[] student_main_results = mainMatcher(student_main_string);
+
+        List<String> answerList = Arrays.asList(answer_main_results);
+        List<String> studentList = Arrays.asList(student_main_results);
+
+        // Date
+        if(studentList.contains(answer_main_results[0]))
+            System.out.println("+1!");
+        // Day
+
+        // Days Until Birthday
+
+        // Days Old 
+
+        return 0;
+    }
+
+    public static String[] mainMatcher(String answer) {
+        String [] results = new String[4];
+        Pattern main_pattern = Pattern.compile("(.*?)" +
+                                                    "(\\d{4}/\\d{1,2}/\\d{1,2})" + "(.*?)" +
+                                                    "(Monday?|Tuesday?|Wednesday?|Thursday?|Friday?|Saturday?|Sunday?)" + "(.*?)" +
+                                                    "(\\d{1,3})" + "(.*?)" +
+                                                    "(\\d+)" + "(.*)", 
+                                                     Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+
+        Matcher matcher = main_pattern.matcher(answer);
+        matcher.find();
+        try{
+            results[0] = matcher.group(2);
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't find date in main output - should be in the format YYYY/MM/DD");
+        }
+        try{
+            results[1] = matcher.group(4);
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't find day in main output - looking for Monday, Tuesday,...");
+        }
+        try{
+            results[2] = matcher.group(6);
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't find days until birthday in main output - should be 1 - 3 digit number");
+        }
+        try{
+            results[3] = matcher.group(8);
+        }
+        catch (Exception e) {
+            System.out.println("Couldn't find days old in main output - should be number with more than 3 digits");
+        }
+        return results;
     }
 
 
