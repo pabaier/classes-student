@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=BirthDate
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=SampleDate\ getBirthdate()
+comment2.text=\n\ prompt\ user\ for\ their\ birthdate\ and\ return\ it\ as\ a\ CalendarDate\n
+comment3.params=birthdate
+comment3.target=void\ details(SampleDate)
+comment4.params=birthdate
+comment4.target=void\ daysUntilBirthday(SampleDate)
+comment4.text=\n\ Count\ \#\ days\ until\ next\ birthday\n\ Complete\ the\ following\ method\n
+comment5.params=birthdate
+comment5.target=void\ daysOld(SampleDate)
+comment5.text=\n\ count\ \#\ days\ old\ this\ person\ is\n
+numComments=6
