@@ -50,15 +50,29 @@ public class BirthDate_Grader {
 
         // getBirthdate() test
         totalPoints += getBirthDateTest(birthDate_Solution, birthDate_Student);
-
         // details() test
         totalPoints += getDetails(birthDate_Solution, birthDate_Student);
-
         // daysUntilBirthday test
         totalPoints += getDaysUntilBirthday(birthDate_Solution, birthDate_Student);
-
         // daysOld test
         getDaysOld(birthDate_Solution, birthDate_Student);
+
+
+        // CalendarDate test
+        
+        // getDay() test
+
+        // getMonth() test
+
+        // getYear() test
+
+        // getDayOfWeek() test
+
+        // isLeapYear() test
+
+        // nextDay() test
+
+        // toString() test (YYYY/DD/MM or YYYY/D/M)
     }
 
     public static int getDaysOld(BirthDateSolution solution, BirthDate student) {
