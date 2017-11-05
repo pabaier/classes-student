@@ -59,11 +59,6 @@ public class BirthDate_Grader {
 
         // daysOld test
         // getBirthDateTest(birthDate_Solution, birthDate_Student);
-
-
-            
-
-
     }
 
     public static int getDetails(BirthDateSolution solution, BirthDate student) {
@@ -72,12 +67,80 @@ public class BirthDate_Grader {
         int points = 0;
         int full = 3;
         int half = 2;
-        resetInputOutput();
+
         SampleDate test_sd = new SampleDate(2004, 11, 18);
-        restoreOutput();
+
+        resetOutputStream();
         solution.details(test_sd);
+        String solution_string = baos.toString();
+
+        resetOutputStream();
+        String student_answer = "";
+        try {
+            student.details(test_sd);
+            student_answer = baos.toString();
+            restoreOutput();
+        }
+        catch(Exception e) {
+            restoreOutput();
+            System.out.println("\t\tError running details() method");
+        }
+
+        String[] answer_key = new String[3];
+        String[] student_answers = new String[3];
+        String[] matches = {"\\d{4}/\\d{1,2}/\\d{1,2}",
+                            "Monday?|Tuesday?|Wednesday?|Thursday?|Friday?|Saturday?|Sunday?",
+                            "leap year?|leapyear?"
+                            };
+
+        for(int i = 0; i < answer_key.length; i++) {
+            answer_key[i] = extractRegexFromString(matches[i], solution_string).replaceAll("\\s", "").toUpperCase();
+            student_answers[i] = extractRegexFromString(matches[i], student_answer.replaceAll("\\s", "").toUpperCase());
+        }
+        // test values
+        // student_answers[1] = "2004/21/18";
+        // student_answers[0] = "THUR SDAY";
+        // student_answers[2] = "";
+
+        // assign the points
+        for(int i = 0; i < student_answers.length; i++){
+            if(!Arrays.asList(answer_key).contains(student_answers[i])) {
+                if(!student_answers[i].equals("")) {
+                    System.out.println("\t\tMethod ran but incorrect value returned - " + half + "/" + full);
+                    points += half;
+                }
+                else
+                    System.out.println("\t\tUnable to get value from method = 0/" + full);
+                System.out.println("\t\t\tYour Output: " + student_answers[i]);
+                System.out.println("\t\t\tExpected Output: " + Arrays.toString(answer_key));
+            }
+            else {
+                System.out.println("\t\tCorrect " + student_answers[i] + " - " + full + "/" + full);
+                points += full;
+            }
+        }
+        System.out.println("\t\t" + points + "/" + (full * 3));
 
         return points;
+    }
+
+    /*  finds the regex within the doc string and returns that value.
+        regex should be the regex string wishing to be found in doc
+        this method wraps the regex in .*?( regex ).*
+    */
+    public static String extractRegexFromString(String regex, String doc) {
+        String r = ".*?(" + regex + ").*"; 
+        String found;
+        Pattern pattern = Pattern.compile(r, Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(doc);
+        try{
+            matcher.find();
+            found = matcher.group(1);
+        }
+        catch(Exception e){
+            found = null;
+        }
+        return found;
     }
 
     public static int getBirthDateTest(BirthDateSolution solution, BirthDate student) {
@@ -227,6 +290,21 @@ public class BirthDate_Grader {
         return results;
     }
 
+    public static void resetInputToken() {
+        try {
+            System.in.reset();
+        }
+        catch (Exception e){};     
+    }
+
+    public static void resetOutputStream() {
+        baos.reset();
+        System.setOut(output);
+    }
+
+    /*  resets the input token back to the beginning and
+        clears the byte array output stream
+    */
     public static void resetInputOutput() {
         baos.reset();
         System.setOut(output);
@@ -240,6 +318,8 @@ public class BirthDate_Grader {
         System.setOut(originalOutput);
     }
 
+    /* gives System.in a string for input
+    */
     public static ByteArrayInputStream bais(String inpt) {
         try {
             return new ByteArrayInputStream(inpt.getBytes("UTF-8"));
@@ -249,7 +329,7 @@ public class BirthDate_Grader {
             return null;
         }
     }
-
+/*
     // public static void stealOutput() {
     //     System.setOut(new PrintStream(new ByteArrayOutputStream()));
     // }
@@ -278,5 +358,5 @@ public class BirthDate_Grader {
     // System.out.println();
     
     // details.invoke(bds, returned);
-
+*/
 }
