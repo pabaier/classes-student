@@ -51,44 +51,167 @@ public class BirthDate_Grader {
         // mainTest();
 
         // getBirthdate() test (9)
-        totalPoints += getBirthDateTest(birthDate_Solution, birthDate_Student);
+        sectionTotal += getBirthDateTest(birthDate_Solution, birthDate_Student);
         // details() test (9)
-        totalPoints += getDetails(birthDate_Solution, birthDate_Student);
+        sectionTotal += getDetails(birthDate_Solution, birthDate_Student);
         // daysUntilBirthday test (6)
-        totalPoints += getDaysUntilBirthday(birthDate_Solution, birthDate_Student);
+        sectionTotal += getDaysUntilBirthday(birthDate_Solution, birthDate_Student);
         // daysOld test (3)
-        totalPoints += getDaysOld(birthDate_Solution, birthDate_Student);
+        sectionTotal += getDaysOld(birthDate_Solution, birthDate_Student);
         outOf += 27;
-        sectionTotal = totalPoints;
+        totalPoints += sectionTotal;
         System.out.println(" Section Total: " + sectionTotal + "/" + outOf);
 
         // CalendarDate test
-        
+        sectionTotal = 0;
         System.out.println("\nCalendarDate Class Tests:");
         // getDay() test (3)
-        totalPoints += getDayTest();
+        sectionTotal += getDayTest();
         // getMonth() test (3)
-        totalPoints += getMonthTest();
+        sectionTotal += getMonthTest();
         // getYear() test (3)
-        totalPoints += getYearTest();
-        // getDayOfWeek() test
-        totalPoints += getDayOfWeekTest();
-
-        // isLeapYear() test
-
+        sectionTotal += getYearTest();
+        // getDayOfWeek() test (6)
+        sectionTotal += getDayOfWeekTest();
+        // isLeapYear() test (6)
+        sectionTotal += isLeapYearTest();
         // nextDay() test
+        sectionTotal += nextDayTest();
 
         // toString() test (YYYY/DD/MM or YYYY/D/M)
 
         outOf += 9;
-        sectionTotal = totalPoints - sectionTotal;
+        totalPoints += sectionTotal;
         System.out.println(" Section Total: " + sectionTotal + "/" + 9);
         System.out.println("Total Grade: " + totalPoints + "/" + outOf);
     }
 
-    public static int getDayOfWeekTest() {
+    public static int nextDayTest() {
         int points = 0;
         int full = 3;
+        System.out.println("\tTesting nextDay()");
+        SampleDate answer_random = new SampleDate(1924, 9, 12);
+        SampleDate answer_new_month = new SampleDate(1969, 4, 30);
+        SampleDate answer_new_year = new SampleDate(1998, 12, 31);
+        try {
+            CalendarDate student_random = new CalendarDate(1924, 9, 1);
+            CalendarDate student_new_month = new CalendarDate(1969, 4, 3);
+            CalendarDate student_new_year = new CalendarDate(1998, 12, 3);
+
+            answer_random.nextDay();answer_new_month.nextDay();answer_new_year.nextDay();answer_new_year.nextDay();
+            student_random.nextDay();student_new_month.nextDay();student_new_year.nextDay();student_new_year.nextDay();
+            
+            List<Integer> dates_random = new ArrayList<>();
+            dates_random.add(answer_random.getMonth());
+            dates_random.add(answer_random.getDay());
+            dates_random.add(answer_random.getYear());
+
+            List<Integer> dates_new_month = new ArrayList<>();
+            dates_new_month.add(answer_new_month.getMonth());
+            dates_new_month.add(answer_new_month.getDay());
+            dates_new_month.add(answer_new_month.getYear());
+            
+            List<Integer> dates_new_year = new ArrayList<>();
+            dates_new_year.add(answer_new_year.getMonth());
+            dates_new_year.add(answer_new_year.getDay());
+            dates_new_year.add(answer_new_year.getYear());
+
+            if(!( dates_random.contains(student_random.getMonth()) && 
+                    dates_random.contains(student_random.getDay()) && 
+                    dates_random.contains(student_random.getYear()) 
+                )) {
+                System.out.println("\t\tMethod ran but wrong output - " + (full / 2) + "/" + full);
+                System.out.println("\t\t\tYour output with day change " + studentToString(student_random));
+                System.out.println("\t\t\tExpected output with day change " + answer_random);
+                points += full / 2;
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + studentToString(student_random) + " - " + full + "/" + full);                
+            }
+
+            if(!( dates_new_month.contains(student_new_month.getMonth()) && 
+                    dates_new_month.contains(student_new_month.getDay()) && 
+                    dates_new_month.contains(student_new_month.getYear()) 
+                )) {
+                System.out.println("\t\tMethod ran but wrong output - " + (full / 2) + "/" + full);
+                System.out.println("\t\t\tYour output with month change " + studentToString(student_new_month));
+                System.out.println("\t\t\tExpected output with month change " + answer_new_month);
+                points += full / 2;
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + studentToString(student_new_month) + " - " + full + "/" + full);                
+            }
+
+
+            if(!( dates_new_year.contains(student_new_year.getMonth()) && 
+                    dates_new_year.contains(student_new_year.getDay()) && 
+                    dates_new_year.contains(student_new_year.getYear()) 
+                )) {
+                System.out.println("\t\tMethod ran but wrong output - " + (full / 2) + "/" + full);
+                System.out.println("\t\t\tYour output with year change " + studentToString(student_new_year));
+                System.out.println("\t\t\tExpected output with year change " + answer_new_year);
+                points += full / 2;
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + studentToString(student_new_year) + " - " + full + "/" + full);                
+            }
+
+
+        }
+        catch (Exception e) {
+            System.out.println("\t\tError running CalendarDate.isLeapYear()");
+        }
+        System.out.println("\t\t" + points + "/" + (full * 3));
+
+        return points;
+    }
+
+    public static int isLeapYearTest() {
+        int points = 0;
+        int full = 3;
+        System.out.println("\tTesting isLeapYear()");
+        SampleDate answer_no = new SampleDate(1797, 2, 3);
+        SampleDate answer_yes = new SampleDate(1872, 11, 12);
+        try {
+            CalendarDate student_no = new CalendarDate(1797, 2, 3);
+            CalendarDate student_yes = new CalendarDate(1872, 11, 12);
+            if(!(answer_no.isLeapYear() == student_no.isLeapYear())) {
+                System.out.println("\t\tMethod ran but wrong output - " + (full / 2) + "/" + full);
+                System.out.println("\t\t\tYour output for year " + answer_no.getYear() + ": " + student_no.isLeapYear());
+                System.out.println("\t\t\tExpected output for year " + answer_no.getYear() + ": " + answer_no.isLeapYear());
+                points += full / 2;
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + student_no.isLeapYear() + " - " + full + "/" + full);                
+            }
+            if(!(answer_yes.isLeapYear() == student_yes.isLeapYear())) {
+                System.out.println("\t\tMethod ran but wrong output - " + (full / 2) + "/" + full);
+                System.out.println("\t\t\tYour output for year " + answer_yes.getYear() + ": " + student_yes.isLeapYear());
+                System.out.println("\t\t\tExpected output for year " + answer_yes.getYear() + ": " + answer_yes.isLeapYear());
+                points += full / 2;
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + student_yes.isLeapYear() + " - " + full + "/" + full);                
+            }
+
+
+        }
+        catch (Exception e) {
+            System.out.println("\t\tError running CalendarDate.isLeapYear()");
+        }
+        System.out.println("\t\t" + points + "/" + (full * 2));
+
+        return points;
+    }
+
+    public static int getDayOfWeekTest() {
+        int points = 0;
+        int full = 6;
         int half = 2;
 
         System.out.println("\tTesting getDayOfWeek()");
@@ -106,16 +229,21 @@ public class BirthDate_Grader {
                 int studentIndex = DAY_NAMES.indexOf(studentDay);
 
                 if(Math.abs(answerIndex - studentIndex) == 1 || Math.abs(answerIndex - studentIndex) == 6) {
-                    System.out.println("\t\tOne day off - " + half + "/" + full);
-                    points += half;
+                    System.out.println("\t\tOne day off - " + (full - 1) + "/" + full);
+                    points += full - 1;
                 }
                 else if(Math.abs(answerIndex - studentIndex) == 2 || Math.abs(answerIndex - studentIndex) == 5) {
-                    System.out.println("\t\tTwo days off - " + (half - 1) + "/" + full);
-                    points += half - 1;
-
+                    System.out.println("\t\tTwo days off - " + (full - 2) + "/" + full);
+                    points += full - 2;
                 }
-                else
-                    System.out.println("\t\tIncorrect Day of the week - 0/" + full);
+                else if(Math.abs(answerIndex - studentIndex) == 3 || Math.abs(answerIndex - studentIndex) == 4) {
+                    System.out.println("\t\tThree days off - " + (full - 3) + "/" + full);
+                    points += full - 3;
+                }
+                else {
+                    System.out.println("\t\tMethod ran but returned incorrect day of the week - " + (full / 2) + "/" + full);
+                    points += (full / 2);
+                }
                 System.out.println("\t\t\tYour Output: " + studentDay);
                 System.out.println("\t\t\tExpected Output: " + answerDay);
             }
@@ -125,13 +253,12 @@ public class BirthDate_Grader {
             }
         }
         catch (Exception e) {
-            System.out.println("\t\tError running CalendarDate.getYear()");
+            System.out.println("\t\tError running CalendarDate.getDayOfWeek()");
         }
         System.out.println("\t\t" + points + "/" + full);
 
         return points;
     }
-
 
     public static int getYearTest() {
         int points = 0;
@@ -148,8 +275,10 @@ public class BirthDate_Grader {
                     System.out.println("\t\tYear is correct but formatted incorrectly - " + half + "/" + full);
                     points += half;
                 }
-                else
-                    System.out.println("\t\tIncorrect year - 0/" + full);
+                else {
+                    System.out.println("\t\tMethod ran but incorrect year returned - " + (full / 2) + "/" + full);
+                    points += (full / 2);
+                }
                 System.out.println("\t\t\tYour Output: " + student.getYear());
                 System.out.println("\t\t\tExpected Output: " + answer.getYear());
             }
@@ -181,8 +310,10 @@ public class BirthDate_Grader {
                     System.out.println("\t\tMonth is correct but formatted incorrectly - " + half + "/" + full);
                     points += half;
                 }
-                else
-                    System.out.println("\t\tIncorrect month - 0/" + full);
+                else {
+                    System.out.println("\t\tMethod ran but incorrect month returned - " + (full / 2) + "/" + full);
+                    points += (full / 2);
+                }
                 System.out.println("\t\t\tYour Output: " + student.getMonth());
                 System.out.println("\t\t\tExpected Output: " + answer.getMonth());
             }
@@ -214,8 +345,10 @@ public class BirthDate_Grader {
                     System.out.println("\t\tDay is correct but formatted incorrectly - " + half + "/" + full);
                     points += half;
                 }
-                else
-                    System.out.println("\t\tIncorrect day - 0/" + full);
+                else {
+                    System.out.println("\t\tMethod ran but incorrect day returned - " + (full / 2) + "/" + full);
+                    points += (full / 2);
+                }
                 System.out.println("\t\t\tYour Output: " + student.getDay());
                 System.out.println("\t\t\tExpected Output: " + answer.getDay());
             }
@@ -590,6 +723,10 @@ public class BirthDate_Grader {
             System.in.reset();
         }
         catch (Exception e){};     
+    }
+
+    public static String studentToString(CalendarDate c) {
+        return c.getYear() + "/" + c.getMonth() + "/" + c.getDay();
     }
 
     /* prepares output to be captured in ByteArrayOutputStream output
