@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Calendar;
 
 // needs to test
     // 1. getBirthDate method
@@ -38,7 +39,6 @@ public class BirthDate_Grader {
 
     public static void main (String[] args) throws Exception {
         int totalPoints = 0;
-        System.setOut(output);
 
         // test classes
         System.out.println("BirthDate Class Tests:");
@@ -55,10 +55,125 @@ public class BirthDate_Grader {
         totalPoints += getDetails(birthDate_Solution, birthDate_Student);
 
         // daysUntilBirthday test
-        // getBirthDateTest(birthDate_Solution, birthDate_Student);
+        totalPoints += getDaysUntilBirthday(birthDate_Solution, birthDate_Student);
 
         // daysOld test
-        // getBirthDateTest(birthDate_Solution, birthDate_Student);
+        getDaysOld(birthDate_Solution, birthDate_Student);
+    }
+
+    public static int getDaysOld(BirthDateSolution solution, BirthDate student) {
+        restoreOutput();
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        SampleDate sd = new SampleDate(1988, 7, 12);
+        System.out.println("\tTesting daysOld()");
+
+        resetOutputStream();
+        solution.daysOld(sd);
+        String answer = baos.toString();
+        resetOutputStream();
+        String student_answer = "";
+        try {
+            sd = new SampleDate(1988, 7, 12);
+            student.daysOld(sd);
+            student_answer = baos.toString();
+            resetOutputStream();
+        }
+        catch(Exception e){
+            restoreOutput();
+            System.out.println("Error running daysOld()");
+        }
+        restoreOutput();
+
+        String student_num = "";
+        String answer_key = extractRegexFromString("\\d+", answer);
+        student_num = extractRegexFromString("\\d+", student_answer);
+
+        if(!answer_key.equals(student_num)) {
+            if(!student_num.equals("")) {
+                System.out.println("\t\tMethod ran but incorrect value returned - " + half + "/" + full);
+                    points += half;
+            }
+            else
+                System.out.println("\t\tUnable to get value from method - 0/" + full);
+            System.out.println("\t\t\tYour Output: " + student_num);
+            System.out.println("\t\t\tExpected Output: " + answer_key);
+        }
+        else {
+            System.out.println("\t\tCorrect " + student_num + " - " + full + "/" + full);
+            points += full;
+        }
+
+        System.out.println("\t\t" + points + "/" + full);
+
+        return points;
+    }
+
+    public static int getDaysUntilBirthday(BirthDateSolution solution, BirthDate student) {
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        SampleDate sd = new SampleDate(1977, 7, 27);
+        SampleDate sd_birthday = new SampleDate(1977,  Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        System.out.println("\tTesting daysUntilBirthday()");
+
+        resetOutputStream();
+        solution.daysUntilBirthday(sd);
+        String answer = baos.toString();
+        resetOutputStream();
+        solution.daysUntilBirthday(sd_birthday);
+        String answer_birthday = baos.toString();
+        resetOutputStream();
+        
+        String student_answer = "";
+        String student_answer_birthday = "";
+        try {
+            sd = new SampleDate(1977, 7, 27);
+            student.daysUntilBirthday(sd);
+            student_answer = baos.toString();
+            resetOutputStream();
+            sd_birthday = new SampleDate(1977,  Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+            student.daysUntilBirthday(sd_birthday);
+            student_answer_birthday = baos.toString();
+        }
+        catch(Exception e){
+            restoreOutput();
+            System.out.println("Error running daysUntilBirthday()");
+        }
+        restoreOutput();
+        String[] answer_key = new String[2];
+        String[] student_answers = new String[2];
+        answer_key[0] = extractRegexFromString("\\d+", answer);
+        answer_key[1] = extractRegexFromString("happy birthday", answer_birthday).replaceAll("\\s", "").toUpperCase();
+        student_answers[0] = extractRegexFromString("\\d+", student_answer);
+        student_answers[1] = extractRegexFromString("happy birthday", student_answer_birthday).replaceAll("\\s", "").toUpperCase();
+
+        // tests
+        // student_answers[0] = "23";
+        // student_answers[1] = null;
+
+        for(int i = 0; i < answer_key.length; i++) {
+            if(!answer_key[i].equals(student_answers[i])) {
+                if(!student_answers[i].equals("")) {
+                    System.out.println("\t\tMethod ran but incorrect value returned - " + half + "/" + full);
+                        points += half;
+                }
+                else
+                    System.out.println("\t\tUnable to get value from method - 0/" + full);
+                System.out.println("\t\t\tYour Output: " + student_answers[i]);
+                System.out.println("\t\t\tExpected Output: " + Arrays.toString(answer_key));
+            }
+            else {
+                System.out.println("\t\tCorrect " + student_answers[i] + " - " + full + "/" + full);
+                points += full;
+            }
+        }
+        System.out.println("\t\t" + points + "/" + (full * 2));
+
+        return points;
     }
 
     public static int getDetails(BirthDateSolution solution, BirthDate student) {
@@ -77,13 +192,14 @@ public class BirthDate_Grader {
         resetOutputStream();
         String student_answer = "";
         try {
+            test_sd = new SampleDate(2004, 11, 18);
             student.details(test_sd);
             student_answer = baos.toString();
             restoreOutput();
         }
         catch(Exception e) {
             restoreOutput();
-            System.out.println("\t\tError running details() method");
+            System.out.println("\t\tError running details()");
         }
 
         String[] answer_key = new String[3];
@@ -110,7 +226,7 @@ public class BirthDate_Grader {
                     points += half;
                 }
                 else
-                    System.out.println("\t\tUnable to get value from method = 0/" + full);
+                    System.out.println("\t\tUnable to get value from method - 0/" + full);
                 System.out.println("\t\t\tYour Output: " + student_answers[i]);
                 System.out.println("\t\t\tExpected Output: " + Arrays.toString(answer_key));
             }
@@ -124,25 +240,6 @@ public class BirthDate_Grader {
         return points;
     }
 
-    /*  finds the regex within the doc string and returns that value.
-        regex should be the regex string wishing to be found in doc
-        this method wraps the regex in .*?( regex ).*
-    */
-    public static String extractRegexFromString(String regex, String doc) {
-        String r = ".*?(" + regex + ").*"; 
-        String found;
-        Pattern pattern = Pattern.compile(r, Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-        Matcher matcher = pattern.matcher(doc);
-        try{
-            matcher.find();
-            found = matcher.group(1);
-        }
-        catch(Exception e){
-            found = null;
-        }
-        return found;
-    }
-
     public static int getBirthDateTest(BirthDateSolution solution, BirthDate student) {
         restoreOutput();
         System.out.println("\tTesting getBirthdate()");
@@ -150,61 +247,67 @@ public class BirthDate_Grader {
         int full = 3;
         int half = 2;
 
-        resetInputOutput();
         System.setIn(bais("2 3 1945"));
+        resetOutputStream();
         SampleDate solution_sd = solution.getBirthdate();
-        resetInputOutput();
-        SampleDate student_sd = student.getBirthdate();
-        
-        restoreOutput();
-        // check day getDay()
-        if(student_sd.getDay() != solution_sd.getDay()) {
-            if(student_sd.getDay() == solution_sd.getMonth() || student_sd.getDay() == solution_sd.getYear()) {
-                System.out.println("\t\tDay is correct but in the wrong format - " + half + "/" + full);
-                points += half;
+        resetInputToken();
+
+        try{
+            SampleDate student_sd = student.getBirthdate();
+            restoreOutput();
+            // check day getDay()
+            if(student_sd.getDay() != solution_sd.getDay()) {
+                if(student_sd.getDay() == solution_sd.getMonth() || student_sd.getDay() == solution_sd.getYear()) {
+                    System.out.println("\t\tDay is correct but in the wrong format - " + half + "/" + full);
+                    points += half;
+                }
+                else
+                    System.out.println("\t\tIncorrect Day - 0/" + full);
+
+                System.out.println("\t\t\tYour output: " + student_sd);
+                System.out.println("\t\t\tExpected output: " + solution_sd);
             }
-            else
-                System.out.println("\t\tIncorrect Day - 0/" + full);
-
-            System.out.println("\t\t\tYour output: " + student_sd);
-            System.out.println("\t\t\tExpected output: " + solution_sd);
-        }
-        else {
-            System.out.println("\t\tCorrect Day - " + full + "/" + full);
-            points += full;
-        }
-
-        // check month getMonth()
-        if(student_sd.getMonth() != solution_sd.getMonth()) {
-            if(student_sd.getMonth() == solution_sd.getDay() || student_sd.getMonth() == solution_sd.getYear()) {
-                System.out.println("\t\tMonth is correct but in the wrong format - " + half + "/" + full);
-                points += half;
+            else {
+                System.out.println("\t\tCorrect Day - " + full + "/" + full);
+                points += full;
             }
-            else
-                System.out.println("\t\tIncorrect Month - 0/" + full);
 
-            System.out.println("\t\t\tYour output: " + student_sd);
-            System.out.println("\t\t\tExpected output: " + solution_sd);
-        }
-        else {
-            System.out.println("\t\tCorrect Month - " + full + "/" + full);
-            points += full;
-        }
-        // check year getYear()
-        if(student_sd.getYear() != solution_sd.getYear()) {
-            if(student_sd.getYear() == solution_sd.getDay() || student_sd.getYear() == solution_sd.getMonth()) {
-                System.out.println("\t\tYear is correct but in the wrong format - " + half + "/" + full);
-                points += half;
+            // check month getMonth()
+            if(student_sd.getMonth() != solution_sd.getMonth()) {
+                if(student_sd.getMonth() == solution_sd.getDay() || student_sd.getMonth() == solution_sd.getYear()) {
+                    System.out.println("\t\tMonth is correct but in the wrong format - " + half + "/" + full);
+                    points += half;
+                }
+                else
+                    System.out.println("\t\tIncorrect Month - 0/" + full);
+
+                System.out.println("\t\t\tYour output: " + student_sd);
+                System.out.println("\t\t\tExpected output: " + solution_sd);
             }
-            else
-                System.out.println("\t\tIncorrect Year - 0/" + full);
+            else {
+                System.out.println("\t\tCorrect Month - " + full + "/" + full);
+                points += full;
+            }
+            // check year getYear()
+            if(student_sd.getYear() != solution_sd.getYear()) {
+                if(student_sd.getYear() == solution_sd.getDay() || student_sd.getYear() == solution_sd.getMonth()) {
+                    System.out.println("\t\tYear is correct but in the wrong format - " + half + "/" + full);
+                    points += half;
+                }
+                else
+                    System.out.println("\t\tIncorrect Year - 0/" + full);
 
-            System.out.println("\t\t\tYour output: " + student_sd);
-            System.out.println("\t\t\tExpected output: " + solution_sd);
+                System.out.println("\t\t\tYour output: " + student_sd);
+                System.out.println("\t\t\tExpected output: " + solution_sd);
+            }
+            else {
+                System.out.println("\t\tCorrect Year - " + full + "/" + full);
+                points += full;
+            }
         }
-        else {
-            System.out.println("\t\tCorrect Year - " + full + "/" + full);
-            points += full;
+        catch(Exception e) {
+            restoreOutput();
+            System.out.println("\t\tUnable to run getBirthdate()");
         }
 
         System.out.println("\t\t" + points + "/" + (full * 3));
@@ -290,6 +393,27 @@ public class BirthDate_Grader {
         return results;
     }
 
+    /*  finds the regex within the doc string and returns that value.
+        regex should be the regex string wishing to be found in doc
+        this method wraps the regex in .*?( regex ).*
+    */
+    public static String extractRegexFromString(String regex, String doc) {
+        if(doc.equals(""))
+            return "";
+        String r = ".*?(" + regex + ").*"; 
+        String found;
+        Pattern pattern = Pattern.compile(r, Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(doc);
+        try{
+            matcher.find();
+            found = matcher.group(1);
+        }
+        catch(Exception e){
+            found = "";
+        }
+        return found;
+    }
+
     public static void resetInputToken() {
         try {
             System.in.reset();
@@ -297,21 +421,12 @@ public class BirthDate_Grader {
         catch (Exception e){};     
     }
 
+    /* prepares output to be captured in ByteArrayOutputStream output
+        use baos.toString()
+    */
     public static void resetOutputStream() {
         baos.reset();
         System.setOut(output);
-    }
-
-    /*  resets the input token back to the beginning and
-        clears the byte array output stream
-    */
-    public static void resetInputOutput() {
-        baos.reset();
-        System.setOut(output);
-        try {
-            System.in.reset();
-        }
-        catch (Exception e){};
     }
 
     public static void restoreOutput() {
