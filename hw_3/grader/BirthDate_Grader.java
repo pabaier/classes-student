@@ -60,11 +60,13 @@ public class BirthDate_Grader {
 
         // CalendarDate test
         
+        System.out.println("\nCalendarDate Class Tests:");
         // getDay() test
-
+        totalPoints += getDayTest();
         // getMonth() test
-
+        totalPoints += getMonthTest();
         // getYear() test
+        totalPoints += getYearTest();
 
         // getDayOfWeek() test
 
@@ -73,6 +75,105 @@ public class BirthDate_Grader {
         // nextDay() test
 
         // toString() test (YYYY/DD/MM or YYYY/D/M)
+    }
+
+    public static int getYearTest() {
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        System.out.println("\tTesting getYear()");
+
+        SampleDate answer = new SampleDate(1954, 3, 12);
+        try {
+            CalendarDate student = new CalendarDate(1954, 3, 12);
+            if(answer.getYear() != student.getYear()) {
+                if(answer.getYear() == student.getDay() || answer.getYear() == student.getMonth()) {
+                    System.out.println("\t\tYear is correct but formatted incorrectly - " + half + "/" + full);
+                    points += half;
+                }
+                else
+                    System.out.println("\t\tIncorrect year - 0/" + full);
+                System.out.println("\t\t\tYour Output: " + student.getYear());
+                System.out.println("\t\t\tExpected Output: " + answer.getYear());
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + student.getYear() + " - " + full + "/" + full);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("\t\tError running CalendarDate.getYear()");
+        }
+        System.out.println("\t\t" + points + "/" + full);
+
+        return points;
+    }
+
+    public static int getMonthTest() {
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        System.out.println("\tTesting getMonth()");
+
+        SampleDate answer = new SampleDate(1952, 10, 22);
+        try {
+            CalendarDate student = new CalendarDate(1952, 10, 22);
+            if(answer.getMonth() != student.getMonth()) {
+                if(answer.getMonth() == student.getDay() || answer.getMonth() == student.getYear()) {
+                    System.out.println("\t\tMonth is correct but formatted incorrectly - " + half + "/" + full);
+                    points += half;
+                }
+                else
+                    System.out.println("\t\tIncorrect month - 0/" + full);
+                System.out.println("\t\t\tYour Output: " + student.getMonth());
+                System.out.println("\t\t\tExpected Output: " + answer.getMonth());
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + student.getMonth() + " - " + full + "/" + full);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("\t\tError running CalendarDate.getMonth()");
+        }
+        System.out.println("\t\t" + points + "/" + full);
+
+        return points;
+    }
+
+    public static int getDayTest() {
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        System.out.println("\tTesting getDay()");
+
+        SampleDate answer = new SampleDate(1983, 5, 21);
+        try {
+            CalendarDate student = new CalendarDate(1983, 5, 21);
+            if(answer.getDay() != student.getDay()) {
+                if(answer.getDay() == student.getMonth() || answer.getDay() == student.getYear()) {
+                    System.out.println("\t\tDay is correct but formatted incorrectly - " + half + "/" + full);
+                    points += half;
+                }
+                else
+                    System.out.println("\t\tIncorrect day - 0/" + full);
+                System.out.println("\t\t\tYour Output: " + student.getDay());
+                System.out.println("\t\t\tExpected Output: " + answer.getDay());
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + student.getDay() + " - " + full + "/" + full);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("\t\tError running CalendarDate.getDay()");
+        }
+        System.out.println("\t\t" + points + "/" + full);
+
+        return points;
     }
 
     public static int getDaysOld(BirthDateSolution solution, BirthDate student) {
