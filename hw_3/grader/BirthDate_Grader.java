@@ -8,7 +8,8 @@ import java.io.FileInputStream;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.Arrays;
-import java.util.List;
+import java.util.List; 
+import java.util.ArrayList; 
 import java.util.Calendar;
 
 // needs to test
@@ -39,7 +40,8 @@ public class BirthDate_Grader {
 
     public static void main (String[] args) throws Exception {
         int totalPoints = 0;
-
+        int sectionTotal = 0;
+        int outOf = 0;
         // test classes
         System.out.println("BirthDate Class Tests:");
         BirthDateSolution birthDate_Solution = new BirthDateSolution();
@@ -48,34 +50,88 @@ public class BirthDate_Grader {
         // main() test
         // mainTest();
 
-        // getBirthdate() test
+        // getBirthdate() test (9)
         totalPoints += getBirthDateTest(birthDate_Solution, birthDate_Student);
-        // details() test
+        // details() test (9)
         totalPoints += getDetails(birthDate_Solution, birthDate_Student);
-        // daysUntilBirthday test
+        // daysUntilBirthday test (6)
         totalPoints += getDaysUntilBirthday(birthDate_Solution, birthDate_Student);
-        // daysOld test
-        getDaysOld(birthDate_Solution, birthDate_Student);
-
+        // daysOld test (3)
+        totalPoints += getDaysOld(birthDate_Solution, birthDate_Student);
+        outOf += 27;
+        sectionTotal = totalPoints;
+        System.out.println(" Section Total: " + sectionTotal + "/" + outOf);
 
         // CalendarDate test
         
         System.out.println("\nCalendarDate Class Tests:");
-        // getDay() test
+        // getDay() test (3)
         totalPoints += getDayTest();
-        // getMonth() test
+        // getMonth() test (3)
         totalPoints += getMonthTest();
-        // getYear() test
+        // getYear() test (3)
         totalPoints += getYearTest();
-
         // getDayOfWeek() test
+        totalPoints += getDayOfWeekTest();
 
         // isLeapYear() test
 
         // nextDay() test
 
         // toString() test (YYYY/DD/MM or YYYY/D/M)
+
+        outOf += 9;
+        sectionTotal = totalPoints - sectionTotal;
+        System.out.println(" Section Total: " + sectionTotal + "/" + 9);
+        System.out.println("Total Grade: " + totalPoints + "/" + outOf);
     }
+
+    public static int getDayOfWeekTest() {
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        System.out.println("\tTesting getDayOfWeek()");
+        SampleDate answer = new SampleDate(1988, 3, 26);
+        try {
+            CalendarDate student = new CalendarDate(1988, 3, 26);
+            String answerDay = answer.getDayOfWeek().toUpperCase();
+            String studentDay = student.getDayOfWeek().replaceAll("\\s", "").toUpperCase();
+
+            if(!answerDay.equalsIgnoreCase(studentDay)) {
+                List<String> DAY_NAMES = new ArrayList<>();
+                DAY_NAMES.add("SUNDAY");DAY_NAMES.add("MONDAY");DAY_NAMES.add("TUESDAY");
+                DAY_NAMES.add("WEDNESDAY");DAY_NAMES.add("THURSDAY");DAY_NAMES.add("FRIDAY");DAY_NAMES.add("SATURDAY");
+                int answerIndex = DAY_NAMES.indexOf(answerDay);        
+                int studentIndex = DAY_NAMES.indexOf(studentDay);
+
+                if(Math.abs(answerIndex - studentIndex) == 1 || Math.abs(answerIndex - studentIndex) == 6) {
+                    System.out.println("\t\tOne day off - " + half + "/" + full);
+                    points += half;
+                }
+                else if(Math.abs(answerIndex - studentIndex) == 2 || Math.abs(answerIndex - studentIndex) == 5) {
+                    System.out.println("\t\tTwo days off - " + (half - 1) + "/" + full);
+                    points += half - 1;
+
+                }
+                else
+                    System.out.println("\t\tIncorrect Day of the week - 0/" + full);
+                System.out.println("\t\t\tYour Output: " + studentDay);
+                System.out.println("\t\t\tExpected Output: " + answerDay);
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + studentDay + " - " + full + "/" + full);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("\t\tError running CalendarDate.getYear()");
+        }
+        System.out.println("\t\t" + points + "/" + full);
+
+        return points;
+    }
+
 
     public static int getYearTest() {
         int points = 0;
