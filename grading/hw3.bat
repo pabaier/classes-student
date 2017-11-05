@@ -39,6 +39,8 @@ for /L %%k in (0, 1, %n%) do (
 	xcopy !subarray[%%k]!\%student_java_file% %graderdir%
 	xcopy !subarray[%%k]!\%student_java_file_B% %graderdir%
 	
+	java -classpath %graderdir% ReplaceString
+
 	javac -cp %graderdir% %student_java_file%
 	javac -cp %graderdir% %student_java_file_B%
 	

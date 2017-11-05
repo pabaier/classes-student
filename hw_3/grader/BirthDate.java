@@ -1,20 +1,13 @@
+//package HW3;
 
  /* 
   * CSCI 221, Fall 2017, HW 3
   * 
   * Program to prompt the user for the date of their birth and tell them 
   * something about that date.
-  * 
-  * 
-  * Base code provided by instructor. The following updates 
-  * 
-  *    <List updates here> 
-  * 
-  * were added by
-  * 
-  *   <Your name goes here
+  *
+  *   Ryan Barrett
   */ 
-
 import java.util.*;
 
 public class BirthDate {
@@ -27,20 +20,20 @@ public class BirthDate {
     }
     
     /*
-     * prompt user for their birthdate and return it as a CalendarDate
+     * prompt user for their birthdate and return it as a SampleDate
      */ 
-    public static SampleDate getBirthdate() {
-        Scanner console = new Scanner(System.in);
-        System.out.print("What month, day, and year were you born? ");
-        int month = console.nextInt();
-        int day = console.nextInt();
-        int year = console.nextInt();
+    private static SampleDate getBirthdate() {
+        System.out.print("What month, day, and year were you born?");
+        Scanner scan = new Scanner(System.in);
+        int month = scan.nextInt();
+        int day = scan.nextInt();
+        int year = scan.nextInt();
         SampleDate birthdate = new SampleDate(year, month, day);
-        return birthdate;
+        return birthdate; 
     }
     
     // print stats about user's birthdate
-    public static void details(SampleDate birthdate) {
+    private static void details(SampleDate birthdate) {
         System.out.print("You were born on " + birthdate + ", which was a ");
         System.out.println(birthdate.getDayOfWeek() + ".");
         if (birthdate.isLeapYear()) {
@@ -52,35 +45,59 @@ public class BirthDate {
      * Count # days until next birthday
      * Complete the following method
      */ 
-    public static void daysUntilBirthday(SampleDate birthdate) {
-        SampleDate today = new SampleDate();
-        int daysUntilBirthday = 0;
-        while (today.getDay() != birthdate.getDay() || 
-               today.getMonth() != birthdate.getMonth()) {
-            today.nextDay();
-            daysUntilBirthday++;
+    private static void daysUntilBirthday(SampleDate birthdate) {
+        SampleDate date = new SampleDate();
+        int dayCounter = 0;
+        if(date.getDay() == birthdate.getDay() && date.getMonth() == birthdate.getMonth())
+        {
+            System.out.print("Happy Birthday!");
+            System.out.println("  You are now age " + (findDaysOld(birthdate) % 365) + ".");
         }
-        if (daysUntilBirthday == 0) {
-            int age = (today.getYear() - birthdate.getYear());
-            System.out.println("Happy birthday!  You are now age " + age + ".");
-        } else {
-            System.out.print("It will be your birthday in " + daysUntilBirthday + " day");
-            if (daysUntilBirthday > 1) {
-                System.out.print("s");  // no 's' for 1 day
+        else
+        {
+            while(date.getDay() != birthdate.getDay() || date.getMonth() != birthdate.getMonth())
+            {
+                dayCounter++;
+                date.nextDay();
             }
-            System.out.println(".");
+            System.out.println("It will be your birthday in " + dayCounter + " days.");
+            
         }
+        // Hint: count the days from today's date until the user's next birthday
+        // If today is the birthday, print Happy Birthday message
+        // if not print the message stating the number of days until the user's
+        // next birthday
     }
     
-    // count # days old this person is
-    public static void daysOld(SampleDate birthdate) {
+        
+    /*
+     * count # days old this person is
+     */ 
+    private static void daysOld(SampleDate birthdate) {
+        
         int daysOld = 0;
-        SampleDate today = new SampleDate();
-        while (!birthdate.equals(today)) {
-            birthdate.nextDay();
+        SampleDate currentDate = new SampleDate();
+        SampleDate tracker = new SampleDate(birthdate.getYear(), birthdate.getMonth(), birthdate.getDay());
+        while(!tracker.equals(currentDate))
+        {
             daysOld++;
+            tracker.nextDay();
         }
         
         System.out.println("You are " + daysOld + " days old.");
+    }
+    
+    private static int findDaysOld(SampleDate birthdate)
+    {   
+        int daysOld = 0;
+        SampleDate currentDate = new SampleDate();
+        SampleDate tracker = new SampleDate(birthdate.getYear(), birthdate.getMonth(), birthdate.getDay());
+        while(!tracker.equals(currentDate))
+        {
+            daysOld++;
+            tracker.nextDay();
+        }
+        
+        return daysOld;
     }
 }
