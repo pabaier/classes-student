@@ -75,15 +75,60 @@ public class BirthDate_Grader {
         sectionTotal += getDayOfWeekTest();
         // isLeapYear() test (6)
         sectionTotal += isLeapYearTest();
-        // nextDay() test
+        // nextDay() test (9)
         sectionTotal += nextDayTest();
+        // toString() test (3)
+        sectionTotal += toStringTest();
 
-        // toString() test (YYYY/DD/MM or YYYY/D/M)
-
-        outOf += 9;
+        outOf += 33;
         totalPoints += sectionTotal;
-        System.out.println(" Section Total: " + sectionTotal + "/" + 9);
+        System.out.println(" Section Total: " + sectionTotal + "/" + 33);
         System.out.println("Total Grade: " + totalPoints + "/" + outOf);
+    }
+
+    public static int toStringTest() {
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        System.out.println("\tTesting toString()");
+
+        SampleDate answer = new SampleDate(1976, 5, 4);
+        try {
+            CalendarDate student = new CalendarDate(1976, 5, 4);
+            String student_string = student.toString();
+            
+            String month = String.valueOf(answer.getMonth());
+            String day = String.valueOf(answer.getDay());
+            String year = String.valueOf(answer.getYear());
+
+            if(!(answer.toString().equals(student_string))) {
+                if(student_string.contains(month) && student_string.contains(day) && student_string.contains(year)) {
+                    System.out.println("\t\tOK, but pay attention to format next time! " + student_string + " - " + full + "/" + full);
+                    points += full;
+                }
+                else if(student_string.contains(month) || student_string.contains(day) || student_string.contains(year)) {
+                    System.out.println("\t\tOne or more output correct - " + (full / 2) + "/" + full);
+                    points += full - 1;
+                }
+                else {
+                    System.out.println("\t\tMethod ran but incorrect date returned - " + (full / 2) + "/" + full);
+                    points += (full / 2);
+                }
+                System.out.println("\t\t\tYour output " + student_string);
+                System.out.println("\t\t\tExpected output " + answer);
+            }
+            else {
+                points += full;
+                System.out.println("\t\tCorrect " + student_string + " - " + full + "/" + full);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("\t\tError running CalendarDate.getYear()");
+        }
+        System.out.println("\t\t" + points + "/" + full);
+
+        return points;
     }
 
     public static int nextDayTest() {
@@ -94,9 +139,9 @@ public class BirthDate_Grader {
         SampleDate answer_new_month = new SampleDate(1969, 4, 30);
         SampleDate answer_new_year = new SampleDate(1998, 12, 31);
         try {
-            CalendarDate student_random = new CalendarDate(1924, 9, 1);
-            CalendarDate student_new_month = new CalendarDate(1969, 4, 3);
-            CalendarDate student_new_year = new CalendarDate(1998, 12, 3);
+            CalendarDate student_random = new CalendarDate(1924, 9, 12);
+            CalendarDate student_new_month = new CalendarDate(1969, 4, 30);
+            CalendarDate student_new_year = new CalendarDate(1998, 12, 31);
 
             answer_random.nextDay();answer_new_month.nextDay();answer_new_year.nextDay();answer_new_year.nextDay();
             student_random.nextDay();student_new_month.nextDay();student_new_year.nextDay();student_new_year.nextDay();
