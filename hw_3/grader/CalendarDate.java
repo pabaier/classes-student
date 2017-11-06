@@ -39,8 +39,6 @@ public class CalendarDate {
        this.year = year;
        this.month = month;
        this.day = day;
-    //    CalendarDate CalendarDate = new CalendarDate(year, month, day);
-      
     }
     
     /*
@@ -74,50 +72,97 @@ public class CalendarDate {
     
     // Returns this Date's day.
     public int getDay() {
-        this.day = day;
-        return day; // fix this
+        return this.day;
     }
     
     // Returns this Date's month.
     public int getMonth() {
-        this.month = month;
-        return month; // fix this
+        return this.month;
     }
     
     // Returns this Date's year.
     public int getYear() {
-        this.year = year;
-        return year; // fix this
+        return this.year; 
     }
 
     // Returns the day of the week on which this Date occurred,
     // such as "Sunday" or "Wednesday".
     // Hint: 1753/1/1 was a Monday (1)
     public String getDayOfWeek() {
-        this.year = year;
-        this.month = month;
-        this.day = day;
+        CalendarDate checkDate = new CalendarDate (1753, 1, 7);
+        int i = 0;
         
-        return DAY_NAMES[0]; // right now, every day is Sunday
+        
+        while(checkDate.equals(this) == false){
+            i = 0;
+            for(i = 0; i < 7; ++i){
+                if(checkDate.equals(this)){
+                    return DAY_NAMES[i];
+                }
+                else{
+                    checkDate.nextDay();
+                }
+            }
+            if(i == 7){
+                i = 0;
+            }
+        }
+ 
+        return DAY_NAMES[i]; // right now, every day is Sunday
     }
     
     // Returns whether this Date occurred during a leap year.
     // Leap years are every fourth year, except those that are
     // divisible by 100 and not by 400.
     public boolean isLeapYear() {
-        return true;  // every year is leap year until you fix this
+        if(this.year % 400 == 0){
+            return true;
+        }
+        if(this.year % 4 == 0){
+            if(this.year % 100 == 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
     }
     
     // Advances this CalendarDate to the next day.
     // This may cause a wrap-around into the next month or year.
     public void nextDay() {
        // your solution goes here
+       if(this.day < numDays(this.month)){
+           this.day += 1;
+        }else if(this.day == numDays(this.month)){
+            this.day = 1;
+            if(this.month < DECEMBER){
+                this.month += 1;
+            }else{
+                this.month = JANUARY;
+                this.year += 1;
+            }
+        }
     }
     
     // Returns a String representation of this CalendarDate, such as "2005/9/22".
     public String toString() {
-        return "Happy Day";  // fix to return correctly formatted date
+        return ""+this.year + "/" + this.month + "/" +this.day +"";  // fix to return correctly formatted date
     }
     
     // Add any helper methods here - they must be declared to be private
+    private int numDays(int month) {
+        if(this.month == FEBRUARY){
+            if(isLeapYear()){
+                return 29;
+            }
+            else{
+                return DAYS_PER_MONTH[month];
+            }
+        }
+        else{return DAYS_PER_MONTH[month];
+        }
+    }
 }

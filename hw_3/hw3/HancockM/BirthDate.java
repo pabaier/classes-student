@@ -34,11 +34,11 @@ public class BirthDate {
         Scanner scnr = new Scanner(System.in);
         System.out.println("What month, day, and year were you born?");
         
-        int month = scnr.nextInt();
-        int day = scnr.nextInt();
-        int year = scnr.nextInt();
-        CalendarDate date = new CalendarDate (year, month, day);
-        return date; 
+        // int month = scnr.nextInt();
+        // int day = scnr.nextInt();
+        // int year = scnr.nextInt();
+        // CalendarDate date = new CalendarDate (year, month, day);
+        // return date; 
     }
     
     // print stats about user's birthdate

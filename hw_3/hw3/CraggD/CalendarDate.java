@@ -88,10 +88,10 @@ public class CalendarDate {
     public String getDayOfWeek() {
     	 int index = 1;
          SampleDate temp = new SampleDate(1753, 1, 1);
-         while (!temp.equals(this)) {
+        //  while (!temp.equals(this)) {
              temp.nextDay();
              index = (index + 1) % 7;
-         }
+        //  }
          return DAY_NAMES[index];
  
        

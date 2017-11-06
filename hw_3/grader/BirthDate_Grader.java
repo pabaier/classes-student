@@ -38,28 +38,33 @@ public class BirthDate_Grader {
         public static ByteArrayOutputStream baos = new ByteArrayOutputStream();
         public static PrintStream output = new PrintStream(baos);
 
-    public static void main (String[] args) throws Exception {
+    public static void main (String[] args) {
         int totalPoints = 0;
         int sectionTotal = 0;
         int outOf = 0;
         // test classes
         System.out.println("BirthDate Class Tests:");
         BirthDateSolution birthDate_Solution = new BirthDateSolution();
-        BirthDate birthDate_Student = new BirthDate();
+        try {
+            BirthDate birthDate_Student = new BirthDate();
         
-        // main() test
-        // mainTest();
+            // main() test
+            // mainTest();
 
-        // getBirthdate() test (9)
-        sectionTotal += getBirthDateTest(birthDate_Solution, birthDate_Student);
-        // details() test (9)
-        sectionTotal += getDetails(birthDate_Solution, birthDate_Student);
-        // daysUntilBirthday test (6)
-        sectionTotal += getDaysUntilBirthday(birthDate_Solution, birthDate_Student);
-        // daysOld test (3)
-        sectionTotal += getDaysOld(birthDate_Solution, birthDate_Student);
-        outOf += 27;
-        totalPoints += sectionTotal;
+            // getBirthdate() test (9)
+            sectionTotal += getBirthDateTest(birthDate_Solution, birthDate_Student);
+            // details() test (9)
+            sectionTotal += getDetails(birthDate_Solution, birthDate_Student);
+            // daysUntilBirthday test (6)
+            sectionTotal += getDaysUntilBirthday(birthDate_Solution, birthDate_Student);
+            // daysOld test (3)
+            sectionTotal += getDaysOld(birthDate_Solution, birthDate_Student);
+            outOf += 27;
+            totalPoints += sectionTotal;
+        }
+        catch(Exception e) {
+            System.out.println("\tCould not create BirthDate object");
+        }
         System.out.println(" Section Total: " + sectionTotal + "/" + outOf);
 
         // CalendarDate test
@@ -432,7 +437,9 @@ public class BirthDate_Grader {
         }
         catch(Exception e){
             restoreOutput();
-            System.out.println("Error running daysOld()");
+            System.out.println("\t\tError running daysOld()");
+            System.out.println("\t\t" + points + "/" + full);
+            return points;        
         }
         restoreOutput();
 
@@ -490,7 +497,10 @@ public class BirthDate_Grader {
         }
         catch(Exception e){
             restoreOutput();
-            System.out.println("Error running daysUntilBirthday()");
+            System.out.println("\t\tError running daysUntilBirthday()");
+            System.out.println("\t\t" + points + "/" + (full * 2));
+            return points;
+
         }
         restoreOutput();
         String[] answer_key = new String[2];
@@ -549,6 +559,8 @@ public class BirthDate_Grader {
         catch(Exception e) {
             restoreOutput();
             System.out.println("\t\tError running details()");
+            System.out.println("\t\t" + points + "/" + (full * 3));
+            return points;
         }
 
         String[] answer_key = new String[3];

@@ -95,10 +95,10 @@ public class CalendarDate {
     public String getDayOfWeek() {
         int dayIndex = 1;
         SampleDate temp = new SampleDate(1753, 1, 1);
-        while (!temp.equals(this)) {
+        // while (!temp.equals(this)) {
             temp.nextDay();
             dayIndex = (dayIndex + 1) % 7;
-        }
+        // }
         return DAY_NAMES[dayIndex];
     }
    

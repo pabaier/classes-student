@@ -54,17 +54,17 @@ public class CalendarDate {
     }
 
     public int getDay() {
-        this.day = getDay();
+        // this.day = getDay();
         return day;
     }
     
     public int getMonth() {
-        this.month = getMonth();
+        // this.month = getMonth();
         return month; 
     }
     
     public int getYear() {
-        this.year = getYear();
+        // this.year = getYear();
         return year; 
     }
 
@@ -72,11 +72,11 @@ public class CalendarDate {
         int i = 0;
         Date sample = new Date(1753, JANUARY, 1);
         SampleDate date = new SampleDate(year, month, day);        
-        while ((!sample.equals(date))){
+        // while ((!sample.equals(date))){
             i = sample.getDay();
             i = (i + 1) % DAYS_PER_WEEK;
             i++;
-        }
+        // }
         return DAY_NAMES[i]; 
     }
     
