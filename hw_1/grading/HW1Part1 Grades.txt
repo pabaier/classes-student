@@ -810,6 +810,28 @@ Cragg D
 +0 Found 1 syllables(s) in "eye"
 +0 Found 13 syllables(s) in "supercalifragilisticexpialidocious"
 
+MooreW
++2 Found 1 syllables(s) in "act"
++2 Found 1 syllables(s) in "splat"
++2 Found 1 syllables(s) in "spy"
++0 Found 2 syllables(s) in "apply"
++2 Found 2 syllables(s) in "commit"
++2 Found 1 syllables(s) in "fruit"
++2 Found 1 syllables(s) in "aim"
++2 Found 1 syllables(s) in "plea"
++0 Found 2 syllables(s) in "agio"
++0 Found 2 syllables(s) in "audio"
++2 Found 2 syllables(s) in "agile"
++2 Found 1 syllables(s) in "great"
++2 Found 2 syllables(s) in "egret"
++2 Found 1 syllables(s) in "guage"
++2 Found 1 syllables(s) in "street"
++0 Found 2 syllables(s) in "treaty"
++2 Found 2 syllables(s) in "tester"
++2 Found 3 syllables(s) in "container"
++2 Found 1 syllables(s) in "eye"
++2 Found 13 syllables(s) in "supercalifragilisticexpialidocious"
+
 
 
 

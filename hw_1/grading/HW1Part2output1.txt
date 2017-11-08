@@ -2957,5 +2957,61 @@ Error: Input must be integers.
 
 D:\School\221\hw_1\hw1_submissions\AndersonJ\
 
+D:\School\221\hw_1\hw1_submissions\MooreW\
+Enter two numbers:
+7 + 2 = 9
 
+Enter two numbers:
+8 + 7 = 15
 
+Enter two numbers:
+12 + 5 = 17
+
+Enter two numbers:
+13 + 9 = 22
+
+Enter two numbers:
+23 + 76 = 99
+
+Enter two numbers:
+83 + 58 = 141
+
+Enter two numbers:
+100 + 0 = 100
+
+Enter two numbers:
+333 + 7 = 340
+
+Enter two numbers:
+472 + 28 = 500
+
+Enter two numbers:
+648 + 107 = 755
+
+Enter two numbers:
+897 + 345 = 1242
+
+Enter two numbers:
+3 + 13 = 16
+
+Enter two numbers:
+9 + 427 = 436
+
+Enter two numbers:
+7 + 1234 = 1241
+
+Enter two numbers:
+2 + 9998 = 10000
+
+Enter two numbers:
+81 + 77777 = 77858
+
+Enter two numbers:
+137 + 864 = 1001
+
+Enter two numbers:
+2147483647 + 1 = -2147483648
+
+Enter two numbers:
+
+Enter two numbers:
