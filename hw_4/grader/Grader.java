@@ -1,4 +1,5 @@
-// import java.util.NoClassDefFoundError;
+import java.io.File;
+import org.apache.commons.io.*;
 
 public class Grader {
     public static void main(String[] args) {
@@ -6,6 +7,15 @@ public class Grader {
         System.out.println("Calendar Date Test:");
         // isAValidDateTest
         totalPoints[0] += isAValidDateTest();
+
+        File source = new File("D:\\School\\221\\hw_4\\grader\\CalendarDate.class");
+        // File dest = new File("H:\\work-temp\\file2");
+        FileUtils.deleteQuietly(source);
+        // try {
+        //     FileUtils.copyDirectory(source, dest);
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
 
         System.out.println("Appointment Test:");
         try {
@@ -19,6 +29,8 @@ public class Grader {
             totalPoints[1] += getEmployeeTest();
 
             // getDate
+            totalPoints[1] += getDateTest();
+
             // toString
         }
         catch (NoClassDefFoundError e) {
@@ -47,7 +59,28 @@ public class Grader {
     }
 
     public static int getEmployeeTest() {
-        
+        System.out.println("\tTesting getEmployee()");
+        int points = 0;
+        int full = 3;
+        int half = 2;
+        AppointmentKey key = new AppointmentKey(new CalendarDateKey(2016, 2, 2),  new Employee("John"));
+        try {
+            Appointment student = new Appointment(new CalendarDate(2016, 2, 2), key.getEmployee());
+            System.out.print("\t\t" + key.getEmployee() + " | " + student.getEmployee());
+            if(student.getEmployee() == key.getEmployee()) {
+                System.out.println(" - Correct - " + full + "/" + full);
+                points += full;
+            }
+            else {
+                System.out.println(" - Incorrect - " + half + "/" + full);
+                points += half;                
+            }
+        }
+        catch(Exception e) {
+            System.out.println("\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full);
+        }
+        return points;
     }
 
     public static int apptConstructorTest() {
