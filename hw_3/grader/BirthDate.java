@@ -19,8 +19,8 @@ import java.util.*;
 public class BirthDate {
     public static void main(String[] args) {
         
+        //SampleDate birthdate = getBirthdate();
         SampleDate birthdate = getBirthdate();
-        // SampleDate birthdate = getBirthdate();
         details(birthdate);
         daysUntilBirthday(birthdate);
         daysOld(birthdate);
@@ -34,12 +34,11 @@ public class BirthDate {
         Scanner scnr = new Scanner(System.in);
         System.out.println("What month, day, and year were you born?");
         
-        // int month = scnr.nextInt();
-        // int day = scnr.nextInt();
-        // int year = scnr.nextInt();
-        // SampleDate date = new SampleDate (year, month, day);
-        // return date;
-        return null; 
+        int month = scnr.nextInt();
+        int day = scnr.nextInt();
+        int year = scnr.nextInt();
+        SampleDate date = new SampleDate (year, month, day);
+        return date; 
     }
     
     // print stats about user's birthdate
