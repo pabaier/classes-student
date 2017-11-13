@@ -3,10 +3,22 @@ import org.apache.commons.io.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+
 public class Grader {
+    // public static final String RESET = "\u001B[30m";
+    // public static final String CORRECT = "\u001B[32m";
+    // public static final String PARTCORRECT = "\u001B[34m";
+    // public static final String INCORRECT = "\u001B[31m";
+
+    public static final String RESET = "";
+    public static final String CORRECT = "";
+    public static final String PARTCORRECT = "";
+    public static final String INCORRECT = "";
+
     public static void main(String[] args){
         int[] totalPoints = new int[4];
-        System.out.println("Calendar Date Test:");
+        System.out.println(RESET + "Calendar Date Test:");
+
         // isAValidDateTest
         totalPoints[0] += isAValidDateTest();
         fetchClassKey("CalendarDate");
@@ -59,14 +71,14 @@ public class Grader {
                 
             // addToList
             totalPoints[2] += addToListTest(studentList, studentAppointmentList, keyAppointmentList);
-            System.out.println(keyAppointmentList);
 
-            // toString
             // getAppointment
+            totalPoints[2] += getAppointmentTest(studentList, studentAppointmentList, keyAppointmentList);
+            // toString
             // cancelAppointment
         }
         catch (NoClassDefFoundError e) {
-            System.out.println("\tCould not instantiate class AppointmentList");
+            System.out.println(INCORRECT + "\tCould not instantiate class AppointmentList" + RESET);
         }
 
         //---------------------------------------------------------
@@ -76,11 +88,47 @@ public class Grader {
 
         }
         catch (NoClassDefFoundError e) {
-            System.out.println("\tCould not instantiate class HW4");
+            System.out.println(INCORRECT + "\tCould not instantiate class HW4" + RESET);
         }
     }
 
     // AppointmentList Class Tests
+
+    public static int getAppointmentTest(ArrayList<Appointment> studentList, AppointmentList studentAppointmentList, AppointmentListKey key) {
+        System.out.println("\tTesting getAppointment()");
+        int points = 0;
+        int full = 3;
+        int half = 2;
+        
+        ArrayList<Appointment> keyList = key.getList();
+        key.addToList(new CalendarDate(1971, 10, 1),  new Employee("Walt Disney"));
+        studentList.add(keyList.get(keyList.size() - 1));
+        try {
+            System.out.print("\t\t" + keyList.get(keyList.size() - 1).getEmployee().getName() + " " + keyList.get(keyList.size() - 1).getDate());
+            if(studentAppointmentList.getAppointment("Walt Disney") == keyList.get(keyList.size() - 1).getDate()) {
+                System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
+                points += full;
+            }
+            else {
+                System.out.println(PARTCORRECT + " - Incorrect - " + half + "/" + full + RESET);
+                points += half;
+            }
+            System.out.print("\t\tNull");
+            if(studentAppointmentList.getAppointment("Roy Disney") == null) {
+                System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
+                points += full;
+            }
+            else {
+                System.out.println(PARTCORRECT + " - Incorrect - " + half + "/" + full + RESET);
+                points += half;
+            }
+        }
+        catch(Exception e) {
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
+        }
+        return points;
+    }
 
     public static int addToListTest(ArrayList<Appointment> studentList, AppointmentList studentAppointmentList, AppointmentListKey key) {
         System.out.println("\tTesting addToList()");
@@ -95,25 +143,25 @@ public class Grader {
             System.out.print("\t\t" + keyList.get(0).getDate() + " " + keyList.get(0).getEmployee().getName());
             if(studentList.get(0).getDate() == keyList.get(0).getDate() && 
                 studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
-                System.out.println(" - Correct - " + full + "/" + full);
+                System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
                 points += full;
             }
             else if(studentList.get(0).getDate() == keyList.get(0).getDate()) {
-                System.out.println(" - Date Correct - " + half + "/" + full);
+                System.out.println(PARTCORRECT + " - Date Correct - " + half + "/" + full + RESET);
                 points += half;
             }
             else if(studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
-                System.out.println(" - Employee Correct - " + half + "/" + full);
+                System.out.println(PARTCORRECT + " - Employee Correct - " + half + "/" + full + RESET);
                 points += half;
             }
             else {
-                System.out.println(" - Incorrect - " + (half - 1) + "/" + full);
+                System.out.println(PARTCORRECT + " - Incorrect - " + (half - 1) + "/" + full + RESET);
                 points += half - 1;
             }
         }
         catch(Exception e) {
-            System.out.println("\t\t" + e);
-            System.out.println("\t\tError running test - " + points + "/" + full);
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
         }
         return points;
     }
@@ -125,12 +173,12 @@ public class Grader {
         int half = 0;
         try {
             AppointmentList a = new AppointmentList();
-            System.out.println("\t\tCorrect - " + full + "/" + full);
+            System.out.println(CORRECT + "\t\tCorrect - " + full + "/" + full + RESET);
             points += full;
         }
         catch(Exception e) {
-            System.out.println("\t\t" + e);
-            System.out.println("\t\tError running test - " + points + "/" + full);
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
         }
         return points;
     }
@@ -149,25 +197,25 @@ public class Grader {
             System.out.print("\t\t" + key + " | " + student);
             if(studentAnswer.contains(key.getDate().toString().toUpperCase()) &&
             studentAnswer.contains(key.getEmployee().getName().toUpperCase())) {
-                System.out.println(" - Correct - " + full + "/" + full);
+                System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
                 points += full;
             }
             else if(studentAnswer.contains(key.getDate().toString().toUpperCase())) {
-                System.out.println(" - Date Correct - " + half + "/" + full);
+                System.out.println(PARTCORRECT + " - Date Correct - " + half + "/" + full + RESET);
                 points += half;
             }
             else if(studentAnswer.contains(key.getEmployee().getName().toUpperCase())) {
-                System.out.println(" - Name Correct - " + half + "/" + full);
+                System.out.println(PARTCORRECT + " - Name Correct - " + half + "/" + full + RESET);
                 points += half;
             }
             else {
-                System.out.println(" - Incorrect - " + (half - 1) + "/" + full);
+                System.out.println(PARTCORRECT + " - Incorrect - " + (half - 1) + "/" + full + RESET);
                 points += half - 1;                
             }
         }
         catch(Exception e) {
-            System.out.println("\t\t" + e);
-            System.out.println("\t\tError running test - " + points + "/" + full);
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
         }
         return points;
     }
@@ -182,17 +230,17 @@ public class Grader {
             Appointment student = new Appointment(key.getDate(), key.getEmployee());
             System.out.print("\t\t" + key.getDate() + " | " + student.getDate());
             if(student.getDate() == key.getDate()) {
-                System.out.println(" - Correct - " + full + "/" + full);
+                System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
                 points += full;
             }
             else {
-                System.out.println(" - Incorrect - " + half + "/" + full);
+                System.out.println(PARTCORRECT + " - Incorrect - " + half + "/" + full + RESET);
                 points += half;                
             }
         }
         catch(Exception e) {
-            System.out.println("\t\t" + e);
-            System.out.println("\t\tError running test - " + points + "/" + full);
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
         }
         return points;
     }
@@ -207,17 +255,17 @@ public class Grader {
             Appointment student = new Appointment(key.getDate(), key.getEmployee());
             System.out.print("\t\t" + key.getEmployee() + " | " + student.getEmployee());
             if(student.getEmployee() == key.getEmployee()) {
-                System.out.println(" - Correct - " + full + "/" + full);
+                System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
                 points += full;
             }
             else {
-                System.out.println(" - Incorrect - " + half + "/" + full);
+                System.out.println(PARTCORRECT + " - Incorrect - " + half + "/" + full + RESET);
                 points += half;                
             }
         }
         catch(Exception e) {
-            System.out.println("\t\t" + e);
-            System.out.println("\t\tError running test - " + points + "/" + full);
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
         }
         return points;
     }
@@ -229,12 +277,12 @@ public class Grader {
         int half = 0;
         try {
             Appointment a = new Appointment(new CalendarDate(2016, 2, 2), new Employee("John"));
-            System.out.println("\t\tCorrect - " + full + "/" + full);
+            System.out.println(CORRECT + "\t\tCorrect - " + full + "/" + full + RESET);
             points += full;
         }
         catch(Exception e) {
-            System.out.println("\t\t" + e);
-            System.out.println("\t\tError running test - " + points + "/" + full);
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
         }
         return points;
     }
@@ -268,19 +316,19 @@ public class Grader {
             for(int i = 0; i < key.length; i++) {
                 System.out.print("\t\t" + key[i] + ": " + student[i].isAValidDate());
                 if(key[i].isAValidDate() == student[i].isAValidDate()) {
-                    System.out.println(" - Correct - " + full + "/" + full);
+                    System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
                     points += full;
                 }
                 else {
-                    System.out.println(" - Incorrect - " + half + "/" + full);
+                    System.out.println(PARTCORRECT + " - Incorrect - " + half + "/" + full + RESET);
                     points += half;
                 }
             }
             System.out.println("\t    " + points + "/" + (full * key.length));
         }
         catch(Exception | NoClassDefFoundError e) {
-            System.out.println("\t\t" + e);
-            System.out.println("\t\tError running test - " + points + "/" + (full * key.length));
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + (full * key.length) + RESET);
         }
 
         return points;
