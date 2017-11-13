@@ -45,24 +45,31 @@ public class Grader {
             if(totalPoints[2] == 0) {
                 throw new NoClassDefFoundError();
             }
-            
-        ArrayList<Appointment> studentList = null;
-        try {
-            studentList = getStudentArrayList();
-        }
-        catch(Exception e){}
-        if(studentList == null)
-            throw new NoClassDefFoundError();
-            
-            // toString
+        
+            AppointmentList studentAppointmentList = new AppointmentList();
+            AppointmentListKey keyAppointmentList = new AppointmentListKey();
 
+            ArrayList<Appointment> studentList = null;
+            try {
+                studentList = getStudentArrayList(studentAppointmentList);
+            }
+            catch(Exception e){}
+            if(studentList == null)
+                throw new NoClassDefFoundError();
+                
             // addToList
+            totalPoints[2] += addToListTest(studentList, studentAppointmentList, keyAppointmentList);
+            System.out.println(keyAppointmentList);
+
+            // toString
             // getAppointment
             // cancelAppointment
         }
         catch (NoClassDefFoundError e) {
             System.out.println("\tCould not instantiate class AppointmentList");
         }
+
+        //---------------------------------------------------------
 
         System.out.println("HW4 Test:");
         try {
@@ -74,6 +81,42 @@ public class Grader {
     }
 
     // AppointmentList Class Tests
+
+    public static int addToListTest(ArrayList<Appointment> studentList, AppointmentList studentAppointmentList, AppointmentListKey key) {
+        System.out.println("\tTesting addToList()");
+        int points = 0;
+        int full = 3;
+        int half = 2;
+        
+        ArrayList<Appointment> keyList = key.getList();
+        key.addToList(new CalendarDate(1960, 7, 11),  new Employee("Scout Finch"));
+        try {
+            studentAppointmentList.addToList(keyList.get(0).getDate(), keyList.get(0).getEmployee());
+            System.out.print("\t\t" + keyList.get(0).getDate() + " " + keyList.get(0).getEmployee().getName());
+            if(studentList.get(0).getDate() == keyList.get(0).getDate() && 
+                studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
+                System.out.println(" - Correct - " + full + "/" + full);
+                points += full;
+            }
+            else if(studentList.get(0).getDate() == keyList.get(0).getDate()) {
+                System.out.println(" - Date Correct - " + half + "/" + full);
+                points += half;
+            }
+            else if(studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
+                System.out.println(" - Employee Correct - " + half + "/" + full);
+                points += half;
+            }
+            else {
+                System.out.println(" - Incorrect - " + (half - 1) + "/" + full);
+                points += half - 1;
+            }
+        }
+        catch(Exception e) {
+            System.out.println("\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full);
+        }
+        return points;
+    }
 
     public static int apptListConstructorTest() {
         System.out.println("\tTesting constructor");
@@ -255,9 +298,7 @@ public class Grader {
         catch(Exception e){}
     }
 
-    private static ArrayList<Appointment> getStudentArrayList() {
-        AppointmentList studentAppointmentList = new AppointmentList();
-        // studentAppointmentList.addToList(new CalendarDate(1900,1,1), new Employee("Fred"));
+    private static ArrayList<Appointment> getStudentArrayList(AppointmentList studentAppointmentList) {
         Class alClass = studentAppointmentList.getClass();
 
         Field[] alFields = alClass.getDeclaredFields();

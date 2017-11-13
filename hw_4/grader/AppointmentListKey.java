@@ -8,7 +8,7 @@ import java.util.*;
 public class AppointmentListKey
 {
     // instance variables - replace the example below with your own
-    private ArrayList<AppointmentKey> list;
+    private ArrayList<Appointment> list;
 
     /**
      * Constructor for objects of class AppointmentList
@@ -18,21 +18,25 @@ public class AppointmentListKey
         list = new ArrayList<>();
     }
     
+    public ArrayList<Appointment> getList() {
+        return list;
+    }
+
     // Add a new appointment
-    public void addToList(CalendarDateKey d, Employee e){
+    public void addToList(CalendarDate d, Employee e){
         
-        AppointmentKey a = new AppointmentKey(d, e);    
+        Appointment a = new Appointment(d, e);    
         list.add(a);
     }
     
     // Return the date of name's appointment, or null
-    public CalendarDateKey getAppointment(String name){
+    public CalendarDate getAppointment(String name){
         
         // search list for this person
         boolean found = false;
         int index = 0;
-        AppointmentKey a = null;
-        CalendarDateKey returnDate = null;
+        Appointment a = null;
+        CalendarDate returnDate = null;
         while(!found && index < list.size()){
            a = list.get(index);
            if(a.getEmployee().getName().equals(name))
@@ -54,7 +58,7 @@ public class AppointmentListKey
         boolean found = false;
         int index = 0;
         int rightIndex = 0;
-        CalendarDateKey returnDate = null;
+        CalendarDate returnDate = null;
 
         while(!found && index < list.size()){
 
