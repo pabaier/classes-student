@@ -5,19 +5,23 @@ import java.util.ArrayList;
 
 
 public class Grader {
-    // public static final String RESET = "\u001B[30m";
+    // public static final String RESET = "\u001B[0m";
     // public static final String CORRECT = "\u001B[32m";
     // public static final String PARTCORRECT = "\u001B[34m";
     // public static final String INCORRECT = "\u001B[31m";
+    // public static final String TESTHEAD = "\u001B[35m";
+    // public static final String TESTEXPECT = "\u001B[36m";
 
     public static final String RESET = "";
     public static final String CORRECT = "";
     public static final String PARTCORRECT = "";
     public static final String INCORRECT = "";
+    public static final String TESTHEAD = "";
+    public static final String TESTEXPECT = "";
 
     public static void main(String[] args){
         int[] totalPoints = new int[4];
-        System.out.println(RESET + "Calendar Date Test:");
+        System.out.println(TESTHEAD + "Calendar Date Test:");
 
         // isAValidDateTest
         totalPoints[0] += isAValidDateTest();
@@ -74,8 +78,11 @@ public class Grader {
 
             // getAppointment
             totalPoints[2] += getAppointmentTest(studentList, studentAppointmentList, keyAppointmentList);
-            // toString
+
             // cancelAppointment
+            totalPoints[2] += cancelAppointmentTest(studentList, studentAppointmentList, keyAppointmentList);
+
+            // toString
         }
         catch (NoClassDefFoundError e) {
             System.out.println(INCORRECT + "\tCould not instantiate class AppointmentList" + RESET);
@@ -94,8 +101,40 @@ public class Grader {
 
     // AppointmentList Class Tests
 
+    public static int cancelAppointmentTest(ArrayList<Appointment> studentList, AppointmentList studentAppointmentList, AppointmentListKey key) {
+        System.out.println(TESTHEAD + "\tTesting cancelAppointment()" + RESET);
+        int points = 0;
+        int full = 3;
+        int half = 2;
+
+        ArrayList<Appointment> keyList = key.getList();
+        studentList.clear();        
+        keyList.clear();
+
+        key.addToList(new CalendarDate(1906, 12, 9),  new Employee("Grace Hopper"));
+        studentList.add(keyList.get(keyList.size() - 1));
+        try {
+            System.out.print(TESTEXPECT + "\t\t" + keyList.get(keyList.size() - 1).getEmployee().getName() + " " + keyList.get(keyList.size() - 1).getDate() + RESET);
+            studentAppointmentList.cancelAppointment(keyList.get(keyList.size() - 1).getEmployee().getName());
+            if(studentList.size() == 0) {
+                System.out.println(CORRECT + " - Correct - " + full + "/" + full + RESET);
+                points += full;
+            }
+            else {
+                System.out.println(PARTCORRECT + " - Incorrect - " + half + "/" + full + RESET);
+                points += half;
+            }
+        }
+        catch(Exception e) {
+            System.out.println(INCORRECT + "\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full + RESET);
+        }
+        return points;
+    }
+
+
     public static int getAppointmentTest(ArrayList<Appointment> studentList, AppointmentList studentAppointmentList, AppointmentListKey key) {
-        System.out.println("\tTesting getAppointment()");
+        System.out.println(TESTHEAD + "\tTesting getAppointment()" + RESET);
         int points = 0;
         int full = 3;
         int half = 2;
@@ -131,7 +170,7 @@ public class Grader {
     }
 
     public static int addToListTest(ArrayList<Appointment> studentList, AppointmentList studentAppointmentList, AppointmentListKey key) {
-        System.out.println("\tTesting addToList()");
+        System.out.println(TESTHEAD + "\tTesting addToList()" + RESET);
         int points = 0;
         int full = 3;
         int half = 2;
@@ -167,7 +206,7 @@ public class Grader {
     }
 
     public static int apptListConstructorTest() {
-        System.out.println("\tTesting constructor");
+        System.out.println(TESTHEAD + "\tTesting constructor" + RESET);
         int points = 0;
         int full = 1;
         int half = 0;
@@ -186,7 +225,7 @@ public class Grader {
     // Appointment Class Tests
 
     public static int toStringAptTest() {
-        System.out.println("\tTesting toString()");
+        System.out.println(TESTHEAD + "\tTesting toString()" + RESET);
         int points = 0;
         int full = 3;
         int half = 2;
@@ -221,7 +260,7 @@ public class Grader {
     }
 
     public static int getDateTest() {
-        System.out.println("\tTesting getDate()");
+        System.out.println(TESTHEAD + "\tTesting getDate()" + RESET);
         int points = 0;
         int full = 3;
         int half = 2;
@@ -246,7 +285,7 @@ public class Grader {
     }
 
     public static int getEmployeeTest() {
-        System.out.println("\tTesting getEmployee()");
+        System.out.println(TESTHEAD + "\tTesting getEmployee()"+ RESET);
         int points = 0;
         int full = 3;
         int half = 2;
@@ -271,7 +310,7 @@ public class Grader {
     }
 
     public static int apptConstructorTest() {
-        System.out.println("\tTesting constructor");
+        System.out.println(TESTHEAD + "\tTesting constructor" + RESET);
         int points = 0;
         int full = 1;
         int half = 0;
@@ -288,7 +327,7 @@ public class Grader {
     }
 
     public static int isAValidDateTest() {
-        System.out.println("\tTesting isValidDate()");
+        System.out.println(TESTHEAD + "\tTesting isValidDate()" + RESET);
         int points = 0;
         int full = 1;
         int half = 0;
