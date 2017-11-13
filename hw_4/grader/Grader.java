@@ -1,14 +1,16 @@
 import java.io.File;
 import org.apache.commons.io.*;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class Grader {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         int[] totalPoints = new int[4];
         System.out.println("Calendar Date Test:");
         // isAValidDateTest
         totalPoints[0] += isAValidDateTest();
 
-        fetchCalendarDateKey();
+        fetchClassKey("CalendarDate");
 
         System.out.println("Appointment Test:");
         try {
@@ -30,11 +32,24 @@ public class Grader {
         catch (NoClassDefFoundError e) {
             System.out.println("\tCould not instantiate class Appointment");
         }
+        System.out.println("   Total: " + totalPoints[1] + "/" + 10 +"\n");
+        fetchClassKey("Appointment");
 
         System.out.println("AppointmentList Test:");
         try {
             // constructor
+            totalPoints[2] += apptListConstructorTest();
+            if(totalPoints[2] == 0) {
+                throw new NoClassDefFoundError();
+            }
+            
+        try {
+            getArrayList();
+        }
+        catch(Exception e){}
+            
             // toString
+
             // addToList
             // getAppointment
             // cancelAppointment
@@ -51,6 +66,27 @@ public class Grader {
             System.out.println("\tCould not instantiate class HW4");
         }
     }
+
+    // AppointmentList Class Tests
+
+    public static int apptListConstructorTest() {
+        System.out.println("\tTesting constructor");
+        int points = 0;
+        int full = 1;
+        int half = 0;
+        try {
+            AppointmentList a = new AppointmentList();
+            System.out.println("\t\tCorrect - " + full + "/" + full);
+            points += full;
+        }
+        catch(Exception e) {
+            System.out.println("\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full);
+        }
+        return points;
+    }
+
+    // Appointment Class Tests
 
     public static int toStringAptTest() {
         System.out.println("\tTesting toString()");
@@ -201,15 +237,40 @@ public class Grader {
         return points;
     }
 
-    // Removes the student's CalendarDate class and replaces it with the key
-    private static void fetchCalendarDateKey() {
-        File old = new File("D:\\School\\221\\hw_4\\grader\\CalendarDate.class");
-        File newFile = new File("D:\\School\\221\\hw_4\\HW4\\CalendarDate.class");
+    // Removes the student's class and replaces it with the key class
+    private static void fetchClassKey(String className) {
+        File old = new File("D:\\School\\221\\hw_4\\grader\\" + className + ".class");
+        File newFile = new File("D:\\School\\221\\hw_4\\HW4\\" + className + ".class");
         File newDir = new File("D:\\School\\221\\hw_4\\grader");
         FileUtils.deleteQuietly(old);
         try {
             FileUtils.copyFileToDirectory(newFile, newDir);
         }
         catch(Exception e){}
+    }
+
+    private static void getArrayList() throws Exception{
+        AppointmentList studentAppointmentList = new AppointmentList();
+        studentAppointmentList.addToList(new CalendarDate(1900,1,1), new Employee("Fred"));
+        Class alClass = studentAppointmentList.getClass();
+
+        Field[] alFields = alClass.getDeclaredFields();
+        alFields[0].setAccessible(true);
+        // alFields[0].set(new ArrayList<Appointment>());
+        @SuppressWarnings("unchecked")
+        ArrayList<Appointment> studentList = (ArrayList<Appointment>)alFields[0].get(studentAppointmentList);
+        studentList.add(new Appointment(new CalendarDate(1900,1,1), new Employee("Wilma")));
+        for(Appointment a : studentList)
+            System.out.println(a);
+        // for(Field f:alFields) {
+        //     if(f.getType() == ArrayList.class)
+        //         try {
+        //             @SuppressWarnings("unchecked")
+        //             studentList = f.get(studentAppointmentList);
+        //         }
+        //         catch(Exception e) {
+
+        //         }
+        // }
     }
 }
