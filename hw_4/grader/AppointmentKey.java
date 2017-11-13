@@ -8,12 +8,12 @@ public class AppointmentKey
 {
     // instance variables - replace the example below with your own
     private Employee emp;
-    private CalendarDateKey date;
+    private CalendarDate date;
 
     /**
      * Constructor for objects of class Appointment
      */
-    public AppointmentKey(CalendarDateKey d, Employee e)
+    public AppointmentKey(CalendarDate d, Employee e)
     {
         emp = e;
         date = d;
@@ -25,7 +25,7 @@ public class AppointmentKey
     }
       
     // getter method to return Employee
-    public CalendarDateKey getDate(){
+    public CalendarDate getDate(){
         return date;
     }
     

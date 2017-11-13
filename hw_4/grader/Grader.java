@@ -8,14 +8,7 @@ public class Grader {
         // isAValidDateTest
         totalPoints[0] += isAValidDateTest();
 
-        File source = new File("D:\\School\\221\\hw_4\\grader\\CalendarDate.class");
-        // File dest = new File("H:\\work-temp\\file2");
-        FileUtils.deleteQuietly(source);
-        // try {
-        //     FileUtils.copyDirectory(source, dest);
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
+        fetchCalendarDateKey();
 
         System.out.println("Appointment Test:");
         try {
@@ -32,6 +25,7 @@ public class Grader {
             totalPoints[1] += getDateTest();
 
             // toString
+            totalPoints[1] += toStringAptTest();
         }
         catch (NoClassDefFoundError e) {
             System.out.println("\tCould not instantiate class Appointment");
@@ -58,14 +52,74 @@ public class Grader {
         }
     }
 
+    public static int toStringAptTest() {
+        System.out.println("\tTesting toString()");
+        int points = 0;
+        int full = 3;
+        int half = 2;
+        AppointmentKey key = new AppointmentKey(new CalendarDate(1762, 9, 12),  new Employee("Yekaterina Alekseyevna"));
+        try {
+            Appointment student = new Appointment(key.getDate(), key.getEmployee());
+            String studentAnswer = student.toString().toUpperCase();
+            System.out.print("\t\t" + key + " | " + student);
+            if(studentAnswer.contains(key.getDate().toString().toUpperCase()) &&
+            studentAnswer.contains(key.getEmployee().getName().toUpperCase())) {
+                System.out.println(" - Correct - " + full + "/" + full);
+                points += full;
+            }
+            else if(studentAnswer.contains(key.getDate().toString().toUpperCase())) {
+                System.out.println(" - Date Correct - " + half + "/" + full);
+                points += half;
+            }
+            else if(studentAnswer.contains(key.getEmployee().getName().toUpperCase())) {
+                System.out.println(" - Name Correct - " + half + "/" + full);
+                points += half;
+            }
+            else {
+                System.out.println(" - Incorrect - " + (half - 1) + "/" + full);
+                points += half - 1;                
+            }
+        }
+        catch(Exception e) {
+            System.out.println("\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full);
+        }
+        return points;
+    }
+
+    public static int getDateTest() {
+        System.out.println("\tTesting getDate()");
+        int points = 0;
+        int full = 3;
+        int half = 2;
+        AppointmentKey key = new AppointmentKey(new CalendarDate(2016, 2, 2),  new Employee("John"));
+        try {
+            Appointment student = new Appointment(key.getDate(), key.getEmployee());
+            System.out.print("\t\t" + key.getDate() + " | " + student.getDate());
+            if(student.getDate() == key.getDate()) {
+                System.out.println(" - Correct - " + full + "/" + full);
+                points += full;
+            }
+            else {
+                System.out.println(" - Incorrect - " + half + "/" + full);
+                points += half;                
+            }
+        }
+        catch(Exception e) {
+            System.out.println("\t\t" + e);
+            System.out.println("\t\tError running test - " + points + "/" + full);
+        }
+        return points;
+    }
+
     public static int getEmployeeTest() {
         System.out.println("\tTesting getEmployee()");
         int points = 0;
         int full = 3;
         int half = 2;
-        AppointmentKey key = new AppointmentKey(new CalendarDateKey(2016, 2, 2),  new Employee("John"));
+        AppointmentKey key = new AppointmentKey(new CalendarDate(2016, 2, 2),  new Employee("John"));
         try {
-            Appointment student = new Appointment(new CalendarDate(2016, 2, 2), key.getEmployee());
+            Appointment student = new Appointment(key.getDate(), key.getEmployee());
             System.out.print("\t\t" + key.getEmployee() + " | " + student.getEmployee());
             if(student.getEmployee() == key.getEmployee()) {
                 System.out.println(" - Correct - " + full + "/" + full);
@@ -145,5 +199,17 @@ public class Grader {
         }
 
         return points;
+    }
+
+    // Removes the student's CalendarDate class and replaces it with the key
+    private static void fetchCalendarDateKey() {
+        File old = new File("D:\\School\\221\\hw_4\\grader\\CalendarDate.class");
+        File newFile = new File("D:\\School\\221\\hw_4\\HW4\\CalendarDate.class");
+        File newDir = new File("D:\\School\\221\\hw_4\\grader");
+        FileUtils.deleteQuietly(old);
+        try {
+            FileUtils.copyFileToDirectory(newFile, newDir);
+        }
+        catch(Exception e){}
     }
 }
