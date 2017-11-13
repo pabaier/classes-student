@@ -9,8 +9,9 @@ public class Grader {
         System.out.println("Calendar Date Test:");
         // isAValidDateTest
         totalPoints[0] += isAValidDateTest();
-
         fetchClassKey("CalendarDate");
+
+        //---------------------------------------------------------
 
         System.out.println("Appointment Test:");
         try {
@@ -35,6 +36,8 @@ public class Grader {
         System.out.println("   Total: " + totalPoints[1] + "/" + 10 +"\n");
         fetchClassKey("Appointment");
 
+        //---------------------------------------------------------
+
         System.out.println("AppointmentList Test:");
         try {
             // constructor
@@ -43,10 +46,13 @@ public class Grader {
                 throw new NoClassDefFoundError();
             }
             
+        ArrayList<Appointment> studentList = null;
         try {
-            getArrayList();
+            studentList = getStudentArrayList();
         }
         catch(Exception e){}
+        if(studentList == null)
+            throw new NoClassDefFoundError();
             
             // toString
 
@@ -249,19 +255,24 @@ public class Grader {
         catch(Exception e){}
     }
 
-    private static void getArrayList() throws Exception{
+    private static ArrayList<Appointment> getStudentArrayList() {
         AppointmentList studentAppointmentList = new AppointmentList();
-        studentAppointmentList.addToList(new CalendarDate(1900,1,1), new Employee("Fred"));
+        // studentAppointmentList.addToList(new CalendarDate(1900,1,1), new Employee("Fred"));
         Class alClass = studentAppointmentList.getClass();
 
         Field[] alFields = alClass.getDeclaredFields();
         alFields[0].setAccessible(true);
         // alFields[0].set(new ArrayList<Appointment>());
-        @SuppressWarnings("unchecked")
-        ArrayList<Appointment> studentList = (ArrayList<Appointment>)alFields[0].get(studentAppointmentList);
-        studentList.add(new Appointment(new CalendarDate(1900,1,1), new Employee("Wilma")));
-        for(Appointment a : studentList)
-            System.out.println(a);
+        // ArrayList<Appointment>studentList = new ArrayList<>();
+        try{
+            @SuppressWarnings("unchecked")
+            ArrayList<Appointment>studentList = (ArrayList<Appointment>)alFields[0].get(studentAppointmentList);
+            return studentList;
+        }
+        catch(Exception e) {
+            System.out.println("Could not grab ArrayList");
+        }
+        // studentList.add(new Appointment(new CalendarDate(1900,1,1), new Employee("Wilma")));
         // for(Field f:alFields) {
         //     if(f.getType() == ArrayList.class)
         //         try {
@@ -272,5 +283,6 @@ public class Grader {
 
         //         }
         // }
+        return null;
     }
 }
