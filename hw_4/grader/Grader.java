@@ -45,6 +45,8 @@ public class Grader {
 
             // toString
             totalPoints[1] += toStringAptTest();
+
+            testTest();
         }
         catch (NoClassDefFoundError e) {
             System.out.println("\tCould not instantiate class Appointment");
@@ -223,6 +225,12 @@ public class Grader {
     }
 
     // Appointment Class Tests
+    public static int testTest() {
+        TemplateMethod.Q1 one = new TemplateMethod.Q1();
+        int points = one.runTest("***TESTMETHOD()***");
+        
+        return points;
+    }
 
     public static int toStringAptTest() {
         System.out.println(TESTHEAD + "\tTesting toString()" + RESET);
