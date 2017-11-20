@@ -1,0 +1,19 @@
+The list is empty.
+[]
+
+John
+Elvis
+Mick
+Curly
+Larry
+Moe
+Diana
+
+John
+Elvis
+Mick
+Curly
+Larry
+Moe
+Diana
+

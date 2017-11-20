@@ -1,0 +1,46 @@
+The list is empty.
+[]
+
+[Elvis, John]
+
+The list is not empty.
+
+l.equals(l2) is true
+
+[Elvis, John, Mick]
+
+[Curly, Elvis, Diana, John, Larry, Mick]
+
+[Moe, Curly, Elvis, Diana, Bruce, Larry, Mick]
+size = 7
+index of "Curly" = 1
+index of "Larry" = 5
+index of "Moe" = 0
+index of "Mick" = 6
+
+Removing Moe
+Removing Mick
+Removing Bruce
+[Curly, Elvis, Diana, Larry]
+size = 4
+index of "Diana" = 2
+index of "Bruce" = -1
+
+Curly
+Elvis
+[Diana, Larry]
+
+[Diana, Angela, Larry, Robert]
+size = 4
+
+[Diana, Angela, Larry, Robert, null]
+size = 5
+
+The list has been cleared.
+The list is empty.
+index of "Larry" = -1
+
+Exception information to follow:
+java.lang.IndexOutOfBoundsException: 0
+    at edu.citadel.csci603.util.LinkedList.remove(LinkedList.java:289)
+    at test.TestLinkedList.main(TestLinkedList.java:87)
