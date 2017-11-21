@@ -13,8 +13,8 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
   {
 
     private static int indentLevel = 0;
-    private static final String dirSign = "+";
-    private static final String fileSign = "-";
+    private static final String dirSign = "+ ";
+    private static final String fileSign = "- ";
 
     /**
     * Prints the structure for the file whose path name is given in arg[0].
@@ -32,34 +32,29 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
 
         PrintDirectoryStructure pds = new PrintDirectoryStructure();
         Files.walkFileTree(startingDir, pds);
-
-        // System.out.println(pathName + ": " + cdsv.getDiskSpace() + " bytes");
     }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes bfAttrs)
     {
-        System.out.print(getIndent());
-        if(bfAttrs.isDirectory())
-            System.out.print(dirSign);
-        else
-            System.out.println(fileSign);
-        System.out.print(file.getFileName());
+        System.out.println(getIndent() + fileSign + file.getFileName());
 
         return CONTINUE;
     }
 
 
     // @Override
-    // public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes bfAttrs)
-    // {
-
+    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes bfAttrs)
+    {
+        System.out.println(getIndent() + dirSign + dir.getFileName());
+        indentLevel ++;
+        return CONTINUE;
         
-    // }
+    }
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
-        indentLevel ++;
+        indentLevel --;
         return CONTINUE;
     }
 
@@ -69,7 +64,7 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     private static String getIndent() {
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < indentLevel; i++)
-            s.append("\t");
+            s.append("   ");
         return s.toString();
     }
 
