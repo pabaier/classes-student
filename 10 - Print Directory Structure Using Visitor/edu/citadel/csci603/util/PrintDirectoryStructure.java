@@ -4,6 +4,8 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.io.IOException;
 import static java.nio.file.FileVisitResult.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 
 /**
@@ -15,6 +17,7 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     private static int indentLevel = 0;
     private static String dirSign = "+ ";
     private static String fileSign = "- ";
+    private static ArrayList<ArrayList<String>> dirListing = new ArrayList<ArrayList<String>>();
 
     /**
     * Prints the structure for the file whose path name is given in arg[0].
@@ -108,5 +111,24 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
         System.out.println("       -d <char> : set the directory prefix to <char>");
         System.out.println("       -fd | -df <char> <char> : set the file and directory prefix (in order fd or df)");
         System.out.println();
+    }
+
+    private static class AlphaSort implements Comparator<Path>{
+      
+      // @Override
+      public int compare(Path f1, Path f2) {
+        // // File f1 = (File)o1;
+        // // File f2 = (File)o2;
+
+        // if(f1.isFile() && f2.isDirectory())
+        //   return 1;
+        // else if(f1.isDirectory() && f2.isFile())
+        //   return -1;
+        // else
+        //   return f1.getName().compareTo(f2.getName());
+        return 0;
+      }
+
+
     }
   }
