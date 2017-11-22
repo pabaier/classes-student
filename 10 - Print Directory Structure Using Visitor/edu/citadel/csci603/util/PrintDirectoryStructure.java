@@ -18,7 +18,7 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     private static int indentLevel = 0;
     private static String dirSign = "+ ";
     private static String fileSign = "- ";
-    private static ArrayList<ArrayList<String>> dirListing = new ArrayList<ArrayList<String>>();
+    private static DirectoryStructureList<String> structure = new DirectoryStructureList<>();
 
     /**
     * Prints the structure for the file whose path name is given in arg[0].
@@ -64,10 +64,7 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
         PrintDirectoryStructure pds = new PrintDirectoryStructure();
         Files.walkFileTree(startingDir, pds);
         if(sortAlpha) {
-            for(ArrayList<String> dirs : dirListing) {
-                for(String s : dirs)
-                    System.out.println(s);
-            }
+            
         }
     }
 
@@ -92,7 +89,7 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
         if(!showHidden && dir.getFileName().toString().startsWith("."))
             return SKIP_SUBTREE;
         if(sortAlpha) {
-            
+            // structure.
         }
         else {
             System.out.println(getIndent() + dirSign + dir.getFileName());
