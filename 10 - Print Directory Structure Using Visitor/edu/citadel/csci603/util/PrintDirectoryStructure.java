@@ -103,12 +103,10 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     {
         System.out.println("Usage: java edu.citadel.csci603.util.PrintDirectoryStructure <path>");
         System.out.println("       where <path> is the path of a file or directory");
-        System.out.println("Flags: -h : show hidden files and folders");
-        System.out.println("       -f <char>: set the file prefix to <char>");
-        System.out.println("       -d <char>: set the directory prefix to <char>");
-        System.out.println("       -fd | -df <char> <char>: set the file and directory prefix (in order fd or df)");
-        System.out.println("       [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]");
-        System.out.println("       [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>] <command> [<args>]");
+        System.out.println("Flags: -h : show hidden files and folders (default does not list hidden files and folders)");
+        System.out.println("       -f <char> : set the file prefix to <char>");
+        System.out.println("       -d <char> : set the directory prefix to <char>");
+        System.out.println("       -fd | -df <char> <char> : set the file and directory prefix (in order fd or df)");
         System.out.println();
     }
   }
