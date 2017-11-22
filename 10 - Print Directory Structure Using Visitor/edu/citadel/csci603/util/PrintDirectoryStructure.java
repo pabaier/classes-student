@@ -14,6 +14,7 @@ import java.util.Comparator;
 public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
   {
     private static boolean showHidden = false;
+    private static boolean sortAlpha = true;
     private static int indentLevel = 0;
     private static String dirSign = "+ ";
     private static String fileSign = "- ";
@@ -62,16 +63,26 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
 
         PrintDirectoryStructure pds = new PrintDirectoryStructure();
         Files.walkFileTree(startingDir, pds);
+        if(sortAlpha) {
+            for(ArrayList<String> dirs : dirListing) {
+                for(String s : dirs)
+                    System.out.println(s);
+            }
+        }
     }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes bfAttrs)
     {
-        if(!showHidden && file.getFileName().toString().startsWith("."))
-            return CONTINUE;
+        if(!showHidden && file.getFileName().toString().startsWith(".")) {
+        }
+        else if(sortAlpha) {
 
-        System.out.println(getIndent() + fileSign + file.getFileName());
-        return CONTINUE;
+        }
+        else {
+            System.out.println(getIndent() + fileSign + file.getFileName());
+        }
+            return CONTINUE;
     }
 
 
@@ -80,10 +91,14 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     {
         if(!showHidden && dir.getFileName().toString().startsWith("."))
             return SKIP_SUBTREE;
-        
-        System.out.println(getIndent() + dirSign + dir.getFileName());
+        if(sortAlpha) {
+            
+        }
+        else {
+            System.out.println(getIndent() + dirSign + dir.getFileName());
+        }
         indentLevel ++;
-        return CONTINUE;       
+        return CONTINUE;
     }
 
     @Override
