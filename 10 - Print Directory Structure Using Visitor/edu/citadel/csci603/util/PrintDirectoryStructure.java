@@ -11,18 +11,45 @@ import static java.nio.file.FileVisitResult.*;
  */
 public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
   {
-
+    private static boolean showHidden = false;
     private static int indentLevel = 0;
-    private static final String dirSign = "+ ";
-    private static final String fileSign = "- ";
+    private static String dirSign = "+ ";
+    private static String fileSign = "- ";
 
     /**
     * Prints the structure for the file whose path name is given in arg[0].
     */
     public static void main(String[] args) throws IOException
     {
-        if (args.length != 1)
+        if (args.length < 1)
         {
+            printUsage();
+            System.exit(-1);
+        }
+        try {
+            if (args.length > 1) {
+                if (args[1].equals("-h"))
+                    showHidden = true;
+                else if (args[1].equals("-d"))
+                    dirSign = args[2] + " ";
+                else if (args[1].equals("-f"))
+                    fileSign = args[2] + " ";
+                else if (args[1].equals("-fd")) {
+                    fileSign = args[2] + " ";
+                    dirSign = args[3] + " ";
+                }
+                else if (args[1].equals("-df")) {
+                    fileSign = args[3] + " ";
+                    dirSign = args[2] + " ";
+                }
+
+                else {
+                    printUsage();
+                    System.exit(-1);
+                }
+            }
+        }
+        catch (Exception e) {
             printUsage();
             System.exit(-1);
         }
@@ -37,19 +64,23 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes bfAttrs)
     {
-        System.out.println(getIndent() + fileSign + file.getFileName());
+        if(!showHidden && file.getFileName().toString().startsWith("."))
+            return CONTINUE;
 
+        System.out.println(getIndent() + fileSign + file.getFileName());
         return CONTINUE;
     }
 
 
-    // @Override
+    @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes bfAttrs)
     {
+        if(!showHidden && dir.getFileName().toString().startsWith("."))
+            return SKIP_SUBTREE;
+        
         System.out.println(getIndent() + dirSign + dir.getFileName());
         indentLevel ++;
-        return CONTINUE;
-        
+        return CONTINUE;       
     }
 
     @Override
@@ -70,8 +101,14 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
 
     private static void printUsage()
     {
-        System.out.println("Usage: java edu.citadel.csci603.util.ComputeDiskSpaceVisitor(<path>)");
+        System.out.println("Usage: java edu.citadel.csci603.util.PrintDirectoryStructure <path>");
         System.out.println("       where <path> is the path of a file or directory");
+        System.out.println("Flags: -h : show hidden files and folders");
+        System.out.println("       -f <char>: set the file prefix to <char>");
+        System.out.println("       -d <char>: set the directory prefix to <char>");
+        System.out.println("       -fd | -df <char> <char>: set the file and directory prefix (in order fd or df)");
+        System.out.println("       [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]");
+        System.out.println("       [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>] <command> [<args>]");
         System.out.println();
     }
   }
