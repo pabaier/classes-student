@@ -88,6 +88,13 @@ public abstract class Test {
     public void setPointsEarned(int pointsEarned) {
         this.pointsEarned = pointsEarned;
     }
+     /**
+     * Adds the points to the pointsEarned for this test
+     * @param points the points being added to pointsEarned for this test
+     */
+    public void addPoints(int points) {
+        this.pointsEarned += points;
+    }   
     /**
      * Returns the indentation level for this test
      * @return The indentation level for this test
