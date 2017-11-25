@@ -6,6 +6,7 @@ public abstract class Test {
     int indent;
     String name;
 
+    public abstract void run();
 
     public void printTest() {
         System.out.println(getIndent() + name);
