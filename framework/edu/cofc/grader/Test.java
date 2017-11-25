@@ -1,10 +1,10 @@
 package edu.cofc.grader;
 
 public abstract class Test {
-    int pointsEarned;
-    int totalPoints;
-    int indent;
-    String name;
+    private int pointsEarned;
+    private int totalPoints;
+    private int indent;
+    private String name;
 
     public Test(String name) {
         this.name = name;
