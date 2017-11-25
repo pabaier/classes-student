@@ -13,6 +13,9 @@ public abstract class SingleTestAbstractMethod extends Test {
     public SingleTestAbstractMethod(String name) {
         super(name);
     }
+    public SingleTestAbstractMethod() {
+        super();
+    }
 
     /**
      * Runs a SingleTest

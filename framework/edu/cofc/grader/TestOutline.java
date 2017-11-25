@@ -22,6 +22,13 @@ public class TestOutline extends Test {
     public TestOutline(String name) {
         super(name);
     }
+    /**
+     * Initializes a new TestOutline object with the default name specified in
+     * {@link edu.cofc.grader.Test}
+     */
+    public TestOutline() {
+        super();
+    }
 
     /**
      * Adds a new {@link edu.cofc.grader.Test} object to the TestOutline

@@ -19,9 +19,11 @@ public abstract class Test {
     public Test(String name) {
         this.name = name;
     }
-
+    /**
+     * Initializes a new Test object with the default name "Test"
+     */
     public Test() {
-        this.name = "";
+        this.name = "Test";
     }
 
     /**
