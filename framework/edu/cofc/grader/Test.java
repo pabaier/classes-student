@@ -3,7 +3,7 @@ package edu.cofc.grader;
 public abstract class Test {
     private int pointsEarned;
     private int totalPoints;
-    private int indent;
+    private int indentLevel;
     private String name;
 
     public Test(String name) {
@@ -38,14 +38,14 @@ public abstract class Test {
         this.pointsEarned = pointsEarned;
     }
     public int getIndentLevel() {
-        return indent;
+        return indentLevel;
     }
-    public void setIndent(int indent) {
-        this.indent = indent;
+    public void setIndent(int indentLevel) {
+        this.indentLevel = indentLevel;
     }
     public String getIndent() {
         StringBuilder s = new StringBuilder();
-        for(int i = 0; i < indent; i++)
+        for(int i = 0; i < indentLevel; i++)
             s.append("   ");
         return s.toString();
     } 
