@@ -20,6 +20,10 @@ public abstract class Test {
         this.name = name;
     }
 
+    public Test() {
+        this.name = "";
+    }
+
     /**
      * Abstract method called to run the test
      */
