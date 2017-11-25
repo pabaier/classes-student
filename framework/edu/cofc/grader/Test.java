@@ -2,9 +2,8 @@ package edu.cofc.grader;
 
 /**
  * Test provides an interface for creating different types of Test objects.
- * When extending test a run() method must be implemented.
- * import edu.cofc.grader.Test
- * @ author Paul Baier
+ * When extending Test, a @see run() method must be implemented.
+ * @author Paul Baier
  */
 
 public abstract class Test {
@@ -15,7 +14,7 @@ public abstract class Test {
 
     /**
      * Initializes a new Test object with the specified name
-     * @param name - the name of the test
+     * @param name the name of the test
      */
     public Test(String name) {
         this.name = name;
@@ -49,7 +48,7 @@ public abstract class Test {
     }
     /**
      * Sets the name of the test
-     * @param name - the name of the test
+     * @param name the name of the test
      */
     public void setName(String name) {
         this.name = name;
@@ -64,7 +63,7 @@ public abstract class Test {
 
     /**
      * Sets the total points for this test
-     * @param totalPoints - the total points for this test
+     * @param totalPoints the total points for this test
      */
     public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
@@ -78,7 +77,7 @@ public abstract class Test {
     }
     /**
      * Sets the points earned for this test
-     * @param pointsEarned - the points earned for this test
+     * @param pointsEarned the points earned for this test
      */
     public void setPointsEarned(int pointsEarned) {
         this.pointsEarned = pointsEarned;
@@ -92,7 +91,7 @@ public abstract class Test {
     }
     /**
      * Sets the indentation level for this test
-     * @param indentLevel - the indentation level for this test
+     * @param indentLevel the indentation level for this test
      */
     public void setIndent(int indentLevel) {
         this.indentLevel = indentLevel;
