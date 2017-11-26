@@ -133,7 +133,7 @@ public class C {
             RESULT = CYAN;
             TITLES = new String[] {BLUE, MAGENTA, CYAN};
             RESULTS = new String[] {BACKGROUND_CYAN + YELLOW + BOLD,
-                        BACKGROUND_YELLOW + BLUE + BOLD,
+                        BACKGROUND_YELLOW + BLUE,
                         BACKGROUND_MAGENTA + WHITE + BOLD};
         }
         else {

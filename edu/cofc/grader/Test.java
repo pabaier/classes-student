@@ -35,14 +35,14 @@ public abstract class Test {
      * Prints the name of the test with the proper indentation
      */
     public void printTest() {
-        System.out.println(C.TITLES[indentLevel%C.TITLES.length] + getIndent() + name + C.RESET);
+        System.out.println(getIndent() + C.TITLES[indentLevel%C.TITLES.length] + name + C.RESET);
     }
 
     /**
      * Prints the results of the test using the proper indentation
      */
     public void printResult() {
-        System.out.println(C.RESULTS[indentLevel%C.RESULTS.length] + getIndent() + pointsEarned + "/" + totalPoints + C.RESET);
+        System.out.println(getIndent() + C.RESULTS[indentLevel%C.RESULTS.length] + pointsEarned + "/" + totalPoints + C.RESET);
     }
 
     /**

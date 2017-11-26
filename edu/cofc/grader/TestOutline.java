@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * TestOutline is a container for all {@link edu.cofc.grader.Test} objects that need to be run
- * within the context of this test. Use the {@link #addTest(Test test)} method to add tests
+ * within the context of this test. Use the {@link #add(Test test)} method to add tests
  * to the container and, once all tests are added, run the container.
  * TesetOutline can also contain other test outlines.
  * Indentation levels are kept automatically.
@@ -34,7 +34,7 @@ public class TestOutline extends Test {
      * Adds a new {@link edu.cofc.grader.Test} object to the TestOutline
      * @param test the Test added to the TestOutline
      */
-    public void addTest(Test test) {
+    public void add(Test test) {
         testList.add(test);
     }
 
