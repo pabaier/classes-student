@@ -37,7 +37,7 @@ public class GraderF {
         appointmentTests.add(aptToString);
         appointmentTests.run();
 
-        fetchKey("Appointment");
+        // fetchKey("Appointment");
 
         // appointment list ********************
         SingleTests.AppointmentListConstructor aptListConst = new SingleTests.AppointmentListConstructor();

@@ -31,9 +31,9 @@ public class HW4Key
         Scanner user = new Scanner(System.in);
         System.out.print("Please enter the name of employee appointment file: ");
         String filename = user.nextLine();
-        CalendarDateKey c = null;
+        CalendarDate c = null;
         String name = "";
-        AppointmentListKey schedule = new AppointmentListKey();
+        AppointmentList schedule = new AppointmentList();
         
         
         try{
@@ -43,7 +43,7 @@ public class HW4Key
               int year = fileInput.nextInt();
               int month = fileInput.nextInt();
               int day = fileInput.nextInt();
-              c = new CalendarDateKey(year, month, day);
+              c = new CalendarDate(year, month, day);
               name = fileInput.nextLine().trim();
               try {
                   if (!c.isAValidDate())
