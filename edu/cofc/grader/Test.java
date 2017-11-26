@@ -117,13 +117,27 @@ public abstract class Test {
         this.indentLevel = indentLevel;
     }
     /**
+     * Indents the current line one indentation more than current indent level
+     * @return The string representation of the indentation level plus one for this test
+     */
+    public String indent() {
+        return getIndent(indentLevel + 1);
+    }
+    /**
+     * Indents the current line n indentation levels more than current indent level
+     * @param n the number of indentation levels to add
+     * @return The string representation of the indentation level plus n for this test
+     */
+    public String indent(int n) {
+        return getIndent(indentLevel + n);
+    }
+    /**
      * Returns the string representation of the indentation level for this test
      * @return The string representation of the indentation level for this test
      */
     public String getIndent() {
         return getIndent(indentLevel);
     }
-
     /**
      * Returns the string representation of the indentation level for the given indentLevel
      * @param indentLevel the indentation level
