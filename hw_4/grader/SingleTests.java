@@ -1,4 +1,6 @@
 import edu.cofc.grader.*;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class SingleTests {
     
@@ -170,6 +172,145 @@ public class SingleTests {
                 System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
             }
         }
+    }
+
+    public static class AddToList extends SingleTest {
+        public void exec() {
+            AppointmentList studentAppointmentList = new AppointmentList();
+            AppointmentListKey key = new AppointmentListKey();
+            ArrayList<Appointment> studentList = getStudentArrayList(studentAppointmentList);
+
+            setTotalPoints(3);
+            int full = 3;
+            int half = 2;
+                    
+            ArrayList<Appointment> keyList = key.getList();
+            key.addToList(new CalendarDate(1960, 7, 11),  new Employee("Scout Finch"));
+            try {
+                studentAppointmentList.addToList(keyList.get(0).getDate(), keyList.get(0).getEmployee());
+                System.out.print(indent() + keyList.get(0).getDate() + " " + keyList.get(0).getEmployee().getName());
+                if(studentList.get(0).getDate() == keyList.get(0).getDate() && 
+                    studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
+                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
+                    addPoints(full);
+                }
+                else if(studentList.get(0).getDate() == keyList.get(0).getDate()) {
+                    System.out.println(C.PARTCORRECT + " - Date Correct - " + half + "/" + full + C.RESET);
+                    addPoints(half);
+                }
+                else if(studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
+                    System.out.println(C.PARTCORRECT + " - Employee Correct - " + half + "/" + full + C.RESET);
+                    addPoints(half);
+                }
+                else {
+                    System.out.println(C.PARTCORRECT + " - Incorrect - " + (half - 1) + "/" + full + C.RESET);
+                    addPoints(half - 1);
+                }
+            }
+            catch(Exception e) {
+                System.out.println(indent() + C.INCORRECT + e);
+                System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            }
+        }
+    }
+
+    public static class GetAppointment extends SingleTest {
+        public void exec() {
+            AppointmentList studentAppointmentList = new AppointmentList();
+            AppointmentListKey key = new AppointmentListKey();
+            ArrayList<Appointment> studentList = getStudentArrayList(studentAppointmentList);
+
+            setTotalPoints(6);
+            int full = 3;
+            int half = 2;
+        
+            ArrayList<Appointment> keyList = key.getList();
+            key.addToList(new CalendarDate(1925, 7, 13),  new Employee("Lillian Bounds"));
+            key.addToList(new CalendarDate(1971, 10, 1),  new Employee("Walt Disney"));
+            studentList.add(keyList.get(0));
+            studentList.add(keyList.get(1));
+            try {
+                System.out.print(indent() + keyList.get(1).getEmployee().getName() + " " + keyList.get(1).getDate());
+                if(studentAppointmentList.getAppointment("Walt Disney") == keyList.get(1).getDate()) {
+                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
+                    addPoints(full);
+                }
+                else {
+                    System.out.println(C.PARTCORRECT + " - Incorrect - " + half + "/" + full + C.RESET);
+                    addPoints(half);
+                }
+                System.out.print(indent() + "Null");
+                if(studentAppointmentList.getAppointment("Roy Disney") == null) {
+                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
+                    addPoints(full);
+                }
+                else {
+                    System.out.println(C.PARTCORRECT + " - Incorrect - " + half + "/" + full + C.RESET);
+                    addPoints(half);
+                }
+            }
+            catch(Exception e) {
+                System.out.println(indent() + C.INCORRECT + e);
+                System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            }
+        }
+    }
+
+    public static class CancelAppointment extends SingleTest {
+        public void exec() {
+            AppointmentList studentAppointmentList = new AppointmentList();
+            AppointmentListKey key = new AppointmentListKey();
+            ArrayList<Appointment> studentList = getStudentArrayList(studentAppointmentList);
+
+            setTotalPoints(3);
+            int full = 3;
+            int half = 2;
+
+            ArrayList<Appointment> keyList = key.getList();
+            key.addToList(new CalendarDate(1906, 12, 9),  new Employee("Grace Hopper"));
+            studentList.add(keyList.get(0));
+            try {
+                System.out.print(indent() + keyList.get(keyList.size() - 1).getEmployee().getName() + " " + keyList.get(keyList.size() - 1).getDate() + C.RESET);
+                studentAppointmentList.cancelAppointment(keyList.get(keyList.size() - 1).getEmployee().getName());
+                if(studentList.size() == 0) {
+                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
+                    addPoints(full);
+                }
+                else {
+                    System.out.println(C.PARTCORRECT + " - Incorrect - " + half + "/" + full + C.RESET);
+                    addPoints(half);
+                }
+            }
+            catch(Exception e) {
+                System.out.println(indent() + C.INCORRECT + e);
+                System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            }
+        }
+    }
+
+    //HW4 test cases
+
+
+
+
+
+
+    // helper methods
+    private static ArrayList<Appointment> getStudentArrayList(AppointmentList studentAppointmentList) {
+        Class alClass = studentAppointmentList.getClass();
+
+        Field[] alFields = alClass.getDeclaredFields();
+        alFields[0].setAccessible(true);
+        try{
+            @SuppressWarnings("unchecked")
+            ArrayList<Appointment>studentList = (ArrayList<Appointment>)alFields[0].get(studentAppointmentList);
+            return studentList;
+        }
+        catch(Exception e) {
+            System.out.println("Could not grab ArrayList");
+        }
+
+        return null;
     }
 
 }

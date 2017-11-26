@@ -50,7 +50,7 @@ public class AppointmentList
         
         // find appointment
         // search list for this person
-        System.out.println("In cancel appt method.");
+        // System.out.println("In cancel appt method.");
         boolean found = false;
         int index = 0;
         int rightIndex = 0;
@@ -58,10 +58,10 @@ public class AppointmentList
 
         while(!found && index < list.size()){
 
-           System.out.println(list.get(index).getEmployee().getName());
+        //    System.out.println(list.get(index).getEmployee().getName());
            if(list.get(index).getEmployee().getName().equals(name)){  
              found = true;
-             System.out.println("Found " + name);
+            //  System.out.println("Found " + name);
              rightIndex = index;
            }
            index++; // moves one ahead
