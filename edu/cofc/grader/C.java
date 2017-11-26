@@ -7,6 +7,8 @@ package edu.cofc.grader;
  */
 public class C {
 
+    public static final String RESET_VALUE = "\u001B[0m";
+    
     public static final String BLACK = "\u001b[30m";
     public static final String RED = "\u001b[31m";
     public static final String GREEN = "\u001b[32m";
@@ -54,10 +56,8 @@ public class C {
     public static String TITLE = "";
     public static String RESULT = "";
 
-    public static String[] TITLES = {BLUE, MAGENTA, CYAN};
-    public static String[] RESULTS = {BACKGROUND_BLACK + WHITE,
-                                        BACKGROUND_BLACK + BRIGHT_BLUE,
-                                        BACKGROUND_BLACK + BRIGHT_YELLOW};
+    public static String[] TITLES = {""};
+    public static String[] RESULTS = {""};
 
     /**
      * Sets the ANSI color code values for results levels
@@ -72,6 +72,17 @@ public class C {
      */
     public static void setTitlesArray(String[] colors) {
         TITLES = colors;
+    }
+    /**
+     * Sets the ANSI color code value of Reaet
+     * @param toggle true sets RESET to ANSI reset value,
+     * false sets RESET to an empty string (default)
+     */
+    public static void setReset(boolean toggle) {
+        if(toggle)
+            RESET = RESET_VALUE;
+        else
+            RESET = "";
     }
     /**
      * Sets the ANSI color code value of RESULT
@@ -114,12 +125,16 @@ public class C {
      */
     public static void colors(boolean toggle) {
         if(toggle) {
-            RESET = "\u001B[0m";
+            RESET = RESET_VALUE;
             CORRECT = GREEN;
             PARTCORRECT = BLUE;
             INCORRECT = RED;
             TITLE = MAGENTA;
             RESULT = CYAN;
+            TITLES = new String[] {BLUE, MAGENTA, CYAN};
+            RESULTS = new String[] {BACKGROUND_CYAN + YELLOW + BOLD,
+                        BACKGROUND_YELLOW + BLUE + BOLD,
+                        BACKGROUND_MAGENTA + WHITE + BOLD};
         }
         else {
             RESET = "";
@@ -128,6 +143,8 @@ public class C {
             INCORRECT = "";
             TITLE = "";
             RESULT = "";
+            TITLES = new String[] {""};
+            RESULTS = new String[] {""};
         }
     }
 
