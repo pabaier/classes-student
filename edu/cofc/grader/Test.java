@@ -23,7 +23,7 @@ public abstract class Test {
      * Initializes a new Test object with the default name "Test"
      */
     public Test() {
-        this.name = "Test";
+        this("Test");
     }
 
     /**
@@ -35,14 +35,14 @@ public abstract class Test {
      * Prints the name of the test with the proper indentation
      */
     public void printTest() {
-        System.out.println(getIndent() + name);
+        System.out.println(C.TITLES[indentLevel%C.TITLES.length] + getIndent() + name + C.RESET);
     }
 
     /**
      * Prints the results of the test using the proper indentation
      */
     public void printResult() {
-        System.out.println(getIndent() + pointsEarned + "/" + totalPoints);
+        System.out.println(C.RESULTS[indentLevel%C.RESULTS.length] + getIndent() + pointsEarned + "/" + totalPoints + C.RESET);
     }
 
     /**
@@ -95,6 +95,13 @@ public abstract class Test {
     public void addPoints(int points) {
         this.pointsEarned += points;
     }   
+     /**
+     * Subtracts the points from the pointsEarned for this test
+     * @param points the points being removed from pointsEarned for this test
+     */
+    public void removePoints(int points) {
+        this.pointsEarned -= points;
+    }   
     /**
      * Returns the indentation level for this test
      * @return The indentation level for this test
@@ -114,9 +121,18 @@ public abstract class Test {
      * @return The string representation of the indentation level for this test
      */
     public String getIndent() {
+        return getIndent(indentLevel);
+    }
+
+    /**
+     * Returns the string representation of the indentation level for the given indentLevel
+     * @param indentLevel the indentation level
+     * @return The string representation of the indentation level for this test
+     */
+    public static String getIndent(int indentLevel) {
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < indentLevel; i++)
             s.append("   ");
         return s.toString();
-    } 
+    }
 }
