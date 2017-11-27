@@ -13,13 +13,19 @@ public class GraderF {
         TestOutline appointmentTests = new TestOutline(C.UNDERLINE + "Appointment" + C.RESET);
         TestOutline appointmentListTests = new TestOutline(C.UNDERLINE + "AppointmentList" + C.RESET);
         TestOutline hw4Tests = new TestOutline(C.UNDERLINE + "HW 4" + C.RESET);
+        TestOutline homework4 = new TestOutline("Homework 4" + C.RESET);
+
+        homework4.add(calendarDateTests);
+        homework4.add(appointmentTests);
+        homework4.add(appointmentListTests);
+        homework4.add(hw4Tests);
 
         // calendarDate ********************
         SingleTests.IsAValidDate cdtDate = new SingleTests.IsAValidDate();
         cdtDate.setName("Is A Valid Date");
 
         calendarDateTests.add(cdtDate);
-        calendarDateTests.run();
+        // calendarDateTests.run();
  
         // appointment ********************
         SingleTests.AppointmentConstructor aptConst = new SingleTests.AppointmentConstructor();
@@ -35,7 +41,7 @@ public class GraderF {
         appointmentTests.add(getEmployee);
         appointmentTests.add(getDate);
         appointmentTests.add(aptToString);
-        appointmentTests.run();
+        // appointmentTests.run();
 
         // fetchKey("Appointment");
 
@@ -54,16 +60,23 @@ public class GraderF {
         appointmentListTests.add(getAppointment);
         appointmentListTests.add(cancelAppointment);
 
-        appointmentListTests.run();
+        // appointmentListTests.run();
 
         // hw4 ********************************
-        SingleTests.HW4Driver hw4Driver = new SingleTests.HW4Driver();
-        hw4Driver.setName("HW4 Program");
+        SingleTests.ReadFile readFile = new SingleTests.ReadFile();
+        readFile.setName("Read Input");
+        SingleTests.Quit quit = new SingleTests.Quit();
+        quit.setName("Quit");
+        SingleTests.Cancel cancel = new SingleTests.Cancel();
+        cancel.setName("Cancel Appointment");
 
-        hw4Tests.add(hw4Driver);
+        hw4Tests.add(readFile);
+        hw4Tests.add(quit);
+        hw4Tests.add(cancel);
 
-        hw4Tests.run();
+        // hw4Tests.run();
 
+        homework4.run();
      }
 
     // Removes the student's class and replaces it with the key class

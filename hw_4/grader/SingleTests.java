@@ -154,7 +154,7 @@ public class SingleTests {
         }
     }
 
-    //appointmentList
+    // appointmentList
     public static class AppointmentListConstructor extends SingleTest {
         public void exec() {
             setTotalPoints(1);
@@ -288,10 +288,85 @@ public class SingleTests {
         }
     }
 
-    public static class HW4Driver extends SingleTest {
+
+    // HW4
+    public static class ReadFile extends SingleTest {
+        public void exec() {
+            setTotalPoints(6);
+            int full = 2;
+            int half = 0;
+
+            HW4 student = new HW4();
+            IO.startOutputCapture();
+            IO.setInput("D:\\School\\221\\hw_4\\grader\\testinput.txt\n" +
+                        "Q\n");
+            student.main(null);
+            IO.restoreOutput();
+            String output = IO.getOutput();
+
+            boolean mk = output.matches("(?s).*Magic Kingdom.*");
+            boolean hs = output.matches("(?s).*Hollywood Studios.*");
+            boolean ak = output.matches("(?s).*Animal Kingdom.*");
+            boolean e = output.matches("(?s).*Epcot.*");
+            System.out.print(indent() + "Magic Kingdom ");
+            if(mk) {
+                System.out.println(C.CORRECT + "- found! - " + full + "/" + full + C.RESET);
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.INCORRECT + "- not found - " + 0 + "/" + full + C.RESET);
+                addPoints(0);
+            }
+            System.out.print(indent() + "Hollywood Studios ");
+            if(hs) {
+                System.out.println(C.CORRECT + "- found! - " + full + "/" + full + C.RESET);
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.INCORRECT + "- not found - " + 0 + "/" + full + C.RESET);
+                addPoints(0);
+            }
+            System.out.print(indent() + "Animal Kingdom ");
+            if(ak) {
+                System.out.println(C.CORRECT + "- found! - " + full + "/" + full + C.RESET);
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.INCORRECT + "- not found - " + 0 + "/" + full + C.RESET);
+                addPoints(0);
+            }
+            if(e) {
+                System.out.print(indent() + "Epcot ");
+                System.out.println(C.INCORRECT + "- should not have been found - -1" + C.RESET);
+                if(getPointsEarned() > 0)
+                    setPointsEarned(getPointsEarned() - 1);
+            }
+        }
+    }
+
+    public static class Quit extends SingleTest {
         public void exec() {
             setTotalPoints(3);
             int full = 3;
+            int half = 1;
+
+            HW4 student = new HW4();
+            IO.startOutputCapture();
+            IO.setInput("D:\\School\\221\\hw_4\\grader\\testinput.txt\n" +
+                        "Q\n");
+            student.main(null);
+            IO.restoreOutput();
+            String output = IO.getOutput();
+
+            System.out.println(indent() + "quitting " + C.CORRECT + "- quit! - " + full + "/" + full + C.RESET);
+            addPoints(full);
+        }
+    }
+
+    public static class Cancel extends SingleTest {
+        public void exec() {
+            setTotalPoints(4);
+            int full = 4;
             int half = 2;
 
             HW4 student = new HW4();
@@ -299,13 +374,60 @@ public class SingleTests {
             IO.setInput("D:\\School\\221\\hw_4\\grader\\testinput.txt\n" +
                         "C\n" +
                         "Magic Kingdom\n" +
+                        "C\n" +
+                        "Epcot\n" + 
+                        "C\n" +
+                        "Epcot\n" + 
                         "Q");
             student.main(null);
             IO.restoreOutput();
             String output = IO.getOutput();
-            boolean result = output.matches("(?s).*Magic Kingdom.*Magic Kingdom.*Magic Kingdom.*");
-            System.out.println(indent() + result);
-            System.out.println(output);
+
+            boolean once = output.matches("(?s).*Magic Kingdom.*");
+            boolean twice = output.matches("(?s).*Magic Kingdom.*Magic Kingdom.*");
+            // boolean thrice = output.matches("(?s).*Animal Kingdom.*Magic Kingdom.*Magic Kingdom.*");
+            System.out.print(indent() + "Cancel Magic Kingdom ");
+            if(once || twice) {
+                System.out.println(C.CORRECT + "- canceled! - " + full + "/" + full + C.RESET);
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.INCORRECT + "- problem with cancellation - " + half + "/" + full + C.RESET);
+                addPoints(half);
+            }
+        }
+    }
+
+    public static class HW4Driver extends SingleTest {
+        public void exec() {
+            setTotalPoints(3);
+            int full = 3;
+            int half = 2;
+
+            // HW4 student = new HW4();
+            // IO.startOutputCapture();
+            IO.setInput("D:\\School\\221\\hw_4\\grader\\testinput.txt\n" +
+                        "C\n" +
+                        "Magic Kingdom\n" +
+                        "C\n" +
+                        "Epcot\n" + 
+                        "Q");
+            // student.main(null);
+            // IO.restoreOutput();
+            // String output = IO.getOutput();
+            // boolean result = output.matches("(?s).*Magic Kingdom.*Magic Kingdom.*Magic Kingdom.*");
+            // boolean result1 = output.matches("(?s).*Magic Kingdom.*Magic Kingdom.*");
+            // System.out.println(indent() + result);
+            // System.out.println(indent() + result1);
+            // System.out.println(output);
+
+            // ThreadClass.PrintFileInput printFile = new ThreadClass.PrintFileInput();
+            // Thread t = new Thread(printFile);
+            // t.start();
+            // try {
+            //     t.join();
+            // }
+            // catch(Exception e) {}
 
         }
     }
