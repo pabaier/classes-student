@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=AppointmentList
+comment1.params=
+comment1.target=AppointmentList()
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment3.params=c\ e
+comment3.target=void\ addToList(CalendarDate,\ Employee)
+comment4.params=name
+comment4.target=CalendarDate\ getAppointment(java.lang.String)
+comment5.params=name
+comment5.target=void\ cancelAppointment(java.lang.String)
+numComments=6
