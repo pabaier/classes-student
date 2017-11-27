@@ -28,7 +28,7 @@ public abstract class SingleTestAbstractMethod extends Test {
         try{
             exec();
         }
-        catch(Exception e) {
+        catch(Throwable e) {
             // System.out.println(indent() + C.INCORRECT + e);
             System.out.println(indent() + C.INCORRECT + "Error Running Test");
             System.out.println(indent() + "Uncaught Exception Thrown - " + getPointsEarned() + "/" + getTotalPoints() + C.RESET);
