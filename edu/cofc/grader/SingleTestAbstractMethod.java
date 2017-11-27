@@ -1,5 +1,7 @@
 package edu.cofc.grader;
 
+import java.io.FileNotFoundException;
+
 /**
  * SingleTestAbstractMethod provides an interface for creating a {@link edu.cofc.grader.SingleTest}<br>
  * The test name and result are printed within the run method, so a SingleTest
@@ -23,7 +25,14 @@ public abstract class SingleTestAbstractMethod extends Test {
      */
     public void run() {
         printTest();
-        exec();
+        try{
+            exec();
+        }
+        catch(Exception e) {
+            // System.out.println(indent() + C.INCORRECT + e);
+            System.out.println(indent() + C.INCORRECT + "Error Running Test");
+            System.out.println(indent() + "Uncaught Exception Thrown - " + getPointsEarned() + "/" + getTotalPoints() + C.RESET);
+        }
         printResult();
     }
 
