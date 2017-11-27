@@ -288,7 +288,40 @@ public class SingleTests {
         }
     }
 
+    public static class HW4Driver extends SingleTest {
+        public void exec() {
+            setTotalPoints(3);
+            int full = 3;
+            int half = 2;
+
+            HW4 student = new HW4();
+            IO.startOutputCapture();
+            IO.setInput("D:\\School\\221\\hw_4\\grader\\testinput.txt\n" +
+                        "C\n" +
+                        "Magic Kingdom\n" +
+                        "Q");
+            student.main(null);
+            IO.restoreOutput();
+            String output = IO.getOutput();
+            boolean result = output.matches("(?s).*Magic Kingdom.*Magic Kingdom.*Magic Kingdom.*");
+            System.out.println(indent() + result);
+            System.out.println(output);
+
+        }
+    }
+
     //HW4 test cases
+    // 1 - get file name from user input (testinput.txt)
+    // 2 - access file (will have 3 valid, 1 invalid inputs)
+    // 3- store 3 appointments in appointmentlist 
+    // 4- output the schedule (should contain magic kingdom, hollywood studios, animal kingdom)
+    // 5- point off if it contains epcot
+    // 6- get user input 'C'
+    // 7- get user input "Magic Kingdom"
+    // 8 - output the schedule (should not see Magic Kingdom)
+    // 9 - get user input 'Q'
+    // 10 - should exit
+
 
 
 

@@ -12,7 +12,7 @@ public class GraderF {
         TestOutline calendarDateTests = new TestOutline(C.UNDERLINE + "CalendarDate" + C.RESET);
         TestOutline appointmentTests = new TestOutline(C.UNDERLINE + "Appointment" + C.RESET);
         TestOutline appointmentListTests = new TestOutline(C.UNDERLINE + "AppointmentList" + C.RESET);
-        TestOutline hw4Tests = new TestOutline(C.UNDERLINE + "HW 4 Tests" + C.RESET);
+        TestOutline hw4Tests = new TestOutline(C.UNDERLINE + "HW 4" + C.RESET);
 
         // calendarDate ********************
         SingleTests.IsAValidDate cdtDate = new SingleTests.IsAValidDate();
@@ -55,6 +55,14 @@ public class GraderF {
         appointmentListTests.add(cancelAppointment);
 
         appointmentListTests.run();
+
+        // hw4 ********************************
+        SingleTests.HW4Driver hw4Driver = new SingleTests.HW4Driver();
+        hw4Driver.setName("HW4 Program");
+
+        hw4Tests.add(hw4Driver);
+
+        hw4Tests.run();
 
      }
 
