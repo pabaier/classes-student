@@ -1,0 +1,414 @@
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+GerwatowskiC/
+HW4.java:77: warning: unreachable catch clause
+            } catch (IOException excpt) {
+              ^
+  thrown type FileNotFoundException has already been caught
+1 warning
+GrayT/
+HancockM/
+HartungL/
+HigginsS/
+jacksons/
+JureckiG/
+LingenfelterA/
+Appointment.java:30: error: ';' expected
+    	return CalendarDate.toString() + " " Employee.getName();
+    	                                    ^
+AppointmentList.java:19: error: ';' expected
+    	    return CalendarDate.toString() + " " Employee.getName();
+    	                                        ^
+2 errors
+MainarS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+MarshallR/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+GerwatowskiC/
+HW4.java:77: warning: unreachable catch clause
+            } catch (IOException excpt) {
+              ^
+  thrown type FileNotFoundException has already been caught
+1 warning
+GrayT/
+HancockM/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+GerwatowskiC/
+HW4.java:77: warning: unreachable catch clause
+            } catch (IOException excpt) {
+              ^
+  thrown type FileNotFoundException has already been caught
+1 warning
+GrayT/
+HancockM/
+HartungL/
+HigginsS/
+jacksons/
+JureckiG/
+LingenfelterA/
+Appointment.java:30: error: ';' expected
+    	return CalendarDate.toString() + " " Employee.getName();
+    	                                    ^
+AppointmentList.java:19: error: ';' expected
+    	    return CalendarDate.toString() + " " Employee.getName();
+    	                                        ^
+2 errors
+MainarS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+MarshallR/
+MattoxJ/
+PappasS/
+PerrymanA/
+HW4.java:49: error: cannot find symbol
+                        for(int i = 0; i < appointmentList.size(); ++i){
+                                                          ^
+  symbol:   method size()
+  location: variable appointmentList of type AppointmentList
+1 error
+RabiuJ/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+RobinsonA/
+taylorC/
+HW4.java:40: error: incompatible types: String cannot be converted to char
+        quitCmd = menu.next();
+                           ^
+HW4.java:41: error: char cannot be dereferenced
+        quitCmd.toLowerCase();
+               ^
+HW4.java:42: error: incompatible types: char cannot be converted to boolean
+        while(quitCmd = 'c'){
+                      ^
+HW4.java:45: error: incompatible types: char cannot be converted to boolean
+        if(quitCmd = 'q'){
+                   ^
+HW4.java:47: error: break outside switch or loop
+            break;
+            ^
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+5 errors
+VeloffS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/Appointment.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/AppointmentList.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/CalendarDate.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/Employee.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/HW4.java': No such file or directory
+javac: file not found: Appointment.java
+Usage: javac <options> <source files>
+use -help for a list of possible options
+WashingtonM/
+rm: cannot remove 'Appointment.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'AppointmentList.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'CalendarDate.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'Employee.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'HW4.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+WinsteadK/
+WoodsA/
+YibJ/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+GerwatowskiC/
+HW4.java:77: warning: unreachable catch clause
+            } catch (IOException excpt) {
+              ^
+  thrown type FileNotFoundException has already been caught
+1 warning
+GrayT/
+HancockM/
+HartungL/
+HigginsS/
+jacksons/
+JureckiG/
+LingenfelterA/
+Appointment.java:30: error: ';' expected
+    	return CalendarDate.toString() + " " Employee.getName();
+    	                                    ^
+AppointmentList.java:19: error: ';' expected
+    	    return CalendarDate.toString() + " " Employee.getName();
+    	                                        ^
+2 errors
+MainarS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+GerwatowskiC/
+HW4.java:77: warning: unreachable catch clause
+            } catch (IOException excpt) {
+              ^
+  thrown type FileNotFoundException has already been caught
+1 warning
+GrayT/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+GerwatowskiC/
+HW4.java:77: warning: unreachable catch clause
+            } catch (IOException excpt) {
+              ^
+  thrown type FileNotFoundException has already been caught
+1 warning
+GrayT/
+HancockM/
+HartungL/
+HigginsS/
+jacksons/
+JureckiG/
+LingenfelterA/
+Appointment.java:30: error: ';' expected
+    	return CalendarDate.toString() + " " Employee.getName();
+    	                                    ^
+AppointmentList.java:19: error: ';' expected
+    	    return CalendarDate.toString() + " " Employee.getName();
+    	                                        ^
+2 errors
+MainarS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+MarshallR/
+MattoxJ/
+PappasS/
+PerrymanA/
+HW4.java:49: error: cannot find symbol
+                        for(int i = 0; i < appointmentList.size(); ++i){
+                                                          ^
+  symbol:   method size()
+  location: variable appointmentList of type AppointmentList
+1 error
+RabiuJ/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+RobinsonA/
+taylorC/
+HW4.java:40: error: incompatible types: String cannot be converted to char
+        quitCmd = menu.next();
+                           ^
+HW4.java:41: error: char cannot be dereferenced
+        quitCmd.toLowerCase();
+               ^
+HW4.java:42: error: incompatible types: char cannot be converted to boolean
+        while(quitCmd = 'c'){
+                      ^
+HW4.java:45: error: incompatible types: char cannot be converted to boolean
+        if(quitCmd = 'q'){
+                   ^
+HW4.java:47: error: break outside switch or loop
+            break;
+            ^
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+5 errors
+VeloffS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/Appointment.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/AppointmentList.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/CalendarDate.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/Employee.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/HW4.java': No such file or directory
+javac: file not found: Appointment.java
+Usage: javac <options> <source files>
+use -help for a list of possible options
+WashingtonM/
+rm: cannot remove 'Appointment.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'AppointmentList.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'CalendarDate.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'Employee.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'HW4.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+WinsteadK/
+WoodsA/
+YibJ/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+BarberC/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+BarberC/
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BarrettR/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+GerwatowskiC/
+HW4.java:77: warning: unreachable catch clause
+            } catch (IOException excpt) {
+              ^
+  thrown type FileNotFoundException has already been caught
+1 warning
+GrayT/
+HancockM/
+HartungL/
+HigginsS/
+jacksons/
+JureckiG/
+LingenfelterA/
+Appointment.java:30: error: ';' expected
+    	return CalendarDate.toString() + " " Employee.getName();
+    	                                    ^
+AppointmentList.java:19: error: ';' expected
+    	    return CalendarDate.toString() + " " Employee.getName();
+    	                                        ^
+2 errors
+MainarS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+MarshallR/
+MattoxJ/
+PappasS/
+PerrymanA/
+HW4.java:49: error: cannot find symbol
+                        for(int i = 0; i < appointmentList.size(); ++i){
+                                                          ^
+  symbol:   method size()
+  location: variable appointmentList of type AppointmentList
+1 error
+RabiuJ/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+RobinsonA/
+taylorC/
+HW4.java:40: error: incompatible types: String cannot be converted to char
+        quitCmd = menu.next();
+                           ^
+HW4.java:41: error: char cannot be dereferenced
+        quitCmd.toLowerCase();
+               ^
+HW4.java:42: error: incompatible types: char cannot be converted to boolean
+        while(quitCmd = 'c'){
+                      ^
+HW4.java:45: error: incompatible types: char cannot be converted to boolean
+        if(quitCmd = 'q'){
+                   ^
+HW4.java:47: error: break outside switch or loop
+            break;
+            ^
+Note: AppointmentList.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+5 errors
+VeloffS/
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/Appointment.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/AppointmentList.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/CalendarDate.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/Employee.java': No such file or directory
+cp: cannot stat 'D:/School/221/hw_4/hw4//VeloffS/HW4.java': No such file or directory
+javac: file not found: Appointment.java
+Usage: javac <options> <source files>
+use -help for a list of possible options
+WashingtonM/
+rm: cannot remove 'Appointment.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Appointment.class': No such file or directory
+rm: cannot remove 'AppointmentList.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/AppointmentList.class': No such file or directory
+rm: cannot remove 'CalendarDate.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/CalendarDate.class': No such file or directory
+rm: cannot remove 'Employee.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/Employee.class': No such file or directory
+rm: cannot remove 'HW4.java': No such file or directory
+rm: cannot remove 'D:/School/221/hw_4/grader/classes/HW4.class': No such file or directory
+WinsteadK/
+WoodsA/
+YibJ/

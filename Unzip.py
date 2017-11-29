@@ -5,7 +5,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-zip_file = "D:\\School\\221\\hw_3\\hw3.zip"
+zip_file = "D:\\School\\221\\hw_4\\hw4.zip"
 
 separator = zip_file.rfind("\\")
 zip_file_directory = zip_file[:separator]

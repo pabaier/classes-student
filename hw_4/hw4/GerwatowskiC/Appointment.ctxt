@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Appointment
+comment0.text=\n\ Creates\ an\ appointment.\n\n\ Claire\ Gerwatowski\n\ 25\ October\ 2017\n
+comment1.params=apptDate\ employeeName
+comment1.target=Appointment(CalendarDate,\ Employee)
+comment2.params=
+comment2.target=CalendarDate\ getDate()
+comment3.params=
+comment3.target=java.lang.String\ getEmployee()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5
