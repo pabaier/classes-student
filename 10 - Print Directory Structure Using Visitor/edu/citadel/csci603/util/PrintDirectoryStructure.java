@@ -5,7 +5,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.io.IOException;
 import static java.nio.file.FileVisitResult.*;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 
 
 /**
@@ -14,11 +14,14 @@ import java.util.Comparator;
 public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
   {
     private static boolean showHidden = false;
-    private static boolean sortAlpha = true;
+    private static boolean sortAlphaAsc = false;
+    private static boolean sortAlphaDes = false;
+    private static boolean sorting = false;
     private static int indentLevel = 0;
     private static String dirSign = "+ ";
     private static String fileSign = "- ";
-    private static DirectoryStructureList<String> structure = new DirectoryStructureList<>();
+    private static CompositeFolder fileSystem = new CompositeFolder("root");
+    private static CompositeFolder currentFolder = fileSystem;
 
     /**
     * Prints the structure for the file whose path name is given in arg[0].
@@ -31,6 +34,7 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
             System.exit(-1);
         }
         try {
+            // Arrays.asList(yourArray).contains(yourValue)
             if (args.length > 1) {
                 if (args[1].equals("-h"))
                     showHidden = true;
@@ -46,7 +50,14 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
                     fileSign = args[3] + " ";
                     dirSign = args[2] + " ";
                 }
-
+                else if (args[1].equals("-saa")) {
+                    sortAlphaAsc = true;
+                    sorting = true;
+                }
+                else if (args[1].equals("-sad")) {
+                    sorting = true;
+                    sortAlphaDes = true;
+                }
                 else {
                     printUsage();
                     System.exit(-1);
@@ -63,8 +74,8 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
 
         PrintDirectoryStructure pds = new PrintDirectoryStructure();
         Files.walkFileTree(startingDir, pds);
-        if(sortAlpha) {
-            
+        if(sorting) {
+            printDir(fileSystem);
         }
     }
 
@@ -73,8 +84,8 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     {
         if(!showHidden && file.getFileName().toString().startsWith(".")) {
         }
-        else if(sortAlpha) {
-
+        else if(sorting) {
+            currentFolder.add(new CompositeFile(getIndent() + fileSign + file.getFileName()));
         }
         else {
             System.out.println(getIndent() + fileSign + file.getFileName());
@@ -88,8 +99,10 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
     {
         if(!showHidden && dir.getFileName().toString().startsWith("."))
             return SKIP_SUBTREE;
-        if(sortAlpha) {
-            // structure.
+        if(sorting) {
+            CompositeFolder newFolder = new CompositeFolder(getIndent() + dirSign + dir.getFileName());
+            currentFolder.add(newFolder);
+            currentFolder = newFolder;
         }
         else {
             System.out.println(getIndent() + dirSign + dir.getFileName());
@@ -100,6 +113,15 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
 
     @Override
     public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
+        if(sorting) {
+            if(sortAlphaAsc) {
+                Collections.sort(currentFolder.getList(), CompositeFileSystem.getSortAlphaAscending());
+            }
+            else if(sortAlphaDes) {
+                Collections.sort(currentFolder.getList(), CompositeFileSystem.getSortAlphaDescending());
+            }
+            currentFolder = currentFolder.getParent();
+        }
         indentLevel --;
         return CONTINUE;
     }
@@ -121,26 +143,18 @@ public class PrintDirectoryStructure extends SimpleFileVisitor<Path>
         System.out.println("Flags: -h : show hidden files and folders (default does not list hidden files and folders)");
         System.out.println("       -f <char> : set the file prefix to <char>");
         System.out.println("       -d <char> : set the directory prefix to <char>");
+        System.out.println("       -saa : sort in alphabetical ascending order");
+        System.out.println("       -sad : sort in alphabetical descending order");
         System.out.println("       -fd | -df <char> <char> : set the file and directory prefix (in order fd or df)");
         System.out.println();
     }
 
-    private static class AlphaSort implements Comparator<Path>{
-      
-      // @Override
-      public int compare(Path f1, Path f2) {
-        // // File f1 = (File)o1;
-        // // File f2 = (File)o2;
-
-        // if(f1.isFile() && f2.isDirectory())
-        //   return 1;
-        // else if(f1.isDirectory() && f2.isFile())
-        //   return -1;
-        // else
-        //   return f1.getName().compareTo(f2.getName());
-        return 0;
-      }
-
-
+    private static void printDir(CompositeFileSystem root) {
+        for(CompositeFileSystem c : root.getList()) {
+            System.out.println(c);
+            if(c.isFolder())
+                printDir(c);
+        }
     }
+
   }
