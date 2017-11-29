@@ -1,7 +1,8 @@
 package edu.citadel.csci603.util;
 
-
-
+/**
+ * This class represents the composite part of a tree structure
+ */
 public class CompositeFolder extends CompositeFileSystem {
 
 
