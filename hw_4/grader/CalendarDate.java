@@ -3,7 +3,8 @@
  * A sample solution to the CalendarDate HW, which you may use
  * in HW 4. 
  * 
- * <Michael Dudley>
+ * isAValidDate method added by:
+ * Andrea Lingenfelter
  */ 
 import java.util.*;
 
@@ -41,6 +42,7 @@ public class CalendarDate {
        this.day = day;
     }
     
+   
     /*
      * Constructs a new CalendarDate to represent today.
      * Don't tinker with this code - it will work as soon as YOU
@@ -54,11 +56,24 @@ public class CalendarDate {
         for (int i = 0; i < daysSinceEpoch; i++) 
             nextDay(); // Changes date to today
     }
-
+    
+    //adding isAValidDate method
+    public boolean isAValidDate() {
+    	month = this.getMonth();
+    	day = this.getDay();
+    	if (month > 12) {
+    		return false;
+    	}
+    	else {    	
+    		return (day <= DAYS_PER_MONTH[month]);
+    	}
+    	
+    }
     /*
      * Returns whether the given object is a CalendarDate that refers to the 
      * same year/month/day as this CalendarDate.
      */ 
+    
     public boolean equals(Object o) {
         // a well-behaved equals method returns false for null and non-Dates
         if (o instanceof CalendarDate) {
@@ -135,17 +150,5 @@ public class CalendarDate {
             result++;
         }
         return result;
-    }
-    public boolean isAValidDate(){
-        boolean validDate = false;
-        if(month >= 1 && month < 13 && day >= 0 && day <= getDaysInMonth()) {
-            validDate = true;
-        }
-        return validDate;
-    }
-
-    public static void main(String[] args) {
-        CalendarDate Date = new CalendarDate();
-        System.out.println(Date.isAValidDate());
     }
 }

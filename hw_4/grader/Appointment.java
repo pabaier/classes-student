@@ -1,39 +1,32 @@
+/**
+ * Appointment Class.
+ * Initializes appointment objects
+ * getter methods getEmployee() and and getDate() to return employee and date respectively
+ * also includes a toString method to return string of name and appt date
+ * 
+ * @author:  Andrea Lingenfelter-
+ */
 
-import java.util.Calendar;
-
-/*<Michael Dudley>*/
-
+import java.util.*;
 public class Appointment {
+	
+	private CalendarDate date; 
+	private Employee employee;
 
-    private CalendarDate Date;
-    private Employee person;
-
-
-    public Appointment(int year, int month, int day, String name) {
-        Date = new CalendarDate(year, month, day);
-        person = new Employee(name);
+	public Appointment(CalendarDate date, Employee employee) {
+		this.date = date;
+		this.employee = employee;
+	}
+	
+	public CalendarDate getDate() {
+     return date;
     }
-
-    public CalendarDate getDate() {
-
-        return Date;
+	
+    public Employee getEmployee() {
+      return employee;
     }
-
-    public Employee getPerson() {
-
-        return person;
-    }
-
+    
     public String toString() {
-
-        return Date + " " + person.getName();
+    	return CalendarDate.toString() + " " Employee.getName();
     }
 }
-/*
-
-    public static void main(String[] args) {
-        Appointment correctformat = new Appointment(2017, 10,27, "Michael Dudley");
-        System.out.println(correctformat);
-    }
-}
-*/

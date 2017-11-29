@@ -43,6 +43,9 @@ then
 		cd ..
 	done
 else
+
+	student_java_files=( "Appointment" "AppointmentList" "CalendarDate" "Employee" "HW4" )
+
 	echo $1
 	# echo $1 >> $graderdir/error.txt
 	# delete old files
@@ -62,5 +65,6 @@ else
 	cd classes
 	java GraderF
 	cd ..
+	echo  
 fi
 cp -R $graderdir/solution/. $graderdir

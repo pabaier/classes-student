@@ -1,8 +1,12 @@
 
 /**
  * Models an Employee.
- *  -- simple version --
- *  <Michael Dudley>
+ *  -- simple version -
+ *  employee class for HW4 submission, provided by instructor
+ *  Include in assignment files for 
+ *  Andrea Lingenfelter
+ *  
+ *  
  */
 public class Employee{
 

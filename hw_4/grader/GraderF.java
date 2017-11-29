@@ -65,16 +65,10 @@ public class GraderF {
         // appointmentListTests.run();
 
         // hw4 ********************************
-        SingleTests.ReadFile readFile = new SingleTests.ReadFile();
-        readFile.setName("Read Input");
-        SingleTests.Quit quit = new SingleTests.Quit();
-        quit.setName("Quit");
-        SingleTests.Cancel cancel = new SingleTests.Cancel();
-        cancel.setName("Cancel Appointment");
+        SingleTests.HW4Driver hw4Driver = new SingleTests.HW4Driver();
+        hw4Driver.setName("HW4 Tester");
 
-        hw4Tests.add(readFile);
-        hw4Tests.add(quit);
-        hw4Tests.add(cancel);
+        hw4Tests.add(hw4Driver);
 
         // hw4Tests.run();
 

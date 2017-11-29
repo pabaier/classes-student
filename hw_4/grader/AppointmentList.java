@@ -1,56 +1,35 @@
-// Michael Dudley
+/**
+ * AppointmentList Class.
+ * Tracks all appointments in an arraylist.
+ * includes constructor to create arraylist, toString method to return appointments
+ * addToList method to add new apointments to arraylist, getAppointment method that returns date for name, 
+ * and cancelAppointment to remove appointment for given employee
+ * 
+ * 
+ * @author:  Andrea Lingenfelter
+ */
 
-import java.util.ArrayList;
-
+import java.util.*;
 public class AppointmentList {
 
-    ArrayList<Appointment> appointments;
-
-
-    public AppointmentList() {
-        this.appointments = new ArrayList<>();
+	ArrayList<Appointment> appointments = new ArrayList<String>();
+    
+	public String toString() {
+		for (int i = 0; i < appointments.size(); i++) {
+    	    return CalendarDate.toString() + " " Employee.getName();
+		}
     }
-
-    public void addToList (CalendarDate c, Employee e){
-        Appointment addAppointment = new Appointment(c.getYear(),c.getMonth(),c.getDay(),e.getName());
-        appointments.add(addAppointment);
-
-    }
-    public CalendarDate getAppointment(String name){
-        for(int i = 0; i < appointments.size(); i++){
-            if(name.equals(appointments.get(i).getPerson().getName())){
-                return appointments.get(i).getDate();
-            }
-        }
-        return null;
-    }
-    public void cancelAppointment(String name){
-        CalendarDate appointmentDate = getAppointment(name);
-        if(appointmentDate != null){
-            for(int i = 0; i < appointments.size(); i++){
-                if(name.equals(appointments.get(i).getPerson().getName())){
-                    appointments.remove(i);
-                }
-            }
-        }
-    }
-
-    public String toString() {
-        String allAppointments = "";
-        for(int i = 0; i < appointments.size(); i++){
-            allAppointments += appointments.get(i) + "\n";
-        }
-        return allAppointments;
-    }
-/*
-    public static void main(String[] args) {
-        AppointmentList listofAppointments = new AppointmentList();
-        listofAppointments.addToList(new CalendarDate(1994,10,20), new Employee("Michael Dudley"));
-        listofAppointments.addToList(new CalendarDate(1995,12,3), new Employee("Katie Dudley"));
-        listofAppointments.addToList(new CalendarDate(2017,9,17), new Employee("Kristen Bryant"));
-        listofAppointments.addToList(new CalendarDate(2003,1,31), new Employee("Kevin Bryant"));
-
-        System.out.println(listofAppointments);
-
-        */
+	
+	public void addToList (CalendarDate c, Employee e) {
+		//add appointments to list in order received
+	}
+	
+	public CalendarDate getAppointment (String name) {
+		//returns date of appt scheduled or null if none
+	}
+	
+	public void cancelAppointment (String name) {
+		//removes appointment if one scheduled for employee or does nothing
+	}
+	
 }
