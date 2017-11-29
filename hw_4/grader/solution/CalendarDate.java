@@ -1,10 +1,4 @@
-/*
- * Models a calendar year/month/day date.
- * A sample solution to the CalendarDate HW, which you may use
- * in HW 4. 
- * 
- * <Michael Dudley>
- */ 
+// Represents a calendar year/month/day date.
 import java.util.*;
 
 public class CalendarDate {
@@ -31,6 +25,8 @@ public class CalendarDate {
     private int year;
     private int month;
     private int day;
+
+    // constructor(s)
     
     /*
      * Constructs a new Date to represent the specified year/month/day.
@@ -136,16 +132,14 @@ public class CalendarDate {
         }
         return result;
     }
+    
+    // Return true for a valid date
     public boolean isAValidDate(){
-        boolean validDate = false;
-        if(month >= 1 && month < 13 && day >= 0 && day <= getDaysInMonth()) {
-            validDate = true;
-        }
-        return validDate;
+       return monthIsValid() && day >= 1 && day <= getDaysInMonth();
     }
+    
+    private boolean monthIsValid(){
+       return month >=JANUARY && month <= DECEMBER;
+    }
+}// Represents a calendar year/month/day date.
 
-    public static void main(String[] args) {
-        CalendarDate Date = new CalendarDate();
-        System.out.println(Date.isAValidDate());
-    }
-}

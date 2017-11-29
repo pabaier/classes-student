@@ -5,7 +5,7 @@ import java.util.*;
  * McCauley
  * 
  */
-public class AppointmentListKey
+public class AppointmentList
 {
     // instance variables - replace the example below with your own
     private ArrayList<Appointment> list;
@@ -13,24 +13,21 @@ public class AppointmentListKey
     /**
      * Constructor for objects of class AppointmentList
      */
-    public AppointmentListKey()
+    public AppointmentList()
     {
         list = new ArrayList<>();
     }
     
-    public ArrayList<Appointment> getList() {
-        return list;
-    }
-
     // Add a new appointment
     public void addToList(CalendarDate d, Employee e){
-        Appointment a;
-        try{
-            a = new Appointment(d, e);    
-        }
-        catch(Throwable t){
-            a = new Appointment(e, d);    
-        }
+        
+        Appointment a = new Appointment(d, e);    
+        list.add(a);
+    }
+
+    public void addToList(Employee e, CalendarDate d){
+        
+        Appointment a = new Appointment(d, e);    
         list.add(a);
     }
     

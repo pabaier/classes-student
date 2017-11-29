@@ -1,77 +1,67 @@
+/*
+* <Michael Dudley>
+* */
+
+
+
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.io.*;
-/**
- * Write a description of class HW4 here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class HW4
-{
-    // instance variables - replace the example below with your own
-    private int x;
 
-    /**
-     * Constructor for objects of class HW4
-     */
-    public HW4()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public static void main(String [] args)
-    {
-        Scanner user = new Scanner(System.in);
-        System.out.print("Please enter the name of employee appointment file: ");
-        String filename = user.nextLine();
-        CalendarDate c = null;
-        String name = "";
-        AppointmentList schedule = new AppointmentList();
-        
-        
+public class HW4 {
+    public static void main(String[] args) {
         try{
-           Scanner fileInput = new Scanner(new File(filename));
-           
-           while (fileInput.hasNextLine()){
-              int year = fileInput.nextInt();
-              int month = fileInput.nextInt();
-              int day = fileInput.nextInt();
-              c = new CalendarDate(year, month, day);
-              name = fileInput.nextLine().trim();
-              try {
-                  if (!c.isAValidDate())
-                      throw new Exception("Invalid date");
-                  schedule.addToList(c, new Employee(name));   
-              }catch (Exception e){
-                  System.out.println("Invalid data entered: " + c + " No appointment scheduled.");
-              }
-              
-           } // end while
-           char answer = ' ';
-           do{
-               System.out.println("\nThe appointments scheduled are:");
-               System.out.println(schedule);
-               System.out.println();
-               System.out.println("Type 'Q' to quit, or 'C' to cancel an appointment.");
-               answer = user.nextLine().charAt(0);
-               if (answer == 'C') {
-                   System.out.println("Whose appointment do you wish to cancel?");
-                   name = user.nextLine();
-                   System.out.println("Canceling for " + name);
-                   schedule.cancelAppointment(name);
-               }
-                   
-           }while (answer != 'Q');
-           
-        } catch (FileNotFoundException e){
-            System.out.println("File: " + filename + " not found. Terminating.");
+            System.out.println("Enter the file name: ");
+            Scanner scan = new Scanner(System.in);
+            File file = new File(scan.nextLine());
+            Scanner filescanner = new Scanner(file);
+            AppointmentList newAppointmentList = new AppointmentList();
+            while(filescanner.hasNext()){
+                String year = filescanner.next();
+                String month = filescanner.next();
+                String day = filescanner.next();
+                String firstName = filescanner.next();
+                String lastName = filescanner.next();
+                int yearDate = Integer.parseInt(year);
+                int monthDate = Integer.parseInt(month);
+                int dayDate = Integer.parseInt(day);
+                CalendarDate Date = new CalendarDate(yearDate,monthDate,dayDate);
+                Employee person = new Employee(firstName + " " + lastName);
+                if(Date.isAValidDate()){
+                    newAppointmentList.addToList(Date,person);
+                }else{
+                    throw new IllegalArgumentException();
+                }
+            }
+            System.out.println(newAppointmentList);
+
+            boolean quit = false;
+            while(!quit){
+                System.out.println("Press Q if you would like to quit?");
+                System.out.println("Press C if you would like to cancel the appointment?");
+                String userInput = scan.nextLine();
+                if(userInput.equals("c") || userInput.equals("C")){
+                    System.out.println("Whose appointment would you like to cancel? ");
+                    String userinputName = scan.nextLine();
+                    newAppointmentList.cancelAppointment(userinputName);
+                }else if(userInput.equals("q") || userInput.equals("Q")){
+                    quit = true;
+                }else{
+                    System.out.println("Needs to be C or Q");
+                }
+                System.out.println("");
+                System.out.println(newAppointmentList);
+
+            }
+
+        }catch (FileNotFoundException e) {
+            System.err.println("File Invalid");
+        }catch(NumberFormatException e){
+            System.err.println("unable to parse Date or Name");
+        }catch(IllegalArgumentException e){
+            System.err.println("Date or Name not valid");
         }
     }
 }

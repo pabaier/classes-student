@@ -2,7 +2,6 @@
 /**
  * Models an Employee.
  *  -- simple version --
- *  <Michael Dudley>
  */
 public class Employee{
 

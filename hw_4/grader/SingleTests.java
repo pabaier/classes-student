@@ -1,6 +1,12 @@
 import edu.cofc.grader.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import org.apache.commons.io.*;
+import java.io.File;
+import org.apache.commons.io.output.TeeOutputStream;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class SingleTests {
     
@@ -32,8 +38,16 @@ public class SingleTests {
                                     new CalendarDate(2016, 2, 29),
                                     new CalendarDate(2015, 2, 29)};
                 for(int i = 0; i < key.length; i++) {
-                    System.out.print(indent() + key[i] + ": " + student[i].isAValidDate());
-                    if(key[i].isAValidDate() == student[i].isAValidDate()) {
+                    boolean answer;
+                    System.out.print(indent() + key[i] + ": ");
+                    try{
+                        answer = student[i].isAValidDate();
+                    }
+                    catch(Throwable e){
+                        System.out.println(C.INCORRECT + " - Exception with date - " + 0 + "/" + full + C.RESET);
+                        continue;
+                    }
+                    if(key[i].isAValidDate() == answer) {
                         System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
                         addPoints(full);
                     }
@@ -43,9 +57,12 @@ public class SingleTests {
                     }
                 }
             }
-            catch(Exception | NoClassDefFoundError e) {
+            catch(Throwable e) {
                 System.out.println(getIndent() + C.INCORRECT + "Error running test");
                 System.out.println(getIndent() + e + C.RESET);
+            }
+            finally {
+                // fetchKey("CalendarDate");
             }
         }
     }
@@ -53,17 +70,31 @@ public class SingleTests {
     // appointment
     public static class AppointmentConstructor extends SingleTest {
         public void exec() {
-            setTotalPoints(1);
-            int full = 1;
-            int half = 0;
+            setTotalPoints(2);
+            int full = 2;
+            int half = 1;
             try {
                 Appointment a = new Appointment(new CalendarDate(2016, 2, 2), new Employee("John"));
                 System.out.println(indent() + C.CORRECT + "Correct - " + full + "/" + full + C.RESET);
                 addPoints(full);
             }
-            catch(Exception e) {
-                System.out.println(indent() + C.INCORRECT + e);
-                System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            catch(Throwable e) {
+                try {
+                    Appointment a = new Appointment(new Employee("John"), new CalendarDate(2016, 2, 2));
+                    System.out.println(indent() + C.CORRECT + "Correct - " + full + "/" + full + C.RESET);
+                    addPoints(full);
+                }
+                catch(Throwable f) {
+                    try {
+                        Appointment a = new Appointment(2016, 2, 2, new Employee("John"));
+                        System.out.println(indent() + C.PARTCORRECT + "Should take CalendarDate as parameter - " + half + "/" + full + C.RESET);
+                        addPoints(half);
+                    }
+                    catch(Throwable g) {
+                        // System.out.println(indent() + C.INCORRECT + e);
+                        System.out.println(indent() + "Could not find constructor - " + getPointsEarned() + "/" + full + C.RESET);
+                    }
+                }
             }
         }
     }
@@ -74,19 +105,45 @@ public class SingleTests {
             int full = 3;
             int half = 2;
             AppointmentKey key = new AppointmentKey(new CalendarDate(2016, 2, 2),  new Employee("John"));
+            Appointment student;
+            System.out.print(indent() + key.getEmployee() + " | ");
             try {
-                Appointment student = new Appointment(key.getDate(), key.getEmployee());
-                System.out.print(indent() + key.getEmployee() + " | " + student.getEmployee());
+                try {
+                    student = new Appointment(key.getDate(), key.getEmployee());
+                }
+                catch (Throwable e) {
+                    try{
+                        student = new Appointment(key.getEmployee(), key.getDate());
+                    }
+                    catch(Throwable f) {
+                        try{
+                            student = new Appointment(key.getDate().getYear(), key.getDate().getMonth(), key.getDate().getDay(), key.getEmployee());
+                        }
+                        catch(Throwable g) {
+                            addPoints(half - 1);
+                            System.out.println("Could not create Appointment - " + getPointsEarned() + "/" + full + C.RESET);
+                            return;
+                        }
+                    }
+                }
+                try{
+                    System.out.print(student.getEmployee() + " ");
+                }
+                catch(Throwable e) {
+                    addPoints(half);
+                    System.out.println(C.PARTCORRECT + "- Must return an Employee object -  " + getPointsEarned() + "/" + full + C.RESET);
+                    return;
+                }
                 if(student.getEmployee() == key.getEmployee()) {
-                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
                     addPoints(full);
+                    System.out.println(C.CORRECT + "- Correct - " + full + "/" + full + C.RESET);
                 }
                 else {
-                    System.out.println(C.PARTCORRECT + " - Incorrect - " + half + "/" + full + C.RESET);
                     addPoints(half);
+                    System.out.println(C.PARTCORRECT + "- Incorrect - " + half + "/" + full + C.RESET);
                 }
             }
-            catch(Exception e) {
+            catch(Throwable e) {
                 System.out.println(indent() + C.INCORRECT + e);
                 System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
             }
@@ -99,19 +156,45 @@ public class SingleTests {
             int full = 3;
             int half = 2;
             AppointmentKey key = new AppointmentKey(new CalendarDate(2016, 2, 2),  new Employee("John"));
+            Appointment student;
+            System.out.print(indent()  + key.getDate() + " | ");
             try {
-                Appointment student = new Appointment(key.getDate(), key.getEmployee());
-                System.out.print(indent()  + key.getDate() + " | " + student.getDate());
+                try {
+                    student = new Appointment(key.getDate(), key.getEmployee());
+                }
+                catch (Throwable e) {
+                    try{
+                        student = new Appointment(key.getEmployee(), key.getDate());
+                    }
+                    catch(Throwable f) {
+                        try {
+                            student = new Appointment(key.getDate().getYear(), key.getDate().getMonth(), key.getDate().getDay(), key.getEmployee());
+                        }
+                        catch(Throwable g) {
+                            addPoints(half - 1);
+                            System.out.println("Could not create Appointment - " + getPointsEarned() + "/" + full + C.RESET);
+                            return;
+                        }
+                    }
+                }
+                try {
+                    System.out.print(student.getDate() + " ");
+                }
+                catch(Throwable e) {
+                    addPoints(half);
+                    System.out.println(C.PARTCORRECT + "- Must return CalendarDate object -  " + getPointsEarned() + "/" + full + C.RESET);
+                    return;
+                }
                 if(student.getDate() == key.getDate()) {
-                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
+                    System.out.println(C.CORRECT + "- Correct - " + full + "/" + full + C.RESET);
                     addPoints(full);
                 }
                 else {
-                    System.out.println(C.PARTCORRECT + " - Incorrect - " + half + "/" + full + C.RESET);
+                    System.out.println(C.PARTCORRECT + "- Incorrect - " + half + "/" + full + C.RESET);
                     addPoints(half);                
                 }
             }
-            catch(Exception e) {
+            catch(Throwable e) {
                 System.out.println(indent() + C.INCORRECT + e);
                 System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
             }
@@ -125,31 +208,60 @@ public class SingleTests {
             int half = 2;
             
             AppointmentKey key = new AppointmentKey(new CalendarDate(1762, 9, 12),  new Employee("Yekaterina Alekseyevna"));
+            Appointment student;
+            System.out.print(indent() + key + " | ");
             try {
-                Appointment student = new Appointment(key.getDate(), key.getEmployee());
-                String studentAnswer = student.toString().toUpperCase();
-                System.out.print(indent() + key + " | " + student);
+                try {
+                    student = new Appointment(key.getDate(), key.getEmployee());
+                }
+                catch (Throwable e) {
+                    try{
+                        student = new Appointment(key.getEmployee(), key.getDate());
+                    }
+                    catch(Throwable f) {
+                        try {
+                            student = new Appointment(key.getDate().getYear(), key.getDate().getMonth(), key.getDate().getDay(), key.getEmployee());
+                        }
+                        catch(Throwable g) {
+                            addPoints(half - 1);
+                            System.out.println("Could not create Appointment - " + getPointsEarned() + "/" + full + C.RESET);
+                            return;
+                        }                    
+                    }
+                }
+                String studentAnswer;
+                try {
+                    studentAnswer = student.toString().toUpperCase();
+                }
+                catch(Throwable e) {
+                    addPoints(half);
+                    System.out.println(C.PARTCORRECT + "- Must return a String object -  " + getPointsEarned() + "/" + full + C.RESET);
+                    return;
+                }
                 if(studentAnswer.contains(key.getDate().toString().toUpperCase()) &&
                 studentAnswer.contains(key.getEmployee().getName().toUpperCase())) {
-                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
+                    System.out.println(C.CORRECT + "- Correct - " + full + "/" + full + C.RESET);
                     addPoints(full);
                 }
                 else if(studentAnswer.contains(key.getDate().toString().toUpperCase())) {
-                    System.out.println(C.PARTCORRECT + " - Date Correct - " + half + "/" + full + C.RESET);
+                    System.out.println(C.PARTCORRECT + "- Date Correct - " + half + "/" + full + C.RESET);
                     addPoints(half);
                 }
                 else if(studentAnswer.contains(key.getEmployee().getName().toUpperCase())) {
-                    System.out.println(C.PARTCORRECT + " - Name Correct - " + half + "/" + full + C.RESET);
+                    System.out.println(C.PARTCORRECT + "- Name Correct - " + half + "/" + full + C.RESET);
                     addPoints(half);
                 }
                 else {
-                    System.out.println(C.PARTCORRECT + " - Incorrect - " + (half - 1) + "/" + full + C.RESET);
+                    System.out.println(C.PARTCORRECT + "- Incorrect - " + (half - 1) + "/" + full + C.RESET);
                     addPoints(half - 1);                
                 }
             }
-            catch(Exception e) {
+            catch(Throwable e) {
                 System.out.println(indent() + C.INCORRECT + e);
                 System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            }
+            finally {
+                // fetchKey("Appointment");
             }
         }
     }
@@ -167,9 +279,8 @@ public class SingleTests {
                 addPoints(full);
             }
 
-            catch(Exception e) {
-                System.out.println(indent() + C.INCORRECT + e);
-                System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            catch(Throwable e) {
+                System.out.println(indent() + "Could not find constructor - " + getPointsEarned() + "/" + full + C.RESET);
             }
         }
     }
@@ -183,33 +294,57 @@ public class SingleTests {
             setTotalPoints(3);
             int full = 3;
             int half = 2;
-                    
             ArrayList<Appointment> keyList = key.getList();
-            key.addToList(new CalendarDate(1960, 7, 11),  new Employee("Scout Finch"));
+            CalendarDate d = new CalendarDate(1960, 7, 11);
+            Employee edgar = new Employee("Scout Finch");
+            System.out.print(indent() + d + " Scout Finch ");
             try {
-                studentAppointmentList.addToList(keyList.get(0).getDate(), keyList.get(0).getEmployee());
-                System.out.print(indent() + keyList.get(0).getDate() + " " + keyList.get(0).getEmployee().getName());
-                if(studentList.get(0).getDate() == keyList.get(0).getDate() && 
-                    studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
-                    System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
+                try {
+                    studentAppointmentList.addToList(d, edgar);
+                }
+                catch (Throwable e) {
+                    try {
+                        studentAppointmentList.addToList(edgar, d);
+                        addPoints(-1);
+                        System.out.print(C.PARTCORRECT + "-1 should be addToList(Employee, CalendarDate)" + C.RESET);
+                    }
+                    catch(Throwable t) {
+                        addPoints(half - 1);
+                        System.out.println(C.INCORRECT + "- Could not add appointment to list - " + getPointsEarned() + "/" + full + C.RESET);
+                        return;
+                    }
+                }
+                boolean date = false;
+                boolean employee = false;
+                try{
+                    date = studentList.get(0).getDate() == d;
+                }
+                catch(Throwable t){}
+                try{
+                    employee = studentList.get(0).getEmployee() == edgar;
+                }
+                catch(Throwable t){}
+                
+                if(date && employee){
+                    System.out.println(C.CORRECT + "- Correct - " + full + "/" + full + C.RESET);
                     addPoints(full);
                 }
-                else if(studentList.get(0).getDate() == keyList.get(0).getDate()) {
-                    System.out.println(C.PARTCORRECT + " - Date Correct - " + half + "/" + full + C.RESET);
+                else if(date) {
+                    System.out.println(C.PARTCORRECT + "- Date Correct - " + half + "/" + full + C.RESET);
                     addPoints(half);
                 }
-                else if(studentList.get(0).getEmployee() == keyList.get(0).getEmployee()) {
-                    System.out.println(C.PARTCORRECT + " - Employee Correct - " + half + "/" + full + C.RESET);
+                else if(employee) {
+                    System.out.println(C.PARTCORRECT + "- Employee Correct - " + half + "/" + full + C.RESET);
                     addPoints(half);
                 }
                 else {
-                    System.out.println(C.PARTCORRECT + " - Incorrect - " + (half - 1) + "/" + full + C.RESET);
+                    System.out.println(C.PARTCORRECT + "- Incorrect - " + (half - 1) + "/" + full + C.RESET);
                     addPoints(half - 1);
                 }
             }
-            catch(Exception e) {
-                System.out.println(indent() + C.INCORRECT + e);
-                System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            catch(Throwable e) {
+                // System.out.println(indent() + C.INCORRECT + e);
+                System.out.println("- Error running test - " + getPointsEarned() + "/" + full + C.RESET);
             }
         }
     }
@@ -225,13 +360,31 @@ public class SingleTests {
             int half = 2;
         
             ArrayList<Appointment> keyList = key.getList();
-            key.addToList(new CalendarDate(1925, 7, 13),  new Employee("Lillian Bounds"));
-            key.addToList(new CalendarDate(1971, 10, 1),  new Employee("Walt Disney"));
-            studentList.add(keyList.get(0));
-            studentList.add(keyList.get(1));
+            CalendarDate d1 = new CalendarDate(1925, 7, 13);
+            Employee e1 =  new Employee("Lillian Bounds");
+            Appointment a1;
             try {
-                System.out.print(indent() + keyList.get(1).getEmployee().getName() + " " + keyList.get(1).getDate());
-                if(studentAppointmentList.getAppointment("Walt Disney") == keyList.get(1).getDate()) {
+                a1 = new Appointment(d1, e1);
+            }
+            catch(Throwable t) {
+                a1 = new Appointment(e1, d1);
+            }
+            
+            CalendarDate d2 = new CalendarDate(1971, 10, 1);
+            Employee e2 = new Employee("Walt Disney");
+            Appointment a2;
+            try {
+                a2 = new Appointment(d2, e2);
+            }
+            catch(Throwable t) {
+                a2 = new Appointment(e2, d2);
+            }
+            
+            studentList.add(a1);
+            studentList.add(a2);
+            try {
+                System.out.print(indent() + e2.getName() + " " + d2);
+                if(studentAppointmentList.getAppointment("Walt Disney") == d2) {
                     System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
                     addPoints(full);
                 }
@@ -249,7 +402,7 @@ public class SingleTests {
                     addPoints(half);
                 }
             }
-            catch(Exception e) {
+            catch(Throwable e) {
                 System.out.println(indent() + C.INCORRECT + e);
                 System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
             }
@@ -258,6 +411,7 @@ public class SingleTests {
 
     public static class CancelAppointment extends SingleTest {
         public void exec() {
+            System.out.print(indent());
             AppointmentList studentAppointmentList = new AppointmentList();
             AppointmentListKey key = new AppointmentListKey();
             ArrayList<Appointment> studentList = getStudentArrayList(studentAppointmentList);
@@ -267,11 +421,20 @@ public class SingleTests {
             int half = 2;
 
             ArrayList<Appointment> keyList = key.getList();
-            key.addToList(new CalendarDate(1906, 12, 9),  new Employee("Grace Hopper"));
-            studentList.add(keyList.get(0));
+            CalendarDate d = new CalendarDate(1906, 12, 9);
+            Employee e = new Employee("Grace Hopper");
+            Appointment a;
             try {
-                System.out.print(indent() + keyList.get(keyList.size() - 1).getEmployee().getName() + " " + keyList.get(keyList.size() - 1).getDate() + C.RESET);
-                studentAppointmentList.cancelAppointment(keyList.get(keyList.size() - 1).getEmployee().getName());
+                a = new Appointment(d, e);
+            }
+            catch(Throwable t) {
+                a = new Appointment(e, d);
+            }
+
+            studentList.add(a);
+            try {
+                System.out.print(e.getName() + " " + d + C.RESET);
+                studentAppointmentList.cancelAppointment(e.getName());
                 if(studentList.size() == 0) {
                     System.out.println(C.CORRECT + " - Correct - " + full + "/" + full + C.RESET);
                     addPoints(full);
@@ -281,9 +444,9 @@ public class SingleTests {
                     addPoints(half);
                 }
             }
-            catch(Exception e) {
-                System.out.println(indent() + C.INCORRECT + e);
-                System.out.println(indent() + "Error running test - " + getPointsEarned() + "/" + full + C.RESET);
+            catch(Throwable t) {
+                addPoints(half - 1);
+                System.out.println(C.INCORRECT + " - Could not find method - " + getPointsEarned() + "/" + full + C.RESET);
             }
         }
     }
@@ -297,13 +460,23 @@ public class SingleTests {
             int half = 0;
 
             HW4 student = new HW4();
-            IO.startOutputCapture();
-            IO.setInput("D:\\School\\221\\hw_4\\grader\\testinput.txt\n" +
-                        "Q\n");
-            student.main(null);
-            IO.restoreOutput();
-            String output = IO.getOutput();
-
+            // IO.startOutputCapture();
+            // IO.setInput("D:\\School\\221\\hw_4\\grader\\testinput.txt\n" +
+            // IO.setInput("D:\School\221\hw_4\grader\testinput.txt\n" +
+            //             "Q\n");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PrintStream op = new PrintStream(baos);
+            TeeOutputStream tis = new TeeOutputStream(System.out, op);
+            String output;
+            try {
+                student.main(null);
+            }catch(Throwable t){
+                // output = "";
+            }
+                output = baos.toString();
+            System.out.println("*******\n" + output + "\n*******\n");
+            // IO.restoreOutput();
+            // String output = IO.getOutput();
             boolean mk = output.matches("(?s).*Magic Kingdom.*");
             boolean hs = output.matches("(?s).*Hollywood Studios.*");
             boolean ak = output.matches("(?s).*Animal Kingdom.*");
@@ -432,6 +605,7 @@ public class SingleTests {
         }
     }
 
+
     //HW4 test cases
     // 1 - get file name from user input (testinput.txt)
     // 2 - access file (will have 3 valid, 1 invalid inputs)
@@ -451,6 +625,8 @@ public class SingleTests {
 
 
     // helper methods
+
+    // gets the arraylist from the appoinmentlist
     private static ArrayList<Appointment> getStudentArrayList(AppointmentList studentAppointmentList) {
         Class alClass = studentAppointmentList.getClass();
 
@@ -461,11 +637,23 @@ public class SingleTests {
             ArrayList<Appointment>studentList = (ArrayList<Appointment>)alFields[0].get(studentAppointmentList);
             return studentList;
         }
-        catch(Exception e) {
+        catch(Throwable e) {
             System.out.println("Could not grab ArrayList");
         }
 
         return null;
+    }
+
+    // Removes the student's class and replaces it with the key class
+    private static void fetchKey(String className) {
+        File old = new File("D:\\School\\221\\hw_4\\grader\\classes\\" + className + ".class");
+        File newFile = new File("D:\\School\\221\\hw_4\\solution\\" + className + ".class");
+        File newDir = new File("D:\\School\\221\\hw_4\\grader\\classes");
+        FileUtils.deleteQuietly(old);
+        try {
+            FileUtils.copyFileToDirectory(newFile, newDir);
+        }
+        catch(Exception e){System.out.println("DIDNT WORK");}
     }
 
 }

@@ -1,36 +1,39 @@
 
-/**
- * Models appointments with employees, recording a date and employee info
- *
- * McCauley
- */
-public class Appointment
-{
-    // instance variables - replace the example below with your own
-    private Employee emp;
-    private CalendarDate date;
+import java.util.Calendar;
 
-    /**
-     * Constructor for objects of class Appointment
-     */
-    public Appointment(CalendarDate d, Employee e)
-    {
-        emp = e;
-        date = d;
+/*<Michael Dudley>*/
+
+public class Appointment {
+
+    private CalendarDate Date;
+    private Employee person;
+
+
+    public Appointment(int year, int month, int day, String name) {
+        Date = new CalendarDate(year, month, day);
+        person = new Employee(name);
     }
-    
-    // getter method to return Employee
-    public Employee getEmployee(){
-        return emp;
+
+    public CalendarDate getDate() {
+
+        return Date;
     }
-      
-    // getter method to return Employee
-    public CalendarDate getDate(){
-        return date;
+
+    public Employee getPerson() {
+
+        return person;
     }
-    
-    // String representation of an appointment
-    public String toString(){
-        return date.toString() + " " + emp.getName(); 
+
+    public String toString() {
+
+        return Date + " " + person.getName();
     }
 }
+/*
+
+    public static void main(String[] args) {
+        Appointment correctformat = new Appointment(2017, 10,27, "Michael Dudley");
+        System.out.println(correctformat);
+    }
+}
+*/

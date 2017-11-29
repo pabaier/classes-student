@@ -9,6 +9,7 @@ import java.util.*;
 public class AppointmentList
 {
     public static List<Appointment> apptList = new ArrayList<Appointment>();
+    
     public AppointmentList() {
         this.apptList = apptList;
         
