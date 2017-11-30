@@ -28,7 +28,7 @@ public class Employee{
 
    // return String representation of an Employee
    public String toString(){
-       return "Name: " + name; 
+       return  name; 
    }
   
 } // end Employee

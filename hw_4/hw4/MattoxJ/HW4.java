@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class HW4
 {
-    public static void main(){
+    public static void main(String[] args){
         //initializing variables
         String filename;
         FileInputStream readFile;
@@ -30,10 +30,13 @@ public class HW4
         filename = scnr.nextLine();
         //tries filename for valid file printing error if its invalid
         try{
+            System.out.println("1");
             readFile = new FileInputStream(filename);
+            System.out.println("2");
             fileScnr = new Scanner(readFile);
         }
         catch(IOException excpt){
+            System.out.println(excpt);
             System.out.println("Sorry! Your file doesn't seem to exist. Please restart.");
             return;
         }

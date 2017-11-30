@@ -1,35 +1,90 @@
-/**
- * AppointmentList Class.
- * Tracks all appointments in an arraylist.
- * includes constructor to create arraylist, toString method to return appointments
- * addToList method to add new apointments to arraylist, getAppointment method that returns date for name, 
- * and cancelAppointment to remove appointment for given employee
- * 
- * 
- * @author:  Andrea Lingenfelter
- */
-
 import java.util.*;
-public class AppointmentList {
+/**
+ * List of appointments currently scheduled
+ *
+ * McCauley
+ * 
+ */
+public class AppointmentList
+{
+    // instance variables - replace the example below with your own
+    private ArrayList<Appointment> list;
 
-	ArrayList<Appointment> appointments = new ArrayList<String>();
-    
-	public String toString() {
-		for (int i = 0; i < appointments.size(); i++) {
-    	    return CalendarDate.toString() + " " Employee.getName();
-		}
+    /**
+     * Constructor for objects of class AppointmentList
+     */
+    public AppointmentList()
+    {
+        list = new ArrayList<>();
     }
-	
-	public void addToList (CalendarDate c, Employee e) {
-		//add appointments to list in order received
-	}
-	
-	public CalendarDate getAppointment (String name) {
-		//returns date of appt scheduled or null if none
-	}
-	
-	public void cancelAppointment (String name) {
-		//removes appointment if one scheduled for employee or does nothing
-	}
-	
+    
+    // Add a new appointment
+    public void addToList(CalendarDate d, Employee e){
+        
+        Appointment a = new Appointment(d, e);    
+        list.add(a);
+    }
+
+    public void addToList(Employee e, CalendarDate d){
+        
+        Appointment a = new Appointment(d, e);    
+        list.add(a);
+    }
+    
+    // Return the date of name's appointment, or null
+    public CalendarDate getAppointment(String name){
+        
+        // search list for this person
+        boolean found = false;
+        int index = 0;
+        Appointment a = null;
+        CalendarDate returnDate = null;
+        while(!found && index < list.size()){
+           a = list.get(index);
+           if(a.getEmployee().getName().equals(name))
+             found = true;
+           index++; // moves one ahead
+        }
+        if (found)
+           returnDate = a.getDate();
+   
+        return returnDate;
+    }
+    
+    // Cancel appointment, if it exists
+    public void cancelAppointment(String name){
+        
+        // find appointment
+        // search list for this person
+        // System.out.println("In cancel appt method.");
+        boolean found = false;
+        int index = 0;
+        int rightIndex = 0;
+        CalendarDate returnDate = null;
+
+        while(!found && index < list.size()){
+
+        //    System.out.println(list.get(index).getEmployee().getName());
+           if(list.get(index).getEmployee().getName().equals(name)){  
+             found = true;
+            //  System.out.println("Found " + name);
+             rightIndex = index;
+           }
+           index++; // moves one ahead
+        } 
+        if (found)
+          list.remove(rightIndex);
+    }
+    
+    // return a String representation of the appointment list
+    public String toString(){
+       
+       String returnStr = "";
+       int index = 0;
+       for (index = 0; index < list.size(); index++)
+          returnStr += "  " + list.get(index).toString() + "\n";
+       
+       return returnStr;
+    }
+
 }
