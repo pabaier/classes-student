@@ -1,6 +1,7 @@
 import edu.cofc.grader.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.io.*;
 import java.io.File;
 import java.io.Console;
@@ -516,10 +517,15 @@ public class SingleTests {
         Class alClass = studentAppointmentList.getClass();
 
         Field[] alFields = alClass.getDeclaredFields();
-        alFields[0].setAccessible(true);
+        int n = 0;
+        for(int i = 0; i < alFields.length; i++){
+            if(alFields[i].getType().isAssignableFrom(ArrayList.class))
+                n = i;
+        }
+        alFields[n].setAccessible(true);
         try{
             @SuppressWarnings("unchecked")
-            ArrayList<Appointment>studentList = (ArrayList<Appointment>)alFields[0].get(studentAppointmentList);
+            ArrayList<Appointment>studentList = (ArrayList<Appointment>)alFields[n].get(studentAppointmentList);
             return studentList;
         }
         catch(Throwable e) {

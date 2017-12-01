@@ -18,9 +18,9 @@ public class AppointmentList
 
     private Employee employee;
     private CalendarDate date;
+    ArrayList<Appointment> appointmentList;
     //initilizing new array list
 
-    ArrayList<Appointment> appointmentList;
      /**
      * Constructor for objects of class AppointmentList
      * 
@@ -32,6 +32,9 @@ public class AppointmentList
 
     }
 
+    public ArrayList<Appointment> getList() {
+        return appointmentList;
+    }
     public void display(){
         int i=0;
         for(i=0;i<appointmentList.size(); i++){

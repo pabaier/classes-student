@@ -1,8 +1,8 @@
 #!/bin/bash
 # javapath=C:\Program Files\Java\jdk1.8.0_131\bin\java.exe
-submissions="D:/School/221/hw_4/hw4/"
-graderdir="D:/School/221/hw_4/grader/"
-classesdir="D:/School/221/hw_4/grader/classes/"
+submissions="/mnt/sda5/School/221/hw_4/hw4/"
+graderdir="/mnt/sda5/School/221/hw_4/grader/"
+classesdir="/mnt/sda5/School/221/hw_4/grader/classes/"
 
 student_java_files=( "Appointment" "AppointmentList" "CalendarDate" "Employee" "HW4" )
 graderfile="GraderF"
