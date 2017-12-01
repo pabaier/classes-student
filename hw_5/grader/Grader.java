@@ -30,10 +30,15 @@ public class Grader {
         wtgetPrice.setName("getPrice");
         WalkUpTicketTests.ToString wttoString = new WalkUpTicketTests.ToString();
         wttoString.setName("toString");
-
-
-
         
+        AdvanceTicketTests.Constructor atConst = new AdvanceTicketTests.Constructor();
+        atConst.setName("Constructor");
+        AdvanceTicketTests.GetPrice atgetPrice = new AdvanceTicketTests.GetPrice();
+        atgetPrice.setName("getPrice");
+
+        advanceTicket.add(atConst);
+        advanceTicket.add(atgetPrice);
+
         walkUpTicket.add(wtConst);
         walkUpTicket.add(wtgetPrice);
         walkUpTicket.add(wttoString);
@@ -44,6 +49,8 @@ public class Grader {
         ticket.add(tttoString);
 
         root.run();
+        double percent = Math.ceil(((double)root.getPointsEarned())/root.getTotalPoints()) * 100;
+        System.out.println(C.BLUE + (int)percent + "%");
     }
 
 }

@@ -11,6 +11,12 @@ public class StudentAdvanceTicket extends AdvanceTicket
     public StudentAdvanceTicket(String name, CalendarDate eventC, CalendarDate todayC){
         super(name, eventC, todayC);
     }
+    public StudentAdvanceTicket(CalendarDate eventC, String name, CalendarDate todayC){
+        super(name, eventC, todayC);
+    }
+    public StudentAdvanceTicket(CalendarDate eventC, CalendarDate todayC, String name){
+        super(name, eventC, todayC);
+    }
     //uses AdvanceTicket to calculate student ticket price
     public double getPrice(){
         double price;

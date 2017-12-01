@@ -14,6 +14,16 @@ public class AdvanceTicket extends Ticket
         super(name, eventC);
         datePurchased = todayC;
     }
+    
+    public AdvanceTicket(CalendarDate eventC, String name, CalendarDate todayC){
+        super(name, eventC);
+        datePurchased = todayC;
+    }
+
+    public AdvanceTicket(CalendarDate eventC, CalendarDate todayC, String name){
+        super(name, eventC);
+        datePurchased = todayC;
+    }
     //calculates the price of the event based on time before the event
     public double getPrice(){
         double price = 30;
