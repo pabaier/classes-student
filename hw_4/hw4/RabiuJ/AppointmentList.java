@@ -29,7 +29,7 @@ public class AppointmentList
     }
     
     public void addToList (CalendarDate c, Employee e){
-        empList.add(new Appointment(c.getYear(), c.getMonth(), c.getDay(), e.getName()));    
+        empList.add(new Appointment(c, e));    
     }
     
     public CalendarDate getAppointment(String name){

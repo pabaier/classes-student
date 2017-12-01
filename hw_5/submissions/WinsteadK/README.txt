@@ -1,0 +1,1 @@
+Discussed general project questions with Stefan Veloff.

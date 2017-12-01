@@ -46,12 +46,14 @@ public class HW4
                 Scanner control = new Scanner(System.in);
                 String input = "c";
                 while(!input.equals("q")){
+                    
                     System.out.println("Press q to quit or press c to cancel an appointment");
                     input = control.nextLine();
+                    
                     if(input.equals("c")){
-                    System.out.println("Enter the name of the appointment to cancel");
-                    input = control.nextLine();
-                    fileappt.cancelAppointment(input);
+                        System.out.println("Enter the name of the appointment to cancel");
+                        input = control.nextLine();
+                        fileappt.cancelAppointment(input);
                    }
                 }
             }
