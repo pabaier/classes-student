@@ -15,19 +15,28 @@ public class Grader {
 
         TicketTests.Constructor ttConst = new TicketTests.Constructor();
         ttConst.setName("Constructor");
-
         TicketTests.GetName ttgetName = new TicketTests.GetName();
         ttgetName.setName("getName");
-
         TicketTests.GetPrice ttgetPrice = new TicketTests.GetPrice();
         ttgetPrice.setName("getPrice");
-        
         TicketTests.GetDate ttgetDate = new TicketTests.GetDate();
         ttgetDate.setName("getDate");
-
         TicketTests.ToString tttoString = new TicketTests.ToString();
         tttoString.setName("toString");
+        
+        WalkUpTicketTests.Constructor wtConst = new WalkUpTicketTests.Constructor();
+        wtConst.setName("Constructor");
+        WalkUpTicketTests.GetPrice wtgetPrice = new WalkUpTicketTests.GetPrice();
+        wtgetPrice.setName("getPrice");
+        WalkUpTicketTests.ToString wttoString = new WalkUpTicketTests.ToString();
+        wttoString.setName("toString");
 
+
+
+        
+        walkUpTicket.add(wtConst);
+        walkUpTicket.add(wtgetPrice);
+        walkUpTicket.add(wttoString);
         ticket.add(ttConst);
         ticket.add(ttgetName);
         ticket.add(ttgetPrice);

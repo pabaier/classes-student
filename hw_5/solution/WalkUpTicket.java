@@ -6,11 +6,15 @@ import java.text.NumberFormat;
  * @author Jacob Mattox
  * @version 11/7/17
  */
-public class WalkUpTicket extends Ticket
+   public class WalkUpTicket extends Ticket
 {
     //class that extends Ticket by adding a useable getPrice method
     public WalkUpTicket(String name, CalendarDate c){
         super(name, c);
+    }
+
+    public WalkUpTicket(CalendarDate c, String name){
+        super(c, name);
     }
     
     public double getPrice(){
