@@ -25,6 +25,9 @@ public class AppointmentList
         list.add(a);
     }
 
+    public ArrayList<Appointment> getList(){
+        return list;
+    }
     public void addToList(Employee e, CalendarDate d){
         
         Appointment a = new Appointment(d, e);    

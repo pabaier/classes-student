@@ -5,10 +5,10 @@ import java.util.ArrayList;
  */
 public class AppointmentList
 {
+    public ArrayList<Appointment> list;
     private CalendarDate date;
     private Employee employee;
     private Appointment appointment;
-    public ArrayList<Appointment> list;
     
     public AppointmentList(){
          list = new ArrayList(10);

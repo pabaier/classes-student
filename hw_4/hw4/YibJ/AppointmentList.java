@@ -12,8 +12,8 @@ import java.io.FileNotFoundException;
 
 public class AppointmentList
 {
-    private String Appointment;
     private ArrayList<Appointment> list = new ArrayList <> ();
+    private String Appointment;
 
      public void addToList(CalendarDate c, Employee e) throws Exception{
         //testing for a valid date before adding it to the array
