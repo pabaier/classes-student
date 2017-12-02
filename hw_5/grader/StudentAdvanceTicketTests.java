@@ -8,41 +8,49 @@ import java.util.stream.Stream;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class WalkUpTicketTests {
+public class StudentAdvanceTicketTests {
 
     // global values for reference
-    private static String name = "Hoop-Dee-Doo Musical Revue";
-    private static CalendarDate date = new CalendarDate(1971, 11, 19);
-    private static final String testFilePath = "/mnt/sda5/School/221/hw_5/grader/WalkUpTicket.java";
+    private static String name = "Coco";
+    private static CalendarDate date = new CalendarDate(2017, 11, 22);
+    private static final String testFilePath = "/mnt/sda5/School/221/hw_5/grader/StudentAdvanceTicket.java";
 
     public static class Constructor extends SingleTest {
         public void exec() {
             setTotalPoints(6);
             int full = 3;
             int half = 2;
-            WalkUpTicket t;
-
+            StudentAdvanceTicket t;
+            CalendarDate datePurchased = new CalendarDate(2017, 11, 7);
+            
             System.out.print(indent() + "Constructor - ");
             try {
-                t = new WalkUpTicket(name, date);
+                t = new StudentAdvanceTicket(name, date, datePurchased);
                 addPoints(half);
                 System.out.println(C.CORRECT + "Correct - " + half + "/" + half + C.RESET);
             }
             catch(Throwable e) {
                 try {
-                    t = new WalkUpTicket(date, name);
+                    t = new StudentAdvanceTicket(date, name, datePurchased);
                     addPoints(half - 1);
-                    System.out.println(C.PARTCORRECT + "Arguments Reversed - " + (half-1) + "/" + half + C.RESET);
+                    System.out.println(C.PARTCORRECT + "Arguments in Wrong Order - " + (half-1) + "/" + half + C.RESET);
                 }
                 catch(Throwable f) {
-                    addPoints(0);
-                    System.out.println(C.INCORRECT + "Could Not Construct WalkUpTicket - " + (0) + "/" + half + C.RESET);
+                    try {
+                        t = new StudentAdvanceTicket(date, datePurchased, name);
+                        addPoints(half - 1);
+                        System.out.println(C.PARTCORRECT + "Arguments in Wrong Order - " + (half-1) + "/" + half + C.RESET);
+                    }
+                    catch(Throwable g) {
+                        addPoints(0);
+                        System.out.println(C.INCORRECT + "Could Not Construct StudentAdvanceTicket - " + (0) + "/" + half + C.RESET);
+                    }
                 }
             }
             
-            System.out.print(indent() + "Extends Ticket - ");
+            System.out.print(indent() + "Extends AdvanceTicket - ");
             String testFile = getFileText(testFilePath);
-            if(isRegexInString("public class WalkUpTicket extends Ticket", testFile)) {
+            if(isRegexInString("public class StudentAdvanceTicket extends AdvanceTicket", testFile)) {
                 addPoints(half);
                 System.out.println(C.CORRECT + "Correct - " + half + "/" + half + C.RESET);
             }
@@ -63,33 +71,104 @@ public class WalkUpTicketTests {
  
         }
     }
-
     public static class GetPrice extends SingleTest {
         public void exec() {
-            setTotalPoints(3);
-            int full = 3;
-            int half = 2;
+            setTotalPoints(10);
+            int full = 2;
+            int half = 1;
             
-            System.out.print(indent() + "$50 - ");
-            
-            WalkUpTicket t = getWalkUpTicket();
-            if (t == null) {
-                System.out.println(C.INCORRECT + "Cannot create WalkUpTicket Objects" + C.RESET);
+            CalendarDate testDate = new CalendarDate(2017, 10, 22);
+            StudentAdvanceTicket thirt = getStudentAdvanceTicket(testDate);
+            if (thirt == null) {
+                System.out.println(indent() + C.INCORRECT + "Cannot create StudentAdvanceTicket Objects" + C.RESET);
                 return;
             }
+            
+            // clear 15
+            System.out.print(indent() + testDate + " " + date + " - $15 - ");
+            thirt = getStudentAdvanceTicket(testDate);
             double result = 100;
             try {
-                result = t.getPrice();
+                result = thirt.getPrice();
             }
             catch(Throwable e) {
             }
-            if(result == 50) {
+            if(result == 15) {
                 addPoints(full);
                 System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
             }
             else {
                 addPoints(half);
                 System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
+            }
+            
+            // tight 15
+            testDate = new CalendarDate(2017, 11, 12);
+            System.out.print(indent() + testDate + " " + date + " - $15 - ");
+            thirt = getStudentAdvanceTicket(testDate);
+            result = 100;
+            try {
+                result = thirt.getPrice();
+            }
+            catch(Throwable e) {
+            }
+            if(result == 15) {
+                addPoints(full);
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+            }
+            else {
+                addPoints(half);
+                System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
+            }
+            
+            // tight 20
+            testDate = new CalendarDate(2017, 11, 13);
+            System.out.print(indent() + testDate + " " + date + " - $20 - ");
+            thirt = getStudentAdvanceTicket(testDate);
+            result = 100;
+            try {
+                result = thirt.getPrice();
+            }
+            catch(Throwable e) {
+            }
+            if(result == 20) {
+                addPoints(full);
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+            }
+            else {
+                addPoints(half);
+                System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
+            }
+
+            // clear 20
+            testDate = new CalendarDate(2017, 11, 21);
+            System.out.print(indent() + testDate + " " + date + " - $20 - ");
+            thirt = getStudentAdvanceTicket(testDate);
+            result = 100;
+            try {
+                result = thirt.getPrice();
+            }
+            catch(Throwable e) {
+            }
+            if(result == 20) {
+                addPoints(full);
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+            }
+            else {
+                addPoints(half);
+                System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
+            }
+
+            // check if it calls super().getPrice()
+            System.out.print(indent() + "Calls super().getPrice() - ");
+            String testFile = getFileText(testFilePath);
+            if(isRegexInString("super().getPrice()", testFile)) {
+                addPoints(full);
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);
+            }
+            else {
+                addPoints(half);
+                System.out.println(C.INCORRECT + "No Call to Super Class" + half + "/" + half + C.RESET);
             }
         }
     }
@@ -99,12 +178,12 @@ public class WalkUpTicketTests {
             setTotalPoints(6);
             int full = 2;
             int half = 1;
-
-            System.out.println(indent() + name + " - " + date + " - " + "$50");
-
-            WalkUpTicket t = getWalkUpTicket();
+            
+            CalendarDate datePurchased = new CalendarDate(2017, 11, 7);
+            System.out.println(indent() + name + " - " + datePurchased + " - " + date + " - " + "$15");
+            StudentAdvanceTicket t = getStudentAdvanceTicket(datePurchased);
             if (t == null) {
-                System.out.println(C.INCORRECT + "Cannot create Ticket Objects" + C.RESET);
+                System.out.println(indent() + C.INCORRECT + "Cannot create Ticket Objects" + C.RESET);
                 return;
             }
             String result = "";
@@ -114,15 +193,15 @@ public class WalkUpTicketTests {
             catch(Throwable e) {
             }
 
+            // REPLACE THIS***SEARCH THROUGH FILE FOR super().toString()
             // boolean superString = result.contains(getTicket().toString());
-
+            
             String testFile = getFileText(testFilePath);
             boolean superString = isRegexInString("super().toString", testFile);
-            boolean price = result.contains("50");
-            boolean walkup = result.toLowerCase().contains("walk-up") || 
-                            result.toLowerCase().contains("walkup") ||
-                            result.toLowerCase().contains("walk up");
-
+            boolean price = result.contains("15") || result.contains("20");
+            boolean advance = result.toLowerCase().contains("advance");
+            // boolean purchased = result.toLowerCase().contains(datePurchased.toString());
+            
             System.out.print(indent() + "Calls super().toString() - ");
             if(superString) {
                 System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
@@ -141,8 +220,8 @@ public class WalkUpTicketTests {
                 System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
                 addPoints(half);
             }
-            System.out.print(indent() + "Walk-Up Ticket - ");
-            if(walkup) {
+            System.out.print(indent() + "Student Advance Ticket - ");
+            if(advance) {
                 System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
                 addPoints(full);
             }
@@ -150,6 +229,15 @@ public class WalkUpTicketTests {
                 System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
                 addPoints(half);
             }
+            // System.out.print(indent() + "Date Purchased - ");
+            // if(purchased) {
+            //     System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+            //     addPoints(full);
+            // }
+            // else {
+            //     System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+            //     addPoints(half);
+            // }
         }
     }
 
@@ -171,16 +259,21 @@ public class WalkUpTicketTests {
 
     // returns a new walk up ticket using different constructor options
     // returns null if constructor does not work
-    public static WalkUpTicket getWalkUpTicket() {
+    public static StudentAdvanceTicket getStudentAdvanceTicket(CalendarDate purch) {
         try {
-            return new WalkUpTicket(name, date);
+            return new StudentAdvanceTicket(name, date, purch);
         }
         catch(Throwable e) {
             try {
-                return new WalkUpTicket(date, name); 
+                return new StudentAdvanceTicket(date, name, purch); 
             }
             catch(Throwable f) {
-                return null;
+                try {
+                    return new StudentAdvanceTicket(date, purch, name); 
+                }
+                catch(Throwable g){
+                    return null;
+                }
             }
         }
     }

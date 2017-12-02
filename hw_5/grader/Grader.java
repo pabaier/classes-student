@@ -1,13 +1,15 @@
+import java.util.Scanner;
+
 import edu.cofc.grader.*;
 
 public class Grader {
     public static void main(String[] args) {
         C.colors(true);
         TestOutline root = new TestOutline("Homework 5");
-        TestOutline ticket = new TestOutline("Ticket");
-        TestOutline walkUpTicket = new TestOutline("WalkUpTicket");
-        TestOutline advanceTicket = new TestOutline("AdvanceTicket");
-        TestOutline studentTicket = new TestOutline("StudentTicket");
+        TestOutline ticket = new TestOutline(C.UNDERLINE + "Ticket" + C.RESET);
+        TestOutline walkUpTicket = new TestOutline(C.UNDERLINE + "WalkUpTicket" + C.RESET);
+        TestOutline advanceTicket = new TestOutline(C.UNDERLINE + "AdvanceTicket" + C.RESET);
+        TestOutline studentTicket = new TestOutline(C.UNDERLINE + "StudentAdvanceTicket" + C.RESET);
         root.add(ticket);
         root.add(walkUpTicket);
         root.add(advanceTicket);
@@ -38,10 +40,20 @@ public class Grader {
         AdvanceTicketTests.ToString attoString = new AdvanceTicketTests.ToString();
         attoString.setName("toString");
 
+        StudentAdvanceTicketTests.Constructor satConst = new StudentAdvanceTicketTests.Constructor();
+        satConst.setName("Constructor");
+        StudentAdvanceTicketTests.GetPrice satgetPrice = new StudentAdvanceTicketTests.GetPrice();
+        satgetPrice.setName("getPrice");
+        StudentAdvanceTicketTests.ToString sattoString = new StudentAdvanceTicketTests.ToString();
+        sattoString.setName("toString");
+
+        studentTicket.add(satConst);
+        studentTicket.add(satgetPrice);
+        studentTicket.add(sattoString);
+
         advanceTicket.add(atConst);
         advanceTicket.add(atgetPrice);
         advanceTicket.add(attoString);
-
         walkUpTicket.add(wtConst);
         walkUpTicket.add(wtgetPrice);
         walkUpTicket.add(wttoString);
@@ -52,8 +64,16 @@ public class Grader {
         ticket.add(tttoString);
 
         root.run();
-        double percent = Math.ceil(((double)root.getPointsEarned())/root.getTotalPoints()) * 100;
+        System.out.println("Extra: ");
+        Scanner in = new Scanner(System.in);
+        String comments = in.nextLine(); 
+        if(!comments.equals("-"))
+            root.addPoints(in.nextInt());
+        // in.nextLine();
+        System.out.println("Final Score: " + root.getPointsEarned() + "/" + root.getTotalPoints());
+        double percent = Math.ceil(((double)root.getPointsEarned())/root.getTotalPoints() * 100);
         System.out.println(C.BLUE + (int)percent + "%");
+        System.out.println();
     }
 
 }

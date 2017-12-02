@@ -185,12 +185,14 @@ public class AdvanceTicketTests {
             catch(Throwable e) {
             }
 
-            boolean superString = result.contains(getTicket().toString());
+            // boolean superString = result.contains(getTicket().toString());
+            String testFile = getFileText(testFilePath);
+            boolean superString = isRegexInString("super().toString", testFile);
             boolean price = result.contains("30") || result.contains("40");
             boolean advance = result.toLowerCase().contains("advance");
             boolean purchased = result.toLowerCase().contains(datePurchased.toString());
             
-            System.out.print(indent() + "Call to super() - ");
+            System.out.print(indent() + "Calls super().toString() - ");
             if(superString) {
                 System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
                 addPoints(full);
