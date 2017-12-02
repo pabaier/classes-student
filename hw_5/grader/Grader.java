@@ -35,9 +35,12 @@ public class Grader {
         atConst.setName("Constructor");
         AdvanceTicketTests.GetPrice atgetPrice = new AdvanceTicketTests.GetPrice();
         atgetPrice.setName("getPrice");
+        AdvanceTicketTests.ToString attoString = new AdvanceTicketTests.ToString();
+        attoString.setName("toString");
 
         advanceTicket.add(atConst);
         advanceTicket.add(atgetPrice);
+        advanceTicket.add(attoString);
 
         walkUpTicket.add(wtConst);
         walkUpTicket.add(wtgetPrice);

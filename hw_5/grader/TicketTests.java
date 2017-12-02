@@ -68,7 +68,7 @@ public class TicketTests {
             int full = 3;
             int half = 2;
 
-            System.out.print(indent() + "0 - ");
+            System.out.print(indent() + "$0 - ");
 
             Ticket t = getTicket();
             if (t == null) {

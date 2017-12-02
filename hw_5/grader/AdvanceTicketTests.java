@@ -13,9 +13,8 @@ public class AdvanceTicketTests {
     // global values for reference
     private static String name = "La Nouba";
     private static CalendarDate date = new CalendarDate(2017, 12, 31);
-    private static CalendarDate datePurchased = new CalendarDate(2017, 12, 21);
-    private static CalendarDate thirty = new CalendarDate(2017, 12, 21);
-    private static CalendarDate forty = new CalendarDate(2017, 12, 20);
+    // private static CalendarDate thirty = new CalendarDate(2017, 12, 21);
+    // private static CalendarDate forty = new CalendarDate(2017, 12, 20);
     private static final String testFilePath = "/mnt/sda5/School/221/hw_5/grader/AdvanceTicket.java";
 
     public static class Constructor extends SingleTest {
@@ -24,7 +23,8 @@ public class AdvanceTicketTests {
             int full = 3;
             int half = 2;
             AdvanceTicket t;
-
+            CalendarDate datePurchased = new CalendarDate(2017, 12, 7);
+            
             System.out.print(indent() + "Constructor - ");
             try {
                 t = new AdvanceTicket(name, date, datePurchased);
@@ -61,7 +61,7 @@ public class AdvanceTicketTests {
                 System.out.println(C.INCORRECT + "Does not extend Ticket" + (half - 1) + "/" + half + C.RESET);
             }
 
-            System.out.print(indent() + "Call to super - ");
+            System.out.print(indent() + "Call to super() - ");
             if(isRegexInString("super", testFile)) {
                 addPoints(half);
                 System.out.println(C.CORRECT + "Correct - " + half + "/" + half + C.RESET);
@@ -75,20 +75,20 @@ public class AdvanceTicketTests {
     }
     public static class GetPrice extends SingleTest {
         public void exec() {
-            setTotalPoints(3);
-            int full = 3;
-            int half = 2;
+            setTotalPoints(8);
+            int full = 2;
+            int half = 1;
             
-            System.out.print(indent() + "30 - ");
-            
-            AdvanceTicket thirt = getAdvanceTicket(thirty);
-            AdvanceTicket fort = getAdvanceTicket(forty);
+            CalendarDate testDate = new CalendarDate(2017, 12, 1);
+            AdvanceTicket thirt = getAdvanceTicket(testDate);
             if (thirt == null) {
-                System.out.println(C.INCORRECT + "Cannot create AdvanceTicket Objects" + C.RESET);
+                System.out.println(indent() + C.INCORRECT + "Cannot create AdvanceTicket Objects" + C.RESET);
                 return;
             }
             
-            // 30
+            // clear 30
+            System.out.print(indent() + testDate + " " + date + " - $30 - ");
+            thirt = getAdvanceTicket(testDate);
             double result = 100;
             try {
                 result = thirt.getPrice();
@@ -104,11 +104,32 @@ public class AdvanceTicketTests {
                 System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
             }
             
-            // 40
-            System.out.print(indent() + "40 - ");
+            // tight 30
+            testDate = new CalendarDate(2017, 12, 21);
+            System.out.print(indent() + testDate + " " + date + " - $30 - ");
+            thirt = getAdvanceTicket(testDate);
             result = 100;
             try {
-                result = fort.getPrice();
+                result = thirt.getPrice();
+            }
+            catch(Throwable e) {
+            }
+            if(result == 30) {
+                addPoints(full);
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+            }
+            else {
+                addPoints(half);
+                System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
+            }
+            
+            // tight 40
+            testDate = new CalendarDate(2017, 12, 22);
+            System.out.print(indent() + testDate + " " + date + " - $40 - ");
+            thirt = getAdvanceTicket(testDate);
+            result = 100;
+            try {
+                result = thirt.getPrice();
             }
             catch(Throwable e) {
             }
@@ -120,21 +141,41 @@ public class AdvanceTicketTests {
                 addPoints(half);
                 System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
             }
+
+            // clear 40
+            testDate = new CalendarDate(2017, 12, 30);
+            System.out.print(indent() + testDate + " " + date + " - $40 - ");
+            thirt = getAdvanceTicket(testDate);
+            result = 100;
+            try {
+                result = thirt.getPrice();
+            }
+            catch(Throwable e) {
+            }
+            if(result == 40) {
+                addPoints(full);
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+            }
+            else {
+                addPoints(half);
+                System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + half + "/" + full + C.RESET);
+            }
+            
+
         }
     }
-    
-    /*
+
     public static class ToString extends SingleTest {
         public void exec() {
-            setTotalPoints(3);
-            int full = 3;
-            int half = 2;
-
-            System.out.print(indent() + name + " " + date + " " + 50 + " - ");
-
-            WalkUpTicket t = getWalkUpTicket();
+            setTotalPoints(8);
+            int full = 2;
+            int half = 1;
+            
+            CalendarDate datePurchased = new CalendarDate(2017, 12, 7);
+            System.out.println(indent() + name + " - " + datePurchased + " - " + date + " - " + "$30");
+            AdvanceTicket t = getAdvanceTicket(datePurchased);
             if (t == null) {
-                System.out.println(C.INCORRECT + "Cannot create Ticket Objects" + C.RESET);
+                System.out.println(indent() + C.INCORRECT + "Cannot create Ticket Objects" + C.RESET);
                 return;
             }
             String result = "";
@@ -145,42 +186,49 @@ public class AdvanceTicketTests {
             }
 
             boolean superString = result.contains(getTicket().toString());
-            boolean price = result.contains("50");
-            boolean  walkup = result.toLowerCase().contains("walk-up") || 
-                            result.toLowerCase().contains("walkup") ||
-                            result.toLowerCase().contains("walk up");
-
-            if(superString && price && walkup) {
-                addPoints(full);
+            boolean price = result.contains("30") || result.contains("40");
+            boolean advance = result.toLowerCase().contains("advance");
+            boolean purchased = result.toLowerCase().contains(datePurchased.toString());
+            
+            System.out.print(indent() + "Call to super() - ");
+            if(superString) {
                 System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
-            }
-            else if(!superString && !price && !walkup) {
-                addPoints(half - 1);
-                System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + (half - 1) + "/" + full + C.RESET);
-            }
-            else if(!price) {
-                addPoints(half);
-                System.out.println(C.PARTCORRECT + " - missing the price - " + half + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
-            }
-            else if(!superString) {
-                addPoints(half);
-                System.out.println(C.PARTCORRECT + " - does not call super().toString - " + half + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
-            }
-            else if(!walkup) {
-                addPoints(half);
-                System.out.println(C.PARTCORRECT + " - could not find 'walk up' - " + half + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
+                addPoints(full);
             }
             else {
-                addPoints(half - 1);
-                System.out.println(C.PARTCORRECT + " - incorrect - " + (half - 1) + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
+                System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+                addPoints(half);
+            }
+            System.out.print(indent() + "Price Included - ");
+            if(price) {
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+                addPoints(half);
+            }
+            System.out.print(indent() + "Advance Ticket - ");
+            if(advance) {
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+                addPoints(half);
+            }
+            System.out.print(indent() + "Date Purchased - ");
+            if(purchased) {
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+                addPoints(half);
             }
         }
     }
-*/
+
     // returns a new ticket object using different constructor options
     // returns null if constructor does not work
     public static Ticket getTicket() {

@@ -70,7 +70,7 @@ public class WalkUpTicketTests {
             int full = 3;
             int half = 2;
             
-            System.out.print(indent() + "50 - ");
+            System.out.print(indent() + "$50 - ");
             
             WalkUpTicket t = getWalkUpTicket();
             if (t == null) {
@@ -96,11 +96,11 @@ public class WalkUpTicketTests {
 
     public static class ToString extends SingleTest {
         public void exec() {
-            setTotalPoints(3);
-            int full = 3;
-            int half = 2;
+            setTotalPoints(6);
+            int full = 2;
+            int half = 1;
 
-            System.out.print(indent() + name + " " + date + " " + 50 + " - ");
+            System.out.println(indent() + name + " - " + date + " - " + "$50");
 
             WalkUpTicket t = getWalkUpTicket();
             if (t == null) {
@@ -116,37 +116,36 @@ public class WalkUpTicketTests {
 
             boolean superString = result.contains(getTicket().toString());
             boolean price = result.contains("50");
-            boolean  walkup = result.toLowerCase().contains("walk-up") || 
+            boolean walkup = result.toLowerCase().contains("walk-up") || 
                             result.toLowerCase().contains("walkup") ||
                             result.toLowerCase().contains("walk up");
 
-            if(superString && price && walkup) {
-                addPoints(full);
+            System.out.print(indent() + "Call to super() - ");
+            if(superString) {
                 System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
-            }
-            else if(!superString && !price && !walkup) {
-                addPoints(half - 1);
-                System.out.println(C.PARTCORRECT + "" + result + " - incorrect - " + (half - 1) + "/" + full + C.RESET);
-            }
-            else if(!price) {
-                addPoints(half);
-                System.out.println(C.PARTCORRECT + " - missing the price - " + half + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
-            }
-            else if(!superString) {
-                addPoints(half);
-                System.out.println(C.PARTCORRECT + " - does not call super().toString - " + half + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
-            }
-            else if(!walkup) {
-                addPoints(half);
-                System.out.println(C.PARTCORRECT + " - could not find 'walk up' - " + half + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
+                addPoints(full);
             }
             else {
-                addPoints(half - 1);
-                System.out.println(C.PARTCORRECT + " - incorrect - " + (half - 1) + "/" + full + C.RESET);
-                System.out.println(indent() + C.PARTCORRECT + result);
+                System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+                addPoints(half);
+            }
+            System.out.print(indent() + "Price Included - ");
+            if(price) {
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+                addPoints(half);
+            }
+            System.out.print(indent() + "Walk-Up Ticket - ");
+            if(walkup) {
+                System.out.println(C.CORRECT + "Correct - " + full + "/" + full + C.RESET);                
+                addPoints(full);
+            }
+            else {
+                System.out.println(C.PARTCORRECT + "Missing - " + half + "/" + full + C.RESET);                
+                addPoints(half);
             }
         }
     }
