@@ -15,15 +15,15 @@ public class Appointment
     /**
      * Constructor for objects of class Appointment
      */
-    public Appointment(int year, int month, int day, String empName)
+    public Appointment(CalendarDate c, Employee empName)
     {
         // initialise instance variables
-        employee = new Employee(empName);
-        date = new CalendarDate(year, month, day);
+        employee = empName;
+        date = c; 
         
     }
     
-    public Employee getEmployee(){//returns an Employee
+    public Employee getEmployee(){
         return employee;
     }
     

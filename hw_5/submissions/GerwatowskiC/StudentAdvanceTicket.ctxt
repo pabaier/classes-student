@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=StudentAdvanceTicket
+comment1.params=s\ d\ p
+comment1.target=StudentAdvanceTicket(java.lang.String,\ CalendarDate,\ CalendarDate)
+comment2.params=
+comment2.target=double\ getPrice()
+comment3.params=
+comment3.target=java.lang.String\ toString()
+numComments=4
