@@ -4,8 +4,8 @@ submissions="${root}submissions/"
 graderdir="${root}grader/"
 classesdir="${root}grader/classes/"
 
-student_java_files=( "Ticket" "WalkUpTicket" "AdvanceTicket" "StudentAdvanceTicket" "TestTickets")
-java_files=( "Ticket.java WalkUpTicket.java AdvanceTicket.java StudentAdvanceTicket.java TestTickets.java")
+student_java_files=( "Ticket" "WalkUpTicket" "AdvanceTicket" "StudentAdvanceTicket" "TestTickets" "CalendarDate")
+java_files=( "Ticket.java WalkUpTicket.java AdvanceTicket.java StudentAdvanceTicket.java TestTickets.java" "CalendarDate.java")
 graderfile="Grader"
 java=".java"
 class=".class"
