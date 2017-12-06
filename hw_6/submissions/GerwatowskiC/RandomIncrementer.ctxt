@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=RandomIncrementer
+comment1.params=
+comment1.target=RandomIncrementer()
+comment2.params=
+comment2.target=void\ increment()
+comment3.params=
+comment3.target=int\ getValue()
+numComments=4

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=DiscountPolicy
+comment0.text=\n\ An\ Abstract\ class\ to\ compute\ discounts\n\n\ Claire\ Gerwatowski\n
+comment1.params=quantity\ itemCost
+comment1.target=double\ computeDiscount(int,\ double)
+numComments=2

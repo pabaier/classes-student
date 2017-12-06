@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=CombinedDiscount
+comment0.text=\n\ Returns\ the\ bigger\ of\ two\ given\ discounts\n\n\ Claire\ Gerwatowski\n
+comment1.params=d1\ d2
+comment1.target=CombinedDiscount(DiscountPolicy,\ DiscountPolicy)
+comment2.params=quantity\ itemCost
+comment2.target=double\ computeDiscount(int,\ double)
+numComments=3

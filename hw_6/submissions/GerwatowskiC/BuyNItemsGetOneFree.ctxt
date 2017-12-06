@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=BuyNItemsGetOneFree
+comment0.text=\n\ Creates\ a\ discount\ that\ gives\ the\ nth\ item\ free\n\n\ Claire\ Gerwatowski\n
+comment1.params=n
+comment1.target=BuyNItemsGetOneFree(int)
+comment2.params=quantity\ itemCost
+comment2.target=double\ computeDiscount(int,\ double)
+numComments=3
