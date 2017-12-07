@@ -30,31 +30,100 @@ public class TestsBulkDiscount {
             setTotalPoints(full);
 
             System.out.print(indent() + "Creates BulkDiscount? - ");
-            try {
-                BulkDiscount b = new BulkDiscount(1,2);
-                addPoints(full);
-                System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
-            }
-            catch(Throwable t) {
-                try {
-                    BulkDiscount b = new BulkDiscount();
+
+            Class[] params = BulkDiscount.class.getConstructors()[0].getParameterTypes();
+            if (params.length == 2) {
+                if(params[0].equals(int.class) && params[1].equals(int.class)) {
+                    System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
+                    addPoints(full);
+                }
+                else {
+                    System.out.println(C.PARTCORRECT + "no - incorrect parameter types - " + (half) + "/" + full + C.RESET);
                     addPoints(half);
-                    System.out.println(C.PARTCORRECT + "yes but no parameters - " + half + "/" + full + C.RESET);
                 }
-                catch(Throwable u) {
-                    try {
-                        BulkDiscount b = new BulkDiscount(1);
-                        addPoints(half);
-                        System.out.println(C.PARTCORRECT + "yes but only one parameter - " + half + "/" + full + C.RESET);
-                    }
-                    catch(Throwable v) {
-                        addPoints(half-1);
-                        System.out.println(C.INCORRECT + "no - " + (half-1) + "/" + full + C.RESET);
-                    }
-                }
+            }
+            else {
+                System.out.println(C.INCORRECT + "no - need 2 parameters in constructor - " + (half-1) + "/" + full + C.RESET);
+                addPoints(half - 1);
             }
         }
     }
+
+    public static class InstanceVariables extends SingleTest{
+        public void exec() {
+            int full = 3;
+            int half = 2;
+            setTotalPoints(full * 2);
+
+            System.out.print(indent() + "int \"minimum\" instance variable? - ");
+            try {
+                Field min = BulkDiscount.class.getDeclaredField("minimum");
+                if(min.getType().equals(int.class)) {
+                    addPoints(full);
+                    System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
+                }
+                else {
+                    addPoints(half);
+                    System.out.println(C.PARTCORRECT + "yes but wrong type - " + (half) + "/" + full + C.RESET);
+
+                }
+            }
+            catch (NoSuchFieldException e) {
+                addPoints(half - 1);
+                System.out.println(C.PARTCORRECT + "does not exist - " + (half - 1) + "/" + full + C.RESET);
+            }
+
+            System.out.print(indent() + "int \"percent\" instance variable? - ");
+            try {
+                Field percent = BulkDiscount.class.getDeclaredField("percent");
+                if(percent.getType().equals(int.class)) {
+                    addPoints(full);
+                    System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
+                }
+                else {
+                    addPoints(half);
+                    System.out.println(C.PARTCORRECT + "yes but wrong type - " + (half) + "/" + full + C.RESET);
+
+                }
+            }
+            catch (NoSuchFieldException e) {
+                addPoints(half - 1);
+                System.out.println(C.PARTCORRECT + "does not exist - " + (half - 1) + "/" + full + C.RESET);
+            }
+        }
+    }
+
+    public static class ComputeDiscount extends SingleTest{
+        public void exec() {
+            int full = 3;
+            int half = 2;
+            setTotalPoints(full);
+
+            System.out.print(indent() + "Creates BulkDiscount? - ");
+
+            Class[] params = BulkDiscount.class.getConstructors()[0].getParameterTypes();
+            if (params.length == 2) {
+                if(params[0].equals(int.class) && params[1].equals(int.class)) {
+                    System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
+                    addPoints(full);
+                }
+                else {
+                    System.out.println(C.PARTCORRECT + "no - incorrect parameter types - " + (half) + "/" + full + C.RESET);
+                    addPoints(half);
+                }
+            }
+            else {
+                System.out.println(C.INCORRECT + "no - need 2 parameters in constructor - " + (half-1) + "/" + full + C.RESET);
+                addPoints(half - 1);
+            }
+        }
+    }
+
+    
+
+
+
+
 
     public static Field getFieldNamed(String name, Object type) {
         Class c = type.getClass();

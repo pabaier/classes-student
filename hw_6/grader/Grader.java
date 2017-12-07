@@ -35,10 +35,15 @@ public class Grader {
         TestsBulkDiscount.Structure bdStruct = new TestsBulkDiscount.Structure();
         bdStruct.setName("Structure");
         bulkDiscount.add(bdStruct);
-
         TestsBulkDiscount.Constructor bdConst = new TestsBulkDiscount.Constructor();
         bdConst.setName("Constructor");
         bulkDiscount.add(bdConst);
+        TestsBulkDiscount.InstanceVariables bdInst = new TestsBulkDiscount.InstanceVariables();
+        bdInst.setName("Instance Variables");
+        bulkDiscount.add(bdInst);
+        TestsBulkDiscount.ComputeDiscount bdCompDis = new TestsBulkDiscount.ComputeDiscount();
+        bdCompDis.setName("ComputeDiscount()");
+        bulkDiscount.add(bdCompDis);
         
         // discount policy
         TestsDiscountPolicy.Constructor dpConst = new TestsDiscountPolicy.Constructor();
