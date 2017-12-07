@@ -4,11 +4,22 @@ submissions="${root}submissions/"
 graderdir="${root}grader/"
 classesdir="${root}grader/classes/"
 
-student_java_files=( "Ticket" "WalkUpTicket" "AdvanceTicket" "StudentAdvanceTicket" "TestTickets" "CalendarDate")
-java_files=( "Ticket.java WalkUpTicket.java AdvanceTicket.java StudentAdvanceTicket.java TestTickets.java" "CalendarDate.java")
-graderfile="Grader"
+student_java_files=( "BulkDiscount" "BuyNItemsGetOneFree" 
+                    "CombinedDiscount" "CouponDiscount" 
+                    "DiscountPolicy" "HW6Part1" 
+                    "HW6Part2" "Incrementable" 
+                    "RandomIncrementer" "SequentialIncrementer")
 java=".java"
 class=".class"
+java_files=""
+graderfile="Grader"
+
+# add .java to all student files for compiling
+for a in "${student_java_files[@]}"
+do
+    java_files+=$a$java" "
+done
+
 cd $graderdir
 if [ -z "$1" ]
 then
@@ -27,7 +38,7 @@ then
         # delete old files
         for oldFiles in "${student_java_files[@]}"
         do
-            rm $oldFiles$java 2>> ${graderdir}error
+            rm $graderdir$oldFiles$java 2>> ${graderdir}error
             rm $classesdir$oldFiles$class 2>> ${graderdir}error
         done
 
@@ -46,12 +57,12 @@ then
 else
     echo $1
     # echo $1 >> ${graderdir}error
-    # delete old files
-    for oldFiles in "${student_java_files[@]}"
-    do
-        rm $oldFiles$java #2>> ${graderdir}error
-        rm $classesdir$oldFiles$class #2>> ${graderdir}error
-    done
+    # delete old files (uncomment this when grading)
+    # for oldFiles in "${student_java_files[@]}"
+    # do
+        # rm $graderdir$oldFiles$java #2>> ${graderdir}error
+        # rm $classesdir$oldFiles$class #2>> ${graderdir}error
+    # done
 
     # copy and compile new files
     for newFiles in "${student_java_files[@]}"
@@ -59,10 +70,17 @@ else
         cp $submissions$1/$newFiles$java $graderdir #2>> ${graderdir}error
     done
     javac -d $classesdir $java_files #2>> ${graderdir}error
-    # javac -d $classesdir Ticket.java WalkUpTicket.java AdvanceTicket.java StudentAdvanceTicket.java TestTickets.java #2>> ${graderdir}error
     # run grader
     cd classes
     java Grader
     cd ..
 fi
+# restore solution files to grader directory
 cp -R "${root}solution/". $graderdir
+
+# remove assignment files from grader directory
+# for oldFiles in "${student_java_files[@]}"
+# do
+#     rm $graderdir$oldFiles$java #2>> ${graderdir}error
+#     # rm $classesdir$oldFiles$class #2>> ${graderdir}error
+# done

@@ -28,10 +28,26 @@ public class Grader {
         part2.add(incrementable);
         part2.add(sequentialIncrementer);
         part2.add(randomIncrementer);
+
+        // tests
+
+        // bulk discount
+        TestsBulkDiscount.Structure bdStruct = new TestsBulkDiscount.Structure();
+        bdStruct.setName("Structure");
+        bulkDiscount.add(bdStruct);
+
+        TestsBulkDiscount.Constructor bdConst = new TestsBulkDiscount.Constructor();
+        bdConst.setName("Constructor");
+        bulkDiscount.add(bdConst);
         
+        // discount policy
         TestsDiscountPolicy.Constructor dpConst = new TestsDiscountPolicy.Constructor();
         dpConst.setName("Constructor");
         discountPolicy.add(dpConst);
+
+        TestsDiscountPolicy.ComputeDiscount dpCompute = new TestsDiscountPolicy.ComputeDiscount();
+        dpCompute.setName("ComputeDiscount");
+        discountPolicy.add(dpCompute);
 
         root.run();
         System.out.println("Extra: ");
