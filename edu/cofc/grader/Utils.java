@@ -9,7 +9,8 @@ import java.util.stream.Stream;
 import java.io.IOException;
 
 /**
- * SingleTest is a test that runs within a {@link edu.cofc.grader.TestOutline}
+ * Utils is a utility class with various static methods that are
+ * useful when grading
  * @author Paul Baier
  */
 
