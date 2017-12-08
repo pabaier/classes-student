@@ -97,49 +97,94 @@ public class TestsBulkDiscount {
         public void exec() {
             int full = 3;
             int half = 2;
-            setTotalPoints(full);
+            setTotalPoints(full * 3);
+            BulkDiscount b;
+            int minimum = 3;
+            int percent = 10;
+            int quantity = 2;
+            double itemCost = 25;
+            double receivedOutput;
 
-            System.out.print(indent() + "Creates BulkDiscount? - ");
+            String titleFormat = indent() + "| %-7s | %-7s | %-8s | %-8s | %-15s | %-15s |%n";
+            String dataFormat = indent() + "| %-7d | %-7d | %-8d | %-8.2f | %-15.2f | %-24s |%n";
 
-            Class[] params = BulkDiscount.class.getConstructors()[0].getParameterTypes();
-            if (params.length == 2) {
-                if(params[0].equals(int.class) && params[1].equals(int.class)) {
-                    System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
-                    addPoints(full);
-                }
-                else {
-                    System.out.println(C.PARTCORRECT + "no - incorrect parameter types - " + (half) + "/" + full + C.RESET);
-                    addPoints(half);
-                }
+            try{
+                b = new BulkDiscount(minimum, percent);
+            }
+            catch(Throwable t) {
+                System.out.println(indent() + C.INCORRECT + "Could not initialize BulkDiscount object" + C.RESET);
+                addPoints(getTotalPoints() / 2);
+                return;
+            }
+            
+            double expectedOutput = 0;
+            try{
+                receivedOutput = b.computeDiscount(quantity, itemCost);
+            }
+            catch(Throwable t) {
+                System.out.println(indent() + C.INCORRECT + "Could not run computeDiscount() method" + C.RESET);
+                addPoints(getTotalPoints() / 2);
+                return;    
+            }
+            String resultColor = C.CORRECT;
+
+            // test 1
+            if (receivedOutput == expectedOutput) {
+                resultColor = C.CORRECT;
+                addPoints(full);
             }
             else {
-                System.out.println(C.INCORRECT + "no - need 2 parameters in constructor - " + (half-1) + "/" + full + C.RESET);
-                addPoints(half - 1);
+                resultColor = C.PARTCORRECT;
+                addPoints(half);
             }
+            System.out.format(titleFormat,"minimum", "percent", "quantity", "itemCost", "expected output", "received output");
+            System.out.format(dataFormat, minimum, percent, quantity, itemCost, expectedOutput, resultColor + String.format("%.2f", receivedOutput) + C.RESET);
+            
+            // test 2
+            quantity++;
+            expectedOutput = 0;
+            receivedOutput = b.computeDiscount(quantity, itemCost);
+            if (receivedOutput == expectedOutput) {
+                resultColor = C.CORRECT;
+                addPoints(full);
+            }
+            else {
+                resultColor = C.PARTCORRECT;
+                addPoints(half);
+            }
+            System.out.format(dataFormat, minimum, percent, quantity, itemCost, expectedOutput, resultColor + String.format("%.2f", receivedOutput) + C.RESET);
+            
+            // test 3
+            quantity++;
+            expectedOutput = 2.5;
+            receivedOutput = b.computeDiscount(quantity, itemCost);
+            if (receivedOutput == expectedOutput) {
+                resultColor = C.CORRECT;
+                addPoints(full);
+            }
+            else {
+                resultColor = C.PARTCORRECT;
+                addPoints(half);
+            }
+            System.out.format(dataFormat, minimum, percent, quantity, itemCost, expectedOutput, resultColor + String.format("%.2f", receivedOutput) + C.RESET);
+
+
+            // try
+            // if (params.length == 2) {
+            //     if(params[0].equals(int.class) && params[1].equals(int.class)) {
+            //         System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
+            //         addPoints(full);
+            //     }
+            //     else {
+            //         System.out.println(C.PARTCORRECT + "no - incorrect parameter types - " + (half) + "/" + full + C.RESET);
+            //         addPoints(half);
+            //     }
+            // }
+            // else {
+            //     System.out.println(C.INCORRECT + "no - need 2 parameters in constructor - " + (half-1) + "/" + full + C.RESET);
+            //     addPoints(half - 1);
+            // }
         }
     }
-
-    
-
-
-
-
-
-    public static Field getFieldNamed(String name, Object type) {
-        Class c = type.getClass();
-        try {
-            Field field = c.getDeclaredField("minimum");
-            field.setAccessible(true);
-            return field;
-        }
-        catch(NoSuchFieldException e) {
-            return null;
-        }
-    }
-
-    // Field f = getFieldNamed("minimum", b);
-    // try{
-    //     System.out.println(f.get(b));
-    // }catch(Exception e){}
 
 }
