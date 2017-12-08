@@ -156,7 +156,7 @@ public class TestsBulkDiscount {
             
             // test 3
             quantity++;
-            expectedOutput = 2.5;
+            expectedOutput = 10;
             receivedOutput = b.computeDiscount(quantity, itemCost);
             if (receivedOutput == expectedOutput) {
                 resultColor = C.CORRECT;
