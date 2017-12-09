@@ -11,7 +11,7 @@ public class TestsIncrementable {
             setTotalPoints(full);
 
             System.out.print(indent() + "Interface? - ");
-            if(Incrementable.class.getModifiers() == Modifier.INTERFACE + Modifier.PUBLIC){
+            if(Incrementable.class.isInterface()){
                 System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
                 addPoints(full);
             }
@@ -29,28 +29,16 @@ public class TestsIncrementable {
             int half = 2;
             setTotalPoints(full);
 
-            System.out.print(indent() + "public and void return? - ");
+            System.out.print(indent() + "exists and returns void? - ");
             try {
                 Method m = Incrementable.class.getMethod("increment");
-                if(m.getModifiers() == Modifier.PUBLIC) {
-                    if(m.getReturnType().equals(Void.TYPE)) {
-                        addPoints(full);
-                        System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
-                    }
-                    else {
-                        addPoints(half);
-                        System.out.println(C.PARTCORRECT + "does not return void - " + half + "/" + full + C.RESET);
-                    }
+                if(m.getReturnType().equals(Void.TYPE)) {
+                    addPoints(full);
+                    System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
                 }
                 else {
-                    if(m.getReturnType().equals(Void.TYPE)) {
-                        addPoints(half);
-                        System.out.println(C.PARTCORRECT + "void but not public - " + half + "/" + full + C.RESET);
-                    }
-                    else {
-                        addPoints(half - 1);
-                        System.out.println(C.PARTCORRECT + "neither public nor void - " + half + "/" + full + C.RESET);
-                    }
+                    addPoints(half);
+                    System.out.println(C.PARTCORRECT + "exists but does not return void - " + half + "/" + full + C.RESET);
                 }
             }
             catch (NoSuchMethodException e) {
@@ -68,29 +56,18 @@ public class TestsIncrementable {
             int half = 2;
             setTotalPoints(full);
 
-            System.out.print(indent() + "public and int return? - ");
+            System.out.print(indent() + "exists and returns int? - ");
             try {
-                Method m = Incrementable.class.getMethod("increment");
-                if(m.getModifiers() == Modifier.PUBLIC) {
-                    if(m.getReturnType().equals(int.class)) {
-                        addPoints(full);
-                        System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
-                    }
-                    else {
-                        addPoints(half);
-                        System.out.println(C.PARTCORRECT + "does not return int - " + half + "/" + full + C.RESET);
-                    }
+                Method m = Incrementable.class.getMethod("getValue");
+                if(m.getReturnType().equals(int.class)) {
+                    addPoints(full);
+                    System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
                 }
                 else {
-                    if(m.getReturnType().equals(int.class)) {
-                        addPoints(half);
-                        System.out.println(C.PARTCORRECT + "returns int but not public - " + half + "/" + full + C.RESET);
-                    }
-                    else {
-                        addPoints(half - 1);
-                        System.out.println(C.PARTCORRECT + "neither public nor int return - " + half + "/" + full + C.RESET);
-                    }
+                    addPoints(half);
+                    System.out.println(C.PARTCORRECT + "exists but does not return int - " + half + "/" + full + C.RESET);
                 }
+
             }
             catch (NoSuchMethodException e) {
                 addPoints(half-1);

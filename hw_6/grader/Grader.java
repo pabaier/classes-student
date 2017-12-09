@@ -39,16 +39,33 @@ public class Grader {
 
         // Part 2 test
         
+        // sequential incrementer
+        TestsSequentialIncrementer.Structure secStruct = new TestsSequentialIncrementer.Structure();
+        secStruct.setName("Structure");
+        sequentialIncrementer.add(secStruct);
+
+        TestsSequentialIncrementer.InstanceVariables secInst = new TestsSequentialIncrementer.InstanceVariables();
+        secInst.setName("Instance Variables");
+        sequentialIncrementer.add(secInst);
+
+        TestsSequentialIncrementer.Increment secInc = new TestsSequentialIncrementer.Increment();
+        secInc.setName("Increment()");
+        sequentialIncrementer.add(secInc);
+
+        TestsSequentialIncrementer.GetValue secGetValue = new TestsSequentialIncrementer.GetValue();
+        secGetValue.setName("GetValue()");
+        sequentialIncrementer.add(secGetValue);
+
         // incrementable
         TestsIncrementable.Structure incStruct = new TestsIncrementable.Structure();
         incStruct.setName("Structure");
-        incrementable.add(cpdStruct);
+        incrementable.add(incStruct);
         TestsIncrementable.Increment incInc = new TestsIncrementable.Increment();
         incInc.setName("Increment()");
-        incrementable.add(cpdConst);
+        incrementable.add(incInc);
         TestsIncrementable.GetValue incGetValue = new TestsIncrementable.GetValue();
         incGetValue.setName("GetValue()");
-        incrementable.add(cpdInst);
+        incrementable.add(incGetValue);
 
 
         // Part 1 tests
