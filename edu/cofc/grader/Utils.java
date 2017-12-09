@@ -7,7 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.Files;
 import java.util.stream.Stream;
 import java.io.IOException;
-
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+import java.lang.reflect.Field;
 /**
  * Utils is a utility class with various static methods that are
  * useful when grading
@@ -42,7 +44,6 @@ public class Utils {
      * @param doc the string to search
      * @@return true if regex is found in doc, otherwise false
      */
-    // searches through the doc string for regex
     public static boolean isRegexInString(String regex, String doc) {
         if(doc.equals(""))
             return false;
@@ -55,5 +56,21 @@ public class Utils {
         catch(Exception e) {
             return false;
         }
+    }
+
+    /**
+     * Finds and returns a field of the desired type in the given class.
+     * Returns null if not found
+     * @param given the class to search
+     * @param desired the target class being searched for
+     * @return the field of the desired type
+     */
+    public static Field getFieldOfType(Class given, Class desired) {
+        Field[] allFields = given.getDeclaredFields();
+        for(Field f : allFields) {
+            if(f.getType().equals(desired))
+                return f;
+        }
+        return null;
     }
 }
