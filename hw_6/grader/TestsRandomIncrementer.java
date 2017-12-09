@@ -105,7 +105,7 @@ public class TestsRandomIncrementer {
                 inc.increment();
             }
             catch (Throwable t) {
-                System.out.println(indent(2) + C.PARTCORRECT + "could not run increment()" C.RESET);
+                System.out.println(indent(2) + C.PARTCORRECT + "could not run increment()" + C.RESET);
                 return;
             }
             for(int i = 0; i < results.length; i++) {

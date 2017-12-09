@@ -19,13 +19,13 @@ public class TestsUML extends SingleTest{
         points += in.nextInt();
         
         System.out.println(indent() + "SequentialIncrementer");
-        System.out.print(indent(2) + "getValue() - ");
+        System.out.print(indent(2) + "instance variable - ");
         points += in.nextInt();
         System.out.print(indent(2) + "inherits from Incrementable - ");
         points += in.nextInt();
         
         System.out.println(indent() + "RandomIncrementer");
-        System.out.print(indent(2) + "getValue() - ");
+        System.out.print(indent(2) + "instance variable - ");
         points += in.nextInt();
         System.out.print(indent(2) + "inherits from Incrementable - ");
         points += in.nextInt();
