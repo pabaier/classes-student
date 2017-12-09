@@ -96,14 +96,18 @@ public class TestsRandomIncrementer {
                 addPoints(half);
                 System.out.println(indent() + C.PARTCORRECT + "not random" + args + " - " + half + "/" + full + C.RESET);
             }
-            
-
-
 
             System.out.println();
             results = new Integer[5];
             System.out.println(indent() + "Increments randomly");
             System.out.format(titleFormat, "increment1", "increment2", "increment3", "increment4", "increment5");
+            try {
+                inc.increment();
+            }
+            catch (Throwable t) {
+                System.out.println(indent(2) + C.PARTCORRECT + "could not run increment()" C.RESET);
+                return;
+            }
             for(int i = 0; i < results.length; i++) {
                 inc.increment();
                 try {

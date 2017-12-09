@@ -31,7 +31,7 @@ public class TestsIncrementable {
 
             System.out.print(indent() + "exists and returns void? - ");
             try {
-                Method m = Incrementable.class.getMethod("increment");
+                Method m = Incrementable.class.getDeclaredMethod("increment");
                 if(m.getReturnType().equals(Void.TYPE)) {
                     addPoints(full);
                     System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
@@ -58,7 +58,7 @@ public class TestsIncrementable {
 
             System.out.print(indent() + "exists and returns int? - ");
             try {
-                Method m = Incrementable.class.getMethod("getValue");
+                Method m = Incrementable.class.getDeclaredMethod("getValue");
                 if(m.getReturnType().equals(int.class)) {
                     addPoints(full);
                     System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);

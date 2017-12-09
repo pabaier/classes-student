@@ -32,8 +32,8 @@ public class TestsDiscountPolicy {
             System.out.print(indent() + "Abstract ComputeDiscount? - ");
             Class[] params = {int.class, double.class};
             try {
-                Method m = DiscountPolicy.class.getMethod("computeDiscount", params);
-                if(m.getModifiers() == Modifier.ABSTRACT + Modifier.PUBLIC) {
+                Method m = DiscountPolicy.class.getDeclaredMethod("computeDiscount", params);
+                if(m.getModifiers() == Modifier.ABSTRACT + Modifier.PUBLIC || m.getModifiers() == Modifier.ABSTRACT) {
                     addPoints(full);
                     System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
                 }
@@ -43,6 +43,7 @@ public class TestsDiscountPolicy {
                 }
             }
             catch (NoSuchMethodException e) {
+                System.out.println(e);
                 addPoints(half-1);
                 System.out.println(C.PARTCORRECT + "no computeDiscount method - " + (half - 1) + "/" + full + C.RESET);
             }

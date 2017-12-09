@@ -20,7 +20,7 @@ do
     java_files+=$a$java" "
 done
 
-cd $graderdir
+# cd $graderdir
 if [ -z "$1" ]
 then
     # get array of student folders (studentFolders)
@@ -47,10 +47,11 @@ then
         do
             cp $submissions$singleStudentFolder$newFiles$java $graderdir 2>> ${graderdir}error
         done
+        cd $graderdir
         javac -d $classesdir $java_files
 
         # run grader
-        cd classes
+        cd $classesdir
         java Grader
         cd ..
     done
@@ -69,6 +70,7 @@ else
     do
         cp $submissions$1/$newFiles$java $graderdir #2>> ${graderdir}error
     done
+    cd $graderdir
     javac -d $classesdir $java_files #2>> ${graderdir}error
     # run grader
     cd classes

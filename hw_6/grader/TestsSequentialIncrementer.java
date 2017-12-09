@@ -94,7 +94,7 @@ public class TestsSequentialIncrementer {
             }
             catch(Throwable t) {
                 addPoints(half);
-                System.out.println(C.PARTCORRECT + "could not run increment() - " + half + "/" + full + C.RESET);
+                System.out.println(indent() + C.PARTCORRECT + "could not run increment() - " + half + "/" + full + C.RESET);
                 return;
             }
 
