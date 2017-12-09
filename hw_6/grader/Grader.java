@@ -13,13 +13,15 @@ public class Grader {
         TestOutline buyNItemsGetOneFree = new TestOutline(C.UNDERLINE + "BuyNItemsGetOneFree" + C.RESET);
         TestOutline combinedDiscount = new TestOutline(C.UNDERLINE + "CombinedDiscount" + C.RESET);
         TestOutline couponDiscount = new TestOutline(C.UNDERLINE + "CouponDiscount" + C.RESET);
-        TestsDriver td = new TestsDriver();
-        td.setName(C.UNDERLINE + "HW6Part1" + C.RESET);
-
+        TestsDriver td1 = new TestsDriver();
+        td1.setName(C.UNDERLINE + "HW6Part1" + C.RESET);
+        
         // part 2
         TestOutline incrementable = new TestOutline(C.UNDERLINE + "Incrementable" + C.RESET);
         TestOutline sequentialIncrementer = new TestOutline(C.UNDERLINE + "SequentialIncrementer" + C.RESET);
         TestOutline randomIncrementer = new TestOutline(C.UNDERLINE + "RandomIncrementer" + C.RESET);
+        TestsDriver td2 = new TestsDriver();
+        td2.setName(C.UNDERLINE + "HW6Part2" + C.RESET);
 
         root.add(part1);
         root.add(part2);
@@ -28,14 +30,25 @@ public class Grader {
         part1.add(buyNItemsGetOneFree);
         part1.add(combinedDiscount);
         part1.add(couponDiscount);
-        part1.add(td);
+        // part1.add(td1);
         part2.add(incrementable);
         part2.add(sequentialIncrementer);
         part2.add(randomIncrementer);
+        // part2.add(td2);
 
 
         // Part 2 test
         
+        // incrementable
+        TestsIncrementable.Structure incStruct = new TestsIncrementable.Structure();
+        incStruct.setName("Structure");
+        incrementable.add(cpdStruct);
+        TestsIncrementable.Increment incInc = new TestsIncrementable.Increment();
+        incInc.setName("Increment()");
+        incrementable.add(cpdConst);
+        TestsIncrementable.GetValue incGetValue = new TestsIncrementable.GetValue();
+        incGetValue.setName("GetValue()");
+        incrementable.add(cpdInst);
 
 
         // Part 1 tests
