@@ -138,7 +138,7 @@ public class TestsSequentialIncrementer {
                 inc = new SequentialIncrementer();
             }
             catch(Throwable t) {
-                System.out.println(indent() + "Could not initialize SequentialIncrementer");
+                System.out.println("Could not initialize SequentialIncrementer");
                 addPoints(half - 1);
                 return;
             }
@@ -151,7 +151,7 @@ public class TestsSequentialIncrementer {
                 args = field.getInt(inc);
             }
             catch(Throwable t) {
-                System.out.println(indent() + "Could not get instance variable");
+                System.out.println("Could not get instance variable");
                 addPoints(half - 1);
                 return;
             }
@@ -161,7 +161,7 @@ public class TestsSequentialIncrementer {
                 returnedValue = inc.getValue();
             }
             catch(Throwable t) {
-                System.out.println(indent() + "Could not run getValue()");
+                System.out.println("Could not run getValue()");
                 addPoints(half - 1);
                 return;    
             }
