@@ -31,6 +31,20 @@ public class Grader {
 
         // tests
 
+        // buy n items
+        TestsBuyNItemsGetOneFree.Structure bnStruct = new TestsBuyNItemsGetOneFree.Structure();
+        bnStruct.setName("Structure");
+        buyNItemsGetOneFree.add(bnStruct);
+        TestsBuyNItemsGetOneFree.Constructor bnConst = new TestsBuyNItemsGetOneFree.Constructor();
+        bnConst.setName("Constructor");
+        buyNItemsGetOneFree.add(bnConst);
+        TestsBuyNItemsGetOneFree.InstanceVariables bnInst = new TestsBuyNItemsGetOneFree.InstanceVariables();
+        bnInst.setName("Instance Variables");
+        buyNItemsGetOneFree.add(bnInst);
+        TestsBuyNItemsGetOneFree.ComputeDiscount bnCompDis = new TestsBuyNItemsGetOneFree.ComputeDiscount();
+        bnCompDis.setName("ComputeDiscount()");
+        buyNItemsGetOneFree.add(bnCompDis);
+
         // bulk discount
         TestsBulkDiscount.Structure bdStruct = new TestsBulkDiscount.Structure();
         bdStruct.setName("Structure");
@@ -49,7 +63,6 @@ public class Grader {
         TestsDiscountPolicy.Constructor dpConst = new TestsDiscountPolicy.Constructor();
         dpConst.setName("Constructor");
         discountPolicy.add(dpConst);
-
         TestsDiscountPolicy.ComputeDiscount dpCompute = new TestsDiscountPolicy.ComputeDiscount();
         dpCompute.setName("ComputeDiscount");
         discountPolicy.add(dpCompute);
