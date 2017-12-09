@@ -123,19 +123,21 @@ public class TestsCouponDiscount {
         public void exec() {
             int full = 3;
             int half = 2;
-            setTotalPoints(full * 3);
+            setTotalPoints(full * 2);
             CouponDiscount b;
-            int minimum = 3;
-            int percent = 10;
-            int quantity = 2;
-            double itemCost = 25;
+            double[] couponValue = {1.25, 0.25};
+            int[] maxUses = {3, 5};
+            int[] quantity = {8, 2};
+            double itemCost = 13.75;
+            double[] expectedOutput = {3.75, 0.5};
             double receivedOutput;
+            int i = 0;
 
-            String titleFormat = indent() + "| %-7s | %-7s | %-8s | %-8s | %-8s | %-8s |%n";
-            String dataFormat = indent() + "| %-7d | %-7d | %-8d | %-8.2f | %-8.2f | %-17s |%n";
+            String titleFormat = indent() + "| %-11s | %-7s | %-8s | %-8s | %-8s | %-8s |%n";
+            String dataFormat = indent() + "| %-11.2f | %-7d | %-8d | %-8.2f | %-8.2f | %-17s |%n";
 
             try{
-                b = new CouponDiscount(minimum, percent);
+                b = new CouponDiscount(couponValue[0], maxUses[0]);
             }
             catch(Throwable t) {
                 System.out.println(indent() + C.INCORRECT + "Could not initialize CouponDiscount object" + C.RESET);
@@ -143,9 +145,8 @@ public class TestsCouponDiscount {
                 return;
             }
             
-            double expectedOutput = 0;
             try{
-                receivedOutput = b.computeDiscount(quantity, itemCost);
+                receivedOutput = b.computeDiscount(quantity[0], itemCost);
             }
             catch(Throwable t) {
                 System.out.println(indent() + C.INCORRECT + "Could not run computeDiscount() method" + C.RESET);
@@ -153,63 +154,22 @@ public class TestsCouponDiscount {
                 return;    
             }
             String resultColor = C.CORRECT;
-
-            // test 1
-            if (receivedOutput == expectedOutput) {
-                resultColor = C.CORRECT;
-                addPoints(full);
-            }
-            else {
-                resultColor = C.PARTCORRECT;
-                addPoints(half);
-            }
-            System.out.format(titleFormat,"minimum", "percent", "quantity", "itemCost", "expected", "returned");
-            System.out.format(dataFormat, minimum, percent, quantity, itemCost, expectedOutput, resultColor + String.format("%.2f", receivedOutput) + C.RESET);
+            System.out.format(titleFormat,"couponValue", "maxUses", "quantity", "itemCost", "expected", "returned");
             
-            // test 2
-            quantity++;
-            expectedOutput = 0;
-            receivedOutput = b.computeDiscount(quantity, itemCost);
-            if (receivedOutput == expectedOutput) {
-                resultColor = C.CORRECT;
-                addPoints(full);
-            }
-            else {
-                resultColor = C.PARTCORRECT;
-                addPoints(half);
-            }
-            System.out.format(dataFormat, minimum, percent, quantity, itemCost, expectedOutput, resultColor + String.format("%.2f", receivedOutput) + C.RESET);
-            
-            // test 3
-            quantity++;
-            expectedOutput = 10;
-            receivedOutput = b.computeDiscount(quantity, itemCost);
-            if (receivedOutput == expectedOutput) {
-                resultColor = C.CORRECT;
-                addPoints(full);
-            }
-            else {
-                resultColor = C.PARTCORRECT;
-                addPoints(half);
-            }
-            System.out.format(dataFormat, minimum, percent, quantity, itemCost, expectedOutput, resultColor + String.format("%.2f", receivedOutput) + C.RESET);
-
-
-            // try
-            // if (params.length == 2) {
-            //     if(params[0].equals(int.class) && params[1].equals(int.class)) {
-            //         System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
-            //         addPoints(full);
-            //     }
-            //     else {
-            //         System.out.println(C.PARTCORRECT + "no - incorrect parameter types - " + (half) + "/" + full + C.RESET);
-            //         addPoints(half);
-            //     }
-            // }
-            // else {
-            //     System.out.println(C.INCORRECT + "no - need 2 parameters in constructor - " + (half-1) + "/" + full + C.RESET);
-            //     addPoints(half - 1);
-            // }
+            do {
+                b = new CouponDiscount(couponValue[i], maxUses[i]);
+                receivedOutput = b.computeDiscount(quantity[i], itemCost);
+                if (receivedOutput == expectedOutput[i]) {
+                    resultColor = C.CORRECT;
+                    addPoints(full);
+                }
+                else {
+                    resultColor = C.PARTCORRECT;
+                    addPoints(half);
+                }
+                System.out.format(dataFormat, couponValue[i], maxUses[i], quantity[i], itemCost, expectedOutput[i], resultColor + String.format("%.2f", receivedOutput) + C.RESET);
+                i++;
+            }while(i < couponValue.length);
         }
     }
 

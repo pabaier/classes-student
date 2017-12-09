@@ -13,6 +13,9 @@ public class Grader {
         TestOutline buyNItemsGetOneFree = new TestOutline(C.UNDERLINE + "BuyNItemsGetOneFree" + C.RESET);
         TestOutline combinedDiscount = new TestOutline(C.UNDERLINE + "CombinedDiscount" + C.RESET);
         TestOutline couponDiscount = new TestOutline(C.UNDERLINE + "CouponDiscount" + C.RESET);
+        TestsDriver td = new TestsDriver();
+        td.setName(C.UNDERLINE + "HW6Part1" + C.RESET);
+
         // part 2
         TestOutline incrementable = new TestOutline(C.UNDERLINE + "Incrementable" + C.RESET);
         TestOutline sequentialIncrementer = new TestOutline(C.UNDERLINE + "SequentialIncrementer" + C.RESET);
@@ -25,11 +28,17 @@ public class Grader {
         part1.add(buyNItemsGetOneFree);
         part1.add(combinedDiscount);
         part1.add(couponDiscount);
+        part1.add(td);
         part2.add(incrementable);
         part2.add(sequentialIncrementer);
         part2.add(randomIncrementer);
 
-        // tests
+
+        // Part 2 test
+        
+
+
+        // Part 1 tests
 
         // coupon discount
         TestsCouponDiscount.Structure cpdStruct = new TestsCouponDiscount.Structure();
