@@ -31,6 +31,34 @@ public class Grader {
 
         // tests
 
+        // coupon discount
+        TestsCouponDiscount.Structure cpdStruct = new TestsCouponDiscount.Structure();
+        cpdStruct.setName("Structure");
+        couponDiscount.add(cpdStruct);
+        TestsCouponDiscount.Constructor cpdConst = new TestsCouponDiscount.Constructor();
+        cpdConst.setName("Constructor");
+        couponDiscount.add(cpdConst);
+        TestsCouponDiscount.InstanceVariables cpdInst = new TestsCouponDiscount.InstanceVariables();
+        cpdInst.setName("Instance Variables");
+        couponDiscount.add(cpdInst);
+        TestsCouponDiscount.ComputeDiscount cpdCompDis = new TestsCouponDiscount.ComputeDiscount();
+        cpdCompDis.setName("ComputeDiscount()");
+        couponDiscount.add(cpdCompDis);
+
+        // combined discount
+        TestsCombinedDiscount.Structure cdStruct = new TestsCombinedDiscount.Structure();
+        cdStruct.setName("Structure");
+        combinedDiscount.add(cdStruct);
+        TestsCombinedDiscount.Constructor cdConst = new TestsCombinedDiscount.Constructor();
+        cdConst.setName("Constructor");
+        combinedDiscount.add(cdConst);
+        TestsCombinedDiscount.InstanceVariables cdInst = new TestsCombinedDiscount.InstanceVariables();
+        cdInst.setName("Instance Variables");
+        combinedDiscount.add(cdInst);
+        TestsCombinedDiscount.ComputeDiscount cdCompDis = new TestsCombinedDiscount.ComputeDiscount();
+        cdCompDis.setName("ComputeDiscount()");
+        combinedDiscount.add(cdCompDis);
+
         // buy n items
         TestsBuyNItemsGetOneFree.Structure bnStruct = new TestsBuyNItemsGetOneFree.Structure();
         bnStruct.setName("Structure");

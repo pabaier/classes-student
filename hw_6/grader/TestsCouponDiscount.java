@@ -2,7 +2,7 @@ import java.lang.reflect.Field;
 
 import edu.cofc.grader.*;
 
-public class TestsBulkDiscount {
+public class TestsCouponDiscount {
     public static class Structure extends SingleTest{
         public void exec() {
             int full = 2;
@@ -10,7 +10,7 @@ public class TestsBulkDiscount {
             setTotalPoints(full);
             
             System.out.print(indent() + "Extends DiscountPolicy? - ");
-            Class bdSuper = BulkDiscount.class.getSuperclass();
+            Class bdSuper = CouponDiscount.class.getSuperclass();
             if(bdSuper.equals(DiscountPolicy.class)){
                 System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
                 addPoints(full);
@@ -29,11 +29,11 @@ public class TestsBulkDiscount {
             int half = 2;
             setTotalPoints(full);
 
-            System.out.print(indent() + "Creates BulkDiscount? - ");
+            System.out.print(indent() + "Creates CouponDiscount? - ");
 
-            Class[] params = BulkDiscount.class.getConstructors()[0].getParameterTypes();
+            Class[] params = CouponDiscount.class.getConstructors()[0].getParameterTypes();
             if (params.length == 2) {
-                if(params[0].equals(int.class) && params[1].equals(int.class)) {
+                if(params[0].equals(double.class) && params[1].equals(int.class)) {
                     System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
                     addPoints(full);
                 }
@@ -55,10 +55,10 @@ public class TestsBulkDiscount {
             int half = 2;
             setTotalPoints(full * 2);
 
-            System.out.print(indent() + "int \"minimum\" instance variable? - ");
+            System.out.print(indent() + "double \"couponValue\" instance variable? - ");
             try {
-                Field min = BulkDiscount.class.getDeclaredField("minimum");
-                if(min.getType().equals(int.class)) {
+                Field min = CouponDiscount.class.getDeclaredField("couponValue");
+                if(min.getType().equals(double.class)) {
                     addPoints(full);
                     System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
                 }
@@ -70,8 +70,8 @@ public class TestsBulkDiscount {
             }
             catch (NoSuchFieldException e) {
                 try {
-                    Field[] allMin = BulkDiscount.class.getDeclaredFields();
-                    if(allMin[0].getType().equals(int.class)) {
+                    Field[] allMin = CouponDiscount.class.getDeclaredFields();
+                    if(allMin[0].getType().equals(double.class)) {
                         addPoints(full - 1);
                         System.out.println(C.PARTCORRECT + "see class diagram for variable name - " + (full - 1) + "/" + full + C.RESET);
                     }
@@ -86,9 +86,9 @@ public class TestsBulkDiscount {
                 }
             }
 
-            System.out.print(indent() + "int \"percent\" instance variable? - ");
+            System.out.print(indent() + "int \"maxUses\" instance variable? - ");
             try {
-                Field percent = BulkDiscount.class.getDeclaredField("percent");
+                Field percent = CouponDiscount.class.getDeclaredField("maxUses");
                 if(percent.getType().equals(int.class)) {
                     addPoints(full);
                     System.out.println(C.CORRECT + "yes! - " + full + "/" + full + C.RESET);
@@ -101,7 +101,7 @@ public class TestsBulkDiscount {
             }
             catch (NoSuchFieldException e) {
                 try {
-                    Field[] allPercent = BulkDiscount.class.getDeclaredFields();
+                    Field[] allPercent = CouponDiscount.class.getDeclaredFields();
                     if(allPercent[1].getType().equals(int.class)) {
                         addPoints(full - 1);
                         System.out.println(C.PARTCORRECT + "see class diagram for variable name - " + (full - 1) + "/" + full + C.RESET);
@@ -124,7 +124,7 @@ public class TestsBulkDiscount {
             int full = 3;
             int half = 2;
             setTotalPoints(full * 3);
-            BulkDiscount b;
+            CouponDiscount b;
             int minimum = 3;
             int percent = 10;
             int quantity = 2;
@@ -135,10 +135,10 @@ public class TestsBulkDiscount {
             String dataFormat = indent() + "| %-7d | %-7d | %-8d | %-8.2f | %-8.2f | %-17s |%n";
 
             try{
-                b = new BulkDiscount(minimum, percent);
+                b = new CouponDiscount(minimum, percent);
             }
             catch(Throwable t) {
-                System.out.println(indent() + C.INCORRECT + "Could not initialize BulkDiscount object" + C.RESET);
+                System.out.println(indent() + C.INCORRECT + "Could not initialize CouponDiscount object" + C.RESET);
                 addPoints(getTotalPoints() / 2);
                 return;
             }

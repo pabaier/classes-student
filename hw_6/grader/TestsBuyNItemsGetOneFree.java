@@ -102,8 +102,8 @@ public class TestsBuyNItemsGetOneFree {
             double[] expectedOutputs = {0,11,11,22};
             int i = 0;
 
-            String titleFormat = indent() + "| %-3s | %-8s | %-8s | %-15s | %-15s |%n";
-            String dataFormat = indent() + "| %-3d | %-8d | %-8.2f | %-15.2f | %-24s |%n";
+            String titleFormat = indent() + "| %-3s | %-8s | %-8s | %-8s | %-8s |%n";
+            String dataFormat = indent() + "| %-3d | %-8d | %-8.2f | %-8.2f | %-17s |%n";
 
             try{
                 b = new BuyNItemsGetOneFree(n);
@@ -123,7 +123,7 @@ public class TestsBuyNItemsGetOneFree {
                 return;    
             }
             String resultColor = C.CORRECT;
-            System.out.format(titleFormat,"n", "quantity", "itemCost", "expected output", "received output");
+            System.out.format(titleFormat,"n", "quantity", "itemCost", "expected", "returned");
             do {
                 receivedOutput = b.computeDiscount(quantityTests[i], itemCost);
                 // test 1
