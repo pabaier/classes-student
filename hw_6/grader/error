@@ -105,3 +105,66 @@ rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/HW6Part2.class': No 
 rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/Incrementable.class': No such file or directory
 rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/RandomIncrementer.class': No such file or directory
 rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/SequentialIncrementer.class': No such file or directory
+AndersonJ/
+BarberC/
+BarrettR/
+CraggDJ/
+DudleyM/
+DzierzkoA/
+GandyWellsO/
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/BulkDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/BuyNItemsGetOneFree.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/CombinedDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/CouponDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/DiscountPolicy.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/HW6Part1.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/HW6Part2.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/Incrementable.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/RandomIncrementer.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/SequentialIncrementer.class': No such file or directory
+GerwatowskiC/
+GrayT/
+HaleyJ/
+HancockM/
+HartungL/
+HigginsS/
+jacksons/
+JureckiG/
+Lingenfeltera/
+MainarS/
+MarshallR/
+MattoxJ/
+MooreW/
+cp: cannot stat '/mnt/sda5/School/221/hw_6/submissions/MooreW/SequentialIncrementer.java': No such file or directory
+PappasS/
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/BulkDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/BuyNItemsGetOneFree.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/CombinedDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/CouponDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/DiscountPolicy.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/HW6Part1.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/HW6Part2.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/Incrementable.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/RandomIncrementer.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/SequentialIncrementer.java': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/SequentialIncrementer.class': No such file or directory
+PerrymanA/
+RabiuJ/
+RobinsonA/
+VeloffS/
+WashingtonM/
+WinsteadK/
+WoodsA/
+cp: cannot stat '/mnt/sda5/School/221/hw_6/submissions/WoodsA/CouponDiscount.java': No such file or directory
+YibJ/
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/BulkDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/BuyNItemsGetOneFree.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/CombinedDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/CouponDiscount.java': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/CouponDiscount.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/DiscountPolicy.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/HW6Part1.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/HW6Part2.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/Incrementable.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/RandomIncrementer.class': No such file or directory
+rm: cannot remove '/mnt/sda5/School/221/hw_6/grader/classes/SequentialIncrementer.class': No such file or directory

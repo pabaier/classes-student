@@ -4,7 +4,7 @@
     author: Adam Dzierzko
  */
 
-public class H6Part1 {
+public class HW6Part1 {
 
     public static void main(String[] args) {
 

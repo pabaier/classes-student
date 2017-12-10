@@ -5,7 +5,7 @@
  *
  * Ashley Woods
  */
-public class CuponDiscount extends DiscountPolicy
+public class CouponDiscount extends DiscountPolicy
 {
     double cuponValue;
     int maxUses;

@@ -1,5 +1,5 @@
 //Elex Moore
-public class SequentialIncrement implements Incrementable{
+public class SequentialIncrementer implements Incrementable{
 	private int sValue = 0;
 	
 	public void increment(int value) {
