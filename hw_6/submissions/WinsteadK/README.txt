@@ -1,0 +1,1 @@
+Talked to Stefan Veloff about interface structure and UML Drawing
