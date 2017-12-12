@@ -9,7 +9,7 @@ import java.util.*;
 import java.io.*;
 
 //reverseString class:
-public class reverseString {
+public class HW7 {
 	public static void main (String [] args) {
 		Scanner scnr = new Scanner(System.in);
 		//print statement asking user to enter the file name:

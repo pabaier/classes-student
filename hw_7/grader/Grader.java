@@ -42,14 +42,17 @@ public class Grader {
         problem3.add(p3A);
 
         root.run();
+        System.out.println("Extra: ");
+        Scanner in = new Scanner(System.in);
+        String comments = in.nextLine(); 
+        if(!comments.equals("-"))
+            root.addPoints(in.nextInt());
+        System.out.println("Final Score: " + root.getPointsEarned() + "/" + root.getTotalPoints());
+        double percent = Math.ceil(((double)root.getPointsEarned())/root.getTotalPoints() * 100);
+        System.out.println(C.BLUE + (int)percent + "%");
+        System.out.println();
 
 
-        // TestOutline problem2 = new TestOutline("Problem 2");
-        // TestOutline problem3 = new TestOutline("Problem 3");
-        
-        // // part 1
-        // TestOutline discountPolicy = new TestOutline(C.UNDERLINE + "DiscountPolicy" + C.RESET);
-        // TestOutline bulkDiscount = new TestOutline(C.UNDERLINE + "BulkDiscount" + C.RESET);
 
     }
 }

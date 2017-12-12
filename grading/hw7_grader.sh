@@ -17,17 +17,18 @@ if [ -z "$1" ]
 then
     for d in */
     do
+        echo " "
         echo $d
-        cd $d
-        javac *.java
-        java $student_java_files
-        rm *$class
+        cd $classesdir
+        java $graderfile
         cd $submissions
+        echo " "
     done    
 else
+    echo " "
     echo $1
-    cd $1
-    javac *.java
-    java $student_java_files
-    rm *$class
+    cd $classesdir
+    java $graderfile
+    cd $submissions
+    echo " "
 fi

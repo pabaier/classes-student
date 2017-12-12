@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class TestsProblem1 {
     public static class Tests extends SingleTest {
         public void exec() {
-            setTotalPoints(5);
 
             String[] expectedOutput = { "it do can you it dream can you if",
                                         "waddle",
@@ -12,7 +11,9 @@ public class TestsProblem1 {
                                         "kayak",
                                         "float like a butterfly a like float"
                                         };
-    
+
+            setTotalPoints(expectedOutput.length);                                        
+
             System.out.println(indent() + C.BLUE + "1 is correct, 0 in incorrect" + C.RESET);
             Scanner in = new Scanner(System.in);
             for(int i = 0; i < expectedOutput.length; i++) {
@@ -24,14 +25,16 @@ public class TestsProblem1 {
     
     public static class Algorithm extends SingleTest {
         public void exec() {
-            setTotalPoints(3);
-    
+            
             System.out.println(indent() + C.BLUE + "1 is correct, 0 in incorrect" + C.RESET);
             Scanner in = new Scanner(System.in);
-            String[] tests = { "Reads the line",
-                                "Pushes each word to stack",
-                                "Pops each word from the stack" 
+            String[] tests = { "Read the line",
+                                "Push each word to stack",
+                                "Pop each word from the stack" 
                             };
+
+            setTotalPoints(tests.length);
+                            
             for(int i = 0; i < tests.length; i++) {
                 System.out.print(indent(2) + C.RESET + tests[i] + ": " + C.CYAN);
                 addPoints(in.nextInt());

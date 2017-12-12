@@ -7,7 +7,7 @@
 import java.util.*;
 import java.io.*;
 
-public class HomeWork7  {
+public class HW7  {
     public static void main(String[] args)throws IOException{
         Deque<String> stack1 = new ArrayDeque<>();
         Scanner name = new Scanner(System.in);

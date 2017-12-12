@@ -3,7 +3,7 @@
 import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.*;
-public class ReverseString {
+public class HW7 {
 
 	public static void main(String[] args) {
 		

@@ -8,7 +8,7 @@ import java.io.*;
  * homework 7
  * @version (a version number or a date)
  */
-public class homework7
+public class HW7
 {
     public static void main(String[] args) throws Exception{
         Scanner name = new Scanner(System.in);
