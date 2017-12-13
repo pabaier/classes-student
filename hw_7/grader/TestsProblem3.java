@@ -29,12 +29,11 @@ public class TestsProblem3 {
             System.out.println(indent() + C.BLUE + "1 is correct, 0 in incorrect" + C.RESET);
             Scanner in = new Scanner(System.in);
             String[] tests = { "read the line",
-                            "split the line into words",
                             "push each word onto the stack",
-                            "push each word onto the queue",
+                            "addLast each word onto the queue",
                             "set up loop",
                             "pop the word from the stack", 
-                            "pop the word from the queue", 
+                            "removeFirst the word from the queue", 
                             "compare word from stack and queue", 
                             "correct return statements" 
                             };

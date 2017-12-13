@@ -36,7 +36,7 @@ public class TestsProblem2 {
                                 "return true if length < 2", 
                                 "otherwise check the fist and last character", 
                                 "if they are the same, get substring without first and last char", 
-                                "pop substring", 
+                                "push substring", 
                                 "otherwise return false" 
                             };
 

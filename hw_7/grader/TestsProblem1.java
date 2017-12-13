@@ -7,7 +7,7 @@ public class TestsProblem1 {
 
             String[] expectedOutput = { "it do can you it dream can you if",
                                         "waddle",
-                                        "saw i rat a it was",
+                                        "saw ti rat tar it was",
                                         "kayak",
                                         "float like a butterfly a like float"
                                         };

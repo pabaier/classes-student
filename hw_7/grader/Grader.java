@@ -7,7 +7,7 @@ public class Grader {
         System.out.println("Test Cases:" + C.GREEN);
         System.out.println("\t1. if you can dream it you can do it");
         System.out.println("\t2. waddle");
-        System.out.println("\t3. was it a rat i saw");
+        System.out.println("\t3. was it tar rat ti saw");
         System.out.println("\t4. kayak");
         System.out.println("\t4. float like a butterfly a like float" + C.RESET);
 
