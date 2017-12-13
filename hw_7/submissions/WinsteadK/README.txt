@@ -1,0 +1,1 @@
+Discussed Stack/Heap with Stefan Veloff and possible ways to go about reading code in stack format
