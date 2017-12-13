@@ -18,7 +18,7 @@ public class HW7
      * printing the results on screen.
      *
      */
-    public static void main() {
+    public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
         boolean contin = true;
         FileInputStream fileStream = null;

@@ -29,7 +29,7 @@ public class HW7 {
 
         System.out.println();
 
-        fileByteStream = new FileInputStream("C:\\Users\\El Greko\\IdeaProjects\\HW7\\src\\testFile.txt");
+        fileByteStream = new FileInputStream("/mnt/sda5/School/221/hw_7/grader/input.txt");
         inFS = new Scanner(fileByteStream);
 
         while (inFS.hasNext()) {
@@ -60,7 +60,7 @@ public class HW7 {
 
         System.out.println();
 
-        fileByteStream = new FileInputStream("C:\\Users\\El Greko\\IdeaProjects\\HW7\\src\\testFile.txt");
+        fileByteStream = new FileInputStream("/mnt/sda5/School/221/hw_7/grader/input.txt");
         inFS = new Scanner(fileByteStream);
 
 

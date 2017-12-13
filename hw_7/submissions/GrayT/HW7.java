@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class HW7 {
 
-	private static final String FILENAME = "D:\\Users\\burpi\\Documents\\Java\\HW7\\src\\dat.dat";
+	private static final String FILENAME = "/mnt/sda5/School/221/hw_7/grader/input.txt";
 	private static Deque<String> wordsStack = new ArrayDeque<String>();
 	private static Deque<String> wordsQue = new ArrayDeque<String>();
 	

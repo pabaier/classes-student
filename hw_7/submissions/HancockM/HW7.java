@@ -20,7 +20,7 @@ public class HW7
         System.out.println("Problem 1");
         System.out.println("Opening file file.txt");
         
-        fileByteStream = new FileInputStream("file.txt");
+        fileByteStream = new FileInputStream("/mnt/sda5/School/221/hw_7/grader/input.txt");
         inFS = new Scanner(fileByteStream);
         String fileLine;
         String fileText;
@@ -45,7 +45,7 @@ public class HW7
         System.out.println("Problem 2");
         System.out.println("Opening file file.txt");
         
-        fileByteStream = new FileInputStream("file.txt");
+        fileByteStream = new FileInputStream("/mnt/sda5/School/221/hw_7/grader/input.txt");
         inFS = new Scanner(fileByteStream);
 
         while(inFS.hasNextLine()){
@@ -76,7 +76,7 @@ public class HW7
         System.out.println("Problem 3");
         System.out.println("Opening file file.txt");
         
-        fileByteStream = new FileInputStream("file.txt");
+        fileByteStream = new FileInputStream("/mnt/sda5/School/221/hw_7/grader/input.txt");
         inFS = new Scanner(fileByteStream);
 
         while(inFS.hasNextLine()){
