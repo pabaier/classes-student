@@ -1,0 +1,34 @@
+<html>
+    <body onload="focus();">
+        <script type="text/javascript">
+            var tooClose = false;
+            function doCheck(){
+                var value = document.getElementById("t1").value;
+                for(var i = 1; i <= value.length; i++){
+                    if (value.charAt(i)==value.charAt(i-1)) {
+                        tooClose = true;
+                        break;
+                    }
+                    else
+                        tooClose = false;
+                }
+                if(tooClose){
+                    document.getElementById("s1").innerHTML = " DOUBLE LETTERS!";
+                }
+                else if(document.getElementById("t1").value.length < 6){
+                    document.getElementById("s1").innerHTML = " Password Too Short!";
+                }
+                else{
+                    document.getElementById("s1").innerHTML = " Good Password!";
+                }
+            }
+
+            function focus(){
+                document.getElementById("t1").focus();
+            }
+        </script>
+
+        <input type="text" id="t1" onkeypress="doCheck();"><span id=s1></span>
+
+    </body>
+</html>

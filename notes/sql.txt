@@ -1,0 +1,14 @@
+ssh into server
+
+mysql -p
+
+show databases;
+
+use CSIS604h
+show tables;
+describe [table name]
+create table [name] ([field name] [type], ...)
+    types:
+        varchar(20)
+insert into [table name] ([field name]) values ([value])
+select * from [table name]

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>The XMLHttpRequest Object</h1>
+        <h3>Start typing a name in the input field below:</h3>
+
+        <form action="">
+            First name: <input type="text" id="txt1" onkeyup="showHint(this.value)">
+            
+        </form>
+        <p onclick="rangen(this)">Suggestions: <span id="txtHint"></span></p>
+
+        <form action="">
+            Try clicking a div:
+            <div id="div1" onclick="rangen(this)">a</div>
+            <div id="div2" onclick="rangen(this)">a</div>
+            <div id="div3" onclick="rangen(this)">a</div>
+            <div id="div4" onclick="rangen(this)">a</div>
+        </form>
+
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+            <munderover>
+            <mo>&Sum;</mo>
+                <mrow>
+                <mi>n</mi>
+                <mo>=</mo>
+                <mn>1</mn>
+                </mrow>
+                <mrow>
+                <mn>5</mn>
+                </mrow>
+            </munderover>
+            <mrow>
+            <msup>
+                <mrow>
+                <mi>n</mi>
+                </mrow>
+                <mrow>
+                <mn>2</mn>
+                </mrow>
+            </msup>
+            </mrow>
+            </mrow>
+        </math>
+
+
+        <script>
+
+            function rangen(elem) {
+                // console.log(elem);
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        elem.innerHTML = this.responseText;
+                        console.log(this.responseText)
+                    }
+                };
+                xhttp.open("GET", "randNum.php?q=", true);
+                xhttp.send();
+            }
+
+            function showHint(str) {
+                var xhttp;
+                if (str.length == 0) {
+                    document.getElementById("txtHint").innerHTML = "";
+                    return;
+                }
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("txtHint").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "ajax.php?q="+str, true);
+                xhttp.send();
+            }
+        </script>
+    </body>
+</html>
