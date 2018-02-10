@@ -60,9 +60,7 @@
                 xhttp.onreadystatechange = function() {
                     // /*
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log("we're back");
                         var jsonData = JSON.parse(this.responseText);
-                        console.log(jsonData);
                         var board = "<table>";
                         var blankCount = 0;
                         for(row = 0; row < 9; row++) {
@@ -77,6 +75,7 @@
                                 var digit = jsonData['row'+row][col];
                                 if(digit == 0) {
                                     board += "<span id=blank" + blankCount + "><input type='text' class=numInput></span>";
+                                    blankCount++;
                                 }
                                 else {
                                     board += digit;

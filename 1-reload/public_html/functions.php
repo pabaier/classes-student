@@ -64,18 +64,25 @@
                 $attempts = 0;
             }
         }
-        // $return = str_replace($level, '0', $return);
-        setDifficulty($boardArray);
+        setDifficulty($boardArray, $level);
         $boardJson = json_encode($boardArray);
         echo $boardJson;
     }
 
-    function setDifficulty(&$grid){
+    function setDifficulty(&$grid, $level){
         for($i = 0; $i < 9; $i++){
-            $bounds = getBoxByNumber($i);
-            $randRow = rand($bounds[rowStart], $bounds[rowEnd]);
-            $randCol = rand($bounds[colStart], $bounds[colEnd]);
-            $grid['row'.$randRow][$randCol] = 0;
+            $bounds = getBoxByNumber($i + 1);
+            for($j = 0; $j < $level; $j++){
+                $randRow = rand($bounds[rowStart], $bounds[rowEnd]);
+                $randCol = rand($bounds[colStart], $bounds[colEnd]);
+                $previousValue = $grid['row'.$randRow][$randCol];
+                if($previousValue == 0){
+                    $j--;
+                }
+                else{
+                    $grid['row'.$randRow][$randCol] = 0;
+                }
+            }
         }
     }
 
