@@ -1,0 +1,29 @@
+1.
+SELECT beer, price
+FROM Sells
+WHERE bar = 'Blue Angel'
+
+2.
+SELECT Likes.drinker, Drinkers.phone
+FROM Likes
+INNER JOIN Drinkers ON Likes.drinker = Drinkers.name
+WHERE beer = 'Budweiser'
+
+3.
+SELECT f1.bar
+FROM Frequents f1, Frequents f2
+WHERE f1.drinker = 'Vince' AND f2.drinker = 'Herb' AND f1.bar = f2.bar
+
+4.
+SELECT *
+FROM Bars
+WHERE city = 'Chicago' AND 
+((addr IS NULL AND phone IS NOT NULL) OR 
+(addr IS NOT NULL and phone IS NULL))
+
+
+
+Find the names of all beers, and their prices, served by the bar 'Blue Angel'.
+Find the name and phone number of every drinker who likes the beer 'Budweiser'.
+Find all bars frequented by both 'Vince' and 'Herb'.
+Find all bars in 'Chicago' (and display all attributes) for which we know either the address (i.e., addr in our schema) or the phone number but not both.

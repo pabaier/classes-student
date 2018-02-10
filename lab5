@@ -1,0 +1,33 @@
+1.
+SELECT name, nickname
+FROM Kings
+WHERE beginReign <= 1000 AND endReign >= 1000
+
+2.
+SELECT p1.parent, p3.child
+FROM Parents p1
+INNER JOIN Parents p2 ON p1.child = p2.parent
+INNER JOIN Parents p3 ON p2.child = p3.parent
+
+3.
+SELECT name, nickname
+FROM Kings
+WHERE nickname NOT LIKE 'The %'
+
+4.
+SELECT DISTINCT p2.parent
+FROM Parents p2
+INNER JOIN (
+SELECT p1. parent, COUNT(p1.parent) count
+FROM Parents p1
+GROUP BY p1.parent) p3
+ON p2.parent = p3.parent
+WHERE count > 1
+
+5.
+SELECT house, COUNT(name)
+FROM Kings
+GROUP BY house
+
+6.
+

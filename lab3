@@ -1,0 +1,54 @@
+1.
+Select firstName, lastName
+FROM Presidents
+WHERE beginTerm <= 1900 AND endTerm >= 1900
+
+2.
+Select firstName, lastName
+FROM Presidents
+WHERE (endTerm - beginTerm) < 1
+
+3.
+Select COUNT(lastName)
+FROM Presidents
+WHERE (endTerm - beginTerm) > 4
+
+4.
+SELECT p1.lastName
+FROM Presidents p1, Presidents p2
+WHERE p1.lastName = p2.lastName AND p1.firstName <> p2.firstName
+GROUP BY p1.lastName
+
+5.
+SELECT AVG(endTerm - beginTerm)
+FROM Presidents
+WHERE beginTerm > 1900
+
+6.
+SELECT p2.firstName, p2.lastName
+FROM Presidents as p2
+WHERE p2.beginTerm >=
+ (SELECT MIN(endTerm)
+ FROM Presidents as p1
+ WHERE p1.lastName = "Cleveland")
+AND p2.endTerm <= 
+(SELECT MAX(beginTerm)
+ FROM Presidents as p3
+ WHERE p3.lastName = "Cleveland")
+
+
+
+
+Imagine a relation Presidents(firstName, lastName, beginTerm, endTerm) that gives information about US Presidents. Attribute firstName is a string with the first name, and in some cases, one or more middle initials. Attribute lastName is a string with the last name of the president. For example, the previous president has firstName = 'George W.' and his father has firstName = 'George H. W.'; both have lastName = 'Bush'. The last two attributes, beginTerm and endTerm, are the years the president entered and left office, respectively. One subtlety is that Grover Cleveland served two noncontiguous terms. He appears in two tuples, one with the beginning and ending years of his first term and the other for the second term. Write the following queries:
+Which president was in office in 1900? Give his first and last name.
+Which presidents served in only one year? Give their first and last names.
+How many presidents served terms of more than four years (i.e., the difference between the beginning and ending years of their terms is greater than 4)?
+You may know that there are two pairs of presidents that were father and son. But there are a number of other pairs of presidents that shared a last name. Find all the last names belonging to two or more presidents. Do not repeat a last name, and remember that the same person serving two different terms (e.g., Grover Cleveland) does not constitute a case of two presidents with the same last name.
+What is the average length of a president's term for all those terms that began after 1900?
+Which president (first and last names) served between Grover Cleveland's two terms?
+
+
+
+
+
+

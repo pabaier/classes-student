@@ -1,0 +1,20 @@
+CREATE TABLE Ships(
+                name VARCHAR(20),
+                yearLaunched INTEGER,
+                country VARCHAR(20),
+                numGuns INTEGER,
+                gunSize INTEGER,
+                displacement INTEGER
+                );
+CREATE TABLE Battles(
+                ship VARCHAR(20),
+                battleName VARCHAR(50),
+                result VARCHAR(7)
+                );
+                
+INSERT INTO Ships VALUES ('New Jersey', 1943, 'USA', 9, 16, 46000);
+INSERT INTO Ships VALUES ('USS Arizona', 1941, 'USA', 7, 20, 30000);
+INSERT INTO Battles VALUES ('HMS Wingbat', 'Waterloo', 'sunk');
+INSERT INTO Battles VALUES ('UBoat Hornblatz', 'Ichritz', 'ok');
+
+SELECT name, country from Ships where numGuns >= 7
