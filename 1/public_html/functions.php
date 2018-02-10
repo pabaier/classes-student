@@ -1,8 +1,8 @@
 <?php
+    // require 'db.php';
+    $tableName = "sudoku";
 
-    require 'db.php';
-
-    $sql = "delete from Students where id = " . $_REQUEST['id'];
+    // $sql = "delete from Students where id = " . $_REQUEST['id'];
 
     // if (!$result = $conn->query($sql)) {
     //     echo "Error: Our query failed to execute and here is why: </br>";
@@ -86,6 +86,7 @@
             }
         }
         $return = str_replace($level, '0', $return);
+        // $mysqli->query("INSERT INTO sudoku(state) VALUES ($return)");
         echo $return;
     }
 
