@@ -1,36 +1,41 @@
 <?php
-    require 'db.php';
-
     $fn = $_GET['fn'];
-    $level = $_GET['level'];
     switch($fn) {
         case "genBoard":
+            $level = $_GET['level'];
             genBoard($level);
+            break;
+        case "sqlTest":
+            sqlTest();
             break;
         default:
             echo "error: " . $fn;
     }
 
-    // $box1 = array(1,2,3,10,11,12,19,20,21);
-    // $box2 = array(4,5,6,13,14,15,22,23,24);
-    // $box3 = array(7,8,9,16,17,18,25,26,27);
-    // $box4 = array(28,29,30,37,38,39,46,47,48);
-    // $box5 = array(31,32,33,40,41,42,49,50,51);
-    // $box6 = array(34,35,36,43,44,45,52,53,54);
-    // $box7 = array(55,56,57,64,65,66,73,74,75);
-    // $box8 = array(58,59,60,67,68,69,76,77,78);
-    // $box9 = array(61,62,63,70,71,72,79,80,81);
-    // $box1 = array(0,1,2,9,10,11,18,19,20);
-    // $box2 = array(3,4,5,12,13,14,21,22,23);
-    // $box3 = array(6,7,8,15,16,17,24,25,26);
-    // $box4 = array(27,28,29,36,37,38,45,46,47);
-    // $box5 = array(30,31,32,39,40,41,48,49,50);
-    // $box6 = array(33,34,35,42,43,44,51,52,53);
-    // $box7 = array(54,55,56,63,64,65,72,73,74);
-    // $box8 = array(57,58,59,66,67,68,75,76,77);
-    // $box9 = array(60,61,62,69,70,71,78,79,80);
+    function sqlTest(){
+        require 'db.php';
+        // $sql = "INSERT INTO sudoku (state, answer) VALUES ('hi', 'ho')";
+        // $conn->query($sql);
+
+        $sql = "SELECT * FROM sudoku";
+        mysqli_real_query($conn, $sql);
+        $result = mysqli_use_result($conn);
+        while ($row = mysqli_fetch_row($result)) {
+            while(strlen($row[0]) < 81){
+                $row[0] = "0".$row[0];
+            }
+            echo $row[0]."--".$row[1]."<br>";
+        }
+        mysqli_free_result($result);
+        echo "ok";
+        exit;
+
+        $conn->close();
+
+    }
 
     function genBoard($level) {
+        require 'db.php';
         $boardString = "";
         $boardArray = array();
         for($row = 0; $row < 9; $row++){
@@ -48,7 +53,7 @@
                     checkBox($boardArray, $row, $col, $nextInt)
                     ){
                         array_push($boardArray['row'.$row],$nextInt);
-                        $boardString.=$nextInt;
+                        $boardString.="$nextInt";
                         $attempts = 0;
                     }
                 else{
@@ -58,18 +63,22 @@
             }
             if($reset){
                 $boardArray = array();
+                $boardString = "";
                 $return="";
                 $col = 10;
                 $row = -1;
                 $attempts = 0;
             }
         }
-        setDifficulty($boardArray, $level);
+        $boardStringAnswer = $boardString;
+        setDifficulty($boardArray, $boardString, $level);
+        sqlInsert($boardString, $boardStringAnswer);
         $boardJson = json_encode($boardArray);
         echo $boardJson;
     }
-
-    function setDifficulty(&$grid, $level){
+// 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17, 18
+//00,01,02,03,04,05,06,07,08,10, 11, 12, 13, 14, 15, 16, 17, 18, 20
+    function setDifficulty(&$grid, &$stringBoard, $level){
         for($i = 0; $i < 9; $i++){
             $bounds = getBoxByNumber($i + 1);
             for($j = 0; $j < $level; $j++){
@@ -81,6 +90,8 @@
                 }
                 else{
                     $grid['row'.$randRow][$randCol] = 0;
+                    $stringIndex = $randRow * 10 + $randCol - $randRow;
+                    $stringBoard[$stringIndex] = "0";
                 }
             }
         }
@@ -182,5 +193,19 @@
             $box["colEnd"] = 8;
         }
         return $box;
+    }
+
+    function sqlInsert($board, $answer){
+        require 'db.php';
+
+        $sql = "INSERT INTO sudoku (state, answer) VALUES ($board, $answer)";
+
+        if ($conn->query($sql) === TRUE) {
+            // echo "New record created successfully";
+        } else {
+            // echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        $conn->close();
     }
 ?>
