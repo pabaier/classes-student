@@ -40,6 +40,10 @@
                     <button type="button" id=hint onclick="sqlTest('game')">
                             Hint
                     </button>
+                    <br/>
+                    <br/>
+                    Last Move:<br/>
+                    <div id="time"></div>
             </div>
             
         </div>
@@ -64,19 +68,20 @@
 
             function checkValue(num) {
                 var xhttp = new XMLHttpRequest();
-                var value = document.getElementById(num).value;
+                var value = document.getElementById(num).firstChild.value;
                 xhttp.open("GET", "functions.php?fn=checkValue&index="+num+"&value="+value, true);
                 xhttp.send();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var response = this.responseText;
-                        if(response == "true"){
+                        if(response == 1){
                             document.getElementById(num).innerHTML = value;
                         }
                         else{
-
+                            document.getElementById(num).firstChild.value = "";
                         }
-                        document.getElementsByClassName('numInput').value = "";
+                        console.log(response);
+                        document.getElementById('time').innerHTML = Date();
                     }
                 };
             }

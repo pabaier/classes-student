@@ -8,14 +8,52 @@
         case "sqlTest":
             sqlTest();
             break;
+        case "checkValue":
+            $cell = $_GET['index'];
+            $input = $_GET['value'];
+            checkValue($cell, $input);
+            break;
         default:
             echo "error: " . $fn;
     }
 
+    function checkValue($cell, $input){
+        require 'db.php';
+        $sql = "SELECT answer FROM sudoku";
+        mysqli_real_query($conn, $sql);
+        $result = mysqli_use_result($conn);
+        $row = mysqli_fetch_row($result);
+        $conn->close();
+        if($row[0][$cell] == $input){
+            updateState($cell, $input);
+            // checkWin();
+            echo true;
+        }
+        else{
+            echo false;
+        }
+    }
+
+    function updateState($cell, $input){
+        require 'db.php';
+        $sql = "SELECT state FROM sudoku";
+        mysqli_real_query($conn, $sql);
+        $result = mysqli_use_result($conn);
+        $row = mysqli_fetch_row($result)[0];
+        while(strlen($row) < 81){
+            $row = "0".$row;
+        }
+        $row[$cell] = $input;
+        $sql = "UPDATE sudoku SET state = $row";
+        mysqli_free_result($result);
+        mysqli_real_query($conn, $sql);
+        $conn->close();
+    }
+
     function sqlTest(){
         require 'db.php';
-        // $sql = "INSERT INTO sudoku (state, answer) VALUES ('hi', 'ho')";
-        // $conn->query($sql);
+        mysqli_real_query($conn, "delete from sudoku");
+        exit;
 
         $sql = "SELECT * FROM sudoku";
         mysqli_real_query($conn, $sql);
@@ -197,7 +235,7 @@
 
     function sqlInsert($board, $answer){
         require 'db.php';
-
+        mysqli_real_query($conn, "delete from sudoku");
         $sql = "INSERT INTO sudoku (state, answer) VALUES ($board, $answer)";
 
         if ($conn->query($sql) === TRUE) {
