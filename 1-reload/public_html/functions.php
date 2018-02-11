@@ -5,6 +5,9 @@
             $level = $_GET['level'];
             genBoard($level);
             break;
+        case "getHint":
+            getHint();
+            break;
         case "sqlTest":
             sqlTest();
             break;
@@ -17,16 +20,51 @@
             echo "error: " . $fn;
     }
 
-    function checkValue($cell, $input){
+    function getAnswer(){
         require 'db.php';
         $sql = "SELECT answer FROM sudoku";
         mysqli_real_query($conn, $sql);
         $result = mysqli_use_result($conn);
-        $row = mysqli_fetch_row($result);
+        $answer = mysqli_fetch_row($result)[0];
+        mysqli_free_result($result);
         $conn->close();
-        if($row[0][$cell] == $input){
+        return $answer;
+    }
+    function getState(){
+        require 'db.php';
+        $sql = "SELECT state FROM sudoku";
+        mysqli_real_query($conn, $sql);
+        $result = mysqli_use_result($conn);
+        $state = mysqli_fetch_row($result)[0];
+        while(strlen($state) < 81){
+            $state = "0".$state;
+        }
+        mysqli_free_result($result);
+        $conn->close();
+        return $state;
+    }
+
+    function getHint(){
+        $ans = getAnswer();
+        $state = getState();
+        $indxs = array();
+        for($i = 0; $i < strlen($state); $i++){
+            if($state[$i] == 0){
+                $indxs[] = $i;
+            }
+        }
+        $rand = rand(0,count($indxs) - 1);
+        $cell = $indxs[$rand];
+        $value = $ans[$cell];
+        $res = array("cell" => $cell , "value" => $value);
+        updateState($cell, $value);
+        echo json_encode($res);
+    }
+
+    function checkValue($cell, $input){
+        $answer = getAnswer();
+        if($answer[$cell] == $input){
             updateState($cell, $input);
-            // checkWin();
             echo true;
         }
         else{
@@ -36,17 +74,11 @@
 
     function updateState($cell, $input){
         require 'db.php';
-        $sql = "SELECT state FROM sudoku";
+        $state = getState();
+        $state[$cell] = $input;
+        $sql = "UPDATE sudoku SET state = $state";
         mysqli_real_query($conn, $sql);
-        $result = mysqli_use_result($conn);
-        $row = mysqli_fetch_row($result)[0];
-        while(strlen($row) < 81){
-            $row = "0".$row;
-        }
-        $row[$cell] = $input;
-        $sql = "UPDATE sudoku SET state = $row";
-        mysqli_free_result($result);
-        mysqli_real_query($conn, $sql);
+        // check state for zeros!
         $conn->close();
     }
 
