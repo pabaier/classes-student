@@ -13,7 +13,7 @@
 
             <div class=columns id=sidebar>
                 Chose your difficulty:<br/>
-                <select id=level>
+                <select id=level onchange="genBoard()">
                     <option value=1>1</option>
                     <option value=2>2</option>
                     <option value=3>3</option>
@@ -32,13 +32,13 @@
                     <br/>
                     <br/>
                     <br/>
-                    <button type="button" id=newGame onclick="genBoard('game')">
+                    <button type="button" id=newGame onclick="genBoard()">
                         New Game
                     </button>
                     <br/>
                     <br/>
                     <button type="button" id=hint onclick="getHint()">
-                            Hint
+                        Hint
                     </button>
                     <br/>
                     <br/>
@@ -54,6 +54,16 @@
 
 
         <script>
+            function gameWon(){
+                var txt;
+                if (confirm("You win!\nWould you like to play again?")) {
+                    jsonData['winner'] = false;
+                    genBoard();
+                } else {
+                    console.log("Cancel");
+                }
+                // document.getElementById("demo").innerHTML = txt;
+            }
 
             function sqlTest(id) {
                 var xhttp = new XMLHttpRequest();
@@ -66,21 +76,26 @@
                 };
             }
 
+            // gets the cell index and value to enter
             function getHint() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "functions.php?fn=getHint", true);
                 xhttp.send();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        console.log(this.responseText);
                         var jsonData = JSON.parse(this.responseText);
                         var cell = jsonData['cell'];
                         var value = jsonData['value']; 
                         document.getElementById(cell).innerHTML = value;
+                        if(jsonData['winner']){
+                            gameWon();
+                        }
                     }
                 };
             }
 
+            // sends cell index and value
+            // gets true or false
             function checkValue(num) {
                 var xhttp = new XMLHttpRequest();
                 var value = document.getElementById(num).firstChild.value;
@@ -88,20 +103,26 @@
                 xhttp.send();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        var response = this.responseText;
-                        if(response == 1){
+                        var jsonData = JSON.parse(this.responseText);
+                        if(jsonData['result']){
                             document.getElementById(num).innerHTML = value;
                         }
                         else{
                             document.getElementById(num).firstChild.value = "";
                         }
                         document.getElementById('time').innerHTML = Date();
+                        if(jsonData['winner']){
+                            gameWon();
+                        }
                     }
                 };
             }
 
-            function genBoard(id) {
-                var elem = document.getElementById(id)
+            // sends level
+            // gets board as json
+                // row0 : [<cols>],
+                // row1 : [<cols>]
+            function genBoard() {
                 var xhttp = new XMLHttpRequest();
                 var levelElement = document.getElementById("level");
                 var level = levelElement.options[levelElement.selectedIndex].text;
@@ -125,7 +146,6 @@
                                 var digit = jsonData['row'+row][col];
                                 if(digit == 0) {
                                     board += "<span id='" + cellCount + "' onkeyup=\"checkValue('" + cellCount + "')\"><input type='text' class=numInput></span>";
-                                    // cellCount++;
                                 }
                                 else {
                                     board += digit;
@@ -152,6 +172,25 @@
 
     
     </body>
+
+<!--
+{
+    function: <function>,
+    winner: <true/false>,
+    level: <int>,
+    index: <int>,
+    value: <int>,
+    board:
+    [
+        {row0 : [<cols>]},
+        {row1 : [<cols>]},
+        ...
+    ]
+}
+-->
+
+
+
 
 <!-- 
 <table>

@@ -43,6 +43,15 @@
         $conn->close();
         return $state;
     }
+    function checkWin(){
+        $state = getState();
+        if(strpos($state, '0')){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
     function getHint(){
         $ans = getAnswer();
@@ -56,8 +65,8 @@
         $rand = rand(0,count($indxs) - 1);
         $cell = $indxs[$rand];
         $value = $ans[$cell];
-        $res = array("cell" => $cell , "value" => $value);
         updateState($cell, $value);
+        $res = array("cell" => $cell , "value" => $value, "winner" => checkWin());
         echo json_encode($res);
     }
 
@@ -65,11 +74,13 @@
         $answer = getAnswer();
         if($answer[$cell] == $input){
             updateState($cell, $input);
-            echo true;
+            $result = true;
         }
         else{
-            echo false;
+            $result = false;
         }
+        $res = array("result" => $result, "winner" => checkWin());
+        echo json_encode($res);
     }
 
     function updateState($cell, $input){
