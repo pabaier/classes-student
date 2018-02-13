@@ -55,25 +55,9 @@
 
         <script>
             function gameWon(){
-                var txt;
                 if (confirm("You win!\nWould you like to play again?")) {
-                    jsonData['winner'] = false;
                     genBoard();
-                } else {
-                    console.log("Cancel");
                 }
-                // document.getElementById("demo").innerHTML = txt;
-            }
-
-            function sqlTest(id) {
-                var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "functions.php?fn=sqlTest", true);
-                xhttp.send();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById(id).innerHTML = this.responseText;
-                    }
-                };
             }
 
             // gets the cell index and value to enter
@@ -85,9 +69,11 @@
                     if (this.readyState == 4 && this.status == 200) {
                         var jsonData = JSON.parse(this.responseText);
                         var cell = jsonData['cell'];
-                        var value = jsonData['value']; 
+                        var value = jsonData['value'];
+                        var winner = jsonData['winner'];
+                        console.log(winner);
                         document.getElementById(cell).innerHTML = value;
-                        if(jsonData['winner']){
+                        if(winner){
                             gameWon();
                         }
                     }
@@ -111,7 +97,9 @@
                             document.getElementById(num).firstChild.value = "";
                         }
                         document.getElementById('time').innerHTML = Date();
-                        if(jsonData['winner']){
+                        var winner = jsonData['winner'];
+                        console.log(winner);
+                        if(winner){
                             gameWon();
                         }
                     }

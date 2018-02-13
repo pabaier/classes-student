@@ -1,6 +1,5 @@
 /* https://stackoverflow.com/questions/18679020/border-around-tr-element-doesnt-show */
 /* 
-put -r public_html 
 */
 table, tr, td{
     border-collapse: collapse;

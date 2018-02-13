@@ -8,9 +8,6 @@
         case "getHint":
             getHint();
             break;
-        case "sqlTest":
-            sqlTest();
-            break;
         case "checkValue":
             $cell = $_GET['index'];
             $input = $_GET['value'];
@@ -45,14 +42,13 @@
     }
     function checkWin(){
         $state = getState();
-        if(strpos($state, '0')){
-            return false;
-        }
-        else{
-            return true;
-        }
+        for($i = 0; $i < strlen($state); $i++){
+            if($state[$i] == '0'){
+                    return false;
+                }
+            }
+        return true;
     }
-
     function getHint(){
         $ans = getAnswer();
         $state = getState();
@@ -69,7 +65,6 @@
         $res = array("cell" => $cell , "value" => $value, "winner" => checkWin());
         echo json_encode($res);
     }
-
     function checkValue($cell, $input){
         $answer = getAnswer();
         if($answer[$cell] == $input){
@@ -82,41 +77,15 @@
         $res = array("result" => $result, "winner" => checkWin());
         echo json_encode($res);
     }
-
     function updateState($cell, $input){
         require 'db.php';
         $state = getState();
         $state[$cell] = $input;
         $sql = "UPDATE sudoku SET state = $state";
         mysqli_real_query($conn, $sql);
-        // check state for zeros!
         $conn->close();
     }
-
-    function sqlTest(){
-        require 'db.php';
-        mysqli_real_query($conn, "delete from sudoku");
-        exit;
-
-        $sql = "SELECT * FROM sudoku";
-        mysqli_real_query($conn, $sql);
-        $result = mysqli_use_result($conn);
-        while ($row = mysqli_fetch_row($result)) {
-            while(strlen($row[0]) < 81){
-                $row[0] = "0".$row[0];
-            }
-            echo $row[0]."--".$row[1]."<br>";
-        }
-        mysqli_free_result($result);
-        echo "ok";
-        exit;
-
-        $conn->close();
-
-    }
-
     function genBoard($level) {
-        require 'db.php';
         $boardString = "";
         $boardArray = array();
         for($row = 0; $row < 9; $row++){
@@ -177,7 +146,6 @@
             }
         }
     }
-
     function checkRow($grid, $row, $val){
         for($c = 0; $c<count($grid['row'.$row]); $c++){
             if($grid['row'.$row][$c] == $val) {
@@ -185,8 +153,7 @@
             }
         }
         return true;
-    }
-    
+    }    
     function checkCol($grid, $col, $val){
         for($r = 0; $r < count($grid); $r++){
             if($grid['row'.$r][$col] == $val) {
@@ -195,7 +162,6 @@
         }
         return true;
     }
-
     function checkBox($grid, $row, $col, $val){
         $box = getBox($row, $col);
         for($r = $box["rowStart"]; $r <= $box["rowEnd"]; $r++){
@@ -206,7 +172,6 @@
         }
         return true;
     }
-
     function getBoxByNumber($number){
         
         switch($number) {
@@ -240,7 +205,6 @@
         }
         return $box;
     }
-
     function getBox($row, $col){
         $box = Array("rowStart" => 0,
                     "rowEnd" => 0,
@@ -275,7 +239,6 @@
         }
         return $box;
     }
-
     function sqlInsert($board, $answer){
         require 'db.php';
         mysqli_real_query($conn, "delete from sudoku");

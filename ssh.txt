@@ -25,3 +25,5 @@ select * from [table name]
 153.9.205.25/~CSIS604h
 
 sftp CSIS604h@153.9.205.25
+put -r public_html 
+
