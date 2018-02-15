@@ -1,4 +1,5 @@
 <?php
+    include ('db.php');
     $fn = $_GET['fn'];
     switch($fn) {
         case "genBoard":

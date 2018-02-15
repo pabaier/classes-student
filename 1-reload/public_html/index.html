@@ -71,8 +71,10 @@
                         var cell = jsonData['cell'];
                         var value = jsonData['value'];
                         var winner = jsonData['winner'];
-                        console.log(winner);
-                        document.getElementById(cell).innerHTML = value;
+                        var element = document.getElementById(cell);
+                        element.innerHTML = value;
+                        element.parentElement.style.background = 'rgba(209, 194, 31, 1)';
+                        resetBG(element.parentElement);
                         if(winner){
                             gameWon();
                         }
@@ -90,11 +92,16 @@
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var jsonData = JSON.parse(this.responseText);
+                        var element = document.getElementById(num);
                         if(jsonData['result']){
-                            document.getElementById(num).innerHTML = value;
+                            element.innerHTML = value;
+                            element.parentElement.style.background = 'rgba(160,190,126,1)';
+                            resetBG(element.parentElement);
                         }
                         else{
                             document.getElementById(num).firstChild.value = "";
+                            element.firstChild.style.background = 'rgba(200,90,26,1)';
+                            resetBG(element.firstChild);
                         }
                         document.getElementById('time').innerHTML = Date();
                         var winner = jsonData['winner'];
@@ -104,6 +111,28 @@
                         }
                     }
                 };
+            }
+
+            // resets the background
+            function resetBG(element){
+                    var alpha = 0.9;
+                    var color = element.style.background;
+                    var commas = [color.indexOf("(") + 1];
+                    for(var i = 0; i < color.length; i++){
+                        if(color[i] == ',')
+                        commas.push(i + 1);
+                    }
+                    var r = color.substring(commas[0],commas[1]);
+                    var g = color.substring(commas[1],commas[2]);
+                    var b = color.substring(commas[2],color.length - 1)+",";
+
+                    var fadeEffect =  setInterval(function () {
+                        if(alpha < 0)
+                            clearInterval(fadeEffect);
+                        console.log(element.style.background);
+                        element.style.background = "rgba("+r+g+b+alpha+")";
+                        alpha = alpha - 0.1;
+                        }, 50);
             }
 
             // sends level
