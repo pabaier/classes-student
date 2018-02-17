@@ -79,21 +79,20 @@
         $conn->close();
         return $state;
     }
-    function updateState($cell, $input){
+    function updateState($cell, $input, $time){
         require 'db.php';
         $state = getState();
         $state[$cell] = $input;
-        $sql = "UPDATE sudoku SET state = $state";
+        $sql = "UPDATE sudoku SET state = $state, lastMove = '$time'";
         mysqli_real_query($conn, $sql);
         $conn->close();
     }
-    function sqlInsert($board, $answer, $level){
+    function sqlInsert($board, $answer, $level, $time){
         require 'db.php';
-        $time = getTime();
+        // $time = getTime();
         mysqli_real_query($conn, "delete from sudoku");
-        $sql = "INSERT INTO sudoku (state, answer, level) VALUES ($board, $answer, $level)";
+        $sql = "INSERT INTO sudoku (state, answer, lastMove, level) VALUES ($board, $answer, '$time', $level)";
         mysqli_real_query($conn, $sql);
-        setTime($time);
         $conn->close();
     }
 
@@ -201,29 +200,12 @@
         }
         return $box;
     }
-    function setDifficulty(&$grid, &$stringBoard, $level){
-        for($i = 0; $i < 9; $i++){
-            $bounds = getBoxByNumber($i + 1);
-            for($j = 0; $j < $level; $j++){
-                $randRow = rand($bounds[rowStart], $bounds[rowEnd]);
-                $randCol = rand($bounds[colStart], $bounds[colEnd]);
-                $previousValue = $grid['row'.$randRow][$randCol];
-                if($previousValue == 0){
-                    $j--;
-                }
-                else{
-                    $grid['row'.$randRow][$randCol] = 0;
-                    $stringIndex = $randRow * 10 + $randCol - $randRow;
-                    $stringBoard[$stringIndex] = "0";
-                }
-            }
-        }
-    }
 
     // heavy lifting
     function getHint(){
-        $ans = getAnswer();
-        $state = getState();
+        $allData = getEverything();
+        $ans = $allData['answer'];
+        $state = $allData['state'];
         $indxs = array();
         for($i = 0; $i < strlen($state); $i++){
             if($state[$i] == 0){
@@ -233,13 +215,13 @@
         $rand = rand(0,count($indxs) - 1);
         $cell = $indxs[$rand];
         $value = $ans[$cell];
-        updateState($cell, $value);
+        updateState($cell, $value, $allData['lastMove']);
         $res = array("cell" => $cell , "value" => $value, "winner" => checkWin());
         echo json_encode($res);
     }
     function loadBoard(){
         $allData = getEverything();
-        $state = $allData['state'];//getState();
+        $state = $allData['state'];
         $boardString = "";
         $boardArray = array();
         $counter = 0;
@@ -250,7 +232,7 @@
                 $counter++;
             }
         }
-        $boardArray['time'] = $allData['lastMove'];//getTime();
+        $boardArray['time'] = $allData['lastMove'];
         $boardArray['level'] = $allData['level'];
         $boardJson = json_encode($boardArray);
         echo $boardJson;
@@ -263,7 +245,7 @@
             $boardArray['row'.$row] = array();
             for($col = 0; $col < 9; $col++){
                 $nextInt = rand(1,9);
-                if($attempts > 1000){
+                if($attempts > 100){
                     $reset = true;
                     break;
                 }
@@ -294,21 +276,39 @@
         $boardArray['level'] = $level;
         $boardStringAnswer = $boardString;
         setDifficulty($boardArray, $boardString, $level);
-        sqlInsert($boardString, $boardStringAnswer, $level);
+        sqlInsert($boardString, $boardStringAnswer, $level, $boardArray['time']);
         $boardJson = json_encode($boardArray);
         echo $boardJson;
     }
     function checkValue($cell, $input, $time){
         $answer = getAnswer();
         if($answer[$cell] == $input){
-            updateState($cell, $input);
+            updateState($cell, $input, $time);
             $result = true;
         }
         else{
             $result = false;
+            setTime($time);
         }
-        setTime($time);
         $res = array("result" => $result, "winner" => checkWin());
         echo json_encode($res);
+    }
+    function setDifficulty(&$grid, &$stringBoard, $level){
+        for($i = 0; $i < 9; $i++){
+            $bounds = getBoxByNumber($i + 1);
+            for($j = 0; $j < $level; $j++){
+                $randRow = rand($bounds[rowStart], $bounds[rowEnd]);
+                $randCol = rand($bounds[colStart], $bounds[colEnd]);
+                $previousValue = $grid['row'.$randRow][$randCol];
+                if($previousValue == 0){
+                    $j--;
+                }
+                else{
+                    $grid['row'.$randRow][$randCol] = 0;
+                    $stringIndex = $randRow * 10 + $randCol - $randRow;
+                    $stringBoard[$stringIndex] = "0";
+                }
+            }
+        }
     }
 ?>
