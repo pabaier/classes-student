@@ -40,10 +40,19 @@
 
     function setTime($time){
         require 'db.php';
-        $t = "thise";
         $sql = "UPDATE sudoku SET lastMove = '$time'";
         mysqli_real_query($conn, $sql);
         $conn->close();
+    }
+    function getTime(){
+        require 'db.php';
+        $sql = "SELECT lastMove FROM sudoku";
+        mysqli_real_query($conn, $sql);
+        $result = mysqli_use_result($conn);
+        $time = mysqli_fetch_row($result)[0];
+        mysqli_free_result($result);
+        $conn->close();
+        return $time;
     }
     function getAnswer(){
         require 'db.php';
