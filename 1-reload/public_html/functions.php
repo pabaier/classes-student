@@ -2,6 +2,9 @@
     include ('db.php');
     $fn = $_GET['fn'];
     switch($fn) {
+        case "loadBoard":
+            loadBoard();
+            break;
         case "genBoard":
             $level = $_GET['level'];
             genBoard($level);
@@ -16,6 +19,22 @@
             break;
         default:
             echo "error: " . $fn;
+    }
+
+    function loadBoard(){
+        $state = getState();
+        $boardString = "";
+        $boardArray = array();
+        $counter = 0;
+        for($row = 0; $row < 9; $row++){
+            $boardArray['row'.$row] = array();
+            for($col = 0; $col < 9; $col++){
+                array_push($boardArray['row'.$row],$state[$counter]);
+                $counter++;
+            }
+        }
+        $boardJson = json_encode($boardArray);
+        echo $boardJson;
     }
 
     function getAnswer(){
@@ -127,8 +146,6 @@
         $boardJson = json_encode($boardArray);
         echo $boardJson;
     }
-// 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17, 18
-//00,01,02,03,04,05,06,07,08,10, 11, 12, 13, 14, 15, 16, 17, 18, 20
     function setDifficulty(&$grid, &$stringBoard, $level){
         for($i = 0; $i < 9; $i++){
             $bounds = getBoxByNumber($i + 1);
