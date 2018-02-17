@@ -104,8 +104,12 @@
                 + month + "/" + day + "/" + year;
                 return dateString;
             }
-            // sends cell index and value
-            // gets true or false
+            // sends cell index (num) and value
+            // gets json
+                // result: (true/false)
+                // time: -
+                // winner: (true/false)
+                //true or false
             function checkValue(num) {
                 var xhttp = new XMLHttpRequest();
                 var value = document.getElementById(num).firstChild.value;
@@ -130,7 +134,6 @@
                         document.getElementById('time').innerHTML = time;
 
                         var winner = jsonData['winner'];
-                        console.log(winner);
                         if(winner){
                             gameWon();
                         }
@@ -207,10 +210,10 @@
                         var jsonData = JSON.parse(this.responseText);
                         var board = getHTML(jsonData);
                         document.getElementById("game").innerHTML = board;
-                        console.log(jsonData);
+                        // console.log(jsonData);
                         document.getElementById('time').innerHTML = jsonData['time'];
                         document.getElementById('level').value = jsonData['level'];
-                        
+
                     }
                 };
             }
