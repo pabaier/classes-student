@@ -61,8 +61,10 @@
                 if (confirm("You win!\nWould you like to play again?")) {
                     genBoard('genBoard');
                 }
+                else{
+                    document.getElementById('hint').style.visibility = 'hidden';
+                }
             }
-
             // gets the cell index and value to enter
             function getHint() {
                 var xhttp = new XMLHttpRequest();
@@ -84,7 +86,6 @@
                     }
                 };
             }
-
             function getTime(){
                 var date = new Date();
                 var hours = date.getHours()%12;
@@ -103,7 +104,6 @@
                 + month + "/" + day + "/" + year;
                 return dateString;
             }
-
             // sends cell index and value
             // gets true or false
             function checkValue(num) {
@@ -137,7 +137,6 @@
                     }
                 };
             }
-
             // resets the background
             function resetBG(element){
                     var alpha = 0.9;
@@ -158,7 +157,6 @@
                         alpha = alpha - 0.1;
                         }, 50);
             }
-
             function getHTML(jsonData) {
                 var board = "<table>";
                     var cellCount = 0;
@@ -186,14 +184,16 @@
                 board += "</table>";
                 return board;
             }
-
             // sends level
             // gets board as json
                 // row0 : [<cols>],
-                // row1 : [<cols>]
+                // row1 : [<cols>],
+                // ...
+                // time : -
             function genBoard(func) {
                 var xhttp = new XMLHttpRequest();
                 var levelElement = document.getElementById("level");
+                document.getElementById('hint').style.visibility = 'visible';
                 var level = levelElement.options[levelElement.selectedIndex].text;
                 xhttp.open("GET", "functions.php?fn="+func+"&level="+level, true);
                 xhttp.send();
@@ -202,6 +202,8 @@
                         var jsonData = JSON.parse(this.responseText);
                         var board = getHTML(jsonData);
                         document.getElementById("game").innerHTML = board;
+                        console.log(jsonData);
+                        document.getElementById('time').innerHTML = jsonData['time'];
                     }
                 };
             }

@@ -34,10 +34,10 @@
                 $counter++;
             }
         }
+        $boardArray['time'] = getTime();
         $boardJson = json_encode($boardArray);
         echo $boardJson;
     }
-
     function setTime($time){
         require 'db.php';
         $sql = "UPDATE sudoku SET lastMove = '$time'";
@@ -158,6 +158,7 @@
                 $attempts = 0;
             }
         }
+        $boardArray['time'] = getTime();
         $boardStringAnswer = $boardString;
         setDifficulty($boardArray, $boardString, $level);
         sqlInsert($boardString, $boardStringAnswer);
@@ -277,15 +278,11 @@
     }
     function sqlInsert($board, $answer){
         require 'db.php';
+        $time = getTime();
         mysqli_real_query($conn, "delete from sudoku");
         $sql = "INSERT INTO sudoku (state, answer) VALUES ($board, $answer)";
-
-        if ($conn->query($sql) === TRUE) {
-            // echo "New record created successfully";
-        } else {
-            // echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-
+        mysqli_real_query($conn, $sql);
+        setTime($time);
         $conn->close();
     }
 ?>
