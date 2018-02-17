@@ -153,6 +153,34 @@
                         }, 50);
             }
 
+            function getHTML(jsonData) {
+                var board = "<table>";
+                    var cellCount = 0;
+                    for(row = 0; row < 9; row++) {
+                        board += "<tr id=row" + row + ">"
+                        for(col = 0; col < 9; col++) {
+                            if(col == 2 || col == 5){
+                                board += "<td class=col3>";
+                            }
+                            else {
+                                board += "<td>";
+                            }
+                            var digit = jsonData['row'+row][col];
+                            if(digit == 0) {
+                                board += "<span id='" + cellCount + "' onkeyup=\"checkValue('" + cellCount + "')\"><input type='text' class=numInput></span>";
+                            }
+                            else {
+                                board += digit;
+                            }
+                            cellCount++;
+                            board += "</td>"
+                        }
+                        board += "</tr>"
+                    }
+                board += "</table>";
+                return board;
+            }
+
             // sends level
             // gets board as json
                 // row0 : [<cols>],
@@ -164,9 +192,10 @@
                 xhttp.open("GET", "functions.php?fn=genBoard&level="+level, true);
                 xhttp.send();
                 xhttp.onreadystatechange = function() {
-                    // /*
                     if (this.readyState == 4 && this.status == 200) {
                         var jsonData = JSON.parse(this.responseText);
+                        var board = getHTML(jsonData);
+                    /*
                         var board = "<table>";
                         var cellCount = 0;
                         for(row = 0; row < 9; row++) {
@@ -191,9 +220,9 @@
                             board += "</tr>"
                         }
                         board += "</table>";
+                    */
                         document.getElementById("game").innerHTML = board;
                     }
-                    // */
 
                     //DEBUG
                     // if (this.readyState == 4 && this.status == 200) {
