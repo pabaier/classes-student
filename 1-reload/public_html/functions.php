@@ -15,7 +15,8 @@
         case "checkValue":
             $cell = $_GET['index'];
             $input = $_GET['value'];
-            checkValue($cell, $input);
+            $time = $_GET['time'];
+            checkValue($cell, $input, $time);
             break;
         default:
             echo "error: " . $fn;
@@ -37,6 +38,13 @@
         echo $boardJson;
     }
 
+    function setTime($time){
+        require 'db.php';
+        $t = "thise";
+        $sql = "UPDATE sudoku SET lastMove = '$time'";
+        mysqli_real_query($conn, $sql);
+        $conn->close();
+    }
     function getAnswer(){
         require 'db.php';
         $sql = "SELECT answer FROM sudoku";
@@ -85,7 +93,7 @@
         $res = array("cell" => $cell , "value" => $value, "winner" => checkWin());
         echo json_encode($res);
     }
-    function checkValue($cell, $input){
+    function checkValue($cell, $input, $time){
         $answer = getAnswer();
         if($answer[$cell] == $input){
             updateState($cell, $input);
@@ -94,6 +102,7 @@
         else{
             $result = false;
         }
+        setTime($time);
         $res = array("result" => $result, "winner" => checkWin());
         echo json_encode($res);
     }
