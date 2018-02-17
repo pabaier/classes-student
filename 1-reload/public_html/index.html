@@ -197,6 +197,10 @@
                 var level = levelElement.options[levelElement.selectedIndex].text;
                 xhttp.open("GET", "functions.php?fn="+func+"&level="+level, true);
                 xhttp.send();
+                var message = "generating board...";
+                if(func == 'loadBoard')
+                    message = "retrieving previous board...";
+                document.getElementById("game").innerHTML = message;
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var jsonData = JSON.parse(this.responseText);
@@ -204,6 +208,7 @@
                         document.getElementById("game").innerHTML = board;
                         console.log(jsonData);
                         document.getElementById('time').innerHTML = jsonData['time'];
+                        document.getElementById('level').value = 5;
                     }
                 };
             }
