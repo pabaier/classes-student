@@ -9,5 +9,7 @@
 *.pdf
 presentation
 
+# Random Folders
 unused-files
-
+slides
+.DS_Store
