@@ -190,6 +190,7 @@
                 // row1 : [<cols>],
                 // ...
                 // time : -
+                // level : -
             function genBoard(func) {
                 var xhttp = new XMLHttpRequest();
                 var levelElement = document.getElementById("level");
@@ -208,7 +209,8 @@
                         document.getElementById("game").innerHTML = board;
                         console.log(jsonData);
                         document.getElementById('time').innerHTML = jsonData['time'];
-                        document.getElementById('level').value = 5;
+                        document.getElementById('level').value = jsonData['level'];
+                        
                     }
                 };
             }

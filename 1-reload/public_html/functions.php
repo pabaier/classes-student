@@ -23,6 +23,23 @@
     }
 
     // sql helpers
+    function getEverything(){
+        require 'db.php';
+        $sql = "SELECT * FROM sudoku";
+        mysqli_real_query($conn, $sql);
+        $response = mysqli_use_result($conn);
+        $row = mysqli_fetch_assoc($response);
+        $result['state'] = $row["state"];
+        $result['answer'] = $row["answer"];
+        $result['lastMove'] = $row["lastMove"];
+        $result['level'] = $row["level"];
+        while(strlen($result['state']) < 81){
+            $result['state'] = "0".$result['state'];
+        }
+        mysqli_free_result($response);
+        $conn->close();
+        return $result;
+    }
     function setTime($time){
         require 'db.php';
         $sql = "UPDATE sudoku SET lastMove = '$time'";
@@ -70,11 +87,11 @@
         mysqli_real_query($conn, $sql);
         $conn->close();
     }
-    function sqlInsert($board, $answer){
+    function sqlInsert($board, $answer, $level){
         require 'db.php';
         $time = getTime();
         mysqli_real_query($conn, "delete from sudoku");
-        $sql = "INSERT INTO sudoku (state, answer) VALUES ($board, $answer)";
+        $sql = "INSERT INTO sudoku (state, answer, level) VALUES ($board, $answer, $level)";
         mysqli_real_query($conn, $sql);
         setTime($time);
         $conn->close();
@@ -221,7 +238,8 @@
         echo json_encode($res);
     }
     function loadBoard(){
-        $state = getState();
+        $allData = getEverything();
+        $state = $allData['state'];//getState();
         $boardString = "";
         $boardArray = array();
         $counter = 0;
@@ -232,7 +250,8 @@
                 $counter++;
             }
         }
-        $boardArray['time'] = getTime();
+        $boardArray['time'] = $allData['lastMove'];//getTime();
+        $boardArray['level'] = $allData['level'];
         $boardJson = json_encode($boardArray);
         echo $boardJson;
     }
@@ -272,9 +291,10 @@
             }
         }
         $boardArray['time'] = getTime();
+        $boardArray['level'] = $level;
         $boardStringAnswer = $boardString;
         setDifficulty($boardArray, $boardString, $level);
-        sqlInsert($boardString, $boardStringAnswer);
+        sqlInsert($boardString, $boardStringAnswer, $level);
         $boardJson = json_encode($boardArray);
         echo $boardJson;
     }

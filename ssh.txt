@@ -17,6 +17,9 @@ create table [name] ([field name] [type], ...)
         varchar(20)
 insert into [table name] ([field name]) values ([value])
 select * from [table name]
+ALTER TABLE sudoku CHANGE COLUMN last_move lastMove VARCHAR(255);
+UPDATE sudoku SET lastMove = "hit";
+ALTER TABLE sudoku ADD lastMove varchar(255);
 *******
 
 
