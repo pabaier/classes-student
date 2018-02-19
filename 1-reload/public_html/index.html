@@ -10,44 +10,41 @@
         <div id=header>
                 <h1>Sudoku</h1>
         </div>
-        <!-- <div id=middle> -->
 
-            <div class=columns id=sidebar>
-                Chose your difficulty:<br/>
-                <select id=level onchange="genBoard('genBoard')">
-                    <option value=1>1</option>
-                    <option value=2>2</option>
-                    <option value=3>3</option>
-                    <option value=4>4</option>
-                    <option value=5>5</option>
-                </select>
+        <div class=columns id=sidebar>
+            Chose your difficulty:<br/>
+            <select id=level onchange="genBoard('genBoard')">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+        </div>
+        
+        <div class=columns id=gameWrapper>
+            <div id=game> 
             </div>
-            
-            <div class=columns id=gameWrapper>
-                <div id=game> 
-                </div>
-            </div>
+        </div>
 
-            <div class=columns id=numbers>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <button type="button" id=newGame onclick="genBoard('genBoard')">
-                        New Game
-                    </button>
-                    <br/>
-                    <br/>
-                    <button type="button" id=hint onclick="getHint()">
-                        Hint
-                    </button>
-                    <br/>
-                    <br/>
-                    Last Move:<br/>
-                    <div id="time"></div>
-            </div>
-            
-        <!-- </div> -->
-
+        <div class=columns id=numbers>
+                <br/>
+                <br/>
+                <br/>
+                <button type="button" id=newGame onclick="genBoard('genBoard')">
+                    New Game
+                </button>
+                <br/>
+                <br/>
+                <button type="button" id=hint onclick="getHint()">
+                    Hint
+                </button>
+                <br/>
+                <br/>
+                Last Move:<br/>
+                <div id="time"></div>
+        </div>
+        
         <div id=footer>
            &weierp;owered by &weierp;aul 
         </div>
