@@ -9,3 +9,5 @@
 *.pdf
 presentation
 
+.DS_Store
+

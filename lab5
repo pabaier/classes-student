@@ -30,4 +30,15 @@ FROM Kings
 GROUP BY house
 
 6.
-
+SELECT k1.name, k2.name
+FROM Kings k1, Kings k2
+WHERE 
+k1.name <> k2.name AND (
+  (
+  (k1.beginReign > k2.beginReign AND
+  k2.endReign > k1.beginReign) OR (k1.beginReign = k2.beginReign AND 
+  k1.endReign = k2.endReign)
+  )
+  OR
+  (k2.beginReign > k1.beginReign AND k1.endReign > k2.beginReign)
+)
