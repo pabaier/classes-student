@@ -2,6 +2,22 @@
 /* 
 put -r public_html 
 */
+
+/* CODE BELOW TAKE FROM:
+https://blog.rudolphk.co.za/css-tip-remove-spinner-on-input-of-number-9fc4d9cac121
+IN ORDER TO REMOVE ARROWS ON NUMBER BOXES
+*/
+/* For Firefox */
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+/* Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 body{
     color: #325f07;
     margin: 0;
@@ -56,9 +72,9 @@ td{
     width: 33%;
 }
 
-#middle{
+/* #middle{
     height: 70%;
-}
+} */
 #sidebar{
     height: 70%;
     width: 12%;

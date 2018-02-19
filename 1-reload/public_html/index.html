@@ -4,12 +4,13 @@
     <head>
         <title>Paul's Puzzle Page</title>
         <link rel="stylesheet" type="text/css" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div id=header>
                 <h1>Sudoku</h1>
         </div>
-        <div id=middle>
+        <!-- <div id=middle> -->
 
             <div class=columns id=sidebar>
                 Chose your difficulty:<br/>
@@ -45,7 +46,7 @@
                     <div id="time"></div>
             </div>
             
-        </div>
+        <!-- </div> -->
 
         <div id=footer>
            &weierp;owered by &weierp;aul 
@@ -174,7 +175,7 @@
                             }
                             var digit = jsonData['row'+row][col];
                             if(digit == 0) {
-                                board += "<span id='" + cellCount + "' onkeyup=\"checkValue('" + cellCount + "')\"><input type='text' class=numInput></span>";
+                                board += "<span id='" + cellCount + "' onkeyup=\"checkValue('" + cellCount + "')\"><input type='number' class=numInput></span>";
                             }
                             else {
                                 board += digit;
