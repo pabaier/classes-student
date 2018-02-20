@@ -80,7 +80,6 @@ td{
     border-right-style: solid;
     border-right-width: 3px;
     border-right-color: #E2ECD7;
-
 }
 
 #gameWrapper{
@@ -122,4 +121,28 @@ td{
     height: 100%;
     text-align: center;
     border: none;
+}
+
+@media screen and (max-width:620px) {
+    #sidebar {
+        float: left;
+        width: 100%;
+        /* height:unset !important; */
+        height: auto;
+        text-align: center;
+    }
+    #gameWrapper{
+        float: left;
+        width: 100%;
+        height: auto;
+        /* height:unset !important; */
+    }
+    #numbers{
+        float: left;
+        width: 100%;
+        height: auto;
+        /* height:unset !important; */
+        text-align: center;
+
+    }
 }
