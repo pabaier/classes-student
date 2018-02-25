@@ -18,3 +18,8 @@ INSERT INTO Battles VALUES ('HMS Wingbat', 'Waterloo', 'sunk');
 INSERT INTO Battles VALUES ('UBoat Hornblatz', 'Ichritz', 'ok');
 
 SELECT name, country from Ships where numGuns >= 7
+
+Create Table, Triggers, Assertions, Views
+Drop
+PSM
+	Create Procedure, Function

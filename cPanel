@@ -1,0 +1,46 @@
+paulb1.sgedu.site
+paulb165
+
+
+*******
+ncftp -u paulb165 ftp.paulb1.sgedu.site
+put -r * OR put -r public_html
+
+(lftp -u paulb165 ftp.paulb1.sgedu.site)
+
+turn off the prompt:
+    prompt
+to upload:
+    make sure lpwd and pwd is public_html
+    mput *
+
+
+ssh paulb165@paulb1.sgedu.site -p18765
+
+ssh in, then:
+mysql -upaulb165 -p
+*******
+
+show databases;
+CREATE/DROP database paulb165_<db name>;
+use paulb165_hcc;
+show tables;
+describe [table name]
+create table [name] ([field name] [type], ...)
+    types:
+        varchar(20)
+insert into [table name] ([field name]) values ([value])
+select * from [table name]
+ALTER TABLE sudoku CHANGE COLUMN last_move lastMove VARCHAR(255);
+UPDATE sudoku SET lastMove = "hit";
+ALTER TABLE sudoku ADD lastMove varchar(255);
+
+
+
+mysql --user=user_name --password db_nameq
+mysqlsh -u paulb165 -P 3306 -h paulb1.sgedu.site -p
+    \sql
+    USE <schema name>
+
+
+
