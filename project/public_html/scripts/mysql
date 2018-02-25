@@ -1,0 +1,106 @@
+CREATE TABLE Sponsors(
+    Name varchar(255),
+    PhoneNumber varchar(255),
+    Contact varchar(255),
+    Other varchar(255),
+    PRIMARY KEY(Name)
+);
+
+CREATE TABLE Teams(
+    ID int NOT NULL AUTO_INCREMENT UNIQUE,
+    Name varchar(255),
+    Sponsor varchar(255),
+    Season varchar(6),
+    Year int,
+    PRIMARY KEY(Name, Season, Year),
+    FOREIGN KEY(Sponsor) REFERENCES Sponsors(Name)
+);
+
+CREATE TABLE Trainers(
+    ID int NOT NULL AUTO_INCREMENT,
+    FirstName varchar(255),
+    LastName varchar(255),
+    CurrentTeam int,
+    PRIMARY KEY (ID),
+    FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
+);
+
+CREATE TABLE Participants(
+    ID int NOT NULL AUTO_INCREMENT,
+    FirstName varchar(255),
+    LastName varchar(255),
+    Age int,
+    Gender char(1),
+    CurrentTeam int,
+    PRIMARY KEY (ID),
+    FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
+);
+
+CREATE TABLE Mentors(
+    ID int NOT NULL AUTO_INCREMENT,
+    FirstName varchar(255),
+    LastName varchar(255),
+    CurrentTeam int,
+    PRIMARY KEY (ID),
+    FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
+);
+
+CREATE TABLE Interns(
+    ID int NOT NULL AUTO_INCREMENT,
+    FirstName varchar(255),
+    LastName varchar(255),
+    CurrentTeam int,
+    Type varchar(255),
+    PRIMARY KEY (ID),
+    FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
+);
+
+CREATE TABLE Registration(
+    TeamID int,
+    ParticipantID int,
+    TrainerID int,
+    MentorID int,
+    InternID int,
+    UNIQUE(TeamID, ParticipantID),
+    UNIQUE(TeamID, TrainerID),
+    UNIQUE(TeamID, MentorID),
+    UNIQUE(TeamID, InternID),
+    FOREIGN KEY(TeamID) REFERENCES Teams(ID),
+    FOREIGN KEY(ParticipantID) REFERENCES Participants(ID),
+    FOREIGN KEY(TrainerID) REFERENCES Trainers(ID),
+    FOREIGN KEY(MentorID) REFERENCES Mentors(ID),
+    FOREIGN KEY(InternID) REFERENCES Interns(ID)
+);
+
+CREATE TABLE Results(
+    ParticipantID int,
+    TeamID int,
+    Weight float,
+    Week int,
+    PRIMARY KEY(ParticipantID, TeamID, Week),
+    FOREIGN KEY(ParticipantID) REFERENCES Participants(ID),
+    FOREIGN KEY(TeamID) REFERENCES Teams(ID)
+);
+
+CREATE TABLE StartEndResults(
+    ParticipantID int,
+    TeamID int,
+    VisceralFatStart float,
+    BMIStart float,
+    PercentBodyFatStart float,
+    PercentLeanMuscleStart float,
+    StartEnd varchar(5),
+    PRIMARY KEY(ParticipantID, TeamID, StartEnd),
+    FOREIGN KEY (ParticipantID) REFERENCES Participants(ID),
+    FOREIGN KEY (TeamID) REFERENCES Teams(ID)
+);
+
+Drop Column 'Name' from table 'Results':
+    ALTER TABLE Results DROP Name;
+Alter Column:
+    ALTER TABLE Teams MODIFY COLUMN Year int;
+Rename Column:
+    ALTER TABLE Results CHANGE COLUMN ID ParticipantID int;
+Add Column:
+    ALTER TABLE table_name ADD column_name datatype;
+describe Mentors; describe Participants; describe Results; describe Sponsors; describe Teams; describe Trainers; describe StartResults; describe EndResults;
