@@ -34,7 +34,6 @@ public class RequestThread extends Thread {
      */
     synchronized public void getSolutionFromServer() {
         
-
     }
 
 }

@@ -65,6 +65,18 @@ public class Client {
                 }
             }
         }
+        // wait for all threads to finish
+        boolean alive = true;
+        while(alive) {
+            alive = false;
+            for(RequestThread thread : threadArray) {
+                if(thread.isAlive())
+                    alive = true;
+            }
+        }
+        // all threads done
+        // solutions in 'solutions' hash <index, solution>
+        // index corressponds to index of goal state in allGoalStates list
     }
 
     private void generateAllGoalStates() {
