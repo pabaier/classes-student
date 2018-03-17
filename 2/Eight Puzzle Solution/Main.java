@@ -6,5 +6,4 @@ public class Main {
 		Client c = new Client(is);
 		c.printAllList();
 	}
-
 }
