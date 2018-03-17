@@ -80,21 +80,12 @@ public class Client {
     }
 
     private void generateAllGoalStates() {
-        BoardState GoalState = new BoardState(initialState); 
+        BoardState GoalState = new BoardState(stringToIntArray(initialState)); 
         int[][] allPossibleStates = EPUtil.generateAllPossibleStates();
         for(int i = 0; i < allPossibleStates.length; i++) {
             if(EPUtil.checkReachable(allPossibleStates[i], GoalState.getCurrentState())) {
                 allGoalStates.add(intArrayToString(allPossibleStates[i]));
             }
-        }
-    }
-
-    public void printAllList() {
-        for(int[] i : allGoalStates){
-            for(int j : i) {
-                System.out.print(j);
-            }
-            System.out.println();
         }
     }
 

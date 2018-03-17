@@ -1,6 +1,11 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+
+// import jdk.nashorn.internal.parser.JSONParser;
 import java.util.Map;
+import java.io.*;
+import java.net.*;
+import org.json.simple.*;
+import org.json.simple.parser.*;
 
 public class Server  {
 	
@@ -8,8 +13,46 @@ public class Server  {
 	Map<String, BoardState> closedNodes;
 	BoardState GoalState;
 	int[][] AllPossibleStates;	
+
+	public static void main(String[] args) throws Exception {
+        System.out.println(" Server is Running ");
+        ServerSocket mysocket = new ServerSocket(5555);
+
+        while(true) {
+            Socket connectionSocket = mysocket.accept();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(connectionSocket.getOutputStream()));
+            writer.flush();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+
+            // writer.write("*** Welcome to the Calculation Server (Addition Only) ***\n");
+            // writer.flush();
+			String tempInfo = reader.readLine();
+			JSONParser parser = new JSONParser();
+			Object temp = parser.parse(tempInfo);
+			JSONObject infoFromClient = (JSONObject)temp;
+
+			int index = (int)infoFromClient.get("id");
+			String initialState = (String)infoFromClient.get("initial");
+			String goalState = (String)infoFromClient.get("goal");
+			
+			
+			// GET SOLUTION
+
+
+			// {“id”: 1234, “solution”: “012345678102345678120345678”}
+			JSONObject infoToClient = new JSONObject();
+			infoToClient.put("id", index);
+			infoToClient.put("solution", "SOLUTION");
+
+			writer.write(infoToClient.toJSONString());
+			writer.newLine();
+            writer.flush();
+            connectionSocket.close();
+        }
+	}
 	
-	public Server(PriorityQueue<BoardState> dataStructure, int[] Goal){
+	/*
+	private void ServerWorker(PriorityQueue<BoardState> dataStructure, int[] Goal){
 		openNodesQueue = dataStructure;
 		GoalState = new BoardState(Goal);
 		AllPossibleStates = generateAllPossibleStates();
@@ -67,7 +110,7 @@ public class Server  {
 			} // end if
 		} // end for
 	} // end EightPuzzle
-	
+	*/
 	
 	private String makeKey(BoardState current){
 		String retval = "";

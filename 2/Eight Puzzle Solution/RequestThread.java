@@ -1,8 +1,12 @@
+import java.util.*;
+import org.json.simple.*;
+import org.json.simple.parser.*;
+
 public class RequestThread extends Thread {
     private int index;
     private String initialState;
     private String goalState;
-    private HashMap<Integer, Integer> solutions; // <index, solution>
+    private HashMap<Integer, String> solutions; // <index, solution>
 
     RequestThread(
         int index,
@@ -33,6 +37,22 @@ public class RequestThread extends Thread {
      * {"id":1234, "solution":"01234567802345678120345678"}
      */
     synchronized public void getSolutionFromServer() {
+        JSONObject infoToServer = new JSONObject();
+        infoToServer.put("id", index);
+        infoToServer.put("initial", initialState);
+        infoToServer.put("goal", goalState);
+
+        // send infoToServer.toJSONString()
+        
+        String tempInfo = reader.readLine();
+        JSONParser parser = new JSONParser();
+        Object temp = parser.parse(tempInfo);
+        JSONObject infoFromClient = (JSONObject)temp;
+
+        int index = (int)infoFromClient.get("id");
+        String solution = (String)infoFromClient.get("solution");
+
+        solutions.put(index, solution);
         
     }
 
