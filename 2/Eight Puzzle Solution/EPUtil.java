@@ -79,7 +79,6 @@ public class EPUtil  {
 	}
 	
 	public static int[][] generateAllPossibleStates(){
-		System.out.print("Generating All Possible States... ");
 		int[][] aps = new int[362880][9];
 
 		
@@ -142,7 +141,6 @@ public class EPUtil  {
 			}
 			temp.add(0, one);
 		}
-		System.out.println("Done!\n");
 		return aps;
 	}
 	
