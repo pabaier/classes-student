@@ -52,14 +52,15 @@ public class Client {
         // need a thread for every server
         RequestThread[] threadArray = new RequestThread[serverIps.size()];
         for(int i = 0; i < serverIps.size(); i++) {
-            threadArray[i] = new RequestThread(0,  initialState, "", solutions ); // (index, initialState, goalState, Solution)
+            // (index, initialState, goalState, Solution, serverIP)
+            threadArray[i] = new RequestThread(0,  initialState, "", solutions, "" ); 
         }
         // loop through every goal state, 
         int i = 0;
         while(i < allGoalStates.size()) {
             for(int j = 0; j < threadArray.length; j++) {
                 if(!threadArray[j].isAlive()) {
-                    threadArray[j] = new RequestThread(i, initialState, allGoalStates.get(i), solutions);
+                    threadArray[j] = new RequestThread(i, initialState, allGoalStates.get(i), solutions, serverIps.get(i));
                     threadArray[j].start();
                     i++;
                 }

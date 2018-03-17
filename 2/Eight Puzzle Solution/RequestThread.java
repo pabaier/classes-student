@@ -1,27 +1,34 @@
 import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import java.io.*;
+import java.net.*;
 
 public class RequestThread extends Thread {
     private int index;
     private String initialState;
     private String goalState;
     private HashMap<Integer, String> solutions; // <index, solution>
+    private String ipAddress;
 
     RequestThread(
         int index,
         String initialState, 
         String goalState, 
-        HashMap<Integer, String> solutions )
+        HashMap<Integer, String> solutions,
+        String ipAddress)
     {
         this.index = index;
         this.initialState = initialState;
         this.goalState = goalState;
         this.solutions = solutions;
+        this.ipAddress = ipAddress;
     }
 
-    public void run(){
-        getSolutionFromServer();
+    public void run() {
+        try {
+            getSolutionFromServer();
+        } catch(Exception e){}
     }
 
     /** 
@@ -36,15 +43,24 @@ public class RequestThread extends Thread {
      *     Here      - reader.readLine()
      * {"id":1234, "solution":"01234567802345678120345678"}
      */
-    synchronized public void getSolutionFromServer() {
+    synchronized public void getSolutionFromServer() throws Exception {
+        Socket socketClient = new Socket(ipAddress, 5555);
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socketClient.getOutputStream()));
+        writer.flush();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
+
         JSONObject infoToServer = new JSONObject();
         infoToServer.put("id", index);
         infoToServer.put("initial", initialState);
         infoToServer.put("goal", goalState);
 
-        // send infoToServer.toJSONString()
+        // send server info
+        writer.write(infoToServer.toJSONString());
+        writer.newLine();
+        writer.flush();
         
-        String tempInfo = reader.readLine();
+        // read server info
+        String tempInfo = reader.readLine(); // WILL THIS WAIT FOR THE WORK TO BE DONE?
         JSONParser parser = new JSONParser();
         Object temp = parser.parse(tempInfo);
         JSONObject infoFromClient = (JSONObject)temp;

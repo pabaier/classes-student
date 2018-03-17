@@ -24,8 +24,7 @@ public class Server  {
             writer.flush();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
 
-            // writer.write("*** Welcome to the Calculation Server (Addition Only) ***\n");
-            // writer.flush();
+			// read client info
 			String tempInfo = reader.readLine();
 			JSONParser parser = new JSONParser();
 			Object temp = parser.parse(tempInfo);
@@ -34,15 +33,17 @@ public class Server  {
 			int index = (int)infoFromClient.get("id");
 			String initialState = (String)infoFromClient.get("initial");
 			String goalState = (String)infoFromClient.get("goal");
-			
-			
+
 			// GET SOLUTION
+			String solution = ServerWorker(
+				new PriorityQueueHeap(),
+				stringToIntArray(goalState));
 
-
+			// send client info
 			// {“id”: 1234, “solution”: “012345678102345678120345678”}
 			JSONObject infoToClient = new JSONObject();
 			infoToClient.put("id", index);
-			infoToClient.put("solution", "SOLUTION");
+			infoToClient.put("solution", solution);
 
 			writer.write(infoToClient.toJSONString());
 			writer.newLine();
@@ -51,7 +52,6 @@ public class Server  {
         }
 	}
 	
-	/*
 	private void ServerWorker(PriorityQueue<BoardState> dataStructure, int[] Goal){
 		openNodesQueue = dataStructure;
 		GoalState = new BoardState(Goal);
@@ -105,12 +105,10 @@ public class Server  {
 						}					
 					}
 				} // end while
-			
-
 			} // end if
 		} // end for
 	} // end EightPuzzle
-	*/
+
 	
 	private String makeKey(BoardState current){
 		String retval = "";
@@ -180,5 +178,17 @@ public class Server  {
 
 		}
 		return count;
-	}	
+	}
+	
+	private int[] stringToIntArray(String s) {
+        int[] i = new int[s.length()];
+        try{
+            int j = 0;
+            for(char c : s.toCharArray()) {
+                i[j] = Character.getNumericValue(c);
+                j++;
+            }
+        }catch(Exception e){return new int[]{-1};}
+        return i;
+    }
 }
