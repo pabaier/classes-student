@@ -60,7 +60,7 @@ public class Client {
         while(i < allGoalStates.size()) {
             for(int j = 0; j < threadArray.length; j++) {
                 if(!threadArray[j].isAlive()) {
-                    threadArray[j] = new RequestThread(i, initialState, allGoalStates.get(i), solutions, serverIps.get(i));
+                    threadArray[j] = new RequestThread(i, initialState, allGoalStates.get(i), solutions, serverIps.get(j));
                     threadArray[j].start();
                     i++;
                 }

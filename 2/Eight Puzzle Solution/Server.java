@@ -7,6 +7,8 @@ import java.io.*;
 import java.net.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import static java.lang.Math.toIntExact;
+
 
 public class Server  {
 
@@ -26,7 +28,8 @@ public class Server  {
 			Object temp = parser.parse(tempInfo);
 			JSONObject infoFromClient = (JSONObject)temp;
 
-			int index = (int)infoFromClient.get("id");
+			long indexTemp = (long)infoFromClient.get("id");
+			int index = toIntExact(indexTemp);
 			String initialState = (String)infoFromClient.get("initial");
 			String goalState = (String)infoFromClient.get("goal");
 

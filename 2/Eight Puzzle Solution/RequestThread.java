@@ -3,6 +3,7 @@ import org.json.simple.*;
 import org.json.simple.parser.*;
 import java.io.*;
 import java.net.*;
+import static java.lang.Math.toIntExact;
 
 public class RequestThread extends Thread {
     private int index;
@@ -65,11 +66,12 @@ public class RequestThread extends Thread {
         Object temp = parser.parse(tempInfo);
         JSONObject infoFromClient = (JSONObject)temp;
 
-        int index = (int)infoFromClient.get("id");
+        long indexTemp = (long)infoFromClient.get("id");
+        int index = toIntExact(indexTemp);
         String solution = (String)infoFromClient.get("solution");
 
         solutions.put(index, solution);
-        
+        System.out.println(index + ": " + solution);
     }
 
 }
