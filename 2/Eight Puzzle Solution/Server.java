@@ -2,17 +2,13 @@ import java.util.ArrayList;
 
 // import jdk.nashorn.internal.parser.JSONParser;
 import java.util.Map;
+import java.util.HashMap;
 import java.io.*;
 import java.net.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
 public class Server  {
-	
-	PriorityQueue<BoardState> openNodesQueue;	
-	Map<String, BoardState> closedNodes;
-	BoardState GoalState;
-	int[][] AllPossibleStates;	
 
 	public static void main(String[] args) throws Exception {
         System.out.println(" Server is Running ");
@@ -37,6 +33,7 @@ public class Server  {
 			// GET SOLUTION
 			String solution = ServerWorker(
 				new PriorityQueueHeap(),
+				stringToIntArray(initialState),
 				stringToIntArray(goalState));
 
 			// send client info
@@ -52,65 +49,46 @@ public class Server  {
         }
 	}
 	
-	private void ServerWorker(PriorityQueue<BoardState> dataStructure, int[] Goal){
-		openNodesQueue = dataStructure;
-		GoalState = new BoardState(Goal);
-		AllPossibleStates = generateAllPossibleStates();
+	private static String ServerWorker(PriorityQueue<BoardState> dataStructure, int[] initialState, int[] Goal){
+		PriorityQueue<BoardState> openNodesQueue = dataStructure;
+		BoardState GoalState = new BoardState(Goal);
 		
-		long totalRunTime = 0;
-		int statesSolved = 0;
+		// Do the EightPuzzle/A* algorithm:
+		openNodesQueue.empty();
+		Map<String, BoardState> closedNodes = new HashMap<String, BoardState>();
 		
-		for(int i = 0;i < AllPossibleStates.length;++i){
-		
-			if(checkReachable(AllPossibleStates[i], GoalState.getCurrentState())){
-				// Do the EightPuzzle/A* algorithm:
-				openNodesQueue.empty();
-				closedNodes = new HashMap<String, BoardState>();
-				
-				++statesSolved;
-				long startTime = System.currentTimeMillis(); 
-	
-				boolean goalFound = false;
-				openNodesQueue.PriorityEnqueue(new BoardState(AllPossibleStates[i]));
-				while(!goalFound){
-					BoardState current = openNodesQueue.PriorityDequeue();
-					if(this.GoalState.equals(current)){
-						int numMoves = printPath(current, 0);
-						double Time = (System.currentTimeMillis()-startTime)/1000.0;
-						totalRunTime += Time;
-						System.out.println("==================================================");
-						System.out.println("              PREVIOUS SOLUTION DATA              ");
-						System.out.printf("Number of moves: %d, Time Needed:  %.2f Seconds\n", numMoves, (System.currentTimeMillis()-startTime)/1000.0);
-						System.out.printf("States solved:   %d, Total Running Time: %.2f Minutes\n", statesSolved, totalRunTime/60.0);
-						System.out.println("==================================================");
-						goalFound = true;
-					}else{
-						closedNodes.putIfAbsent(makeKey(current), current);
-						BoardState child;
-						child = move(current, 0, 1);
-						if(child != null && closedNodes.get(makeKey(child)) == null){
-							openNodesQueue.PriorityEnqueue(child);
-						}						
-						child = move(current, 0, -1);
-						if(child != null && closedNodes.get(makeKey(child)) == null){
-							openNodesQueue.PriorityEnqueue(child);
-						}
-						child = move(current, 1, 0);
-						if(child != null && closedNodes.get(makeKey(child)) == null){
-							openNodesQueue.PriorityEnqueue(child);
-						}
-						child = move(current, -1, 0);
-						if(child != null && closedNodes.get(makeKey(child)) == null){
-							openNodesQueue.PriorityEnqueue(child);
-						}					
-					}
-				} // end while
-			} // end if
-		} // end for
-	} // end EightPuzzle
+		boolean goalFound = false;
+		openNodesQueue.PriorityEnqueue(new BoardState(initialState));
+		while(!goalFound){
+			BoardState current = openNodesQueue.PriorityDequeue();
+			if(GoalState.equals(current)){
+				return printPath(current, ""); //ANSWER IS IN HERE!
+				// goalFound = true;
+			}else{
+				closedNodes.putIfAbsent(makeKey(current), current);
+				BoardState child;
+				child = move(current, 0, 1);
+				if(child != null && closedNodes.get(makeKey(child)) == null){
+					openNodesQueue.PriorityEnqueue(child);
+				}						
+				child = move(current, 0, -1);
+				if(child != null && closedNodes.get(makeKey(child)) == null){
+					openNodesQueue.PriorityEnqueue(child);
+				}
+				child = move(current, 1, 0);
+				if(child != null && closedNodes.get(makeKey(child)) == null){
+					openNodesQueue.PriorityEnqueue(child);
+				}
+				child = move(current, -1, 0);
+				if(child != null && closedNodes.get(makeKey(child)) == null){
+					openNodesQueue.PriorityEnqueue(child);
+				}					
+			}
+		}
+		return "error in solution algorithm";
+	}
 
-	
-	private String makeKey(BoardState current){
+	private static String makeKey(BoardState current){
 		String retval = "";
 		for(int i = 0;i< current.getCurrentState().length;++i){
 			retval += current.getCurrentState()[i];
@@ -118,7 +96,7 @@ public class Server  {
 		return retval;
 	}
 	
-	private BoardState move(BoardState current, int rowMove, int colMove){
+	private static BoardState move(BoardState current, int rowMove, int colMove){
 		int index = 0;
 		int[] newBoard = new int[9];
 		for(int i = 0;i < 9;++i){
@@ -142,23 +120,7 @@ public class Server  {
 		return NewChild;
 	}
 	
-	public boolean checkReachable(int state1[], int state2[]){
-		boolean reachable = false;
-		int count1 = 0, count2 = 0; 
-		for(int i = 0; i< state1.length; i++){
-			for(int j = i+1; j < state1.length; j++ ){
-				if(state1[i] > state1[j] && state1[j] != 0){
-					count1 += 1;
-				}
-				if(state2[i] > state2[j] && state2[j] != 0){
-					count2 += 1;
-				}
-			}	
-		}
-		return count2 % 2 == count1 % 2;
-	}
-	
-	public int manhattan(int[] initialState, int[] endState){
+	private static int manhattan(int[] initialState, int[] endState){
 		// return manhattan distance between these two states
 		int distance = 0;
 		for(int i = 0; i < initialState.length; i++){
@@ -171,16 +133,15 @@ public class Server  {
 		return distance;
 	}
 
-	public int printPath(BoardState current, int count){
+	private static String printPath(BoardState current, String ans){
 		if(current != null){
-			count = 1 + printPath(current.getParent(), count);
-			System.out.print(current.toString() + "---\n");
-
+			String boardString = intArrayToString(current.getCurrentState());
+			ans = boardString + printPath(current.getParent(), ans);
 		}
-		return count;
+		return ans;
 	}
 	
-	private int[] stringToIntArray(String s) {
+	private static int[] stringToIntArray(String s) {
         int[] i = new int[s.length()];
         try{
             int j = 0;
@@ -190,5 +151,12 @@ public class Server  {
             }
         }catch(Exception e){return new int[]{-1};}
         return i;
+	}
+	
+	private static String intArrayToString(int[] list) {
+        String result = "";
+        for(int i : list)
+            result += i;
+        return result;
     }
 }
