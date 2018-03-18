@@ -71,7 +71,19 @@ public class RequestThread extends Thread {
         String solution = (String)infoFromClient.get("solution");
 
         solutions.put(index, solution);
-        System.out.println(index + ": " + solution);
+        System.out.println(index + ": ");
+        printSolution(solution);
+    }
+
+    private static void printSolution(String solution){
+        char[] charSol = solution.toCharArray();
+        System.out.print("\t");
+        for(int i = 0; i < charSol.length; i++) {
+            System.out.print(charSol[i]);
+            if((i+1)%3 == 0) {System.out.println();System.out.print("\t");}
+            if((i+1)%9 == 0) {System.out.println();System.out.print("\t");}
+        }
+        System.out.println();
     }
 
 }

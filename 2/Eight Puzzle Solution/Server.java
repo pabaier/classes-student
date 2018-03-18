@@ -47,7 +47,8 @@ public class Server  {
 
 			writer.write(infoToClient.toJSONString());
 			writer.newLine();
-            writer.flush();
+			writer.flush();
+			System.out.println("Done job: " + index);
             connectionSocket.close();
         }
 	}
