@@ -20,7 +20,7 @@ CREATE TABLE Trainers(
     ID int NOT NULL AUTO_INCREMENT,
     FirstName varchar(255),
     LastName varchar(255),
-    CurrentTeam int,
+    CurrentTeamID int,
     PRIMARY KEY (ID),
     FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
 );
@@ -31,7 +31,7 @@ CREATE TABLE Participants(
     LastName varchar(255),
     Age int,
     Gender char(1),
-    CurrentTeam int,
+    CurrentTeamID int,
     PRIMARY KEY (ID),
     FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
 );
@@ -40,7 +40,7 @@ CREATE TABLE Mentors(
     ID int NOT NULL AUTO_INCREMENT,
     FirstName varchar(255),
     LastName varchar(255),
-    CurrentTeam int,
+    CurrentTeamID int,
     PRIMARY KEY (ID),
     FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
 );
@@ -49,7 +49,7 @@ CREATE TABLE Interns(
     ID int NOT NULL AUTO_INCREMENT,
     FirstName varchar(255),
     LastName varchar(255),
-    CurrentTeam int,
+    CurrentTeamID int,
     Type varchar(255),
     PRIMARY KEY (ID),
     FOREIGN KEY(CurrentTeam) REFERENCES Teams(ID)
@@ -104,3 +104,72 @@ Rename Column:
 Add Column:
     ALTER TABLE table_name ADD column_name datatype;
 describe Mentors; describe Participants; describe Results; describe Sponsors; describe Teams; describe Trainers; describe StartResults; describe EndResults;
+
+SEED DATA:
+*** Sponsors ***
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Contact, Other)
+    VALUES ("Boomtown", "1231231231", "John B. Jones", "A cool company");
+
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Contact, Other)
+    VALUES ("Hammer Spin", "656473834834", "Janey Watson", "Tough Crowd");
+
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Contact, Other)
+    VALUES ("testers", "656473834834", "Janey Watson", "Tough Crowd");
+
+*** Teams ***
+    INSERT INTO
+    Teams (Name, Sponsor, Season, Year)
+    VALUES ("Boomsquad", "BoomTown", "Fall", 2018);
+
+    INSERT INTO
+    Teams (Name, Sponsor, Season, Year)
+    VALUES ("hammerheads", "Hammer Spin", "Fall", 2018);
+
+    INSERT INTO
+    Teams (Name, Sponsor, Season, Year)
+    VALUES ("test", "testers", "Fall", 2018);
+
+*** Trainers ***
+    INSERT INTO
+    Trainers (FirstName, LastName, CurrentTeamID)
+    VALUES ("Joey", "Patterson", 2);
+
+    INSERT INTO
+    Trainers (FirstName, LastName)
+    VALUES ("Lindsay", "Watkins");
+
+
+
+*** Participants ***
+    INSERT INTO
+    Participants (FirstName, LastName, Age, Gender)
+    VALUES ("Susan", "Digby", 64, 'F');
+
+    INSERT INTO
+    Participants (FirstName, LastName, Age, Gender, CurrentTeamID)
+    VALUES ("Larry", "Sellers", 18, 'M', 1);
+
+    INSERT INTO
+    Participants (FirstName, LastName, Age, Gender, CurrentTeamID)
+    VALUES ("Wanita", "Johnson", 72, 'F', 2);
+
+*** Mentors ***
+    INSERT INTO
+    Mentors (FirstName, LastName, CurrentTeamID)
+    VALUES ("Ben", "Kanobe", 1);
+
+    INSERT INTO
+    Mentors (FirstName, LastName, CurrentTeamID)
+    VALUES ("Leia", "Skywalker", 2);
+
+*** Interns ***
+    INSERT INTO
+    Interns (FirstName, LastName, CurrentTeamID, Type)
+    VALUES ("Doc", "Holiday", 1, "Dietetic");
+
+    INSERT INTO
+    Interns (FirstName, LastName, CurrentTeamID, Type)
+    VALUES ("Jane", "Goodall", 1, "PT");
