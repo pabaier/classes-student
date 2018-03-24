@@ -4,7 +4,9 @@ paulb165
 
 *******
 ncftp -u paulb165 ftp.paulb1.sgedu.site
-put -r * OR put -r public_html
+put -rf * OR put -rf public_html
+from inside ncftp:
+    open -u paulb165 ftp.paulb1.sgedu.site
 
 (lftp -u paulb165 ftp.paulb1.sgedu.site)
 
@@ -34,6 +36,7 @@ select * from [table name]
 ALTER TABLE sudoku CHANGE COLUMN last_move lastMove VARCHAR(255);
 UPDATE sudoku SET lastMove = "hit";
 ALTER TABLE sudoku ADD lastMove varchar(255);
+DELETE FROM table_name WHERE some_column = some_value
 
 
 
