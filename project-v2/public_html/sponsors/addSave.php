@@ -1,7 +1,7 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT'].'/db.php';
+ 
     $page = "sponsors";
-
     $sql = "INSERT INTO 
                 Sponsors(Name,PhoneNumber,Contact,Other)
             VALUES 
@@ -12,8 +12,6 @@
                 )
             ";
     if (!$result = $mysqli->query($sql)) {
-        // echo "Errno: " . $mysqli->errno . "</br>";
-        // echo "Error: " . $mysqli->error . "</br>";
         $errno = $mysqli->errno;
         switch ($errno){
             case '1064':
@@ -35,6 +33,3 @@
     }
 
 ?>
-<!-- Success -->
-<!-- <a href="/sponsors/view.php">back</a> -->
-<!-- <script>window.location='/sponsors/view.php'; </script> -->

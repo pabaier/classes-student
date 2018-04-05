@@ -1,0 +1,18 @@
+php -S localhost:8000
+
+
+    // echo "Meeting Time: <select id='MeetingTime' name=''>";
+    // echo getHTMLOptionsFromDB("Sponsors", "Name", $sponsor);
+    // echo "</select>";
+    // echo "<br>";
+    // echo "<input type='hidden' name ='id' value='".$_REQUEST['id']."'>";
+
+CREATE TRIGGER assignTeam AFTER INSERT ON Participants
+    BEGIN
+        SET @usrID=LAST_INSERT_ID();
+        // get the number of people on each team
+        // get the one(s) with the least amt of people
+        // of those, randomly select one
+        // assign @usrID to that team
+        UPDATE users SET my_random=@rand,us7=3 WHERE uid=@usr;
+    END;   

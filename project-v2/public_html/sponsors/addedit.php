@@ -14,12 +14,11 @@
             $contact= $row['Contact'];
             $other= $row['Other'];
             $buttonVal = "Update";
-            $nextPage = "updateSave.php";
+            $nextPage = "editSave.php";
             break;
     }
 
-    echo "<h1>".$func." Sponsor</h1>";
-    // echo $_REQUEST['year']."  ".$_REQUEST['season']."<br>";
+    echo "<h1>".$func." ".ucfirst($page)."</h1>";
     echo "<form method='post'>";
     if($_GET['fn'] == 'edit'){
         echo "Name: ".$name."<br>";

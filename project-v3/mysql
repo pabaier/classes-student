@@ -1,0 +1,131 @@
+SEED DATA:
+*** Teams *** Boomsquad, JollyRodgers, Mac Lovers
+    INSERT INTO
+    Teams (Name, MeetingTime)
+    VALUES ("Boomsquad", "Tuesday 6:30am");
+
+    INSERT INTO
+    Teams (Name, MeetingTime)
+    VALUES ("JollyRodgers", "Mondays 7:00pm");
+
+    INSERT INTO
+    Teams (Name)
+    VALUES ("Mac Lovers");
+
+*** Sponsors *** Boomtown, Disney, Apple
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Email, ContactPerson, Other)
+    VALUES ("Boomtown", "1231231231", "j@bt.com", "John B. Jones", "A cool company");
+
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Email, ContactPerson)
+    VALUES ("Disney", "7574", "j@disney.com", "Mickey Mouse");
+
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Email, ContactPerson, Other)
+    VALUES ("Apple ", "4658940", "app@le.com", "Wendy M. A. Darling", "tough computer company");
+
+*** Trainers *** Joey Patterson, Jesse, Prince
+    INSERT INTO
+    Trainers (FirstName, LastName)
+    VALUES ("Joey", "Patterson");
+
+    INSERT INTO
+    Trainers (FirstName)
+    VALUES ("Jesse");
+
+    INSERT INTO
+    Trainers (LastName)
+    VALUES ("Prince");
+
+*** Participants *** Susan Digby, Larry Sellers, Johnson
+    INSERT INTO
+    Participants (FirstName, LastName, Age, Gender)
+    VALUES ("Susan", "Digby", 64, 'F');
+
+    INSERT INTO
+    Participants (FirstName, LastName, Gender)
+    VALUES ("Larry", "Sellers", 'M');
+
+    INSERT INTO
+    Participants (LastName, Age)
+    VALUES ("Johnson", 72);
+
+*** Mentors *** Ben Kanobe, Leia Skywalker
+    INSERT INTO
+    Mentors (FirstName, LastName)
+    VALUES ("Ben", "Kanobe");
+
+    INSERT INTO
+    Mentors (FirstName, LastName)
+    VALUES ("Leia", "Skywalker");
+
+*** Interns *** Doc Holiday, Goodall
+    INSERT INTO
+    Interns (FirstName, LastName, Type)
+    VALUES ("Doc", "Holiday", "Dietetic");
+
+    INSERT INTO
+    Interns (LastName, Type)
+    VALUES ("Goodall", "PT");
+
+
+*** WeeklyResults ***
+    INSERT INTO
+    WeeklyResults (Participantsid, Weight, WeekNumber)
+    VALUES (1, 210, 1);
+
+    INSERT INTO
+    WeeklyResults (Participantsid, Weight, WeekNumber)
+    VALUES (2, 110, 1);
+
+    INSERT INTO
+    WeeklyResults (Participantsid, Weight, WeekNumber)
+    VALUES (3, 310, 1);
+
+*** StartResults ***
+    INSERT INTO
+    StartResults (Participantsid, VisceralFat, BMI, BodyFatPercent, LeanMusclePercent)
+    VALUES (1, 20, 10, 25, 50);
+
+    INSERT INTO
+    StartResults (Participantsid, VisceralFat, BMI, BodyFatPercent, LeanMusclePercent)
+    VALUES (2, 20.4, 20.1, 35.3, 50.2);
+
+    INSERT INTO
+    StartResults (Participantsid, VisceralFat, BMI, BodyFatPercent, LeanMusclePercent)
+    VALUES (3, 9.0, 10.2, 32.25, 43.70);
+
+*** EndResults ***
+    INSERT INTO
+    EndResults (Participantsid, VisceralFat, BMI, BodyFatPercent, LeanMusclePercent)
+    VALUES (1, 15, 15, 20, 70);
+
+    INSERT INTO
+    EndResults (Participantsid, VisceralFat, BMI, BodyFatPercent, LeanMusclePercent)
+    VALUES (2, 12.4, 15.1, 40.3, 60.2);
+
+    INSERT INTO
+    EndResults (Participantsid, VisceralFat, BMI, BodyFatPercent, LeanMusclePercent)
+    VALUES (3, 7.0, 8.2, 40.27, 50.77);
+
+*** Teams_Trainers ***
+*** Teams_Mentors ***
+*** Teams_Participants ***
+*** Teams_Interns ***
+*** Teams_Sponsors *** Boomtown JollyRodgers
+    INSERT INTO
+    Teams_Sponsors (TeamsName, SponsorsName)
+    VALUES ("JollyRodgers", "Boomtown");
+
+    INSERT INTO
+    Teams_Sponsors (TeamsName, SponsorsName)
+    VALUES ("Boomsquad", "Apple");
+
+    INSERT INTO
+    Teams_Sponsors (TeamsName, SponsorsName)
+    VALUES ("Mac Lovers", "Disney");
+
+    INSERT INTO
+    Teams_Sponsors (SponsorsName)
+    VALUES ("CofC");

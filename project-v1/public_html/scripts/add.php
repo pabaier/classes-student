@@ -1,4 +1,5 @@
 <?php
+    // echo $_REQUEST['year'];
     $page = $_GET['fn'];
     blank($page);
     function blank($page){

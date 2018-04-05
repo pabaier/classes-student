@@ -1,7 +1,7 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT'].'/db.php';
+    
     $page = "sponsors";
-
     $sql = "UPDATE ".ucfirst($page)." 
             SET PhoneNumber='".$_REQUEST['phone']."',
                 Contact='".$_REQUEST['contact']."',
@@ -9,8 +9,6 @@
             WHERE Name='".$_REQUEST['name']."'
             ";
     if (!$result = $mysqli->query($sql)) {
-        // echo "Errno: " . $mysqli->errno . "</br>";
-        // echo "Error: " . $mysqli->error . "</br>";
         $errno = $mysqli->errno;
         switch ($errno){
             case '1064':
@@ -25,13 +23,9 @@
         }
         echo "<br>";
         echo "<a href='/".$page."/addedit.php?fn=edit&name=".$_REQUEST['name']."'>back</a>";
-        // exit;
     }
     else{
         echo "<script>window.location='/".$page."/view.php'; </script>";
     }
 
 ?>
-<!-- Success -->
-<!-- <a href="/sponsors/view.php">back</a> -->
-<!-- <script>window.location='/sponsors/view.php'; </script> -->

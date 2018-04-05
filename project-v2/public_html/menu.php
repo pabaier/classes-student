@@ -5,24 +5,31 @@
 <form id='posting' method='get'>
     <div class = 'menu' id = 'dateMenu'>
         Select Year and Season: 
-        <select id='year' name='year'>
-            <option>All</option>
-            <option>2018</option>
-            <option>2017</option>
-            <option>2016</option>
-        </select>
-        <select id='season' name='season'>
-            <option>All</option>
-            <option>Fall</option>
-            <option>Spring</option>
-        </select>
+        <?php
+            include $_SERVER['DOCUMENT_ROOT'].'/shared/utils.php';
+            $currentYear = "";
+            $currentSeason = "";
+            if(array_key_exists('year', $_REQUEST)){
+                $currentYear = (int)$_REQUEST['year'];
+                $currentSeason = $_REQUEST['season'];
+            }
+            echo "<select id='year' name='year'>";
+            echo "<option>All</option>";
+            echo getHTMLOptionsFromFile("years", $currentYear);
+            echo "</select>";
+
+            echo "<select id='season' name='season'>";
+            echo "<option>All</option>";
+            echo getHTMLOptionsFromFile("seasons", $currentSeason);
+            echo "</select>";
+        ?>
         <input type="hidden" name ='fn' id='fn' value='add'>
     </div>
 
     <div class = 'menu' id = 'navMenu'>
         <ul>
             <?php
-                $links = fopen($_SERVER['DOCUMENT_ROOT']."/links", "r") or die("Unable to open file!");
+                $links = fopen($_SERVER['DOCUMENT_ROOT']."/info/links", "r") or die("Unable to open file!");
                 while(!feof($links)) {
                     $name = fgets($links);
                     echo "<li>";
@@ -35,7 +42,9 @@
             ?>
         </ul>
     </div>
-    <a href='/index.php'><button type="button">Home</button></a>
+    <?php
+        echo "<a href='/index.php?year=".$_REQUEST['year']."&season=".$_REQUEST['season']."'><button type='button'>Home</button></a>";
+    ?>
 </form>
 
 <script>

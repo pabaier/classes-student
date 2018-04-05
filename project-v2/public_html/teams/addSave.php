@@ -1,8 +1,16 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT'].'/db.php';
-    $page = "sponsors";
-
-    $sql = "DELETE FROM Sponsors WHERE Name='".$_REQUEST['name']."'";  
+ 
+    $page = "teams";
+    $sql = "INSERT INTO 
+                Teams(Name,Sponsor,Season,Year)
+            VALUES 
+                ('" . $_REQUEST['Name'] . "','" 
+                    . $_REQUEST['Sponsor'] . "','"
+                    . $_REQUEST['Season'] . "','"
+                    . $_REQUEST['Year'] . "'
+                )
+            ";
     if (!$result = $mysqli->query($sql)) {
         $errno = $mysqli->errno;
         switch ($errno){
@@ -12,18 +20,16 @@
             case '1062':
                 echo "A team with the name ".$_REQUEST['name']." already exists";
                 break;
-            case '1451':
-                echo "You cannot delete this sponsor because they sponsor a team";
-                echo "<br>";
-                echo "Remove them as a sponsor and try again";
-                break;
             default:
                 echo "Errno: " . $mysqli->errno . "</br>";
                 echo "Error: " . $mysqli->error . "</br>";
         }
         echo "<br>";
-        echo "<a href='/".$page."/view.php?year=".$_REQUEST['year']."&season=".$_REQUEST['season']."'>back</a>";
+        echo "<a href='/".$page."/addedit.php?fn=add'>back</a>";
+        // exit;
     }
-    else
+    else{
         echo "<script>window.location='/".$page."/view.php?year=".$_REQUEST['year']."&season=".$_REQUEST['season']."'; </script>";
+    }
+
 ?>
