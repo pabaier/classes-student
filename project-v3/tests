@@ -1,0 +1,249 @@
+CREATE TABLE Teams (Name varchar(255) NOT NULL, MeetingTime varchar(255), PRIMARY KEY (Name));
+CREATE TABLE Sponsors (Name varchar(255) NOT NULL, PhoneNumber varchar(12), Email varchar(255), ContactPerson varchar(255), Other varchar(255), PRIMARY KEY (Name));
+CREATE TABLE Trainers (id int(10) NOT NULL AUTO_INCREMENT, FirstName varchar(255), LastName varchar(255), PRIMARY KEY (id));
+CREATE TABLE Mentors (id int(10) NOT NULL AUTO_INCREMENT, FirstName varchar(255), LastName varchar(255), PRIMARY KEY (id));
+CREATE TABLE Participants (id int(10) NOT NULL AUTO_INCREMENT, FirstName varchar(255), LastName varchar(255), Age int(3), Gender char(1), PRIMARY KEY (id));
+CREATE TABLE Interns (id int(10) NOT NULL AUTO_INCREMENT, FirstName varchar(255), LastName varchar(255), Type varchar(255), PRIMARY KEY (id));
+
+CREATE TABLE WeeklyResults (Participantsid int(10) NOT NULL, WeekNumber int(2) NOT NULL, Weight int(10), PRIMARY KEY (Participantsid, WeekNumber), FOREIGN KEY(Participantsid) REFERENCES Participants(id));
+CREATE TABLE StartResults (Participantsid int(10) NOT NULL UNIQUE, VisceralFat float, BMI float, BodyFatPercent float, LeanMusclePercent float, FOREIGN KEY(Participantsid) REFERENCES Participants(id));
+CREATE TABLE EndResults (Participantsid int(10) NOT NULL UNIQUE, VisceralFat float, BMI float, BodyFatPercent float, LeanMusclePercent float, FOREIGN KEY(Participantsid) REFERENCES Participants(id));
+
+CREATE TABLE Teams_Trainers (TeamsName varchar(255), Trainersid int(10) NOT NULL, FOREIGN KEY(TeamsName) REFERENCES Teams(Name), FOREIGN KEY(Trainersid) REFERENCES Trainers(id));
+CREATE TABLE Teams_Mentors (TeamsName varchar(255), Mentorsid int(10) NOT NULL, FOREIGN KEY(TeamsName) REFERENCES Teams(Name), FOREIGN KEY(Mentorsid) REFERENCES Mentors(id));
+CREATE TABLE Teams_Participants (TeamsName varchar(255), Participantsid int(10) NOT NULL, FOREIGN KEY(TeamsName) REFERENCES Teams(Name), FOREIGN KEY(Participantsid) REFERENCES Participants(id));
+CREATE TABLE Teams_Interns (TeamsName varchar(255), Internsid int(10) NOT NULL, FOREIGN KEY(TeamsName) REFERENCES Teams(Name), FOREIGN KEY(Internsid) REFERENCES Interns(id));
+CREATE TABLE Teams_Sponsors (TeamsName varchar(255), SponsorsName varchar(255) NOT NULL, FOREIGN KEY(TeamsName) REFERENCES Teams(Name), FOREIGN KEY(SponsorsName) REFERENCES Sponsors(Name));
+
+DELIMITER #
+CREATE TRIGGER addSponsorReg
+AFTER INSERT ON Sponsors
+FOR EACH ROW
+BEGIN
+    INSERT INTO Teams_Sponsors (TeamsName, SponsorsName)
+    VALUES (NULL, NEW.Name);
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER delSponsorReg
+BEFORE DELETE ON Sponsors
+FOR EACH ROW
+BEGIN
+    DELETE FROM Teams_Sponsors
+    WHERE SponsorsName = OLD.Name;
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER addTrainerReg
+AFTER INSERT ON Trainers
+FOR EACH ROW
+BEGIN
+    INSERT INTO Teams_Trainers (TeamsName, Trainersid)
+    VALUES (NULL, NEW.id);
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER delTrainerReg
+BEFORE DELETE ON Trainers
+FOR EACH ROW
+BEGIN
+    DELETE FROM Teams_Trainers
+    WHERE Trainersid = OLD.id;
+END#
+DELIMITER ;
+
+ DELIMITER #
+CREATE TRIGGER addMentorReg
+AFTER INSERT ON Mentors
+FOR EACH ROW
+BEGIN
+    INSERT INTO Teams_Mentors (TeamsName, Mentorsid)
+    VALUES (NULL, NEW.id);
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER delMentorReg
+BEFORE DELETE ON Mentors
+FOR EACH ROW
+BEGIN
+    DELETE FROM Teams_Mentors
+    WHERE Mentorsid = OLD.id;
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER addInternReg
+AFTER INSERT ON Interns
+FOR EACH ROW
+BEGIN
+    INSERT INTO Teams_Interns (TeamsName, Internsid)
+    VALUES (NULL, NEW.id);
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER delInternReg
+BEFORE DELETE ON Interns
+FOR EACH ROW
+BEGIN
+    DELETE FROM Teams_Interns
+    WHERE Internsid = OLD.id;
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER addParticipantReg
+AFTER INSERT ON Participants
+FOR EACH ROW
+BEGIN
+    INSERT INTO Teams_Participants (TeamsName, Participantsid)
+    VALUES (NULL, NEW.id);
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER delParticipantReg
+BEFORE DELETE ON Participants
+FOR EACH ROW
+BEGIN
+    DELETE FROM Teams_Participants
+    WHERE Participantsid = OLD.id;
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER addParticipantStart
+AFTER INSERT ON Teams_Participants
+FOR EACH ROW
+BEGIN
+    INSERT INTO StartResults (Participantsid)
+    VALUES (NEW.Participantsid);
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER delParticipantStart
+BEFORE DELETE ON Teams_Participants
+FOR EACH ROW
+BEGIN
+    DELETE FROM StartResults
+    WHERE Participantsid = OLD.Participantsid;
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER addParticipantEnd
+AFTER INSERT ON StartResults
+FOR EACH ROW
+BEGIN
+    INSERT INTO EndResults (Participantsid)
+    VALUES (NEW.Participantsid);
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE TRIGGER delParticipantEnd
+BEFORE DELETE ON StartResults
+FOR EACH ROW
+BEGIN
+    DELETE FROM EndResults
+    WHERE Participantsid = OLD.Participantsid;
+END#
+DELIMITER ;
+
+DELIMITER #
+CREATE PROCEDURE updateRegs (IN ID VARCHAR(255))
+BEGIN
+    UPDATE Teams_Interns SET TeamsName = NULL WHERE TeamsName = ID;
+    UPDATE Teams_Mentors SET TeamsName = NULL WHERE TeamsName = ID;
+    UPDATE Teams_Participants SET TeamsName = NULL WHERE TeamsName = ID;
+    UPDATE Teams_Trainers SET TeamsName = NULL WHERE TeamsName = ID;
+    UPDATE Teams_Sponsors SET TeamsName = NULL WHERE TeamsName = ID;
+END#
+DELIMITER ;
+
+
+
+
+
+
+
+/* teams */
+    INSERT INTO
+    Teams (Name, MeetingTime)
+    VALUES ("Boomsquad", "Tuesday 6:30am");
+
+    INSERT INTO
+    Teams (Name, MeetingTime)
+    VALUES ("JollyRodgers", "Mondays 7:00pm");
+
+    INSERT INTO
+    Teams (Name)
+    VALUES ("Mac Lovers");
+/* sponsors */
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Email, ContactPerson, Other)
+    VALUES ("Boomtown", "1231231231", "j@bt.com", "John B. Jones", "A cool company");
+
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Email, ContactPerson)
+    VALUES ("Disney", "7574", "j@disney.com", "Mickey Mouse");
+
+    INSERT INTO
+    Sponsors (Name, PhoneNumber, Email, ContactPerson, Other)
+    VALUES ("Apple ", "4658940", "app@le.com", "Wendy M. A. Darling", "tough computer company");
+
+/* trainers */
+    INSERT INTO
+    Trainers (FirstName, LastName)
+    VALUES ("Joey", "Patterson");
+    INSERT INTO
+    Trainers (FirstName)
+    VALUES ("Jesse");
+
+    INSERT INTO
+    Trainers (LastName)
+    VALUES ("Prince");
+
+/* participants */
+    INSERT INTO
+    Participants (FirstName, LastName, Age, Gender)
+    VALUES ("Susan", "Digby", 64, 'F');
+
+    INSERT INTO
+    Participants (FirstName, LastName, Gender)
+    VALUES ("Larry", "Sellers", 'M');
+
+    INSERT INTO
+    Participants (LastName, Age)
+    VALUES ("Johnson", 72);
+
+/* mentors */
+    INSERT INTO
+    Mentors (FirstName, LastName)
+    VALUES ("Ben", "Kanobe");
+
+    INSERT INTO
+    Mentors (FirstName, LastName)
+    VALUES ("Leia", "Skywalker");
+
+/* interns */
+    INSERT INTO
+    Interns (FirstName, LastName, Type)
+    VALUES ("Doc", "Holiday", "Dietetic");
+
+    INSERT INTO
+    Interns (LastName, Type)
+    VALUES ("Goodall", "PT");
+
+    INSERT INTO
+    Interns (FirstName, LastName, Type)
+    VALUES ("Doc", "Brown", "Dietetic");
+
+/* sponsors */
+/* sponsors */
+

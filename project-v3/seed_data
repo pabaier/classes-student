@@ -69,6 +69,10 @@ SEED DATA:
     Interns (LastName, Type)
     VALUES ("Goodall", "PT");
 
+    INSERT INTO
+    Interns (FirstName, LastName, Type)
+    VALUES ("Doc", "Brown", "Dietetic");
+
 
 *** WeeklyResults ***
     INSERT INTO
@@ -110,8 +114,15 @@ SEED DATA:
     VALUES (3, 7.0, 8.2, 40.27, 50.77);
 
 *** Teams_Trainers ***
+    INSERT INTO
+    Teams_Trainers (TeamsName, Trainersid)
+    VALUES ("JollyRodgers", "1");
+
 *** Teams_Mentors ***
 *** Teams_Participants ***
+    INSERT INTO
+    Teams_Participants (TeamsName, Participantsid)
+    VALUES ("JollyRodgers", "1");
 *** Teams_Interns ***
 *** Teams_Sponsors *** Boomtown JollyRodgers
     INSERT INTO
@@ -125,7 +136,4 @@ SEED DATA:
     INSERT INTO
     Teams_Sponsors (TeamsName, SponsorsName)
     VALUES ("Mac Lovers", "Disney");
-
-    INSERT INTO
-    Teams_Sponsors (SponsorsName)
-    VALUES ("CofC");
+    

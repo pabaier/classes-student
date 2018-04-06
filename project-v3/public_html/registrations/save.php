@@ -5,10 +5,17 @@
     if(strcmp($_REQUEST['Team'], "null")==0){
         $team = "null";
     }
+    $pageName = $_REQUEST["pageName"];
+    $regTableKey = $_REQUEST[$pageName];
+    $regTableColumn = ucfirst($pageName)."id";
+    if(strcmp($pageName, "sponsors") == 0){
+        $regTableColumn = ucfirst($pageName)."Name";
+    }
 
-    $sql = "UPDATE Teams_".ucfirst($_REQUEST["table"])."
+
+    $sql = "UPDATE Teams_".ucfirst($pageName)."
     SET TeamsName = ".$team."
-    WHERE SponsorsName ='".$_REQUEST['sponsors']."'";
+    WHERE ".$regTableColumn."='".$regTableKey."'";
     if (!$result = $mysqli->query($sql)) {
         echo var_dump($_REQUEST)."<br>";
         $errno = $mysqli->errno;
@@ -27,10 +34,20 @@
                 echo "Error: " . $mysqli->error . "</br>";
         }
         echo "<br>";
-        echo "<a href='/registrations/".$_REQUEST['table'].".php'>back</a>";
+        if(strcmp($pageName, "sponsors") == 0){
+            echo "<a href='/registrations/".$pageName.".php'>back</a>";
+        }
+        else{
+            echo "<a href='/registrations/general.php?page=".$pageName."'>back</a>";
+        }
     }
     else{
-        echo "<script>window.location='/registrations/".$_REQUEST['table'].".php'; </script>";
+        if(strcmp($pageName, "sponsors") == 0){
+            echo "<script>window.location='/registrations/".$pageName.".php'; </script>";
+        }
+        else{
+            echo "<script>window.location='/registrations/general.php?page=".$pageName."'; </script>";
+        }
     }
 
 ?>

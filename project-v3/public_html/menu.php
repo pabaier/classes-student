@@ -14,7 +14,12 @@
                     echo "<button type=\"submit\" formaction=\"/".$name."/view.php\">View</button>";
                     echo "<button type=\"submit\" formaction=\"/".$name."/addedit.php\">Add</button>";
                     if(strcmp(trim($name),"teams") != 0){
-                        echo "<button type=\"submit\" formaction=\"/registrations/".$name.".php\">Registrations</button>";
+                        if(strcmp(trim($name),"sponsors") == 0){
+                            echo "<button type=\"submit\" name='page' value=".$name." formaction=\"/registrations/".$name.".php\">Registrations</button>";
+                        }
+                        else{
+                            echo "<button type=\"submit\" name='page' value=".$name." formaction=\"/registrations/general.php\">Registrations</button>";
+                        }
                     }
                     echo "</li>";
                 }
