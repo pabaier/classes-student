@@ -28,6 +28,21 @@
         </ul>
     </div>
 </form>
+<br>
 
-<a href='/index.php?'><button type='button'>Home</button></a>
+<?php
+    include $_SERVER['DOCUMENT_ROOT'].'/shared/utils.php';
 
+    $optData = getdbColumn("Teams", "Name");
+            echo "<form method='post'>";
+            echo "Enter Results: ";
+            echo "<select name='Team'>";
+            echo createOptionsFromColumn($optData, $row['TeamsName']);
+            echo "</select>";
+            echo "<input type='submit' formaction='/views/byTeam.php' value='Go'>";
+            echo "<input type='hidden' name='pageName' value='".$page."'>";
+            echo "<input type='hidden' name='".$page."' value=".$tableKey.">";
+            echo "</form>";
+?>
+
+<br><a href='/index.php?'><button type='button'>Home</button></a>

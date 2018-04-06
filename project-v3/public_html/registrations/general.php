@@ -1,8 +1,7 @@
 <?php
     include $_SERVER['DOCUMENT_ROOT']."/menu.php"; 
     include $_SERVER['DOCUMENT_ROOT'].'/db.php';
-    include $_SERVER['DOCUMENT_ROOT']."/shared/utils.php";
-    $page = $_REQUEST['page'];//"trainers";
+    $page = $_REQUEST['page'];
     $Page = ucfirst($page);
 
     echo "<h1>".$Page." Registration</h1>";
