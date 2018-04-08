@@ -1,6 +1,10 @@
 body {
     font-family: Arial, Helvetica, sans-serif
 }
+table.homepage th {
+    background: #00447C;
+    padding: 0em;
+}
 
 #headerImg {
     float: left;

@@ -6,11 +6,9 @@
     $id = $_REQUEST['id'];
     $firstName = $_REQUEST['FirstName'];
     $lastName = $_REQUEST['LastName'];
-    $lastPage = $_REQUEST['lastPage'];
-    $currentPage = "/results/startEnd.php";
     $team = $_REQUEST['Team'];
 
-    echo "<h1>".$firstName." ".$lastName."</h1>";
+    echo "<h1>".$firstName." ".$lastName." - ".$team."</h1>";
     echo "<h2>".$Type." Results</h2>";
 
     $sql = "SELECT * 
@@ -64,12 +62,10 @@
                 echo "<input type='hidden' name='id' value='".$id."'>";
                 echo "<input type='hidden' name='firstName' value='".$firstName."'>";
                 echo "<input type='hidden' name='lastName' value='".$lastName."'>";
-                echo "<input type='hidden' name='lastPageFail' value='".$currentPage."'>";
-                echo "<input type='hidden' name='lastPageSuccess' value='".$lastPage."'>";
                 echo "<input type='hidden' name='Team' value=".$team.">";
 
                 echo "<input type='submit' formaction='/results/saveStartEnd.php' value='Submit'>";
-                echo "<button type='submit' formaction='".$lastPage."'>Cancel</button>";
+                echo "<button type='submit' formaction='/results/home.php'>Cancel</button>";
             echo "</form>";
         }
     }

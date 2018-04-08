@@ -1,11 +1,15 @@
 <?php
     include ($_SERVER['DOCUMENT_ROOT']."/menu.php"); 
     include $_SERVER['DOCUMENT_ROOT'].'/db.php';
+
     $type = $_REQUEST['type'];
     $Type = ucfirst($type);
     $id = $_REQUEST['id'];
     $firstName = $_REQUEST['FirstName'];
     $lastName = $_REQUEST['LastName'];
+    $team = $_REQUEST['Team'];
+    $urlString = "id=".$id."&FirstName=".$firstName."&LastName=".$lastName."&Team=".$team."&type=".$type;
+
     $VisceralFat = $_REQUEST['VisceralFat'];
     if(empty($VisceralFat))
         $VisceralFat = "NULL";
@@ -18,13 +22,6 @@
     $LeanMusclePercent = $_REQUEST['LeanMusclePercent'];
     if(empty($LeanMusclePercent))
         $LeanMusclePercent = "NULL";
-    $lastPageFail = $_REQUEST['lastPageFail'];
-    $lastPageSuccess = $_REQUEST['lastPageSuccess'];
-    $currentPage = "/results/saveStartEnd.php";
-    $team = $_REQUEST['Team'];
-
-    // $sql = "INSERT INTO ".$Type."Results(Participantsid, VisceralFat, BMI, BodyFatPercent, LeanMusclePercent)
-    //         VALUES ('". $id."','".$VisceralFat."','".$BMI."','".$BodyFatPercent."','".$LeanMusclePercent."')";
 
     $sql = "UPDATE ".$Type."Results SET 
                         VisceralFat=".$VisceralFat.",
@@ -46,14 +43,12 @@
                 break;
             default:
                 echo "All inputs should be numbers - no letters allowed. Try Again ;)";
-                // echo "Errno: " . $mysqli->errno . "</br>";
-                // echo "Error: " . $mysqli->error . "</br>";
         }
         echo "<br>";
-        echo "<a href='".$lastPageSuccess."?Team=".$team."'>back</a>";
+        echo "<a href='/results/startEnd.php?".$urlString."'>back</a>";
     }
     else{
-        echo "<script>window.location='".$lastPageSuccess."?Team=".$team."'; </script>";
+        echo "<script>window.location='/results/home.php'; </script>";
     }
 
 ?>
