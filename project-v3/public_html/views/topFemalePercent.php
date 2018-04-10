@@ -3,10 +3,10 @@
     include $_SERVER['DOCUMENT_ROOT'].'/db.php';
 
     echo "<h1>Top Female Percentage Weight Lost</h1>";
-    $query = "SELECT * FROM TopFemalePercent";
+    $query = "SELECT * FROM topTenWomenPercent";
 
     if($result = $mysqli->query($query)){
-        echo "<table class='views' id='topMale'>";
+        echo "<table class='views' id='topFemalePercent'>";
         echo "<tr>
                 <th></th>
                 <th>First Name</th>
@@ -27,10 +27,10 @@
                     echo $row['LastName'];
                 echo "</td>";
                 echo "<td>";
-                    echo $row['TeamsName'];
+                    echo $row['Team'];
                 echo "</td>";
                 echo "<td>";
-                    echo $row['percent'];
+                    echo $row['percent']."%";
                 echo "</td>";
             echo "</tr>";
             $i++;

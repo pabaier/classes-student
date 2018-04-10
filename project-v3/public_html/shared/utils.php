@@ -46,8 +46,24 @@
         return $options;
     }
 
-
-
+    function getdbIDandColumn2($table, $field, $field2){
+        include $_SERVER['DOCUMENT_ROOT'].'/db.php';
+        $query = "SELECT ID, ".$field.", ".$field2." FROM ".$table;
+        $return = array();
+        if($result = $mysqli->query($query)){
+            while($row = $result -> fetch_assoc()){
+                $num = $row['ID'];
+                $val = $row[$field];
+                $val2 = $row[$field2];
+                $return[$num] = $val." ".$val2;
+            }
+        }
+        else{
+            echo "util getdbIDandColumn could not complete the request";
+            return array("2" => "blue", "3" => "knee");
+        }
+        return $return;
+    }
 
     // use with createOptionsFromAssociativeArray vvv
     function getdbIDandColumn($table, $field){

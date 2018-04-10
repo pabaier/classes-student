@@ -5,6 +5,9 @@ table.homepage th {
     background: #00447C;
     padding: 0em;
 }
+table.homepage td {
+    padding: 1ch;
+}
 
 #headerImg {
     float: left;
