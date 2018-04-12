@@ -71,8 +71,10 @@ public class RequestThread extends Thread {
         String solution = (String)infoFromClient.get("solution");
 
         solutions.put(index, solution);
-        System.out.println(index + ": ");
-        printSolution(solution);
+        System.out.println(index);
+        socketClient.close(); // try removing if not working properly...
+        // System.out.println(index + ": ");
+        // printSolution(solution);
     }
 
     private static void printSolution(String solution){

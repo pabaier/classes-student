@@ -16,6 +16,7 @@ public class Client {
     private String initialState;
     private HashMap<Integer, String> solutions; // <index, solution>
     private List<String> allGoalStates;
+    private String[][] goalsSolutions;
     private List<String> serverIps;
 
     public Client(int[] is) {
@@ -88,6 +89,9 @@ public class Client {
                 allGoalStates.add(intArrayToString(allPossibleStates[i]));
             }
         }
+        goalsSolutions = new String[allGoalStates.size()][2];
+        for(int i = 0; i < goalsSolutions.length; i++)
+            goalsSolutions[i][0] = allGoalStates.get(i);
     }
 
     private String intArrayToString(int[] list) {
