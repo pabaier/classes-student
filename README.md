@@ -1,12 +1,21 @@
-## Idea
+# Secret Santa
 
-`Secret Santa`
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
+![PyPI - Django Version](https://img.shields.io/pypi/djversions/djangorestframework.svg)
 
-This app is designed to facilitate a gift exchange. It can be used by a private group or and individual can sign up for a mass public gift exchange (MPGE).  
+This app is designed to facilitate a gift exchange. It can be used by a private group or an individual can sign up for a mass public gift exchange (MPGE).  
 
-#### What is a gift exchange?
+## What is a gift exchange?
 
 A gift exchange is a fun way to give and receive gifts with group of people. Everyone in the group is randomly assigned another person and they are responsible for buying that person a gift. 
+
+## Getting Started
+
+After cloning the repo simply run 
+
+```python
+$python manage.py runserver
+```
 
 ## Use Cases
 
