@@ -1,14 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>
-            Secret Santa
-        </title>
-    </head>
-    <body>
-        <h1>Secret Santa</h1>
-        {{subtitle | safe}}
-        <p><a href='login'>login</a></p>
-        <p><a href='accounts/signup'>sign up</a></p>
-    </body>
-</html>
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    {{subtitle | safe}}
+    <p><a href='login'>login</a></p>
+    <p><a href='accounts/signup'>sign up</a></p>
+{% endblock %}
