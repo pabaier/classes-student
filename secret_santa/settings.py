@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'secret_santa.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 db = config['db']
 DATABASES = {
-    'default': db['heroku'] 
+    'default': db['localhost']
 }
 
 

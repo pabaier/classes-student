@@ -17,6 +17,10 @@ After cloning the repo simply run
 $python manage.py runserver
 ```
 
+## Config
+
+A config file is required in `\secret_santa\config.json`. The file must contain a path to `db.localhost`. This can be changed in the  `settings.py` file .
+
 ## Use Cases
 
 - gift exchange
