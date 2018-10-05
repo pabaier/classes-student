@@ -17,6 +17,27 @@ After cloning the repo simply run
 $python manage.py runserver
 ```
 
+## Config
+
+A config file is required in `\secret_santa\config.json`. The file must contain a path to `db.localhost`. This can be changed in the  `settings.py` file .
+
+## Docker
+
+The Dockerfile can be used to run the app locally, but is intended for production use with Heroku. Before building, the production database must be added to `config.json` and referenced in `secret_santa\settings.py`.
+
+To build, run
+```
+$docker build -t santa .
+```
+Then to push to Heroku, run
+```
+$heroku container:login
+$heroku container:push web
+$heroku container:release web
+```
+
+---
+
 ## Use Cases
 
 - gift exchange
