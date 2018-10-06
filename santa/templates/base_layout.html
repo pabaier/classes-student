@@ -1,0 +1,31 @@
+<!-- templates/base.html -->
+{% load static %}
+<html>
+<head>
+    <title> Secret Santa</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"
+          rel="stylesheet">
+
+    <link href="{&static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+<div>
+
+    <header>
+        <div class="nav-left">
+            <h1><a href="{% url 'home' %}">Secret Santa</a></h1>
+        </div>
+    </header>
+    {% if user.is_authenticated %}
+    <p>Hi {{user.username}}!</p>
+    <p><a href="{% url 'logout' %}">Log out</a></p>
+    {% else %}
+    <P>You are not logged in.</P>
+    <a href="{% url 'login' %}">Log In</a>
+    <p><a href="{% url 'signup' %}">Sign up</a></p>
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+</div>
+</body>
+</html>

@@ -1,11 +1,14 @@
+<!-- templates/signup.html -->
 {% extends 'base_layout.html' %}
 
 {% block content %}
-    <h2>Sign Up</h2>
-    <form class="site-form" action="/accounts/signup/" method="post">
-        {% csrf_token %}
-        {{form}}
-        <input type="submit" value="Signup">
-    </form>
-    <p><a href='/'>home</a></p>
-{% endblock %}
+
+<h2> Sign up</h2>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Sign up</button>
+
+</form>
+
+{% endblock content %}
