@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
-    'main.apps.MainConfig'
+    'main.apps.MainConfig',
+    'twilio app'
 ]
 
 MIDDLEWARE = [
