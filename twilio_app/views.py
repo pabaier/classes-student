@@ -9,11 +9,15 @@ def send(request):
 
     client = Client(tConfig['account_sid'], tConfig['auth_token'])
     mess = "hey hey hey"
-    message = client.messages.create(
-        to    = "", # add number from request post
-        from_ = tConfig['number'],
-        body  = mess
-    )
+    
+    try:
+        message = client.messages.create(
+            to    = "", # add number from request post
+            from_ = tConfig['number'],
+            body  = mess
+        )
+    except Exception as err:
+        message = err.__dict__['msg']
     context = {"message": message}
 
     return render(request, 'sent.html', context)
