@@ -8,13 +8,13 @@ def send(request):
     tConfig = config['twilio']
 
     client = Client(tConfig['account_sid'], tConfig['auth_token'])
-    mess = "hey hey hey"
+    txt = "message" # TODO: add text from request post
     
     try:
         message = client.messages.create(
-            to    = "", # add number from request post
+            to    = "", # TODO: add number from request post
             from_ = tConfig['number'],
-            body  = mess
+            body  = txt
         )
     except Exception as err:
         message = err.__dict__['msg']

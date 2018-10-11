@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('', include('main.urls')),
-    path('twilio/', include('twilio_app.urls'))
+    path('twilio/', include('twilio_app.urls', namespace='twilio_app'))
 ]
