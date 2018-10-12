@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <style>
+        body {
+            background-image: url("{% static '/main/images/background.jpg' %}");
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-attachment: fixed;
+            }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/journal/bootstrap.min.css">
+
+
+
+    <title> Secret Santa</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400"
+          rel="stylesheet">
+
+</head>
+<body>
+<div>
+    <header>
+        <div class="nav-left">
+            <h1><a href="{% url 'home' %}">Secret Santa</a></h1>
+        </div>
+    </header>
+    {% if user.is_authenticated %}
+    <p>Hi {{user.username}}!</p>
+    <p><a href="{% url 'logout' %}">Log out</a></p>
+    {% else %}
+    <P>You are not logged in.</P>
+    <a href="{% url 'login' %}">Log In</a>
+    <p><a href="{% url 'signup' %}">Sign up</a></p>
+    {% endif %}
+    {% block content %}
+    {% endblock content %}
+</div>
+</body>
+</html>
