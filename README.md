@@ -10,11 +10,16 @@ This app is designed to facilitate a gift exchange. It can be used by a private 
 A gift exchange is a fun way to give and receive gifts with group of people. Everyone in the group is randomly assigned another person and they are responsible for buying that person a gift. 
 
 ## Getting Started
+All dependencies can be found in the `Pipfile`. Install them manually and run
 
-After cloning the repo simply run 
-
-```python
+```
 $python manage.py runserver
+```
+
+or just use pipenv and run
+
+```
+$pipenv run python manage.py runserver
 ```
 
 ## Config

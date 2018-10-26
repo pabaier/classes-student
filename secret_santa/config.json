@@ -4,5 +4,10 @@
         	"ENGINE": "django.db.backends.sqlite3",
         	"NAME": "mydatabase" 
         }
+    },
+    "twilio": {
+        "account_sid": " ",
+        "auth_token": " ",
+        "number": " "
     }
 }
