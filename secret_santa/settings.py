@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'main.apps.MainConfig',
     'twilio_app.apps.TwilioAppConfig'
+    'pairings.apps.PairingsConfig'
 ]
 
 MIDDLEWARE = [
