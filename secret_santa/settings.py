@@ -19,6 +19,7 @@ with open(os.path.join(sys.path[0], 'secret_santa/config.json'), 'r') as f:
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'main.apps.MainConfig',
+    'create_group.apps.CreateGroupConfig'
     'twilio_app.apps.TwilioAppConfig'
     'pairings.apps.PairingsConfig'
 ]
@@ -63,7 +65,7 @@ ROOT_URLCONF = 'secret_santa.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

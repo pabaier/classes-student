@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title> Forms </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+    <h2>Go to /creategroup page to create a group and add members </h2>
+    <div class="container">
+    <h2>Here are your groups </h2>
+      <ol>
+        {%for gr in myGroups %}
+        <li> Group Info</li>
+        <ul class="list-group">
+          <li class="list-group-item"><a href= "form_page.html"> Group Name:{{gr.group_name}}</a></li>
+          <li class="list-group-item"> End Date: {{gr.end_date}}</li>
+        
+        </ul>
+        {% endfor %}
+        </ol>
+      </div>
+
+    </div>
+  </body>
+</html>

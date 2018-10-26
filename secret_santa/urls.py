@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from create_group import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('', include('main.urls')),
+    url(r'^creategroup',views.form_view,name='creategroup'),
+    url(r'^dashboard',views.show_myGroups,name='dashboard')
     path('twilio/', include('twilio_app.urls', namespace='twilio_app'))
+
 ]
