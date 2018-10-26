@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'main.apps.MainConfig',
-    'create_group'
+    'create_group.apps.CreateGroupConfig'
+    'twilio_app.apps.TwilioAppConfig'
+    'pairings.apps.PairingsConfig'
 ]
 
 MIDDLEWARE = [

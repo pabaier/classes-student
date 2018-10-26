@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+class Member_Group(models.Model):
+    memberID = models.IntegerField()
+    groupID = models.IntegerField()
+    isOwner = models.BooleanField()
+
+    def __str__(self):
+        return self.memberID
