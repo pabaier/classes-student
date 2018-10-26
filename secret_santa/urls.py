@@ -23,7 +23,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('', include('main.urls')),
     url(r'^creategroup',views.form_view,name='creategroup'),
-    url(r'^dashboard',views.show_myGroups,name='dashboard')
+    url(r'^dashboard',views.show_myGroups,name='dashboard'),
     path('twilio/', include('twilio_app.urls', namespace='twilio_app'))
 
 ]
