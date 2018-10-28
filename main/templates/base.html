@@ -58,7 +58,7 @@
 
       {% if user.is_authenticated %}
         <p>
-          <a href="{% url 'accounts:logout' %}">Log out</a>
+          <a href="{% url 'accounts:logout' %}" class="btn btn-outline-secondary">Log out</a>
         </p>
       {% endif %}
     </div>
