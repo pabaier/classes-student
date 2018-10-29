@@ -1,9 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset='utf-8'>
     <title> Forms </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   </head>
   <body>
     <h1>Welcome!</h1>
@@ -14,7 +17,7 @@
         {%for gr in myGroups %}
         <li> Group Info</li>
         <ul class="list-group">
-          <li class="list-group-item"><a href= "form_page.html"> Group Name:{{gr.group_name}}</a></li>
+          <li class="list-group-item"><a href= {% url 'create_group:creategroup' %}> Group Name:{{gr.group_name}}</a></li>
           <li class="list-group-item"> End Date: {{gr.end_date}}</li>
         
         </ul>
@@ -25,3 +28,4 @@
     </div>
   </body>
 </html>
+{% endblock %}

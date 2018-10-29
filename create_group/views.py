@@ -8,7 +8,7 @@ from create_group.forms import newGroupForm,newUsersForm
 # Create your views here.
 
 def index(request):
-    return render(request,'create_group/dashboard.html')
+    return render(request,'dashboard.html')
 
 def form_view(request):
     form1 =newGroupForm()
@@ -42,11 +42,11 @@ def form_view(request):
         'form1':form1,
         #'form2':form2
     }
-    return render (request,'create_group/form_page.html',context)
+    return render (request,'form_page.html',context)
 
 
 
 def show_myGroups(request):
     group_list = myCustomGroup.objects.order_by('group_name')
     group_dict = {'myGroups':group_list}
-    return render (request,'create_group/dashboard.html',context=group_dict)
+    return render (request,'dashboard.html',context=group_dict)
