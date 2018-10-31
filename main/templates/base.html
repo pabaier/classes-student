@@ -30,8 +30,16 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Users
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="{% url 'members:profile' %}">My Profile</a>
+              <a class="dropdown-item" href="{% url 'members:partners' %}">My Partners</a>
+              <a class="dropdown-item" href="{% url 'create_group:dashboard' %}">My Groups</a>
+              <a class="dropdown-item" href="{% url 'members:login' %}">Login</a>
+            </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,10 +48,14 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'create_group:dashboard' %}">My Groups</a>
               <a class="dropdown-item" href="{% url 'create_group:creategroup' %}">Create Group</a>
+              <a class="dropdown-item" href="{% url 'create_group:dashboard' %}">Join A Group</a>
             </div>
           </li>
           <li class="nav-item">
-              <a class="nav-link bg-success" href="{% url 'accounts:signup' %}">Sign Up! <span class="sr-only">(current)</span></a>
+              <a class="nav-link bg-success" href="{% url 'members:signup' %}">Sign Up! <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link bg-light text-dark" href="{% url 'members:login' %}">Login</a>
           </li>
         </ul>
       </div>
@@ -58,7 +70,7 @@
 
       {% if user.is_authenticated %}
         <p>
-          <a href="{% url 'accounts:logout' %}" class="btn btn-outline-secondary">Log out</a>
+          <a href="{% url 'members:logout' %}" class="btn btn-outline-secondary">Log out</a>
         </p>
       {% endif %}
     </div>
