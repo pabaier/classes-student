@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .import forms
 from create_group.models import myCustomGroup,myCustomUsers
 from create_group.forms import newGroupForm,newUsersForm
+from django.conf import settings
+from django.shortcuts import redirect
 
 
 
@@ -43,10 +45,24 @@ def form_view(request):
         #'form2':form2
     }
     return render (request,'form_page.html',context)
-
+#def show_myGroups(request):
+#    group_list = myCustomUsers.objects.order_by('user_group')
+#    group_dict = {'myGroups':group_list}
+#    return render (request,'dashboard.html',context=group_dict)
 
 
 def show_myGroups(request):
-    group_list = myCustomGroup.objects.order_by('group_name')
-    group_dict = {'myGroups':group_list}
-    return render (request,'dashboard.html',context=group_dict)
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    else:
+        group_list = myCustomUsers.objects.all().filter(user_email=request.user.email)
+        group_dict = {'myGroups':group_list}
+        return render (request,'dashboard.html', context=group_dict)
+
+def show_myManaged(request):
+    if not request.user.is_authenticated:
+        return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+    else:
+        managed_list = myCustomGroup.objects.all().filter(created_by=request.user.email)
+        managed_dict = {'myManager':managed_list}
+        return render (request,'dashboard.html', context=managed_dict)
