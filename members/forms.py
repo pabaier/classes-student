@@ -13,3 +13,9 @@ class MembersChangeForm(UserChangeForm):
     class Meta:
         model = Members
         fields = ('username',)
+
+class newMembersForm(forms.ModelForm):
+
+    class Meta():
+        model = Members
+        exclude = '__all__'

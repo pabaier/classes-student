@@ -6,8 +6,3 @@ class newGroupForm(forms.ModelForm):
     class Meta():
         model = myGroups
         fields = '__all__'
-
-class newUsersForm(forms.ModelForm):
-    class Meta():
-        model = Members
-        exclude = '__all__'

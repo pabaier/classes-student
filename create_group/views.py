@@ -2,7 +2,8 @@ from django.shortcuts import render
 from . import forms
 from members.models import Members
 from create_group.models import myGroups
-from create_group.forms import newGroupForm, newUsersForm
+from create_group.forms import newGroupForm
+from members.forms import newMembersForm
 from django.conf import settings
 from django.shortcuts import redirect
 from members.models import Members
@@ -16,7 +17,7 @@ def index(request):
 
 def form_view(request):
     form1 = newGroupForm()
-    # form2 = newUsersForm()
+    # form2 = newMembersForm()
 
     if request.method == "POST":
         form1 = newGroupForm(request.POST)
@@ -24,7 +25,7 @@ def form_view(request):
         print(request.POST.get('cell_value'))
         if request.POST.get('Name') and request.POST.get('Email') and request.POST.get('Phone') and request.POST.get(
                 'Address') and request.POST.get('Exclusions'):
-            post = newUsersForm()
+            post = newMembersForm()
             post.user_name = request.POST.get('Name')
             post.user_email = request.POST.get('Email')
             post.user_phone = request.POST.get('Phone')
@@ -34,7 +35,7 @@ def form_view(request):
         else:
             print('Error - Invalid Form')
 
-        # form2 = newUsersForm(request.POST)
+        # form2 = newMembersForm(request.POST)
         if form1.is_valid():
             form1.save()
             # form2.save()
