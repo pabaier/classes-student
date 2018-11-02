@@ -1,13 +1,9 @@
 from django.shortcuts import render
-from . import forms
-from members.models import Members
-from create_group.models import myGroups
-from create_group.forms import newGroupForm
-from members.forms import newMembersForm
-from django.conf import settings
 from django.shortcuts import redirect
+from .models import myGroups
+from .forms import newGroupForm
 from members.models import Members
-
+from members.forms import newMembersForm
 
 # Create your views here.
 
@@ -55,7 +51,7 @@ def show_groups(request):
     if not request.user.is_authenticated:
         return redirect('members:signup')
     else:
-        membership_list = Members.objects.all().filter(id=request.Members.id)
-        managed_list = myGroups.objects.all().filter(created_by=request.Members.email)
+        membership_list = Members.objects.all().filter(id=request.user.id)
+        managed_list = myGroups.objects.all().filter(created_by=request.user.email)
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
