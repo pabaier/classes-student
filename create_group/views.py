@@ -52,8 +52,8 @@ def form_view(request):
 
 # shows group memberships and groups managed on Dashboard
 def show_groups(request):
-    if not request.Members.is_authenticated:
-        return redirect('' % (settings.LOGIN_URL, request.path))
+    if not request.user.is_authenticated:
+        return redirect('members:signup')
     else:
         membership_list = Members.objects.all().filter(id=request.Members.id)
         managed_list = myGroups.objects.all().filter(created_by=request.Members.email)
