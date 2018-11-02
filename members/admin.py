@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import MembersCreationForm, MembersChangeForm
-from members.models import Members
+from .models import Members
 
 class MembersAdmin(UserAdmin):
     add_form = MembersCreationForm
