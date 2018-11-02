@@ -43,7 +43,7 @@ def form_view(request):
         'form1': form1,
         # 'form2':form2
     }
-    return render(request, 'form_page.html', context)
+    return render(request, 'create.html', context)
 
 
 # shows group memberships and groups managed on Dashboard
