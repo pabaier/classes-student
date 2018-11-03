@@ -15,8 +15,8 @@ class Members(AbstractUser):
 
 
 class Pairings(models.Model):
-    member1Id = models.IntegerField()
-    member2Id = models.IntegerField()
+    member_1ID = models.IntegerField()
+    member_2ID = models.IntegerField()
     groupID = models.IntegerField()
 
     def __str__(self):
@@ -24,11 +24,11 @@ class Pairings(models.Model):
 
 
 class User_By_Group(models.Model):
-    member_1ID = models.ForeignKey(Members, on_delete=models.CASCADE)
-    group_ID = models.ForeignKey(myGroups, on_delete=models.CASCADE)
+    member_1ID = models.ForeignKey('Members', on_delete=models.CASCADE)
+    group_ID = models.ForeignKey('create_group.myGroups', on_delete=models.CASCADE)
 
 
 class Wishlist(models.Model):
-    ubg_ID = models.ForeignKey(User_By_Group, on_delete=models.CASCADE)
+    ubg_ID = models.ForeignKey('User_By_Group', on_delete=models.CASCADE)
     item_name = models.CharField(max_length=128)
 
