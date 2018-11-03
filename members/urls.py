@@ -9,6 +9,6 @@ urlpatterns = [
     path('signup/', MembersView.as_view(), name='signup'),
     path('profile/', views.profile, name='profile'),
     path('partners/', views.partners, name='partners'),
+    path('login/', views.login, name='login'),
   #  path('changepassword/', view., name='change_password')
-
 ]

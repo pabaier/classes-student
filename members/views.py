@@ -17,3 +17,6 @@ def profile(request):
 
 def partners(request):
   return render(request, 'partners.html')
+
+def login(request):
+    return render(request, 'login.html')

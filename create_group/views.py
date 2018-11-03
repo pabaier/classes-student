@@ -1,12 +1,9 @@
 from django.shortcuts import render
-from . import forms
-from members.models import Members
-from create_group.models import myGroups
-from create_group.forms import newGroupForm, newUsersForm
-from django.conf import settings
 from django.shortcuts import redirect
+from .models import myGroups
+from .forms import newGroupForm
 from members.models import Members
-
+from members.forms import newMembersForm
 
 # Create your views here.
 
@@ -16,7 +13,7 @@ def index(request):
 
 def form_view(request):
     form1 = newGroupForm()
-    # form2 = newUsersForm()
+    # form2 = newMembersForm()
 
     if request.method == "POST":
         form1 = newGroupForm(request.POST)
@@ -24,7 +21,7 @@ def form_view(request):
         print(request.POST.get('cell_value'))
         if request.POST.get('Name') and request.POST.get('Email') and request.POST.get('Phone') and request.POST.get(
                 'Address') and request.POST.get('Exclusions'):
-            post = newUsersForm()
+            post = newMembersForm()
             post.user_name = request.POST.get('Name')
             post.user_email = request.POST.get('Email')
             post.user_phone = request.POST.get('Phone')
@@ -34,7 +31,7 @@ def form_view(request):
         else:
             print('Error - Invalid Form')
 
-        # form2 = newUsersForm(request.POST)
+        # form2 = newMembersForm(request.POST)
         if form1.is_valid():
             form1.save()
             # form2.save()
@@ -46,15 +43,15 @@ def form_view(request):
         'form1': form1,
         # 'form2':form2
     }
-    return render(request, 'form_page.html', context)
+    return render(request, 'create.html', context)
 
 
 # shows group memberships and groups managed on Dashboard
 def show_groups(request):
-    if not request.Members.is_authenticated:
-        return redirect('' % (settings.LOGIN_URL, request.path))
+    if not request.user.is_authenticated:
+        return redirect('members:signup')
     else:
-        membership_list = Members.objects.all().filter(id=request.Members.id)
-        managed_list = myGroups.objects.all().filter(created_by=request.Members.email)
+        membership_list = Members.objects.all().filter(id=request.user.id)
+        managed_list = myGroups.objects.all().filter(created_by=request.user.email)
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
