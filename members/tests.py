@@ -26,9 +26,9 @@ class MembersTestCase(TestCase):
           created_by = "me"
         )
         Pairings.objects.create(
-          member_1ID = 7,
-          member_2ID = 10,
-          groupID = 3
+          member_1ID = userOne,
+          member_2ID = userTwo,
+          groupID = groupOne
         )
         userGroup = User_By_Group.objects.create(
           member_1ID = userOne,
@@ -49,7 +49,9 @@ class MembersTestCase(TestCase):
 
         """Some records exist in pairings model"""
         allPairings = Pairings.objects.all()
-        self.assertEqual(allPairings.filter(member_1ID=7).exists(), True)
+        self.assertEqual(allPairings.filter(member_1ID=1).exists(), True)
+        self.assertEqual(allPairings.filter(member_2ID=2).exists(), True)
+        self.assertEqual(allPairings.filter(member_1ID=3).exists(), False)
 
         """Some records exist in user/group model"""
         allUserGroups = User_By_Group.objects.all()

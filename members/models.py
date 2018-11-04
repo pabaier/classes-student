@@ -13,11 +13,11 @@ class Members(AbstractUser):
     def __str__(self):
         return self.username
 
-
+# https://stackoverflow.com/a/36916782
 class Pairings(models.Model):
-    member_1ID = models.IntegerField()
-    member_2ID = models.IntegerField()
-    groupID = models.IntegerField()
+    member_1ID = models.ForeignKey('Members', related_name='member_1', on_delete=models.CASCADE)
+    member_2ID = models.ForeignKey('Members', related_name='member_2', on_delete=models.CASCADE)
+    groupID = models.ForeignKey('create_group.myGroups', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.member_1ID}, {self.member_2ID}, {self.groupID}'
