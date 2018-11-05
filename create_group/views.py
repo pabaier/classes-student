@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .import forms
-from create_group.models import myCustomGroup,myCustomUsers
-from create_group.forms import newGroupForm,newUsersForm
+from create_group.models import myCustomGroup
+from create_group.forms import newGroupForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
 
@@ -16,7 +16,7 @@ def form_view(request):
     #form2 = newUsersForm()
 
     if request.is_ajax():
-        myUser = myCustomUsers()
+    #    myUser = myCustomUsers()   // make db table instace of extended user table
         array_data = request.POST['arr']
         data = json.loads(array_data)
         print(data)
@@ -28,15 +28,15 @@ def form_view(request):
             print(len(data))
             index = 0
             while index<count:
-                myUser.user_name = data[index];
+        #        myUser.user_name = data[index];  // save data to extended user model.
                 print(data[index])
-                myUser.user_email =data[index+1];
+        #        myUser.user_email =data[index+1];
                 print(data[index+1])
-                myUser.user_phone = data[index+2];
+        #        myUser.user_phone = data[index+2];
                 print(data[index+2])
-                myUser.user_address = data[index+3];
+        #        myUser.user_address = data[index+3];
                 print(data[index+3])
-                myUser.user_exclusions = data[index+4];
+        #        myUser.user_exclusions = data[index+4];
                 print(data[index+4])
                 index = index+5;
             #myUser.save()
