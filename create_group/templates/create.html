@@ -1,0 +1,56 @@
+#Anuja
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title> Create Group </title>
+  </head>
+  <body>
+    <form method="POST">
+      {{form1.as_p}}
+      {{form2.as_p}}
+      {% csrf_token %}
+      <div class="table-responsive">
+        <table class="table table-sm table-striped border table-bordered">
+          <thead class="thead bg-light">
+            <tr>
+              <th id="Name"> Name </th>
+              <th id="Email"> Email </th>
+              <th id="Phone">Phone</th>
+              <th id="Address">Address </th>
+              <th id="Exclusions"> Exclusions </th>
+            </tr>
+          </thead>
+          <tbody id="UserTable">
+          </tbody>
+        </table>
+      </div>
+      <button onclick="insRow()" class="btn btn-outline-success">Add User</button>
+      <input type="submit" value="submit" class="btn btn-outline-success"/>
+    </form>
+ </body>
+
+ <script>
+    var arrHead = new Array();
+    arrHead = ['UserName', 'Useremail','Userphone','Useraddress','Exclusions'];
+
+    function insRow() {
+      var newUser = document.getElementById('UserTable');
+      var rowCnt = newUser.rows.length;        // GET TABLE ROW COUNT.
+      var tr = newUser.insertRow(rowCnt);
+      for (var c = 0; c < arrHead.length; c++) {
+        var td = document.createElement('td');          // TABLE DEFINITION.
+        td = tr.insertCell(c);
+        var ele = document.createElement('input');
+        ele.setAttribute('type', 'text');
+        ele.setAttribute('value', '');
+        ele.setAttribute('id','cell_value');
+        td.appendChild(ele);
+      }
+    }
+  </script>
+</html>
+{% endblock %}

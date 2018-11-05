@@ -1,13 +1,8 @@
 from django import forms
-from create_group.models import myCustomGroup,myCustomUsers
-
+from create_group.models import myGroups
+from members.models import Members
 
 class newGroupForm(forms.ModelForm):
     class Meta():
-        model = myCustomGroup
+        model = myGroups
         fields = '__all__'
-
-class newUsersForm(forms.ModelForm):
-    class Meta():
-        model = myCustomUsers
-        exclude = '__all__'

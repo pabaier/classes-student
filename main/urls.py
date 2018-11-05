@@ -19,7 +19,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
+    path('members/', include('members.urls')),
     path('', views.home, name='home'),
     path('groups/', include('create_group.urls', namespace='create_group')),
     path('twilio/', include('twilio_app.urls', namespace='twilio_app'))
