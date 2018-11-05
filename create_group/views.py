@@ -2,40 +2,54 @@ from django.shortcuts import render
 from .import forms
 from create_group.models import myCustomGroup,myCustomUsers
 from create_group.forms import newGroupForm,newUsersForm
-
-
+from django.views.decorators.csrf import csrf_exempt
+import simplejson as json
 
 # Create your views here.
 
 def index(request):
     return render(request,'dashboard.html')
 
+@csrf_exempt
 def form_view(request):
     form1 =newGroupForm()
     #form2 = newUsersForm()
 
-    if request.method == "POST":
-        form1 = newGroupForm(request.POST)
-        #if request.method == 'POST':
-        print(request.POST.get('cell_value'))
-        if request.POST.get('Name') and request.POST.get('Email') and request.POST.get('Phone') and request.POST.get('Address') and request.POST.get('Exclusions'):
-                post=newUsersForm()
-                post.user_name= request.POST.get('Name')
-                post.user_email= request.POST.get('Email')
-                post.user_phone= request.POST.get('Phone')
-                post.user_address= request.POST.get('Address')
-                post.user_exclusions= request.POST.get('Exclusions')
-                post.save()
-        else:
-            print('Error - Invalid Form')
+    if request.is_ajax():
+        myUser = myCustomUsers()
+        array_data = request.POST['arr']
+        data = json.loads(array_data)
+        print(data)
+        print(data[0])
+        print(data[8])
 
-        #form2 = newUsersForm(request.POST)
-        if form1.is_valid():
-            form1.save()
+        if request.POST['arr']:
+            count = len(data)
+            print(len(data))
+            index = 0
+            while index<count:
+                myUser.user_name = data[index];
+                print(data[index])
+                myUser.user_email =data[index+1];
+                print(data[index+1])
+                myUser.user_phone = data[index+2];
+                print(data[index+2])
+                myUser.user_address = data[index+3];
+                print(data[index+3])
+                myUser.user_exclusions = data[index+4];
+                print(data[index+4])
+                index = index+5;
+            #myUser.save()
+    else:
+        print('Error - Invalid Form')
+
+
+    if form1.is_valid():
+        form1.save()
             #form2.save()
-            return show_myGroups(request)
-        else:
-            print('Error - Invalid Form')
+        return show_myGroups(request)
+    else:
+        print('Error - Invalid Form')
 
 
     context = {

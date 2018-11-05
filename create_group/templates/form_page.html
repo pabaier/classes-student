@@ -6,13 +6,12 @@
   <head>
     <meta charset='utf-8'>
     <title> Forms </title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   </head>
   <body>
-  <form method = "POST">
+
       {{form1.as_p}}
       {{form2.as_p}}
-      {% csrf_token %}
-
 
 
    <table id = "UserTable" border="1">
@@ -24,33 +23,67 @@
       <th id ="Exclusions"> Exclusions </th>
     </tr>
   </table>
-
-  <button onclick="insRow()">Add User</button>
+<button class="btn btn-primary" onclick="insRow();">Add User</button>
 <script>
 var arrHead = new Array();
 arrHead = ['UserName', 'Useremail','Userphone','Useraddress','Exclusions'];
 
-function insRow() {
-  var newUser = document.getElementById('UserTable');
+function insRow()
+{
+      var newUser = document.getElementById('UserTable');
+      $("#UserTable").append("<tr id='testing'> </tr>");
 
-          var rowCnt = newUser.rows.length;        // GET TABLE ROW COUNT.
-        //  var tr = newUser.insertRow(rowCnt);
-          var tr = newUser.insertRow(rowCnt);
+           var rowCnt = newUser.rows.length;
+           var tr = newUser.insertRow(rowCnt);
+           tr.id = rowCnt;
+        for (var c = 0; c < arrHead.length; c++) {
+            var td = document.createElement('td');
+            td = tr.insertCell(c);
+            var ele = document.createElement('input');
+            ele.setAttribute('type', 'text');
+            ele.setAttribute('value', ' ');
+            ele.id = rowCnt+' '+c;
+            td.appendChild(ele);
+          }
+  }
 
-          for (var c = 0; c < arrHead.length; c++) {
-              var td = document.createElement('td');          // TABLE DEFINITION.
-              td = tr.insertCell(c);
-              var ele = document.createElement('input');
-                ele.setAttribute('type', 'text');
-                ele.setAttribute('value', '');
-                ele.setAttribute('id','cell_value');
-                td.appendChild(ele);
+function pullDataFromTable()
+{
+  var tableRow = document.getElementById('UserTable').rows.length;
+  console.log("table rows"+tableRow);
+  console.log("testing function call");
+  var index=2;
+  var arrayUsers = [];
+  while( index < tableRow) {
+  //  var arrayUsers = [];
 
-            }
+    for (var col = 0 ; col<5; col++){
+     arrayUsers.push(document.getElementById(index+" "+col).value);
+      }
+    console.log(arrayUsers);
+    index = index+2;
+ }
+
+ $.ajax({
+        type: "POST",
+        data: {
+        //  'Name': arrayUsers[0],
+        // 'senduser[]': arrayUsers
+         'arr': JSON.stringify(arrayUsers)
+        },
+        dataType: 'json',
+        success: function (data) {
+          alert("data is available in views.");
+          }
+      });
 
 }
+
 </script>
-<input type = "submit" value = "submit"/>
+<button class="btn btn-primary" onclick="pullDataFromTable();">Pull Data</button>
+
+<form>
+  {% csrf_token %}
 </form>
 
  </body>
