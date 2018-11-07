@@ -31,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,11 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
     'main.apps.MainConfig',
     'create_group.apps.CreateGroupConfig',
     'twilio_app.apps.TwilioAppConfig',
-    'pairings.apps.PairingsConfig',
+    'members.apps.MembersConfig'
 ]
 
 MIDDLEWARE = [
@@ -78,14 +76,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'secret_santa.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 db = config['db']
 DATABASES = {
     'default': db['localhost']
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -105,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -119,7 +114,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
@@ -129,3 +123,5 @@ STATIC_URL = '/main/static/'
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
+
+AUTH_USER_MODEL = 'members.Members'

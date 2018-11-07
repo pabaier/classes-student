@@ -1,45 +1,52 @@
 from django.shortcuts import render
-from .import forms
-from create_group.models import myCustomGroup
-from create_group.forms import newGroupForm
+from django.shortcuts import redirect
+from .models import myGroups
+from .forms import newGroupForm
+from members.models import Members
+from members.forms import newMembersForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
 
 # Create your views here.
 
 def index(request):
-    return render(request,'dashboard.html')
+    return render(request, 'dashboard.html')
+
 
 @csrf_exempt
 def form_view(request):
-    form1 =newGroupForm()
-    #form2 = newUsersForm()
+    form1 = newGroupForm()
+    # form2 = newMembersForm()
 
     if request.is_ajax():
-    #    myUser = myCustomUsers()   // make db table instace of extended user table
+           #make db table instace of extended user table
         array_data = request.POST['arr']
         data = json.loads(array_data)
         print(data)
         print(data[0])
-        print(data[8])
+        #print(data[8])
 
         if request.POST['arr']:
             count = len(data)
             print(len(data))
             index = 0
             while index<count:
-        #        myUser.user_name = data[index];  // save data to extended user model.
+                myUser = Members()
+                myUser.name = data[index];
                 print(data[index])
-        #        myUser.user_email =data[index+1];
+                myUser.username = data[index+1];
                 print(data[index+1])
-        #        myUser.user_phone = data[index+2];
+                myUser.email = data[index+2];
                 print(data[index+2])
-        #        myUser.user_address = data[index+3];
+                myUser.phone = data[index+3];
                 print(data[index+3])
-        #        myUser.user_exclusions = data[index+4];
+                myUser.address = data[index+4];
                 print(data[index+4])
-                index = index+5;
-            #myUser.save()
+                myUser.exclusions = data[index+5];
+                print(data[index+5])
+                myUser.save()
+                index = index+6;
+
     else:
         print('Error - Invalid Form')
 
@@ -51,16 +58,19 @@ def form_view(request):
     else:
         print('Error - Invalid Form')
 
-
     context = {
-        'form1':form1,
-        #'form2':form2
+        'form1': form1,
+        # 'form2':form2
     }
-    return render (request,'form_page.html',context)
+    return render(request, 'create.html', context)
 
 
-
-def show_myGroups(request):
-    group_list = myCustomGroup.objects.order_by('group_name')
-    group_dict = {'myGroups':group_list}
-    return render (request,'dashboard.html',context=group_dict)
+# shows group memberships and groups managed on Dashboard
+def show_groups(request):
+    if not request.user.is_authenticated:
+        return redirect('members:signup')
+    else:
+        membership_list = Members.objects.all().filter(id=request.user.id)
+        managed_list = myGroups.objects.all().filter(created_by=request.user.email)
+        context = {'myManaged': managed_list, 'myMembership': membership_list}
+        return render(request, 'dashboard.html', context)

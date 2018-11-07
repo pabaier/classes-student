@@ -1,31 +1,83 @@
+#Eric
 {% extends 'base.html' %}
 
 {% block content %}
 
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
+    <style>
+          th, td {
+            border: 2px solid black;
+          }
+
+          table {
+            border-collapse:  collapse;
+          }
+
+
+    </style>
     <meta charset='utf-8'>
     <title> Forms </title>
-  </head>
-  <body>
-    <h1>Welcome!</h1>
-    <h2>Go to /creategroup page to create a group and add members </h2>
-    <div class="container">
-    <h2>Here are your groups </h2>
-      <ol>
-        {%for gr in myGroups %}
-        <li> Group Info</li>
-        <ul class="list-group">
-          <li class="list-group-item"><a href= {% url 'create_group:creategroup' %}> Group Name:{{gr.group_name}}</a></li>
-          <li class="list-group-item"> End Date: {{gr.end_date}}</li>
-        
-        </ul>
-        {% endfor %}
-        </ol>
-      </div>
 
-    </div>
-  </body>
+</head>
+<body>
+
+<h1>Welcome!</h1>
+
+<div class="container">
+    <h2>Groups You Manage: </h2>
+    <table>
+        <th>Group Name</th>
+        <th>Ship Date</th>
+        <th>End Date</th>
+        {%for gr in myManaged %}
+        <tr>
+            <ul class="list-group">
+                <td>
+                    <li class="list-group-item"><a href={% url 'create_group:creategroup' %}> {{gr.group_name}}</a></li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.user_group.ship_date}}</li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.user_group.end_date}}</li>
+                </td>
+            </ul>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1><font size="2"> <a class="nav-link" href="{% url 'create_group:creategroup' %}">Start a New Group!</a></font>
+    </h1>
+    <h2>Groups You Are a Member of: </h2>
+    <table>
+        <th>Group Name</th>
+        <th>Group Creator</th>
+        <th>Ship Date</th>
+        <th>End Date</th>
+        {%for gr in myMembership %}
+        <tr>
+            <ul class="list-group">
+                <td>
+                    <li class="list-group-item"><a href={% url 'create_group:creategroup' %}>
+                        {{gr.user_group.group_name}}</a></li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.user_group.created_by}}</li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.user_group.ship_date}}</li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.user_group.end_date}}</li>
+                </td>
+
+            </ul>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
 </html>
 {% endblock %}

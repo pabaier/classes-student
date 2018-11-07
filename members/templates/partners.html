@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+#Paul
+{% block content %}
+
+<h2>Partners</h2>
+{% if user.is_authenticated %}
+  <p>Here are your partners {{user.username}}!</p>
+
+{% else %}
+  <p>please sign in or sign up!!</p>
+  <p>
+    <a href="{% url 'members:login' %}" class="btn btn-outline-success">Login</a>
+    <a href="{% url 'members:signup' %}" class="btn btn-outline-success">Sign up</a>
+  </p>
+{% endif %}
+{% endblock content %}
