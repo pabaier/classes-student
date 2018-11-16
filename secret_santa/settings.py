@@ -125,3 +125,10 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 AUTH_USER_MODEL = 'members.Members'
+
+email = config['email']
+EMAIL_HOST = email['host']
+EMAIL_PORT = email['port']
+EMAIL_HOST_USER = email['user']
+EMAIL_HOST_PASSWORD = email['password']
+EMAIL_USE_TLS = True
