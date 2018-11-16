@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form method="POST" action="/comms/">
+    {% csrf_token %}
+    <input type="hidden" class="form-control" name="groupId" value="1">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

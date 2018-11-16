@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<ul>
+  {% for user, value in data.items %}
+    <li>{{ user }}:  {{ value }}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
