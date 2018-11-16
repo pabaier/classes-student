@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'create_group.apps.CreateGroupConfig',
-    'twilio_app.apps.TwilioAppConfig',
+    'comms.apps.CommsConfig',
     'members.apps.MembersConfig'
 ]
 
