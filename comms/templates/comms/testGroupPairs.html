@@ -2,7 +2,7 @@
 
 {% block content %}
   <p>Send Text</p>
-  <button type="button" class="btn btn-success" id="btn-send">Send Pairings</button>
+  <button type="button" class="btn btn-success" id="btn-sendGroup">Send Pairings</button>
   <input type="hidden" id="groupId" value="1">
 
   <!-- Modal -->
@@ -20,29 +20,30 @@
   </div>
   
   <script>
-    $("#btn-send").click(function () {
+    $("#btn-sendGroup").click(() => {
       $.ajax({
-        url: '/comms/',
-        method:"POST",
+        url: `/comms/pairings/${$("#groupId").val()}`,
+        method:"GET",
         data: {
-          'groupId': $("#groupId").val()
+          'email': true,
+          'text': true
         },
         dataType: 'json',
-        success: function (returnData) {
+        success: (returnData) => {
           $('#resultModal').modal('show');
           if (returnData.failure) {
             var htmlString = "<ul>";
             returnData.failure.forEach(fail => {
-              htmlString += `<li>${fail.userName} - ${fail.error}</li>`;
+              htmlString += `<li>${fail.message}</li>`;
             });
             htmlString += "</ul>";
             $('#result-modal').prop('class', 'alert alert-danger');
             $('#result-message').html(`We had a few issues...${htmlString}Please make sure all group members have email addresses or phone numbers and try again.`);
-            $('#btn-send').prop('disabled',false);
+            $('#btn-sendGroup').prop('disabled',false);
           }
           else {
             $('#result-message').html('Success!');
-            $('#btn-send').prop('disabled',true);
+            $('#btn-sendGroup').prop('disabled',true);
           }
         }
       });

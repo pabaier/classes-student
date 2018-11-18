@@ -41,36 +41,33 @@ def sendEmail(userName, pairingName, groupName, userEmail):
     result = {'failure': {'userName': userName, 'error': message}}
   return result
 
-@csrf_exempt
-def send(request):
-  groupId = request.POST['groupId']
+def sendGroup(request, groupId):
+  if (not userGroups.objects.filter(member_1ID=request.user.id, group_ID=groupId).exists()):
+    return JsonResponse({'failure': [{'message': 'You are not part of the requested group'}]})
   # pairings = Pairings.objects.filter(groupID=groupId)
   # groupName = myGroups.objects.filter(id=groupId)[0].group_name
-  # d = {}
   # results = {'success': [], 'failure': []}
   # for pairs in pairings:
   #   user = pairs.member_1ID
   #   pair = pairs.member_2ID
   #   if(user.phone and user.phone != ''):
-  #     d[user.id] = {'username':user.username, 'phone':user.phone, 'pairing':pair.username}
   #     result = sendText(user.username, pair.username, groupName, user.phone)
   #   else:
-  #     d[user.id] = {'username':user.username, 'email':user.email, 'pairing':pair.username}
   #     result = sendEmail(user.username, pair.username, groupName, user.email)
   # if 'success' in result:
   #   results['success'].append(result['success'])
   # else:
   #   results['failture'].append(result['failure'])
   results = {
-    'success': [{'userName': 'user1'}, {'userName': 'user3'}], 
-    'failure': [{'userName': 'user2', 'error': 'This messed up'}, {'userName': 'user4', 'error': 'you messed up'}]
+    'success': [{'message': 'user1'}, {'message': 'user3'}], 
+    'failure': [{'message': 'user2'}, {'message': 'user4'}]
   }
   results = {
-    'success': [{'userName': 'user1'}, {'userName': 'user3'}], 
+    'success': [{'message': 'user1'}, {'message': 'user3'}], 
     'failure': []
   }
   output = {k:v for (k,v) in results.items() if len(results[k]) > 0}
   return JsonResponse(output)
 
-def test(request):
-  return render(request, 'comms/testPost.html')
+def testGroupSend(request):
+  return render(request, 'comms/testGroupPairs.html')
