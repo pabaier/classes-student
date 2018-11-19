@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Send Text</p>
+  <select class="custom-select select-success" style="width:auto;" id='user'>
+    {% for group in groups %}
+      <optgroup label="{{ group.groupName }}"">
+      {% for members in group.members %}
+        <option value="{{ group.groupId }};{{ members.memberId }}">
+          {{ members.name }}
+        </option>
+      {% endfor %}
+      </optgroup>
+    {% endfor %}
+  </select>
+  
+  <button type="button" class="btn btn-success" id="btn-sendText">Send Pairing</button>
+  <input type="hidden" id="groupId" value="1">
+  <br>
+
+  <!-- Modal -->
+  <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background: transparent; border: none">
+        <div class="alert alert-success" role="alert" id="result-modal">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div id="result-message"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $("#btn-sendText").click(() => {
+      $('#btn-sendText').prop('disabled',true);
+      var selectedValue = $('#user').find(":selected").val();
+      var selected = selectedValue.split(';');
+      var groupId = selected[0];
+      var userId = selected[1];
+      $.ajax({
+        url: `/comms/pairings/${groupId}/${userId}`,
+        method:"GET",
+        data: {
+          'email': true,
+          'text': true
+        },
+        dataType: 'json',
+        success: (returnData) => {
+          $('#resultModal').modal('show');
+          if (returnData.failure) {
+            var htmlString = "<ul>";
+            returnData.failure.forEach(fail => {
+              htmlString += `<li>${fail.message}</li>`;
+            });
+            htmlString += "</ul>";
+            $('#result-modal').prop('class', 'alert alert-danger');
+            $('#result-message').html(`We had a few issues...${htmlString}Please make sure all group members have email addresses or phone numbers and try again.`);
+            $('#btn-sendText').prop('disabled',false);
+          }
+          else {
+            $('#result-message').html('Success!');
+            $('#btn-sendText').prop('disabled',false);
+          }
+        }
+      });
+    });
+  
+  </script>
+{% endblock content %}
+{% block js %}
+{% endblock %}

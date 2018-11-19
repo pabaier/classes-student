@@ -26,8 +26,7 @@ def sendText(userName, pairingName, groupName, userPhoneNumber):
   except Exception as err:
     message = err.__dict__['msg']
     result = {'failure': {'userName': userName}}
-
-  return {'result': result}
+  return result
 
 def sendEmail(userName, pairingName, groupName, userEmail):
   subject =  f'Secret Santa Pairing For Group {groupName}'
@@ -57,7 +56,7 @@ def sendGroup(request, groupId):
   # if 'success' in result:
   #   results['success'].append(result['success'])
   # else:
-  #   results['failture'].append(result['failure'])
+  #   results['failure'].append(result['failure'])
   results = {
     'success': [{'message': 'user1'}, {'message': 'user3'}], 
     'failure': [{'message': 'user2'}, {'message': 'user4'}]
@@ -69,5 +68,41 @@ def sendGroup(request, groupId):
   output = {k:v for (k,v) in results.items() if len(results[k]) > 0}
   return JsonResponse(output)
 
+def sendUser(request, groupId, userId):
+  if (not userGroups.objects.filter(member_1ID=request.user.id, group_ID=groupId).exists()):
+    return JsonResponse({'failure': [{'message': 'You are not part of the requested group'}]})
+  userPairing = Pairings.objects.filter(groupID=groupId, member_1ID=userId)[0]
+  groupName = myGroups.objects.filter(id=groupId)[0].group_name
+  results = {'success': [], 'failure': []}
+  user = userPairing.member_1ID
+  pair = userPairing.member_2ID
+  if(user.phone and user.phone != ''):
+    result = sendText(user.username, pair.username, groupName, user.phone)
+  else:
+    result = sendEmail(user.username, pair.username, groupName, user.email)
+  print(result)
+  if ('success' in result):
+    results['success'].append(result['success'])
+  else:
+    results['failure'].append(result['failure'])
+  output = {k:v for (k,v) in results.items() if len(results[k]) > 0}
+  return JsonResponse(output)
+
 def testGroupSend(request):
   return render(request, 'comms/testGroupPairs.html')
+
+def testMemberSend(request):
+  memberGroups = userGroups.objects.filter(member_1ID=request.user.id)
+  context = []
+  for group in memberGroups:
+    groupMembers = userGroups.objects.filter(group_ID = group.group_ID)
+    membersArray = []
+    for member in groupMembers:
+      membersArray.append({'name': member.member_1ID.username, 'memberId': member.member_1ID.id})
+    context.append({
+      'groupName': group.group_ID.group_name,
+      'groupId': group.group_ID.id,
+      'members': membersArray
+    })
+
+  return render(request, 'comms/testMemberPair.html',{'groups': context})
