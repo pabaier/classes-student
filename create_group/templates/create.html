@@ -10,8 +10,10 @@
   </head>
   <body>
 
+    <form method="POST">
+      {% csrf_token %}
       {{form1.as_p}}
-      {{form2.as_p}}
+    </form>
 
 
    <table id = "UserTable" border="1">
@@ -32,7 +34,6 @@ arrHead = ['Name', 'Username','Useremail','Userphone','Useraddress','Exclusions'
 function insRow()
 {
       var newUser = document.getElementById('UserTable');
-      $("#UserTable").append("<tr id='testing'> </tr>");
 
            var rowCnt = newUser.rows.length;
            var tr = newUser.insertRow(rowCnt);
@@ -48,29 +49,35 @@ function insRow()
           }
   }
 
-function pullDataFromTable()
-{
+
+function pullDataFromTable(){
   var tableRow = document.getElementById('UserTable').rows.length;
   console.log("table rows"+tableRow);
   console.log("testing function call");
-  var index=2;
+  var index=1;
   var arrayUsers = [];
   while( index < tableRow) {
-  //  var arrayUsers = [];
-
-    for (var col = 0 ; col<6; col++){
-     arrayUsers.push(document.getElementById(index+" "+col).value);
-      }
+    var user = {};
+    arrayUsers.push(user);
+    for (var col = 0; col < arrHead.length; col++) {
+      user[arrHead[col]] = document.getElementById(index+" "+col).value;
+    }
     console.log(arrayUsers);
-    index = index+2;
- }
+    index = index+1;
+}
+
+  var group = {};
+    group["groupName"]= document.getElementById("id_group_name").value;
+    group["endDate"]= document.getElementById("id_end_date").value;
+    group["shipDate"]= document.getElementById("id_ship_date").value;
+    group["createdBy"]= document.getElementById("id_created_by").value;
+    console.log(group);
 
  $.ajax({
         type: "POST",
         data: {
-        //  'Name': arrayUsers[0],
-        // 'senduser[]': arrayUsers
-         'arr': JSON.stringify(arrayUsers)
+         'arr': JSON.stringify(arrayUsers),
+         'grpInfo':JSON.stringify(group)
         },
         dataType: 'json',
         success: function (data) {
@@ -83,9 +90,6 @@ function pullDataFromTable()
 </script>
 <button class="btn btn-primary" onclick="pullDataFromTable();">Pull Data</button>
 
-<form>
-  {% csrf_token %}
-</form>
 
  </body>
 

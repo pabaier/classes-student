@@ -7,50 +7,93 @@
   <head>
     <meta charset='utf-8'>
     <title> Forms </title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   </head>
   <body>
+
     <form method="POST">
-      {{form1.as_p}}
-      {{form2.as_p}}
       {% csrf_token %}
-      <div class="table-responsive">
-        <table class="table table-sm table-striped border table-bordered">
-          <thead class="thead bg-light">
-            <tr>
-              <th id="Name"> Name </th>
-              <th id="Email"> Email </th>
-              <th id="Phone">Phone</th>
-              <th id="Address">Address </th>
-              <th id="Exclusions"> Exclusions </th>
-            </tr>
-          </thead>
-          <tbody id="UserTable">
-          </tbody>
-        </table>
-      </div>
-      <button onclick="insRow()" class="btn btn-outline-success">Add User</button>
-      <input type="submit" value="submit" class="btn btn-outline-success"/>
+      {{form1.as_p}}
+
     </form>
+
+
+   <table id = "UserTable" border="1">
+    <tr>
+      <th id="Name"> Name </th>
+      <th id ="Username"> Username </th>
+      <th id ="Email"> Email </th>
+      <th id ="Phone">Phone</th>
+      <th id ="Address">Address </th>
+      <th id ="Exclusions"> Exclusions </th>
+    </tr>
+  </table>
+<button class="btn btn-primary" onclick="insRow();">Add User</button>
+<script>
+var arrHead = new Array();
+arrHead = ['Name', 'Username','Useremail','Userphone','Useraddress','Exclusions'];
+
+function insRow()
+{
+      var newUser = document.getElementById('UserTable');
+
+           var rowCnt = newUser.rows.length;
+           var tr = newUser.insertRow(rowCnt);
+           tr.id = rowCnt;
+        for (var c = 0; c < arrHead.length; c++) {
+            var td = document.createElement('td');
+            td = tr.insertCell(c);
+            var ele = document.createElement('input');
+            ele.setAttribute('type', 'text');
+            ele.setAttribute('value', ' '); // get values for user Ids abd fill data in cells
+            ele.id = rowCnt+' '+c;
+            td.appendChild(ele);
+          }
+  }
+
+
+function pullDataFromTable(){
+  var tableRow = document.getElementById('UserTable').rows.length;
+  console.log("table rows"+tableRow);
+  console.log("testing function call");
+  var index=1;
+  var arrayUsers = [];
+  while( index < tableRow) {
+    var user = {};
+    arrayUsers.push(user);
+    for (var col = 0; col < arrHead.length; col++) {
+      user[arrHead[col]] = document.getElementById(index+" "+col).value;
+    }
+    console.log(arrayUsers);
+    index = index+1;
+}
+
+  var group = {};
+    group["groupName"]= document.getElementById("id_group_name").value;
+    group["endDate"]= document.getElementById("id_end_date").value;
+    group["shipDate"]= document.getElementById("id_ship_date").value;
+    group["createdBy"]= document.getElementById("id_created_by").value;
+    console.log(group);
+
+ $.ajax({
+        type: "POST",
+        data: {
+         'arr': JSON.stringify(arrayUsers),
+         'grpInfo':JSON.stringify(group)
+        },
+        dataType: 'json',
+        success: function (data) {
+          alert("data is available in views.");
+          }
+      });
+
+}
+
+</script>
+<button class="btn btn-primary" onclick="pullDataFromTable();">Pull Data</button>
+
+
  </body>
 
- <script>
-    var arrHead = new Array();
-    arrHead = ['UserName', 'Useremail','Userphone','Useraddress','Exclusions'];
-
-    function insRow() {
-      var newUser = document.getElementById('UserTable');
-      var rowCnt = newUser.rows.length;        // GET TABLE ROW COUNT.
-      var tr = newUser.insertRow(rowCnt);
-      for (var c = 0; c < arrHead.length; c++) {
-        var td = document.createElement('td');          // TABLE DEFINITION.
-        td = tr.insertCell(c);
-        var ele = document.createElement('input');
-        ele.setAttribute('type', 'text');
-        ele.setAttribute('value', '');
-        ele.setAttribute('id','cell_value');
-        td.appendChild(ele);
-      }
-    }
-  </script>
 </html>
 {% endblock %}

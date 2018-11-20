@@ -35,13 +35,13 @@
         <tr>
             <ul class="list-group">
                 <td>
-                    <li class="list-group-item"><a href={% url 'create_group:creategroup' %}> {{gr.group_name}}</a></li>
+                    <li class="list-group-item"><a href={% url 'create_group:editgroup' %}> {{gr.group_name}}</a></li>
                 </td>
                 <td>
-                    <li class="list-group-item"> {{gr.user_group.ship_date}}</li>
+                    <li class="list-group-item"> {{gr.ship_date}}</li>
                 </td>
                 <td>
-                    <li class="list-group-item"> {{gr.user_group.end_date}}</li>
+                    <li class="list-group-item"> {{gr.end_date}}</li>
                 </td>
             </ul>
         </tr>
@@ -63,13 +63,13 @@
                         {{gr.user_group.group_name}}</a></li>
                 </td>
                 <td>
-                    <li class="list-group-item"> {{gr.user_group.created_by}}</li>
+                    <li class="list-group-item"> {{gr.created_by}}</li>
                 </td>
                 <td>
-                    <li class="list-group-item"> {{gr.user_group.ship_date}}</li>
+                    <li class="list-group-item"> {{gr.ship_date}}</li>
                 </td>
                 <td>
-                    <li class="list-group-item"> {{gr.user_group.end_date}}</li>
+                    <li class="list-group-item"> {{gr.end_date}}</li>
                 </td>
 
             </ul>
