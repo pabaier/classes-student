@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
-#Eric
 {% block content %}
 
 <h2>Profile</h2>
 {% if user.is_authenticated %}
-  <p>Here is your profile info {{user.username}}!</p>
-
-  <p>username: {{result.username}}</p>
-  <p>first name: {{result.first_name}}</p>
-  <p>last name: {{result.last_name}}</p>
-  <p>email: {{result.email}}</p>
-
-{% else %}
-  <p>please sign in or sign up!!</p>
-  <p>
-    <a href="{% url 'members:login' %}" class="btn btn-outline-success">Login</a>
-    <a href="{% url 'members:signup' %}" class="btn btn-outline-success">Sign up</a>
-  </p>
+<p>Here is your profile info {{user.username}}!</p>
+<div class="container">
+  {% for field, value in result.items %}
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col bg-light">{{ field }}:</div>
+      <div class="col bg-light" id='{{ field }}-input'>{{ value }}</div>
+      <a href='#' class='col bg-light edit'>edit</a>
+      <div class="col-3"></div>
+    </div>
+  {% endfor %}
+</div>
 {% endif %}
+
 {% endblock content %}

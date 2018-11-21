@@ -10,9 +10,16 @@ class MembersView(generic.CreateView):
     template_name = 'signup.html'
 
 def profile(request):
-  result = None
   if request.user.id:
     result = Members.objects.get(id=request.user.id)
+    print(result.first_name)
+    result = {
+      'username': result.username,
+      'phone': result.phone,
+      'firstname': result.first_name,
+      'lastname': result.last_name,
+      'email': result.email
+    }
   return render(request, 'profile.html', {'result': result})
 
 def partners(request):
@@ -20,3 +27,7 @@ def partners(request):
 
 def login(request):
     return render(request, 'login.html')
+
+def update(request, userId):
+  return render(request, 'profile.html', {'result': result})
+  
