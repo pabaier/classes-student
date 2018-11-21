@@ -7,53 +7,105 @@
 <div class="container">
   {% for field, value in result.items %}
     <div class="row">
-      <div class="col-3"></div>
+      <div class="col-4"></div>
       <div class="col bg-light">{{ field }}:</div>
-      <div class="col bg-light" id='{{ field }}-input'>{{ value }}</div>
-      <div class="col bg-light" id ='buttons'>
-        <a href='#' class='edit' id='{{ field }}-edit'>edit</a>
-        <a href='#' class='cancel d-none' id='{{ field }}-cancel'>cancel</a>
-        <a href='#' class='save d-none' id='{{ field }}-save'>save</a>
-      </div>
-      <div class="col-3"></div>
+      <div class="col bg-light" id='{{ field }}-inputWrapper'>{{ value }}</div>
+      <div class="col-4"></div>
     </div>
     <input type="hidden" value="{{ value }}" id="{{ field }}-og">
   {% endfor %}
+  <div class="row">
+    <div class="col-7"></div>
+    <button type="submit" class="btn btn-secondary edit" id='btn-edit' value='{{ result }}'>Edit</button>
+    <button type="submit" class="btn btn-danger d-none cancel" id='btn-cancel' value='{{ result }}'>Cancel</button>
+    <button type="submit" class="btn btn-success d-none save" id='btn-save' value='{{ result }}'>Save</button>
+    <input type="hidden" value="{{ result }}" id="data">
+  </div>
 </div>
 {% endif %}
 
 
 <script>
-
-  $(".cancel").click((e) => {
-    console.log("trying to cancel!");
-    var cancelLink = e.target;
-    var fieldName = cancelLink.id.split("-")[0];
-    var ogValue = document.getElementById(`${fieldName}-og`).value;
-    var valueDiv = document.getElementById(`${fieldName}-input`);
-    valueDiv.innerHTML = ogValue;
-
+  $(".save").click((e) => {
+    var dataKeys = getJsonData();
+    for(var key in dataKeys) { 
+      var input = document.getElementById(`${dataKeys[key]}-input`).value;
+      var wrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+      document.getElementById(`${dataKeys[key]}-og`).value = input;
+      wrapperDiv.innerHTML = input;
+      console.log(input);
+    }
+    
     // hide cancel and save buttons
-    cancelLink.classList.add('d-none');
-    document.getElementById(`${fieldName}-save`).classList.add('d-none');
-    document.getElementById(`${fieldName}-edit`).classList.remove('d-none');
+    e.target.classList.add('d-none');
+    document.getElementById(`btn-cancel`).classList.add('d-none');
+    document.getElementById(`btn-edit`).classList.remove('d-none');
+    // $('#btn-sendText').prop('disabled',true);
+    // var selectedValue = $('#user').find(":selected").val();
+    // var selected = selectedValue.split(';');
+    // var groupId = selected[0];
+    // var userId = selected[1];
+    // $.ajax({
+    //   url: `/comms/pairings/${groupId}/${userId}`,
+    //   method:"GET",
+    //   data: {
+    //     'email': true,
+    //     'text': true
+    //   },
+    //   dataType: 'json',
+    //   success: (returnData) => {
+    //     $('#resultModal').modal('show');
+    //     if (returnData.failure) {
+    //       var htmlString = "<ul>";
+    //       returnData.failure.forEach(fail => {
+    //         htmlString += `<li>${fail.message}</li>`;
+    //       });
+    //       htmlString += "</ul>";
+    //       $('#result-modal').prop('class', 'alert alert-danger');
+    //       $('#result-message').html(`We had a few issues...${htmlString}Please make sure all group members have email addresses or phone numbers and try again.`);
+    //       $('#btn-sendText').prop('disabled',false);
+    //     }
+    //     else {
+    //       $('#result-message').html('Success!');
+    //       $('#btn-sendText').prop('disabled',false);
+    //     }
+    //   }
   });
 
+  $(".cancel").click((e) => {
+    var dataKeys = getJsonData();
+    for(var key in dataKeys) { 
+      var ogValue = document.getElementById(`${dataKeys[key]}-og`).value;
+      var valueDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+      valueDiv.innerHTML = ogValue;
+    }
+
+    // hide cancel and save buttons
+    e.target.classList.add('d-none');
+    document.getElementById(`btn-save`).classList.add('d-none');
+    document.getElementById(`btn-edit`).classList.remove('d-none');
+  });
 
   $(".edit").click((e) => {
-      var editLink = e.target;
-      var fieldName = editLink.id.split("-")[0];
-      var valueDiv = document.getElementById(`${fieldName}-input`);
+    var dataKeys = getJsonData();
+    for(var key in dataKeys) { 
+      var valueDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
       var existingValue = valueDiv.innerHTML;
-      valueDiv.innerHTML = `<input type="text" value=${existingValue} id="input">`;
-      var inputField = document.getElementById('input');
-      inputField.focus();
-      
-      // hide edit link
-      editLink.classList.add('d-none');
-      document.getElementById(`${fieldName}-cancel`).classList.remove('d-none');
-      document.getElementById(`${fieldName}-save`).classList.remove('d-none');
-    });
+      valueDiv.innerHTML = `<input type="text" value=${existingValue} id='${dataKeys[key]}-input'>`;
+    }
+     
+    // hide edit link
+    e.target.classList.add('d-none');
+    document.getElementById(`btn-cancel`).classList.remove('d-none');
+    document.getElementById(`btn-save`).classList.remove('d-none');
+  });
+
+  var getJsonData = () => {
+    var dataString = document.getElementById('data').value.replace(/'/g, '"');
+    var dataStringFormatted = dataString.replace(/: None,/g, ': null,');
+    var dataJson = JSON.parse(dataStringFormatted);
+    return Object.keys(dataJson);
+  }
   
 </script>
 
