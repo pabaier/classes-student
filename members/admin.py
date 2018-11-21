@@ -10,7 +10,7 @@ class MembersAdmin(UserAdmin):
     add_form = MembersCreationForm
     form = MembersChangeForm
     model = Members
-    list_display = ['email', 'username','phone','name','address','exclusions']
+    list_display = ['email', 'username','phone','first_name','last_name','address','exclusions']
 
 admin.site.register(Members, MembersAdmin)
 admin.site.register(User_By_Group)

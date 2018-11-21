@@ -38,7 +38,8 @@ def form_view(request):
             print(len(data))
             for user in data:
                 myUser = Members()
-                myUser.name = user['Name']
+                myUser.first_name = user['firstName']
+                myUser.last_name = user['lastName']
                 myUser.username = user['Username']
                 myUser.email = user['Useremail']
                 myUser.phone = user['Userphone']
@@ -71,6 +72,7 @@ def show_groups(request):
         managed_list = myGroups.objects.all().filter(created_by=request.user.username)
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
+
 
 def edit_group(request):
     if not request.user.is_authenticated:
