@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'create_group.apps.CreateGroupConfig',
-    'twilio_app.apps.TwilioAppConfig',
+    'comms.apps.CommsConfig',
     'members.apps.MembersConfig'
 ]
 
@@ -125,3 +125,10 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 AUTH_USER_MODEL = 'members.Members'
+
+email = config['email']
+EMAIL_HOST = email['host']
+EMAIL_PORT = email['port']
+EMAIL_HOST_USER = email['user']
+EMAIL_HOST_PASSWORD = email['password']
+EMAIL_USE_TLS = True
