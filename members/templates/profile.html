@@ -10,11 +10,52 @@
       <div class="col-3"></div>
       <div class="col bg-light">{{ field }}:</div>
       <div class="col bg-light" id='{{ field }}-input'>{{ value }}</div>
-      <a href='#' class='col bg-light edit'>edit</a>
+      <div class="col bg-light" id ='buttons'>
+        <a href='#' class='edit' id='{{ field }}-edit'>edit</a>
+        <a href='#' class='cancel d-none' id='{{ field }}-cancel'>cancel</a>
+        <a href='#' class='save d-none' id='{{ field }}-save'>save</a>
+      </div>
       <div class="col-3"></div>
     </div>
+    <input type="hidden" value="{{ value }}" id="{{ field }}-og">
   {% endfor %}
 </div>
 {% endif %}
+
+
+<script>
+
+  $(".cancel").click((e) => {
+    console.log("trying to cancel!");
+    var cancelLink = e.target;
+    var fieldName = cancelLink.id.split("-")[0];
+    var ogValue = document.getElementById(`${fieldName}-og`).value;
+    var valueDiv = document.getElementById(`${fieldName}-input`);
+    valueDiv.innerHTML = ogValue;
+
+    // hide cancel and save buttons
+    cancelLink.classList.add('d-none');
+    document.getElementById(`${fieldName}-save`).classList.add('d-none');
+    document.getElementById(`${fieldName}-edit`).classList.remove('d-none');
+  });
+
+
+  $(".edit").click((e) => {
+      var editLink = e.target;
+      var fieldName = editLink.id.split("-")[0];
+      var valueDiv = document.getElementById(`${fieldName}-input`);
+      var existingValue = valueDiv.innerHTML;
+      valueDiv.innerHTML = `<input type="text" value=${existingValue} id="input">`;
+      var inputField = document.getElementById('input');
+      inputField.focus();
+      
+      // hide edit link
+      editLink.classList.add('d-none');
+      document.getElementById(`${fieldName}-cancel`).classList.remove('d-none');
+      document.getElementById(`${fieldName}-save`).classList.remove('d-none');
+    });
+  
+</script>
+
 
 {% endblock content %}
