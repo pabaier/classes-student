@@ -22,5 +22,5 @@ urlpatterns = [
     path('members/', include('members.urls')),
     path('', views.home, name='home'),
     path('groups/', include('create_group.urls', namespace='create_group')),
-    path('twilio/', include('twilio_app.urls', namespace='twilio_app'))
+    path('comms/', include('comms.urls', namespace='comms'))
 ]
