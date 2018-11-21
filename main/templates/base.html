@@ -72,6 +72,12 @@
         <p>
           <a href="{% url 'members:logout' %}" class="btn btn-outline-secondary">Log out</a>
         </p>
+      {% else %}
+        <p>please sign in or sign up!!</p>
+        <p>
+          <a href="{% url 'members:login' %}" class="btn btn-outline-success">Login</a>
+          <a href="{% url 'members:signup' %}" class="btn btn-outline-success">Sign up</a>
+        </p>
       {% endif %}
     </div>
   </body>
