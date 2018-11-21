@@ -6,10 +6,3 @@ class myGroups(models.Model):
     end_date = models.DateField(null=True)
     ship_date = models.DateField(null=True)
     created_by = models.CharField(max_length=128)
-
-
-
-
-
-
-

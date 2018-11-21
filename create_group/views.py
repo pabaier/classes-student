@@ -2,48 +2,65 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import myGroups
 from .forms import newGroupForm
-from members.models import Members
+from members.models import Members,User_By_Group
 from members.forms import newMembersForm
+from django.views.decorators.csrf import csrf_exempt
+import simplejson as json
 
-# Create your views here.
+
 
 def index(request):
     return render(request, 'dashboard.html')
 
 
+@csrf_exempt
 def form_view(request):
-    form1 = newGroupForm()
-    # form2 = newMembersForm()
+    form1 =newGroupForm()
+    if request.is_ajax():
 
-    if request.method == "POST":
-        form1 = newGroupForm(request.POST)
-        # if request.method == 'POST':
-        print(request.POST.get('cell_value'))
-        if request.POST.get('Name') and request.POST.get('Email') and request.POST.get('Phone') and request.POST.get(
-                'Address') and request.POST.get('Exclusions'):
-            post = newMembersForm()
-            post.user_name = request.POST.get('Name')
-            post.user_email = request.POST.get('Email')
-            post.user_phone = request.POST.get('Phone')
-            post.user_address = request.POST.get('Address')
-            post.user_exclusions = request.POST.get('Exclusions')
-            post.save()
-        else:
-            print('Error - Invalid Form')
+        temp = request.POST['grpInfo']
+        groupData= json.loads(temp)
+        myGroup = myGroups()
+        if request.POST['grpInfo'] and request.POST['arr']:
+            myGroup.group_name= groupData['groupName']
+            myGroup.end_date = groupData['endDate']
+            myGroup.ship_date = groupData['shipDate']
+            myGroup.created_by = groupData['createdBy']
+            myGroup.save()
+            print(myGroup.id)
+            #return show_groups(request)
 
-        # form2 = newMembersForm(request.POST)
-        if form1.is_valid():
-            form1.save()
-            # form2.save()
-            return show_groups(request)
+            array_data = request.POST['arr']
+            data = json.loads(array_data)
+            print(data)
+            print(data[0])
+            count = len(data)
+            print(len(data))
+            for user in data:
+                myUser = Members()
+                myUser.first_name = user['firstName']
+                myUser.last_name = user['lastName']
+                myUser.username = user['Username']
+                myUser.email = user['Useremail']
+                myUser.phone = user['Userphone']
+                myUser.address = user['Useraddress']
+                myUser.exclusions = user['Exclusions']
+                myUser.save()
+                print(myUser.id)
+
+                userByGroup = User_By_Group()
+                userByGroup.member_1ID = Members.objects.get(id = myUser.id)
+                userByGroup.group_ID = myGroups.objects.get(id=myGroup.id)
+                userByGroup.save()
+
         else:
-            print('Error - Invalid Form')
+            print('Error - Invalid Form- user table/group form')
+
 
     context = {
-        'form1': form1,
-        # 'form2':form2
+       'form1': form1,
     }
-    return render(request, 'create.html', context)
+    return render(request, 'create.html',context)
 
 
 # shows group memberships and groups managed on Dashboard
@@ -52,6 +69,17 @@ def show_groups(request):
         return redirect('members:signup')
     else:
         membership_list = Members.objects.all().filter(id=request.user.id)
-        managed_list = myGroups.objects.all().filter(created_by=request.user.email)
+        managed_list = myGroups.objects.all().filter(created_by=request.user.username)
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
+
+
+def edit_group(request):
+    if not request.user.is_authenticated:
+        return redirect('members:signup')
+    else:
+        form1 =newGroupForm()
+        context = {
+           'form1': form1,
+        }
+        return render(request,'edit_group.html',context)

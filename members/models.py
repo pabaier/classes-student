@@ -5,10 +5,14 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Members(AbstractUser):
+#    name = models.CharField(max_length=30, blank=True, null=True)
     street = models.CharField(max_length=30, blank=True, null=True)
     state = models.CharField(max_length=2, blank=True, null=True)
     zip_code = models.CharField(max_length=5, blank=True, null=True)
+    address = models.CharField(max_length=30, blank=True, null=True)
     phone = models.CharField(max_length=10, blank=True, null=True)
+    exclusions = models.CharField(max_length=30, blank=True, null=True)
+
 
     def __str__(self):
         return self.username
@@ -31,4 +35,3 @@ class User_By_Group(models.Model):
 class Wishlist(models.Model):
     ubg_ID = models.ForeignKey('User_By_Group', on_delete=models.CASCADE)
     item_name = models.CharField(max_length=128)
-
