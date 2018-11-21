@@ -44,6 +44,9 @@ def form_view(request):
                 myUser.email = user['Useremail']
                 myUser.phone = user['Userphone']
                 myUser.address = user['Useraddress']
+                myUser.city = user['Usercity']
+                myUser.state = user['Userstate']
+                myUser.zip_code = user['Userzip']
                 myUser.exclusions = user['Exclusions']
                 myUser.save()
                 print(myUser.id)
