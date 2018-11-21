@@ -5,7 +5,5 @@ app_name = 'comms'
 
 urlpatterns = [
   path('pairings/<int:groupId>/', views.sendGroup, name='sendGroup'),
-  path('pairings/<int:groupId>/<int:userId>/', views.sendUser, name='sendGroup'),
-  path('testGroup', views.testGroupSend, name='testGroup'),
-  path('testMember', views.testMemberSend, name='testMember')
+  path('pairings/<int:groupId>/<int:userId>/', views.sendUser, name='sendGroup')
 ]

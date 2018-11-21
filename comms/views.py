@@ -113,22 +113,3 @@ def sendUser(request, groupId, userId):
       'message': f"Failed contacting {result['failure']['userName']} - {result['failure']['error']}"
     }
   return JsonResponse(results)
-
-def testGroupSend(request):
-  return render(request, 'comms/testGroupPairs.html')
-
-def testMemberSend(request):
-  memberGroups = userGroups.objects.filter(member_1ID=request.user.id)
-  context = []
-  for group in memberGroups:
-    groupMembers = userGroups.objects.filter(group_ID = group.group_ID)
-    membersArray = []
-    for member in groupMembers:
-      membersArray.append({'name': member.member_1ID.username, 'memberId': member.member_1ID.id})
-    context.append({
-      'groupName': group.group_ID.group_name,
-      'groupId': group.group_ID.id,
-      'members': membersArray
-    })
-
-  return render(request, 'comms/testMemberPair.html',{'groups': context})
