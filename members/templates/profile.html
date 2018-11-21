@@ -20,6 +20,7 @@
     <button type="submit" class="btn btn-danger d-none cancel" id='btn-cancel' value='{{ result }}'>Cancel</button>
     <button type="submit" class="btn btn-success d-none save" id='btn-save' value='{{ result }}'>Save</button>
     <input type="hidden" value="{{ result }}" id="data">
+    <input type="hidden" value="{{ user.id }}" id="userId">
   </div>
 </div>
 {% endif %}
@@ -28,48 +29,32 @@
 <script>
   $(".save").click((e) => {
     var dataKeys = getJsonData();
+    var output = {};
     for(var key in dataKeys) { 
       var input = document.getElementById(`${dataKeys[key]}-input`).value;
       var wrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
       document.getElementById(`${dataKeys[key]}-og`).value = input;
       wrapperDiv.innerHTML = input;
-      console.log(input);
+      output[dataKeys[key]] = input;
     }
-    
+
     // hide cancel and save buttons
     e.target.classList.add('d-none');
     document.getElementById(`btn-cancel`).classList.add('d-none');
     document.getElementById(`btn-edit`).classList.remove('d-none');
-    // $('#btn-sendText').prop('disabled',true);
-    // var selectedValue = $('#user').find(":selected").val();
-    // var selected = selectedValue.split(';');
-    // var groupId = selected[0];
-    // var userId = selected[1];
-    // $.ajax({
-    //   url: `/comms/pairings/${groupId}/${userId}`,
-    //   method:"GET",
-    //   data: {
-    //     'email': true,
-    //     'text': true
-    //   },
-    //   dataType: 'json',
-    //   success: (returnData) => {
-    //     $('#resultModal').modal('show');
-    //     if (returnData.failure) {
-    //       var htmlString = "<ul>";
-    //       returnData.failure.forEach(fail => {
-    //         htmlString += `<li>${fail.message}</li>`;
-    //       });
-    //       htmlString += "</ul>";
-    //       $('#result-modal').prop('class', 'alert alert-danger');
-    //       $('#result-message').html(`We had a few issues...${htmlString}Please make sure all group members have email addresses or phone numbers and try again.`);
-    //       $('#btn-sendText').prop('disabled',false);
-    //     }
-    //     else {
-    //       $('#result-message').html('Success!');
-    //       $('#btn-sendText').prop('disabled',false);
-    //     }
-    //   }
+    var userId = document.getElementById('userId').value;
+    console.log(output);
+    $.ajax({
+      url: `/members/update/${userId}`,
+      type:"POST",
+      data: JSON.stringify(output),
+      dataType: 'json',
+      contentType: "application/json",
+      success: (returnData) => {
+        console.log(returnData);
+        console.log('done');
+      }
+    });
   });
 
   $(".cancel").click((e) => {

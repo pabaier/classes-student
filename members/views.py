@@ -1,8 +1,11 @@
 from members.forms import MembersCreationForm
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views import generic
 from members.models import Members
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 class MembersView(generic.CreateView):
     form_class = MembersCreationForm
@@ -12,7 +15,8 @@ class MembersView(generic.CreateView):
 def profile(request):
   if request.user.id:
     result = Members.objects.get(id=request.user.id)
-    print(result.first_name)
+    for e in Members._meta.get_fields():
+      print(e)
     result = {
       'username': result.username,
       'phone': result.phone,
@@ -28,6 +32,19 @@ def partners(request):
 def login(request):
     return render(request, 'login.html')
 
+@csrf_exempt
 def update(request, userId):
-  return render(request, 'profile.html', {'result': result})
+  body_unicode = request.body.decode('utf-8')
+  body = json.loads(body_unicode)
+  try:
+    Members.objects.filter(id=userId).update(
+      email=body['email'], 
+      phone=body['phone'],
+      username=body['username'],
+      first_name=body['firstname'],
+      last_name=body['lastname']
+      )
+    return JsonResponse({"success": True})
+  except:
+    return JsonResponse({"success": False})
   
