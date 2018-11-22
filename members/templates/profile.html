@@ -32,9 +32,6 @@
     var output = {};
     for(var key in dataKeys) { 
       var input = document.getElementById(`${dataKeys[key]}-input`).value;
-      var wrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
-      document.getElementById(`${dataKeys[key]}-og`).value = input;
-      wrapperDiv.innerHTML = input;
       output[dataKeys[key]] = input;
     }
 
@@ -43,7 +40,6 @@
     document.getElementById(`btn-cancel`).classList.add('d-none');
     document.getElementById(`btn-edit`).classList.remove('d-none');
     var userId = document.getElementById('userId').value;
-    console.log(output);
     $.ajax({
       url: `/members/update/${userId}`,
       type:"POST",
@@ -51,13 +47,32 @@
       dataType: 'json',
       contentType: "application/json",
       success: (returnData) => {
-        console.log(returnData);
-        console.log('done');
+        $('#resultModal').modal('show');
+        if (!returnData.success) {
+          $('#result-modal').prop('class', 'alert alert-danger');
+          $('#result-message').html(`Error updating record.<br>${returnData.message}.`);
+          cancel();
+        }
+        else {
+          $('#result-modal').prop('class', 'alert alert-success');
+          for(var key in dataKeys) {
+            var input = document.getElementById(`${dataKeys[key]}-input`).value;
+            var wrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+            document.getElementById(`${dataKeys[key]}-og`).value = input;
+            wrapperDiv.innerHTML = input;
+            output[dataKeys[key]] = input;
+          }
+          $('#result-message').html('Success!');
+        }
       }
     });
   });
 
-  $(".cancel").click((e) => {
+  $(".cancel").click(() => {
+    cancel();
+  });
+
+  var cancel = () => {
     var dataKeys = getJsonData();
     for(var key in dataKeys) { 
       var ogValue = document.getElementById(`${dataKeys[key]}-og`).value;
@@ -66,17 +81,19 @@
     }
 
     // hide cancel and save buttons
-    e.target.classList.add('d-none');
+    document.getElementById(`btn-cancel`).classList.add('d-none');
     document.getElementById(`btn-save`).classList.add('d-none');
     document.getElementById(`btn-edit`).classList.remove('d-none');
-  });
+  };
 
   $(".edit").click((e) => {
     var dataKeys = getJsonData();
     for(var key in dataKeys) { 
       var valueDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
       var existingValue = valueDiv.innerHTML;
-      valueDiv.innerHTML = `<input type="text" value=${existingValue} id='${dataKeys[key]}-input'>`;
+      if(!existingValue) valueDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
+      else if(existingValue == 'None') valueDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
+      else valueDiv.innerHTML = `<input type="text" value=${existingValue} id='${dataKeys[key]}-input'>`;
     }
      
     // hide edit link
@@ -87,7 +104,7 @@
 
   var getJsonData = () => {
     var dataString = document.getElementById('data').value.replace(/'/g, '"');
-    var dataStringFormatted = dataString.replace(/: None,/g, ': null,');
+    var dataStringFormatted = dataString.replace(/: None/g, ': null');
     var dataJson = JSON.parse(dataStringFormatted);
     return Object.keys(dataJson);
   }
