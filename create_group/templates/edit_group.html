@@ -11,6 +11,88 @@
   </head>
   <body>
 
+    <form method="GET">
+      {% csrf_token %}
+      {{form1.as_p}}
+
+    </form>
+
+
+   <table id = "UserTable" border="1">
+    <tr>
+      <th id="Name"> Name </th>
+      <th id ="Username"> Username </th>
+      <th id ="Email"> Email </th>
+      <th id ="Phone">Phone</th>
+      <th id ="Address">Address </th>
+      <th id ="Exclusions"> Exclusions </th>
+    </tr>
+  </table>
+<button class="btn btn-primary" onclick="insRow();">Add User</button>
+<script>
+var arrHead = new Array();
+arrHead = ['Name', 'Username','Useremail','Userphone','Useraddress','Exclusions'];
+
+function insRow()
+{
+      var newUser = document.getElementById('UserTable');
+
+           var rowCnt = newUser.rows.length;
+           var tr = newUser.insertRow(rowCnt);
+           tr.id = rowCnt;
+        for (var c = 0; c < arrHead.length; c++) {
+            var td = document.createElement('td');
+            td = tr.insertCell(c);
+            var ele = document.createElement('input');
+            ele.setAttribute('type', 'text');
+            ele.setAttribute('value', ' '); // get values for user Ids abd fill data in cells
+            ele.id = rowCnt+' '+c;
+            td.appendChild(ele);
+          }
+  }
+
+
+function editDataFromTable(){
+//  form = newGroupForm(request.POST, instance=groupOb)
+  var tableRow = document.getElementById('UserTable').rows.length;
+  console.log("table rows"+tableRow);
+  console.log("testing function call");
+  var index=1;
+  var arrayUsers = [];
+  while( index < tableRow) {
+    var user = {};
+    arrayUsers.push(user);
+    for (var col = 0; col < arrHead.length; col++) {
+      user[arrHead[col]] = document.getElementById(index+" "+col).value;
+    }
+    console.log(arrayUsers);
+    index = index+1;
+}
+
+  var group = {};
+    group["groupName"]= document.getElementById("id_group_name").value;
+    group["endDate"]= document.getElementById("id_end_date").value;
+    group["shipDate"]= document.getElementById("id_ship_date").value;
+    group["createdBy"]= document.getElementById("id_created_by").value;
+    console.log(group);
+
+ $.ajax({
+        type: "POST",
+        data: {
+         'arr': JSON.stringify(arrayUsers),
+         'grpInfo':JSON.stringify(group)
+        },
+        dataType: 'json',
+        success: function (data) {
+          alert("data is available in views.");
+          }
+      });
+
+}
+
+</script>
+<button class="btn btn-primary" onclick="editDataFromTable();">Edit Data</button>
+
 
  </body>
 

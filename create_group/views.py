@@ -5,7 +5,7 @@ from members.models import Members,User_By_Group, Pairings, Exclusions
 from members.forms import newMembersForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
 import operator
 import random
@@ -79,15 +79,25 @@ def show_groups(request):
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
 
-def edit_group(request):
+@csrf_exempt
+def edit_group(request,groupname='Default'):
     if not request.user.is_authenticated:
         return redirect('members:signup')
     else:
-        form1 =newGroupForm()
-        context = {
-           'form1': form1,
-        }
-        return render(request,'edit_group.html',context)
+
+        groupOb = myGroups.objects.get(group_name=groupname)
+    #    userByGrpOb= User_By_Group.objects.get(group_ID=groupOb.id)
+        form1 =newGroupForm(instance=groupOb)
+        if form1.is_valid():
+            form1.save()
+            context = {
+                'form1': form1,
+                #'GroupName' : format(groupOb.group_name)
+                }
+            return render(request,'edit_group.html',context)
+
+        return render(request,'edit_group.html',{'form1':form1})
+        #return HttpResponse('<h1>Group is {}</h1>'.format(userByGrpOb.member_1ID)) #get members from selected group
 
 def make_pairs(request, groupId):
   if request.user.is_authenticated:
