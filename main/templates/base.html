@@ -9,6 +9,10 @@
               background-position: right top;
               background-attachment: fixed;
               }
+          table {
+            margin-left:auto; 
+            margin-right:auto;
+          }
       </style>
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
       <!-- bootstrap -->
@@ -75,9 +79,15 @@
       </div>
     </nav>
     <div class="container align-items-center">
-    <br>
-      {% block content %}
-      {% endblock content %}
+        <div class="row align-items-center">
+            <div class="col-1"></div>
+            <div class="col text-center">
+                <br>
+                {% block content %}
+                {% endblock content %}
+            </div>
+            <div class="col-1"></div>
+        </div>
     </div>
 
       <!-- Modal -->
