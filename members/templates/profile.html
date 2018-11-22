@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Profile</h2>
 {% if user.is_authenticated %}
-<p>Here is your profile info {{user.username}}!</p>
-<div class="container">
+<div class="container align-items-center">
+  <div class="row align-items-center">
+    <span class='col-4'></span>
+    <h2 class='col text-center bg-white'>{{user.username}} Profile</h2>
+    <span class='col-4'></span>
+  </div>
+  <br>
   {% for field, value in result.items %}
-    <div class="row">
+    <div class="row align-items-center">
       <div class="col-4"></div>
-      <div class="col bg-light">{{ field }}:</div>
-      <div class="col bg-light" id='{{ field }}-inputWrapper'>{{ value }}</div>
+      <div class="row col border bg-light align-items-center">
+        <div class="col-4 p-3">{{ field }}:</div>
+        <div class="col" id='{{ field }}-inputWrapper'>{{ value }}</div>
+      </div>
       <div class="col-4"></div>
     </div>
     <input type="hidden" value="{{ value }}" id="{{ field }}-og">
@@ -76,8 +82,8 @@
     var dataKeys = getJsonData();
     for(var key in dataKeys) { 
       var ogValue = document.getElementById(`${dataKeys[key]}-og`).value;
-      var valueDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
-      valueDiv.innerHTML = ogValue;
+      var valueWrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+      valueWrapperDiv.innerHTML = ogValue;
     }
 
     // hide cancel and save buttons
@@ -89,11 +95,11 @@
   $(".edit").click((e) => {
     var dataKeys = getJsonData();
     for(var key in dataKeys) { 
-      var valueDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
-      var existingValue = valueDiv.innerHTML;
-      if(!existingValue) valueDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
-      else if(existingValue == 'None') valueDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
-      else valueDiv.innerHTML = `<input type="text" value=${existingValue} id='${dataKeys[key]}-input'>`;
+      var valueWrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+      var existingValue = valueWrapperDiv.innerHTML;
+      if(!existingValue) valueWrapperDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
+      else if(existingValue == 'None') valueWrapperDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
+      else valueWrapperDiv.innerHTML = `<input type="text" value=${existingValue} id='${dataKeys[key]}-input'>`;
     }
      
     // hide edit link
