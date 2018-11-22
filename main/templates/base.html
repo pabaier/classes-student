@@ -72,7 +72,28 @@
         <p>
           <a href="{% url 'members:logout' %}" class="btn btn-outline-secondary">Log out</a>
         </p>
+      {% else %}
+        <p>please sign in or sign up!!</p>
+        <p>
+          <a href="{% url 'members:login' %}" class="btn btn-outline-success">Login</a>
+          <a href="{% url 'members:signup' %}" class="btn btn-outline-success">Sign up</a>
+        </p>
       {% endif %}
     </div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="background: transparent; border: none">
+          <div class="alert alert-success" role="alert" id="result-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="result-message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
