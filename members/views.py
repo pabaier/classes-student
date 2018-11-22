@@ -1,5 +1,5 @@
 from members.forms import MembersCreationForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views import generic
@@ -15,27 +15,34 @@ class MembersView(generic.CreateView):
     template_name = 'signup.html'
 
 def profile(request):
-  if request.user.id:
-    result = Members.objects.get(id=request.user.id)
-    resultDict = model_to_dict(result)
-    for key, value in resultDict.items():
-      if value is None:
-        resultDict[key] = ""
-    result = {
-      'username': resultDict['username'],
-      'phone': resultDict['phone'],
-      'firstname': resultDict['first_name'],
-      'lastname': resultDict['last_name'],
-      'email': resultDict['email'],
-      'address': resultDict['address'],
-      'city': resultDict['city'],
-      'state': resultDict['state'],
-      'zip': resultDict['zip_code']
-    }
-  return render(request, 'profile.html', {'result': result})
+  if request.user.is_authenticated:
+    if request.user.id:
+      result = Members.objects.get(id=request.user.id)
+      resultDict = model_to_dict(result)
+      for key, value in resultDict.items():
+        if value is None:
+          resultDict[key] = ""
+      result = {
+        'username': resultDict['username'],
+        'phone': resultDict['phone'],
+        'firstname': resultDict['first_name'],
+        'lastname': resultDict['last_name'],
+        'email': resultDict['email'],
+        'address': resultDict['address'],
+        'city': resultDict['city'],
+        'state': resultDict['state'],
+        'zip': resultDict['zip_code']
+      }
+    return render(request, 'profile.html', {'result': result})
+  else:
+    return redirect('members:signup')
+
 
 def partners(request):
-  return render(request, 'partners.html')
+  if request.user.is_authenticated:
+    return render(request, 'partners.html')
+  else:
+    return redirect('members:signup')
 
 def login(request):
     return render(request, 'login.html')

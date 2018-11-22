@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from .models import myGroups
 from .forms import newGroupForm
 from members.models import Members,User_By_Group
@@ -7,14 +6,15 @@ from members.forms import newMembersForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
 
-
-
 def index(request):
+  if request.user.is_authenticated:
     return render(request, 'dashboard.html')
-
+  else:
+    return redirect('members:signup')
 
 @csrf_exempt
 def form_view(request):
+  if request.user.is_authenticated:
     form1 =newGroupForm()
     if request.is_ajax():
 
@@ -64,6 +64,8 @@ def form_view(request):
        'form1': form1,
     }
     return render(request, 'create.html',context)
+  else:
+    return redirect('members:signup')
 
 
 # shows group memberships and groups managed on Dashboard
