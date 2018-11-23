@@ -52,7 +52,6 @@ def pairings(request, userId):
     response = {'currentUser': userProfileDict, 'pairings':[]}
     for pairingRecord in pairingData:
       response['pairings'].append({'group': model_to_dict(pairingRecord.groupID), 'pairing': model_to_dict(pairingRecord.member_2ID)})
-    print(json.dumps(response, default=str, indent=2))
     return JsonResponse({'success': True, 'response': json.dumps(response, default=str)})
   return JsonResponse({'success': False})
 

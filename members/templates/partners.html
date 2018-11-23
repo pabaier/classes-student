@@ -29,7 +29,6 @@
             for (var field in pairing) {
               if(!pairing[field]) p[field] = ''
               else p[field] = `${pairing[field]}<br>`;
-              console.log(p[field])
             }
             htmlString += `
               <button type="button" class="btn btn-lg btn-success js-popover-trigger" data-toggle="popover" data-html="true" data-placement="left" title="${group.group_name}" 
@@ -45,7 +44,7 @@
                               ${p.zip_code}
                 ">
                 ${pairName}
-              </button>  
+              </button><br>
             `;
           }
           $('#target').html(htmlString);
