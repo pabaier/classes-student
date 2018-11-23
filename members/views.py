@@ -1,18 +1,26 @@
 from members.forms import MembersCreationForm
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
 from members.models import Members, Pairings
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
+from django.contrib.auth import authenticate, login as auth_login
 import json
 import re
 
 class MembersView(generic.CreateView):
     form_class = MembersCreationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('create_group:dashboard')
     template_name = 'signup.html'
+
+    def form_valid(self, form):  
+        valid = super().form_valid(form)
+        username, password = form.cleaned_data.get('username'), form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=password)
+        auth_login(self.request, user)
+        return HttpResponseRedirect("/groups/dashboard")
 
 def profile(request):
   if request.user.is_authenticated:
