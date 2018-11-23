@@ -7,5 +7,6 @@ urlpatterns = [
   path('creategroup/', views.form_view, name='creategroup'),
   path('dashboard/', views.show_groups, name='dashboard'),
   path('editgroup/', views.edit_group, name='editgroup'),
+  path('pair/<int:groupId>', views.make_pairs, name='pair'),
   path('', views.show_groups, name='myGroups')
 ]

@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import myGroups
 from .forms import newGroupForm
-from members.models import Members,User_By_Group
+from members.models import Members,User_By_Group, Pairings
 from members.forms import newMembersForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
+from django.http import JsonResponse
 
 def index(request):
   if request.user.is_authenticated:
@@ -65,7 +66,6 @@ def form_view(request):
   else:
     return redirect('members:signup')
 
-
 # shows group memberships and groups managed on Dashboard
 def show_groups(request):
     if not request.user.is_authenticated:
@@ -76,7 +76,6 @@ def show_groups(request):
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
 
-
 def edit_group(request):
     if not request.user.is_authenticated:
         return redirect('members:signup')
@@ -86,3 +85,19 @@ def edit_group(request):
            'form1': form1,
         }
         return render(request,'edit_group.html',context)
+
+def make_pairs(request, groupId):
+  if request.user.is_authenticated:
+    usersGroups = User_By_Group.objects.filter(member_1ID=request.user.id)
+    requestUserInGroup = any(ubgObject.group_ID.id == groupId for ubgObject in usersGroups)
+    if requestUserInGroup:
+      group = myGroups.objects.get(id=groupId)
+      usersInGroup = User_By_Group.objects.filter(group_ID = group)
+      for ubgObject in usersInGroup:
+        print(ubgObject.member_1ID.username)
+      print(len(usersInGroup))
+    # if (groupId == 0):
+    #   return JsonResponse({'success': False})
+    # # managed_list = myGroups.objects.all().filter(created_by=request.user.username)
+    return JsonResponse({'success': requestUserInGroup})
+
