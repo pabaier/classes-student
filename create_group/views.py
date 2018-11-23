@@ -27,15 +27,16 @@ def form_view(request):
             myGroup.ship_date = groupData['shipDate']
             myGroup.created_by = groupData['createdBy']
             myGroup.save()
-            print(myGroup.id)
             #return show_groups(request)
 
             array_data = request.POST['arr']
             data = json.loads(array_data)
-            print(data)
-            print(data[0])
-            count = len(data)
-            print(len(data))
+            group = myGroups.objects.get(id=myGroup.id)
+            userByGroup = User_By_Group()
+            userByGroup.member_1ID = request.user
+            userByGroup.group_ID = group
+            userByGroup.save()
+
             for user in data:
                 myUser = Members()
                 myUser.first_name = user['firstName']
@@ -49,16 +50,13 @@ def form_view(request):
                 myUser.zip_code = user['Userzip']
                 myUser.exclusions = user['Exclusions']
                 myUser.save()
-                print(myUser.id)
 
                 userByGroup = User_By_Group()
-                userByGroup.member_1ID = Members.objects.get(id = myUser.id)
-                userByGroup.group_ID = myGroups.objects.get(id=myGroup.id)
+                userByGroup.group_ID = group
+                userByGroup.member_1ID = myUser
                 userByGroup.save()
-
         else:
             print('Error - Invalid Form- user table/group form')
-
 
     context = {
        'form1': form1,
