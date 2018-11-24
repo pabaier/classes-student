@@ -15,7 +15,8 @@
     <form class="bg-light" id="{{ group.id }}">
       <h3>{{ group.name }}</h3>
       {% for member in group.members %}
-        {{member.username}} <input type="checkbox" name="{{member.id}}" value="{{member.username}}"><br>
+        <a href="/members/exclusions/{{member.id}}">
+        {{member.firstName}} {{member.lastName}} ({{member.username}})</a> <input type="checkbox" name="{{member.id}}" value="{{member.username}}"><br>
       {% endfor %}
       
       {% comment %}
