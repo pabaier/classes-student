@@ -29,6 +29,9 @@ class User_By_Group(models.Model):
     member_1ID = models.ForeignKey('Members', on_delete=models.CASCADE)
     group_ID = models.ForeignKey('create_group.myGroups', on_delete=models.CASCADE)
 
+    class Meta:
+      unique_together = ('member_1ID', 'group_ID',)
+
 
 class Wishlist(models.Model):
     ubg_ID = models.ForeignKey('User_By_Group', on_delete=models.CASCADE)
@@ -38,4 +41,3 @@ class Exclusions(models.Model):
     owner = models.ForeignKey('Members', related_name='owner', on_delete=models.CASCADE)
     excluded = models.ForeignKey('Members', related_name='excluded', on_delete=models.CASCADE)
     group = models.ForeignKey('create_group.myGroups', on_delete=models.CASCADE)
-
