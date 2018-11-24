@@ -155,17 +155,15 @@ def make_pairs(request, groupId):
               pass
 
       if success:
+        Pairings.objects.filter(groupID=groupObject).delete()
         for pair in pairs:
           Pairings(member_1ID=userIdWithObject[pair['userId']], member_2ID=userIdWithObject[pair['partnerId']], groupID=groupObject).save()
-          # print(1)
-      # print(json.dumps(pairs, indent=2, default=str))
-      print(success)
+        return JsonResponse({'success': True})
+      else:
+        return JsonResponse({'success': False, 'message': 'Sorry, we were unable to find the right pairing combinations. Please check the group\'s exceptions and try again.'})
+    return JsonResponse({'success': False, 'message': 'Sorry, you are not a member of this group.'})
+  else:
+    return redirect('members:signup')
 
-      # for ubgObject in usersInGroup:
-      #   print(ubgObject.member_1ID.username)
-      # print(len(usersInGroup))
-    # if (groupId == 0):
-    #   return JsonResponse({'success': False})
-    # # managed_list = myGroups.objects.all().filter(created_by=request.user.username)
-    return JsonResponse({'success': requestUserInGroup})
+
 
