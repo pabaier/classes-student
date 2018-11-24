@@ -24,38 +24,11 @@
         {% endif %}
         <br>
       {% endfor %}
-      
-      {% comment %}
-      <!-- <div class="row ">
-        <div class="col-md-2 col-lg-3"></div>
-        <div class="row col border bg-light align-items-center">
-          <div class="col-2 col-sm-1"></div>
-          <div class="col p-3">{{ field }}:</div>
-          <div class="col " id='{{ field }}-inputWrapper'>{{ value }}</div>
-          <div class="col-2"></div>
-        </div>
-        <div class="col-md-2 col-lg-3"></div>
-      </div>
-      <input type="hidden" value="{{ value }}" id="{{ field }}-og"> -->
-      {% endcomment %}
     </form><br>
   {% endfor %}
   </div>
   <button type="submit" class="btn btn-danger" id='btn-save'>Save</button>
   <button type="submit" class="btn btn-success" id='btn-mine'>My Exclusions</button>
-
-  {% comment %}
-  <!-- <div class="row">
-    <div class="col-7"></div>
-    <button type="submit" class="btn btn-secondary edit" id='btn-edit' value='{{ result }}'>Edit</button>
-    <button type="submit" class="btn btn-danger d-none cancel" id='btn-cancel' value='{{ result }}'>Cancel</button>
-    <button type="submit" class="btn btn-success d-none save" id='btn-save' value='{{ result }}'>Save</button>
-    <input type="hidden" value="{{ result }}" id="data">
-    <input type="hidden" value="{{ user.id }}" id="userId">
-  </div>
-</div> -->
-  {% endcomment %}
-
 {% else %}
 
 {{ message }}
