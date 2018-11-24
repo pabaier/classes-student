@@ -73,10 +73,13 @@ def usersInSameGroup(user1ID, user2ID):
           sameGroups.append(a.group_ID)
     return sameGroups
 
+@csrf_exempt
 def exclusions(request, userId):
   if request.user.is_authenticated:
     sameGroups = usersInSameGroup(request.user.id, userId)
     if len(sameGroups) > 0:
+      if request.method == 'POST':
+        return exclude(request, userId)
       requestedMember = model_to_dict(Members.objects.get(id=userId))
       groupMembers = []
       for group in sameGroups:
@@ -92,37 +95,26 @@ def exclusions(request, userId):
               'username': m.username
             })
         groupMembers.append(grp)
-        
-      # a = model_to_dict(sameGroups[0])
-      # print(json.dumps(groupMembers, indent=2, default=str))
       data = {'success': True, 'data': groupMembers, 'requested': requestedMember}
     else:
       data = {'success': False, 'message': 'Sorry, you are not in any groups with the requested member'}
     return render(request, 'exclusions.html', context=data)
   return render(request, 'members:signup')
 
-@csrf_exempt
 def exclude(request, userId):
-  if request.user.is_authenticated:
-    sameGroups = usersInSameGroup(request.user.id, userId)
-    if len(sameGroups) > 0:
-      body_unicode = request.body.decode('utf-8')
-      body = json.loads(body_unicode)
-      owner = Members.objects.get(id=userId)
-      for groupObject in body:
-        group = myGroups.objects.get(id=groupObject['id'])
-        ownerExclusions = Exclusions.objects.filter(owner=owner, group=group)
-        for exclusion in ownerExclusions:
-          exclusion.delete()
-        for excludedId in groupObject['exclusions']:
-          excluded = Members.objects.get(id=excludedId)
-          Exclusions(owner=owner, group=group, excluded=excluded).save()
-      data = {'success': True}
-    else:
-      data = {'success': False, 'message': 'Sorry, you are not in any groups with the requested member'}
-
-    return JsonResponse(data)
-  return render(request, 'members:signup')
+  body_unicode = request.body.decode('utf-8')
+  body = json.loads(body_unicode)
+  owner = Members.objects.get(id=userId)
+  for groupObject in body:
+    group = myGroups.objects.get(id=groupObject['id'])
+    ownerExclusions = Exclusions.objects.filter(owner=owner, group=group)
+    for exclusion in ownerExclusions:
+      exclusion.delete()
+    for excludedId in groupObject['exclusions']:
+      excluded = Members.objects.get(id=excludedId)
+      Exclusions(owner=owner, group=group, excluded=excluded).save()
+  data = {'success': True}
+  return JsonResponse(data)
 
 def login(request):
   return render(request, 'login.html')

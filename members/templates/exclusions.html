@@ -71,7 +71,7 @@
     
     console.log(JSON.stringify(output))
     $.ajax({
-      url: `/members/exclude/{{requested.id}}/`,
+      url: `/members/exclusions/{{requested.id}}/`,
       type:"POST",
       data: JSON.stringify(output),
       dataType: 'json',
