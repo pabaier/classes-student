@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import myGroups
 from .forms import newGroupForm
-from members.models import Members,User_By_Group, Pairings
+from members.models import Members,User_By_Group, Pairings, Exclusions
 from members.forms import newMembersForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
 from django.http import JsonResponse
+from django.forms.models import model_to_dict
+import operator
+import random
 
 def index(request):
   if request.user.is_authenticated:
@@ -91,11 +94,76 @@ def make_pairs(request, groupId):
     usersGroups = User_By_Group.objects.filter(member_1ID=request.user.id)
     requestUserInGroup = any(ubgObject.group_ID.id == groupId for ubgObject in usersGroups)
     if requestUserInGroup:
-      group = myGroups.objects.get(id=groupId)
-      usersInGroup = User_By_Group.objects.filter(group_ID = group)
-      for ubgObject in usersInGroup:
-        print(ubgObject.member_1ID.username)
-      print(len(usersInGroup))
+      groupObject = myGroups.objects.get(id=groupId)
+      usersInGroupObject = User_By_Group.objects.filter(group_ID = groupObject)
+      groupExclusionsObject = Exclusions.objects.filter(group = groupObject)
+
+      # turn all querysets into dicts
+      # group = model_to_dict(groupObject)
+      usersByGroup = []
+      groupExclusions = []
+      usersOnly = []
+      userIdWithObject = {}
+      for ubg in usersInGroupObject:
+        userIdWithObject[ubg.member_1ID.id] = ubg.member_1ID
+        usersByGroup.append(model_to_dict(ubg))
+        usersOnly.append(ubg.member_1ID.id)
+      for ex in groupExclusionsObject:
+        groupExclusions.append(model_to_dict(ex))
+
+      # consolidate info to an array of objects of {userId: #, exclusions: [], options: []}
+      allUsers = []
+      for user in usersByGroup:
+        userId = user['member_1ID']
+        a = {'userId': userId, 'exclusions': [], 'options': usersOnly.copy()}
+        for e in groupExclusions:
+          if e['owner'] is userId:
+            a['exclusions'].append(e['excluded'])
+            a['options'].remove(e['excluded'])
+        a['options'].remove(userId)
+        allUsers.append(a)
+
+      # sort the array so the users with the least amount of options are first
+      allUsers.sort(key=operator.itemgetter('options'), reverse=True)
+
+      # pair everyone up!
+      pairs=[]
+      flag = 0
+      counter = 0
+      success = True
+      usersLeft = usersOnly.copy()
+      while flag is 0:
+        flag = -1
+        counter += 1
+        # stop after one million attempts
+        if counter > 1000000:
+          success = False
+          break
+        for user in allUsers:
+          userOptions = user['options']
+          if len(userOptions) == 0:
+            flag = 0
+            break
+          pair = {'userId': user['userId']}
+          partner = userOptions.pop(random.randint(0, len(userOptions)-1))
+          pair['partnerId'] = partner
+          pairs.append(pair)
+          for user in allUsers:
+            try:
+              user['options'].remove(partner)
+            except:
+              pass
+
+      if success:
+        for pair in pairs:
+          Pairings(member_1ID=userIdWithObject[pair['userId']], member_2ID=userIdWithObject[pair['partnerId']], groupID=groupObject).save()
+          # print(1)
+      # print(json.dumps(pairs, indent=2, default=str))
+      print(success)
+
+      # for ubgObject in usersInGroup:
+      #   print(ubgObject.member_1ID.username)
+      # print(len(usersInGroup))
     # if (groupId == 0):
     #   return JsonResponse({'success': False})
     # # managed_list = myGroups.objects.all().filter(created_by=request.user.username)
