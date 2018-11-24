@@ -5,18 +5,24 @@
 <div class="container">
   <div class="row">
     <span class='col-4'></span>
-    <h2 class='col bg-white'>{{requested.username}} Exclusions</h2>
+    <h2 class='col bg-white text-danger border border-success rounded'>{{requested.username}} Exclusions</h2>
     <span class='col-4'></span>
   </div>
     
   <br>
-  <div style="text-align:left" id="formContainer">
+  <div style="text-align:left" class="bg-light border border-success rounded p-4" id="formContainer">
   {% for group in data %}
     <form class="bg-light" id="{{ group.id }}">
-      <h3>{{ group.name }}</h3>
+      <h3 class="text-danger">{{ group.name }}</h3>
       {% for member in group.members %}
-        <a href="/members/exclusions/{{member.id}}">
-        {{member.firstName}} {{member.lastName}} ({{member.username}})</a> <input type="checkbox" name="{{member.id}}" value="{{member.username}}"><br>
+        <a href="/members/exclusions/{{member.id}}" class="text-success">
+        {{member.firstName}} {{member.lastName}} ({{member.username}})</a> 
+        {% if member.excluded %}
+          <input type="checkbox" name="{{member.id}}" value="{{member.username}}" checked>
+        {% else %}
+          <input type="checkbox" name="{{member.id}}" value="{{member.username}}">
+        {% endif %}
+        <br>
       {% endfor %}
       
       {% comment %}
@@ -35,7 +41,8 @@
     </form><br>
   {% endfor %}
   </div>
-  <button type="submit" class="btn btn-secondary" id='btn-save'>Save</button>
+  <button type="submit" class="btn btn-danger" id='btn-save'>Save</button>
+  <button type="submit" class="btn btn-success" id='btn-mine'>My Exclusions</button>
 
   {% comment %}
   <!-- <div class="row">
@@ -56,6 +63,10 @@
 {% endif %}
 
 <script>
+  $("#btn-mine").click( () => {
+    location.href = '/members/exclusions/{{user.id}}'
+  });
+
   $("#btn-save").click( (e) => {
     var output = [];
     var allGroups = $("#formContainer").children("form");

@@ -80,19 +80,26 @@ def exclusions(request, userId):
     if len(sameGroups) > 0:
       if request.method == 'POST':
         return exclude(request, userId)
-      requestedMember = model_to_dict(Members.objects.get(id=userId))
+      requestedMemberObject = Members.objects.get(id=userId)
+      requestedMember = model_to_dict(requestedMemberObject)
       groupMembers = []
       for group in sameGroups:
+        requestedMembersExclusions = Exclusions.objects.filter(owner=requestedMemberObject, group=group)
         grp = {'id': group.id, 'name': group.group_name, 'members': []}
         ubg = User_By_Group.objects.filter(group_ID=group.id)
         for member in ubg:
           m = member.member_1ID
+          excluded = False
+          for ex in requestedMembersExclusions:
+            if m == ex.excluded:
+              excluded = True
           if not m.id == requestedMember['id']:
             grp['members'].append({
               'id': m.id,
               'firstName': m.first_name,
-              'lastname': m.last_name,
-              'username': m.username
+              'lastName': m.last_name,
+              'username': m.username,
+              'excluded': excluded
             })
         groupMembers.append(grp)
       data = {'success': True, 'data': groupMembers, 'requested': requestedMember}
