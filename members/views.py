@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
-from members.models import Members, Pairings, User_By_Group
+from members.models import Members, Pairings, User_By_Group, Exclusions
+from create_group.models import myGroups
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 from django.contrib.auth import authenticate, login as auth_login
@@ -98,6 +99,29 @@ def exclusions(request, userId):
     else:
       data = {'success': False, 'message': 'Sorry, you are not in any groups with the requested member'}
     return render(request, 'exclusions.html', context=data)
+  return render(request, 'members:signup')
+
+@csrf_exempt
+def exclude(request, userId):
+  if request.user.is_authenticated:
+    sameGroups = usersInSameGroup(request.user.id, userId)
+    if len(sameGroups) > 0:
+      body_unicode = request.body.decode('utf-8')
+      body = json.loads(body_unicode)
+      owner = Members.objects.get(id=userId)
+      for groupObject in body:
+        group = myGroups.objects.get(id=groupObject['id'])
+        ownerExclusions = Exclusions.objects.filter(owner=owner, group=group)
+        for exclusion in ownerExclusions:
+          exclusion.delete()
+        for excludedId in groupObject['exclusions']:
+          excluded = Members.objects.get(id=excludedId)
+          Exclusions(owner=owner, group=group, excluded=excluded).save()
+      data = {'success': True}
+    else:
+      data = {'success': False, 'message': 'Sorry, you are not in any groups with the requested member'}
+
+    return JsonResponse(data)
   return render(request, 'members:signup')
 
 def login(request):

@@ -12,7 +12,7 @@
   <br>
   <div style="text-align:left" id="formContainer">
   {% for group in data %}
-  <form id="{{ group.id }}">
+    <form class="bg-light" id="{{ group.id }}">
       <h3>{{ group.name }}</h3>
       {% for member in group.members %}
         {{member.username}} <input type="checkbox" name="{{member.id}}" value="{{member.username}}"><br>
@@ -32,9 +32,9 @@
       <input type="hidden" value="{{ value }}" id="{{ field }}-og"> -->
       {% endcomment %}
     </form><br>
-    {% endfor %}
+  {% endfor %}
   </div>
-  <button type="submit" class="btn btn-secondary" id='btn-click'>Save</button>
+  <button type="submit" class="btn btn-secondary" id='btn-save'>Save</button>
 
   {% comment %}
   <!-- <div class="row">
@@ -55,97 +55,41 @@
 {% endif %}
 
 <script>
-  $("#btn-click").click( (e) => {
-    var output = {'userId': '{{requested.id}}', 'groups': []};
+  $("#btn-save").click( (e) => {
+    var output = [];
     var allGroups = $("#formContainer").children("form");
     allGroups.each( (a) => {
       var inputs = allGroups[a];
-      // output['groups'].push({'id': inputs.id});
       var groupOutput = {'id': inputs.id, 'exclusions': []}
       for( k in Object.keys(inputs)) {
         var inp = inputs[k];
         if(inp.checked)
           groupOutput.exclusions.push(inp.name);
       }
-      output.groups.push(groupOutput);
+      output.push(groupOutput);
     });
+    
     console.log(JSON.stringify(output))
     $.ajax({
-      url: `/members/update/${userId}`,
+      url: `/members/exclude/{{requested.id}}/`,
       type:"POST",
       data: JSON.stringify(output),
       dataType: 'json',
       contentType: "application/json",
       success: (returnData) => {
-        $('#resultModal').modal('show');
+        console.log(returnData);
         if (!returnData.success) {
           $('#result-modal').prop('class', 'alert alert-danger');
           $('#result-message').html(`Error updating record.<br>${returnData.message}.`);
-          cancel();
+          $('#resultModal').modal('show');
         }
         else {
           $('#result-modal').prop('class', 'alert alert-success');
-          for(var key in dataKeys) {
-            var input = document.getElementById(`${dataKeys[key]}-input`).value;
-            var wrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
-            document.getElementById(`${dataKeys[key]}-og`).value = input;
-            wrapperDiv.innerHTML = input;
-            output[dataKeys[key]] = input;
-          }
           $('#result-message').html('Success!');
+          $('#resultModal').modal('show');
         }
       }
     });
-  });
-
-  $(".save").click((e) => {
-    var dataKeys = getJsonData();
-    var output = {};
-    for(var key in dataKeys) { 
-      var input = document.getElementById(`${dataKeys[key]}-input`).value;
-      output[dataKeys[key]] = input;
-    }
-
-    // hide cancel and save buttons
-    e.target.classList.add('d-none');
-    document.getElementById(`btn-cancel`).classList.add('d-none');
-    document.getElementById(`btn-edit`).classList.remove('d-none');
-    var userId = document.getElementById('userId').value;
-
-  });
-
-  $(".cancel").click(() => {
-    cancel();
-  });
-
-  var cancel = () => {
-    var dataKeys = getJsonData();
-    for(var key in dataKeys) { 
-      var ogValue = document.getElementById(`${dataKeys[key]}-og`).value;
-      var valueWrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
-      valueWrapperDiv.innerHTML = ogValue;
-    }
-
-    // hide cancel and save buttons
-    document.getElementById(`btn-cancel`).classList.add('d-none');
-    document.getElementById(`btn-save`).classList.add('d-none');
-    document.getElementById(`btn-edit`).classList.remove('d-none');
-  };
-
-  $(".edit").click((e) => {
-    var dataKeys = getJsonData();
-    for(var key in dataKeys) { 
-      var valueWrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
-      var existingValue = valueWrapperDiv.innerHTML;
-      if(!existingValue) valueWrapperDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
-      else if(existingValue == 'None') valueWrapperDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
-      else valueWrapperDiv.innerHTML = `<input type="text" value=${existingValue} id='${dataKeys[key]}-input'>`;
-    }
-     
-    // hide edit link
-    e.target.classList.add('d-none');
-    document.getElementById(`btn-cancel`).classList.remove('d-none');
-    document.getElementById(`btn-save`).classList.remove('d-none');
   });
 
   var getJsonData = () => {
