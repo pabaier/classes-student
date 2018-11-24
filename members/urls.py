@@ -11,6 +11,8 @@ urlpatterns = [
     path('pairings/<int:userId>', views.pairings, name='pairings'),
     path('partners/', views.partners, name='partners'),
     path('login/', views.login, name='login'),
-    path('update/<int:userId>', views.update, name='update')
+    path('update/<int:userId>', views.update, name='update'),
+    path('exclusions/<int:userId>', views.exclusions, name='exclusions'),
+    path('exclude/', views.exclude, name='exclude'),
   #  path('changepassword/', view., name='change_password')
 ]

@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if success %}
+<div class="container">
+  <div class="row">
+    <span class='col-4'></span>
+    <h2 class='col bg-white'>{{requested.username}} Exclusions</h2>
+    <span class='col-4'></span>
+  </div>
+    
+  <br>
+  <div style="text-align:left" id="formContainer">
+  {% for group in data %}
+  <form id="{{ group.id }}">
+      <h3>{{ group.name }}</h3>
+      {% for member in group.members %}
+        {{member.username}} <input type="checkbox" name="{{member.id}}" value="{{member.username}}"><br>
+      {% endfor %}
+      
+      {% comment %}
+      <!-- <div class="row ">
+        <div class="col-md-2 col-lg-3"></div>
+        <div class="row col border bg-light align-items-center">
+          <div class="col-2 col-sm-1"></div>
+          <div class="col p-3">{{ field }}:</div>
+          <div class="col " id='{{ field }}-inputWrapper'>{{ value }}</div>
+          <div class="col-2"></div>
+        </div>
+        <div class="col-md-2 col-lg-3"></div>
+      </div>
+      <input type="hidden" value="{{ value }}" id="{{ field }}-og"> -->
+      {% endcomment %}
+    </form><br>
+    {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-secondary" id='btn-click'>Save</button>
+
+  {% comment %}
+  <!-- <div class="row">
+    <div class="col-7"></div>
+    <button type="submit" class="btn btn-secondary edit" id='btn-edit' value='{{ result }}'>Edit</button>
+    <button type="submit" class="btn btn-danger d-none cancel" id='btn-cancel' value='{{ result }}'>Cancel</button>
+    <button type="submit" class="btn btn-success d-none save" id='btn-save' value='{{ result }}'>Save</button>
+    <input type="hidden" value="{{ result }}" id="data">
+    <input type="hidden" value="{{ user.id }}" id="userId">
+  </div>
+</div> -->
+  {% endcomment %}
+
+{% else %}
+
+{{ message }}
+
+{% endif %}
+
+<script>
+  $("#btn-click").click( (e) => {
+    var output = {'userId': '{{requested.id}}', 'groups': []};
+    var allGroups = $("#formContainer").children("form");
+    allGroups.each( (a) => {
+      var inputs = allGroups[a];
+      // output['groups'].push({'id': inputs.id});
+      var groupOutput = {'id': inputs.id, 'exclusions': []}
+      for( k in Object.keys(inputs)) {
+        var inp = inputs[k];
+        if(inp.checked)
+          groupOutput.exclusions.push(inp.name);
+      }
+      output.groups.push(groupOutput);
+    });
+    console.log(JSON.stringify(output))
+    $.ajax({
+      url: `/members/update/${userId}`,
+      type:"POST",
+      data: JSON.stringify(output),
+      dataType: 'json',
+      contentType: "application/json",
+      success: (returnData) => {
+        $('#resultModal').modal('show');
+        if (!returnData.success) {
+          $('#result-modal').prop('class', 'alert alert-danger');
+          $('#result-message').html(`Error updating record.<br>${returnData.message}.`);
+          cancel();
+        }
+        else {
+          $('#result-modal').prop('class', 'alert alert-success');
+          for(var key in dataKeys) {
+            var input = document.getElementById(`${dataKeys[key]}-input`).value;
+            var wrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+            document.getElementById(`${dataKeys[key]}-og`).value = input;
+            wrapperDiv.innerHTML = input;
+            output[dataKeys[key]] = input;
+          }
+          $('#result-message').html('Success!');
+        }
+      }
+    });
+  });
+
+  $(".save").click((e) => {
+    var dataKeys = getJsonData();
+    var output = {};
+    for(var key in dataKeys) { 
+      var input = document.getElementById(`${dataKeys[key]}-input`).value;
+      output[dataKeys[key]] = input;
+    }
+
+    // hide cancel and save buttons
+    e.target.classList.add('d-none');
+    document.getElementById(`btn-cancel`).classList.add('d-none');
+    document.getElementById(`btn-edit`).classList.remove('d-none');
+    var userId = document.getElementById('userId').value;
+
+  });
+
+  $(".cancel").click(() => {
+    cancel();
+  });
+
+  var cancel = () => {
+    var dataKeys = getJsonData();
+    for(var key in dataKeys) { 
+      var ogValue = document.getElementById(`${dataKeys[key]}-og`).value;
+      var valueWrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+      valueWrapperDiv.innerHTML = ogValue;
+    }
+
+    // hide cancel and save buttons
+    document.getElementById(`btn-cancel`).classList.add('d-none');
+    document.getElementById(`btn-save`).classList.add('d-none');
+    document.getElementById(`btn-edit`).classList.remove('d-none');
+  };
+
+  $(".edit").click((e) => {
+    var dataKeys = getJsonData();
+    for(var key in dataKeys) { 
+      var valueWrapperDiv = document.getElementById(`${dataKeys[key]}-inputWrapper`);
+      var existingValue = valueWrapperDiv.innerHTML;
+      if(!existingValue) valueWrapperDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
+      else if(existingValue == 'None') valueWrapperDiv.innerHTML = `<input type="text" id='${dataKeys[key]}-input'>`;
+      else valueWrapperDiv.innerHTML = `<input type="text" value=${existingValue} id='${dataKeys[key]}-input'>`;
+    }
+     
+    // hide edit link
+    e.target.classList.add('d-none');
+    document.getElementById(`btn-cancel`).classList.remove('d-none');
+    document.getElementById(`btn-save`).classList.remove('d-none');
+  });
+
+  var getJsonData = () => {
+    var dataString = document.getElementById('data').value.replace(/'/g, '"');
+    var dataStringFormatted = dataString.replace(/: None/g, ': null');
+    var dataJson = JSON.parse(dataStringFormatted);
+    return Object.keys(dataJson);
+  }
+  
+</script>
+
+
+{% endblock content %}
