@@ -1,4 +1,3 @@
-#Eric
 {% extends 'base.html' %}
 
 {% block content %}
@@ -59,8 +58,8 @@
         <tr>
             <ul class="list-group">
                 <td>
-                    <li class="list-group-item"><a href={% url 'create_group:creategroup' %}>
-                        {{gr.user_group.group_name}}</a></li>
+                    <li class="list-group-item"><a href={% url 'create_group:editgroup' gr.id %}>
+                        {{gr.group_name}}</a></li>
                 </td>
                 <td>
                     <li class="list-group-item"> {{gr.created_by}}</li>
