@@ -53,7 +53,7 @@ def partners(request):
     return redirect('members:signup')
 
 def pairings(request, userId):
-  pairingData = Pairings.objects.filter(id=userId)
+  pairingData = Pairings.objects.filter(member_1ID=userId)
   if len(pairingData)>0:
     userProfileDict = model_to_dict(pairingData[0].member_1ID)
     userProfileDict.pop('password', None)
