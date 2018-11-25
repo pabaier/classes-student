@@ -1,16 +1,71 @@
 {% extends 'base.html' %}
-#Paul
 {% block content %}
 
-<h2>Partners</h2>
-{% if user.is_authenticated %}
-  <p>Here are your partners {{user.username}}!</p>
+<div class="container">
+  <div class="row">
+      <span class='col-4'></span>
+      <h2 class="col bg-white text-danger border border-success rounded">Partners</h2>
+      <span class='col-4'></span>
+  </div>
+  <br>
+  <div class="row">
+    <div class='col-4'></div>
+    <div class='col-2 text-danger border border-success rounded bg-light'>Group</div>
+    <div class='col-2 bg-white text-danger border border-success rounded'>user</div>
+    <div class='col-4'></div>
+  </div>
+  <div class="row">
+    <div class='col-4'></div>
+    <div id="target" class="col bg-white text-danger border border-success rounded"></div>
+    <div class='col-4'></div>
+  </div>
+</div>
 
-{% else %}
-  <p>please sign in or sign up!!</p>
-  <p>
-    <a href="{% url 'members:login' %}" class="btn btn-outline-success">Login</a>
-    <a href="{% url 'members:signup' %}" class="btn btn-outline-success">Sign up</a>
-  </p>
-{% endif %}
+<script>
+  $(document).ready((e) => {
+    $.ajax({
+      url: `/members/pairings/{{ user.id }}`,
+      type:"GET",
+      success: (returnData) => {
+        if(returnData.success) {
+          pairings = $.parseJSON(returnData.response).pairings
+          htmlString = '';
+          for (var pair in pairings) {
+            var group = pairings[pair].group;
+            var pairing = pairings[pair].pairing;
+            var pairName = `${pairing.first_name} ${pairing.last_name}`
+            var p = {};
+            for (var field in pairing) {
+              if(!pairing[field]) p[field] = ''
+              else p[field] = `${pairing[field]}<br>`;
+            }
+            htmlString += `
+              <button type="button" class="btn btn-lg btn-success js-popover-trigger" data-toggle="popover" data-html="true" data-placement="left" title="${group.group_name}" 
+              data-content="end date: ${group.end_date}<br>ship date: ${group.ship_date}">
+                ${group.group_name}
+              </button>
+              <button type="button" class="btn btn-lg btn-danger js-popover-trigger" data-toggle="popover" data-html="true" title="${pairName}"
+                data-content="${p.email}
+                              ${p.phone}
+                              ${p.address}
+                              ${p.city}
+                              ${p.state}
+                              ${p.zip_code}
+                ">
+                ${pairName}
+              </button><br>
+            `;
+          }
+          $('#target').html(htmlString);
+          $('[data-toggle="popover"]').popover()
+        }
+        else {
+          $('#target').html("<div class='bg-light'>You don't have any pairings yet!</div>");
+        }
+      }
+    });
+  });
+</script>
+  
+  
 {% endblock content %}

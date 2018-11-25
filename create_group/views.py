@@ -1,20 +1,24 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from .models import myGroups
 from .forms import newGroupForm
-from members.models import Members,User_By_Group
+from members.models import Members,User_By_Group, Pairings, Exclusions
 from members.forms import newMembersForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
-
-
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
+import operator
+import random
 
 def index(request):
+  if request.user.is_authenticated:
     return render(request, 'dashboard.html')
-
+  else:
+    return redirect('members:signup')
 
 @csrf_exempt
 def form_view(request):
+  if request.user.is_authenticated:
     form1 =newGroupForm()
     if request.is_ajax():
 
@@ -27,15 +31,16 @@ def form_view(request):
             myGroup.ship_date = groupData['shipDate']
             myGroup.created_by = groupData['createdBy']
             myGroup.save()
-            print(myGroup.id)
             #return show_groups(request)
 
             array_data = request.POST['arr']
             data = json.loads(array_data)
-            print(data)
-            print(data[0])
-            count = len(data)
-            print(len(data))
+            group = myGroups.objects.get(id=myGroup.id)
+            userByGroup = User_By_Group()
+            userByGroup.member_1ID = request.user
+            userByGroup.group_ID = group
+            userByGroup.save()
+
             for user in data:
                 myUser = Members()
                 myUser.first_name = user['firstName']
@@ -49,22 +54,20 @@ def form_view(request):
                 myUser.zip_code = user['Userzip']
                 myUser.exclusions = user['Exclusions']
                 myUser.save()
-                print(myUser.id)
 
                 userByGroup = User_By_Group()
-                userByGroup.member_1ID = Members.objects.get(id = myUser.id)
-                userByGroup.group_ID = myGroups.objects.get(id=myGroup.id)
+                userByGroup.group_ID = group
+                userByGroup.member_1ID = myUser
                 userByGroup.save()
-
         else:
             print('Error - Invalid Form- user table/group form')
-
 
     context = {
        'form1': form1,
     }
     return render(request, 'create.html',context)
-
+  else:
+    return redirect('members:signup')
 
 # shows group memberships and groups managed on Dashboard
 def show_groups(request):
@@ -76,7 +79,6 @@ def show_groups(request):
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
 
-
 def edit_group(request):
     if not request.user.is_authenticated:
         return redirect('members:signup')
@@ -86,3 +88,82 @@ def edit_group(request):
            'form1': form1,
         }
         return render(request,'edit_group.html',context)
+
+def make_pairs(request, groupId):
+  if request.user.is_authenticated:
+    usersGroups = User_By_Group.objects.filter(member_1ID=request.user.id)
+    requestUserInGroup = any(ubgObject.group_ID.id == groupId for ubgObject in usersGroups)
+    if requestUserInGroup:
+      groupObject = myGroups.objects.get(id=groupId)
+      usersInGroupObject = User_By_Group.objects.filter(group_ID = groupObject)
+      groupExclusionsObject = Exclusions.objects.filter(group = groupObject)
+
+      # turn all querysets into dicts
+      # group = model_to_dict(groupObject)
+      usersByGroup = []
+      groupExclusions = []
+      usersOnly = []
+      userIdWithObject = {}
+      for ubg in usersInGroupObject:
+        userIdWithObject[ubg.member_1ID.id] = ubg.member_1ID
+        usersByGroup.append(model_to_dict(ubg))
+        usersOnly.append(ubg.member_1ID.id)
+      for ex in groupExclusionsObject:
+        groupExclusions.append(model_to_dict(ex))
+
+      # consolidate info to an array of objects of {userId: #, exclusions: [], options: []}
+      allUsers = []
+      for user in usersByGroup:
+        userId = user['member_1ID']
+        a = {'userId': userId, 'exclusions': [], 'options': usersOnly.copy()}
+        for e in groupExclusions:
+          if e['owner'] is userId:
+            a['exclusions'].append(e['excluded'])
+            a['options'].remove(e['excluded'])
+        a['options'].remove(userId)
+        allUsers.append(a)
+
+      # sort the array so the users with the least amount of options are first
+      allUsers.sort(key=operator.itemgetter('options'), reverse=True)
+
+      # pair everyone up!
+      pairs=[]
+      flag = 0
+      counter = 0
+      success = True
+      usersLeft = usersOnly.copy()
+      while flag is 0:
+        flag = -1
+        counter += 1
+        # stop after one million attempts
+        if counter > 1000000:
+          success = False
+          break
+        for user in allUsers:
+          userOptions = user['options']
+          if len(userOptions) == 0:
+            flag = 0
+            break
+          pair = {'userId': user['userId']}
+          partner = userOptions.pop(random.randint(0, len(userOptions)-1))
+          pair['partnerId'] = partner
+          pairs.append(pair)
+          for user in allUsers:
+            try:
+              user['options'].remove(partner)
+            except:
+              pass
+
+      if success:
+        Pairings.objects.filter(groupID=groupObject).delete()
+        for pair in pairs:
+          Pairings(member_1ID=userIdWithObject[pair['userId']], member_2ID=userIdWithObject[pair['partnerId']], groupID=groupObject).save()
+        return JsonResponse({'success': True})
+      else:
+        return JsonResponse({'success': False, 'message': 'Sorry, we were unable to find the right pairing combinations. Please check the group\'s exceptions and try again.'})
+    return JsonResponse({'success': False, 'message': 'Sorry, you are not a member of this group.'})
+  else:
+    return redirect('members:signup')
+
+
+
