@@ -9,6 +9,10 @@ from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
 import operator
 import random
+from .forms import PostForm
+from django.utils.datastructures import MultiValueDictKeyError
+
+
 
 def index(request):
   if request.user.is_authenticated:
@@ -80,24 +84,78 @@ def show_groups(request):
         return render(request, 'dashboard.html', context)
 
 @csrf_exempt
-def edit_group(request,groupname='Default'):
+def edit_group(request,groupID='Default'):
     if not request.user.is_authenticated:
         return redirect('members:signup')
     else:
+        #getting members info from url parameter -groupID
+        groupOb = myGroups.objects.get(id=groupID)
+        print(groupOb.id)
+        userByGrp = (User_By_Group.objects.all().filter(group_ID=groupOb.id))
+        listOfUsers=list(userByGrp)
+        my_dict = {}
+        for userObj1 in listOfUsers:
+            userInfo = Members.objects.all().filter(username=userObj1.member_1ID)
+            for oneUser in userInfo:
+                my_dict.setdefault(oneUser.username,[]).append(oneUser)
 
-        groupOb = myGroups.objects.get(group_name=groupname)
-    #    userByGrpOb= User_By_Group.objects.get(group_ID=groupOb.id)
+
+#editing group info - using django forms
         form1 =newGroupForm(instance=groupOb)
-        if form1.is_valid():
-            form1.save()
-            context = {
-                'form1': form1,
-                #'GroupName' : format(groupOb.group_name)
-                }
-            return render(request,'edit_group.html',context)
+        if request.method == "POST":
+            form2 = PostForm(request.POST,instance=groupOb)
+            if form2.is_valid():
+                post = form2.save(commit=False)
+                post.save()
+                return redirect('create_group:dashboard')
+        else:
+            form2 = PostForm(instance=groupOb)
+            #return render(request,'edit_group.html',{'form2':form2})
 
-        return render(request,'edit_group.html',{'form1':form1})
-        #return HttpResponse('<h1>Group is {}</h1>'.format(userByGrpOb.member_1ID)) #get members from selected group
+#for edit button - getting new members info to be added to the group
+        if request.is_ajax():
+            try:
+                if request.POST['deleteMemberValue']:
+                    varValue = request.POST['deleteMemberValue']
+                    print("uservalue"+varValue)
+
+                #delete user from members table having username varValue and updatein group by memeber tableRow
+                    members_tobe_delelted = Members.objects.get(username = varValue)
+                    print(members_tobe_delelted)
+                    members_tobe_delelted.delete()
+                    return redirect('create_group:dashboard')
+            except MultiValueDictKeyError:
+                print("No data to delete")
+
+            if request.POST['editarr']:
+                array_data = request.POST['editarr']
+                data = json.loads(array_data)
+                print(data)
+                count = len(data)
+                print(len(data))
+                for user in data:
+                    myUser = Members()
+                    myUser.first_name = user['firstName']
+                    myUser.last_name = user['lastName']
+                    myUser.username = user['Username']
+                    myUser.email = user['Useremail']
+                    myUser.phone = user['Userphone']
+                    myUser.address = user['Useraddress']
+                    myUser.exclusions = user['Exclusions']
+                    myUser.save()
+                    print(myUser.id)
+                userByGroup = User_By_Group()
+                userByGroup.member_1ID = Members.objects.get(id = myUser.id)
+                userByGroup.group_ID = myGroups.objects.get(id=groupID)
+                userByGroup.save()
+                return redirect('create_group:dashboard')  #redirect not working
+
+#sending information to be edited to the template
+    context = {
+            'form2': form2,
+            'message':my_dict
+    }
+    return render(request,'edit_group.html',context)
 
 def make_pairs(request, groupId):
   if request.user.is_authenticated:
