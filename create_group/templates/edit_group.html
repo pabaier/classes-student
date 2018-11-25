@@ -48,10 +48,7 @@ var clickedUser;
 
 $('.btn-del').click(function()
 {
-   alert($(this).attr("id"));
-   console.log($(this).attr("id"));
    clickedUser = $(this).attr("id");
-   console.log("clicked"+clickedUser);
    $.ajax({
          type: "POST",
          data: {
@@ -60,7 +57,7 @@ $('.btn-del').click(function()
          },
          dataType: 'text',
          success: function (data) {
-           alert("data is available in views.");
+           console.log("data is available in views.");
            }
        });
 
@@ -90,8 +87,6 @@ $('.btn-del').click(function()
 function editDataFromTable(){
 
   var tableRow = document.getElementById('UserTable').rows.length;
-  console.log("table rows"+tableRow);
-  console.log("testing function call");
   var index=1;
   var arrayUsers = [];
   while( index < tableRow) {
@@ -100,7 +95,6 @@ function editDataFromTable(){
     for (var col = 0; col < arrHead.length; col++) {
       user[arrHead[col]] = document.getElementById(index+" "+col).value;
     }
-    console.log(arrayUsers);
     index = index+1;
 }
 
@@ -112,7 +106,7 @@ function editDataFromTable(){
         },
         dataType: 'json',
         success: function (data) {
-          alert("data is available in views.");
+          console.log("data is available in views.");
           }
       });
 

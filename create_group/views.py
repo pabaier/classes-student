@@ -90,7 +90,6 @@ def edit_group(request,groupID='Default'):
     else:
         #getting members info from url parameter -groupID
         groupOb = myGroups.objects.get(id=groupID)
-        print(groupOb.id)
         userByGrp = (User_By_Group.objects.all().filter(group_ID=groupOb.id))
         listOfUsers=list(userByGrp)
         my_dict = {}
@@ -117,11 +116,9 @@ def edit_group(request,groupID='Default'):
             try:
                 if request.POST['deleteMemberValue']:
                     varValue = request.POST['deleteMemberValue']
-                    print("uservalue"+varValue)
 
                 #delete user from members table having username varValue and updatein group by memeber tableRow
                     members_tobe_delelted = Members.objects.get(username = varValue)
-                    print(members_tobe_delelted)
                     members_tobe_delelted.delete()
                     return redirect('create_group:dashboard')
             except MultiValueDictKeyError:
@@ -130,9 +127,7 @@ def edit_group(request,groupID='Default'):
             if request.POST['editarr']:
                 array_data = request.POST['editarr']
                 data = json.loads(array_data)
-                print(data)
                 count = len(data)
-                print(len(data))
                 for user in data:
                     myUser = Members()
                     myUser.first_name = user['firstName']
@@ -143,7 +138,6 @@ def edit_group(request,groupID='Default'):
                     myUser.address = user['Useraddress']
                     myUser.exclusions = user['Exclusions']
                     myUser.save()
-                    print(myUser.id)
                 userByGroup = User_By_Group()
                 userByGroup.member_1ID = Members.objects.get(id = myUser.id)
                 userByGroup.group_ID = myGroups.objects.get(id=groupID)
