@@ -6,3 +6,8 @@ class newGroupForm(forms.ModelForm):
     class Meta():
         model = myGroups
         fields = '__all__'
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = myGroups
+        fields = '__all__'

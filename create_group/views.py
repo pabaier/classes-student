@@ -5,10 +5,14 @@ from members.models import Members,User_By_Group, Pairings, Exclusions
 from members.forms import newMembersForm
 from django.views.decorators.csrf import csrf_exempt
 import simplejson as json
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
 import operator
 import random
+from .forms import PostForm
+from django.utils.datastructures import MultiValueDictKeyError
+
+
 
 def index(request):
   if request.user.is_authenticated:
@@ -79,15 +83,73 @@ def show_groups(request):
         context = {'myManaged': managed_list, 'myMembership': membership_list}
         return render(request, 'dashboard.html', context)
 
-def edit_group(request):
+@csrf_exempt
+def edit_group(request,groupID='Default'):
     if not request.user.is_authenticated:
         return redirect('members:signup')
     else:
-        form1 =newGroupForm()
-        context = {
-           'form1': form1,
-        }
-        return render(request,'edit_group.html',context)
+        #getting members info from url parameter -groupID
+        groupOb = myGroups.objects.get(id=groupID)
+        userByGrp = (User_By_Group.objects.all().filter(group_ID=groupOb.id))
+        listOfUsers=list(userByGrp)
+        my_dict = {}
+        for userObj1 in listOfUsers:
+            userInfo = Members.objects.all().filter(username=userObj1.member_1ID)
+            for oneUser in userInfo:
+                my_dict.setdefault(oneUser.username,[]).append(oneUser)
+
+
+#editing group info - using django forms
+        form1 =newGroupForm(instance=groupOb)
+        if request.method == "POST":
+            form2 = PostForm(request.POST,instance=groupOb)
+            if form2.is_valid():
+                post = form2.save(commit=False)
+                post.save()
+                return redirect('create_group:dashboard')
+        else:
+            form2 = PostForm(instance=groupOb)
+            #return render(request,'edit_group.html',{'form2':form2})
+
+#for edit button - getting new members info to be added to the group
+        if request.is_ajax():
+            try:
+                if request.POST['deleteMemberValue']:
+                    varValue = request.POST['deleteMemberValue']
+
+                #delete user from members table having username varValue and updatein group by memeber tableRow
+                    members_tobe_delelted = Members.objects.get(username = varValue)
+                    members_tobe_delelted.delete()
+                    return redirect('create_group:dashboard')
+            except MultiValueDictKeyError:
+                print("No data to delete")
+
+            if request.POST['editarr']:
+                array_data = request.POST['editarr']
+                data = json.loads(array_data)
+                count = len(data)
+                for user in data:
+                    myUser = Members()
+                    myUser.first_name = user['firstName']
+                    myUser.last_name = user['lastName']
+                    myUser.username = user['Username']
+                    myUser.email = user['Useremail']
+                    myUser.phone = user['Userphone']
+                    myUser.address = user['Useraddress']
+                    myUser.exclusions = user['Exclusions']
+                    myUser.save()
+                userByGroup = User_By_Group()
+                userByGroup.member_1ID = Members.objects.get(id = myUser.id)
+                userByGroup.group_ID = myGroups.objects.get(id=groupID)
+                userByGroup.save()
+                return redirect('create_group:dashboard')  #redirect not working
+
+#sending information to be edited to the template
+    context = {
+            'form2': form2,
+            'message':my_dict
+    }
+    return render(request,'edit_group.html',context)
 
 def make_pairs(request, groupId):
   if request.user.is_authenticated:

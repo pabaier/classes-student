@@ -12,6 +12,110 @@
   <body>
 
 
+    <form method="POST" >{% csrf_token %}
+        {{ form2.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button> </br>
+        Here are the members in your group:
+        <ul id= "listOfMembers">
+        {% for key,value in message.items %}
+          <li>{{ key }}
+          <button id="{{key}}" class="btn-del" >Delete</button>  </li> </br>
+        {% endfor %}
+        </ul>
+
+    </form>
+
+
+   <table id = "UserTable" border="1">
+    <tr>
+      <th id="firstName"> First Name </th>
+      <th id="lastName"> Last Name </th>
+      <th id ="Username"> Username </th>
+      <th id ="Email"> Email </th>
+      <th id ="Phone">Phone</th>
+      <th id ="Address">Address </th>
+      <th id ="Exclusions"> Exclusions </th>
+    </tr>
+  </table>
+<button id="addUser" class="btn btn-primary" onclick="insRow();">Add User</button>
+
+<script>
+var arrHead = new Array();
+arrHead = ['firstName','lastName' , 'Username','Useremail','Userphone','Useraddress','Exclusions'];
+
+
+var clickedUser;
+
+$('.btn-del').click(function()
+{
+   clickedUser = $(this).attr("id");
+   $.ajax({
+         type: "POST",
+         data: {
+          'deleteMemberValue': clickedUser
+
+         },
+         dataType: 'text',
+         success: function (data) {
+           console.log("data is available in views.");
+           }
+       });
+
+ });
+
+
+
+  function insRow()
+  {
+        var newUser = document.getElementById('UserTable');
+
+             var rowCnt = newUser.rows.length;
+             var tr = newUser.insertRow(rowCnt);
+             tr.id = rowCnt;
+          for (var c = 0; c < arrHead.length; c++) {
+              var td = document.createElement('td');
+              td = tr.insertCell(c);
+              var ele = document.createElement('input');
+              ele.setAttribute('type', 'text');
+              ele.setAttribute('value', ' '); // get values for user Ids abd fill data in cells
+              ele.id = rowCnt+' '+c;
+              td.appendChild(ele);
+            }
+    }
+
+
+function editDataFromTable(){
+
+  var tableRow = document.getElementById('UserTable').rows.length;
+  var index=1;
+  var arrayUsers = [];
+  while( index < tableRow) {
+    var user = {};
+    arrayUsers.push(user);
+    for (var col = 0; col < arrHead.length; col++) {
+      user[arrHead[col]] = document.getElementById(index+" "+col).value;
+    }
+    index = index+1;
+}
+
+
+ $.ajax({
+        type: "POST",
+        data: {
+         'editarr': JSON.stringify(arrayUsers),
+        },
+        dataType: 'json',
+        success: function (data) {
+          console.log("data is available in views.");
+          }
+      });
+
+}
+
+</script>
+<button class="btn btn-primary" onclick="editDataFromTable();">Edit Data</button>
+
+
  </body>
 
 </html>
