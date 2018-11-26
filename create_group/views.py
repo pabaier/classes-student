@@ -102,7 +102,7 @@ def edit_group(request,groupID='Default'):
                 my_dict.setdefault(oneUser.username,[]).append(oneUser)
 
 
-#editing group info - using django forms
+        #editing group info - using django forms
         form1 =newGroupForm(instance=groupOb)
         if request.method == "POST":
             form2 = PostForm(request.POST,instance=groupOb)
@@ -114,7 +114,7 @@ def edit_group(request,groupID='Default'):
             form2 = PostForm(instance=groupOb)
             #return render(request,'edit_group.html',{'form2':form2})
 
-#for edit button - getting new members info to be added to the group
+        #for edit button - getting new members info to be added to the group
         if request.is_ajax():
             try:
                 if request.POST['deleteMemberValue']:
@@ -147,7 +147,7 @@ def edit_group(request,groupID='Default'):
                 userByGroup.save()
                 return redirect('create_group:dashboard')  #redirect not working
 
-#sending information to be edited to the template
+    #sending information to be edited to the template
     context = {
             'form2': form2,
             'message':my_dict
