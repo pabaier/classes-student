@@ -87,6 +87,7 @@
 <script>
 $('.btn-make').click( (e) => {
   groupId = e.target.id.split('-')[0];
+  $(e.target).prop("disabled", true);
 
   $.ajax({
     url: `/groups/${groupId}/pair`,
@@ -103,12 +104,14 @@ $('.btn-make').click( (e) => {
         $('#result-message').html('Success!');
         $('#resultModal').modal('show');
       }
+    $(e.target).prop("disabled", false);
     }
   });
 });
 
 $('.btn-send').click( (e) => {
   groupId = e.target.id.split('-')[0];
+  $(e.target).prop("disabled", true);
 
   $.ajax({
     url: `/comms/pairings/${groupId}`,
@@ -132,6 +135,7 @@ $('.btn-send').click( (e) => {
         $('#result-message').html(`Nothing seems to have worked`);
         $('#resultModal').modal('show');
       }
+      $(e.target).prop("disabled", false);
     }
   });
 });
