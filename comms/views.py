@@ -75,8 +75,8 @@ def sendGroup(request, groupId):
         'message': f"Failed contacting {result['failure']['userName']} - {result['failure']['error']}",
         })
   
-  output = {k:v for (k,v) in results.items() if len(results[k]) > 0}
-  return JsonResponse(output)
+  # output = {k:v for (k,v) in results.items() if len(results[k]) > 0}
+  return JsonResponse(results)
 
 def sendUser(request, groupId, userId):
   if (not userGroups.objects.filter(member_1ID=request.user.id, group_ID=groupId).exists()):

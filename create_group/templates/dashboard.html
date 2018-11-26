@@ -30,6 +30,7 @@
         <th>Group Name</th>
         <th>Ship Date</th>
         <th>End Date</th>
+        <th colspan="2"></th>
         {%for gr in myManaged %}
         <tr>
             <ul class="list-group">
@@ -43,6 +44,12 @@
                     <li class="list-group-item"> {{gr.end_date}}</li>
                 </td>
             </ul>
+            <td class="bg-white">
+                <button class="btn btn-success btn-make" id="{{gr.id}}-mk">Make Pairings</button>
+            </td>
+            <td class=" bg-white">
+                <button class="btn btn-danger btn-send" id="{{gr.id}}-snd">Send Pairings</button>
+            </td>
         </tr>
         {% endfor %}
     </table>
@@ -76,6 +83,61 @@
         {% endfor %}
     </table>
 </div>
+
+<script>
+$('.btn-make').click( (e) => {
+  groupId = e.target.id.split('-')[0];
+
+  $.ajax({
+    url: `/groups/${groupId}/pair`,
+    type:"GET",
+    contentType: "application/json",
+    success: (returnData) => {
+      if (!returnData.success) {
+        $('#result-modal').prop('class', 'alert alert-danger');
+        $('#result-message').html(`${returnData.message}.`);
+        $('#resultModal').modal('show');
+      }
+      else {
+        $('#result-modal').prop('class', 'alert alert-success');
+        $('#result-message').html('Success!');
+        $('#resultModal').modal('show');
+      }
+    }
+  });
+});
+
+$('.btn-send').click( (e) => {
+  groupId = e.target.id.split('-')[0];
+
+  $.ajax({
+    url: `/comms/pairings/${groupId}`,
+    type:"GET",
+    contentType: "application/json",
+    success: (returnData) => {
+      var successes = returnData.success;
+      var failures = returnData.failure;
+      if(successes.length > 0 && failures.length > 0){
+        $('#result-modal').prop('class', 'alert alert-secondary');
+        $('#result-message').html(`We had ${successes.length} successes and ${failures.length} failures.`);
+        $('#resultModal').modal('show');
+      }
+      else if(successes.length > 0){
+        $('#result-modal').prop('class', 'alert alert-success');
+        $('#result-message').html(`Success!`);
+        $('#resultModal').modal('show');
+      }
+      else{
+        $('#result-modal').prop('class', 'alert alert-danger');
+        $('#result-message').html(`Nothing seems to have worked`);
+        $('#resultModal').modal('show');
+      }
+    }
+  });
+});
+
+
+</script>
 
 </body>
 </html>
