@@ -34,7 +34,7 @@ def sendEmail(userEmail, emailSubject, emailMessage):
     send_mail(subject, message, settings.EMAIL_HOST_USER, toEmail, fail_silently=False,)
     result = {'success': True}
   except Exception as err:
-    message = err.__dict__['msg']
+    message = 'Could not send email'
     result = {'success': False, 'message': message}
   return result
 
@@ -129,9 +129,13 @@ def sendUser(request, groupId, userId):
 
 def newUser(request, userId):
   user = Members.objects.get(id=userId)
-  if(user.phone and user.phone != ''):
-    result = sendText(user.username, pair.username, groupName, user.phone)
+  txt = f'Hello {user.username}!\nYou were signed up for Secret Santa! To login, visit SecretSanta. Your username is {user.username} and you password is "SecretSanta1"'
+  if(user.phone):
+    result = sendText(user.phone, txt)
+    if(not result['success']):
+      subject = f'Secret Santa!'
+      result = sendEmail(user.email, subject, txt)
   else:
-    result = sendEmail(user.username, pair.username, groupName, user.email)
-  print(user)
+    subject = f'Secret Santa!'
+    result = sendEmail(user.email, subject, txt)
   return JsonResponse({'success': True})
