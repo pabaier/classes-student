@@ -11,8 +11,7 @@ import operator
 import random
 from .forms import PostForm
 from django.utils.datastructures import MultiValueDictKeyError
-
-
+from comms.views import newUser
 
 def index(request):
   if request.user.is_authenticated:
@@ -57,7 +56,11 @@ def form_view(request):
                 myUser.state = user['Userstate']
                 myUser.zip_code = user['Userzip']
                 myUser.exclusions = user['Exclusions']
+                myUser.set_password('SecretSanta1')
                 myUser.save()
+
+                # notify user
+                newUser(request, myUser.id)
 
                 userByGroup = User_By_Group()
                 userByGroup.group_ID = group
