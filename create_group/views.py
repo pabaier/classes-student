@@ -191,11 +191,14 @@ def make_pairs(request, groupId):
         a['options'].remove(userId)
         allUsers.append(a)
 
+      def sortKey(a):
+        return len(a['options'])
+      
       # sort the array so the users with the least amount of options are first
       allUsers.sort(key=operator.itemgetter('options'), reverse=True)
 
-      # pair everyone up!
-      pairs=[]
+      # pair everyone up! 'pairs' is {<userId>:<partnerId>, ...}
+      pairs={}
       flag = 0
       counter = 0
       success = True
@@ -212,20 +215,18 @@ def make_pairs(request, groupId):
           if len(userOptions) == 0:
             flag = 0
             break
-          pair = {'userId': user['userId']}
           partner = userOptions.pop(random.randint(0, len(userOptions)-1))
-          pair['partnerId'] = partner
-          pairs.append(pair)
-          for user in allUsers:
+          pairs[user['userId']] = partner
+          for u in allUsers:
             try:
-              user['options'].remove(partner)
+              u['options'].remove(partner)
             except:
               pass
 
       if success:
         Pairings.objects.filter(groupID=groupObject).delete()
         for pair in pairs:
-          Pairings(member_1ID=userIdWithObject[pair['userId']], member_2ID=userIdWithObject[pair['partnerId']], groupID=groupObject).save()
+          Pairings(member_1ID=userIdWithObject[pair], member_2ID=userIdWithObject[pairs[pair]], groupID=groupObject).save()
         return JsonResponse({'success': True})
       else:
         return JsonResponse({'success': False, 'message': 'Sorry, we were unable to find the right pairing combinations. Please check the group\'s exceptions and try again.'})
