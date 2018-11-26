@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title> Forms </title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<h1>Welcome {{user.username}}!</h1>
+<style>
+  #menu-outer {
+    min-width: 696px;
+	list-style-position: inside;
+	padding-top: 20px;
+  display: table;
+  }
+
+</style>
+
+
+<div id="menu-outer">
+    <h2> Groups : </h2>
+    <ul>
+    {% for key,value in messsge.items %}
+      <li>{{value}}
+      <button id="{{key}}" class="btn-join">Join</button>  </li> </br>
+    {% endfor %}
+    </ul>
+  </div>
+<script>
+
+$('.btn-join').click(function(){
+  var grpId = $(this).attr("id");
+  console.log(grpId);
+  $.ajax({
+
+    type: "POST",
+    data: {
+      'group': JSON.stringify(grpId)
+    },
+    dataType: 'json',
+    success: function (data) {
+      alert("data is available in views.");
+      }
+  });
+});
+
+</script>
+</body>
+</html>
+{% endblock %}

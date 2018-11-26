@@ -10,7 +10,7 @@
               background-attachment: fixed;
               }
           table {
-            margin-left:auto; 
+            margin-left:auto;
             margin-right:auto;
           }
       </style>
@@ -58,7 +58,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'create_group:dashboard' %}">My Groups</a>
               <a class="dropdown-item" href="{% url 'create_group:creategroup' %}">Create Group</a>
-              <a class="dropdown-item" href="{% url 'create_group:dashboard' %}">Join A Group</a>
+              <a class="dropdown-item" href="{% url 'create_group:joingroup' %}">Join A Group</a>
             </div>
           </li>
           {% if user.is_authenticated is False %}

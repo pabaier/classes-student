@@ -47,11 +47,12 @@ var clickedUser;
 
 $('.btn-del').click(function()
 {
-   clickedUser = $(this).attr("id");
+   clickedgrp = $(this).attr("id");
+   console.log("clicked grp"+clickedgrp);
    $.ajax({
          type: "POST",
          data: {
-          'deleteMemberValue': clickedUser
+          'deleteMemberValue': clickedgrp
 
          },
          dataType: 'text',
