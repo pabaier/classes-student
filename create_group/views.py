@@ -78,9 +78,12 @@ def show_groups(request):
     if not request.user.is_authenticated:
         return redirect('members:signup')
     else:
-        membership_list = Members.objects.all().filter(id=request.user.id)
+        membership_list = User_By_Group.objects.all().filter(member_1ID=request.user)
+        groupList = []
+        for m in membership_list:
+          groupList.append(m.group_ID)
         managed_list = myGroups.objects.all().filter(created_by=request.user.username)
-        context = {'myManaged': managed_list, 'myMembership': membership_list}
+        context = {'myManaged': managed_list, 'myMembership': groupList}
         return render(request, 'dashboard.html', context)
 
 @csrf_exempt

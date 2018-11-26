@@ -1,4 +1,3 @@
-#Anuja
 {% extends 'base.html' %}
 
 {% block content %}
@@ -16,7 +15,7 @@
         {{ form2.as_p }}
         <button type="submit" class="btn btn-primary">Save</button> </br>
         Here are the members in your group:
-        <ul id= "listOfMembers">
+        <ul id= "listOfMembers" style="list-style-position:inside">
         {% for key,value in message.items %}
           <li>{{ key }}
           <button id="{{key}}" class="btn-del" >Delete</button>  </li> </br>
