@@ -102,7 +102,10 @@ def edit_group(request,groupID='Default'):
           #delete user from members table having username varValue and updatein group by memeber tableRow
           members_tobe_delelted = Members.objects.get(username = varValue)
           group = myGroups.objects.get(id=request.POST['groupId'])
-          Pairings.objects.get(member_1ID=members_tobe_delelted, groupID=group).delete()
+          try:
+            Pairings.objects.get(member_1ID=members_tobe_delelted, groupID=group).delete()
+          except:
+            pass
           User_By_Group.objects.get(group_ID=group, member_1ID=members_tobe_delelted).delete()
           # members_tobe_delelted.delete()
           # return redirect('create_group:dashboard')
