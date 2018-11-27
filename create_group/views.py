@@ -163,39 +163,35 @@ def make_pairs(request, groupId):
     requestUserInGroup = any(ubgObject.group_ID.id == groupId for ubgObject in usersGroups)
     if requestUserInGroup:
       groupObject = myGroups.objects.get(id=groupId)
-      usersInGroupObject = User_By_Group.objects.filter(group_ID = groupObject)
-      groupExclusionsObject = Exclusions.objects.filter(group = groupObject)
+      usersInGroupObject = User_By_Group.objects.filter(group_ID = groupId)
+      groupExclusionsObject = Exclusions.objects.filter(group = groupId)
 
       # turn all querysets into dicts
       # group = model_to_dict(groupObject)
-      usersByGroup = []
       groupExclusions = []
       usersOnly = []
       userIdWithObject = {}
       for ubg in usersInGroupObject:
         userIdWithObject[ubg.member_1ID.id] = ubg.member_1ID
-        usersByGroup.append(model_to_dict(ubg))
         usersOnly.append(ubg.member_1ID.id)
       for ex in groupExclusionsObject:
         groupExclusions.append(model_to_dict(ex))
 
-      # consolidate info to an array of objects of {userId: #, exclusions: [], options: []}
+      # consolidate info to an array of objects of [{userId: []},...]
       allUsers = []
-      for user in usersByGroup:
-        userId = user['member_1ID']
-        a = {'userId': userId, 'exclusions': [], 'options': usersOnly.copy()}
+      for userId in usersOnly:
+        a = {userId: usersOnly.copy()}
         for e in groupExclusions:
           if e['owner'] is userId:
-            a['exclusions'].append(e['excluded'])
-            a['options'].remove(e['excluded'])
-        a['options'].remove(userId)
+            a[userId].remove(e['excluded'])
+        a[userId].remove(userId)
         allUsers.append(a)
 
       def sortKey(a):
-        return len(a['options'])
-      
-      # sort the array so the users with the least amount of options are first
-      allUsers.sort(key=operator.itemgetter('options'), reverse=True)
+        return len(a[list(a)[0]])
+      # sort the object so the users with the least amount of options are first
+      # allUsers.sort(key=sortKey(a), reverse=True)
+      allUsers.sort(key=sortKey)
 
       # pair everyone up! 'pairs' is {<userId>:<partnerId>, ...}
       pairs={}
@@ -203,28 +199,33 @@ def make_pairs(request, groupId):
       counter = 0
       success = True
       usersLeft = usersOnly.copy()
+      allUsersOG = allUsers.copy()
       while flag is 0:
+        allUsers = allUsersOG.copy()
         flag = -1
         counter += 1
         # stop after one million attempts
         if counter > 1000000:
           success = False
           break
-        for user in allUsers:
-          userOptions = user['options']
+        while(len(allUsers) > 0):
+          user = list(allUsers[0])[0]
+          userOptions = allUsers[0][user]
           if len(userOptions) == 0:
             flag = 0
             break
           partner = userOptions.pop(random.randint(0, len(userOptions)-1))
-          pairs[user['userId']] = partner
+          pairs[user] = partner
           for u in allUsers:
             try:
-              u['options'].remove(partner)
+              u[list(u)[0]].remove(partner)
             except:
               pass
+          allUsers.pop(0)
+          allUsers.sort(key=sortKey)
 
       if success:
-        Pairings.objects.filter(groupID=groupObject).delete()
+        Pairings.objects.filter(groupID=groupId).delete()
         for pair in pairs:
           Pairings(member_1ID=userIdWithObject[pair], member_2ID=userIdWithObject[pairs[pair]], groupID=groupObject).save()
         return JsonResponse({'success': True})
