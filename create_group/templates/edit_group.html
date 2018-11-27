@@ -6,22 +6,23 @@
   <head>
     <meta charset='utf-8'>
     <title> Forms </title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   </head>
   <body>
 
     <form method="POST" >{% csrf_token %}
         {{ form2.as_p }}
         <button type="submit" class="btn btn-primary">Save</button> </br>
-        Here are the members in your group:
-        <ul id= "listOfMembers" style="list-style-position:inside">
-        {% for key,value in message.items %}
-          <li id="{{key}}-li">{{ key }}
-          <button id="{{key}}" class="btn-del" >Delete</button>  </li> </br>
-        {% endfor %}
-        </ul>
-
     </form>
+
+    Here are the members in your group:
+    <ul id= "listOfMembers" style="list-style-position:inside">
+    {% for key,value in message.items %}
+      <li id="{{key}}-li">{{ key }}
+        <button id="{{key}}" class="btn-del" >Delete</button></br></br>
+      </li>
+    {% endfor %}
+    </ul>
+
 
 
    <table id = "UserTable" border="1">
@@ -36,56 +37,46 @@
     </tr>
   </table>
 <button id="addUser" class="btn btn-primary" onclick="insRow();">Add User</button>
+<button class="btn btn-primary" onclick="editDataFromTable();">Edit Data</button>
 
 <script>
 var arrHead = new Array();
 arrHead = ['firstName','lastName' , 'Username','Useremail','Userphone','Useraddress','Exclusions'];
-
-
-var clickedUser;
-
-$('.btn-del').click(function()
-{
-   clickedgrp = $(this).attr("id");
-   console.log("clicked grp"+clickedgrp);
-   $.ajax({
-         type: "POST",
-         data: {
-          'deleteMemberValue': clickedgrp,
-          'groupId': '{{groupId}}' 
-         },
-         dataType: 'text',
-         success: function (data) {
-           $(`#${clickedgrp}-li`).remove();
-           console.log("data is available in views.");
-           }
-       });
-
- });
-
-
-
-  function insRow()
-  {
-        var newUser = document.getElementById('UserTable');
-
-             var rowCnt = newUser.rows.length;
-             var tr = newUser.insertRow(rowCnt);
-             tr.id = rowCnt;
-          for (var c = 0; c < arrHead.length; c++) {
-              var td = document.createElement('td');
-              td = tr.insertCell(c);
-              var ele = document.createElement('input');
-              ele.setAttribute('type', 'text');
-              ele.setAttribute('value', ' '); // get values for user Ids abd fill data in cells
-              ele.id = rowCnt+' '+c;
-              td.appendChild(ele);
-            }
+$('.btn-del').click(function() {
+  clickedgrp = $(this).attr("id");
+  $.ajax({
+    type: "POST",
+    data: {
+    'deleteMemberValue': clickedgrp,
+    'groupId': '{{groupId}}' 
+    },
+    dataType: 'text',
+    success: function (data) {
+      $(`#${clickedgrp} br`).remove();
+      $(`#${clickedgrp}-li`).remove();
+      console.log(data);
     }
+  });
+});
 
+function insRow()
+{
+  var newUser = document.getElementById('UserTable');
+  var rowCnt = newUser.rows.length;
+  var tr = newUser.insertRow(rowCnt);
+  tr.id = rowCnt;
+  for (var c = 0; c < arrHead.length; c++) {
+    var td = document.createElement('td');
+    td = tr.insertCell(c);
+    var ele = document.createElement('input');
+    ele.setAttribute('type', 'text');
+    ele.setAttribute('value', ' '); // get values for user Ids abd fill data in cells
+    ele.id = rowCnt+' '+c;
+    td.appendChild(ele);
+  }
+}
 
 function editDataFromTable(){
-
   var tableRow = document.getElementById('UserTable').rows.length;
   var index=1;
   var arrayUsers = [];
@@ -96,27 +87,27 @@ function editDataFromTable(){
       user[arrHead[col]] = document.getElementById(index+" "+col).value;
     }
     index = index+1;
-}
-
-
- $.ajax({
-        type: "POST",
-        data: {
-         'editarr': JSON.stringify(arrayUsers),
-        },
-        dataType: 'json',
-        success: function (data) {
-          console.log("data is available in views.");
-          }
-      });
-
+  }
+  $.ajax({
+    type: "POST",
+    data: {
+      'editarr': JSON.stringify(arrayUsers),
+    },
+    dataType: 'json',
+    success: function (returnData) {
+      if (!returnData.success) {
+        $('#result-modal').prop('class', 'alert alert-danger');
+        $('#result-message').html(`${returnData.message}.`);
+        $('#resultModal').modal('show');
+      }
+      else {
+        location.href = "/groups/dashboard"
+      }
+    }
+  });
 }
 
 </script>
-<button class="btn btn-primary" onclick="editDataFromTable();">Edit Data</button>
-
-
- </body>
-
+</body>
 </html>
 {% endblock %}
