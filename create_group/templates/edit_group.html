@@ -10,7 +10,6 @@
   </head>
   <body>
 
-
     <form method="POST" >{% csrf_token %}
         {{ form2.as_p }}
         <button type="submit" class="btn btn-primary">Save</button> </br>
@@ -52,8 +51,8 @@ $('.btn-del').click(function()
    $.ajax({
          type: "POST",
          data: {
-          'deleteMemberValue': clickedgrp
-
+          'deleteMemberValue': clickedgrp,
+          'groupId': '{{groupId}}' 
          },
          dataType: 'text',
          success: function (data) {

@@ -123,9 +123,11 @@ def edit_group(request,groupID='Default'):
                 if request.POST['deleteMemberValue']:
                     varValue = request.POST['deleteMemberValue']
 
-                #delete user from members table having username varValue and updatein group by memeber tableRow
+                    #delete user from members table having username varValue and updatein group by memeber tableRow
                     members_tobe_delelted = Members.objects.get(username = varValue)
-                    members_tobe_delelted.delete()
+                    group = myGroups.objects.get(id=request.POST['groupId'])
+                    User_By_Group.objects.get(group_ID=group, member_1ID=members_tobe_delelted).delete()
+                    # members_tobe_delelted.delete()
                     return redirect('create_group:dashboard')
             except MultiValueDictKeyError:
                 print("No data to delete")
@@ -153,7 +155,8 @@ def edit_group(request,groupID='Default'):
     #sending information to be edited to the template
     context = {
             'form2': form2,
-            'message':my_dict
+            'message': my_dict,
+            'groupId': groupID
     }
     return render(request,'edit_group.html',context)
 
