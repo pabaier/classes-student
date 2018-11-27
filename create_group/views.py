@@ -200,7 +200,6 @@ def make_pairs(request, groupId):
       flag = 0
       counter = 0
       success = True
-      usersLeft = usersOnly.copy()
       allUsersOG = allUsers.copy()
       while flag is 0:
         allUsers = allUsersOG.copy()
