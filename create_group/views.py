@@ -121,7 +121,12 @@ def edit_group(request,groupID='Default'):
             myUser.phone = user['Userphone']
             myUser.address = user['Useraddress']
             myUser.exclusions = user['Exclusions']
+            myUser.set_password('SecretSanta1')
             myUser.save()
+
+            # notify user
+            newUser(request, myUser.id)
+
         userByGroup = User_By_Group()
         userByGroup.member_1ID = Members.objects.get(id = myUser.id)
         userByGroup.group_ID = myGroups.objects.get(id=groupID)
