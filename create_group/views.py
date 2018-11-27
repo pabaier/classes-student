@@ -234,13 +234,21 @@ def make_pairs(request, groupId):
     return JsonResponse({'success': False, 'message': 'Sorry, you are not a member of this group.'})
   else:
     return redirect('members:signup')
+
 @csrf_exempt
 def join_group(request):
     if not request.user.is_authenticated:
         return redirect('members:signup')
     else:
         my_dict = {}
-        groupsList = myGroups.objects.all()
+        myGs = User_By_Group.objects.filter(member_1ID=request.user)
+        groupsList = myGroups.objects.filter(public=True)
+        # print(groupsList)
+        for g in myGs:
+          print(g.group_ID.id)
+          groupsList = groupsList.exclude(id=g.group_ID.id)
+          # try:
+        # print(groupsList)
         for grp in groupsList:
             my_dict.setdefault(grp.id,grp.group_name)
         
@@ -249,7 +257,6 @@ def join_group(request):
         }
         if request.is_ajax():
              if request.POST['group']:
-
                 grpData = request.POST['group']
                 data = json.loads(grpData)
                 print(data)
@@ -257,7 +264,5 @@ def join_group(request):
                 userByGroup.member_1ID = Members.objects.get(id = request.user.id)
                 userByGroup.group_ID = myGroups.objects.get(id=data)
                 userByGroup.save()
-                return redirect('create_group:dashboard')
-
-
+                return JsonResponse({'success': True})
     return render (request, 'join_group.html',context)
