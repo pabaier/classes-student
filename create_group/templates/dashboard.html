@@ -52,7 +52,7 @@
                 <button class="btn btn-danger btn-send" id="{{gr.id}}-snd">Send Pairings</button>
             </td>
             <td>
-              <input id="add-input" type="text">
+              <input id="{{gr.id}}-add-input" type="text">
               <button class="btn btn-success btn-add" id="{{gr.id}}-add">Add</button>
             </td>
         </tr>
@@ -92,7 +92,7 @@
 <script>
 $('.btn-add').click( (e) => {
   groupId = e.target.id.split('-')[0];
-  username = $('#add-input').val();
+  username = $(`#${groupId}-add-input`).val();
   $.ajax({
     url: `/groups/add/${groupId}/${username}`,
     type:"GET",
@@ -108,7 +108,7 @@ $('.btn-add').click( (e) => {
         $('#result-message').html('Success!');
         $('#resultModal').modal('show');
       }
-      $('#add-input').val('');
+      $(`#${groupId}-add-input`).val('');
     }
   });
 });

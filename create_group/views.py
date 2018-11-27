@@ -193,7 +193,6 @@ def make_pairs(request, groupId):
       def sortKey(a):
         return len(a[list(a)[0]])
       # sort the object so the users with the least amount of options are first
-      # allUsers.sort(key=sortKey(a), reverse=True)
       allUsers.sort(key=sortKey)
 
       # pair everyone up! 'pairs' is {<userId>:<partnerId>, ...}
