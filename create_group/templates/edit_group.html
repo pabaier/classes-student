@@ -16,7 +16,7 @@
         Here are the members in your group:
         <ul id= "listOfMembers" style="list-style-position:inside">
         {% for key,value in message.items %}
-          <li>{{ key }}
+          <li id="{{key}}-li">{{ key }}
           <button id="{{key}}" class="btn-del" >Delete</button>  </li> </br>
         {% endfor %}
         </ul>
@@ -56,6 +56,7 @@ $('.btn-del').click(function()
          },
          dataType: 'text',
          success: function (data) {
+           $(`#${clickedgrp}-li`).remove();
            console.log("data is available in views.");
            }
        });
