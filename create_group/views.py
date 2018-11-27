@@ -266,3 +266,15 @@ def join_group(request):
                 userByGroup.save()
                 return JsonResponse({'success': True})
     return render (request, 'join_group.html',context)
+
+def add_user(request, groupId, username):
+  group = myGroups.objects.get(id=groupId)
+  try:
+    user = Members.objects.get(username=username)
+  except Exception as err:
+    return JsonResponse({'success': False, 'message': f'User {username} does not exist'})
+  try:
+    User_By_Group(group_ID=group, member_1ID=user).save()
+  except Exception as err:
+    return JsonResponse({'success': False, 'message': f'Sorry we could not add user {username} to that group'})
+  return JsonResponse({'success': True})
