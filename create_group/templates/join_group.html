@@ -7,7 +7,6 @@
 <head>
     <meta charset='utf-8'>
     <title> Forms </title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 
@@ -24,29 +23,31 @@
 
 
 <div id="menu-outer">
-    <h2> Groups : </h2>
-    <ul>
-    {% for key,value in messsge.items %}
-      <li>{{value}}
-      <button id="{{key}}" class="btn-join">Join</button>  </li> </br>
-    {% endfor %}
-    </ul>
+    <h2> Groups: </h2>
+    <select id="groups">
+      {% for key,value in messsge.items %}
+      <option value="{{key}}">{{value}}</option>
+      {% endfor %}
+    </select>
+    <button id="{{key}}" class="btn-join">Join</button>  </li> </br>
   </div>
 <script>
 
 $('.btn-join').click(function(){
-  var grpId = $(this).attr("id");
+  var grpId = $('#groups').val();
   console.log(grpId);
   $.ajax({
-
     type: "POST",
     data: {
       'group': JSON.stringify(grpId)
     },
     dataType: 'json',
     success: function (data) {
-      alert("data is available in views.");
-      }
+      $(`#groups option[value='${grpId}']`).remove();
+      $('#result-modal').prop('class', 'alert alert-success');
+      $('#result-message').html('Success!');
+      $('#resultModal').modal('show');
+    }
   });
 });
 

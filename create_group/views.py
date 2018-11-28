@@ -91,71 +91,82 @@ def show_groups(request):
 
 @csrf_exempt
 def edit_group(request,groupID='Default'):
-    if not request.user.is_authenticated:
-        return redirect('members:signup')
+  if not request.user.is_authenticated:
+      return redirect('members:signup')
+  else:
+    if request.is_ajax():
+      if request.POST.get('deleteMemberValue', False):
+        try:
+          varValue = request.POST['deleteMemberValue']
+
+          #delete user from members table having username varValue and updatein group by memeber tableRow
+          members_tobe_delelted = Members.objects.get(username = varValue)
+          group = myGroups.objects.get(id=request.POST['groupId'])
+          try:
+            Pairings.objects.get(member_1ID=members_tobe_delelted, groupID=group).delete()
+          except:
+            pass
+          User_By_Group.objects.get(group_ID=group, member_1ID=members_tobe_delelted).delete()
+          # members_tobe_delelted.delete()
+          # return redirect('create_group:dashboard')
+        except MultiValueDictKeyError:
+          print("No data to delete")
+        return JsonResponse({'success': True})
+      elif request.POST.get('editarr', False):
+        array_data = request.POST['editarr']
+        data = json.loads(array_data)
+        count = len(data)
+        for user in data:
+            myUser = Members()
+            myUser.first_name = user['firstName']
+            myUser.last_name = user['lastName']
+            myUser.username = user['Username']
+            myUser.email = user['Useremail']
+            myUser.phone = user['Userphone']
+            myUser.address = user['Useraddress']
+            myUser.exclusions = user['Exclusions']
+            myUser.set_password('SecretSanta1')
+            myUser.save()
+
+            # notify user
+            newUser(request, myUser.id)
+
+        userByGroup = User_By_Group()
+        userByGroup.member_1ID = Members.objects.get(id = myUser.id)
+        userByGroup.group_ID = myGroups.objects.get(id=groupID)
+        userByGroup.save()
+        return JsonResponse({'success': True})
     else:
-        #getting members info from url parameter -groupID
-        groupOb = myGroups.objects.get(id=groupID)
-        userByGrp = (User_By_Group.objects.all().filter(group_ID=groupOb.id))
-        listOfUsers=list(userByGrp)
-        my_dict = {}
-        for userObj1 in listOfUsers:
-            userInfo = Members.objects.all().filter(username=userObj1.member_1ID)
-            for oneUser in userInfo:
-                my_dict.setdefault(oneUser.username,[]).append(oneUser)
+      #getting members info from url parameter -groupID
+      groupOb = myGroups.objects.get(id=groupID)
+      userByGrp = (User_By_Group.objects.all().filter(group_ID=groupOb.id))
+      listOfUsers=list(userByGrp)
+      my_dict = {}
+      for userObj1 in listOfUsers:
+        userInfo = Members.objects.all().filter(username=userObj1.member_1ID)
+        for oneUser in userInfo:
+          my_dict.setdefault(oneUser.username,[]).append(oneUser)
+      #editing group info - using django forms
+      form1 =newGroupForm(instance=groupOb)
+      if request.method == "POST":
+        form2 = PostForm(request.POST,instance=groupOb)
+        if form2.is_valid():
+          post = form2.save(commit=False)
+          post.save()
+          return redirect('create_group:dashboard')
+      else:
+          form2 = PostForm(instance=groupOb)
+          #return render(request,'edit_group.html',{'form2':form2})
 
-
-        #editing group info - using django forms
-        form1 =newGroupForm(instance=groupOb)
-        if request.method == "POST":
-            form2 = PostForm(request.POST,instance=groupOb)
-            if form2.is_valid():
-                post = form2.save(commit=False)
-                post.save()
-                return redirect('create_group:dashboard')
-        else:
-            form2 = PostForm(instance=groupOb)
-            #return render(request,'edit_group.html',{'form2':form2})
-
-        #for edit button - getting new members info to be added to the group
-        if request.is_ajax():
-            try:
-                if request.POST['deleteMemberValue']:
-                    varValue = request.POST['deleteMemberValue']
-
-                #delete user from members table having username varValue and updatein group by memeber tableRow
-                    members_tobe_delelted = Members.objects.get(username = varValue)
-                    members_tobe_delelted.delete()
-                    return redirect('create_group:dashboard')
-            except MultiValueDictKeyError:
-                print("No data to delete")
-
-            if request.POST['editarr']:
-                array_data = request.POST['editarr']
-                data = json.loads(array_data)
-                count = len(data)
-                for user in data:
-                    myUser = Members()
-                    myUser.first_name = user['firstName']
-                    myUser.last_name = user['lastName']
-                    myUser.username = user['Username']
-                    myUser.email = user['Useremail']
-                    myUser.phone = user['Userphone']
-                    myUser.address = user['Useraddress']
-                    myUser.exclusions = user['Exclusions']
-                    myUser.save()
-                userByGroup = User_By_Group()
-                userByGroup.member_1ID = Members.objects.get(id = myUser.id)
-                userByGroup.group_ID = myGroups.objects.get(id=groupID)
-                userByGroup.save()
-                return redirect('create_group:dashboard')  #redirect not working
-
-    #sending information to be edited to the template
-    context = {
-            'form2': form2,
-            'message':my_dict
-    }
-    return render(request,'edit_group.html',context)
+      #for edit button - getting new members info to be added to the group
+      
+      #sending information to be edited to the template
+      context = {
+              'form2': form2,
+              'message': my_dict,
+              'groupId': groupID
+      }
+      return render(request,'edit_group.html',context)
 
 def make_pairs(request, groupId):
   if request.user.is_authenticated:
@@ -190,7 +201,6 @@ def make_pairs(request, groupId):
       def sortKey(a):
         return len(a[list(a)[0]])
       # sort the object so the users with the least amount of options are first
-      # allUsers.sort(key=sortKey(a), reverse=True)
       allUsers.sort(key=sortKey)
 
       # pair everyone up! 'pairs' is {<userId>:<partnerId>, ...}
@@ -198,7 +208,6 @@ def make_pairs(request, groupId):
       flag = 0
       counter = 0
       success = True
-      usersLeft = usersOnly.copy()
       allUsersOG = allUsers.copy()
       while flag is 0:
         allUsers = allUsersOG.copy()
@@ -234,13 +243,21 @@ def make_pairs(request, groupId):
     return JsonResponse({'success': False, 'message': 'Sorry, you are not a member of this group.'})
   else:
     return redirect('members:signup')
+
 @csrf_exempt
 def join_group(request):
     if not request.user.is_authenticated:
         return redirect('members:signup')
     else:
         my_dict = {}
-        groupsList = myGroups.objects.all()
+        myGs = User_By_Group.objects.filter(member_1ID=request.user)
+        groupsList = myGroups.objects.filter(public=True)
+        # print(groupsList)
+        for g in myGs:
+          print(g.group_ID.id)
+          groupsList = groupsList.exclude(id=g.group_ID.id)
+          # try:
+        # print(groupsList)
         for grp in groupsList:
             my_dict.setdefault(grp.id,grp.group_name)
         
@@ -249,7 +266,6 @@ def join_group(request):
         }
         if request.is_ajax():
              if request.POST['group']:
-
                 grpData = request.POST['group']
                 data = json.loads(grpData)
                 print(data)
@@ -257,7 +273,17 @@ def join_group(request):
                 userByGroup.member_1ID = Members.objects.get(id = request.user.id)
                 userByGroup.group_ID = myGroups.objects.get(id=data)
                 userByGroup.save()
-                return redirect('create_group:dashboard')
-
-
+                return JsonResponse({'success': True})
     return render (request, 'join_group.html',context)
+
+def add_user(request, groupId, username):
+  group = myGroups.objects.get(id=groupId)
+  try:
+    user = Members.objects.get(username=username)
+  except Exception as err:
+    return JsonResponse({'success': False, 'message': f'User {username} does not exist'})
+  try:
+    User_By_Group(group_ID=group, member_1ID=user).save()
+  except Exception as err:
+    return JsonResponse({'success': False, 'message': f'Sorry we could not add user {username} to that group'})
+  return JsonResponse({'success': True})
