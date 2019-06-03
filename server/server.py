@@ -4,9 +4,9 @@ import argparse
 
 async def handle(request):
     name = request.match_info.get('name', "World!")
-    text = "hello, " + name
+    text = {"response": "hello, " + name}
     print('received request, replaying with "{}".'.format(text))
-    return web.Response(text=text)
+    return web.json_response(text)
 
 async def handlePost(request):
     print('handling post request')
