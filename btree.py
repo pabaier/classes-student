@@ -7,37 +7,31 @@ class BTree():
 		self.middle = math.ceil(self.degree/2) - 1
 		self.height = 1
 
-	def insert(self, input, node=None):
+	def insert(self, value, node=None):
 		if node == None:
-			node = BTree.getLeafNode(input, self.node)
+			node = BTree.getLeafNode(value, self.node)
 		keys = node.keys
-		i = 0	# tracks where the key is inserted
 		if len(keys) == 0:
-			keys.append(input)
+			keys.append(value)
 		else: # inserts the key into the correct position
-			oldLength = len(keys)
-			while i < len(keys):
-				if input < keys[i]:
-					keys.insert(i, input)
-					break
-				i = i + 1
-			if oldLength == len(keys):
-				keys.append(input)
-		if node.isTooBig():
-			(leftNode, rightNode, removedKey) = node.split()
-			if node.hasParent():
-				# self.node.pointers.append(leftNode)
-				# self.node.pointers.append(rightNode)
-				self.insert(removedKey, node.parent)
-			else:
-				self.node = Node(self.degree)
-				self.node.pointers.append(leftNode)
-				self.node.pointers.append(rightNode)
-				self.node.keys.append(removedKey)
+			position = BTree.findInsertIndex(value, node)
+			keys.insert(position, value)
+		self.checkTooBig(node)
 
-		# if this has a parent, insert(median)
-		# if len(self.node.keys) < self.degree - 1:
-		# 	self.node.keys.append(key)
+	def checkTooBig(self, node):
+		while node.isTooBig():
+			node = node.split()
+			if not node.hasParent():
+				self.node = node
+
+	# helper function to get the index of where the input should go
+	def findInsertIndex(value, node):
+		i = 0
+		while i < len(node.keys):
+			if value < node.keys[i]:
+				break
+			i = i + 1
+		return i
 
 	# helper function to get the leaf node of a node
 	def getLeafNode(input, node):
@@ -63,6 +57,7 @@ class BTree():
 
 	def printMe(self):
 		queue = [self.node]
+		newLines = []
 		i = 0
 		while i < len(queue):
 			for node in queue[i].pointers:
@@ -72,8 +67,9 @@ class BTree():
 		printed = 0
 		for node in queue:
 			print(node.keys, end="  ")
+			# print(node.pointers, end="  ")
 			printed = printed + 1
-			if math.pow(self.degree - 1, level) == printed:
+			if math.pow(self.degree, level) == printed:
 				printed = 0
 				level = level + 1
 				print("")
@@ -100,16 +96,22 @@ class Node():
 	def hasChildren(self):
 		return len(pointers) > 0
 
+	def findInsertIndex(self, value):
+		i = 0
+		while i < len(self.keys):
+			if value < self.keys[i]:
+				break
+			i = i + 1
+		return i
+
 	def split(self):
 		middleKey = math.ceil(len(self.keys)/2) - 1
 		middlePointer = middleKey + 1
+		
 		aKey = self.keys[0:middleKey]
 		bKey = self.keys[middleKey + 1:]
-		removed = self.keys[middleKey]
-		# if len(self.pointers)%2==0:
-		# 	middlePointer = math.ceil(len(self.pointers)/2)
-		# else:
-		# 	middlePointer = math.ceil(len(self.pointers)/2) - 1
+		removed = self.keys.pop(middleKey)
+
 		aPointer = self.pointers[0:middlePointer]
 		bPointer = self.pointers[middlePointer:]
 		a = Node(self.degree)
@@ -118,10 +120,35 @@ class Node():
 		b.keys = bKey
 		a.pointers = aPointer
 		b.pointers = bPointer
-		a.parent=self.parent
-		b.parent=self.parent
-		return (a,b,removed)
+
+		if self.hasParent():
+			index = self.parent.findInsertIndex(removed)
+			self.parent.keys.insert(index,removed)
+			self.parent.pointers[index] = a
+			try:
+				self.parent.pointers[index + 1] = b
+			except:
+				self.parent.pointers.append(b)
+			a.parent=self.parent
+			b.parent=self.parent
+			return self.parent
+		else:
+			newParent = Node(self.degree)
+			newParent.pointers.append(a)
+			newParent.pointers.append(b)
+			newParent.keys.append(removed)
+			a.parent = newParent
+			b.parent = newParent
+			return newParent
 	
+	def __str__(self):
+		b = ''
+		for i in self.keys:
+			b = b + str(i)
+		return b
+
+	def __repr__(self):
+		return str(self)
 # # test node split with odd number of keys
 # a = Node(7)
 # a.keys=[1,3,5,7,9]
