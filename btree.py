@@ -9,12 +9,7 @@ class BTree():
 
 	def insert(self, input, node=None):
 		if node == None:
-			node = self.node
-		else:
-			node = getLeafNode(input, node)
-		self.insertA(input, node)
-
-	def insertA(self, input, node):
+			node = BTree.getLeafNode(input, self.node)
 		keys = node.keys
 		i = 0	# tracks where the key is inserted
 		if len(keys) == 0:
@@ -31,19 +26,14 @@ class BTree():
 		if node.isTooBig():
 			(leftNode, rightNode, removedKey) = node.split()
 			if node.hasParent():
-				self.node.pointers.append(leftNode)
-				self.node.pointers.append(rightNode)
-				self.insertA(removedKey, node)
+				# self.node.pointers.append(leftNode)
+				# self.node.pointers.append(rightNode)
+				self.insert(removedKey, node.parent)
 			else:
 				self.node = Node(self.degree)
 				self.node.pointers.append(leftNode)
 				self.node.pointers.append(rightNode)
 				self.node.keys.append(removedKey)
-		# 	if node.hasParent:
-		# 		self.insertA(median, node)
-		# 	else:
-		# 		pass
-				# split
 
 		# if this has a parent, insert(median)
 		# if len(self.node.keys) < self.degree - 1:
@@ -54,8 +44,8 @@ class BTree():
 		if (node.isLeafNode()):
 			return node
 		else:
-			child = getChildNode(input, node)
-			return getleafNode(input, child)
+			child = BTree.getChildNode(input, node)
+			return BTree.getLeafNode(input, child)
 
 	# helper function to get the correct child node of a key value
 	def getChildNode(input, node):
@@ -63,9 +53,8 @@ class BTree():
 		while i < len(node.keys):
 			if(node.keys[i] > input):
 				break
+			i = i + 1
 		return node.pointers[i]
-
-
 
 	def delete(self, key):
 		pass
