@@ -16,7 +16,7 @@ class BTree():
 		else: # inserts the key into the correct position
 			position = BTree.findInsertIndex(value, node)
 			keys.insert(position, value)
-		self.checkTooBig(node)
+			self.checkTooBig(node)
 
 	def checkTooBig(self, node):
 		while node.isTooBig():
@@ -50,8 +50,27 @@ class BTree():
 			i = i + 1
 		return node.pointers[i]
 
-	def delete(self, key):
-		pass
+	def delete(self, key, node=None):
+		if node == None:
+			node = self.node
+		i = 0
+		while i < len(node.keys):
+			key = node.keys[i]
+			if key == value:
+				# FOUND IT
+
+				print(str(key))
+				return
+			if key > value:
+				break
+			i = i + 1
+
+		if node.hasChildren():
+			self.delete(value, node.pointers[i])
+		else:
+			print('Not Found')
+			return
+
 
 	def find(self, value, node=None):
 		if node == None:
