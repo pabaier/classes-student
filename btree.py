@@ -9,7 +9,7 @@ class BTree():
 
 	def insert(self, value, node=None):
 		if node == None:
-			node = BTree.getLeafNode(value, self.node)
+			node = self.getLeafNode(value)
 		keys = node.keys
 		if len(keys) == 0:
 			keys.append(value)
@@ -34,21 +34,20 @@ class BTree():
 		return i
 
 	# helper function to get the leaf node of a node
-	def getLeafNode(input, node):
-		if (node.isLeafNode()):
-			return node
-		else:
-			child = BTree.getChildNode(input, node)
-			return BTree.getLeafNode(input, child)
-
-	# helper function to get the correct child node of a key value
-	def getChildNode(input, node):
+	def getLeafNode(self, value, node=None):
+		if node == None:
+			node = self.node
 		i = 0
 		while i < len(node.keys):
-			if(node.keys[i] > input):
+			key = node.keys[i]
+			if key > value:
 				break
 			i = i + 1
-		return node.pointers[i]
+
+		if node.hasChildren():
+			return self.getLeafNode(value, node.pointers[i])
+		else:
+			return node
 
 	def delete(self, key, node=None):
 		if node == None:
