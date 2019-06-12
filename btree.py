@@ -49,16 +49,48 @@ class BTree():
 		else:
 			return node
 
-	def delete(self, key, node=None):
+	def startDeleteProcess(self, value, node, keyIndex):
+		if node.isLeafNode():
+			node.keys.pop(keyIndex)
+			if len(node.keys) == 0:
+				self.merge(node)
+		# leaf node, multi key
+		if node.isLeafNode() and len(node.keys) > 1:
+			node.keys.pop(keyIndex)
+			return
+
+		# leaf node, one key
+		if node.isLeafNode() and len(node.keys) == 1:
+			parent = node.parent
+			index = BTree.findInsertIndex(value, parent)
+			if index == 0:
+				sibling = parent.pointers[1]
+			else:
+				sibling = parent.pointers[index]
+			self.merge(parent, sibling)
+
+		# inner node, multi key
+
+		# inner node, one key
+
+		leaf = self.getLeafNode(value, node)
+		biggestValueInLeaf = leaf.keys.pop
+		node.keys[index] = biggestValueInLeaf
+		if len(leaf.keys == 0):
+			self.merge(leaf)
+
+	def merge(self, node):
+		pass
+
+	def delete(self, value, node=None):
 		if node == None:
 			node = self.node
 		i = 0
 		while i < len(node.keys):
 			key = node.keys[i]
 			if key == value:
-				# FOUND IT
-
-				print(str(key))
+				# found it
+				self.startDeleteProcess(value, node, i)
 				return
 			if key > value:
 				break
@@ -138,6 +170,17 @@ class Node():
 			i = i + 1
 		return i
 
+	def getParentPointerIndex(self):
+		parent = self.parent
+		if parent == None:
+			return None
+		i = 0
+		while i < len(parent.pointers):
+			if parent.pointers[i] == self:
+				return i
+			i = i + 1
+		return None
+
 	def split(self):
 		middleKey = math.ceil(len(self.keys)/2) - 1
 		middlePointer = middleKey + 1
@@ -208,13 +251,22 @@ class Node():
 # print(f.pointers)
 # print(removedD)
 
+def loadData(tree):
+	with open('hundred-thousand', 'r') as file:
+		data = file.readlines()
+		for datapoint in data:
+			tree.insert(int(datapoint))
 
-a = BTree(3)
+a = BTree(5)
+loadData(a)
 inp = input('>')
 while True:
 	if inp.startswith('f'):
 		inp = input('enter value to find>')
 		a.find(int(inp))
+	elif inp.startswith('d'):
+		inp = input('enter value to delete>')
+		a.delete(int(inp))
 	elif inp == 'exit' or inp == 'x':
 		break
 	else:
