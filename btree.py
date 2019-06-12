@@ -54,33 +54,66 @@ class BTree():
 			node.keys.pop(keyIndex)
 			if len(node.keys) == 0:
 				self.merge(node)
-		# leaf node, multi key
-		if node.isLeafNode() and len(node.keys) > 1:
-			node.keys.pop(keyIndex)
-			return
-
-		# leaf node, one key
-		if node.isLeafNode() and len(node.keys) == 1:
-			parent = node.parent
-			index = BTree.findInsertIndex(value, parent)
-			if index == 0:
-				sibling = parent.pointers[1]
-			else:
-				sibling = parent.pointers[index]
-			self.merge(parent, sibling)
-
-		# inner node, multi key
-
-		# inner node, one key
-
-		leaf = self.getLeafNode(value, node)
-		biggestValueInLeaf = leaf.keys.pop
-		node.keys[index] = biggestValueInLeaf
-		if len(leaf.keys == 0):
-			self.merge(leaf)
+		else:
+			leaf = self.getLeafNode(value, node)
+			biggestValueInLeaf = leaf.keys.pop()
+			node.keys[keyIndex] = biggestValueInLeaf
+			if len(leaf.keys) == 0:
+				self.merge(leaf)
 
 	def merge(self, node):
-		pass
+		parentPointerIndex = node.getParentPointerIndex()
+		parent = node.parent
+		rightSibling = False
+
+		if parentPointerIndex == 0:
+			# we get the right sibling
+			rightSibling = True
+			sibling = parent.pointers[1]
+		else:
+			# we get the left sibling
+			sibling = parent.pointers[parentPointerIndex - 1]
+
+		# stealing - when the sibling can spare a value:
+		if len(sibling.keys) > 1:
+			# if stealing from the right sibling, take the lowest value
+			if rightSibling:
+				parentKey = parent.keys[parentPointerIndex]
+				stolenKey = sibling.keys.pop(0)
+			# if stealing from the left sibling, take the highest value
+			else:
+				parentKey = parent.keys[parentPointerIndex - 1]
+				stolenKey = sibling.keys.pop()
+			node.keys.append(parentKey)
+			parentKey.keys[parentPointerIndex] = stolenKey
+		# otherwise - merge the values and check if parent is empty
+		else:
+			# if merging with right sibling, take the parent value at the parentPointerIndex
+			if rightSibling:
+				parentKey = parent.keys.pop(parentPointerIndex)
+				node.keys.append(parentKey)
+				node.keys = node.keys + sibling.keys
+				node.pointers = node.pointers + sibling.pointers
+				parent.pointers.pop(parentPointerIndex + 1)
+			# if merging with left sibling, take the parent value at the parentPointerIndex - 1
+			else:
+				parentKey = parent.keys.pop(parentPointerIndex - 1)
+				node.keys = sibling.keys.copy()
+				node.keys.append(parentKey)
+				existingPointers = node.pointers.copy()
+				node.pointers = sibling.pointers.copy()
+				node.pointers = node.pointers + existingPointers
+				# point the parent to this node and remove the next pointer
+				parent.pointers[parentPointerIndex - 1] = node
+				parent.pointers.pop(parentPointerIndex)
+			#  continue merging up the tree if this merged caused the parent to become empty
+			if len(parent.keys) == 0:
+				if parent.hasParent():
+					self.merge(parent)
+				else:
+					node.parent = None
+					self.node = node
+
 
 	def delete(self, value, node=None):
 		if node == None:
@@ -257,7 +290,7 @@ def loadData(tree):
 		for datapoint in data:
 			tree.insert(int(datapoint))
 
-a = BTree(5)
+a = BTree(3)
 loadData(a)
 inp = input('>')
 while True:
@@ -267,6 +300,8 @@ while True:
 	elif inp.startswith('d'):
 		inp = input('enter value to delete>')
 		a.delete(int(inp))
+	elif inp.startswith('p'):
+		a.printMe()
 	elif inp == 'exit' or inp == 'x':
 		break
 	else:
