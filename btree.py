@@ -52,28 +52,45 @@ class BTree():
 
 	def delete(self, key):
 		pass
-	def search(self, key):
-		pass
+
+	def find(self, value, node=None):
+		if node == None:
+			node = self.node
+		i = 0
+		while i < len(node.keys):
+			key = node.keys[i]
+			if key == value:
+				print(str(key))
+				return
+			if key > value:
+				break
+			i = i + 1
+
+		if node.hasChildren():
+			self.find(value, node.pointers[i])
+		else:
+			print('Not Found')
+			return
 
 	def printMe(self):
 		queue = [self.node]
-		newLines = []
 		i = 0
 		while i < len(queue):
 			for node in queue[i].pointers:
 				queue.append(node)
 			i = i + 1
-		level = 0
-		printed = 0
-		for node in queue:
-			print(node.keys, end="  ")
-			# print(node.pointers, end="  ")
-			printed = printed + 1
-			if math.pow(self.degree, level) == printed:
-				printed = 0
-				level = level + 1
-				print("")
-		print("")
+		print(queue)
+		# level = 0
+		# printed = 0
+		# for node in queue:
+		# 	print(node.keys, end="  ")
+		# 	# print(node.pointers, end="  ")
+		# 	printed = printed + 1
+		# 	if math.pow(self.degree, level) == printed:
+		# 		printed = 0
+		# 		level = level + 1
+		# 		print("")
+		# print("")
 		# nodeLength = (self.degree-1)*2+2
 		# (length,width) = (self.height, nodeLength * self.degree * self.height + self.height)
 
@@ -94,7 +111,7 @@ class Node():
 		return self.parent != None
 
 	def hasChildren(self):
-		return len(pointers) > 0
+		return len(self.pointers) > 0
 
 	def findInsertIndex(self, value):
 		i = 0
@@ -142,9 +159,10 @@ class Node():
 			return newParent
 	
 	def __str__(self):
-		b = ''
+		b = '('
 		for i in self.keys:
-			b = b + str(i)
+			b = b + str(i) + ','
+		b = b[:-1] + ')'
 		return b
 
 	def __repr__(self):
@@ -175,8 +193,12 @@ class Node():
 a = BTree(3)
 inp = input('>')
 while True:
-	a.insert(int(inp))
-	a.printMe()
-	inp = input('>')
-	if inp == 'exit' or inp == 'x':
+	if inp.startswith('f'):
+		inp = input('enter value to find>')
+		a.find(int(inp))
+	elif inp == 'exit' or inp == 'x':
 		break
+	else:
+		a.insert(int(inp))
+		a.printMe()
+	inp = input('>')
