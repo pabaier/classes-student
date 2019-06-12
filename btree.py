@@ -1,23 +1,37 @@
+# A BTree has an order and a node, which is the root
+# A Node has keys and pointers to other nodes
+# 	as well as a single parent, which is a node, and an order, which is the same as the BTree root
+
+# Aside from researching the definition of a b-tree, I used this interactive b-tree app extensively
+# in order to understand the rules in different scenarios (https://www.cs.usfca.edu/~galles/visualization/BTree.html)
+# I also used the wikipedia "depth first search" page
+# which inspired the "printMe" method (https://en.wikipedia.org/wiki/Depth-first_search)
+
 import math
 
 class BTree():
-	def __init__(self, degree):
-		self.degree = degree
-		self.node = Node(self.degree)
-		self.middle = math.ceil(self.degree/2) - 1
-		self.height = 1
+	def __init__(self, order):
+		self.order = order
+		self.node = Node(self.order)
 
-	def insert(self, value, node=None):
-		if node == None:
-			node = self.getLeafNode(value)
+	# starting point for inserting a key
+	def insert(self, value):
+		# get the leaf node where the value will be inserted
+		node = self.getLeafNode(value)
 		keys = node.keys
+		# for the first insert
 		if len(keys) == 0:
 			keys.append(value)
-		else: # inserts the key into the correct position
+		else:
 			position = BTree.findInsertIndex(value, node)
 			keys.insert(position, value)
 			self.checkTooBig(node)
 
+	# checks if the node is bigger than the tree's order
+	# if it is, split the node (which inserts a key into the parent)
+	# the parent is returned from the split() method, which is also checked
+	# for size and the nodes will continue to be split up the tree until they
+	# are not too big or they have no parent (which means they are the new root node)
 	def checkTooBig(self, node):
 		while node.isTooBig():
 			node = node.split()
@@ -114,7 +128,6 @@ class BTree():
 					node.parent = None
 					self.node = node
 
-
 	def delete(self, value, node=None):
 		if node == None:
 			node = self.node
@@ -154,6 +167,9 @@ class BTree():
 			print('Not Found')
 			return
 
+	# prints the tree by going through each node and adding its children nodes to a queue
+	# it gets the next node from the queue, which means that the queue holds the nodes
+	# in a breadth first arrangement
 	def printMe(self):
 		queue = [self.node]
 		i = 0
@@ -162,47 +178,41 @@ class BTree():
 				queue.append(node)
 			i = i + 1
 		print(queue)
-		# level = 0
-		# printed = 0
-		# for node in queue:
-		# 	print(node.keys, end="  ")
-		# 	# print(node.pointers, end="  ")
-		# 	printed = printed + 1
-		# 	if math.pow(self.degree, level) == printed:
-		# 		printed = 0
-		# 		level = level + 1
-		# 		print("")
-		# print("")
-		# nodeLength = (self.degree-1)*2+2
-		# (length,width) = (self.height, nodeLength * self.degree * self.height + self.height)
 
 class Node():
-	def __init__(self, degree):
+	def __init__(self, order):
 		self.keys = []
 		self.pointers = []
 		self.parent = None
-		self.degree = degree
+		self.order = order
 
+	# helper method to check if the node is a leaf node
 	def isLeafNode(self):
 		return len(self.pointers) == 0
 
+	# helper method to check if the node has exceeded the tree's order
 	def isTooBig(self):
-		return len(self.keys) == self.degree
+		return len(self.keys) == self.order
 
+	# helper method to check if the node has a parent
 	def hasParent(self):
 		return self.parent != None
 
+	# helper method to check if the node has children (similar to 'isLeafNode()'
+	# but provides better readability in certain situations
 	def hasChildren(self):
 		return len(self.pointers) > 0
 
-	def findInsertIndex(self, value):
+	# finds the index where a key should be inserted in a node
+	def findInsertIndex(self, key):
 		i = 0
 		while i < len(self.keys):
-			if value < self.keys[i]:
+			if key < self.keys[i]:
 				break
 			i = i + 1
 		return i
 
+	# finds the index of the pointer to this node
 	def getParentPointerIndex(self):
 		parent = self.parent
 		if parent == None:
@@ -214,24 +224,34 @@ class Node():
 			i = i + 1
 		return None
 
+	# used in insertions to split this node if it holds more keys than the order of the tree
+	# its functionality includes dividing this node's keys, dividing this node's pointers,
+	# setting the parents of the new nodes, setting the pointers of the parent the respective new nodes,
+	# setting the parent nodes of the two new nodes' children to the respective new nodes,
+	# and inserting the overflow key into the parent node
 	def split(self):
 		middleKey = math.ceil(len(self.keys)/2) - 1
 		middlePointer = middleKey + 1
-		
-		a = Node(self.degree)
-		b = Node(self.degree)
+
+		# make two new nodes and divide the keys and pointers
+		a = Node(self.order)
+		b = Node(self.order)
 		a.keys = self.keys[0:middleKey]
 		b.keys = self.keys[middleKey + 1:]
 		a.pointers = self.pointers[0:middlePointer]
 		b.pointers = self.pointers[middlePointer:]
 
+		# set the new nodes as parents to their children
 		for node in a.pointers:
 			node.parent = a
 		for node in b.pointers:
 			node.parent = b
 
+		# get the key being removed
 		removed = self.keys[middleKey]
 
+		# if this node has a parent, insert the removed key into the parent and
+		# arrange the parent's pointers to accommodate the new key
 		if self.hasParent():
 			index = self.parent.findInsertIndex(removed)
 			self.parent.keys.insert(index,removed)
@@ -243,15 +263,17 @@ class Node():
 			a.parent=self.parent
 			b.parent=self.parent
 			return self.parent
+		# if this is the root node, create a new root node from the removed key
 		else:
-			newParent = Node(self.degree)
+			newParent = Node(self.order)
 			newParent.pointers.append(a)
 			newParent.pointers.append(b)
 			newParent.keys.append(removed)
 			a.parent = newParent
 			b.parent = newParent
 			return newParent
-	
+
+	# helper method to print the node
 	def __str__(self):
 		b = '('
 		for i in self.keys:
@@ -259,30 +281,9 @@ class Node():
 		b = b[:-1] + ')'
 		return b
 
+	# helper method to print the node
 	def __repr__(self):
 		return str(self)
-# # test node split with odd number of keys
-# a = Node(7)
-# a.keys=[1,3,5,7,9]
-# a.pointers=[0,2,4,6,8,10]
-# (b,c,removed)=a.split()
-# print(b.keys)
-# print(b.pointers)
-# print(c.keys)
-# print(c.pointers)
-# print(removed)
-
-
-# # test node split with even number of keys
-# d = Node(7)
-# d.keys=[1,3,5,7]
-# d.pointers=[0,2,4,6,8]
-# (e,f,removedD)=d.split()
-# print(e.keys)
-# print(e.pointers)
-# print(f.keys)
-# print(f.pointers)
-# print(removedD)
 
 def loadData(tree):
 	with open('hundred-thousand', 'r') as file:
