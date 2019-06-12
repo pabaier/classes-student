@@ -70,7 +70,6 @@ class BTree():
 			print('Not Found')
 			return
 
-
 	def find(self, value, node=None):
 		if node == None:
 			node = self.node
@@ -143,25 +142,26 @@ class Node():
 		middleKey = math.ceil(len(self.keys)/2) - 1
 		middlePointer = middleKey + 1
 		
-		aKey = self.keys[0:middleKey]
-		bKey = self.keys[middleKey + 1:]
-		removed = self.keys.pop(middleKey)
-
-		aPointer = self.pointers[0:middlePointer]
-		bPointer = self.pointers[middlePointer:]
 		a = Node(self.degree)
 		b = Node(self.degree)
-		a.keys = aKey
-		b.keys = bKey
-		a.pointers = aPointer
-		b.pointers = bPointer
+		a.keys = self.keys[0:middleKey]
+		b.keys = self.keys[middleKey + 1:]
+		a.pointers = self.pointers[0:middlePointer]
+		b.pointers = self.pointers[middlePointer:]
+
+		for node in a.pointers:
+			node.parent = a
+		for node in b.pointers:
+			node.parent = b
+
+		removed = self.keys[middleKey]
 
 		if self.hasParent():
 			index = self.parent.findInsertIndex(removed)
 			self.parent.keys.insert(index,removed)
 			self.parent.pointers[index] = a
 			try:
-				self.parent.pointers[index + 1] = b
+				self.parent.pointers.insert(index + 1, b)
 			except:
 				self.parent.pointers.append(b)
 			a.parent=self.parent
@@ -207,6 +207,7 @@ class Node():
 # print(f.keys)
 # print(f.pointers)
 # print(removedD)
+
 
 a = BTree(3)
 inp = input('>')
