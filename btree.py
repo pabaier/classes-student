@@ -63,6 +63,7 @@ class BTree():
 		else:
 			return node
 
+	# once a value is found in the tree, this method removes it and starts the merge if needed
 	def startDeleteProcess(self, value, node, keyIndex):
 		if node.isLeafNode():
 			node.keys.pop(keyIndex)
@@ -75,6 +76,12 @@ class BTree():
 			if len(leaf.keys) == 0:
 				self.merge(leaf)
 
+	# when a value is deleted, if the node has no keys left, a merge takes place with it, its parent, and its
+	# right or left sibling. If the sibling has more than one key, the node can take the parent’s key and replace
+	# it with the sibling’s key. If a sibling only has one key, however, the two siblings and the parent value are
+	# merged into one node. If the parent node has more values, then the pointers are reassigned and the process
+	# is over. If the parent node has no more keys, however, then another merge takes place with its parent and
+	# sibling. This process continues until no inner nodes are empty.
 	def merge(self, node):
 		parentPointerIndex = node.getParentPointerIndex()
 		parent = node.parent
@@ -99,7 +106,11 @@ class BTree():
 				parentKey = parent.keys[parentPointerIndex - 1]
 				stolenKey = sibling.keys.pop()
 			node.keys.append(parentKey)
-			parentKey.keys[parentPointerIndex] = stolenKey
+			if rightSibling:
+				parent.keys[parentPointerIndex] = stolenKey
+			else:
+				parent.keys[parentPointerIndex - 1] = stolenKey
+
 		# otherwise - merge the values and check if parent is empty
 		else:
 			# if merging with right sibling, take the parent value at the parentPointerIndex

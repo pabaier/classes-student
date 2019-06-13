@@ -14,11 +14,7 @@ def loadTree(tree, file):
 
 def collectData(func, funcName, data, tree):
     times = []
-    i = 0
     for datapoint in data:
-        if funcName == 'delete':
-            print(datapoint)
-            i += 1
         start = timer()
         func(int(datapoint))
         stop = timer()
@@ -43,31 +39,31 @@ def main():
     args = parser.parse_args()
 
     tree = BTree(args.order)
-    loadTree(tree, args.data)
 
+    loadTree(tree, args.data)
     with open('data', 'r') as file:
          data = file.readlines()
 
     collectData(tree.insert, 'insert', data, tree)
     collectData(tree.find, 'find', data, tree)
-    # collectData(tree.delete, 'delete', data, tree)
-
-    # inp = input('>')
-    # while True:
-    #     if inp.startswith('f'):
-    #         inp = input('enter value to find>')
-    #         a.find(int(inp))
-    #     elif inp.startswith('d'):
-    #         inp = input('enter value to delete>')
-    #         a.delete(int(inp))
-    #     elif inp.startswith('p'):
-    #         a.printMe()
-    #     elif inp == 'exit' or inp == 'x':
-    #         break
-    #     else:
-    #         a.insert(int(inp))
-    #         a.printMe()
-    #     inp = input('>')
+    collectData(tree.delete, 'delete', data, tree)
+# -----------------------------------------------------------
+#     inp = input('>')
+#     while True:
+#         if inp.startswith('f'):
+#             inp = input('enter value to find>')
+#             tree.find(int(inp))
+#         elif inp.startswith('d'):
+#             inp = input('enter value to delete>')
+#             tree.delete(int(inp))
+#         elif inp.startswith('p'):
+#             tree.printMe()
+#         elif inp == 'exit' or inp == 'x':
+#             break
+#         else:
+#             tree.insert(int(inp))
+#             tree.printMe()
+#         inp = input('>')
 
 
 if __name__ == '__main__':
