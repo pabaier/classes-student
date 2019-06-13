@@ -284,28 +284,3 @@ class Node():
 	# helper method to print the node
 	def __repr__(self):
 		return str(self)
-
-def loadData(tree):
-	with open('hundred-thousand', 'r') as file:
-		data = file.readlines()
-		for datapoint in data:
-			tree.insert(int(datapoint))
-
-a = BTree(3)
-loadData(a)
-inp = input('>')
-while True:
-	if inp.startswith('f'):
-		inp = input('enter value to find>')
-		a.find(int(inp))
-	elif inp.startswith('d'):
-		inp = input('enter value to delete>')
-		a.delete(int(inp))
-	elif inp.startswith('p'):
-		a.printMe()
-	elif inp == 'exit' or inp == 'x':
-		break
-	else:
-		a.insert(int(inp))
-		a.printMe()
-	inp = input('>')
