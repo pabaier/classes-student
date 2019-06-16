@@ -1,4 +1,6 @@
 public.key
 private.key
+__pycache__
+.idea
 .vscode
 env
