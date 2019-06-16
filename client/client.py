@@ -1,5 +1,6 @@
 import codecs
 import json
+import logging
 import pickle
 import requests
 from crypto import Crypt
@@ -13,6 +14,7 @@ class Client:
 
 	# message should be a string. it is encrypted and POSTed as JSON
 	def send_transaction(self, message):
+		logging.info(f'sending transaction with message {message}')
 		encrypted_message = Crypt.encrypt(self.public_key, message)
 		signed_data = Crypt.sign(self.private_key, encrypted_message)
 
@@ -28,6 +30,7 @@ class Client:
 			'public_key': pickled_public_key
 		}
 		response = requests.post(self.server, json=json.dumps(data))
+		logging.info(f'response from server {response}')
 		return response
 
 	@staticmethod
