@@ -1,6 +1,7 @@
 import aiohttp
-from aiohttp import web
 import argparse
+from aiohttp import web
+
 
 async def handle(request):
     name = request.match_info.get('name', "World!")
@@ -8,7 +9,8 @@ async def handle(request):
     print('received request, replaying with "{}".'.format(text))
     return web.json_response(text)
 
-async def handlePost(request):
+
+async def handle_post(request):
     print('handling post request')
     if request.body_exists:
         b = await request.json()
@@ -30,6 +32,6 @@ args = parser.parse_args()
 app = web.Application()
 app.router.add_get('/', handle)
 app.router.add_get('/{name}', handle)
-app.router.add_post('/send',handlePost)
+app.router.add_post('/send', handle_post)
 
 web.run_app(app, port=args.port)
