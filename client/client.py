@@ -1,7 +1,42 @@
+import codecs
+import json
+import pickle
 import requests
-import sys
-from crypto.Crypt import *
-sys.path.append("..")
+from crypto import Crypt
+
+
+class Client:
+	def __init__(self, server, public_key=None, private_key=None):
+		self.public_key = Crypt.get_key(public_key)
+		self.private_key = Crypt.get_key(private_key)
+		self.server = server
+
+	# message should be a string. it is encrypted and POSTed as JSON
+	def send_transaction(self, message):
+		encrypted_message = Crypt.encrypt(self.public_key, message)
+		signed_data = Crypt.sign(self.private_key, encrypted_message)
+
+		# need to encode the data and public key as string to send through HTTP
+		# first pickle the data, then encode as base64
+		pickled_encrypted_message = Client.pickle_data(encrypted_message)
+		pickled_signed_data = Client.pickle_data(signed_data)
+		pickled_public_key = Client.pickle_data(self.public_key)
+
+		data = {
+			'encrypted_message': pickled_encrypted_message,
+			'signed_data': pickled_signed_data,
+			'public_key': pickled_public_key
+		}
+		response = requests.post(self.server, json=json.dumps(data))
+		return response
+
+	@staticmethod
+	def pickle_data(data):
+		return codecs.encode(pickle.dumps(data), "base64").decode()
+
+	@staticmethod
+	def unpickle_data(data):
+		return pickle.loads(codecs.decode(data.encode(), "base64"))
 
 
 def main():
@@ -19,10 +54,10 @@ def key_test():
 	# deleteKeys()
 	pub_key = get_key('public.key')
 	private_key = get_key('private.key')
-	a = encrypt(pub_key, 'you are my love!')
-	b = decrypt(private_key, a)
-	signature = sign(private_key, a)
-	verification = verify(pub_key, signature, a)
+	encrypted_message = encrypt(pub_key, 'you are my love!')
+	b = decrypt(private_key, encrypted_message)
+	signature = sign(private_key, encrypted_message)
+	verification = verify(pub_key, signature, encrypted_message)
 	print(verification)
 
 
