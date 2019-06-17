@@ -10,6 +10,7 @@ from aiohttp import web
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path + "/..")
 from crypto import Crypt
+from db.FileSystem import FileSystem as database
 
 
 async def add(request):
@@ -31,16 +32,29 @@ async def add(request):
         public_key = pickle.loads(codecs.decode(pickled_public_key.encode(), "base64"))
         encrypted_message = pickle.loads(codecs.decode(pickled_encrypted_message.encode(), "base64"))
 
-        verification = Crypt.verify(public_key, signed_data, encrypted_message)
-        response = {
-            'message': 'ok',
-            'verified': verification
-        }
-        return web.json_response(response)
+        verified = Crypt.verify(public_key, signed_data, encrypted_message)
+
+        if verified:
+            try:
+                logging.info(f'writing message {encrypted_message.decode()} to db')
+                write_data(encrypted_message.decode())
+                response = {'message': 'ok'}
+                return web.json_response(response)
+            except:
+                logging.info(f'error writing message {encrypted_message.decode()} to db')
+                response = {'message': 'error writing message to database'}
+                return web.json_response(response, status=web.HTTPError.status_code)
+        else:
+            response = {'message': 'error verifying data'}
+            return web.json_response(response, status=web.HTTPBadRequest.status_code)
     else:
         logging.error(f'no body in request {request}')
         error= {'message': 'body required'}
         return web.json_response(error, status=web.HTTPBadRequest.status_code)
+
+
+def write_data(data):
+    db.write(data)
 
 def unpickle_data(data):
     return pickle.loads(codecs.decode(data.encode(), "base64"))
@@ -74,6 +88,8 @@ parser.add_argument('-logging', type=int, default=30, help='set the logging leve
 args = parser.parse_args()
 
 logging.getLogger().setLevel(args.logging)
+
+db = database()
 
 app = web.Application()
 app.router.add_get('/', handle)
