@@ -17,7 +17,8 @@ class FileSystem:
 
 	@staticmethod
 	def get_most_recent_folder():
-		dirs = natsorted(glob("data/*/"),reverse=True)
+		dir_path = os.path.dirname(os.path.realpath(__file__))
+		dirs = natsorted(glob(f'{dir_path}/data/*/'), reverse=True)
 		return dirs[0], len(dirs)
 
 	def get_most_recent_file_in_folder(self, folder=None):
@@ -50,8 +51,9 @@ class FileSystem:
 			file.write('0')
 
 	def make_new_folder(self):
+		dir_path = os.path.dirname(os.path.realpath(__file__))
 		self.folder_number = self.folder_number + 1
-		self.folder = 'data/' + str(self.folder_number) + '/'
+		self.folder = f'{dir_path}/data/{str(self.folder_number)}/'
 		self.file_number = 0
 		os.makedirs(self.folder)
 
