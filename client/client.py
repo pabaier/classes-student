@@ -20,16 +20,15 @@ class Client:
 
 		# need to encode the data and public key as string to send through HTTP
 		# first pickle the data, then encode as base64
-		pickled_encrypted_message = Client.pickle_data(encrypted_message)
 		pickled_signed_data = Client.pickle_data(signed_data)
 		pickled_public_key = Client.pickle_data(self.public_key)
 
 		data = {
-			'encrypted_message': pickled_encrypted_message,
+			'encrypted_message': encrypted_message.decode(),
 			'signed_data': pickled_signed_data,
 			'public_key': pickled_public_key
 		}
-		response = requests.post(self.server, json=json.dumps(data))
+		response = requests.post(f'{self.server}/record', json=json.dumps(data))
 		logging.info(f'response from server {response}')
 		return response
 

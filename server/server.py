@@ -24,24 +24,27 @@ async def add(request):
             return web.json_response(error, status=web.HTTPBadRequest.status_code)
 
         request_body = json.loads(request_body)
-        pickled_encrypted_message = request_body['encrypted_message']
+        encrypted_message = request_body['encrypted_message']
         pickled_signed_data = request_body['signed_data']
         pickled_public_key = request_body['public_key']
 
         signed_data = unpickle_data(pickled_signed_data)
-        public_key = pickle.loads(codecs.decode(pickled_public_key.encode(), "base64"))
-        encrypted_message = pickle.loads(codecs.decode(pickled_encrypted_message.encode(), "base64"))
+        public_key = unpickle_data(pickled_public_key)
 
-        verified = Crypt.verify(public_key, signed_data, encrypted_message)
+        verified = Crypt.verify(public_key, signed_data, encrypted_message.encode())
 
         if verified:
             try:
-                logging.info(f'writing message {encrypted_message.decode()} to db')
-                write_data(encrypted_message.decode())
+                logging.info(f'writing message {encrypted_message} to db')
+                full_message = {
+                    "user": pickled_public_key,
+                    "data": encrypted_message
+                }
+                db.write(encrypted_message)
                 response = {'message': 'ok'}
                 return web.json_response(response)
             except:
-                logging.info(f'error writing message {encrypted_message.decode()} to db')
+                logging.info(f'error writing message {encrypted_message} to db')
                 response = {'message': 'error writing message to database'}
                 return web.json_response(response, status=web.HTTPError.status_code)
         else:
@@ -52,9 +55,6 @@ async def add(request):
         error= {'message': 'body required'}
         return web.json_response(error, status=web.HTTPBadRequest.status_code)
 
-
-def write_data(data):
-    db.write(data)
 
 def unpickle_data(data):
     return pickle.loads(codecs.decode(data.encode(), "base64"))
@@ -95,6 +95,6 @@ app = web.Application()
 app.router.add_get('/', handle)
 app.router.add_get('/{name}', handle)
 app.router.add_post('/send', handle_data)
-app.router.add_post('/add', add)
+app.router.add_post('/record', add)
 
 web.run_app(app, port=args.port)
