@@ -7,6 +7,7 @@ import os
 class FileSystem:
     def __init__(self):
         (self.folder, self.folder_number) = FileSystem.get_most_recent_folder()
+        # self.file stores an absolute path to the file
         (self.file, self.file_number) = self.get_most_recent_file_in_folder()
 
     def update_folder(self):
@@ -28,10 +29,32 @@ class FileSystem:
         most_recent_file = max(all_files, key=os.path.getctime)
         return most_recent_file, len(all_files)
 
+    def get_last_transaction(self):
+        file = self.file
+        lines = self.get_number_of_lines(file)
+        # if the file is not empty, get the latest line written
+        if lines > 0:
+            return FileSystem.get_line(file, lines)
+        # if the file number is greater than one, use the previous file
+        elif self.file_number > 1:
+            file_number = self.file_number - 1
+            file = f'{self.folder}/{file_number}.pab'
+            lines = self.get_number_of_lines(file)
+            return FileSystem.get_line(file, lines)
+        # go into the previous directory and get the latest file from there
+        else:
+            folder_number = self.folder_number - 1
+            folder = f'{os.path.dirname(os.path.realpath(__file__))}/data/{folder_number}/'
+            print(folder)
+            (file, _) = self.get_most_recent_file_in_folder(folder)
+            print(file)
+            lines = self.get_number_of_lines(file)
+            return FileSystem.get_line(file, lines)
+
     def write(self, data):
         with open(self.file, "r+") as file:
             contents = file.readlines()
-            lines = self.get_number_of_lines(contents)
+            lines = int(contents[0].rstrip('\r\n'))
             contents[0] = str(lines + 1) + "\n"
             file.seek(0)
             file.truncate()
@@ -68,4 +91,5 @@ class FileSystem:
 
     @staticmethod
     def get_number_of_lines(file):
-        return int(file[0].rstrip('\r\n'))
+        with open(file, "r") as file:
+            return int(file.readline().rstrip('\r\n'))
