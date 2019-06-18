@@ -10,6 +10,7 @@ from aiohttp import web
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path + "/..")
 from crypto import Crypt
+from datetime import datetime
 from db.FileSystem import FileSystem as database
 
 
@@ -32,15 +33,18 @@ async def add(request):
         public_key = unpickle_data(pickled_public_key)
 
         verified = Crypt.verify(public_key, signed_data, encrypted_message.encode())
+        timestamp = str(datetime.utcnow())
 
         if verified:
             try:
                 logging.info(f'writing message {encrypted_message} to db')
                 full_message = {
                     "user": pickled_public_key,
-                    "data": encrypted_message
+                    "data": encrypted_message,
+                    "time": timestamp
                 }
-                db.write(encrypted_message)
+                full_message_string = json.dumps(full_message)
+                db.write(full_message_string)
                 response = {'message': 'ok'}
                 return web.json_response(response)
             except:
