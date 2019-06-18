@@ -1,6 +1,7 @@
 import aiohttp
 import argparse
 import codecs
+import hashlib
 import json
 import logging
 import os
@@ -35,14 +36,30 @@ async def add(request):
         verified = Crypt.verify(public_key, signed_data, encrypted_message.encode())
         timestamp = str(datetime.utcnow())
 
+        # full message consists of a header, with hash and time, and body, with user and data
         if verified:
             try:
                 logging.info(f'writing message {encrypted_message} to db')
-                full_message = {
+
+                body = {
                     "user": pickled_public_key,
                     "data": encrypted_message,
+                }
+                body_string = json.dumps(body)
+
+                m = hashlib.sha256()
+                m.update(body_string.encode())
+                hash = m.hexdigest()
+
+                header = {
+                    "hash": hash,
                     "time": timestamp
                 }
+                full_message = {
+                    "header": header,
+                    "body": body
+                }
+
                 full_message_string = json.dumps(full_message)
                 db.write(full_message_string)
                 response = {'message': 'ok'}
