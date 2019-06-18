@@ -1,5 +1,6 @@
 from os import chmod
 import base64
+import hashlib
 import os
 from Crypto.Hash import SHA
 from Crypto.PublicKey import RSA
@@ -9,12 +10,20 @@ from Crypto.Signature import PKCS1_PSS
 # sign the encrypted data with the private key
 # first SHA the data, then create the signer from the private key
 # then sign the SHA with the signer
+# data should be byte string
 def sign(private_key, data):
 	h = SHA.new()
 	h.update(data)
 	signer = PKCS1_PSS.new(private_key)
 	signature = signer.sign(h)
 	return signature
+
+
+# data should be string, which then gets encoded into bytes
+# returns a string
+def sha256(data):
+	h = hashlib.sha256(data.encode())
+	return h.hexdigest()
 
 
 # verify the encrypted data
