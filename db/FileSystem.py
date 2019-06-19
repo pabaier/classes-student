@@ -1,7 +1,9 @@
 from glob import glob
 from natsort import natsorted
 import json
+from .Indexer import Indexer
 import os
+from pathlib import Path
 
 
 class FileSystem:
@@ -9,6 +11,11 @@ class FileSystem:
         (self.folder, self.folder_number) = FileSystem.get_most_recent_folder()
         # self.file stores an absolute path to the file
         (self.file, self.file_number) = self.get_most_recent_file_in_folder()
+        self.indexer = Indexer()
+        try:
+            self.indexer.build_indexer()
+        except:
+            pass
 
     def update_folder(self):
         (self.folder, self.folder_number) = FileSystem.get_most_recent_folder()
@@ -60,6 +67,7 @@ class FileSystem:
             file.truncate()
             file.writelines(contents)
             file.writelines(data + '\n')
+            self.indexer.add(data, self.folder_number, self.file_number, lines + 1)
             # make new file after 1000th line (write 1000 lines per file)
             if lines + 1 >= 1000:
                 self.make_new_file()
