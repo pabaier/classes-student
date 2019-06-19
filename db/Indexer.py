@@ -5,11 +5,13 @@ import sqlite3
 
 class Indexer:
     def __init__(self):
+        self.dir_path = os.path.dirname(os.path.realpath(__file__))
         self.file = 'index.db'
+        self.connection = sqlite3.connect(f'{self.dir_path}/{self.file}')
+        self.cursor = self.connection.cursor()
 
     def open_connection(self):
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        self.connection = sqlite3.connect(f'{dir_path}/{self.file}')
+        self.connection = sqlite3.connect(f'{self.dir_path}/{self.file}')
         self.cursor = self.connection.cursor()
 
     def build_indexer(self):
