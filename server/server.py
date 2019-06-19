@@ -1,7 +1,6 @@
 import aiohttp
 import argparse
 import codecs
-import hashlib
 import json
 import logging
 import os
@@ -41,27 +40,26 @@ async def add(request):
             try:
                 logging.info(f'writing message {encrypted_message} to db')
 
-                body = {
-                    "user": pickled_public_key,
+                transaction = {
                     "data": encrypted_message,
                 }
-                body_string = json.dumps(body)
 
-                m = hashlib.sha256()
-                m.update(body_string.encode())
-                hash = m.hexdigest()
+
+                merkleHash = Crypt.sha256(encrypted_message)
 
                 header = {
-                    "hash": hash,
-                    "time": timestamp
+                    "previousHash": getPreviousHash(),
+                    "merkleHash": merkleHash,
+                    "time": timestamp,
+                    "user": pickled_public_key
                 }
-                full_message = {
+                block = {
                     "header": header,
-                    "body": body
+                    "transaction": transaction
                 }
 
-                full_message_string = json.dumps(full_message)
-                db.write(full_message_string)
+                block_string = json.dumps(block)
+                db.write(block_string)
                 response = {'message': 'ok'}
                 return web.json_response(response)
             except:
@@ -75,6 +73,13 @@ async def add(request):
         logging.error(f'no body in request {request}')
         error= {'message': 'body required'}
         return web.json_response(error, status=web.HTTPBadRequest.status_code)
+
+
+# hashes the previous transaction's header
+def getPreviousHash():
+    transaction = json.loads(db.get_last_transaction())
+    header = json.dumps(transaction['header'])
+    return Crypt.sha256(header)
 
 
 def unpickle_data(data):
