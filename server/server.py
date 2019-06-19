@@ -40,19 +40,21 @@ async def add(request):
             try:
                 logging.info(f'writing message {encrypted_message} to db')
 
-                transaction = {
-                    "data": encrypted_message,
-                }
-
-
-                merkleHash = Crypt.sha256(encrypted_message)
+                merkle_hash = Crypt.sha256(encrypted_message)
 
                 header = {
-                    "previousHash": getPreviousHash(),
-                    "merkleHash": merkleHash,
-                    "time": timestamp,
-                    "user": pickled_public_key
+                    "previousHash": '',#get_previous_hash(),
+                    "merkleHash": merkle_hash,
+                    "user": pickled_public_key,
+                    "time": timestamp
                 }
+
+                tid = Crypt.sha256(json.dumps(header))
+                transaction = {
+                    "data": encrypted_message,
+                    "id": tid
+                }
+
                 block = {
                     "header": header,
                     "transaction": transaction
@@ -60,7 +62,7 @@ async def add(request):
 
                 block_string = json.dumps(block)
                 db.write(block_string)
-                response = {'message': 'ok'}
+                response = {'message': 'ok', 'tid': tid}
                 return web.json_response(response)
             except:
                 logging.info(f'error writing message {encrypted_message} to db')
@@ -76,10 +78,9 @@ async def add(request):
 
 
 # hashes the previous transaction's header
-def getPreviousHash():
+def get_previous_hash():
     transaction = json.loads(db.get_last_transaction())
-    header = json.dumps(transaction['header'])
-    return Crypt.sha256(header)
+    return json.dumps(transaction['transaction']['id'])
 
 
 def unpickle_data(data):
@@ -91,6 +92,7 @@ async def handle(request):
     text = {"response": "hello, " + name}
     print('received request, replaying with "{}".'.format(text))
     return web.json_response(text)
+
 
 async def handle_data(request):
     print('handling post request')
