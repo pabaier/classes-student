@@ -87,6 +87,15 @@ def unpickle_data(data):
     return pickle.loads(codecs.decode(data.encode(), "base64"))
 
 
+async def get(request):
+    logging.info(f'handling get request {request}')
+    tid = request.query['tid']
+    transaction = db.get_transaction(tid)
+    return web.json_response({'status':'ok', 'response': transaction})
+
+######################################################################
+#                        test methods                                #
+######################################################################
 async def handle(request):
     name = request.match_info.get('name', "World!")
     text = {"response": "hello, " + name}
@@ -120,9 +129,13 @@ logging.getLogger().setLevel(args.logging)
 db = database()
 
 app = web.Application()
-app.router.add_get('/', handle)
-app.router.add_get('/{name}', handle)
-app.router.add_post('/send', handle_data)
+
 app.router.add_post('/record', add)
+app.router.add_get('/record', get)
+# test routes
+app.router.add_post('/send', handle_data)
+app.router.add_get('/{name}', handle)
+app.router.add_get('/', handle)
+
 
 web.run_app(app, port=args.port)

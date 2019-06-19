@@ -43,8 +43,15 @@ class Indexer:
         self.insert_record_user(d)
         self.insert_record_transaction(d)
 
-    def getUserRecords(self, userId):
+    def getUserRecords(self, user_id):
         pass
+
+    def get_transaction(self, tid):
+        self.open_connection()
+        sql = '''SELECT folder, file, line FROM trans WHERE tid = (?)'''
+        self.cursor.execute(sql, (tid,))
+        return self.cursor.fetchone()
+
 
     # exists = os.path.isfile('example.db')
     # if exists:

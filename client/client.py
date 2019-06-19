@@ -32,6 +32,14 @@ class Client:
         logging.info(f'response from server {response}')
         return response
 
+    # gets the transaction with id tid
+    # tid is a SHA256 of the transaction's header
+    def get_transaction(self, tid):
+        logging.info(f'getting transaction {tid}')
+        response = requests.get(f'{self.server}/record', params={'tid':tid})
+        logging.info(f'response from server {response}')
+        return response
+
     @staticmethod
     def pickle_data(data):
         return codecs.encode(pickle.dumps(data), "base64").decode()

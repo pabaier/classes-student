@@ -11,6 +11,7 @@ class FileSystem:
         (self.folder, self.folder_number) = FileSystem.get_most_recent_folder()
         # self.file stores an absolute path to the file
         (self.file, self.file_number) = self.get_most_recent_file_in_folder()
+        self.dir_path = os.path.dirname(os.path.realpath(__file__))
         self.indexer = Indexer()
         try:
             self.indexer.build_indexer()
@@ -87,6 +88,11 @@ class FileSystem:
         self.folder = f'{dir_path}/data/{str(self.folder_number)}/'
         self.file_number = 0
         os.makedirs(self.folder)
+
+    def get_transaction(self, tid):
+        (folder_number, file_number, line_number) = self.indexer.get_transaction(tid)
+        file = f'{self.dir_path}/data/{folder_number}/{file_number}.pab'
+        return FileSystem.get_line(file, line_number)
 
     @staticmethod
     def get_line(file_name, line_number):
