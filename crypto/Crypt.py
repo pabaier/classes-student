@@ -12,65 +12,65 @@ from Crypto.Signature import PKCS1_PSS
 # then sign the SHA with the signer
 # data should be byte string
 def sign(private_key, data):
-	h = SHA.new()
-	h.update(data)
-	signer = PKCS1_PSS.new(private_key)
-	signature = signer.sign(h)
-	return signature
+    h = SHA.new()
+    h.update(data)
+    signer = PKCS1_PSS.new(private_key)
+    signature = signer.sign(h)
+    return signature
 
 
 # data should be string, which then gets encoded into bytes
 # returns a string
 def sha256(data):
-	h = hashlib.sha256(data.encode())
-	return h.hexdigest()
+    h = hashlib.sha256(data.encode())
+    return h.hexdigest()
 
 
 # verify the encrypted data
 # first SHA the data, then create the verifier from the public key
 # then verify the SHA'd data and signature with the verifier
 def verify(public_key, signature, data):
-	h = SHA.new()
-	h.update(data)
-	verifier = PKCS1_PSS.new(public_key)
-	is_verified = verifier.verify(h, signature)
-	return is_verified
+    h = SHA.new()
+    h.update(data)
+    verifier = PKCS1_PSS.new(public_key)
+    is_verified = verifier.verify(h, signature)
+    return is_verified
 
 
 # decrypt to string using private key
 # first decode the base64, then decrypt with private key
 def decrypt(key, cipher):
-	a = base64.b64decode(cipher)
-	return key.decrypt(a).decode("utf-8")
+    a = base64.b64decode(cipher)
+    return key.decrypt(a).decode("utf-8")
 
 
 # encrypt to base64 encoded bytes using public key
 # first encrypt using public key, then base64 encode
 def encrypt(key, text):
-	encrypted_bytes = key.encrypt(str.encode(text), 32)[0]
-	return base64.b64encode(encrypted_bytes)
+    encrypted_bytes = key.encrypt(str.encode(text), 32)[0]
+    return base64.b64encode(encrypted_bytes)
 
 
 def get_key(filename):
-	with open(filename, 'r') as file:
-		key = file.read()
-	return RSA.importKey(key)
+    with open(filename, 'r') as file:
+        key = file.read()
+    return RSA.importKey(key)
 
 
 def create_keys():
-	key = RSA.generate(2048)
-	private_key = key.exportKey('PEM')
-	with open("private.key", 'wb') as file:
-		# chmod("private.key", 600)
-		file.write(private_key)
-	public_key = key.publickey().exportKey(format='PEM')
-	with open("public.key", 'wb') as file:
-		file.write(public_key)
+    key = RSA.generate(2048)
+    private_key = key.exportKey('PEM')
+    with open("private.key", 'wb') as file:
+        # chmod("private.key", 600)
+        file.write(private_key)
+    public_key = key.publickey().exportKey(format='PEM')
+    with open("public.key", 'wb') as file:
+        file.write(public_key)
 
 
 def delete_keys():
-	try:
-		os.remove("private.key")
-		os.remove("public.key")
-	except:
-		return
+    try:
+        os.remove("private.key")
+        os.remove("public.key")
+    except:
+        return
