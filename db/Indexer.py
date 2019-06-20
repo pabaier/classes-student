@@ -52,6 +52,12 @@ class Indexer:
         self.cursor.execute(sql, (tid,))
         return self.cursor.fetchone()
 
+    def get_transactions(self, user):
+        self.open_connection()
+        sql = '''SELECT folder, file, line FROM user WHERE userId = (?)'''
+        self.cursor.execute(sql, (user,))
+        return self.cursor.fetchall()
+
 
     # exists = os.path.isfile('example.db')
     # if exists:

@@ -93,6 +93,12 @@ async def get(request):
     transaction = db.get_transaction(tid)
     return web.json_response({'status':'ok', 'response': transaction})
 
+async def get_all(request):
+    logging.info(f'handling get all request {request}')
+    user = request.query['user']
+    transactions = db.get_transactions(user)
+    return web.json_response({'status':'ok', 'response': transactions})
+
 ######################################################################
 #                        test methods                                #
 ######################################################################
@@ -132,6 +138,8 @@ app = web.Application()
 
 app.router.add_post('/record', add)
 app.router.add_get('/record', get)
+app.router.add_get('/record/user', get_all)
+
 # test routes
 app.router.add_post('/send', handle_data)
 app.router.add_get('/{name}', handle)

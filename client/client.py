@@ -40,6 +40,14 @@ class Client:
         logging.info(f'response from server {response}')
         return response
 
+    # gets all of the transactions for a single user
+    # user is the user's pickled public key (from the database)
+    def get_user_transactions(self, user):
+        logging.info(f'getting transactions for user {user}')
+        response = requests.get(f'{self.server}/record/user', params={'user':user})
+        logging.info(f'response from server {response}')
+        return response
+
     @staticmethod
     def pickle_data(data):
         return codecs.encode(pickle.dumps(data), "base64").decode()

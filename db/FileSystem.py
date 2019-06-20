@@ -94,6 +94,15 @@ class FileSystem:
         file = f'{self.dir_path}/data/{folder_number}/{file_number}.pab'
         return FileSystem.get_line(file, line_number)
 
+    def get_transactions(self, user):
+        transactions = self.indexer.get_transactions(user)
+        transaction_list = []
+        for (folder_number, file_number, line_number) in transactions:
+            file = f'{self.dir_path}/data/{folder_number}/{file_number}.pab'
+            transaction = FileSystem.get_line(file, line_number)
+            transaction_list.append(transaction)
+        return transaction_list
+
     @staticmethod
     def get_line(file_name, line_number):
         with open(file_name, "r") as file:
