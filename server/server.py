@@ -93,6 +93,7 @@ async def get(request):
     transaction = db.get_transaction(tid)
     return web.json_response({'status':'ok', 'response': transaction})
 
+
 async def get_all(request):
     logging.info(f'handling get all request {request}')
     user = request.query['user']

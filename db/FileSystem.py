@@ -90,9 +90,13 @@ class FileSystem:
         os.makedirs(self.folder)
 
     def get_transaction(self, tid):
-        (folder_number, file_number, line_number) = self.indexer.get_transaction(tid)
-        file = f'{self.dir_path}/data/{folder_number}/{file_number}.pab'
-        return FileSystem.get_line(file, line_number)
+        tuples = self.indexer.get_transaction(tid)
+        if(tuples is None):
+            return None
+        else:
+            (folder_number, file_number, line_number) = self.indexer.get_transaction(tid)
+            file = f'{self.dir_path}/data/{folder_number}/{file_number}.pab'
+            return FileSystem.get_line(file, line_number)
 
     def get_transactions(self, user):
         transactions = self.indexer.get_transactions(user)
