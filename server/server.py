@@ -181,6 +181,8 @@ parser.add_argument('-l', '--logging', type=int, default=30, help='set the loggi
 
 args = parser.parse_args()
 sibling_nodes = args.rport
+if sibling_nodes is None:
+    sibling_nodes = []
 
 logging.getLogger().setLevel(args.logging)
 
