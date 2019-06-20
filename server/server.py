@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import pickle
+import requests
 import sys
 from aiohttp import web
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -43,7 +44,7 @@ async def add(request):
                 merkle_hash = Crypt.sha256(encrypted_message)
 
                 header = {
-                    "previousHash": '',#get_previous_hash(),
+                    "previousHash": get_previous_hash(),
                     "merkleHash": merkle_hash,
                     "user": pickled_public_key,
                     "time": timestamp
@@ -62,6 +63,7 @@ async def add(request):
 
                 block_string = json.dumps(block)
                 db.write(block_string)
+                send_broadcast(block_string)
                 response = {'message': 'ok', 'tid': tid}
                 return web.json_response(response)
             except:
@@ -100,6 +102,51 @@ async def get_all(request):
     transactions = db.get_transactions(user)
     return web.json_response({'status':'ok', 'response': transactions})
 
+
+# broadcasts block to all sibling nodes
+# block is a string
+def send_broadcast(block):
+    logging.info(f'broadcasting block {block}')
+    for port in sibling_nodes:
+        requests.post(f'http://localhost:{port}/broadcast', json=block)
+
+
+# receive a broadcast from a sibling
+async def broadcast(request):
+    logging.info(f'handling broadcast request {request}')
+    if request.body_exists:
+        try:
+            block_string = await request.json()
+        except:
+            logging.error(f'could not parse {request}')
+            error = {'message': 'error parsing json body'}
+            return web.json_response(error, status=web.HTTPBadRequest.status_code)
+
+        block = json.loads(block_string)
+        logging.info(f'verifying block')
+        verified = verify_broadcast(block)
+        if verified:
+            logging.info(f'block verified')
+            db.write(block_string)
+            send_broadcast(block_string)
+    else:
+        logging.error(f'no body in request {request}')
+    return web.Response(text='ok')
+
+
+def verify_broadcast(block):
+    header = block['header']
+    previous_hash = header['previousHash']
+    transaction = block['transaction']
+    tid = transaction['id']
+
+    if not previous_hash == get_previous_hash():
+        return False
+    if not tid == Crypt.sha256(json.dumps(header)):
+        return False
+    return True
+
+
 ######################################################################
 #                        test methods                                #
 ######################################################################
@@ -125,11 +172,12 @@ async def handle_data(request):
     return web.Response(text='ok')
 
 parser = argparse.ArgumentParser(description='small http server')
-parser.add_argument('-port', type=int, default=8080, help='port for this server to run')
-parser.add_argument('-rport', type=int, default=8081, help='port another server is running on')
-parser.add_argument('-logging', type=int, default=30, help='set the logging level')
+parser.add_argument('-p', '--port', type=int, default=8080, help='port for this server to run')
+parser.add_argument('-r', '--rport', nargs='+', type=int, help='port(s) of siblings')
+parser.add_argument('-l', '--logging', type=int, default=30, help='set the logging level')
 
 args = parser.parse_args()
+sibling_nodes = args.rport
 
 logging.getLogger().setLevel(args.logging)
 
@@ -140,6 +188,7 @@ app = web.Application()
 app.router.add_post('/record', add)
 app.router.add_get('/record', get)
 app.router.add_get('/record/user', get_all)
+app.router.add_post('/broadcast', broadcast)
 
 # test routes
 app.router.add_post('/send', handle_data)
