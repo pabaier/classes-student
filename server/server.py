@@ -129,6 +129,9 @@ async def broadcast(request):
             logging.info(f'block verified')
             db.write(block_string)
             send_broadcast(block_string)
+        else:
+            logging.warning(f'block not verified')
+
     else:
         logging.error(f'no body in request {request}')
     return web.Response(text='ok')
