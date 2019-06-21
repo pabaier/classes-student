@@ -1,15 +1,77 @@
-This is a project for CSIS 638 on blockchain
+The program consists of a Client class, a Server module, a FileSystem class, an Indexer class, and a Crypt module. At a high level, the Client's responsibility is to interact with the server, the server responds to the client and processes transactions, the server, uses the FileSystem class, with the help of the Indexer class, to read and write data, and both the client and the server use the Crypt module to encrypt and decrypt data. The following sections will go into more detail about the responsibilities of each part of the program.
 
-The program consists of a Client class, a Server module, a FileSystem class, and a Crypt module. At a high level, the Client's responsibility is to interact with the server, the server responds to the client and processes transactions, the server uses the FileSystem class to read and write data, and both the client and the server use the Crypt module to encrypt and decrypt data. The following sections will go into more detail about the responsibilities of each part of the program.
+Client Class
 
-The Client class is initiated with a server location as a string, a public key location as a string, and a private key location as a string. The public and private keys are retrieved from the local file system upon instantiation of the client and stored in the client instance. 
+The Client class is initiated with a server address as a string, a public key local file path as a string, and a private key local file path as a string. The public and private keys are retrieved from the local file system upon instantiation of the client and stored as part of the client instance. 
 
-A client instance has a "send_transaction" method that takes a message as a string and sends it to the server with which it was instantiated. The method first encrypts the message with the client's public key using the Crypt class's encrypt method (more details about the Crypt class's methods will follow in the Crypt Class section). The encrypted message is then signed using the client's private key using the Crypt class's sign method. Next, the encrypted message is decoded into a string using the UTF-8 codec, and the signed data and public key are "pickled". This is Python's way of serializing data and allows for the data to be "un-pickled" on the other end and converted back into a python data type. Here the two pieces of data are pickled and then encoded in base64. The reason to encode it into base64 is to produce strings capable of being sent via HTTP. The data is POSTed to the client's server address using Python's "requests" module and the response is returned.
+A client instance has a "send_transaction" method that takes a message as a string and sends it to the server with which it was instantiated. The method first encrypts the message with the client's public key using the Crypt class's encrypt method (more details about the Crypt class's methods will follow in the Crypt Class section). The encrypted message is then signed with the client's private key using the Crypt class's sign method. Next, the encrypted message is decoded into a string using the UTF-8 codec, and the signed data and public key are "pickled". This is Python's way of serializing data and allows for the data to be "un-pickled" on the other end and converted back into a python data type. Here the two pieces of data are pickled and then encoded in base64. The reason to encode it into base64 is to produce strings capable of being sent via HTTP. The data is packaged into a JSON payload with keys, "encrypted_message", "signed_data", and "public_key", and POSTed in the body of the request to the client's server's "/record" endpoint using Python's "requests" module. The response from the server is returned by the method.
 
-**get_transaction**
+The get_transaction method is also part of the Client class. It takes a transaction id as a string and returns the corresponding transaction as a JSON string. It does this by sending a GET request to the server's "/record" endpoint with the transaction id as a query parameter with key "tid". The details of a transaction object will be discussed in its own section.
 
-**get_all_transactions**
+There is also a get_user_transactions method within the Client class. This method takes a pickled version of the user's public key, which is used throughout the system as a user's ID, and returns all transactions by this user. In a similar way to the get_transaction method, this method performs a GET request to the "/record/user" endpoint with the "user" query parameter defined as the given user id. The server response is returned by the method.
 
-The server module takes three optional arguments upon initialization. The first is "-port", which specifies the port on which it will run, "-rport", which is the port of an adjacent server, and "-logging", which sets the logging level for the server. The server has five endpoints: "/record", "/all", "/health", "/distribute", and "/consent". Each route will be explained below.
+Server Module
 
-The "/record" route calls the server's add method. This method converts the request string to json using Python's built in json module, then extracts each of the three fields: the encrypted message, the signed data, and the public key. The public key is required because it is used to verify the signed data. The pickled data is unpickled using Python's pickle module and then the Crypt module's verify method, which takes all three pieces of data, is used to verify the encrypted message. If verified, the pickled public key and encrypted message are written to the block chain along with a time stamp using the FileSystem module's write method. The data can then be accessed by searching for the user's pickled public key.
+The server module takes three optional command line arguments upon initialization. The first is "--port", which specifies the port on which it will run. Next is "--rport", which can take any number of additional port of adjacent servers, and "-logging", which sets the logging level for the server. The server has three endpoints: "/record", "/record/user", and "broadcast". Each route will be explained below.
+
+/record
+
+POST
+
+The "/record" route can accept GET and POST requests. In the case of a POST request, it calls the server's add method. This method converts the request string to JSON using Python's built in json module, then extracts each of the three fields: the encrypted message, the signed data, and the public key. The public key is required because it is used to verify the signed data. The pickled data is unpickled using Python's pickle module and then the Crypt module's verify method, which takes all three pieces of data, is used to verify the encrypted message.
+
+If verified, a merkle hash is generated by applying the SHA256 hashing algorithm to the encrypted message. In a typical blockchain implementation this hash comes from a merkle tree, where all of the transactions that make up a block are organized into a tree structure and, starting from the leaf nodes, pairs of transactions are hashed, and then those hashes are paired and hashed recursively all the way up to the root node. The resulting merkle root hash is included in the header of the block. In this blockchain implementation, each block contains one transaction so the merkle hash is the hashing of the encrypted message.
+
+Once generated, the merkle hash is added to the block's header along with the previous block's hash, the pickled public key representing a user, and a time stamp. There is a helper function in the server module that uses an instance of the FileSystem class to retrieve the last block's hash.  A block's hash is a SHA of the block's header and is stored as the transaction's id. So once the header is created it is hashed and added to the block's transaction object. The transaction object also contains the encrypted data.
+
+At this point we have the entire structure of a block. It has a "header" object and a "transaction" object. The header contains the "previousHash", "merkleHash", "user", and "time". The transaction object contains the "data" and an "id". Using the previous hash and merkle hash in the header, makes the blockchain secure and extremely difficult to alter (which would only be done maliciously because it is not allowed).
+
+A blockchain can potentially be tampered with by either changing a previous transaction or inserting/removing a transaction/block from the chain. In the former case, if any of the transactions are altered in any way, a different merkle hash would be produced. If the merkle hash changes then the header would change and so the block's id would change. If the id changes, then the next block's header would need to change as well because it contains the previous block's hash. This would result in the next block's id changing, and the next, etc. A similar scenario would result by trying to insert or remove a block in the chain. All subsequent blocks' header's would need to change as well. In a distributed, decentralized system that checks hashes and relies on the majority of nodes for consensus, altering so many blocks in the chain would be, for all intense and purposes, impossible.
+
+After a block is created it is stringified and passed to the FileSystem's write method to be written to file.  The send_broadcast method is then called which iterates through the server's adjacent nodes, sending the new block to each one by hitting the "/broadcast" endpoint on their respective ports. The entire process responds to the client with a status message and, if everything was successful, the new block's id.
+
+When a server receives a block it parses the contents and verifies it by first checking if the previous hash matches this node's previous hash and then checking that the id matches the hashing of the header. If both checks pass, the block is verified, written to this node's chain, and broadcast to any adjacent nodes. This process continues for all connected nodes.
+
+this process is a great way of distributing information
+
+we do not have a way for servers to catch up or correct mistakes in their chains
+
+GET
+
+When the server receives a GET request to the "/record" endpoint it calls its get method which simply extracts the transaction id from the query string and calls the FileSystem's "get_transaction" method to get the transaction with the given id. The transaction is returned to the client.
+
+/record/user
+
+GET
+
+The "/record/user" endpoint calls the "get_all" method in the Server module. Similar to the GET record path, this method extracts the user from the query string and uses the FileSystem's "get_transactions" method to get all of the transactions for the specified user. An array of stringified JSON transaction objects is returned.
+
+/broadcast
+
+POST
+
+The "/broadcast" endpoint accepts POST requests and calls the Server module's broadcast method. The details of this method are described in the POST "/record" section.
+
+FileSystem
+
+ The FileSystem class is used to read and write records to disk. The high level organization uses numbered folders and files. A folder is programmed to hold 1000 files and a file is programmed to hold 1000 records.  A record is 1.131 KB which means the maximum file size will be 1.131 MB (plus 4 bytes to store the number of records in the file). A single folder, therefore, will hold roughly 1.131 GB. An NTFS file can be a maximum 256 TiB so this system is not close to exceeding any disk limitations. 
+
+A FileSystem is instantiated with a folder field, which is the absolute path of the most recent folder in the directory represented as a string, a folder number, which is an integer value of the current folder, a file, which is the absolute path of the most recent file in the folder, a file_number, which is similar to folder_number except for file, a dir_path that is the absolute path of where the FileSystem class is on disk, and an instantiation of an Indexer, which is used to write and read indexed values.
+
+explain filesystem methods.
+
+max string 256 bytes
+
+
+
+
+
+
+
+ the pickled public key and encrypted message are written to the block chain along with a time stamp using the FileSystem module's write method. 
+
+
+
+shape of transaction payload
+
+A transaction has two top level fields, "header" and "transaction". Within header are the following fields, "previousHash", "merkleHash", "user", and "time". 
