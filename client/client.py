@@ -38,15 +38,33 @@ class Client:
         logging.info(f'getting transaction {tid}')
         response = requests.get(f'{self.server}/record', params={'tid':tid})
         logging.info(f'response from server {response}')
-        return response
+        try:
+            r = response.json()
+            s = json.loads(r['response'])
+            data = s['transaction']['data']
+            message = Crypt.decrypt(self.private_key, data)
+            return message
+        except:
+            logging.error('could not decrypt server response')
+            return ''
 
     # gets all of the transactions for a single user
     # user is the user's pickled public key (from the database)
-    def get_user_transactions(self, user):
+    def get_user_transactions(self, user=None):
+        if user is None:
+            user = Client.pickle_data(self.public_key)
         logging.info(f'getting transactions for user {user}')
         response = requests.get(f'{self.server}/record/user', params={'user':user})
         logging.info(f'response from server {response}')
-        return response
+        r = response.json()
+        s = r['response']
+        messages = []
+        for record in s:
+            record_dict = json.loads(record)
+            data = record_dict['transaction']['data']
+            message = Crypt.decrypt(self.private_key, data)
+            messages.append(message)
+        return messages
 
     @staticmethod
     def pickle_data(data):
