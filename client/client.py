@@ -47,11 +47,13 @@ class Client:
             r = response.json()
             s = json.loads(r['response'])
             data = s['transaction']['data']
+        except:
+            logging.error('could not decrypt server response')
+        try:
             message = Crypt.decrypt(self.private_key, data)
             return message
         except:
-            logging.error('could not decrypt server response')
-            return ''
+            logging.error('unauthorized')
 
     # gets all of the transactions for a single user
     # user is the user's pickled public key (from the database)
