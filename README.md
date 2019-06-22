@@ -56,3 +56,5 @@ python app.py -p 8082
 **Again, make sure you are running inside the virtual environment with all dependencies installed**
 
 The client program has instruction once it is running. It gives options to send data, get a transaction by id, get all of your transactions (based on your private key), and exit. When the client is instantiated with will check for two files, `private.key` and `public.key` in the `client/` directory. If they are found, they will be used and represent the client’s identity. If they are not found, the client will generate new ones into that directory. By changing the public and private keys in the client directory, different users can be represented.
+
+For a demo, see youtube [here](https://youtu.be/hRlPPHtm_LA)
