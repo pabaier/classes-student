@@ -38,13 +38,9 @@ class Indexer:
         d = {'folder': folder, 'file': file, 'line': line}
         block = json.loads(data)
         d['userId'] = block['header']['user']
-        header = block['header']
         d['transactionId'] = block['transaction']['id']
         self.insert_record_user(d)
         self.insert_record_transaction(d)
-
-    def getUserRecords(self, user_id):
-        pass
 
     def get_transaction(self, tid):
         self.open_connection()

@@ -59,6 +59,7 @@ class FileSystem:
             lines = self.get_number_of_lines(file)
             return FileSystem.get_line(file, lines)
 
+    # used to write data to the latest file
     def write(self, data):
         with open(self.file, "r+") as file:
             contents = file.readlines()
@@ -70,7 +71,7 @@ class FileSystem:
             file.writelines(data + '\n')
             self.indexer.add(data, self.folder_number, self.file_number, lines + 1)
             # make new file after 1000th line (write 1000 lines per file)
-            if lines + 1 >= 1000:
+            if lines >= 1000:
                 self.make_new_file()
 
     def make_new_file(self):
