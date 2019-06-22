@@ -8,8 +8,13 @@ from crypto import Crypt
 
 class Client:
     def __init__(self, server, public_key=None, private_key=None):
-        self.public_key = Crypt.get_key(public_key)
-        self.private_key = Crypt.get_key(private_key)
+        try:
+            self.public_key = Crypt.get_key(public_key)
+            self.private_key = Crypt.get_key(private_key)
+        except:
+            Crypt.create_keys()
+            self.public_key = Crypt.get_key(public_key)
+            self.private_key = Crypt.get_key(private_key)
         self.server = server
 
     # message should be a string. it is encrypted and POSTed as JSON
@@ -62,7 +67,9 @@ class Client:
         for record in s:
             record_dict = json.loads(record)
             data = record_dict['transaction']['data']
+            id = record_dict['transaction']['id']
             message = Crypt.decrypt(self.private_key, data)
+            message = f'{message}\n{id}'
             messages.append(message)
         return messages
 
