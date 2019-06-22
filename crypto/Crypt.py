@@ -60,11 +60,11 @@ def get_key(filename):
 def create_keys():
     key = RSA.generate(2048)
     private_key = key.exportKey('PEM')
-    with open("private.key", 'wb') as file:
+    with open("client/private.key", 'wb') as file:
         # chmod("private.key", 600)
         file.write(private_key)
     public_key = key.publickey().exportKey(format='PEM')
-    with open("public.key", 'wb') as file:
+    with open("client/public.key", 'wb') as file:
         file.write(public_key)
 
 
