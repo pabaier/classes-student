@@ -3,7 +3,7 @@
 
 import argparse
 import statistics
-from btree import BTree
+from BTree import BTree
 from timeit import default_timer as timer
 
 def loadTree(tree, file):
