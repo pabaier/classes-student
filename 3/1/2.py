@@ -1,4 +1,6 @@
 import copy
+import operator
+
 ENGLISH_LETTER_FREQUENCIES = {
 	'a':0.080, 
 	'b':0.015, 
@@ -50,16 +52,50 @@ def main():
 			letterFrequencyPercentages[entry][letter] /= total 
 
 	# cycle through percentages to see which shift is most likely
-	# for i in range(0, 25): # i is the shift
+	a = getShiftValue(letterFrequencyPercentages[0])
+	b = getShiftValue(letterFrequencyPercentages[1])
+	c = getShiftValue(letterFrequencyPercentages[2])
+	d = getShiftValue(letterFrequencyPercentages[3])
+	e = getShiftValue(letterFrequencyPercentages[4])
 
-	a = list(letterFrequencies[0].keys())
-	letterFrequencies[0].pop(a[0])
+	shiftValues = [a,b,c,d,e]
+	print(decipherMessage(message, shiftValues))
 
-	printDict(letterFrequencies)
+def decipherMessage(message, key):
+	decipheredMessage = ''
+	i = 0
+	for letter in message:
+		decipheredMessage += getLetterShift(letter, key[i])
+		i += 1
+		i %= len(key)
+	return decipheredMessage
+
+def getShiftValue(row):
+	shiftTotals = {}
+	for i in range(0, 26): # i is the shift
+		total = 0
+		for letter in row:
+			shiftedLetter = getLetterShift(letter, i)
+			value = ENGLISH_LETTER_FREQUENCIES[shiftedLetter]
+			total += value * row[letter]
+		shiftTotals[i] = total
+	
+	return getMax(shiftTotals)
+
+def getMax(shiftTotals):
+	return max(shiftTotals.items(), key=operator.itemgetter(1))[0]
+
+def getLetterShift(letter, shift):
+	letterValue = ord(letter)
+	newLetterValue = letterValue + shift
+	if newLetterValue > 122:
+		newLetterValue = 97 + (newLetterValue - 122) - 1
+	return chr(newLetterValue)
 
 def printDict(dicti):
 	for row in dicti:
-		print(dicti[row])
+		print(str(row) + ": " + str(dicti[row]))
 
 if __name__ == "__main__":
 	main()
+
