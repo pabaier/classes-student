@@ -33,33 +33,21 @@ ENGLISH_LETTER_FREQUENCIES = {
 def main():
 	message = "TSMVM MPPCW CZUGX HPECP RFAUE IOBQW PPIMS FXIPC TSQPK SZNUL OPACR DDPKT SLVFW ELTKR GHIZS FNIDF ARMUE NOSKR GDIPH WSGVL EDMCM SMWKP IYOJS TLVFA HPBJI RAQIW HLDGA IYOUX".lower().replace(" ", "")
 
-	# get frequency of each letter in each position (positions are 1-5 because we know the key length is 5)
-	letterFrequencies = {0: {}, 1:{}, 2:{}, 3:{}, 4:{}}
-	for i in range(0,len(message)):
-		letterIndex = i%5
-		letter = message[i]
-		if letter in letterFrequencies[letterIndex]:
-			letterFrequencies[letterIndex][letter] += 1
-		else:
-			letterFrequencies[letterIndex][letter] = 1
+	# get frequency of each letter with a period of 5 (produces a dict of {0:{'a':3, 'b':1}, 1{'a':2, 'b':4}, ...} )
+	letterFrequencies = getLetterFrequencies(message)
+	
+	letterFrequencyPercentages = getLetterFrequencyPercentages(letterFrequencies)
+	keys = getKeys(letterFrequencyPercentages)
 
-	letterFrequencyPercentages = copy.deepcopy(letterFrequencies)
+	decipheredMessage = decipherMessage(message, keys)
 
-	# get frequency percentages
-	total = len(message)/5 # 28
-	for entry in letterFrequencies:
-		for letter in letterFrequencies[entry]:
-			letterFrequencyPercentages[entry][letter] /= total 
+	print(decipheredMessage)
 
-	# cycle through percentages to see which shift is most likely
-	a = getShiftValue(letterFrequencyPercentages[0])
-	b = getShiftValue(letterFrequencyPercentages[1])
-	c = getShiftValue(letterFrequencyPercentages[2])
-	d = getShiftValue(letterFrequencyPercentages[3])
-	e = getShiftValue(letterFrequencyPercentages[4])
-
-	shiftValues = [a,b,c,d,e]
-	print(decipherMessage(message, shiftValues))
+def getKeys(letterFrequencyPercentages):
+	keys = []
+	for row in letterFrequencyPercentages:
+		keys.append(getShiftValue(letterFrequencyPercentages[row]))
+	return keys
 
 def decipherMessage(message, key):
 	decipheredMessage = ''
@@ -74,6 +62,7 @@ def getShiftValue(row):
 	shiftTotals = {}
 	for i in range(0, 26): # i is the shift
 		total = 0
+		# shift every letter in the row and sum the probabilities for the entire row
 		for letter in row:
 			shiftedLetter = getLetterShift(letter, i)
 			value = ENGLISH_LETTER_FREQUENCIES[shiftedLetter]
@@ -91,6 +80,32 @@ def getLetterShift(letter, shift):
 	if newLetterValue > 122:
 		newLetterValue = 97 + (newLetterValue - 122) - 1
 	return chr(newLetterValue)
+
+def getLetterFrequencies(message, period=5):
+	letterFrequencies = {}
+	for i in range(0,period):
+		letterFrequencies[i] = {}
+	for i in range(0,len(message)):
+		letterIndex = i%period
+		letter = message[i]
+		if letter in letterFrequencies[letterIndex]:
+			letterFrequencies[letterIndex][letter] += 1
+		else:
+			letterFrequencies[letterIndex][letter] = 1
+	return letterFrequencies
+
+def getLetterFrequencyPercentages(letterFrequencies):
+	letterFrequencyPercentages = {}
+	for row in letterFrequencies:
+		letterFrequencyPercentages[row] = {}
+		total = 0
+		for letter in letterFrequencies[row]:
+			total += letterFrequencies[row][letter]
+			letterFrequencyPercentages[row][letter] = {}
+		for letter in letterFrequencies[row]:
+			letterFrequencyPercentages[row][letter] = letterFrequencies[row][letter]/total
+	
+	return letterFrequencyPercentages
 
 def printDict(dicti):
 	for row in dicti:
