@@ -34,7 +34,7 @@ def main():
 		'v': 'L', 
 		'w': 'D', 
 		'x': 'F', 
-		'y': 'Y', 
+		'y': 'X', 
 		'z': 'C'
 	}
 	monogramCount = getNGramCount(1, message)
