@@ -6,22 +6,26 @@
 #include<string.h>
 #include<stdlib.h>
 
-#define SERVER_PORT 7777
+// #define SERVER_PORT 7777
 #define MAX_LINE 256
 #define MAX_PENDING 5
+#define MAXNAME 256
 
 int main(int argc, char* argv[])
 {
-	
-
 	struct sockaddr_in sin;
 	struct sockaddr_in clientAddr;
 	char buf[MAX_LINE];
 	int s, new_s;
 	int len;
+	int SERVER_PORT;
 
-
-	
+	if(argc == 2){
+		SERVER_PORT = atoi(argv[1]);
+	}
+	else{
+		SERVER_PORT = 7777;
+	}	
 
 	/* setup passive open */
 	if((s = socket(PF_INET, SOCK_STREAM, 0)) < 0){
