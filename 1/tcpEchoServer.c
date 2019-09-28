@@ -11,6 +11,14 @@
 #define MAX_PENDING 5
 #define MAXNAME 256
 
+/* structure of the packet */
+struct packet{
+	short type;
+	char uName[MAXNAME];
+	char mName[MAXNAME];
+	char data[MAXNAME];
+};
+
 int main(int argc, char* argv[])
 {
 	struct sockaddr_in sin;
@@ -18,6 +26,7 @@ int main(int argc, char* argv[])
 	char buf[MAX_LINE];
 	int s, new_s;
 	int len;
+	struct packet packet_reg;
 	int SERVER_PORT;
 
 	if(argc == 2){
@@ -33,13 +42,11 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
-
 	/* build address data structure */
 	bzero((char*)&sin, sizeof(sin));
 	sin.sin_family = AF_INET;
 	sin.sin_addr.s_addr = INADDR_ANY;
 	sin.sin_port = htons(SERVER_PORT);
-
 
 	if(bind(s,(struct sockaddr *)&sin, sizeof(sin)) < 0){
 		perror("tcpclient: bind");
@@ -59,6 +66,5 @@ int main(int argc, char* argv[])
 		while(len = recv(new_s, buf, sizeof(buf), 0))
 			fputs(buf, stdout);
 		close(new_s);
-
 	}
 }

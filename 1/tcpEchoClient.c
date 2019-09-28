@@ -10,6 +10,13 @@
 #define MAX_LINE 256
 #define MAXNAME 256
 
+/* structure of the packet */
+struct packet{
+	short type;
+	char uName[MAXNAME];
+	char mName[MAXNAME];
+	char data[MAXNAME];
+};
 
 int main(int argc, char* argv[])
 {
@@ -19,6 +26,7 @@ int main(int argc, char* argv[])
 	char buf[MAX_LINE];
 	int s;
 	int len;
+	struct packet packet_reg;
 	int SERVER_PORT;
 
 	if(argc == 3){
@@ -58,7 +66,6 @@ int main(int argc, char* argv[])
 		close(s);
 		exit(1);
 	}
-
 
 	/* main loop: get and send lines of text */
 	while(fgets(buf, sizeof(buf), stdin)){
