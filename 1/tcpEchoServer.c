@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 	int s, new_s;
 	int len;
 	struct packet packet_reg;
-	int SERVER_PORT;
+	short SERVER_PORT;
 
 	if(argc == 2){
 		SERVER_PORT = atoi(argv[1]);
