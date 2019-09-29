@@ -28,6 +28,8 @@ int main(int argc, char* argv[])
 	int len;
 	struct packet packet_reg;
 	struct packet packet_reg_confirm;
+	struct packet packet_chat;
+	struct packet packet_chat_response;
 	short SERVER_PORT = 7777;
 
 	if(argc == 3){
@@ -94,11 +96,32 @@ int main(int argc, char* argv[])
 		while(fgets(buf, sizeof(buf), stdin)){
 			buf[MAX_LINE-1] = '\0';
 			len = strlen(buf) + 1;
-			send(s, buf, len, 0);
+			packet_chat.type = htons(131);
+			strcpy(packet_chat.uName, userName);
+			strcpy(packet_chat.mName, host);
+			strcpy(packet_chat.data, buf);
+			/* Send the chat packet to the server */
+			if(send(s, &packet_chat,sizeof(packet_chat),0) < 0)
+			{
+				printf("\n Send Failed \n");
+				exit(1);
+			}
+			/* Get chat response */
+			if(recv(s, &packet_chat_response,sizeof(packet_chat_response),0) < 0)
+			{
+				printf("\n Did not receive chat response \n");
+				exit(1);
+			}
+			else if (ntohs(packet_chat_response.type) != 231){
+				printf("\n Bad chat response code %d \n", ntohs(packet_chat_response.type));
+				exit(1);
+			}
+			printf("\n Chat response for message %s \n", packet_chat_response.data);
 		}
 	}
 	else{
 		printf("\n Could not confirm registration \n");
+		exit(1);
 	}
 
 }

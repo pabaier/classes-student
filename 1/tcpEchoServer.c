@@ -36,6 +36,8 @@ int main(int argc, char* argv[])
 	int len, index=0;
 	struct packet packet_reg;
 	struct packet packet_reg_confirm;
+	struct packet packet_chat;
+	struct packet packet_chat_response;
 	struct registrationTable table[10];
 	short SERVER_PORT;
 
@@ -109,14 +111,33 @@ int main(int argc, char* argv[])
 				printf("\n Sent Confirmation Packet\n");
 			}
 		}
+		/* not valid registration packet */
 		else
 		{
+			packet_reg_confirm.type = htons(1);
+			if(send(new_s, &packet_reg_confirm,sizeof(packet_reg_confirm),0) < 0)	
+			{
+				printf("\n Send failed\n");
+				exit(1);
+			}
 			printf("\n %d is not a recognized command \n", ntohs(packet_reg.type)); 
 		}
 
-		while(len = recv(new_s, buf, sizeof(buf), 0))
-			printf("%s: %s\n", table[index-1].uName, buf);
-			// fputs(buf, stdout);
+		while(len = recv(new_s, &packet_chat,sizeof(packet_chat),0))
+		{
+			printf("%s: %s\n", table[index-1].uName, packet_chat.data);
+			/* Build and Send the chat response packet to the client */
+			packet_chat_response.type = htons(231);
+			strcpy(packet_chat_response.uName, packet_chat.uName);
+			strcpy(packet_chat_response.mName, packet_chat.mName);
+			strcpy(packet_chat_response.data, packet_chat.data);
+			if(send(new_s, &packet_chat_response,sizeof(packet_chat_response),0) < 0)
+			{
+				printf("\n Send Failed \n");
+				exit(1);
+			}
+			printf("sending response %d\n", ntohs(packet_chat_response.type));
+		}
 		close(new_s);
 	}
 }
