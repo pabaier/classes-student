@@ -19,6 +19,14 @@ struct packet{
 	char data[MAXNAME];
 };
 
+/* structure of Registration Table */
+struct registrationTable{
+int port;
+int sockid;
+char mName[MAXNAME];
+char uName[MAXNAME];
+};
+
 int main(int argc, char* argv[])
 {
 	struct sockaddr_in sin;
@@ -27,6 +35,7 @@ int main(int argc, char* argv[])
 	int s, new_s;
 	int len;
 	struct packet packet_reg;
+	struct registrationTable table[10];
 	short SERVER_PORT;
 
 	if(argc == 2){
