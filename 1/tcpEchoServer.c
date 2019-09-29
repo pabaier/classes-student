@@ -35,6 +35,7 @@ int main(int argc, char* argv[])
 	int s, new_s;
 	int len;
 	struct packet packet_reg;
+	struct packet packet_reg_confirm;
 	struct registrationTable table[10];
 	short SERVER_PORT;
 
@@ -74,16 +75,32 @@ int main(int argc, char* argv[])
 
 		printf("\n Client's port is %d \n", ntohs(clientAddr.sin_port)); 
 
+		/* Get registration packet */
 		if(recv(new_s, &packet_reg,sizeof(packet_reg),0) < 0)
 		{
 			printf("\n Could not receive first registration packet \n");
 			exit(1);
 		}
+		/* if valid registration packet */
 		else if(ntohs(packet_reg.type) == 121)
 		{
 			printf("\n Client's info is %d", ntohs(packet_reg.type));
 			printf("\n %s", packet_reg.uName); 
-			printf("\n %s\n", packet_reg.mName); 
+			printf("\n %s\n", packet_reg.mName);
+
+			/* build and send confirmation packet */
+			packet_reg_confirm.type = htons(221);
+			strcpy(packet_reg_confirm.uName, packet_reg.uName);
+			strcpy(packet_reg_confirm.mName, packet_reg.mName);
+			if(send(new_s, &packet_reg_confirm,sizeof(packet_reg_confirm),0) < 0)	
+			{
+				printf("\n Send failed\n");
+				exit(1);
+			}
+			else
+			{
+				printf("\n Sent Confirmation Packet\n");
+			}
 		}
 		else
 		{

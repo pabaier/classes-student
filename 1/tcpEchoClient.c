@@ -27,6 +27,7 @@ int main(int argc, char* argv[])
 	int s;
 	int len;
 	struct packet packet_reg;
+	struct packet packet_reg_confirm;
 	short SERVER_PORT;
 
 	if(argc == 3){
@@ -78,11 +79,25 @@ int main(int argc, char* argv[])
 		printf("\n Send failed\n");
 		exit(1);
 	}
-
-	/* main loop: get and send lines of text */
-	while(fgets(buf, sizeof(buf), stdin)){
-		buf[MAX_LINE-1] = '\0';
-		len = strlen(buf) + 1;
-		send(s, buf, len, 0);
+	/* Get registration response */
+	if(recv(s, &packet_reg_confirm,sizeof(packet_reg_confirm),0) < 0)
+	{
+		printf("\n Did not receive registration confirmation packet \n");
+		exit(1);
 	}
+	/* if valid registration confirmation packet */
+	else if(ntohs(packet_reg_confirm.type) == 221)
+	{
+		printf("\n Registration Confirmed! \n");
+		/* main loop: get and send lines of text */
+		while(fgets(buf, sizeof(buf), stdin)){
+			buf[MAX_LINE-1] = '\0';
+			len = strlen(buf) + 1;
+			send(s, buf, len, 0);
+		}
+	}
+	else{
+		printf("\n Could not confirm registration \n");
+	}
+
 }
