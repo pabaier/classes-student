@@ -22,17 +22,18 @@ int main(int argc, char* argv[])
 {
 	struct hostent *hp;
 	struct sockaddr_in sin;
-	char *host;
+	char *host, *userName;
 	char buf[MAX_LINE];
 	int s;
 	int len;
 	struct packet packet_reg;
 	struct packet packet_reg_confirm;
-	short SERVER_PORT;
+	short SERVER_PORT = 7777;
 
 	if(argc == 3){
 		host = argv[1];
-		SERVER_PORT = atoi(argv[2]);
+		userName = argv[2];
+		// SERVER_PORT = atoi(argv[2]);
 	}
 	else if(argc == 2){
 		host = argv[1];
@@ -70,7 +71,7 @@ int main(int argc, char* argv[])
 
 	/* Constructing the registration packet at client */
 	packet_reg.type = htons(121);
-	strcpy(packet_reg.uName, "steve");
+	strcpy(packet_reg.uName, userName);
 	strcpy(packet_reg.mName, host);
 
 	/* Send the registration packet to the server */

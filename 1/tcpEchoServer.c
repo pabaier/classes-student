@@ -115,7 +115,7 @@ int main(int argc, char* argv[])
 		}
 
 		while(len = recv(new_s, buf, sizeof(buf), 0))
-			printf("%s: %s\n", table[0].uName, buf);
+			printf("%s: %s\n", table[index-1].uName, buf);
 			// fputs(buf, stdout);
 		close(new_s);
 	}
