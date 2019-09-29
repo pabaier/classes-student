@@ -67,6 +67,18 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
+	/* Constructing the registration packet at client */
+	packet_reg.type = htons(121);
+	strcpy(packet_reg.uName, "steve");
+	strcpy(packet_reg.mName, host);
+
+	/* Send the registration packet to the server */
+	if(send(s, &packet_reg,sizeof(packet_reg),0) < 0)	
+	{
+		printf("\n Send failed\n");
+		exit(1);
+	}
+
 	/* main loop: get and send lines of text */
 	while(fgets(buf, sizeof(buf), stdin)){
 		buf[MAX_LINE-1] = '\0';

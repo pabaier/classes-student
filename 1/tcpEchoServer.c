@@ -54,6 +54,8 @@ int main(int argc, char* argv[])
 	}
 	listen(s, MAX_PENDING);
 
+	len = sizeof(struct sockaddr_in);
+
 	/* wait for connection, then receive and print text */
 	while(1){
 		if((new_s = accept(s, (struct sockaddr *)&clientAddr, &len)) < 0){
@@ -62,6 +64,22 @@ int main(int argc, char* argv[])
 		}
 
 		printf("\n Client's port is %d \n", ntohs(clientAddr.sin_port)); 
+
+		if(recv(new_s, &packet_reg,sizeof(packet_reg),0) < 0)
+		{
+			printf("\n Could not receive first registration packet \n");
+			exit(1);
+		}
+		else if(ntohs(packet_reg.type) == 121)
+		{
+			printf("\n Client's info is %d", ntohs(packet_reg.type));
+			printf("\n %s", packet_reg.uName); 
+			printf("\n %s\n", packet_reg.mName); 
+		}
+		else
+		{
+			printf("\n %d is not a recognized command \n", ntohs(packet_reg.type)); 
+		}
 
 		while(len = recv(new_s, buf, sizeof(buf), 0))
 			fputs(buf, stdout);
