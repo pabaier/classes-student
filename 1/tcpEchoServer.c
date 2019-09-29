@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 	struct sockaddr_in clientAddr;
 	char buf[MAX_LINE];
 	int s, new_s;
-	int len;
+	int len, index=0;
 	struct packet packet_reg;
 	struct packet packet_reg_confirm;
 	struct registrationTable table[10];
@@ -88,6 +88,13 @@ int main(int argc, char* argv[])
 			printf("\n %s", packet_reg.uName); 
 			printf("\n %s\n", packet_reg.mName);
 
+			/* register client */
+			table[index].port = clientAddr.sin_port;
+			table[index].sockid = new_s;
+			strcpy(table[index].uName, packet_reg.uName);
+			strcpy(table[index].mName, packet_reg.mName);
+			index++;
+
 			/* build and send confirmation packet */
 			packet_reg_confirm.type = htons(221);
 			strcpy(packet_reg_confirm.uName, packet_reg.uName);
@@ -108,7 +115,8 @@ int main(int argc, char* argv[])
 		}
 
 		while(len = recv(new_s, buf, sizeof(buf), 0))
-			fputs(buf, stdout);
+			printf("%s: %s\n", table[0].uName, buf);
+			// fputs(buf, stdout);
 		close(new_s);
 	}
 }
