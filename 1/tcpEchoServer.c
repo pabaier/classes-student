@@ -5,6 +5,7 @@
 #include<netdb.h>
 #include<string.h>
 #include<stdlib.h>
+#include <unistd.h> 
 
 // #define SERVER_PORT 7777
 #define MAX_LINE 256
@@ -41,6 +42,11 @@ int main(int argc, char* argv[])
 	struct registrationTable table[10];
 	short SERVER_PORT;
 
+	/*
+		The following grabs the command line arguments.
+		It will take a port number as a parameter otherwise
+		the port number will default to 7777.
+	*/
 	if(argc == 2){
 		SERVER_PORT = atoi(argv[1]);
 	}
@@ -77,27 +83,41 @@ int main(int argc, char* argv[])
 
 		printf("\n Client's port is %d \n", ntohs(clientAddr.sin_port)); 
 
-		/* Get registration packet */
+		/*
+			Get registration packet
+			After establishing a connection, the client must register with
+			the server.
+		*/
 		if(recv(new_s, &packet_reg,sizeof(packet_reg),0) < 0)
 		{
 			printf("\n Could not receive first registration packet \n");
 			exit(1);
 		}
-		/* if valid registration packet */
+		/*
+			if valid registration packet
+			This checks to make sure the registration packet code is 121.
+			If it is, register the client in the registration table and
+			send the registration confirmation to the client
+		*/
 		else if(ntohs(packet_reg.type) == 121)
 		{
 			printf("\n Client's info is %d", ntohs(packet_reg.type));
 			printf("\n %s", packet_reg.uName); 
 			printf("\n %s\n", packet_reg.mName);
 
-			/* register client */
+			/* register client in the registration table */
 			table[index].port = clientAddr.sin_port;
 			table[index].sockid = new_s;
 			strcpy(table[index].uName, packet_reg.uName);
 			strcpy(table[index].mName, packet_reg.mName);
 			index++;
 
-			/* build and send confirmation packet */
+			/*
+				build and send confirmation packet
+				the confirmation packet code is 221.
+				this code is returned to the client along with the
+				information the originally sent.
+			*/
 			packet_reg_confirm.type = htons(221);
 			strcpy(packet_reg_confirm.uName, packet_reg.uName);
 			strcpy(packet_reg_confirm.mName, packet_reg.mName);
@@ -111,7 +131,12 @@ int main(int argc, char* argv[])
 				printf("\n Sent Confirmation Packet\n");
 			}
 		}
-		/* not valid registration packet */
+		/*
+			not valid registration packet
+			if the registration packet code is not 121, send a packet back
+			to the client with a code other than 221, which indicates to the
+			client that there was a problem with their registration.
+		*/
 		else
 		{
 			packet_reg_confirm.type = htons(1);
@@ -123,10 +148,18 @@ int main(int argc, char* argv[])
 			printf("\n %d is not a recognized command \n", ntohs(packet_reg.type)); 
 		}
 
+		/*
+			loop and continue to receive chat packets from the client.
+			valid chat packets have code 131
+		*/
 		while(len = recv(new_s, &packet_chat,sizeof(packet_chat),0))
 		{
 			printf("%s: %s\n", table[index-1].uName, packet_chat.data);
-			/* Build and Send the chat response packet to the client */
+			/*
+				Build and Send the chat response packet to the client.
+				chat reponse packets contain code 231 along with all of the
+				information contained in the client's chat packet.
+			*/
 			packet_chat_response.type = htons(231);
 			strcpy(packet_chat_response.uName, packet_chat.uName);
 			strcpy(packet_chat_response.mName, packet_chat.mName);

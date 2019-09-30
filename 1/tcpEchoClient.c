@@ -5,6 +5,7 @@
 #include<netdb.h>
 #include<string.h>
 #include<stdlib.h>
+#include <unistd.h> 
 
 // #define SERVER_PORT 7777
 #define MAX_LINE 256
@@ -23,26 +24,35 @@ int main(int argc, char* argv[])
 	struct hostent *hp;
 	struct sockaddr_in sin;
 	char *host, *userName;
+	char computerName[MAXNAME];
 	char buf[MAX_LINE];
 	int s;
-	int len;
 	struct packet packet_reg;
 	struct packet packet_reg_confirm;
 	struct packet packet_chat;
 	struct packet packet_chat_response;
 	short SERVER_PORT = 7777;
 
+	/*
+		The following grabs the command line arguments.
+		Besides the name of the program,
+		if there are 2 arguments, the host will be the first one,
+		and the user name will be the second one.
+		if there is only 1 argument, the host will be 'localhost'
+		and the username will be the argument.
+		if there are no arguments, the program will exit.
+	*/
 	if(argc == 3){
 		host = argv[1];
 		userName = argv[2];
 		// SERVER_PORT = atoi(argv[2]);
 	}
 	else if(argc == 2){
-		host = argv[1];
-		SERVER_PORT = 7777;
+		host = "localhost";
+		userName = argv[1];
 	}
 	else{
-		fprintf(stderr, "usage:newclient server\n");
+		fprintf(stderr, "usage:newclient username\n");
 		exit(1);
 	}
 
@@ -52,6 +62,7 @@ int main(int argc, char* argv[])
 		fprintf(stderr, "unkown host: %s\n", host);
 		exit(1);
 	}
+	gethostname(computerName, sizeof(computerName));
 
 	/* active open */
 	if((s = socket(PF_INET, SOCK_STREAM, 0)) < 0){
@@ -71,42 +82,66 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
-	/* Constructing the registration packet at client */
+	/* 
+		Constructing the registration packet at client.
+		This is the first packet sent and includes the code '121'
+		which indicates it is a registration packet.		
+	*/
 	packet_reg.type = htons(121);
 	strcpy(packet_reg.uName, userName);
-	strcpy(packet_reg.mName, host);
+	strcpy(packet_reg.mName, computerName);
 
-	/* Send the registration packet to the server */
+	/*
+		Send the registration packet to the server.
+		If it fails to send, the program exits.
+	*/
 	if(send(s, &packet_reg,sizeof(packet_reg),0) < 0)	
 	{
 		printf("\n Send failed\n");
 		exit(1);
 	}
-	/* Get registration response */
+	/*
+		Get registration response.
+		After the server receives our registration it lets us know
+		by sending back a confirmation message with code '221'.
+	*/
 	if(recv(s, &packet_reg_confirm,sizeof(packet_reg_confirm),0) < 0)
 	{
 		printf("\n Did not receive registration confirmation packet \n");
 		exit(1);
 	}
-	/* if valid registration confirmation packet */
+	/*
+		if the registration confirmation packet is the correct code
+		then we continue into the chat and can send chat messages.
+	*/
 	else if(ntohs(packet_reg_confirm.type) == 221)
 	{
 		printf("\n Registration Confirmed! \n");
-		/* main loop: get and send lines of text */
+		/*main loop: get and send lines of text */
 		while(fgets(buf, sizeof(buf), stdin)){
 			buf[MAX_LINE-1] = '\0';
-			len = strlen(buf) + 1;
+			/*
+				Constructing the chat packet.
+				This is the packet that will contain the chat message
+				It uses the code '131' indicating it is a chat message.
+			*/
 			packet_chat.type = htons(131);
 			strcpy(packet_chat.uName, userName);
-			strcpy(packet_chat.mName, host);
+			strcpy(packet_chat.mName, computerName);
 			strcpy(packet_chat.data, buf);
-			/* Send the chat packet to the server */
+			/*
+				Send the chat packet to the server 
+			*/
 			if(send(s, &packet_chat,sizeof(packet_chat),0) < 0)
 			{
 				printf("\n Send Failed \n");
 				exit(1);
 			}
-			/* Get chat response */
+			/*
+				After the server receives the chat packet
+				it sends a chat response with code 231.
+				If the response code is not 231, we exit the program.
+			*/
 			if(recv(s, &packet_chat_response,sizeof(packet_chat_response),0) < 0)
 			{
 				printf("\n Did not receive chat response \n");
@@ -119,6 +154,10 @@ int main(int argc, char* argv[])
 			printf("\n Chat response for message %s \n", packet_chat_response.data);
 		}
 	}
+	/*
+		if the registration confirmation code is not 221
+		we exit the program
+	*/
 	else{
 		printf("\n Could not confirm registration \n");
 		exit(1);
