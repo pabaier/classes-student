@@ -154,16 +154,34 @@ int main(int argc, char* argv[])
 		*/
 		while(len = recv(new_s, &packet_chat,sizeof(packet_chat),0))
 		{
-			printf("%s: %s\n", table[index-1].uName, packet_chat.data);
 			/*
-				Build and Send the chat response packet to the client.
-				chat reponse packets contain code 231 along with all of the
-				information contained in the client's chat packet.
+				Check the chat packet type. If it is not 131,
+				Send a response type of 1, indicating an error.
 			*/
-			packet_chat_response.type = htons(231);
-			strcpy(packet_chat_response.uName, packet_chat.uName);
-			strcpy(packet_chat_response.mName, packet_chat.mName);
-			strcpy(packet_chat_response.data, packet_chat.data);
+			if(ntohs(packet_chat.type) != 131)
+			{
+				packet_chat_response.type = htons(1);
+				printf("\n Chat Packet type not recognized");
+			}
+			/*
+				If the chat packet type is 131, continue to print the chat
+				message and respond with the successful code 231
+			*/
+			else{
+				printf("%s: %s\n", table[index-1].uName, packet_chat.data);
+				/*
+					Build the chat response packet to the client.
+					chat reponse packets contain code 231 along with all of the
+					information contained in the client's chat packet.
+				*/
+				packet_chat_response.type = htons(231);
+				strcpy(packet_chat_response.uName, packet_chat.uName);
+				strcpy(packet_chat_response.mName, packet_chat.mName);
+				strcpy(packet_chat_response.data, packet_chat.data);
+			}
+			/*
+				Send the chat response packet back to the client.
+			*/
 			if(send(new_s, &packet_chat_response,sizeof(packet_chat_response),0) < 0)
 			{
 				printf("\n Send Failed \n");
