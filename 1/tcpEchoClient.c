@@ -6,6 +6,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 // #define SERVER_PORT 7777
 #define MAX_LINE 256
@@ -18,6 +19,20 @@ struct packet {
     char mName[MAXNAME];
     char data[MAXNAME];
 };
+
+/* helper method used to print packet information */
+static void printPacket(char *operation, struct packet p, bool isNtoHS) {
+    printf("\n %s:\n", operation);
+    short t;
+    if (isNtoHS)
+        t = ntohs(p.type);
+    else
+        t = htons(p.type);
+    printf("\tType: %d\n", t);
+    printf("\tUserName: %s\n", p.uName);
+    printf("\tMachineName: %s\n", p.mName);
+    printf("\tData: %s\n", p.data);
+}
 
 int main(int argc, char *argv[]) {
     struct hostent *hp;
@@ -96,7 +111,7 @@ int main(int argc, char *argv[]) {
         printf("\n Send failed\n");
         exit(1);
     } else {
-        printf("\n Sent registation request. Code: %d\n", ntohs(packet_reg.type));
+        printPacket("Registration Packet Sent", packet_reg, true);
     }
     /*
         Get registration response.
@@ -113,12 +128,14 @@ int main(int argc, char *argv[]) {
         */
 
     else if (ntohs(packet_reg_confirm.type) == 221) {
-        printf("\n Registration Confirmed! \n");
+        printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
         /*main loop: get and send lines of text */
-        printf("\n Send server a message: ");
+        printf("\n------------------------------------");
+        printf("\nSend server a message: ");
 
         while (fgets(buf, sizeof(buf), stdin)) {
             buf[MAX_LINE - 1] = '\0';
+            printf("------------------------------------");
             /*
                 Constructing the chat packet.
                 This is the packet that will contain the chat message
@@ -133,8 +150,10 @@ int main(int argc, char *argv[]) {
                 Send the chat packet to the server
             */
             if (send(s, &packet_chat, sizeof(packet_chat), 0) < 0) {
-                printf("\n Send Failed \n");
+                printf("\nSend Failed \n");
                 exit(1);
+            } else {
+                printPacket("Chat Packet Sent", packet_chat, true);
             }
             /*
                 After the server receives the chat packet
@@ -145,11 +164,12 @@ int main(int argc, char *argv[]) {
                 printf("\n Did not receive chat response \n");
                 exit(1);
             } else if (ntohs(packet_chat_response.type) != 231) {
-                printf("\n Bad chat response code %d \n", ntohs(packet_chat_response.type));
+                printPacket("Chat Response Packet Received", packet_chat_response, false);
                 exit(1);
             }
-            printf("\n Chat response for message %s \n", packet_chat_response.data);
-            printf("\n Send server a message: ");
+            printPacket("Chat Response Packet Received", packet_chat_response, false);
+            printf("\n------------------------------------");
+            printf("\nSend server a message: ");
         }
     }
         /*
@@ -157,7 +177,7 @@ int main(int argc, char *argv[]) {
             we exit the program
         */
     else {
-        printf("\n Could not confirm registration \n");
+        printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
         exit(1);
     }
 
