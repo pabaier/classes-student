@@ -165,6 +165,7 @@ int main(int argc, char *argv[]) {
                 exit(1);
             } else if (ntohs(packet_chat_response.type) != 231) {
                 printPacket("Chat Response Packet Received", packet_chat_response, false);
+                printf("\nError Received. Exiting \n");
                 exit(1);
             }
             printPacket("Chat Response Packet Received", packet_chat_response, false);
@@ -178,6 +179,7 @@ int main(int argc, char *argv[]) {
         */
     else {
         printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
+        printf("\nError Received. Exiting \n");
         exit(1);
     }
 
