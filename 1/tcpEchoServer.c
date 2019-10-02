@@ -6,6 +6,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 // #define SERVER_PORT 7777
 #define MAX_LINE 256
@@ -27,6 +28,20 @@ struct registrationTable {
     char mName[MAXNAME];
     char uName[MAXNAME];
 };
+
+/* helper method used to print packet information */
+static void printPacket(char *operation, struct packet p, bool isNtoHS) {
+    printf("\n %s:\n", operation);
+    short t;
+    if (isNtoHS)
+        t = ntohs(p.type);
+    else
+        t = htons(p.type);
+    printf("\tType: %d\n", t);
+    printf("\tUserName: %s\n", p.uName);
+    printf("\tMachineName: %s\n", p.mName);
+    printf("\tData: %s\n", p.data);
+}
 
 int main(int argc, char *argv[]) {
     struct sockaddr_in sin;
@@ -89,8 +104,6 @@ int main(int argc, char *argv[]) {
         if (recv(new_s, &packet_reg, sizeof(packet_reg), 0) < 0) {
             printf("\n Could not receive first registration packet \n");
             exit(1);
-        } else {
-            printf("\n Registration packet received: %d\n", ntohs(packet_reg.type));
         }
         /*
             if valid registration packet
@@ -98,10 +111,8 @@ int main(int argc, char *argv[]) {
             If it is, register the client in the registration table and
             send the registration confirmation to the client
         */
-        if (ntohs(packet_reg.type) == 121) {
-            printf("\n Client sent valid registration request. \n");
-            printf("\n %s", packet_reg.uName);
-            printf("\n %s\n", packet_reg.mName);
+        else if (ntohs(packet_reg.type) == 121) {
+            printPacket("Registration Packet Received", packet_reg, true);
 
             /* register client in the registration table */
             table[index].port = clientAddr.sin_port;
@@ -123,62 +134,67 @@ int main(int argc, char *argv[]) {
                 printf("\n Send failed\n");
                 exit(1);
             } else {
-                printf("\n Sent Confirmation Packet\n");
+                printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
             }
-        }
             /*
-                not valid registration packet
-                if the registration packet code is not 121, send a packet back
-                to the client with a code other than 221, which indicates to the
-                client that there was a problem with their registration.
+                loop and continue to receive chat packets from the client.
+                valid chat packets have code 131
             */
+            while (len = recv(new_s, &packet_chat, sizeof(packet_chat), 0)) {
+                /*
+                    Check the chat packet type. If it is not 131,
+                    Send a response type of 1, indicating an error.
+                */
+                if (ntohs(packet_chat.type) != 131) {
+                    packet_chat_response.type = htons(1);
+                    printPacket("Chat Packet Received", packet_chat, false);
+                    printf("\nChat Packet type not recognized");
+                }
+                /*
+                    If the chat packet type is 131, continue to print the chat
+                    message and respond with the successful code 231
+                */
+                else {
+                    printPacket("Chat Packet Received", packet_chat, false);
+                    printf("\n------------------------------------\n");
+                    printf("%s: %s", table[index - 1].uName, packet_chat.data);
+                    printf("------------------------------------");
+                    /*
+                        Build the chat response packet to the client.
+                        chat reponse packets contain code 231 along with all of the
+                        information contained in the client's chat packet.
+                    */
+                    packet_chat_response.type = htons(231);
+                    strcpy(packet_chat_response.uName, packet_chat.uName);
+                    strcpy(packet_chat_response.mName, packet_chat.mName);
+                    strcpy(packet_chat_response.data, packet_chat.data);
+                }
+                /*
+                    Send the chat response packet back to the client.
+                */
+                if (send(new_s, &packet_chat_response, sizeof(packet_chat_response), 0) < 0) {
+                    printf("\n Send Failed \n");
+                    exit(1);
+                }
+                printPacket("Chat Response Packet Sent", packet_chat_response, true);
+            }
+            close(new_s);
+        }
+        /*
+            not valid registration packet
+            if the registration packet code is not 121, send a packet back
+            to the client with a code other than 221, which indicates to the
+            client that there was a problem with their registration.
+        */
         else {
+            printPacket("Registration Packet Received", packet_reg, false);
             packet_reg_confirm.type = htons(1);
             if (send(new_s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
                 printf("\n Send failed\n");
                 exit(1);
             }
+            printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
             printf("\n %d is not a recognized command \n", ntohs(packet_reg.type));
         }
-
-        /*
-            loop and continue to receive chat packets from the client.
-            valid chat packets have code 131
-        */
-        while (len = recv(new_s, &packet_chat, sizeof(packet_chat), 0)) {
-            /*
-                Check the chat packet type. If it is not 131,
-                Send a response type of 1, indicating an error.
-            */
-            if (ntohs(packet_chat.type) != 131) {
-                packet_chat_response.type = htons(1);
-                printf("\n Chat Packet type not recognized");
-            }
-                /*
-                    If the chat packet type is 131, continue to print the chat
-                    message and respond with the successful code 231
-                */
-            else {
-                printf("%s: %s\n", table[index - 1].uName, packet_chat.data);
-                /*
-                    Build the chat response packet to the client.
-                    chat reponse packets contain code 231 along with all of the
-                    information contained in the client's chat packet.
-                */
-                packet_chat_response.type = htons(231);
-                strcpy(packet_chat_response.uName, packet_chat.uName);
-                strcpy(packet_chat_response.mName, packet_chat.mName);
-                strcpy(packet_chat_response.data, packet_chat.data);
-            }
-            /*
-                Send the chat response packet back to the client.
-            */
-            if (send(new_s, &packet_chat_response, sizeof(packet_chat_response), 0) < 0) {
-                printf("\n Send Failed \n");
-                exit(1);
-            }
-            printf("sending response %d\n", ntohs(packet_chat_response.type));
-        }
-        close(new_s);
     }
 }
