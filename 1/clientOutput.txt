@@ -1,0 +1,51 @@
+Script started on 2019-10-02 10:55:16-0400
+./client
+ Registration Packet Sent:
+	Type: 121
+	UserName: joe
+	MachineName: paul
+	Data: 
+
+ Registration Confirmation Packet Received:
+	Type: 221
+	UserName: joe
+	MachineName: paul
+	Data: 
+
+------------------------------------
+Send server a message: hiho
+------------------------------------
+ Chat Packet Sent:
+	Type: 131
+	UserName: joe
+	MachineName: paul
+	Data: hiho
+
+
+ Chat Response Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: hiho
+
+
+------------------------------------
+Send server a message: it's off to work e we go
+------------------------------------
+ Chat Packet Sent:
+	Type: 131
+	UserName: joe
+	MachineName: paul
+	Data: it's off to work we go
+
+
+ Chat Response Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: it's off to work we go
+
+
+------------------------------------
+Send server a message: ^C
+Script done on 2019-10-02 11:02:51-0400
