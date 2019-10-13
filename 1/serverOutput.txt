@@ -1,0 +1,51 @@
+Script started on 2019-10-02 10:55:02-0400
+./server
+ Client's port is 33576 
+
+ Registration Packet Received:
+	Type: 121
+	UserName: joe
+	MachineName: paul
+	Data: 
+
+ Registration Confirmation Packet Sent:
+	Type: 221
+	UserName: joe
+	MachineName: paul
+	Data: 
+
+ Chat Packet Received:
+	Type: 131
+	UserName: joe
+	MachineName: paul
+	Data: hiho
+
+
+------------------------------------
+joe: hiho
+------------------------------------
+ Chat Response Packet Sent:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: hiho
+
+
+ Chat Packet Received:
+	Type: 131
+	UserName: joe
+	MachineName: paul
+	Data: it's off to work we go
+
+
+------------------------------------
+joe: it's off to work we go
+------------------------------------
+ Chat Response Packet Sent:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: it's off to work we go
+
+^C
+Script done on 2019-10-02 11:02:48-0400
