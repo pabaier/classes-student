@@ -15,9 +15,14 @@ class ClientThread(threading.Thread):
             if msg=='exit':
               break
             print (f'{self.port}: {msg}')
-            self.csocket.send(bytes(msg,'UTF-8'))
+            for port in registration:
+                print(f'port {port} - myport {self.port}')
+                if not port == self.port:
+                    print(f'sending to port {port}')
+                    registration[port].send(bytes(msg,'UTF-8'))
         print (f'{self.port} exited')
 
+registration = {}
 LOCALHOST = "127.0.0.1"
 PORT = 10000
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -28,5 +33,6 @@ print("Waiting for client request..")
 while True:
     server.listen(1)
     clientsock, clientAddress = server.accept()
+    registration[clientAddress[1]] = clientsock
     newthread = ClientThread(clientAddress, clientsock)
     newthread.start()
