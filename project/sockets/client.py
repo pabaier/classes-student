@@ -16,18 +16,18 @@ while running:
         message = input(">")
         if message == 'exit':
                 running = False
-                break
         print('sending {!r}'.format(message))
         sock.sendall(str.encode(message))
 
-        # Look for the response
-        amount_received = 0
-        amount_expected = len(message)
+        if running:
+            # Look for the response
+            amount_received = 0
+            amount_expected = len(message)
 
-        while amount_received < amount_expected:
-            data = sock.recv(64)
-            amount_received += len(data)
-            print('received {!r}'.format(data))
+            while amount_received < amount_expected:
+                data = sock.recv(64)
+                amount_received += len(data)
+                print('received {!r}'.format(data))
     except:
         pass
 
