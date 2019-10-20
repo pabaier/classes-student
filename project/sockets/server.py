@@ -19,7 +19,7 @@ class ClientThread(threading.Thread):
                 print(f'port {port} - myport {self.port}')
                 if not port == self.port:
                     print(f'sending to port {port}')
-                    registration[port].send(bytes(msg,'UTF-8'))
+                    registration[port].send(str.encode(msg))
         print (f'{self.port} exited')
 
 registration = {}
