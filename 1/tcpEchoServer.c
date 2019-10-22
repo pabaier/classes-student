@@ -19,6 +19,7 @@ struct packet {
     char uName[MAXNAME];
     char mName[MAXNAME];
     char data[MAXNAME];
+    short seqNumber;
 };
 
 /* structure of Registration Table */
@@ -33,14 +34,20 @@ struct registrationTable {
 static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\n %s:\n", operation);
     short t;
-    if (isNtoHS)
+    short s;
+    if (isNtoHS) {
         t = ntohs(p.type);
-    else
+        s = ntohs(p.seqNumber);
+    }
+    else {
         t = htons(p.type);
+        s = htons(p.seqNumber);
+    }
     printf("\tType: %d\n", t);
     printf("\tUserName: %s\n", p.uName);
     printf("\tMachineName: %s\n", p.mName);
     printf("\tData: %s\n", p.data);
+    printf("\tSeqNumber: %d\n", s);
 }
 
 int main(int argc, char *argv[]) {
