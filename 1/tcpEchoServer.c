@@ -3,15 +3,18 @@
 #include<sys/socket.h>
 #include<netinet/in.h>
 #include<netdb.h>
+#include<pthread.h>
 #include<string.h>
 #include<stdlib.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
 // #define SERVER_PORT 7777
 #define MAX_LINE 256
 #define MAX_PENDING 5
 #define MAXNAME 256
+#define TABLESIZE 10
 
 /* structure of the packet */
 struct packet {
@@ -29,6 +32,12 @@ struct registrationTable {
     char mName[MAXNAME];
     char uName[MAXNAME];
 };
+
+/* make registration table global
+ * 1) so methods outside of main can access it without needing to pass it as a parameter
+ * 2) so all registrationTable values are initialized to default values (zero and empty string)
+*/
+struct registrationTable table[TABLESIZE];
 
 /* helper method used to print packet information */
 static void printPacket(char *operation, struct packet p, bool isNtoHS) {
@@ -50,6 +59,55 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\tSeqNumber: %d\n", s);
 }
 
+void * chat_multicaster() {
+    char *filename;
+    char text[1000];
+    int fd;
+    bool clientRegistered;
+    struct packet packet_data;
+    int seqNumber = 1;
+
+    filename = "input.txt";
+    fd = open(filename,O_RDONLY,0);
+
+    while(true) {
+        clientRegistered = false;
+        // Check whether any client is listed on the table
+        // If at least one client is listed, readd 100 bytes ofdata from the
+        // file and store it in text
+        int i;
+        for (i=0; i < TABLESIZE; i++) {
+            if(table[i].port!=0) {
+                clientRegistered = true;
+                break;
+            }
+        }
+
+        if(clientRegistered) {
+            ssize_t nread = read(fd, text, 100);
+
+            // Construct the data packet
+            // Send data packets to each client listed on the table
+            for (i=0; i < TABLESIZE; i++) {
+                if(table[i].port!=0) {
+                    packet_data.type = htons(231);
+                    strcpy(packet_data.uName, table[i].uName);
+                    strcpy(packet_data.mName, table[i].mName);
+                    strcpy(packet_data.data, text);
+                    if (send(table[i].sockid, &packet_data, sizeof(packet_data), 0) < 0) {
+                        printf("\n Send failed\n");
+                        exit(1);
+                    } else {
+                        printf("%d ", seqNumber);
+                        printPacket("Data Packet Sent", packet_data, true);
+                    }
+                }
+            }
+            seqNumber++;
+        }
+    }
+}
+
 int main(int argc, char *argv[]) {
     struct sockaddr_in sin;
     struct sockaddr_in clientAddr;
@@ -60,8 +118,8 @@ int main(int argc, char *argv[]) {
     struct packet packet_reg_confirm;
     struct packet packet_chat;
     struct packet packet_chat_response;
-    struct registrationTable table[10];
     short SERVER_PORT;
+    pthread_t threads[2];
 
     /*
         The following grabs the command line arguments.
@@ -93,6 +151,8 @@ int main(int argc, char *argv[]) {
     listen(s, MAX_PENDING);
 
     len = sizeof(struct sockaddr_in);
+
+    pthread_create(&threads[1],NULL,chat_multicaster,NULL);
 
     /* wait for connection, then receive and print text */
     while (1) {
@@ -205,3 +265,4 @@ int main(int argc, char *argv[]) {
         }
     }
 }
+
