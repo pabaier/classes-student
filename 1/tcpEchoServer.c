@@ -55,8 +55,7 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     if (isNtoHS) {
         t = ntohs(p.type);
         s = ntohs(p.seqNumber);
-    }
-    else {
+    } else {
         t = htons(p.type);
         s = htons(p.seqNumber);
     }
@@ -67,7 +66,7 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\tSeqNumber: %d\n", s);
 }
 
-void * chat_multicaster() {
+void *chat_multicaster() {
     char *filename;
     char text[1000];
     int fd;
@@ -76,29 +75,29 @@ void * chat_multicaster() {
     int seqNumber = 1;
 
     filename = "input.txt";
-    fd = open(filename,O_RDONLY,0);
+    fd = open(filename, O_RDONLY, 0);
 
-    while(true) {
+    while (true) {
         clientRegistered = false;
         // Check whether any client is listed on the table
         // If at least one client is listed, readd 100 bytes ofdata from the
         // file and store it in text
         int i;
-        for (i=0; i < TABLESIZE; i++) {
-            if(table[i].port!=0) {
+        for (i = 0; i < TABLESIZE; i++) {
+            if (table[i].port != 0) {
                 clientRegistered = true;
                 pthread_mutex_lock(&my_mutex);
                 break;
             }
         }
 
-        if(clientRegistered) {
+        if (clientRegistered) {
             ssize_t nread = read(fd, text, 100);
 
             // Construct the data packet
             // Send data packets to each client listed on the table
-            for (i=0; i < TABLESIZE; i++) {
-                if(table[i].port!=0) {
+            for (i = 0; i < TABLESIZE; i++) {
+                if (table[i].port != 0) {
                     packet_data.type = htons(231);
                     strcpy(packet_data.uName, table[i].uName);
                     strcpy(packet_data.mName, table[i].mName);
@@ -162,7 +161,7 @@ int main(int argc, char *argv[]) {
 
     len = sizeof(struct sockaddr_in);
 
-    pthread_create(&threads[1],NULL,chat_multicaster,NULL);
+    pthread_create(&threads[1], NULL, chat_multicaster, NULL);
 
     /* wait for connection, then receive and print text */
     while (1) {
@@ -182,12 +181,12 @@ int main(int argc, char *argv[]) {
             printf("\n Could not receive first registration packet \n");
             exit(1);
         }
-        /*
-            if valid registration packet
-            This checks to make sure the registration packet code is 121.
-            If it is, register the client in the registration table and
-            send the registration confirmation to the client
-        */
+            /*
+                if valid registration packet
+                This checks to make sure the registration packet code is 121.
+                If it is, register the client in the registration table and
+                send the registration confirmation to the client
+            */
         else if (ntohs(packet_reg.type) == 121) {
             printPacket("Registration Packet Received", packet_reg, true);
 
@@ -227,10 +226,10 @@ int main(int argc, char *argv[]) {
                     printPacket("Chat Packet Received", packet_chat, false);
                     printf("\nChat Packet type not recognized");
                 }
-                /*
-                    If the chat packet type is 131, continue to print the chat
-                    message and respond with the successful code 231
-                */
+                    /*
+                        If the chat packet type is 131, continue to print the chat
+                        message and respond with the successful code 231
+                    */
                 else {
                     printPacket("Chat Packet Received", packet_chat, false);
                     printf("\n------------------------------------\n");
@@ -257,12 +256,12 @@ int main(int argc, char *argv[]) {
             }
             close(new_s);
         }
-        /*
-            not valid registration packet
-            if the registration packet code is not 121, send a packet back
-            to the client with a code other than 221, which indicates to the
-            client that there was a problem with their registration.
-        */
+            /*
+                not valid registration packet
+                if the registration packet code is not 121, send a packet back
+                to the client with a code other than 221, which indicates to the
+                client that there was a problem with their registration.
+            */
         else {
             printPacket("Registration Packet Received", packet_reg, false);
             packet_reg_confirm.type = htons(1);
