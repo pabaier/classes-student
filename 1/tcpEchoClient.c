@@ -150,12 +150,9 @@ int main(int argc, char *argv[]) {
         packet_reg.type = htons(122);
         strcpy(packet_reg.uName, userName);
         strcpy(packet_reg.mName, computerName);
-        if (send(s, &packet_reg, sizeof(packet_reg), 0) < 0) {
-            printf("\n Send failed\n");
-            exit(1);
-        } else {
-            printPacket("Registration Packet 2 Sent", packet_reg, true);
-        }
+
+        sendPacket("Registration Packet 2", packet_reg);
+
         // see if server responded with acknowledgement
         if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
             printf("\n Did not receive registration confirmation packet 2\n");
@@ -167,19 +164,15 @@ int main(int argc, char *argv[]) {
             strcpy(packet_reg.uName, userName);
             strcpy(packet_reg.mName, computerName);
 
-            if (send(s, &packet_reg, sizeof(packet_reg), 0) < 0) {
-                printf("\n Send failed\n");
+            sendPacket("Registration Packet 3", packet_reg);
+
+            // see if server acknowledged final packet
+            if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
+                printf("\n Did not receive registration confirmation packet 3\n");
                 exit(1);
-            } else {
-                printPacket("Registration Packet 3 Sent", packet_reg, true);
-                // see if server acknowledged final packet
-                if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
-                    printf("\n Did not receive registration confirmation packet 3\n");
-                    exit(1);
-                } else if (ntohs(packet_reg_confirm.type) == 223) {
-                    // registration complete!
-                    printPacket("Registration Complete", packet_reg_confirm, true);
-                }
+            } else if (ntohs(packet_reg_confirm.type) == 223) {
+                // registration complete!
+                printPacket("Registration Complete", packet_reg_confirm, true);
             }
         }
         /* main loop: get multicast packets */
