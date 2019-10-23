@@ -39,6 +39,14 @@ struct registrationTable {
 */
 struct registrationTable table[TABLESIZE];
 
+/* Declare a global mutex variable
+ * When a thread wants to access the table, it will lock the
+ * mutex variable first.
+ * Then it will read/update the table.
+ * The thread will unlock the mutex variable
+*/
+pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
+
 /* helper method used to print packet information */
 static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\n %s:\n", operation);
@@ -79,6 +87,7 @@ void * chat_multicaster() {
         for (i=0; i < TABLESIZE; i++) {
             if(table[i].port!=0) {
                 clientRegistered = true;
+                pthread_mutex_lock(&my_mutex);
                 break;
             }
         }
@@ -104,6 +113,7 @@ void * chat_multicaster() {
                 }
             }
             seqNumber++;
+            pthread_mutex_unlock(&my_mutex);
         }
     }
 }
