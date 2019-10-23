@@ -43,17 +43,20 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\tSeqNumber: %d\n", s);
 }
 
-/* helper method used to print packet information */
+static char* strConcat(char *str1, char *str2) {
+    char *message = malloc(strlen(str1) + strlen(str2) + 1);
+    strcpy(message, str1);
+    strcat(message, str2);
+    return message;
+}
+
+/* helper method used to send packet */
 static void sendPacket(char *operation, struct packet p) {
     if (send(s, &p, sizeof(p), 0) < 0) {
         printf("\n Send failed\n");
         exit(1);
     } else {
-        /* add "sent" to the end of the operation for clearer messages */
-        char *message = malloc(strlen(operation) + strlen(" Sent") + 1);
-        strcpy(message, operation);
-        strcat(message, " Sent");
-        printPacket(message, p, true);
+        printPacket(strConcat(operation, " Sent"), p, true);
     }
 }
 
