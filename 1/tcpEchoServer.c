@@ -16,6 +16,9 @@
 #define MAXNAME 256
 #define TABLESIZE 10
 
+// number of threads the server must run
+pthread_t threads[2];
+
 /* structure of the packet */
 struct packet {
     short type;
@@ -119,6 +122,63 @@ void *chat_multicaster() {
     }
 }
 
+// join handler method
+void *join_handler(struct registrationTable*clientData) {
+    int newsock;
+    int newport;
+    int rg_count;
+    struct packet packet_reg;
+    struct packet packet_reg_confirm;
+    newsock = clientData->sockid;
+    newport = clientData->port;
+
+    // check if client has responded 
+    if (recv(newsock,&packet_reg,sizeof(packet_reg),0)<0) {
+        printf("\nDid not receive registration packet 2\n");
+        exit(1);
+        }
+    // make sure the packet is valid
+    else if (ntohs(packet_reg.type) == 122) {
+        // acknowledge the second packet
+        printPacket("Registration Packet 2 received", packet_reg, true);
+        // construct acknowledgement packet
+        packet_reg_confirm.type = htons(222);
+        strcpy(packet_reg_confirm.uName, packet_reg.uName);
+        strcpy(packet_reg_confirm.mName, packet_reg.mName);
+        // send acknowledgement to client
+        if (send(newsock, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
+            printf("\n Send failed\n");
+            exit(1);
+        } else {
+            printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
+            // check to see if client has submitted final registration packet
+            if (recv(newsock,&packet_reg,sizeof(packet_reg),0)<0) {
+                printf('\nDid not receive registration packet 3\n');
+                exit(1);
+            }
+            else if (ntohs(packet_reg.type) == 123) {
+                // acknowledge the third packet
+                printPacket("Registration Packet 3 received", packet_reg, true);
+                packet_reg_confirm.type = htons(223);
+                strcpy(packet_reg_confirm.uName, packet_reg.uName);
+                strcpy(packet_reg_confirm.mName, packet_reg.mName);
+                if (send(newsock, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
+                    printf("\n Send failed\n");
+                    exit(1);
+                } else {
+                    printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
+                }
+            }
+        }
+    }
+
+    // Wait for more registration packets from the client
+    // Send acknowledgement/confirmation to the client
+    // Update the table
+    // Leave the thread
+    pthread_exit(NULL); 
+}
+
 int main(int argc, char *argv[]) {
     struct sockaddr_in sin;
     struct sockaddr_in clientAddr;
@@ -129,6 +189,7 @@ int main(int argc, char *argv[]) {
     struct packet packet_reg_confirm;
     struct packet packet_chat;
     struct packet packet_chat_response;
+    struct registrationTable client_info;
     short SERVER_PORT;
     pthread_t threads[2];
 
@@ -190,7 +251,14 @@ int main(int argc, char *argv[]) {
                 send the registration confirmation to the client
             */
         else if (ntohs(packet_reg.type) == 121) {
-            printPacket("Registration Packet Received", packet_reg, true);
+            printPacket("Registration Packet Received.", packet_reg, true);
+            // insert client data into client_info variable
+            client_info.port = ntohs(clientAddr.sin_port);
+            client_info.sockid = new_s;
+            strcpy(client_info.uName, packet_reg.uName);
+            strcpy(client_info.mName, packet_reg.mName);
+            // pass client_info into join_handler thread
+            pthread_create(&threads[0],NULL,join_handler,&client_info);
 
             /* register client in the registration table */
             table[index].port = clientAddr.sin_port;
@@ -218,11 +286,11 @@ int main(int argc, char *argv[]) {
                 loop and continue to receive chat packets from the client.
                 valid chat packets have code 131
             */
-            while (len = recv(new_s, &packet_chat, sizeof(packet_chat), 0)) {
+            /*while (len = recv(new_s, &packet_chat, sizeof(packet_chat), 0)) {
                 /*
                     Check the chat packet type. If it is not 131,
                     Send a response type of 1, indicating an error.
-                */
+                
                 if (ntohs(packet_chat.type) != 131) {
                     packet_chat_response.type = htons(1);
                     printPacket("Chat Packet Received", packet_chat, false);
@@ -241,7 +309,7 @@ int main(int argc, char *argv[]) {
                         Build the chat response packet to the client.
                         chat reponse packets contain code 231 along with all of the
                         information contained in the client's chat packet.
-                    */
+                    
                     packet_chat_response.type = htons(231);
                     strcpy(packet_chat_response.uName, packet_chat.uName);
                     strcpy(packet_chat_response.mName, packet_chat.mName);
@@ -249,14 +317,14 @@ int main(int argc, char *argv[]) {
                 }
                 /*
                     Send the chat response packet back to the client.
-                */
+                
                 if (send(new_s, &packet_chat_response, sizeof(packet_chat_response), 0) < 0) {
                     printf("\n Send Failed \n");
                     exit(1);
                 }
                 printPacket("Chat Response Packet Sent", packet_chat_response, true);
             }
-            close(new_s);
+            close(new_s);*/
         }
             /*
                 not valid registration packet

@@ -135,9 +135,51 @@ int main(int argc, char *argv[]) {
 
     else if (ntohs(packet_reg_confirm.type) == 221) {
         printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
-        /*main loop: get multicast packets */
-        while(true) {
-            printf("\n------------------------------------");   
+        // send the second registration packet
+        packet_reg.type = htons(122);
+        strcpy(packet_reg.uName, userName);
+        strcpy(packet_reg.mName, computerName);
+        if (send(s, &packet_reg, sizeof(packet_reg), 0) < 0) {
+            printf("\n Send failed\n");
+            exit(1);
+        } else {
+            printPacket("Registration Packet 2 Sent", packet_reg, true);
+        }
+        // see if server responded with acknowledgement
+        if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
+            printf("\n Did not receive registration confirmation packet 2\n");
+            exit(1);
+        }
+
+        else if (ntohs(packet_reg_confirm.type) == 222) {
+            printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
+            // send a 3rd registration packet
+            packet_reg.type = htons(123);
+            strcpy(packet_reg.uName, userName);
+            strcpy(packet_reg.mName, computerName);
+
+            if (send(s, &packet_reg, sizeof(packet_reg), 0) < 0) {
+                printf("\n Send failed\n");
+                exit(1);
+            } 
+
+            else {
+                printPacket("Registration Packet Sent", packet_reg, true);
+                // see if server acknowledged final packet
+                if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
+                    printf("\n Did not receive registration confirmation packet 3\n");
+                    exit(1);
+                }
+
+                else if (ntohs(packet_reg_confirm.type) == 223) {
+                    // registration complete!
+                    printPacket("Registration Complete", packet_reg, true);
+                }
+            }
+        }
+        /* main loop: get multicast packets */ 
+        while (true) {
+            printf("------------------------------------");
             /*
                 After the client receives the acknowledgment packet
                 it starts receiving the multicast from the server.
@@ -152,7 +194,6 @@ int main(int argc, char *argv[]) {
             }
             printPacket("Chat Response Packet Received", packet_multicast, false);
             printf("\n------------------------------------");
-        }
     }
         /*
             if the registration confirmation code is not 221
