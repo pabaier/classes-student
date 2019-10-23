@@ -12,6 +12,9 @@
 #define MAX_LINE 256
 #define MAXNAME 256
 
+// global socket to server for use in send/receive helper methods
+int s;
+
 /* structure of the packet */
 struct packet {
     short type;
@@ -40,13 +43,26 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\tSeqNumber: %d\n", s);
 }
 
+/* helper method used to print packet information */
+static void sendPacket(char *operation, struct packet p) {
+    if (send(s, &p, sizeof(p), 0) < 0) {
+        printf("\n Send failed\n");
+        exit(1);
+    } else {
+        /* add "sent" to the end of the operation for clearer messages */
+        char *message = malloc(strlen(operation) + strlen(" Sent") + 1);
+        strcpy(message, operation);
+        strcat(message, " Sent");
+        printPacket(message, p, true);
+    }
+}
+
 int main(int argc, char *argv[]) {
     struct hostent *hp;
     struct sockaddr_in sin;
     char *host, *userName;
     char computerName[MAXNAME];
     char buf[MAX_LINE];
-    int s;
     struct packet packet_reg;
     struct packet packet_reg_confirm;
     struct packet packet_multicast;
@@ -112,12 +128,8 @@ int main(int argc, char *argv[]) {
         Send the registration packet to the server.
         If it fails to send, the program exits.
     */
-    if (send(s, &packet_reg, sizeof(packet_reg), 0) < 0) {
-        printf("\n Send failed\n");
-        exit(1);
-    } else {
-        printPacket("Registration Packet 1 Sent", packet_reg, true);
-    }
+    sendPacket("Registration Packet 1", packet_reg);
+
     /*
         Get registration response.
         After the server receives our registration it lets us know
