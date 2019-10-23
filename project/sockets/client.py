@@ -16,27 +16,26 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = (args.server_ip, args.server_port)
 print('connecting to {} port {}'.format(*server_address))
 server.connect(server_address)
+server.send(b'7')
 
 running = True
 while running:
 
     # maintains a list of possible input streams 
     sockets_list = [sys.stdin, server]
-
+    print("---")
     read_sockets, write_socket, error_socket = select.select(sockets_list, [], [])
 
     for socks in read_sockets:
         if socks == server:
             message = socks.recv(2048).decode('utf-8')
-            print(f'-{message}')
+            server.send(str.encode('80'))
+            print(f'sending status to server')
         else:
-            print(">", end="")
             message = sys.stdin.readline().rstrip()
             if message == 'exit':
                 running = False
             server.send(str.encode(message))
-            # sys.stdout.write("<You>") 
-            # sys.stdout.write(message) 
-            # sys.stdout.flush()
+            sys.stdout.flush()
             print()
 server.close()
