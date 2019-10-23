@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
         */
 
     else if (ntohs(packet_reg_confirm.type) == 221) {
-        printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
+        printPacket("First Registration Confirmation Packet Received", packet_reg_confirm, false);
         // send the second registration packet
         packet_reg.type = htons(122);
         strcpy(packet_reg.uName, userName);

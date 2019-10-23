@@ -50,6 +50,9 @@ struct registrationTable table[TABLESIZE];
 */
 pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+/* global index for the table */
+int index = 0;
+
 /* helper method used to print packet information */
 static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\n %s:\n", operation);
@@ -171,6 +174,19 @@ void *join_handler(struct registrationTable*clientData) {
             }
         }
     }
+    else {
+        printf("\nError with registration packet 2\n");
+        exit(1);
+    }
+
+    /* if the client makes it this far, reward them
+     * by registering them in the registration table
+    */
+    table[index].port = newport;
+    table[index].sockid = newsock;
+    strcpy(table[index].uName, packet_reg.uName);
+    strcpy(table[index].mName, packet_reg.mName);
+    index++;
 
     // Wait for more registration packets from the client
     // Send acknowledgement/confirmation to the client
@@ -184,7 +200,7 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in clientAddr;
     char buf[MAX_LINE];
     int s, new_s;
-    int len, index = 0;
+    int len;
     struct packet packet_reg;
     struct packet packet_reg_confirm;
     struct packet packet_chat;
@@ -251,28 +267,14 @@ int main(int argc, char *argv[]) {
                 send the registration confirmation to the client
             */
         else if (ntohs(packet_reg.type) == 121) {
-            printPacket("Registration Packet Received.", packet_reg, true);
-            // insert client data into client_info variable
-            client_info.port = ntohs(clientAddr.sin_port);
-            client_info.sockid = new_s;
-            strcpy(client_info.uName, packet_reg.uName);
-            strcpy(client_info.mName, packet_reg.mName);
-            // pass client_info into join_handler thread
-            pthread_create(&threads[0],NULL,join_handler,&client_info);
-
-            /* register client in the registration table */
-            table[index].port = clientAddr.sin_port;
-            table[index].sockid = new_s;
-            strcpy(table[index].uName, packet_reg.uName);
-            strcpy(table[index].mName, packet_reg.mName);
-            index++;
-
+            printPacket("First Registration Packet Received.", packet_reg, true);
             /*
                 build and send confirmation packet
                 the confirmation packet code is 221.
                 this code is returned to the client along with the
                 information the originally sent.
             */
+
             packet_reg_confirm.type = htons(221);
             strcpy(packet_reg_confirm.uName, packet_reg.uName);
             strcpy(packet_reg_confirm.mName, packet_reg.mName);
@@ -280,51 +282,16 @@ int main(int argc, char *argv[]) {
                 printf("\n Send failed\n");
                 exit(1);
             } else {
-                printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
+                printPacket("First Registration Confirmation Packet Sent", packet_reg_confirm, true);
             }
-            /*
-                loop and continue to receive chat packets from the client.
-                valid chat packets have code 131
-            */
-            /*while (len = recv(new_s, &packet_chat, sizeof(packet_chat), 0)) {
-                /*
-                    Check the chat packet type. If it is not 131,
-                    Send a response type of 1, indicating an error.
-                
-                if (ntohs(packet_chat.type) != 131) {
-                    packet_chat_response.type = htons(1);
-                    printPacket("Chat Packet Received", packet_chat, false);
-                    printf("\nChat Packet type not recognized");
-                }
-                    /*
-                        If the chat packet type is 131, continue to print the chat
-                        message and respond with the successful code 231
-                    */
-                else {
-                    printPacket("Chat Packet Received", packet_chat, false);
-                    printf("\n------------------------------------\n");
-                    printf("%s: %s", table[index - 1].uName, packet_chat.data);
-                    printf("------------------------------------");
-                    /*
-                        Build the chat response packet to the client.
-                        chat reponse packets contain code 231 along with all of the
-                        information contained in the client's chat packet.
-                    
-                    packet_chat_response.type = htons(231);
-                    strcpy(packet_chat_response.uName, packet_chat.uName);
-                    strcpy(packet_chat_response.mName, packet_chat.mName);
-                    strcpy(packet_chat_response.data, packet_chat.data);
-                }
-                /*
-                    Send the chat response packet back to the client.
-                
-                if (send(new_s, &packet_chat_response, sizeof(packet_chat_response), 0) < 0) {
-                    printf("\n Send Failed \n");
-                    exit(1);
-                }
-                printPacket("Chat Response Packet Sent", packet_chat_response, true);
-            }
-            close(new_s);*/
+
+            // insert client data into client_info variable
+            client_info.port = ntohs(clientAddr.sin_port);
+            client_info.sockid = new_s;
+            strcpy(client_info.uName, packet_reg.uName);
+            strcpy(client_info.mName, packet_reg.mName);
+            // pass client_info into join_handler thread
+            pthread_create(&threads[0],NULL,join_handler,&client_info);
         }
             /*
                 not valid registration packet
