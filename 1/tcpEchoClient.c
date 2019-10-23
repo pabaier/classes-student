@@ -43,14 +43,16 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\tSeqNumber: %d\n", s);
 }
 
-static char* strConcat(char *str1, char *str2) {
+static char *strConcat(char *str1, char *str2) {
     char *message = malloc(strlen(str1) + strlen(str2) + 1);
     strcpy(message, str1);
     strcat(message, str2);
     return message;
 }
 
-/* helper method used to send packet */
+/* helper method used to send packet
+ * if the send fails, the program prints that it failed and exits
+ */
 static void sendPacket(struct packet p) {
     if (send(s, &p, sizeof(p), 0) < 0) {
         printf("\n Send failed\n");
@@ -58,7 +60,13 @@ static void sendPacket(struct packet p) {
     }
 }
 
-/* helper method used to receive packet */
+/* helper method used to receive packet
+ * the method takes in a string as a parameter which is used for the output
+ * it also takes a packet as a parameter, which is used to store the payload from the server
+ * lastly it takes a packet type, which is the expected packet type being sent by the server
+ * if there is an error with receiving the packet or if the packet type is incorrect
+ * the program will exit.
+ */
 static struct packet receivePacket(char *operation, struct packet p, int packetType) {
     if (recv(s, &p, sizeof(p), 0) < 0) {
         printf("\n %s \n", strConcat("Did not receive ", operation));
@@ -130,61 +138,58 @@ int main(int argc, char *argv[]) {
     }
 
     /*
-        Constructing the registration packet at client.
-        This is the first packet sent and includes the code '121'
-        which indicates it is a registration packet.
-    */
+     * Build, send, and get response for first registration packet.
+     * The server expects the first registration packet type to be 121
+     * The confirmation packet from the server should be packet type 221
+     */
     packet_reg.type = htons(121);
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
 
-    /*
-        Send the registration packet to the server.
-    */
     sendPacket(packet_reg);
-    printPacket("Registration Packet 1 Sent"), p, true);
+    printPacket("Registration Packet 1 Sent", packet_reg, true);
 
-    /*
-        Get registration response.
-        After the server receives our registration it lets us know
-        by sending back a confirmation message with code '221'.
-    */
     packet_reg_confirm = receivePacket("Registration Confirmation Packet 1", packet_reg_confirm, 221);
     printPacket("Registration Packet 1 Acknowledged", packet_reg_confirm, false);
 
     /*
-        if the registration confirmation packet is the correct code
-        then we continue into the multicast messages.
-    */
-
-    // send the second registration packet
+     * Build, send, and get response for second registration packet.
+     * The server expects the first registration packet type to be 122
+     * The confirmation packet from the server should be packet type 222
+     */
     packet_reg.type = htons(122);
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
 
     sendPacket(packet_reg);
-    printPacket("Registration Packet 2 Sent"), p, true);
+    printPacket("Registration Packet 2 Sent", packet_reg, true);
 
     packet_reg_confirm = receivePacket("Registration Confirmation Packet 2", packet_reg_confirm, 222);
     printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
 
-    // send a 3rd registration packet
+    /*
+     * Build, send, and get response for first registration packet.
+     * The server expects the first registration packet type to be 123
+     * The confirmation packet from the server should be packet type 223
+     */
     packet_reg.type = htons(123);
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
 
     sendPacket(packet_reg);
-    printPacket("Registration Packet 3 Sent"), p, true);
+    printPacket("Registration Packet 3 Sent", packet_reg, true);
+
     packet_reg_confirm = receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
     printPacket("Registration Complete", packet_reg_confirm, true);
 
-    /* main loop: get multicast packets */
+    /* main loop to get multicast packets */
     while (true) {
         printf("------------------------------------");
         /*
-            After the client receives the acknowledgment packet
-            it starts receiving the multicast from the server.
-        */
+         * After the client receives the final acknowledgment packet
+         * it starts receiving the multicast from the server.
+         * It expects the multicast packet to be packet type 231
+         */
         packet_multicast = receivePacket("Multicast Packet", packet_multicast, 231);
         printPacket("Multicast Packet Received", packet_multicast, false);
         printf("\n------------------------------------");
