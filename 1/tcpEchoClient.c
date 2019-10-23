@@ -60,6 +60,18 @@ static void sendPacket(char *operation, struct packet p) {
     }
 }
 
+/* helper method used to receive packet */
+static void receivePacket(char *operation, struct packet p, int packetType) {
+    if (recv(s, &p, sizeof(p), 0) < 0) {
+        printf("\n %s \n", strConcat("Did not receive ", operation));
+        exit(1);
+    } else if (ntohs(p.type) != packetType) {
+        printPacket(strConcat(operation, " Received"), p, false);
+        printf("\nError Received. Exiting \n");
+        exit(1);
+    }
+}
+
 int main(int argc, char *argv[]) {
     struct hostent *hp;
     struct sockaddr_in sin;
