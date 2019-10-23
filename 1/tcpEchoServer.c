@@ -53,6 +53,13 @@ pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
 /* global table_index for the table */
 int table_index = 0;
 
+static char *strConcat(char *str1, char *str2) {
+    char *message = malloc(strlen(str1) + strlen(str2) + 1);
+    strcpy(message, str1);
+    strcat(message, str2);
+    return message;
+}
+
 /* helper method used to print packet information */
 static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\n %s:\n", operation);
@@ -70,6 +77,35 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\tMachineName: %s\n", p.mName);
     printf("\tData: %s\n", p.data);
     printf("\tSeqNumber: %d\n", s);
+}
+
+/* helper method used to send packet
+ * if the send fails, the program prints that it failed and exits
+ */
+static void sendPacket(struct packet p, int clientSocket) {
+    if (send(clientSocket, &p, sizeof(p), 0) < 0) {
+        printf("\n Send failed\n");
+        exit(1);
+    }
+}
+
+/* helper method used to receive packet
+ * the method takes in a string as a parameter which is used for the output
+ * it also takes a packet as a parameter, which is used to store the payload from the server
+ * lastly it takes a packet type, which is the expected packet type being sent by the server
+ * if there is an error with receiving the packet or if the packet type is incorrect
+ * the program will exit.
+ */
+static struct packet receivePacket(char *operation, struct packet p, int clientSocket, int packetType) {
+    if (recv(clientSocket, &p, sizeof(p), 0) < 0) {
+        printf("\n %s \n", strConcat("Did not receive ", operation));
+        exit(1);
+    } else if (ntohs(p.type) != packetType) {
+        printPacket(strConcat(operation, " Received"), p, false);
+        printf("\nError Received. Exiting \n");
+        exit(1);
+    }
+    return p;
 }
 
 void *chat_multicaster() {
@@ -109,12 +145,8 @@ void *chat_multicaster() {
                     strcpy(packet_data.uName, table[i].uName);
                     strcpy(packet_data.mName, table[i].mName);
                     strcpy(packet_data.data, text);
-                    if (send(table[i].sockid, &packet_data, sizeof(packet_data), 0) < 0) {
-                        printf("\n Send failed\n");
-                        exit(1);
-                    } else {
-                        printPacket("Data Packet Sent", packet_data, true);
-                    }
+                    sendPacket(packet_data, table[i].sockid);
+                    printPacket("Data Packet Sent", packet_data, true);
                 }
             }
             seqNumber++;
@@ -134,47 +166,25 @@ void *join_handler(struct registrationTable *clientData) {
     newsock = clientData->sockid;
     newport = clientData->port;
 
-    // check if client has responded 
-    if (recv(newsock, &packet_reg, sizeof(packet_reg), 0) < 0) {
-        printf("\nDid not receive registration packet 2\n");
-        exit(1);
-    }
-        // make sure the packet is valid
-    else if (ntohs(packet_reg.type) == 122) {
-        // acknowledge the second packet
-        printPacket("Registration Packet 2 Received", packet_reg, true);
-        // construct acknowledgement packet
-        packet_reg_confirm.type = htons(222);
-        strcpy(packet_reg_confirm.uName, packet_reg.uName);
-        strcpy(packet_reg_confirm.mName, packet_reg.mName);
-        // send acknowledgement to client
-        if (send(newsock, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
-            printf("\n Send failed\n");
-            exit(1);
-        } else {
-            printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
-            // check to see if client has submitted final registration packet
-            if (recv(newsock, &packet_reg, sizeof(packet_reg), 0) < 0) {
-                printf("\nDid not receive registration packet 3\n");
-                exit(1);
-            } else if (ntohs(packet_reg.type) == 123) {
-                // acknowledge the third packet
-                printPacket("Registration Packet 3 Received", packet_reg, true);
-                packet_reg_confirm.type = htons(223);
-                strcpy(packet_reg_confirm.uName, packet_reg.uName);
-                strcpy(packet_reg_confirm.mName, packet_reg.mName);
-                if (send(newsock, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
-                    printf("\n Send failed\n");
-                    exit(1);
-                } else {
-                    printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
-                }
-            }
-        }
-    } else {
-        printf("\nError with registration packet 2\n");
-        exit(1);
-    }
+    // check if client has responded
+    packet_reg = receivePacket("Registration Packet 2", packet_reg, newsock, 122);
+    printPacket("Registration Packet 2 Received", packet_reg, true);
+
+    // construct acknowledgement packet
+    packet_reg_confirm.type = htons(222);
+    strcpy(packet_reg_confirm.uName, packet_reg.uName);
+    strcpy(packet_reg_confirm.mName, packet_reg.mName);
+    sendPacket(packet_reg_confirm, newsock);
+    printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
+
+    // check to see if client has submitted final registration packet
+    packet_reg = receivePacket("Registration Packet 3", packet_reg, newsock, 123);
+    printPacket("Registration Packet 3 Received", packet_reg, true);
+    packet_reg_confirm.type = htons(223);
+    strcpy(packet_reg_confirm.uName, packet_reg.uName);
+    strcpy(packet_reg_confirm.mName, packet_reg.mName);
+    sendPacket(packet_reg_confirm, newsock);
+    printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
 
     /* if the client makes it this far, reward them
      * by registering them in the registration table
@@ -253,64 +263,27 @@ int main(int argc, char *argv[]) {
             After establishing a connection, the client must register with
             the server.
         */
-        if (recv(new_s, &packet_reg, sizeof(packet_reg), 0) < 0) {
-            printf("\n Could not receive first registration packet \n");
-            exit(1);
-        }
-            /*
-                if valid registration packet
-                This checks to make sure the registration packet code is 121.
-                If it is, register the client in the registration table and
-                send the registration confirmation to the client
-            */
-        else if (ntohs(packet_reg.type) == 121) {
-            printPacket("Registration Packet 1 Received.", packet_reg, true);
-            /*
-                build and send confirmation packet
-                the confirmation packet code is 221.
-                this code is returned to the client along with the
-                information the originally sent.
-            */
 
-            packet_reg_confirm.type = htons(221);
-            strcpy(packet_reg_confirm.uName, packet_reg.uName);
-            strcpy(packet_reg_confirm.mName, packet_reg.mName);
-            if (send(new_s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
-                printf("\n Send failed\n");
-                exit(1);
-            } else {
-                printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
-            }
+        packet_reg = receivePacket("Registration Packet 1", packet_reg, new_s, 121);
+        printPacket("Registration Packet 1 Received.", packet_reg, true);
+        packet_reg_confirm.type = htons(221);
+        strcpy(packet_reg_confirm.uName, packet_reg.uName);
+        strcpy(packet_reg_confirm.mName, packet_reg.mName);
+        sendPacket(packet_reg_confirm, new_s);
+        printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
 
-            // insert client data into client_info variable
-            client_info.port = ntohs(clientAddr.sin_port);
-            client_info.sockid = new_s;
-            strcpy(client_info.uName, packet_reg.uName);
-            strcpy(client_info.mName, packet_reg.mName);
-            // pass client_info into join_handler thread
-            pthread_create(&threads[0], NULL, join_handler, &client_info);
-            /* wait for the join_handler thread to complete
-             * exit_value is the value returned by the join_handler
-            */
-            void*  exit_value;
-            pthread_join(threads[0],&exit_value);
-        }
-            /*
-                not valid registration packet
-                if the registration packet code is not 121, send a packet back
-                to the client with a code other than 221, which indicates to the
-                client that there was a problem with their registration.
-            */
-        else {
-            printPacket("Registration Packet Received", packet_reg, false);
-            packet_reg_confirm.type = htons(1);
-            if (send(new_s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
-                printf("\n Send failed\n");
-                exit(1);
-            }
-            printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
-            printf("\n %d is not a recognized command \n", ntohs(packet_reg.type));
-        }
+        // insert client data into client_info variable
+        client_info.port = ntohs(clientAddr.sin_port);
+        client_info.sockid = new_s;
+        strcpy(client_info.uName, packet_reg.uName);
+        strcpy(client_info.mName, packet_reg.mName);
+        // pass client_info into join_handler thread
+        pthread_create(&threads[0], NULL, join_handler, &client_info);
+        /* wait for the join_handler thread to complete
+         * exit_value is the value returned by the join_handler
+        */
+        void*  exit_value;
+        pthread_join(threads[0],&exit_value);
     }
 }
 
