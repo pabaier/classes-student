@@ -53,6 +53,13 @@ pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
 /* global table_index for the table */
 int table_index = 0;
 
+/* helper method to concatenate two strings
+ * it works by getting the size of each string,
+ * adding it together to create a new space in memory for the new string
+ * copying the first string into that memory space
+ * then adding the second string on the end
+ * and returning the resulting string
+ */
 static char *strConcat(char *str1, char *str2) {
     char *message = malloc(strlen(str1) + strlen(str2) + 1);
     strcpy(message, str1);
@@ -108,6 +115,7 @@ static struct packet receivePacket(char *operation, struct packet p, int clientS
     return p;
 }
 
+/* chat multicaster method */
 void *chat_multicaster() {
     char *filename;
     char text[1000];
@@ -116,28 +124,39 @@ void *chat_multicaster() {
     struct packet packet_data;
     int seqNumber = 1;
 
+    /* open the file */
     filename = "input.txt";
     fd = open(filename, O_RDONLY, 0);
 
+    /* continuously loop in order to send data to clients once they register */
     while (true) {
         clientRegistered = false;
-        // Check whether any client is listed on the table
-        // If at least one client is listed, readd 100 bytes ofdata from the
-        // file and store it in text
+        /* Check whether any client is listed on the table
+         * If at least one client is listed, read 100 bytes of data
+         * from the file and store it in text
+         */
+
+        /* loops through the registration table looking for clients
+         * sets the clientRegistered flag to true if it finds one
+         */
         int i;
         for (i = 0; i < TABLESIZE; i++) {
             if (table[i].port != 0) {
                 clientRegistered = true;
+                /* lock the table once we need it */
                 pthread_mutex_lock(&my_mutex);
                 break;
             }
         }
 
+        /* if a client is found start reading and sending data */
         if (clientRegistered) {
             ssize_t nread = read(fd, text, 100);
 
-            // Construct the data packet
-            // Send data packets to each client listed on the table
+            /* loop through the table and construct the data packet
+             * for each client in the table.
+             * once the packet is made, send it to the client
+             */
             for (i = 0; i < TABLESIZE; i++) {
                 if (table[i].port != 0) {
                     packet_data.type = htons(231);
@@ -150,7 +169,11 @@ void *chat_multicaster() {
                 }
             }
             seqNumber++;
+            /* unlock the table */
             pthread_mutex_unlock(&my_mutex);
+            /* this pauses the sending of packets for 1 second.
+             * it is not required but helps to make the output readable
+             */
             sleep(1);
         }
     }
@@ -166,20 +189,34 @@ void *join_handler(struct registrationTable *clientData) {
     newsock = clientData->sockid;
     newport = clientData->port;
 
-    // check if client has responded
+    /*
+     * Get second registration packet from client.
+     * The server expects the second registration packet type to be 122
+     */
     packet_reg = receivePacket("Registration Packet 2", packet_reg, newsock, 122);
     printPacket("Registration Packet 2 Received", packet_reg, true);
 
-    // construct acknowledgement packet
+    /*
+     * Build and send confirmation for second registration packet.
+     * The client expects the second registration confirmation packet type to be 222
+     */
     packet_reg_confirm.type = htons(222);
     strcpy(packet_reg_confirm.uName, packet_reg.uName);
     strcpy(packet_reg_confirm.mName, packet_reg.mName);
     sendPacket(packet_reg_confirm, newsock);
     printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
 
-    // check to see if client has submitted final registration packet
+    /*
+     * Get third registration packet from client.
+     * The server expects the third registration packet type to be 123
+     */
     packet_reg = receivePacket("Registration Packet 3", packet_reg, newsock, 123);
     printPacket("Registration Packet 3 Received", packet_reg, true);
+
+    /*
+     * Build and send confirmation for third registration packet.
+     * The client expects the third registration confirmation packet type to be 223
+     */
     packet_reg_confirm.type = htons(223);
     strcpy(packet_reg_confirm.uName, packet_reg.uName);
     strcpy(packet_reg_confirm.mName, packet_reg.mName);
@@ -188,7 +225,7 @@ void *join_handler(struct registrationTable *clientData) {
 
     /* if the client makes it this far, reward them
      * by registering them in the registration table
-    */
+     */
     table[table_index].port = newport;
     table[table_index].sockid = newsock;
     strcpy(table[table_index].uName, packet_reg.uName);
@@ -247,9 +284,10 @@ int main(int argc, char *argv[]) {
 
     len = sizeof(struct sockaddr_in);
 
+    /* create the chat multicaster thread */
     pthread_create(&threads[1], NULL, chat_multicaster, NULL);
 
-    /* wait for connection, then receive and print text */
+    /* wait for connection, then start the registration process */
     while (1) {
         if ((new_s = accept(s, (struct sockaddr *) &clientAddr, &len)) < 0) {
             perror("tcpserver: accept");
@@ -259,31 +297,36 @@ int main(int argc, char *argv[]) {
         printf("\n Client's port is %d \n", ntohs(clientAddr.sin_port));
 
         /*
-            Get registration packet
-            After establishing a connection, the client must register with
-            the server.
-        */
-
+         * Get first registration packet from client.
+         * The server expects the first registration packet type to be 121
+         */
         packet_reg = receivePacket("Registration Packet 1", packet_reg, new_s, 121);
         printPacket("Registration Packet 1 Received.", packet_reg, true);
+
+        /*
+         * Build and send confirmation for first registration packet.
+         * The client expects the first registration confirmation packet type to be 221
+         */
         packet_reg_confirm.type = htons(221);
         strcpy(packet_reg_confirm.uName, packet_reg.uName);
         strcpy(packet_reg_confirm.mName, packet_reg.mName);
         sendPacket(packet_reg_confirm, new_s);
         printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
 
-        // insert client data into client_info variable
+        /* insert client data into client_info variable */
         client_info.port = ntohs(clientAddr.sin_port);
         client_info.sockid = new_s;
         strcpy(client_info.uName, packet_reg.uName);
         strcpy(client_info.mName, packet_reg.mName);
-        // pass client_info into join_handler thread
+
+        /* pass client_info into join_handler thread */
         pthread_create(&threads[0], NULL, join_handler, &client_info);
+
         /* wait for the join_handler thread to complete
          * exit_value is the value returned by the join_handler
-        */
-        void*  exit_value;
-        pthread_join(threads[0],&exit_value);
+         */
+        void *exit_value;
+        pthread_join(threads[0], &exit_value);
     }
 }
 

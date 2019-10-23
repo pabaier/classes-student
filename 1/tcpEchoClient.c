@@ -43,6 +43,13 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\tSeqNumber: %d\n", s);
 }
 
+/* helper method to concatenate two strings
+ * it works by getting the size of each string,
+ * adding it together to create a new space in memory for the new string
+ * copying the first string into that memory space
+ * then adding the second string on the end
+ * and returning the resulting string
+ */
 static char *strConcat(char *str1, char *str2) {
     char *message = malloc(strlen(str1) + strlen(str2) + 1);
     strcpy(message, str1);
