@@ -99,6 +99,7 @@ void *chat_multicaster() {
             for (i = 0; i < TABLESIZE; i++) {
                 if (table[i].port != 0) {
                     packet_data.type = htons(231);
+                    packet_data.seqNumber = htons(seqNumber);
                     strcpy(packet_data.uName, table[i].uName);
                     strcpy(packet_data.mName, table[i].mName);
                     strcpy(packet_data.data, text);
@@ -113,6 +114,7 @@ void *chat_multicaster() {
             }
             seqNumber++;
             pthread_mutex_unlock(&my_mutex);
+            sleep(1);
         }
     }
 }
