@@ -51,12 +51,10 @@ static char* strConcat(char *str1, char *str2) {
 }
 
 /* helper method used to send packet */
-static void sendPacket(char *operation, struct packet p) {
+static void sendPacket(struct packet p) {
     if (send(s, &p, sizeof(p), 0) < 0) {
         printf("\n Send failed\n");
         exit(1);
-    } else {
-        printPacket(strConcat(operation, " Sent"), p, true);
     }
 }
 
@@ -143,7 +141,8 @@ int main(int argc, char *argv[]) {
     /*
         Send the registration packet to the server.
     */
-    sendPacket("Registration Packet 1", packet_reg);
+    sendPacket(packet_reg);
+    printPacket("Registration Packet 1 Sent"), p, true);
 
     /*
         Get registration response.
@@ -163,7 +162,9 @@ int main(int argc, char *argv[]) {
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
 
-    sendPacket("Registration Packet 2", packet_reg);
+    sendPacket(packet_reg);
+    printPacket("Registration Packet 2 Sent"), p, true);
+
     packet_reg_confirm = receivePacket("Registration Confirmation Packet 2", packet_reg_confirm, 222);
     printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
 
@@ -172,7 +173,8 @@ int main(int argc, char *argv[]) {
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
 
-    sendPacket("Registration Packet 3", packet_reg);
+    sendPacket(packet_reg);
+    printPacket("Registration Packet 3 Sent"), p, true);
     packet_reg_confirm = receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
     printPacket("Registration Complete", packet_reg_confirm, true);
 
