@@ -135,11 +135,11 @@ void *join_handler(struct registrationTable *clientData) {
     newport = clientData->port;
 
     // check if client has responded 
-    if (recv(newsock,&packet_reg,sizeof(packet_reg),0)<0) {
+    if (recv(newsock, &packet_reg, sizeof(packet_reg), 0) < 0) {
         printf("\nDid not receive registration packet 2\n");
         exit(1);
-        }
-    // make sure the packet is valid
+    }
+        // make sure the packet is valid
     else if (ntohs(packet_reg.type) == 122) {
         // acknowledge the second packet
         printPacket("Registration Packet 2 Received", packet_reg, true);
@@ -154,11 +154,10 @@ void *join_handler(struct registrationTable *clientData) {
         } else {
             printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
             // check to see if client has submitted final registration packet
-            if (recv(newsock,&packet_reg,sizeof(packet_reg),0)<0) {
+            if (recv(newsock, &packet_reg, sizeof(packet_reg), 0) < 0) {
                 printf("\nDid not receive registration packet 3\n");
                 exit(1);
-            }
-            else if (ntohs(packet_reg.type) == 123) {
+            } else if (ntohs(packet_reg.type) == 123) {
                 // acknowledge the third packet
                 printPacket("Registration Packet 3 Received", packet_reg, true);
                 packet_reg_confirm.type = htons(223);
@@ -172,8 +171,7 @@ void *join_handler(struct registrationTable *clientData) {
                 }
             }
         }
-    }
-    else {
+    } else {
         printf("\nError with registration packet 2\n");
         exit(1);
     }
@@ -191,7 +189,7 @@ void *join_handler(struct registrationTable *clientData) {
     // Send acknowledgement/confirmation to the client
     // Update the table
     // Leave the thread
-    pthread_exit(NULL); 
+    pthread_exit(NULL);
 }
 
 int main(int argc, char *argv[]) {

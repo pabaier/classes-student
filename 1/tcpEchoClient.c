@@ -29,8 +29,7 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     if (isNtoHS) {
         t = ntohs(p.type);
         s = ntohs(p.seqNumber);
-    }
-    else {
+    } else {
         t = htons(p.type);
         s = htons(p.seqNumber);
     }
@@ -149,9 +148,7 @@ int main(int argc, char *argv[]) {
         if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
             printf("\n Did not receive registration confirmation packet 2\n");
             exit(1);
-        }
-
-        else if (ntohs(packet_reg_confirm.type) == 222) {
+        } else if (ntohs(packet_reg_confirm.type) == 222) {
             printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
             // send a 3rd registration packet
             packet_reg.type = htons(123);
@@ -161,23 +158,19 @@ int main(int argc, char *argv[]) {
             if (send(s, &packet_reg, sizeof(packet_reg), 0) < 0) {
                 printf("\n Send failed\n");
                 exit(1);
-            } 
-
-            else {
+            } else {
                 printPacket("Registration Packet 3 Sent", packet_reg, true);
                 // see if server acknowledged final packet
                 if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
                     printf("\n Did not receive registration confirmation packet 3\n");
                     exit(1);
-                }
-
-                else if (ntohs(packet_reg_confirm.type) == 223) {
+                } else if (ntohs(packet_reg_confirm.type) == 223) {
                     // registration complete!
                     printPacket("Registration Complete", packet_reg_confirm, true);
                 }
             }
         }
-        /* main loop: get multicast packets */ 
+        /* main loop: get multicast packets */
         while (true) {
             printf("------------------------------------");
             /*
@@ -196,10 +189,10 @@ int main(int argc, char *argv[]) {
             printf("\n------------------------------------");
         }
     }
-    /*
-        if the registration confirmation code is not 221
-        we exit the program
-    */
+        /*
+            if the registration confirmation code is not 221
+            we exit the program
+        */
     else {
         printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
         printf("\nError Received. Exiting \n");
