@@ -289,6 +289,11 @@ int main(int argc, char *argv[]) {
             strcpy(client_info.mName, packet_reg.mName);
             // pass client_info into join_handler thread
             pthread_create(&threads[0], NULL, join_handler, &client_info);
+            /* wait for the join_handler thread to complete
+             * exit_value is the value returned by the join_handler
+            */
+            void*  exit_value;
+            pthread_join(threads[0],&exit_value);
         }
             /*
                 not valid registration packet
