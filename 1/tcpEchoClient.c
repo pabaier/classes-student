@@ -61,7 +61,7 @@ static void sendPacket(char *operation, struct packet p) {
 }
 
 /* helper method used to receive packet */
-static void receivePacket(char *operation, struct packet p, int packetType) {
+static struct packet receivePacket(char *operation, struct packet p, int packetType) {
     if (recv(s, &p, sizeof(p), 0) < 0) {
         printf("\n %s \n", strConcat("Did not receive ", operation));
         exit(1);
@@ -70,6 +70,7 @@ static void receivePacket(char *operation, struct packet p, int packetType) {
         printf("\nError Received. Exiting \n");
         exit(1);
     }
+    return p;
 }
 
 int main(int argc, char *argv[]) {
@@ -149,7 +150,7 @@ int main(int argc, char *argv[]) {
         After the server receives our registration it lets us know
         by sending back a confirmation message with code '221'.
     */
-    receivePacket("Registration Confirmation Packet 1", packet_reg_confirm, 221);
+    packet_reg_confirm = receivePacket("Registration Confirmation Packet 1", packet_reg_confirm, 221);
     printPacket("Registration Packet 1 Acknowledged", packet_reg_confirm, false);
 
     /*
@@ -163,7 +164,7 @@ int main(int argc, char *argv[]) {
     strcpy(packet_reg.mName, computerName);
 
     sendPacket("Registration Packet 2", packet_reg);
-    receivePacket("Registration Confirmation Packet 2", packet_reg_confirm, 222);
+    packet_reg_confirm = receivePacket("Registration Confirmation Packet 2", packet_reg_confirm, 222);
     printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
 
     // send a 3rd registration packet
@@ -172,7 +173,7 @@ int main(int argc, char *argv[]) {
     strcpy(packet_reg.mName, computerName);
 
     sendPacket("Registration Packet 3", packet_reg);
-    receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
+    packet_reg_confirm = receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
     printPacket("Registration Complete", packet_reg_confirm, true);
 
     /* main loop: get multicast packets */
@@ -182,7 +183,7 @@ int main(int argc, char *argv[]) {
             After the client receives the acknowledgment packet
             it starts receiving the multicast from the server.
         */
-        receivePacket("Multicast Packet", packet_multicast, 231);
+        packet_multicast = receivePacket("Multicast Packet", packet_multicast, 231);
         printPacket("Multicast Packet Received", packet_multicast, false);
         printf("\n------------------------------------");
     }
