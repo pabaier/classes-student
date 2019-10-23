@@ -50,8 +50,8 @@ struct registrationTable table[TABLESIZE];
 */
 pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-/* global index for the table */
-int index = 0;
+/* global table_index for the table */
+int table_index = 0;
 
 /* helper method used to print packet information */
 static void printPacket(char *operation, struct packet p, bool isNtoHS) {
@@ -113,7 +113,6 @@ void *chat_multicaster() {
                         printf("\n Send failed\n");
                         exit(1);
                     } else {
-                        printf("%d ", seqNumber);
                         printPacket("Data Packet Sent", packet_data, true);
                     }
                 }
@@ -126,7 +125,7 @@ void *chat_multicaster() {
 }
 
 // join handler method
-void *join_handler(struct registrationTable*clientData) {
+void *join_handler(struct registrationTable *clientData) {
     int newsock;
     int newport;
     int rg_count;
@@ -143,7 +142,7 @@ void *join_handler(struct registrationTable*clientData) {
     // make sure the packet is valid
     else if (ntohs(packet_reg.type) == 122) {
         // acknowledge the second packet
-        printPacket("Registration Packet 2 received", packet_reg, true);
+        printPacket("Registration Packet 2 Received", packet_reg, true);
         // construct acknowledgement packet
         packet_reg_confirm.type = htons(222);
         strcpy(packet_reg_confirm.uName, packet_reg.uName);
@@ -156,12 +155,12 @@ void *join_handler(struct registrationTable*clientData) {
             printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
             // check to see if client has submitted final registration packet
             if (recv(newsock,&packet_reg,sizeof(packet_reg),0)<0) {
-                printf('\nDid not receive registration packet 3\n');
+                printf("\nDid not receive registration packet 3\n");
                 exit(1);
             }
             else if (ntohs(packet_reg.type) == 123) {
                 // acknowledge the third packet
-                printPacket("Registration Packet 3 received", packet_reg, true);
+                printPacket("Registration Packet 3 Received", packet_reg, true);
                 packet_reg_confirm.type = htons(223);
                 strcpy(packet_reg_confirm.uName, packet_reg.uName);
                 strcpy(packet_reg_confirm.mName, packet_reg.mName);
@@ -182,11 +181,11 @@ void *join_handler(struct registrationTable*clientData) {
     /* if the client makes it this far, reward them
      * by registering them in the registration table
     */
-    table[index].port = newport;
-    table[index].sockid = newsock;
-    strcpy(table[index].uName, packet_reg.uName);
-    strcpy(table[index].mName, packet_reg.mName);
-    index++;
+    table[table_index].port = newport;
+    table[table_index].sockid = newsock;
+    strcpy(table[table_index].uName, packet_reg.uName);
+    strcpy(table[table_index].mName, packet_reg.mName);
+    table_index++;
 
     // Wait for more registration packets from the client
     // Send acknowledgement/confirmation to the client
@@ -267,7 +266,7 @@ int main(int argc, char *argv[]) {
                 send the registration confirmation to the client
             */
         else if (ntohs(packet_reg.type) == 121) {
-            printPacket("First Registration Packet Received.", packet_reg, true);
+            printPacket("Registration Packet 1 Received.", packet_reg, true);
             /*
                 build and send confirmation packet
                 the confirmation packet code is 221.
@@ -282,7 +281,7 @@ int main(int argc, char *argv[]) {
                 printf("\n Send failed\n");
                 exit(1);
             } else {
-                printPacket("First Registration Confirmation Packet Sent", packet_reg_confirm, true);
+                printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
             }
 
             // insert client data into client_info variable
@@ -291,7 +290,7 @@ int main(int argc, char *argv[]) {
             strcpy(client_info.uName, packet_reg.uName);
             strcpy(client_info.mName, packet_reg.mName);
             // pass client_info into join_handler thread
-            pthread_create(&threads[0],NULL,join_handler,&client_info);
+            pthread_create(&threads[0], NULL, join_handler, &client_info);
         }
             /*
                 not valid registration packet
