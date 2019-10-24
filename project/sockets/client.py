@@ -1,5 +1,7 @@
 # socket_echo_client.py
 import argparse
+import math
+import random
 import select
 import socket
 import sys
@@ -7,6 +9,9 @@ import sys
 parser = argparse.ArgumentParser(description='Client Program.')
 parser.add_argument('--ip', "-i", type=str, default='localhost', dest="server_ip", help='server ip')
 parser.add_argument('--port', "-p", type=int, default=10000, dest="server_port", help='server port')
+parser.add_argument('--min', "-m", type=int, default=0, dest="min", help='minimum range for data')
+parser.add_argument('--max', "-x", type=int, default=10, dest="max", help='maximum range for data')
+
 args = parser.parse_args()
 
 # Create a TCP/IP socket
@@ -29,8 +34,9 @@ while running:
     for socks in read_sockets:
         if socks == server:
             message = socks.recv(2048).decode('utf-8')
-            server.send(str.encode('80'))
-            print(f'sending status to server')
+            num = math.floor(random.randint(args.min, args.max))
+            server.send(str.encode(str(num)))
+            print(f'sending status to server: {num}')
         else:
             message = sys.stdin.readline().rstrip()
             if message == 'exit':
