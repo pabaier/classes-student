@@ -1,5 +1,6 @@
 #!/usr/bin/python                                                                            
-                                                                                             
+
+import argparse
 from mininet.topo import Topo
 from mininet.net import Mininet
 from mininet.util import dumpNodeConnections
@@ -20,9 +21,9 @@ class MyTopo(Topo):
 				self.addLink(host, switch)
 				host_count += 1
 
-def simpleTest():
+def simpleTest(args):
     "Create and test a simple network"
-    topo = MyTopo(switches=2, hosts_per_switch=2)
+    topo = MyTopo(switches=args.switches, hosts_per_switch=args.hosts_per_switch)
     net = Mininet(topo)
     net.start()
     print "Dumping host connections"
@@ -34,5 +35,9 @@ def simpleTest():
 
 if __name__ == '__main__':
     # Tell mininet to print useful information
+    parser = argparse.ArgumentParser(description='Server Program.')
+    parser.add_argument('--switches', "-s", type=int, default=1, dest="switches", help='number of switches in network')
+    parser.add_argument('--hosts', "-hs", type=int, default=1, dest="hosts_per_switch", help='number of hosts per switch')
+    args = parser.parse_args()
     setLogLevel('info')
-    simpleTest()
+    simpleTest(args)
