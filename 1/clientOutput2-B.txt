@@ -1,0 +1,87 @@
+Script started on 2019-10-24 19:03:37-0400
+ 
+~/school/632/1>./client ed
+
+ Registration Packet 1 Sent:
+	Type: 121
+	UserName: ed
+	MachineName: paul
+	Data: 
+	SeqNumber: 7680
+
+ Registration Packet 1 Acknowledged:
+	Type: 221
+	UserName: ed
+	MachineName: paul
+	Data: 
+	SeqNumber: 0
+
+ Registration Packet 2 Sent:
+	Type: 122
+	UserName: ed
+	MachineName: paul
+	Data: 
+	SeqNumber: 7680
+
+ Registration Packet 2 Acknowledged:
+	Type: 222
+	UserName: ed
+	MachineName: paul
+	Data: 
+	SeqNumber: 19505
+
+ Registration Packet 3 Sent:
+	Type: 123
+	UserName: ed
+	MachineName: paul
+	Data: 
+	SeqNumber: 7680
+
+ Registration Complete:
+	Type: 223
+	UserName: ed
+	MachineName: paul
+	Data: 
+	SeqNumber: 19505
+------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: ed
+	MachineName: paul
+	Data: nor did Alice think it so
+very much out of the way to hear the Rabbit say to itself, "Oh dear! Oh
+de
+	SeqNumber: 8
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: ed
+	MachineName: paul
+	Data: ar! I shall be too late!" But when the Rabbit actually took a watch
+out of its waistcoat-pocket and 
+	SeqNumber: 9
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: ed
+	MachineName: paul
+	Data: looked at it and then hurried on, Alice
+started to her feet, for it flashed across her mind that she
+	SeqNumber: 10
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: ed
+	MachineName: paul
+	Data:  had never
+before seen a rabbit with either a waistcoat-pocket, or a watch to take
+out of it, and, b
+	SeqNumber: 11
+
+^C
+
+~/school/632/1>exit
+Script done on 2019-10-24 19:04:11-0400

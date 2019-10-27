@@ -12,26 +12,78 @@
 #define MAX_LINE 256
 #define MAXNAME 256
 
+// global socket to server for use in send/receive helper methods
+int s;
+
 /* structure of the packet */
 struct packet {
     short type;
     char uName[MAXNAME];
     char mName[MAXNAME];
     char data[MAXNAME];
+    short seqNumber;
 };
 
 /* helper method used to print packet information */
 static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     printf("\n %s:\n", operation);
     short t;
-    if (isNtoHS)
+    short s;
+    if (isNtoHS) {
         t = ntohs(p.type);
-    else
+        s = ntohs(p.seqNumber);
+    } else {
         t = htons(p.type);
+        s = htons(p.seqNumber);
+    }
     printf("\tType: %d\n", t);
     printf("\tUserName: %s\n", p.uName);
     printf("\tMachineName: %s\n", p.mName);
     printf("\tData: %s\n", p.data);
+    printf("\tSeqNumber: %d\n", s);
+}
+
+/* helper method to concatenate two strings
+ * it works by getting the size of each string,
+ * adding it together to create a new space in memory for the new string
+ * copying the first string into that memory space
+ * then adding the second string on the end
+ * and returning the resulting string
+ */
+static char *strConcat(char *str1, char *str2) {
+    char *message = malloc(strlen(str1) + strlen(str2) + 1);
+    strcpy(message, str1);
+    strcat(message, str2);
+    return message;
+}
+
+/* helper method used to send packet
+ * if the send fails, the program prints that it failed and exits
+ */
+static void sendPacket(struct packet p) {
+    if (send(s, &p, sizeof(p), 0) < 0) {
+        printf("\n Send failed\n");
+        exit(1);
+    }
+}
+
+/* helper method used to receive packet
+ * the method takes in a string as a parameter which is used for the output
+ * it also takes a packet as a parameter, which is used to store the payload from the server
+ * lastly it takes a packet type, which is the expected packet type being sent by the server
+ * if there is an error with receiving the packet or if the packet type is incorrect
+ * the program will exit.
+ */
+static struct packet receivePacket(char *operation, struct packet p, int packetType) {
+    if (recv(s, &p, sizeof(p), 0) < 0) {
+        printf("\n %s \n", strConcat("Did not receive ", operation));
+        exit(1);
+    } else if (ntohs(p.type) != packetType) {
+        printPacket(strConcat(operation, " Received"), p, false);
+        printf("\nError Received. Exiting \n");
+        exit(1);
+    }
+    return p;
 }
 
 int main(int argc, char *argv[]) {
@@ -40,11 +92,9 @@ int main(int argc, char *argv[]) {
     char *host, *userName;
     char computerName[MAXNAME];
     char buf[MAX_LINE];
-    int s;
     struct packet packet_reg;
     struct packet packet_reg_confirm;
-    struct packet packet_chat;
-    struct packet packet_chat_response;
+    struct packet packet_multicast;
     short SERVER_PORT = 7777;
 
     /*
@@ -95,92 +145,60 @@ int main(int argc, char *argv[]) {
     }
 
     /*
-        Constructing the registration packet at client.
-        This is the first packet sent and includes the code '121'
-        which indicates it is a registration packet.
-    */
+     * Build, send, and get response for first registration packet.
+     * The server expects the first registration packet type to be 121
+     * The confirmation packet from the server should be packet type 221
+     */
     packet_reg.type = htons(121);
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
 
-    /*
-        Send the registration packet to the server.
-        If it fails to send, the program exits.
-    */
-    if (send(s, &packet_reg, sizeof(packet_reg), 0) < 0) {
-        printf("\n Send failed\n");
-        exit(1);
-    } else {
-        printPacket("Registration Packet Sent", packet_reg, true);
-    }
-    /*
-        Get registration response.
-        After the server receives our registration it lets us know
-        by sending back a confirmation message with code '221'.
-    */
-    if (recv(s, &packet_reg_confirm, sizeof(packet_reg_confirm), 0) < 0) {
-        printf("\n Did not receive registration confirmation packet \n");
-        exit(1);
-    }
-        /*
-            if the registration confirmation packet is the correct code
-            then we continue into the chat and can send chat messages.
-        */
+    sendPacket(packet_reg);
+    printPacket("Registration Packet 1 Sent", packet_reg, true);
 
-    else if (ntohs(packet_reg_confirm.type) == 221) {
-        printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
-        /*main loop: get and send lines of text */
+    packet_reg_confirm = receivePacket("Registration Confirmation Packet 1", packet_reg_confirm, 221);
+    printPacket("Registration Packet 1 Acknowledged", packet_reg_confirm, false);
+
+    /*
+     * Build, send, and get response for second registration packet.
+     * The server expects the first registration packet type to be 122
+     * The confirmation packet from the server should be packet type 222
+     */
+    packet_reg.type = htons(122);
+    strcpy(packet_reg.uName, userName);
+    strcpy(packet_reg.mName, computerName);
+
+    sendPacket(packet_reg);
+    printPacket("Registration Packet 2 Sent", packet_reg, true);
+
+    packet_reg_confirm = receivePacket("Registration Confirmation Packet 2", packet_reg_confirm, 222);
+    printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
+
+    /*
+     * Build, send, and get response for first registration packet.
+     * The server expects the first registration packet type to be 123
+     * The confirmation packet from the server should be packet type 223
+     */
+    packet_reg.type = htons(123);
+    strcpy(packet_reg.uName, userName);
+    strcpy(packet_reg.mName, computerName);
+
+    sendPacket(packet_reg);
+    printPacket("Registration Packet 3 Sent", packet_reg, true);
+
+    packet_reg_confirm = receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
+    printPacket("Registration Complete", packet_reg_confirm, true);
+
+    /* main loop to get multicast packets */
+    while (true) {
+        printf("------------------------------------");
+        /*
+         * After the client receives the final acknowledgment packet
+         * it starts receiving the multicast from the server.
+         * It expects the multicast packet to be packet type 231
+         */
+        packet_multicast = receivePacket("Multicast Packet", packet_multicast, 231);
+        printPacket("Multicast Packet Received", packet_multicast, false);
         printf("\n------------------------------------");
-        printf("\nSend server a message: ");
-
-        while (fgets(buf, sizeof(buf), stdin)) {
-            buf[MAX_LINE - 1] = '\0';
-            printf("------------------------------------");
-            /*
-                Constructing the chat packet.
-                This is the packet that will contain the chat message
-                It uses the code '131' indicating it is a chat message.
-            */
-            packet_chat.type = htons(131);
-            strcpy(packet_chat.uName, userName);
-            strcpy(packet_chat.mName, computerName);
-            strcpy(packet_chat.data, buf);
-
-            /*
-                Send the chat packet to the server
-            */
-            if (send(s, &packet_chat, sizeof(packet_chat), 0) < 0) {
-                printf("\nSend Failed \n");
-                exit(1);
-            } else {
-                printPacket("Chat Packet Sent", packet_chat, true);
-            }
-            /*
-                After the server receives the chat packet
-                it sends a chat response with code 231.
-                If the response code is not 231, we exit the program.
-            */
-            if (recv(s, &packet_chat_response, sizeof(packet_chat_response), 0) < 0) {
-                printf("\n Did not receive chat response \n");
-                exit(1);
-            } else if (ntohs(packet_chat_response.type) != 231) {
-                printPacket("Chat Response Packet Received", packet_chat_response, false);
-                printf("\nError Received. Exiting \n");
-                exit(1);
-            }
-            printPacket("Chat Response Packet Received", packet_chat_response, false);
-            printf("\n------------------------------------");
-            printf("\nSend server a message: ");
-        }
     }
-        /*
-            if the registration confirmation code is not 221
-            we exit the program
-        */
-    else {
-        printPacket("Registration Confirmation Packet Received", packet_reg_confirm, false);
-        printf("\nError Received. Exiting \n");
-        exit(1);
-    }
-
 }

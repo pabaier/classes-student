@@ -1,0 +1,171 @@
+Script started on 2019-10-24 19:03:32-0400
+ 
+~/school/632/1>./client joe
+
+ Registration Packet 1 Sent:
+	Type: 121
+	UserName: joe
+	MachineName: paul
+	Data: 
+	SeqNumber: 7680
+
+ Registration Packet 1 Acknowledged:
+	Type: 221
+	UserName: joe
+	MachineName: paul
+	Data: 
+	SeqNumber: 0
+
+ Registration Packet 2 Sent:
+	Type: 122
+	UserName: joe
+	MachineName: paul
+	Data: 
+	SeqNumber: 7680
+
+ Registration Packet 2 Acknowledged:
+	Type: 222
+	UserName: joe
+	MachineName: paul
+	Data: 
+	SeqNumber: 0
+
+ Registration Packet 3 Sent:
+	Type: 123
+	UserName: joe
+	MachineName: paul
+	Data: 
+	SeqNumber: 7680
+
+ Registration Complete:
+	Type: 223
+	UserName: joe
+	MachineName: paul
+	Data: 
+	SeqNumber: 0
+------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: ALICE'S ADVENTURES IN WONDERLAND
+
+
+
+I--DOWN THE RABBIT-HOLE
+
+
+Alice was beginning to get very tired 
+	SeqNumber: 1
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: of sitting by her sister on the
+bank, and of having nothing to do. Once or twice she had peeped into
+	SeqNumber: 2
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data:  the
+book her sister was reading, but it had no pictures or conversations in
+it, "and what is the us
+	SeqNumber: 3
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: e of a book," thought Alice, "without pictures or
+conversations?"
+
+So she was considering in her own
+	SeqNumber: 4
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data:  mind (as well as she could, for the
+day made her feel very sleepy and stupid), whether the pleasure
+	SeqNumber: 5
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data:  of
+making a daisy-chain would be worth the trouble of getting up and
+picking the daisies, when sudd
+	SeqNumber: 6
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: enly a White Rabbit with pink eyes ran
+close by her.
+
+There was nothing so very remarkable in that, 
+	SeqNumber: 7
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: nor did Alice think it so
+very much out of the way to hear the Rabbit say to itself, "Oh dear! Oh
+de
+	SeqNumber: 8
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: ar! I shall be too late!" But when the Rabbit actually took a watch
+out of its waistcoat-pocket and 
+	SeqNumber: 9
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: looked at it and then hurried on, Alice
+started to her feet, for it flashed across her mind that she
+	SeqNumber: 10
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data:  had never
+before seen a rabbit with either a waistcoat-pocket, or a watch to take
+out of it, and, b
+	SeqNumber: 11
+
+------------------------------------------------------------------------
+ Multicast Packet Received:
+	Type: 231
+	UserName: joe
+	MachineName: paul
+	Data: urning with curiosity, she ran across the field after
+it and was just in time to see it pop down a l
+	SeqNumber: 12
+
+^C
+ 
+~/school/632/1>exit
+Script done on 2019-10-24 19:04:09-0400
