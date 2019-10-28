@@ -28,16 +28,20 @@ def simpleTest(args):
     net.start()
     print "Dumping host connections"
     dumpNodeConnections(net.hosts)
+
+    h1 = net.get('h1')
+    result = h1.cmd('python3.7 ~/631/project/ddos/serverSock.py --ip %s &' % (h1.IP()))
+
     # print "Testing network connectivity"
     # net.pingAll()
     CLI( net )
     net.stop()
 
 if __name__ == '__main__':
-    # Tell mininet to print useful information
     parser = argparse.ArgumentParser(description='Server Program.')
     parser.add_argument('--switches', "-s", type=int, default=1, dest="switches", help='number of switches in network')
     parser.add_argument('--hosts', "-hs", type=int, default=1, dest="hosts_per_switch", help='number of hosts per switch')
     args = parser.parse_args()
+    # Tell mininet to print useful information
     setLogLevel('info')
     simpleTest(args)
