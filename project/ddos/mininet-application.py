@@ -29,8 +29,13 @@ def simpleTest(args):
     print "Dumping host connections"
     dumpNodeConnections(net.hosts)
 
-    h1 = net.get('h1')
+    # h1 = net.get('h1')
+    h1 = net.hosts[0]
     result = h1.cmd('python3.7 ~/631/project/ddos/serverSock.py --ip %s &' % (h1.IP()))
+
+    hosts = net.hosts[1:]
+    for host in hosts:
+        host.cmd('python3.7 ~/631/project/ddos/clientSock.py --ip %s &' % (h1.IP()))
 
     # print "Testing network connectivity"
     # net.pingAll()
