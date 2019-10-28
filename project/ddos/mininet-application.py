@@ -10,16 +10,16 @@ from mininet.cli import CLI
 class MyTopo(Topo):
     "Single switch connected to n hosts."
     def build(self, switches=1, hosts_per_switch=1):
-		host_count = 1
-		center_switch = self.addSwitch('s1')
-		for i in range(1, switches + 1):
-			switch = self.addSwitch('s' + str(i+1))
-			self.addLink(center_switch, switch)
-			# Python's range(N) generates 0..N-1
-			for h in range(hosts_per_switch):
-				host = self.addHost('h%s' % (host_count))
-				self.addLink(host, switch)
-				host_count += 1
+        host_count = 1
+        center_switch = self.addSwitch('s1')
+        for i in range(1, switches + 1):
+            switch = self.addSwitch('s' + str(i+1))
+            self.addLink(center_switch, switch)
+            # Python's range(N) generates 0..N-1
+            for h in range(hosts_per_switch):
+                host = self.addHost('h%s' % (host_count))
+                self.addLink(host, switch)
+                host_count += 1
 
 def simpleTest(args):
     "Create and test a simple network"
@@ -31,12 +31,18 @@ def simpleTest(args):
 
     # h1 = net.get('h1')
     h1 = net.hosts[0]
-    result = h1.cmd('python3.7 ~/631/project/ddos/serverSock.py --ip %s &' % (h1.IP()))
+    h1.cmd('screen -S abc &')
+    # result = h1.cmd('screen -S server & python3.7 ~/631/project/ddos/serverSock.py --ip %s &' % (h1.IP()))
+    h1.cmd('screen -r abc && python3.7 ~/631/project/ddos/serverSock.py --ip %s &' % (h1.IP()))
+    # result = h1.cmd('python3.7 ~/631/project/ddos/serverSock.py --ip %s & ' % (h1.IP()))
+    # h1.cmd('wireshark &')
+    print "************************************"
+    # r = h1.cmd('python3.7 ~/631/project/ddos/serverSock.py --ip 10.0.0.1 &')
+    # print r
 
     hosts = net.hosts[1:]
     for host in hosts:
         host.cmd('python3.7 ~/631/project/ddos/clientSock.py --ip %s &' % (h1.IP()))
-
     # print "Testing network connectivity"
     # net.pingAll()
     CLI( net )
