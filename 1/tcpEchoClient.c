@@ -89,13 +89,15 @@ static struct packet receivePacket(char *operation, struct packet p, int packetT
 int main(int argc, char *argv[]) {
     struct hostent *hp;
     struct sockaddr_in sin;
-    char *host, *userName;
+    char *host, *userName, *groupName;
     char computerName[MAXNAME];
     char buf[MAX_LINE];
     struct packet packet_reg;
     struct packet packet_reg_confirm;
-    struct packet packet_multicast;
+    struct packet packet_chat_in, packet_chat;
     short SERVER_PORT = 7777;
+    pthread_t receive_chat_thread;
+
 
     /*
         The following grabs the command line arguments.
@@ -106,13 +108,15 @@ int main(int argc, char *argv[]) {
         and the username will be the argument.
         if there are no arguments, the program will exit.
     */
-    if (argc == 3) {
+    if (argc == 4) {
         host = argv[1];
         userName = argv[2];
+        groupName = argv[3];
         // SERVER_PORT = atoi(argv[2]);
-    } else if (argc == 2) {
+    } else if (argc == 3) {
         host = "localhost";
         userName = argv[1];
+        groupName = argv[2];
     } else {
         fprintf(stderr, "usage:newclient username\n");
         exit(1);
@@ -152,6 +156,7 @@ int main(int argc, char *argv[]) {
     packet_reg.type = htons(121);
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
+    strcpy(packet_reg.data, groupName);
 
     sendPacket(packet_reg);
     printPacket("Registration Packet 1 Sent", packet_reg, true);
@@ -160,55 +165,45 @@ int main(int argc, char *argv[]) {
     printPacket("Registration Packet 1 Acknowledged", packet_reg_confirm, false);
 
     /*
-     * Build, send, and get response for second registration packet.
-     * The server expects the first registration packet type to be 122
-     * The confirmation packet from the server should be packet type 222
-     */
-    packet_reg.type = htons(122);
-    strcpy(packet_reg.uName, userName);
-    strcpy(packet_reg.mName, computerName);
-
-    sendPacket(packet_reg);
-    printPacket("Registration Packet 2 Sent", packet_reg, true);
-
-    packet_reg_confirm = receivePacket("Registration Confirmation Packet 2", packet_reg_confirm, 222);
-    printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
-
-    /*
-     * Build, send, and get response for first registration packet.
-     * The server expects the first registration packet type to be 123
-     * The confirmation packet from the server should be packet type 223
-     */
-    packet_reg.type = htons(123);
-    strcpy(packet_reg.uName, userName);
-    strcpy(packet_reg.mName, computerName);
-
-    sendPacket(packet_reg);
-    printPacket("Registration Packet 3 Sent", packet_reg, true);
-
-    packet_reg_confirm = receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
-    printPacket("Registration Complete", packet_reg_confirm, true);
-
-
-    /*
      * thread to receive chat packets
      */
-    pthread_create(&threads[0], NULL, receive_chat, &client_info);
+    pthread_create(&receive_chat_thread, NULL, receive_chat, NULL);
 
-    void *receive_chat(struct registrationTable *clientData) {
-
-    }
-
-    /* main thred to get user input */
-    while (true) {
-        printf("------------------------------------");
+    void *receive_chat() {
+        // printf("------------------------------------");
         /*
          * After the client receives the final acknowledgment packet
          * it starts receiving the multicast from the server.
          * It expects the multicast packet to be packet type 231
          */
-        packet_multicast = receivePacket("Multicast Packet", packet_multicast, 231);
-        printPacket("Multicast Packet Received", packet_multicast, false);
-        printf("\n------------------------------------");
+        packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
+        printf(packet_chat_in.data);
+        // printPacket("Chat Packet Received", packet_chat_in, false);
+        // printf("\n------------------------------------");
+    }
+
+    /* main thred to get user input */
+     while (fgets(buf, sizeof(buf), stdin)) {
+        buf[MAX_LINE - 1] = '\0';
+        /*
+            Constructing the chat packet.
+            This is the packet that will contain the chat message
+            It uses the code '131' indicating it is a chat message.
+        */
+        packet_chat.type = htons(131);
+        strcpy(packet_chat.uName, userName);
+        strcpy(packet_chat.mName, computerName);
+        strcpy(packet_chat.data, buf);
+
+        /*
+            Send the chat packet to the server
+        */
+        sendPacket(packet_chat);
+        /*
+            After the server receives the chat packet
+            it sends a chat response with code 231.
+            If the response code is not 231, we exit the program.
+        */
+        packet_chat_confirm = receivePacket("Chat Packet", packet_chat_confirm, 231);
     }
 }
