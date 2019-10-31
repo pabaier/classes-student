@@ -45,8 +45,8 @@ struct groupTable {
 
 /* structure of the information passed to the join handler */
 struct joinHandlerInfo {
-    struct registrationTable *clientData, 
-    char *groupName
+    struct registrationTable *clientData;
+    char *groupName;
 };
 
 /* make registration table global
@@ -143,16 +143,20 @@ void sendChat(struct packet message, int clientSocket) {
 }
 
 // join handler method
-void *join_handler(struct joinHandlerInfo info) {
-    struct registrationTable clientData -> info.clientData;
-    char *groupName -> info.groupName;
+void *join_handler(struct joinHandlerInfo *i) {
+    struct joinHandlerInfo info = *i;
+    // struct registrationTable clientData = *info.clientData;
+    struct registrationTable clientData = *i->clientData;
+    char *groupName = info.groupName;
+    // char *groupName = *i->groupName;
+
     int newsock;
     int newport;
     int rg_count;
     struct packet packet_reg;
     struct packet packet_reg_confirm;
     struct packet packet_message;
-    struct groupTable group
+    struct groupTable group;
     newsock = clientData.sockid;
     newport = clientData.port;
 
@@ -163,14 +167,14 @@ void *join_handler(struct joinHandlerInfo info) {
     /*
      * check if group exists in group_info table
      */
-    int groupIndex = getGroup(groupName)
+    int groupIndex = getGroup(groupName);
     /*
      * group exists, so add this client to the group's registration table
      */
     if(groupIndex > 0) {
         group = group_info[groupIndex];
         group.registeredClients[group.registrantCount] = clientData;
-        group.registrationCount++;
+        group.registrantCount++;
     }
     /*
      * group does not exist, so add the group name and create a new registration table for the group
@@ -178,7 +182,7 @@ void *join_handler(struct joinHandlerInfo info) {
     else {
         groupIndex = num_groups;
         strcpy(group.name, groupName);
-        group.registeredClients[0] = clientData
+        group.registeredClients[0] = clientData;
         group.registrantCount = 1;
         group_info[groupIndex] = group;
         num_groups++;
@@ -281,7 +285,7 @@ int main(int argc, char *argv[]) {
         strcpy(client_info.uName, packet_reg.uName);
         strcpy(client_info.mName, packet_reg.mName);
 
-        info.clientData = client_info;
+        info.clientData = &client_info;
         strcpy(info.groupName, packet_reg.data);
 
         /* pass client_info into join_handler thread */
