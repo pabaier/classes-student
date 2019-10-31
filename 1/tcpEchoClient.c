@@ -189,7 +189,17 @@ int main(int argc, char *argv[]) {
     packet_reg_confirm = receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
     printPacket("Registration Complete", packet_reg_confirm, true);
 
-    /* main loop to get multicast packets */
+
+    /*
+     * thread to receive chat packets
+     */
+    pthread_create(&threads[0], NULL, receive_chat, &client_info);
+
+    void *receive_chat(struct registrationTable *clientData) {
+
+    }
+
+    /* main thred to get user input */
     while (true) {
         printf("------------------------------------");
         /*
