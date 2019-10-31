@@ -86,6 +86,20 @@ static struct packet receivePacket(char *operation, struct packet p, int packetT
     return p;
 }
 
+void *receive_chat() {
+    struct packet packet_chat_in;
+    // printf("------------------------------------");
+    /*
+        * After the client receives the final acknowledgment packet
+        * it starts receiving the multicast from the server.
+        * It expects the multicast packet to be packet type 231
+        */
+    packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
+    printf("%s", packet_chat_in.data);
+    // printPacket("Chat Packet Received", packet_chat_in, false);
+    // printf("\n------------------------------------");
+}
+
 int main(int argc, char *argv[]) {
     struct hostent *hp;
     struct sockaddr_in sin;
@@ -94,7 +108,7 @@ int main(int argc, char *argv[]) {
     char buf[MAX_LINE];
     struct packet packet_reg;
     struct packet packet_reg_confirm;
-    struct packet packet_chat_in, packet_chat;
+    struct packet packet_chat, packet_chat_confirm;
     short SERVER_PORT = 7777;
     pthread_t receive_chat_thread;
 
@@ -168,19 +182,6 @@ int main(int argc, char *argv[]) {
      * thread to receive chat packets
      */
     pthread_create(&receive_chat_thread, NULL, receive_chat, NULL);
-
-    void *receive_chat() {
-        // printf("------------------------------------");
-        /*
-         * After the client receives the final acknowledgment packet
-         * it starts receiving the multicast from the server.
-         * It expects the multicast packet to be packet type 231
-         */
-        packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
-        printf(packet_chat_in.data);
-        // printPacket("Chat Packet Received", packet_chat_in, false);
-        // printf("\n------------------------------------");
-    }
 
     /* main thred to get user input */
      while (fgets(buf, sizeof(buf), stdin)) {
