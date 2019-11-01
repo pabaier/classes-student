@@ -88,16 +88,16 @@ static struct packet receivePacket(char *operation, struct packet p, int packetT
 
 void *receive_chat() {
     struct packet packet_chat_in;
-    // printf("------------------------------------");
     /*
         * After the client receives the final acknowledgment packet
         * it starts receiving the multicast from the server.
         * It expects the multicast packet to be packet type 231
         */
-    packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
-    printf("%s", packet_chat_in.data);
-    // printPacket("Chat Packet Received", packet_chat_in, false);
-    // printf("\n------------------------------------");
+    while(true) {
+        packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
+        printf("\t%s: %s",packet_chat_in.uName,  packet_chat_in.data);
+    }
+
 }
 
 int main(int argc, char *argv[]) {
@@ -200,11 +200,12 @@ int main(int argc, char *argv[]) {
             Send the chat packet to the server
         */
         sendPacket(packet_chat);
+        // printPacket("chat packet sent", packet_chat, false);
         /*
             After the server receives the chat packet
             it sends a chat response with code 231.
             If the response code is not 231, we exit the program.
         */
-        packet_chat_confirm = receivePacket("Chat Packet", packet_chat_confirm, 231);
+        // packet_chat_confirm = receivePacket("Chat Packet", packet_chat_confirm, 231);
     }
 }

@@ -16,9 +16,7 @@
 #define MAXNAME 256
 #define TABLESIZE 10
 
-// number of threads the server must run
-pthread_t threads[2];
-
+// STRUCT DEFINITIONS
 /* structure of the packet */
 struct packet {
     short type;
@@ -32,28 +30,28 @@ struct packet {
 struct registrationTable {
     int port;
     int sockid;
-    char *mName;
-    char *uName;
+    char uName[MAXNAME];
+    char mName[MAXNAME];
 };
 
 /* structure of Group Table */
 struct groupTable {
-    char *name;
+    char name[MAXNAME];
     struct registrationTable *registeredClients;
-    int registrantCount;
+    int *registrantCount;
 };
 
 /* structure of the information passed to the join handler */
 struct joinHandlerInfo {
     struct registrationTable *clientData;
-    char *groupName;
+    char groupName[MAXNAME];
 };
 
 /* make registration table global
  * 1) so methods outside of main can access it without needing to pass it as a parameter
  * 2) so all registrationTable values are initialized to default values (zero and empty string)
 */
-struct groupTable group_info[TABLESIZE];
+struct groupTable groups[TABLESIZE];
 int num_groups = 0;
 
 /* Declare a global mutex variable
@@ -131,15 +129,11 @@ static struct packet receivePacket(char *operation, struct packet p, int clientS
 
 static int getGroup(char *groupName) {
     for(int i = 0; i < num_groups; i++) {
-        if(strcmp(groupName, group_info[i].name) == 0) {
+        if(strcmp(groupName, groups[i].name) == 0) {
             return i;
         }
     }
     return -1;
-}
-
-void sendChat(struct packet message, int clientSocket) {
-    sendPacket(message, clientSocket);
 }
 
 // join handler method
@@ -150,6 +144,7 @@ void *join_handler(struct joinHandlerInfo *i) {
     char *groupName = info.groupName;
     // char *groupName = *i->groupName;
 
+
     int newsock;
     int newport;
     int rg_count;
@@ -157,24 +152,27 @@ void *join_handler(struct joinHandlerInfo *i) {
     struct packet packet_reg_confirm;
     struct packet packet_message;
     struct groupTable group;
+    struct registrationTable groupRegistrationTable[100];
     newsock = clientData.sockid;
     newport = clientData.port;
-
+    
     // check if group exists
     // if it does, add this client to the group's registration table
     // if it does not, create the group in the groupTable and register this client
 
     /*
-     * check if group exists in group_info table
+     * check if group exists in groups table
      */
     int groupIndex = getGroup(groupName);
     /*
      * group exists, so add this client to the group's registration table
      */
-    if(groupIndex > 0) {
-        group = group_info[groupIndex];
-        group.registeredClients[group.registrantCount] = clientData;
-        group.registrantCount++;
+    if(groupIndex >= 0) {
+        group = groups[groupIndex];
+        int regCount = *group.registrantCount;
+        group.registeredClients[regCount] = clientData;
+        regCount++;
+        groups[groupIndex].registrantCount = &regCount;
     }
     /*
      * group does not exist, so add the group name and create a new registration table for the group
@@ -182,25 +180,29 @@ void *join_handler(struct joinHandlerInfo *i) {
     else {
         groupIndex = num_groups;
         strcpy(group.name, groupName);
-        group.registeredClients[0] = clientData;
-        group.registrantCount = 1;
-        group_info[groupIndex] = group;
+        groupRegistrationTable[0] = clientData;
+        group.registeredClients = groupRegistrationTable;
+        int registrantCount = 1;
+        group.registrantCount = &registrantCount;
+        groups[groupIndex] = group;
         num_groups++;
     }
-
+    
     // keep thread open for each client to send information to broadcast
     while (true) {
         /*
          * receive the information, then send it to everyone in the group's registration table
          */
         packet_message = receivePacket("Chat Packet", packet_message, newsock, 131);
+        group = groups[groupIndex];
         struct registrationTable client;
         // send it (but not to yourself) with type 231
         packet_message.type = htons(231);
-        for(int i = 0;i < group.registrantCount - 1; i++) {
+        for(int i = 0;i < *group.registrantCount; i++) {
             client = group.registeredClients[i];
             if(client.port != newport) {
-                sendChat(packet_message, client.sockid);
+                sendPacket(packet_message, client.sockid);
+                printf("Sent to Group %s, user %s\n", group.name, client.uName);
             }
         }
     }
@@ -276,6 +278,7 @@ int main(int argc, char *argv[]) {
         packet_reg_confirm.type = htons(221);
         strcpy(packet_reg_confirm.uName, packet_reg.uName);
         strcpy(packet_reg_confirm.mName, packet_reg.mName);
+        strcpy(packet_reg_confirm.data, packet_reg.data);
         sendPacket(packet_reg_confirm, new_s);
         printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
 
