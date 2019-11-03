@@ -19,8 +19,6 @@ def simpleTest(args):
 	c0 = Controller( 'c0' )
 
 	topologies.num_switches = args.switches
-	# bus = BusTopo()
-	# ring = topologies.Ring()
 	topo = getTopo(args.topo)
 	net = Mininet(topo=topo, controller=c0)
 	net.start()
@@ -30,7 +28,7 @@ def simpleTest(args):
 def getTopo(topo):
 	switch = {
 		'ring': topologies.Ring(),
-		'bus': topologies.BusTopo()
+		'bus': topologies.Bus()
 	}
 	return switch[topo]
 

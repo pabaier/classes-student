@@ -2,7 +2,7 @@ from mininet.topo import Topo
 
 num_switches = 5
 
-class BusTopo( Topo ):
+class Bus( Topo ):
 
     def build( self ):
         # Add hosts and switches
