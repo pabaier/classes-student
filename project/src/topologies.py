@@ -9,8 +9,9 @@ from mininet.topo import Topo
 
 class BusTopo( Topo ):
     "Simple topology example."
-    # def __init__(self, num_switches):
-    #     self.num_switches = num_switches
+    
+    def setSwitches(self, num_switches):
+        self.num_switches = num_switches
 
     def build( self ):
 
