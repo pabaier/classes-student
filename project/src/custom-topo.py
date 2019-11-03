@@ -10,9 +10,9 @@ from mininet.node import OVSSwitch, Controller, RemoteController
 from mininet.topolib import TreeTopo
 from mininet.log import setLogLevel
 from mininet.cli import CLI
-from topologies import topos
+# from topologies import topos
 from topologies import BusTopo
-
+import topologies
 
 setLogLevel( 'info' )
 
@@ -21,8 +21,11 @@ setLogLevel( 'info' )
 c0 = Controller( 'c0' )
 
 # bus = topos['bustopo'](7)
+topologies.num_switches = 7
 bus = BusTopo()
+# BusTopo.num_switches=7
 bus.setSwitches(7)
+# BusTopo.setSwitches(8)
 net = Mininet(topo=bus, controller=c0)
 net.start()
 CLI( net )

@@ -7,24 +7,26 @@ topology enables one to pass in '--topo=mytopo' from the command line.
 
 from mininet.topo import Topo
 
+num_switches = 5
+
 class BusTopo( Topo ):
     "Simple topology example."
-    
-    def setSwitches(self, num_switches):
-        self.num_switches = num_switches
+    # def __init__(self):
+    #     super(BusTopo, self).__init__()
+    #     self.num_switches = 1
+    def setSwitches(self, num):
+        num_switches = num
 
     def build( self ):
-
         # Add hosts and switches
-        leftHost = self.addHost( 'h1' )
-        rightHost = self.addHost( 'h2' )
-        leftSwitch = self.addSwitch( 's3' )
-        rightSwitch = self.addSwitch( 's4' )
+        for i in range(num_switches):
+            host = 'h' + str(i+1)
+            switch = 's' + str(i+1)
+            self.addHost(host)
+            self.addSwitch(switch)
+            self.addLink(host, switch)
+            if i > 0:
+                prevswitch = 's' + str(i)
+                self.addLink(prevswitch, switch)
 
-        # Add links
-        self.addLink( leftHost, leftSwitch )
-        self.addLink( leftSwitch, rightSwitch )
-        self.addLink( rightSwitch, rightHost )
-
-
-topos = { 'bustopo': ( lambda: BusTopo() ) }
+# topos = { 'bustopo': ( lambda: BusTopo() ) }
