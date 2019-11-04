@@ -29,4 +29,6 @@ class Ring( Topo ):
             if i > 0:
                 prevswitch = 's' + str(i)
                 self.addLink(prevswitch, switch)
-        self.addLink('s1', 's' + str(num_switches))
+        self.addLink('s' + str(num_switches), 's1')
+
+topos = { 'bus': ( lambda: Bus() ), 'ring': ( lambda: Ring() ) }
