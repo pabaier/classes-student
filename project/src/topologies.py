@@ -24,7 +24,7 @@ class Ring( Topo ):
             host = 'h' + str(i+1)
             switch = 's' + str(i+1)
             self.addHost(host)
-            self.addSwitch(switch)
+            self.addSwitch(switch, stp=True, failMode='standalone')
             self.addLink(host, switch)
             if i > 0:
                 prevswitch = 's' + str(i)
