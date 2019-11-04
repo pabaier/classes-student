@@ -23,8 +23,8 @@ def simpleTest(args):
     switch = getSwitch(args.switch)
 
     net = Mininet(topo=topo, controller=controller, switch=switch)
-    # if args.controller == 'remote':
-    #     net.addController( 'c0', controller=RemoteController, ip=args.ip, port=6633)
+    if args.controller == 'remote':
+        net.addController( 'c0', controller=RemoteController, ip=args.ip, port=6633)
     net.start()
     CLI( net )
     net.stop()
@@ -39,7 +39,8 @@ def getController(controller):
 def getTopo(topo):
 	switch = {
 		'ring': topologies.Ring(),
-		'bus': topologies.Bus()
+		'bus': topologies.Bus(),
+        'star': topologies.Star()
 	}
 	return switch[topo]
 

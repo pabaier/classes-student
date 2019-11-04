@@ -31,4 +31,18 @@ class Ring( Topo ):
                 self.addLink(prevswitch, switch)
         self.addLink('s' + str(num_switches), 's1')
 
-topos = { 'bus': ( lambda: Bus() ), 'ring': ( lambda: Ring() ) }
+class Star( Topo ):
+
+    def build( self ):
+        self.addSwitch('s0')
+
+        # Add hosts and switches
+        for i in range(num_switches):
+            host = 'h' + str(i+1)
+            switch = 's' + str(i+1)
+            self.addHost(host)
+            self.addSwitch(switch)
+            self.addLink(host, switch)
+            self.addLink(switch, 's0')
+
+topos = { 'bus': ( lambda: Bus() ), 'ring': ( lambda: Ring() ), 'star': ( lambda: Star() ) }
