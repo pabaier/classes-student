@@ -7,6 +7,8 @@ import threading
 import time
 import datetime
 
+ok_to_send = True
+channels = [4,9,3,1,6,5,2,8,7,0]
 
 class ClientThread(threading.Thread):
     def __init__(self, clientAddress, clientsocket, name):
@@ -18,11 +20,23 @@ class ClientThread(threading.Thread):
         print("New connection added: ", clientAddress)
 
     def run(self):
-        count = 0
+        global ok_to_send
         while True:
-            data = self.socket.recv(1).decode()
-            print(f'{self.name}-{count}-{data}: {datetime.datetime.now()}')
-            count += 1
+            raw_data = self.socket.recv(1024).decode()
+            t = datetime.datetime.now().minute
+            channel = channels[t%10]
+            data = json.loads(raw_data)
+            if data['channel'] == channel:
+                if ok_to_send:
+                    ok_to_send = False
+                    time.sleep(1)
+                    self.socket.send(json.dumps({'body': True}).encode())
+                    raw_data = self.socket.recv(1024).decode()
+                    data = json.loads(raw_data)
+                    print(f"---{self.name}: {data['body']}---")
+                    ok_to_send = True
+                else:
+                    self.socket.send(json.dumps({'body': False}).encode())
 
 parser = argparse.ArgumentParser(description='Server Program.')
 parser.add_argument('--ip', "-i", type=str, default='localhost', dest="server_ip", help='server ip')
@@ -39,7 +53,6 @@ while running:
     server.listen(1)
     clientsock, clientAddress = server.accept()
     name = clientsock.recv(1490)
-    print(str(datetime.datetime.now()))
     newthread = ClientThread(clientAddress, clientsock, name.decode())
     newthread.start()
 server.close()
