@@ -52,8 +52,9 @@ running = True
 while running:
     server.listen(1)
     clientsock, clientAddress = server.accept()
-    name = clientsock.recv(1490)
-    newthread = ClientThread(clientAddress, clientsock, name.decode())
+    data_raw = clientsock.recv(1024).decode()
+    data = json.loads(data_raw)
+    newthread = ClientThread(clientAddress, clientsock, data['name'])
     newthread.start()
 server.close()
 

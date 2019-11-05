@@ -15,10 +15,6 @@ parser.add_argument('--port', "-p", type=int, default=10000, dest="server_port",
 parser.add_argument('--name', "-n", type=str, default='client', dest="name", help='client name')
 args = parser.parse_args()
 
-# server.send(b'7')
-
-payload = args.name.encode()
-
 # Create a TCP/IP socket
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -30,12 +26,11 @@ channels = [4,9,3,1,6,5,2,8,7,0]
 
 def main():
     wait_time = random.randint(1,7)
-    # print(f'wait time is {wait_time} seconds')
     running = True
-    server.send(payload)
+    server.send(json.dumps({'name': args.name}).encode())
     while running:
-        rts()
         time.sleep(random.randint(1,7))
+        rts()
     server.close()
 
 def rts():
