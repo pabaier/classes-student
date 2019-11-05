@@ -22,7 +22,7 @@ class ClientThread(threading.Thread):
     def run(self):
         global ok_to_send
         while True:
-            raw_data = self.socket.recv(1024).decode()
+            raw_data = self.socket.recv(16).decode()
             t = datetime.datetime.now().minute
             channel = channels[t%10]
             data = json.loads(raw_data)
@@ -31,9 +31,9 @@ class ClientThread(threading.Thread):
                     ok_to_send = False
                     time.sleep(1)
                     self.socket.send(json.dumps({'body': True}).encode())
-                    raw_data = self.socket.recv(1024).decode()
+                    raw_data = self.socket.recv(12).decode()
                     data = json.loads(raw_data)
-                    print(f"---{self.name}: {data['body']}---")
+                    print(f"---{self.name}: {data['body']} - channel {channel}---")
                     ok_to_send = True
                 else:
                     self.socket.send(json.dumps({'body': False}).encode())
@@ -44,12 +44,17 @@ class ClientThread(threading.Thread):
 parser = argparse.ArgumentParser(description='Server Program.')
 parser.add_argument('--ip', "-i", type=str, default='localhost', dest="server_ip", help='server ip')
 parser.add_argument('--port', "-p", type=int, default=10000, dest="server_port", help='server port')
+parser.add_argument('--channel', "-c", type=int, default='-1', dest="channel", help='broadcast on a specific channel')
 args = parser.parse_args()
 
 server_address = (args.server_ip, args.server_port)
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 server.bind(server_address)
+
+if args.channel > 0:
+    for i in range(10):
+        channels[i] = args.channel
 
 running = True
 while running:
