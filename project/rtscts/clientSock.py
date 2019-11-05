@@ -9,10 +9,15 @@ import datetime
 import time
 import json
 
+def getBool(st):
+    switch = {'true': True, 'false': False}
+    return switch[st]
+
 parser = argparse.ArgumentParser(description='Client Program.')
 parser.add_argument('--ip', "-i", type=str, default='localhost', dest="server_ip", help='server ip')
 parser.add_argument('--port', "-p", type=int, default=10000, dest="server_port", help='server port')
 parser.add_argument('--name', "-n", type=str, default='client', dest="name", help='client name')
+parser.add_argument('--sleep', "-s", type=str, default='true', dest="sleep", help='if client should sleep')
 args = parser.parse_args()
 
 # Create a TCP/IP socket
@@ -23,13 +28,15 @@ server_address = (args.server_ip, args.server_port)
 server.connect(server_address)
 
 channels = [4,9,3,1,6,5,2,8,7,0]
+sleep = getBool(args.sleep)
+
 
 def main():
-    wait_time = random.randint(1,7)
     running = True
     server.send(json.dumps({'name': args.name}).encode())
     while running:
-        time.sleep(random.randint(1,7))
+        if sleep:
+            time.sleep(random.randint(2,4))
         rts()
     server.close()
 
@@ -37,8 +44,10 @@ def rts():
     t = datetime.datetime.now().minute
     channel = channels[t%10]
     rts = {'channel': channel}
+    # request to send
     server.send(json.dumps(rts).encode())
     raw_data = server.recv(1024).decode()
+
     data = json.loads(raw_data)
     if(data['body']):
         p = random.randint(1, 100)

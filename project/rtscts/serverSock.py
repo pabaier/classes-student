@@ -37,6 +37,9 @@ class ClientThread(threading.Thread):
                     ok_to_send = True
                 else:
                     self.socket.send(json.dumps({'body': False}).encode())
+            else:
+                self.socket.send(json.dumps({'body': False}).encode())
+
 
 parser = argparse.ArgumentParser(description='Server Program.')
 parser.add_argument('--ip', "-i", type=str, default='localhost', dest="server_ip", help='server ip')
