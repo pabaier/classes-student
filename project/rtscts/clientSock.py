@@ -51,7 +51,6 @@ def rts():
     # request to send
     server.send(json.dumps(rts).encode())
     raw_data = server.recv(1024).decode()
-
     data = json.loads(raw_data)
     if(data['body']):
         p = random.randint(1, 100)

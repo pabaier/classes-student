@@ -20,26 +20,35 @@ class ClientThread(threading.Thread):
         print("New connection added: ", clientAddress)
 
     def run(self):
+        parsed = True
         global ok_to_send
         while True:
             raw_data = self.socket.recv(16).decode()
             t = datetime.datetime.now().minute
             channel = channels[t%10]
-            data = json.loads(raw_data)
-            if data['channel'] == channel:
-                if ok_to_send:
-                    ok_to_send = False
-                    time.sleep(1)
-                    self.socket.send(json.dumps({'body': True}).encode())
-                    raw_data = self.socket.recv(12).decode()
-                    data = json.loads(raw_data)
-                    print(f"---{self.name}: {data['body']} - channel {channel}---")
-                    ok_to_send = True
+            try:
+                data = json.loads(raw_data)
+            except:
+                parsed = False
+            if parsed:
+                if data['channel'] == channel:
+                    if ok_to_send:
+                        ok_to_send = False
+                        time.sleep(1)
+                        self.socket.send(json.dumps({'body': True}).encode())
+                        raw_data = self.socket.recv(12).decode()
+                        try:
+                            data = json.loads(raw_data)
+                            print(f"---{self.name}: {data['body']} - channel {channel}---")
+                        except:
+                            pass
+                        ok_to_send = True
+                    else:
+                        self.socket.send(json.dumps({'body': False}).encode())
                 else:
                     self.socket.send(json.dumps({'body': False}).encode())
             else:
                 self.socket.send(json.dumps({'body': False}).encode())
-
 
 parser = argparse.ArgumentParser(description='Server Program.')
 parser.add_argument('--ip', "-i", type=str, default='localhost', dest="server_ip", help='server ip')
@@ -61,7 +70,10 @@ while running:
     server.listen(1)
     clientsock, clientAddress = server.accept()
     data_raw = clientsock.recv(1024).decode()
-    data = json.loads(data_raw)
+    try:
+        data = json.loads(data_raw)
+    except:
+        data['name'] = 'unknown'
     newthread = ClientThread(clientAddress, clientsock, data['name'])
     newthread.start()
 server.close()
