@@ -40,7 +40,8 @@ def getTopo(topo):
 	switch = {
 		'ring': topologies.Ring(),
 		'bus': topologies.Bus(),
-        'star': topologies.Star()
+        'star': topologies.Star(),
+        'mesh': topologies.Mesh()
 	}
 	return switch[topo]
 
