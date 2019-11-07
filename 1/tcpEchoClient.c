@@ -86,13 +86,19 @@ static struct packet receivePacket(char *operation, struct packet p, int packetT
     return p;
 }
 
+/*
+ * this method is run in a separate thread from the main thread
+ * and its purpose is to wait to receive chat messages from other
+ * clients in the chat room
+ */
 void *receive_chat() {
     struct packet packet_chat_in;
     /*
-        * After the client receives the final acknowledgment packet
-        * it starts receiving the multicast from the server.
-        * It expects the multicast packet to be packet type 231
-        */
+     * After the client receives the final registration acknowledgment packet
+     * it waits to receive chat packets of type 231 from 
+     * other group members via the server and when it does, it prints the
+     * packet's data, which is the chat message
+     */
     while(true) {
         packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
         printf("\t%s: %s",packet_chat_in.uName,  packet_chat_in.data);
@@ -101,6 +107,7 @@ void *receive_chat() {
 }
 
 int main(int argc, char *argv[]) {
+    /* declare variables */
     struct hostent *hp;
     struct sockaddr_in sin;
     char *host, *userName, *groupName;
@@ -116,10 +123,14 @@ int main(int argc, char *argv[]) {
     /*
         The following grabs the command line arguments.
         Besides the name of the program,
-        if there are 2 arguments, the host will be the first one,
-        and the user name will be the second one.
-        if there is only 1 argument, the host will be 'localhost'
-        and the username will be the argument.
+        if there are 2 arguments, the user name will be the first one,
+        and the group name will be the second one.
+        if there are 3 arguments, the user name will be the first one,
+        the group name will be the second one, and the server port will be
+        the third one.
+        if there are 4 arguments, the user name will be the first one,
+        the group name will be the second one, the server port will be
+        the third one, and the server hostname will be the fourth one.
         if there are no arguments, the program will exit.
     */
     if (argc == 5) {
@@ -185,7 +196,8 @@ int main(int argc, char *argv[]) {
     printPacket("Registration Packet 1 Acknowledged", packet_reg_confirm, false);
 
     /*
-     * thread to receive chat packets
+     * start thread to receive chat packets.
+     * this thread runs the receive_chat method
      */
     pthread_create(&receive_chat_thread, NULL, receive_chat, NULL);
 
@@ -195,7 +207,7 @@ int main(int argc, char *argv[]) {
         /*
             Constructing the chat packet.
             This is the packet that will contain the chat message
-            It uses the code '131' indicating it is a chat message.
+            It uses the code '131' indicating to the server it is a chat message.
         */
         packet_chat.type = htons(131);
         strcpy(packet_chat.uName, userName);
@@ -206,12 +218,5 @@ int main(int argc, char *argv[]) {
             Send the chat packet to the server
         */
         sendPacket(packet_chat);
-        // printPacket("chat packet sent", packet_chat, false);
-        /*
-            After the server receives the chat packet
-            it sends a chat response with code 231.
-            If the response code is not 231, we exit the program.
-        */
-        // packet_chat_confirm = receivePacket("Chat Packet", packet_chat_confirm, 231);
     }
 }
