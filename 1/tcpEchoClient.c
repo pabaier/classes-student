@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
     struct packet packet_reg;
     struct packet packet_reg_confirm;
     struct packet packet_chat, packet_chat_confirm;
-    short SERVER_PORT = 7777;
+    short SERVER_PORT;
     pthread_t receive_chat_thread;
 
 
@@ -122,15 +122,21 @@ int main(int argc, char *argv[]) {
         and the username will be the argument.
         if there are no arguments, the program will exit.
     */
-    if (argc == 4) {
-        host = argv[1];
-        userName = argv[2];
-        groupName = argv[3];
-        // SERVER_PORT = atoi(argv[2]);
-    } else if (argc == 3) {
-        host = "localhost";
+    if (argc == 5) {
         userName = argv[1];
         groupName = argv[2];
+        SERVER_PORT = atoi(argv[3]);
+        host = argv[4];
+    } else if (argc == 4) {
+        userName = argv[1];
+        groupName = argv[2];
+        SERVER_PORT = atoi(argv[3]);
+        host = "localhost";
+    } else if (argc == 3) {
+        userName = argv[1];
+        groupName = argv[2];
+        SERVER_PORT = 7777;
+        host = "localhost";
     } else {
         fprintf(stderr, "usage:newclient username\n");
         exit(1);
