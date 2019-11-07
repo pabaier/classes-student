@@ -11,7 +11,6 @@ from mininet.topolib import TreeTopo
 from mininet.log import setLogLevel
 from mininet.cli import CLI
 import argparse
-# from topologies import BusTopo
 import topologies
 
 
@@ -19,7 +18,7 @@ def simpleTest(args):
     # c0 = Controller( 'c0' )
     topologies.num_switches = args.switch_count
     controller = getController(args.controller)
-    topo = getTopo(args.topo)
+    topo = topologies.topos[args.topo]()
     switch = getSwitch(args.switch)
 
     net = Mininet(topo=topo, controller=controller, switch=switch)
@@ -35,15 +34,6 @@ def getController(controller):
         'default': Controller( 'c0' )
     }
     return switch[controller]
-
-def getTopo(topo):
-	switch = {
-		'ring': topologies.Ring(),
-		'bus': topologies.Bus(),
-        'star': topologies.Star(),
-        'mesh': topologies.Mesh()
-	}
-	return switch[topo]
 
 def getSwitch(switch):
     s = {
