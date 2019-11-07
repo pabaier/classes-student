@@ -21,9 +21,12 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_address = (args.server_ip, args.server_port)
 print('connecting to {} port {}'.format(*server_address))
 server.connect(server_address)
-server.send(b'7')
+response = server.recv(2048).decode()
 
-running = True
+running = False
+if response == 'success':
+    running = True
+
 while running:
 
     # maintains a list of possible input streams 

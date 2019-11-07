@@ -22,6 +22,7 @@ class ClientThread(threading.Thread):
             msg = data.decode()
             if msg == 'exit':
                 registration.pop(self.port)
+                registeredIPs.remove(self.address)
                 break
             SensorData[self.port] = (float(msg))
         SensorData.pop(self.port)
@@ -41,6 +42,7 @@ parser.add_argument('--port', "-p", type=int, default=10000, dest="server_port",
 args = parser.parse_args()
 
 registration = {}
+registeredIPs = []
 SensorData = {}
 server_address = (args.server_ip, args.server_port)
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -57,10 +59,16 @@ while running:
     for socks in read_sockets:
         if socks == server:
             clientsock, clientAddress = server.accept()
-            message = clientsock.recv(2048).decode('utf-8')
-            registration[clientAddress[1]] = clientsock
-            newthread = ClientThread(clientAddress, clientsock)
-            newthread.start()
+            if clientAddress[0] in registeredIPs:
+                print(f'unable to register duplicate IP {clientAddress[0]} ')
+                response = 'failure'
+            else:
+                response = 'success'
+                registration[clientAddress[1]] = clientsock
+                registeredIPs.append(clientAddress[0])
+                newthread = ClientThread(clientAddress, clientsock)
+                newthread.start()
+            clientsock.send(str.encode(response))
         else:
             time.sleep(2)
             print("---")
