@@ -252,7 +252,7 @@ void *join_handler(struct joinHandlerInfo *i) {
              */
             if(client.port != newport) {
                 sendPacket(packet_message, client.sockid);
-                printf("Sent to Group %s, user %s\n", group.name, client.uName);
+                printf("%s sent a message to group %s\n", client.uName, group.name);
             }
         }
         /* unlock tables after reading/writing */
