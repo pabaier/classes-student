@@ -1,0 +1,93 @@
+Script started on 2019-11-07 18:20:17-0500
+> ./server
+
+ Client's port is 35860 
+
+ Registration Packet 1 Received.:
+	Type: 121
+	UserName: joey
+	MachineName: paul
+	Data: a
+
+ Registration Confirmation Packet Sent:
+	Type: 221
+	UserName: joey
+	MachineName: paul
+	Data: a
+
+ Client's port is 35864 
+
+ Registration Packet 1 Received.:
+	Type: 121
+	UserName: jerry
+	MachineName: paul
+	Data: a
+
+ Registration Confirmation Packet Sent:
+	Type: 221
+	UserName: jerry
+	MachineName: paul
+	Data: a
+joey sent a message to group a
+jerry sent a message to group a
+jerry sent a message to group a
+joey sent a message to group a
+joey sent a message to group a
+
+ Client's port is 35874 
+
+ Registration Packet 1 Received.:
+	Type: 121
+	UserName: ed
+	MachineName: paul
+	Data: b
+
+ Registration Confirmation Packet Sent:
+	Type: 221
+	UserName: ed
+	MachineName: paul
+	Data: b
+
+ Client's port is 35880 
+
+ Registration Packet 1 Received.:
+	Type: 121
+	UserName: ernie
+	MachineName: paul
+	Data: b
+
+ Registration Confirmation Packet Sent:
+	Type: 221
+	UserName: ernie
+	MachineName: paul
+	Data: b
+ernie sent a message to group b
+ed sent a message to group b
+ed sent a message to group b
+ernie sent a message to group b
+
+ Client's port is 35896 
+
+ Registration Packet 1 Received.:
+	Type: 121
+	UserName: johnny
+	MachineName: paul
+	Data: a
+
+ Registration Confirmation Packet Sent:
+	Type: 221
+	UserName: johnny
+	MachineName: paul
+	Data: a
+joey sent a message to group a
+jerry sent a message to group a
+joey sent a message to group a
+jerry sent a message to group a
+jerry sent a message to group a
+johnny sent a message to group a
+joey sent a message to group a
+johnny sent a message to group a
+^C
+                                                 
+> exit
+Script done on 2019-11-07 18:25:54-0500

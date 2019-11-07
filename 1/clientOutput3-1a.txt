@@ -1,0 +1,27 @@
+Script started on 2019-11-07 18:20:43-0500
+> ./client joey a
+
+ Registration Packet 1 Sent:
+	Type: 121
+	UserName: joey
+	MachineName: paul
+	Data: a
+
+ Registration Packet 1 Acknowledged:
+	Type: 221
+	UserName: joey
+	MachineName: paul
+	Data: a
+	jerry: hi joey
+hi jerry
+how are you?
+	jerry: i'm doing well
+	jerry: how about yourself?
+	johnny: hi joey
+	johnny: hi jerry
+hi johnny
+	jerry: hey there johnny
+^C
+                                                 
+> exit
+Script done on 2019-11-07 18:25:41-0500
