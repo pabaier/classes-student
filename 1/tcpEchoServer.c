@@ -64,7 +64,7 @@ struct groupTable groups[TABLESIZE];
 int num_groups = 0;
 
 /* Declare a global mutex variable
- * When a thread wants to access the table, it will lock the
+ * When a thread wants to access a table, it will lock the
  * mutex variable first.
  * Then it will read/update the table.
  * The thread will unlock the mutex variable
@@ -175,6 +175,8 @@ void *join_handler(struct joinHandlerInfo *i) {
     newsock = clientData.sockid;
     newport = clientData.port;
     
+    /* lock tables prior to reading/writing */
+    pthread_mutex_lock(&my_mutex);
     /*
      * Basic Outline
      * 1. check if group exists
@@ -217,7 +219,9 @@ void *join_handler(struct joinHandlerInfo *i) {
         groups[groupIndex] = group;
         num_groups++;
     }
-    
+    /* unlock tables after reading/writing */
+    pthread_mutex_unlock(&my_mutex);
+
     // keep thread open for each client so they can send messages to broadcast
     while (true) {
         /*
@@ -226,6 +230,10 @@ void *join_handler(struct joinHandlerInfo *i) {
          * the server is expecting a chat packet to have type 131
          */
         packet_message = receivePacket("Chat Packet", packet_message, newsock, 131);
+        
+        /* lock tables prior to reading/writing */
+        pthread_mutex_lock(&my_mutex);
+        
         /* we already have this client's group from above, but we
          * get it again incase any of the pointers have changed
          */
@@ -247,6 +255,8 @@ void *join_handler(struct joinHandlerInfo *i) {
                 printf("Sent to Group %s, user %s\n", group.name, client.uName);
             }
         }
+        /* unlock tables after reading/writing */
+        pthread_mutex_unlock(&my_mutex);
     }
     pthread_exit(NULL);
 }
