@@ -25,7 +25,20 @@ def simpleTest(args):
     if args.controller == 'remote':
         net.addController( 'c0', controller=RemoteController, ip=args.ip, port=6633)
     net.start()
-    CLI( net )
+    
+    # http://mininet.org/api/classmininet_1_1net_1_1Mininet.html
+    # net.configLinkStatus('s1','s3','down')
+    # net.pingAllFull()
+    
+    switches = net.switches
+    results = net.pingFull(switches)
+    print '*********************************************************'
+    for s in results:
+        print s[0] # starting node
+        print s[1] # ending node
+        print s[2] # (successes, total attempts, min rtt, avg rtt, max rtt, mdev rtt)
+    
+    # CLI( net )
     net.stop()
 
 def getController(controller):
