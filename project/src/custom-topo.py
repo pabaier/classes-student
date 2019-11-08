@@ -29,17 +29,28 @@ def simpleTest(args):
     # http://mininet.org/api/classmininet_1_1net_1_1Mininet.html
     # net.configLinkStatus('s1','s3','down')
     # net.pingAllFull()
-    
+    f = open("{}-{}".format(args.topo, args.switch_count), "w")
+    f.write("{}".format(args.topo))
+    f.write("\n{}".format(args.switch_count))
     switches = net.switches
-    results = net.pingFull(switches)
-    print '*********************************************************'
-    for s in results:
-        print s[0] # starting node
-        print s[1] # ending node
-        print s[2] # (successes, total attempts, min rtt, avg rtt, max rtt, mdev rtt)
+    for i in range(1,args.runs + 1):
+        results = net.pingFull(switches)
+        print '*********************************************************'
+        time = getTime(results)
+        f.write("\n{}".format(str(time)))
+        # for r in results:
+        #     print r[0] # starting node
+        #     print r[1] # ending node
+        #     print r[2] # (successes, total attempts, min rtt, avg rtt, max rtt, mdev rtt)
     
     # CLI( net )
     net.stop()
+
+def getTime(results):
+    time = 0.0
+    for result in results:
+        time += result[2][4]
+    return time
 
 def getController(controller):
     switch = {
@@ -64,7 +75,7 @@ if __name__ == '__main__':
     parser.add_argument('--switch', "-s", type=str, default='ovs', dest="switch", help='which switch to use')
     parser.add_argument('--controller', "-c", type=str, default='default', dest="controller", help='which controller to use')
     parser.add_argument('--ip', "-i", type=str, default='127.0.0.1', dest="ip", help='which ip a remote controller will use')
-
+    parser.add_argument('--runs', "-r", type=int, default=1, dest="runs", help='how many tests to run')
 
     args = parser.parse_args()
     # Tell mininet to print useful information
