@@ -11,6 +11,7 @@ parser.add_argument('--ip', "-i", type=str, default='localhost', dest="server_ip
 parser.add_argument('--port', "-p", type=int, default=10000, dest="server_port", help='server port')
 parser.add_argument('--min', "-m", type=int, default=0, dest="min", help='minimum range for data')
 parser.add_argument('--max', "-x", type=int, default=10, dest="max", help='maximum range for data')
+parser.add_argument('--id', "-id", type=int, dest="id", help='node id')
 
 args = parser.parse_args()
 
@@ -28,7 +29,6 @@ if response == 'success':
     running = True
 
 while running:
-
     # maintains a list of possible input streams 
     sockets_list = [sys.stdin, server]
     print("---")
