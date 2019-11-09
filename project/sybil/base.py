@@ -19,10 +19,15 @@ class ClientThread(threading.Thread):
     def run(self):
         global SensorData
         msg = ''
-        while True:
-            data = self.socket.recv(2048)
-            msg = data.decode()
-            SensorData[self.port] = (float(msg))
+        connected = True
+        while connected:
+            try:
+                data = self.socket.recv(2048)
+                msg = data.decode()
+                SensorData[self.port] = (float(msg))
+            except:
+                SensorData.pop(self.port)
+                connected = False
 
 def printdata():
     global SensorData
@@ -34,12 +39,13 @@ def printdata():
         print(f'   avg: {sensorSum / len(SensorData)}')
 
 def agregator():
-    time.sleep(3)
-    print("---")
-    printdata()
-    print("---")
+    while True:
+        time.sleep(3)
+        print("---")
+        printdata()
+        print("---")
 
-def run():
+def run(args):
     server_address = (args.server_ip, args.server_port)
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
