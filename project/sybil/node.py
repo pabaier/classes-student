@@ -14,12 +14,12 @@ def manager_receiver(server, id):
     global running
     while running:
         message = server.recv(2048).decode('utf-8')
+        print(f'sending id to network manager: {id}')
+        server.send(str.encode(id))
+        message = server.recv(2048).decode('utf-8')
         if message == 'kill':
             print(f'killing node {id}...done')
             running = False
-        else:
-            server.send(str.encode(id))
-            print(f'sending id to network manager: {id}')
 
 def run(args):
     global running
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     parser.add_argument('--mport', "-mp", type=int, default=10001, dest="manager_port", help='manager port')
     parser.add_argument('--min', "-m", type=int, default=0, dest="min", help='minimum range for data')
     parser.add_argument('--max', "-x", type=int, default=10, dest="max", help='maximum range for data')
-    parser.add_argument('--id', "-id", type=int, dest="id", help='node id')
+    parser.add_argument('--id', "-id", type=str, dest="id", help='node id')
 
     args = parser.parse_args()
     
