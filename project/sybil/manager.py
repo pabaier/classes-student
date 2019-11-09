@@ -18,18 +18,21 @@ class ClientThread(threading.Thread):
 
     def run(self):
         global nodes
-        msg = ''
-        while True:
-			time.sleep(7)
-			self.socket.send('check'.encode())
-			data = self.socket.recv(2048)
-			msg = data.decode()
-			if msg in nodes:
-				self.socket.send('ok'.encode())
-			else:
-				self.socket.send('kill'.encode())
+        connected = True
+        while connected:
+            try:
+                time.sleep(7)
+                self.socket.send('check'.encode())
+                data = self.socket.recv(2048)
+                msg = data.decode()
+                if msg in nodes:
+                    self.socket.send('ok'.encode())
+                else:
+                    self.socket.send('kill'.encode())
+            except:
+                connected = False
 
-def run():
+def run(args):
     manager_address = (args.manager_ip, args.manager_port)
     manager = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     manager.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
