@@ -25,24 +25,23 @@ def run(args):
     global running
     # Create a TCP/IP socket
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    manager = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
     # Connect the socket to the port where the server is listening
     server_address = (args.server_ip, args.server_port)
     print('connecting to base at {} on port {}'.format(*server_address))
     server.connect(server_address)
-
-    manager_address = (args.manager_ip, args.manager_port)
-    print('connecting to manager at {} on port {}'.format(*manager_address))
-    manager.connect(manager_address)
 
     response = server.recv(2048).decode()
 
     if response != 'success':
         running = False
 
-    t1 = threading.Thread(target=manager_receiver, args=(manager,args.id,)) 
-    t1.start()
+    if args.manager == 'yes':
+        manager = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        manager_address = (args.manager_ip, args.manager_port)
+        print('connecting to manager at {} on port {}'.format(*manager_address))
+        manager.connect(manager_address)
+        t1 = threading.Thread(target=manager_receiver, args=(manager,args.id,)) 
+        t1.start()
 
     while running:
         print("---")
@@ -51,7 +50,8 @@ def run(args):
         print(f'sending status to server: {num}')
         time.sleep(3)
     server.close()
-    manager.close()
+    if args.manager == 'yes':
+        manager.close()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Client Program.')
@@ -62,6 +62,7 @@ if __name__ == '__main__':
     parser.add_argument('--min', "-m", type=int, default=0, dest="min", help='minimum range for data')
     parser.add_argument('--max', "-x", type=int, default=10, dest="max", help='maximum range for data')
     parser.add_argument('--id', "-id", type=str, dest="id", help='node id')
+    parser.add_argument('--manager', "-manager", type=str, default='yes', dest="manager", help='node id')
 
     args = parser.parse_args()
     
