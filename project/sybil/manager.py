@@ -7,30 +7,27 @@ import threading
 import time
 
 nodes = ['a', 'b', 'c']
+socket_register = []
 
-class ClientThread(threading.Thread):
-    def __init__(self, clientAddress, clientsocket):
-        threading.Thread.__init__(self)
-        self.socket = clientsocket
-        self.address = clientAddress[0]
-        self.port = clientAddress[1]
-        print("New connection added: ", clientAddress)
-
-    def run(self):
-        global nodes
-        connected = True
-        while connected:
-            try:
-                time.sleep(7)
-                self.socket.send('check'.encode())
-                data = self.socket.recv(2048)
+def status_checker():
+    while True:
+        popList = []
+        time.sleep(7)
+        print('status check')
+        try:
+            for client in socket_register:
+                client.send('check'.encode())
+                data = client.recv(2048)
                 msg = data.decode()
                 if msg in nodes:
-                    self.socket.send('ok'.encode())
+                    client.send('ok'.encode())
                 else:
-                    self.socket.send('kill'.encode())
-            except:
-                connected = False
+                    client.send('kill'.encode())
+                    popList.append(client)
+        except:
+            pass
+        for client in popList:
+            socket_register.remove(client)
 
 def run(args):
     manager_address = (args.manager_ip, args.manager_port)
@@ -39,12 +36,14 @@ def run(args):
     manager.bind(manager_address)
     print("manager started")
 
+    t1 = threading.Thread(target=status_checker) 
+    t1.start()
+
     running = True
     while running:
         manager.listen(1)
         clientsock, clientAddress = manager.accept()
-        newthread = ClientThread(clientAddress, clientsock)
-        newthread.start()
+        socket_register.append(clientsock)
     manager.close()
 
 if __name__ == '__main__':
