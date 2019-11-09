@@ -13,7 +13,9 @@ def status_checker():
     while True:
         popList = []
         time.sleep(7)
-        print('status check')
+        t = time.localtime()
+        current_time = time.strftime("%H:%M:%S", t)
+        print(f'{current_time}: status check')
         try:
             for client in socket_register:
                 client.send('check'.encode())

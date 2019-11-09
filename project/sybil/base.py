@@ -6,7 +6,7 @@ import sys
 import threading
 import time
 
-SensorData = {}
+NodeInfo = {}
 
 class ClientThread(threading.Thread):
     def __init__(self, clientAddress, clientsocket):
@@ -17,35 +17,50 @@ class ClientThread(threading.Thread):
         print("New connection added: ", clientAddress)
 
     def run(self):
-        global SensorData
-        msg = ''
+        popped = False
+        global NodeInfo
+        self.id = self.socket.recv(2048).decode()
+        self.socket.send('ok'.encode())
+
+        NodeInfo[self.port] = {'id': self.id, 'status': ''}
         connected = True
         while connected:
             try:
-                data = self.socket.recv(2048)
-                msg = data.decode()
-                SensorData[self.port] = (float(msg))
+                status = self.socket.recv(2048).decode()
+                NodeInfo[self.port]['status'] = status
             except:
-                SensorData.pop(self.port)
+                NodeInfo.pop(self.port)
+                popped = True
+                connected = False
+            if not NodeInfo[self.port]['status']:
                 connected = False
 
-def printdata():
-    global SensorData
-    sensorSum = 0
-    if (len(SensorData) > 0):
-        for key in SensorData:
-            print(f'\t{key}: {SensorData[key]}')
-            sensorSum += SensorData[key]
-        print(f'   avg: {sensorSum / len(SensorData)}')
+        if not popped:
+            NodeInfo.pop(self.port)
+
+def checkStatus():
+    alarm = False
+    global NodeInfo
+    if (len(NodeInfo) > 0):
+        for key in NodeInfo:
+            print(f'\t{NodeInfo[key]["id"]}: {NodeInfo[key]["status"]}')
+            if NodeInfo[key]['status'] == 'alert':
+                alarm = True
+    if alarm:
+        print('******* ALERT, ALERT, ALERT *******')
+    
 
 def agregator():
     while True:
         time.sleep(3)
-        print("---")
-        printdata()
+        t = time.localtime()
+        current_time = time.strftime("%H:%M:%S", t)
+        print(current_time)
+        checkStatus()
         print("---")
 
 def run(args):
+    global NodeInfo
     server_address = (args.server_ip, args.server_port)
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

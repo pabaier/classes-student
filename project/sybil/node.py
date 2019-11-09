@@ -35,6 +35,9 @@ def run(args):
     if response != 'success':
         running = False
 
+    server.send(str.encode(args.id))
+    response = server.recv(2048).decode()
+
     if args.manager == 'yes':
         manager = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         manager_address = (args.manager_ip, args.manager_port)
@@ -45,9 +48,13 @@ def run(args):
 
     while running:
         print("---")
-        num = math.floor(random.randint(args.min, args.max))
-        server.send(str.encode(str(num)))
-        print(f'sending status to server: {num}')
+        status = 'clear'
+        if args.node_type != 'friend':
+            status = 'alert'
+        server.send(str.encode(status))
+        t = time.localtime()
+        current_time = time.strftime("%H:%M:%S", t)
+        print(f'{current_time}: {args.id} - sending status to server: {status}')
         time.sleep(3)
     server.close()
     if args.manager == 'yes':
@@ -63,6 +70,7 @@ if __name__ == '__main__':
     parser.add_argument('--max', "-x", type=int, default=10, dest="max", help='maximum range for data')
     parser.add_argument('--id', "-id", type=str, dest="id", help='node id')
     parser.add_argument('--manager', "-manager", type=str, default='yes', dest="manager", help='node id')
+    parser.add_argument('--type', "-type", type=str, default='friend', dest="node_type", help='node type. friend or foe')
 
     args = parser.parse_args()
     
