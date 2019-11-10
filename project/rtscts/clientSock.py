@@ -7,7 +7,6 @@ import socket
 import sys
 import datetime
 import time
-import json
 
 def getBool(st):
     switch = {'true': True, 'false': False}
@@ -31,33 +30,32 @@ server.connect(server_address)
 channels = [4,9,3,1,6,5,2,8,7,0]
 sleep = getBool(args.sleep)
 
-
 def main():
     running = True
     if args.channel > 0:
         for i in range(10):
             channels[i] = args.channel
-    server.send(json.dumps({'name': args.name}).encode())
+    server.send(args.name.encode())
     while running:
         if sleep:
-            time.sleep(random.randint(2,4))
+            time.sleep(random.randint(2,7))
         rts()
     server.close()
 
 def rts():
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
     t = datetime.datetime.now().minute
     channel = channels[t%10]
-    rts = {'channel': channel}
     # request to send
-    server.send(json.dumps(rts).encode())
-    raw_data = server.recv(1024).decode()
-    data = json.loads(raw_data)
-    if(data['body']):
+    server.send(str(channel).encode())
+    cts = server.recv(2048).decode()
+    if(getBool(cts)):
         p = random.randint(1, 100)
-        print(f"CTS! sending {p} on channel {channel}")
-        server.send(json.dumps({'body': p}).encode())
+        print(f'{current_time}: CTS! sending {p} on channel {channel}')
+        server.send(str(p).encode())
     else:
-        print('RTS')
+        print(f'{current_time}: RTS')
 
 if __name__ == '__main__':
     main()
