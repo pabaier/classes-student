@@ -10,11 +10,13 @@ def run(filename):
 		nodes = file.readline().strip()
 		run = file.readline().strip()
 		while run:
-			runs.append(float(run))
+			runs.append(round(float(run), 3))
 			run = file.readline().strip()
 	x_axis = list(range(1,len(runs)+1))
 
 	plt.plot(x_axis, runs, linestyle='--', marker='o')
+	for x_cor, y_cor in zip(x_axis, runs):
+		plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
 	plt.title(f'Average Pingall Round Trip Times for {topology} with {nodes} nodes')
 	plt.ylabel('Ping RTT (ms)')
 	plt.xlabel('Runs')
