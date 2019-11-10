@@ -39,6 +39,8 @@ def main():
     while running:
         if sleep:
             time.sleep(random.randint(2,7))
+        else:
+            time.sleep(0.01)
         rts()
     server.close()
 
