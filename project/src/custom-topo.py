@@ -34,10 +34,10 @@ def simpleTest(args):
     f.write("\n{}".format(args.switch_count))
     switches = net.switches
     for i in range(1,args.runs + 1):
-        results = net.pingFull(switches)
+        results = net.pingAllFull()
         print '*********************************************************'
-        time = getTime(results)
-        f.write("\n{}".format(str(time)))
+        avgRtt = getAvgRtt(results)
+        f.write("\n{}".format(str(avgRtt)))
         # for r in results:
         #     print r[0] # starting node
         #     print r[1] # ending node
@@ -45,6 +45,14 @@ def simpleTest(args):
     
     # CLI( net )
     net.stop()
+
+def getAvgRtt(results):
+    pings = len(results)
+    rtts = []
+    for element in results:
+        rtts.append(float(element[2][2]))
+    avgRtt = sum(rtts) / pings
+    return(avgRtt)
 
 def getTime(results):
     time = 0.0
