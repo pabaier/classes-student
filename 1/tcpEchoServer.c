@@ -141,8 +141,8 @@ static struct packet receivePacket(char *operation, struct packet p, int clientS
  * if there is no match, the method returns -1
  */
 static int getGroup(char *groupName) {
-    for(int i = 0; i < num_groups; i++) {
-        if(strcmp(groupName, groups[i].name) == 0) {
+    for (int i = 0; i < num_groups; i++) {
+        if (strcmp(groupName, groups[i].name) == 0) {
             return i;
         }
     }
@@ -174,7 +174,7 @@ void *join_handler(struct joinHandlerInfo *i) {
     struct registrationTable groupRegistrationTable[100];
     newsock = clientData.sockid;
     newport = clientData.port;
-    
+
     /* lock tables prior to reading/writing */
     pthread_mutex_lock(&my_mutex);
     /*
@@ -191,7 +191,7 @@ void *join_handler(struct joinHandlerInfo *i) {
     /*
      * 2. group exists, so add this client to the group's registration table
      */
-    if(groupIndex >= 0) {
+    if (groupIndex >= 0) {
         group = groups[groupIndex];
         int regCount = *group.registrantCount;
         /* add this client to the group's registeredClients list */
@@ -230,10 +230,10 @@ void *join_handler(struct joinHandlerInfo *i) {
          * the server is expecting a chat packet to have type 131
          */
         packet_message = receivePacket("Chat Packet", packet_message, newsock, 131);
-        
+
         /* lock tables prior to reading/writing */
         pthread_mutex_lock(&my_mutex);
-        
+
         /* we already have this client's group from above, but we
          * get it again incase any of the pointers have changed
          */
@@ -242,7 +242,7 @@ void *join_handler(struct joinHandlerInfo *i) {
 
         // send the message to everyone in the group (but not to yourself) with type 231
         packet_message.type = htons(231);
-        for(int i = 0;i < *group.registrantCount; i++) {
+        for (int i = 0; i < *group.registrantCount; i++) {
             /* get the client from the group registeredClients table */
             client = group.registeredClients[i];
             /*
@@ -250,7 +250,7 @@ void *join_handler(struct joinHandlerInfo *i) {
              * with our port number. If they are different, it's not us
              * so send the message to them
              */
-            if(client.port != newport) {
+            if (client.port != newport) {
                 sendPacket(packet_message, client.sockid);
                 printf("%s sent a message to group %s\n", client.uName, group.name);
             }

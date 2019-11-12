@@ -95,9 +95,9 @@ void *receive_chat() {
      * other group members via the server and when it does, it prints the
      * packet's data, which is the chat message
      */
-    while(true) {
+    while (true) {
         packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
-        printf("\t%s: %s",packet_chat_in.uName,  packet_chat_in.data);
+        printf("\t%s: %s", packet_chat_in.uName, packet_chat_in.data);
     }
 
 }
@@ -198,7 +198,7 @@ int main(int argc, char *argv[]) {
     pthread_create(&receive_chat_thread, NULL, receive_chat, NULL);
 
     /* main thred to get user input */
-     while (fgets(buf, sizeof(buf), stdin)) {
+    while (fgets(buf, sizeof(buf), stdin)) {
         buf[MAX_LINE - 1] = '\0';
         /*
             Constructing the chat packet.
