@@ -10,6 +10,7 @@ from mininet.node import OVSSwitch, IVSSwitch, UserSwitch, Controller, RemoteCon
 from mininet.topolib import TreeTopo
 from mininet.log import setLogLevel
 from mininet.cli import CLI
+from tests import tests
 import argparse
 import topologies
 
@@ -25,19 +26,23 @@ def simpleTest(args):
     if args.controller == 'remote':
         net.addController( 'c0', controller=RemoteController, ip=args.ip, port=6633)
     net.start()
+    test = tests[args.test](net, args.stat)
     
     # http://mininet.org/api/classmininet_1_1net_1_1Mininet.html
     # net.configLinkStatus('s1','s3','down')
-    # net.pingAllFull()
-    f = open("{}-{}".format(args.topo, args.switch_count), "w")
-    f.write("{}".format(args.topo))
-    f.write("\n{}".format(args.switch_count))
+
+    # f = open("{}-{}".format(args.topo, args.switch_count), "w")
+    # f.write("{}".format(args.topo))
+    # f.write("\n{}".format(args.switch_count))
+
     switches = net.switches
     for i in range(1,args.runs + 1):
-        results = net.pingAllFull()
+        results = test.run()
+        stats = test.getStats()
         print '*********************************************************'
-        avgRtt = getAvgRtt(results)
-        f.write("\n{}".format(str(avgRtt)))
+        print str(stats)
+        print '*********************************************************'
+        # f.write("\n{}".format(str(stats)))
         # for r in results:
         #     print r[0] # starting node
         #     print r[1] # ending node
@@ -45,20 +50,6 @@ def simpleTest(args):
     
     # CLI( net )
     net.stop()
-
-def getAvgRtt(results):
-    pings = len(results)
-    rtts = []
-    for element in results:
-        rtts.append(float(element[2][2]))
-    avgRtt = sum(rtts) / pings
-    return(avgRtt)
-
-def getTime(results):
-    time = 0.0
-    for result in results:
-        time += result[2][4]
-    return time
 
 def getController(controller):
     switch = {
@@ -80,10 +71,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Server Program.')
     parser.add_argument('--switch_count', "-sc", type=int, default=1, dest="switch_count", help='number of switches in network')
     parser.add_argument('--topo', "-t", type=str, default='bus', dest="topo", help='which topology to use')
-    parser.add_argument('--switch', "-s", type=str, default='ovs', dest="switch", help='which switch to use')
+    parser.add_argument('--switch', "-sw", type=str, default='ovs', dest="switch", help='which switch to use')
     parser.add_argument('--controller', "-c", type=str, default='default', dest="controller", help='which controller to use')
     parser.add_argument('--ip', "-i", type=str, default='127.0.0.1', dest="ip", help='which ip a remote controller will use')
     parser.add_argument('--runs', "-r", type=int, default=1, dest="runs", help='how many tests to run')
+    parser.add_argument('--test', "-ts", type=str, default='pingall', dest="test", help='which test to run')
+    parser.add_argument('--stat', "-s", type=str, default='average', dest="stat", help='which statistic to collect')
+
+
 
     args = parser.parse_args()
     # Tell mininet to print useful information
