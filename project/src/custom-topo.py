@@ -21,6 +21,7 @@ def simpleTest(args):
     controller = getController(args.controller)
     topo = topologies.topos[args.topo]()
     switch = getSwitch(args.switch)
+    down_links = processLinks(args.down_links)
 
     net = Mininet(topo=topo, controller=controller, switch=switch)
     if args.controller == 'remote':
@@ -31,20 +32,28 @@ def simpleTest(args):
     # http://mininet.org/api/classmininet_1_1net_1_1Mininet.html
     # net.configLinkStatus('s1','s3','down')
 
-    f = open("{}-{}".format(args.topo, args.switch_count), "w")
-    f.write("{}".format(args.topo))
-    f.write("\n{}".format(args.test))
-    f.write("\n{}".format(args.stat))
-    f.write("\n{}".format(args.switch_count))
+    # f = open("{}-{}".format(args.topo, args.switch_count), "w")
+    # f.write("{}".format(args.topo))
+    # f.write("\n{}".format(args.test))
+    # f.write("\n{}".format(args.stat))
+    # f.write("\n{}".format(args.switch_count))
 
     switches = net.switches
     for i in range(1,args.runs + 1):
+        if i%2 == 0:
+            toggleLinks(down_links, net, 'down')
+            print 'vvvvvvvvvvvvvvvvvvvvlinks down!vvvvvvvvvvvvvvvv'
+        elif i > 1:
+            toggleLinks(down_links, net, 'up')
+            print '^^^^^^^^^^^^^^^^^links up!^^^^^^^^^^^^^^^^^^^^'
+
+
         results = test.run()
         stats = test.getStats()
         print '*********************************************************'
         print str(stats)
         print '*********************************************************'
-        f.write("\n{}".format(str(stats)))
+        # f.write("\n{}".format(str(stats)))
         # for r in results:
         #     print r[0] # starting node
         #     print r[1] # ending node
@@ -68,6 +77,15 @@ def getSwitch(switch):
     }
     return s[switch]
 
+def processLinks(links):
+    res = []
+    for i in range(0,len(links), 2):
+        res.append((links[i], links[i+1]))
+    return res
+
+def toggleLinks(links, net, toggle):
+    for link in links:
+        net.configLinkStatus(link[0], link[1], toggle)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Server Program.')
@@ -79,8 +97,7 @@ if __name__ == '__main__':
     parser.add_argument('--runs', "-r", type=int, default=1, dest="runs", help='how many tests to run')
     parser.add_argument('--test', "-ts", type=str, default='pingall', dest="test", help='which test to run')
     parser.add_argument('--stat', "-s", type=str, default='average', dest="stat", help='which statistic to collect')
-
-
+    parser.add_argument('--down', "-d", type=str, dest="down_links", nargs='*', help='which links to shut down')
 
     args = parser.parse_args()
     # Tell mininet to print useful information
