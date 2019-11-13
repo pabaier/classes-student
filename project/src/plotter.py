@@ -7,6 +7,8 @@ def run(filename):
 	runs = []
 	with open(filename) as file:
 		topology = file.readline().strip()
+		test = file.readline().strip()
+		stat = file.readline().strip()
 		nodes = file.readline().strip()
 		run = file.readline().strip()
 		while run:
@@ -17,7 +19,7 @@ def run(filename):
 	plt.plot(x_axis, runs, linestyle='--', marker='o')
 	for x_cor, y_cor in zip(x_axis, runs):
 		plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
-	plt.title(f'Average Pingall Round Trip Times for {topology} with {nodes} nodes')
+	plt.title(f'{stat.capitalize()}, {test.capitalize()} for {topology} with {nodes} nodes')
 	plt.ylabel('Ping RTT (ms)')
 	plt.xlabel('Runs')
 

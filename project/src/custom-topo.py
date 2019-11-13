@@ -31,9 +31,11 @@ def simpleTest(args):
     # http://mininet.org/api/classmininet_1_1net_1_1Mininet.html
     # net.configLinkStatus('s1','s3','down')
 
-    # f = open("{}-{}".format(args.topo, args.switch_count), "w")
-    # f.write("{}".format(args.topo))
-    # f.write("\n{}".format(args.switch_count))
+    f = open("{}-{}".format(args.topo, args.switch_count), "w")
+    f.write("{}".format(args.topo))
+    f.write("\n{}".format(args.test))
+    f.write("\n{}".format(args.stat))
+    f.write("\n{}".format(args.switch_count))
 
     switches = net.switches
     for i in range(1,args.runs + 1):
@@ -42,7 +44,7 @@ def simpleTest(args):
         print '*********************************************************'
         print str(stats)
         print '*********************************************************'
-        # f.write("\n{}".format(str(stats)))
+        f.write("\n{}".format(str(stats)))
         # for r in results:
         #     print r[0] # starting node
         #     print r[1] # ending node
