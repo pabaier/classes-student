@@ -94,6 +94,30 @@ class IPerf:
 			total += (element[0] + element[1])
 		return total
 
-tests = { 'pingall': ( lambda x, y: PingAll(x, y) ), 'pingallfull': ( lambda x, y: PingAllFull(x, y) ), 'iperf': ( lambda x, y: IPerf(x, y) ) }
+class LinkInterrupt:
+	def __init__(self, net, type, links, linkStatus):
+		self.net = net
+		self.type = type.lower()
+		self.links = links
+		self.linkStatus = linkStatus
+	
+	def run(self):
+		self.getType()
+
+	def getType(self):
+		switch = {
+			'configlinkstatus': self.configLinkStatus()
+		}
+		return switch[self.type]
+	
+	def configLinkStatus(self):
+		self.net.configLinkStatus(self.links[0], self.links[1], self.linkStatus)
+
+tests = { 
+	'pingall': ( lambda x, y: PingAll(x, y) ), 
+	'pingallfull': ( lambda x, y: PingAllFull(x, y) ), 
+	'iperf': ( lambda x, y: IPerf(x, y) ),
+	'linkinterrupt': ( lambda a, b, c, d: LinkInterrupt(a, b, c, d) ),
+}
 
 
