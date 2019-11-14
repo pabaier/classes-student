@@ -2,7 +2,7 @@
 
 ### Compiling
 ```
-./complie.sh
+./compile.sh
 ```
 
 ### Run Server
