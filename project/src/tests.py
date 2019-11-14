@@ -5,20 +5,19 @@ from mininet.log import setLogLevel
 from mininet.cli import CLI
 
 class PingAllFull:
-	def __init__(self, net, stat):
+	def __init__(self, net):
 		self.net = net
-		self.stat = stat.lower()
 
 	def run(self):
 		self.results = self.net.pingAllFull()
 		return self.results
 	
-	def getStats(self):
+	def getStats(self, stat):
 		switch = {
 			'avgrtt': self.avgRTT(),
 			'totaltime': self.totalTime()
 		}
-		return switch[self.stat]
+		return switch[stat.lower()]
 
 	def avgRTT(self):
 		pings = len(self.results)
@@ -39,27 +38,25 @@ class PingAllFull:
 		return time
 
 class PingAll:
-	def __init__(self, net, stat):
+	def __init__(self, net):
 		self.net = net
-		self.stat = stat.lower()
 
 	def run(self):
 		self.results = self.net.pingAll()
 		return self.results
 
-	def getStats(self):
+	def getStats(self, stat):
 		switch = {
 			'percentage': self.percentage(),
 		}
-		return switch[self.stat]
+		return switch[stat.lower()]
 
 	def percentage(self):
 		return self.results
 
 class IPerf:
-	def __init__(self, net, stat):
+	def __init__(self, net):
 		self.net = net
-		self.stat = stat.lower()
 
 	def run(self):
 		test = 100
@@ -75,12 +72,12 @@ class IPerf:
 			i += 1
 		return self.results
 
-	def getStats(self):
+	def getStats(self, stat):
 		switch = {
 			'avgspeed': self.avgSpeed(),
 			'totalspeed': self.totalSpeed()
 		}
-		return switch[self.stat]
+		return switch[stat.lower()]
 
 	def avgSpeed(self):
 		avg = 0
@@ -104,10 +101,10 @@ class LinkInterrupt:
 		self.net.configLinkStatus(self.links[0], self.links[1], self.linkStatus)
 
 tests = { 
-	'pingall': ( lambda x, y: PingAll(x, y) ), 
-	'pingallfull': ( lambda x, y: PingAllFull(x, y) ), 
-	'iperf': ( lambda x, y: IPerf(x, y) ),
-	'linkinterrupt': ( lambda x, y, z: LinkInterrupt(x, y, z) ),
+	'pingall': ( lambda net: PingAll(net) ), 
+	'pingallfull': ( lambda net: PingAllFull(net) ), 
+	'iperf': ( lambda net: IPerf(net) ),
+	'linkinterrupt': ( lambda net, links, linkStatus: LinkInterrupt(net, links, linkStatus) ),
 }
 
 
