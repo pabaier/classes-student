@@ -7,6 +7,7 @@ from mininet.cli import CLI
 class PingAllFull:
 	def __init__(self, net):
 		self.net = net
+		self.type = 'pingallfull'
 
 	def run(self):
 		self.results = self.net.pingAllFull()
@@ -40,6 +41,7 @@ class PingAllFull:
 class PingAll:
 	def __init__(self, net):
 		self.net = net
+		self.type = 'pingall'
 
 	def run(self):
 		self.results = self.net.pingAll()
@@ -57,6 +59,7 @@ class PingAll:
 class IPerf:
 	def __init__(self, net):
 		self.net = net
+		self.type = 'iperf'
 
 	def run(self):
 		test = 100
@@ -96,7 +99,8 @@ class LinkInterrupt:
 		self.net = net
 		self.links = links
 		self.linkStatus = linkStatus
-	
+		self.type = 'linkinterrupt'
+
 	def run(self):
 		self.net.configLinkStatus(self.links[0], self.links[1], self.linkStatus)
 
