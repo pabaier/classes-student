@@ -29,10 +29,10 @@ class PingAllFull:
 			successes += element[2][1]
 			total_attempts += element[2][0]
 			if float(element[2][2] == 0):
-				pings -= 1
+				rtts.append(3.0)
 		if pings <= 0:
 			return 0
-		avgRtt = sum(rtts) / pings
+		avgRtt = sum(rtts) / len(rtts)
 		return((avgRtt, successes, total_attempts))
 
 	def totalTime(self):
