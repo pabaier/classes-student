@@ -22,15 +22,18 @@ class PingAllFull:
 
 	def avgRTT(self):
 		pings = len(self.results)
+		successes, total_attempts = 0, 0
 		rtts = []
 		for element in self.results:
 			rtts.append(float(element[2][2]))
+			successes += element[2][1]
+			total_attempts += element[2][0]
 			if float(element[2][2] == 0):
 				pings -= 1
 		if pings <= 0:
 			return 0
 		avgRtt = sum(rtts) / pings
-		return(avgRtt)
+		return((avgRtt, successes, total_attempts))
 
 	def totalTime(self):
 		time = 0.0
@@ -102,7 +105,8 @@ class LinkInterrupt:
 		self.type = 'linkinterrupt'
 
 	def run(self):
-		self.net.configLinkStatus(self.links[0], self.links[1], self.linkStatus)
+		for link in self.links:
+			self.net.configLinkStatus(link[0], link[1], self.linkStatus)
 
 tests = { 
 	'pingall': ( lambda net: PingAll(net) ), 

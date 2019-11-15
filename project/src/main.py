@@ -11,8 +11,12 @@ s1_s2_down = tests['linkinterrupt'](net, ['s1', 's2'], 'down')
 s1_s2_up = tests['linkinterrupt'](net, ['s1', 's2'], 'up')
 s1_s3_down = tests['linkinterrupt'](net, ['s1', 's3'], 'down')
 s1_s3_up = tests['linkinterrupt'](net, ['s1', 's3'], 'up')
+s1_s4_down = tests['linkinterrupt'](net, ['s1', 's4'], 'down')
+s1_s4_up = tests['linkinterrupt'](net, ['s1', 's4'], 'up')
+s1_s5_down = tests['linkinterrupt'](net, ['s1', 's5'], 'down')
+s1_s5_up = tests['linkinterrupt'](net, ['s1', 's5'], 'up')
 
-testPlan = [pingAll, pingfull, s1_s2_down, s1_s3_down, pingAll, pingfull, s1_s2_up, s1_s3_up, pingAll, pingfull]
+testPlan = [pingAll, pingfull, s1_s2_down, s1_s3_down, s1_s4_down, s1_s5_down, pingAll, pingfull, s1_s2_up, s1_s3_up, s1_s4_up, s1_s5_up,  pingAll, pingfull]
 for test in testPlan:
 	test.run()
 	if test.type == 'pingallfull':
