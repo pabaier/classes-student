@@ -1,21 +1,21 @@
-Script started on 2019-11-07 18:20:17-0500
-> ./server
+Script started on 2019-11-16 11:18:36-0500
+>./server
 
- Client's port is 35860 
+ Client's port is 50560 
 
  Registration Packet 1 Received.:
 	Type: 121
-	UserName: joey
+	UserName: johnny
 	MachineName: paul
 	Data: a
 
  Registration Confirmation Packet Sent:
 	Type: 221
-	UserName: joey
+	UserName: johnny
 	MachineName: paul
 	Data: a
 
- Client's port is 35864 
+ Client's port is 50566 
 
  Registration Packet 1 Received.:
 	Type: 121
@@ -28,13 +28,68 @@ Script started on 2019-11-07 18:20:17-0500
 	UserName: jerry
 	MachineName: paul
 	Data: a
-joey sent a message to group a
-jerry sent a message to group a
-jerry sent a message to group a
-joey sent a message to group a
-joey sent a message to group a
 
- Client's port is 35874 
+ Chat Packet Received.:
+	Type: 131
+	UserName: johnny
+	MachineName: paul
+	Data: hi jerry
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: hi jerry
+
+jerry sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: hi johnny
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: jerry
+	MachineName: paul
+	Data: hi johnny
+
+johnny sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: how are you?
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: jerry
+	MachineName: paul
+	Data: how are you?
+
+johnny sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: johnny
+	MachineName: paul
+	Data: i'm well, how are you?
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: i'm well, how are you?
+
+jerry sent a message to group a
+
+ Client's port is 50600 
 
  Registration Packet 1 Received.:
 	Type: 121
@@ -48,7 +103,14 @@ joey sent a message to group a
 	MachineName: paul
 	Data: b
 
- Client's port is 35880 
+ Chat Packet Received.:
+	Type: 131
+	UserName: ed
+	MachineName: paul
+	Data: hi nobody
+
+
+ Client's port is 50606 
 
  Registration Packet 1 Received.:
 	Type: 121
@@ -61,33 +123,225 @@ joey sent a message to group a
 	UserName: ernie
 	MachineName: paul
 	Data: b
-ernie sent a message to group b
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: ernie
+	MachineName: paul
+	Data: hi ed
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: ernie
+	MachineName: paul
+	Data: hi ed
+
 ed sent a message to group b
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: ernie
+	MachineName: paul
+	Data: how goes it?
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: ernie
+	MachineName: paul
+	Data: how goes it?
+
 ed sent a message to group b
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: ed
+	MachineName: paul
+	Data: hey there ernie!
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: ed
+	MachineName: paul
+	Data: hey there ernie!
+
 ernie sent a message to group b
 
- Client's port is 35896 
+ Chat Packet Received.:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: doing just fine johnny
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: jerry
+	MachineName: paul
+	Data: doing just fine johnny
+
+johnny sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: where's joey?
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: jerry
+	MachineName: paul
+	Data: where's joey?
+
+johnny sent a message to group a
+
+ Client's port is 50626 
 
  Registration Packet 1 Received.:
 	Type: 121
-	UserName: johnny
+	UserName: joey
 	MachineName: paul
 	Data: a
 
  Registration Confirmation Packet Sent:
 	Type: 221
-	UserName: johnny
+	UserName: joey
 	MachineName: paul
 	Data: a
-joey sent a message to group a
-jerry sent a message to group a
-joey sent a message to group a
-jerry sent a message to group a
-jerry sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: joey
+	MachineName: paul
+	Data: hi jerry! hi johnny!
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: joey
+	MachineName: paul
+	Data: hi jerry! hi johnny!
+
 johnny sent a message to group a
-joey sent a message to group a
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: joey
+	MachineName: paul
+	Data: hi jerry! hi johnny!
+
+jerry sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: hi joey
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: jerry
+	MachineName: paul
+	Data: hi joey
+
 johnny sent a message to group a
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: jerry
+	MachineName: paul
+	Data: hi joey
+
+joey sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: johnny
+	MachineName: paul
+	Data: hi joey
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: hi joey
+
+jerry sent a message to group a
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: hi joey
+
+joey sent a message to group a
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: ed
+	MachineName: paul
+	Data: hey ed!
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: ed
+	MachineName: paul
+	Data: hey ed!
+
+ernie sent a message to group b
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: ed
+	MachineName: paul
+	Data: nice day
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: ed
+	MachineName: paul
+	Data: nice day
+
+ernie sent a message to group b
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: ernie
+	MachineName: paul
+	Data: sure is!
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: ernie
+	MachineName: paul
+	Data: sure is!
+
+ed sent a message to group b
+
+ Chat Packet Received.:
+	Type: 131
+	UserName: johnny
+	MachineName: paul
+	Data: hi joey
+
+
+ Chat Packet Sent:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: hi joey
+
+johnny sent a message to group a
+
 ^C
-                                                 
-> exit
-Script done on 2019-11-07 18:25:54-0500
+>exit
+Script done on 2019-11-16 11:24:06-0500

@@ -1,0 +1,42 @@
+Script started on 2019-11-16 11:19:33-0500
+>./client joey a
+
+ Registration Packet 1 Sent:
+	Type: 121
+	UserName: joey
+	MachineName: paul
+	Data: a
+
+ Registration Packet 1 Acknowledged:
+	Type: 221
+	UserName: joey
+	MachineName: paul
+	Data: a
+hi jerry! hi johnny!
+
+ Chat Packet Sent:
+	Type: 131
+	UserName: joey
+	MachineName: paul
+	Data: hi jerry! hi johnny!
+
+
+ Chapt Packet Received:
+	Type: 231
+	UserName: jerry
+	MachineName: paul
+	Data: hi joey
+
+	jerry: hi joey
+
+ Chapt Packet Received:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: hi joey
+
+	johnny: hi joey
+
+^C
+>exit
+Script done on 2019-11-16 11:24:13-0500
