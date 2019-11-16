@@ -97,6 +97,7 @@ void *receive_chat() {
      */
     while (true) {
         packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
+        printPacket("Chapt Packet Received", packet_chat_in, false);
         printf("\t%s: %s", packet_chat_in.uName, packet_chat_in.data);
     }
 
@@ -214,5 +215,6 @@ int main(int argc, char *argv[]) {
             Send the chat packet to the server
         */
         sendPacket(packet_chat);
+        printPacket("Chat Packet Sent", packet_chat, true);
     }
 }

@@ -230,6 +230,7 @@ void *join_handler(struct joinHandlerInfo *i) {
          * the server is expecting a chat packet to have type 131
          */
         packet_message = receivePacket("Chat Packet", packet_message, newsock, 131);
+        printPacket("Chat Packet Received.", packet_message, false);
 
         /* lock tables prior to reading/writing */
         pthread_mutex_lock(&my_mutex);
@@ -252,6 +253,7 @@ void *join_handler(struct joinHandlerInfo *i) {
              */
             if (client.port != newport) {
                 sendPacket(packet_message, client.sockid);
+                printPacket("Chat Packet Sent", packet_message, true);
                 printf("%s sent a message to group %s\n", client.uName, group.name);
             }
         }
@@ -322,7 +324,7 @@ int main(int argc, char *argv[]) {
          * The server expects the first registration packet type to be 121
          */
         packet_reg = receivePacket("Registration Packet 1", packet_reg, new_s, 121);
-        printPacket("Registration Packet 1 Received.", packet_reg, true);
+        printPacket("Registration Packet 1 Received.", packet_reg, false);
 
         /*
          * Build and send confirmation for first registration packet.
