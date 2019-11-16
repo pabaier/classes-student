@@ -7,6 +7,7 @@ def run(filename):
 	runs = []
 	with open(filename) as file:
 		title = file.readline().strip()
+		subtitle = file.readline().strip()
 		run = file.readline().strip()
 		while run:
 			runs.append(round(float(run), 3))
@@ -16,7 +17,8 @@ def run(filename):
 	plt.plot(x_axis, runs, linestyle='--', marker='o')
 	for x_cor, y_cor in zip(x_axis, runs):
 		plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
-	plt.title(f'{title}')
+	plt.title(f'{title}\n{subtitle}')
+
 	plt.ylabel('Time (ms)')
 	plt.xlabel('Runs')
  
