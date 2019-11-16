@@ -1,10 +1,10 @@
-from program import Program
+from network import Network
 from tests import tests
 import argparse
 
 def cut_every_other(topology, num_switches):
 	# build and start network
-	a = Program().set_controller('default').set_number_of_switches(num_switches).set_topology(topology.lower()).build()
+	a = Network().set_controller('default').set_number_of_switches(num_switches).set_topology(topology.lower()).build()
 	net = a.net
 	net.start()
 

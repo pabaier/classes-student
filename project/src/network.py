@@ -8,7 +8,7 @@ from tests import tests
 import argparse
 import topologies
 
-class Program():
+class Network():
 
 	def __init__(self):
 		self.num_switches = topologies.num_switches = 5
