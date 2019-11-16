@@ -21,7 +21,6 @@ struct packet {
     char uName[MAXNAME];
     char mName[MAXNAME];
     char data[MAXNAME];
-    short seqNumber;
 };
 
 /* helper method used to print packet information */
@@ -31,16 +30,13 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     short s;
     if (isNtoHS) {
         t = ntohs(p.type);
-        s = ntohs(p.seqNumber);
     } else {
         t = htons(p.type);
-        s = htons(p.seqNumber);
     }
     printf("\tType: %d\n", t);
     printf("\tUserName: %s\n", p.uName);
     printf("\tMachineName: %s\n", p.mName);
     printf("\tData: %s\n", p.data);
-    printf("\tSeqNumber: %d\n", s);
 }
 
 /* helper method to concatenate two strings
@@ -86,33 +82,69 @@ static struct packet receivePacket(char *operation, struct packet p, int packetT
     return p;
 }
 
+/*
+ * this method is run in a separate thread from the main thread
+ * and its purpose is to wait to receive chat messages from other
+ * clients in the chat room
+ */
+void *receive_chat() {
+    struct packet packet_chat_in;
+    /*
+     * After the client receives the final registration acknowledgment packet
+     * it waits to receive chat packets of type 231 from 
+     * other group members via the server and when it does, it prints the
+     * packet's data, which is the chat message
+     */
+    while (true) {
+        packet_chat_in = receivePacket("Chat Packet", packet_chat_in, 231);
+        printPacket("Chapt Packet Received", packet_chat_in, false);
+        printf("\t%s: %s", packet_chat_in.uName, packet_chat_in.data);
+    }
+
+}
+
 int main(int argc, char *argv[]) {
+    /* declare variables */
     struct hostent *hp;
     struct sockaddr_in sin;
-    char *host, *userName;
+    char *host, *userName, *groupName;
     char computerName[MAXNAME];
     char buf[MAX_LINE];
     struct packet packet_reg;
     struct packet packet_reg_confirm;
-    struct packet packet_multicast;
-    short SERVER_PORT = 7777;
+    struct packet packet_chat, packet_chat_confirm;
+    short SERVER_PORT;
+    pthread_t receive_chat_thread;
+
 
     /*
         The following grabs the command line arguments.
         Besides the name of the program,
-        if there are 2 arguments, the host will be the first one,
-        and the user name will be the second one.
-        if there is only 1 argument, the host will be 'localhost'
-        and the username will be the argument.
+        if there are 2 arguments, the user name will be the first one,
+        and the group name will be the second one.
+        if there are 3 arguments, the user name will be the first one,
+        the group name will be the second one, and the server port will be
+        the third one.
+        if there are 4 arguments, the user name will be the first one,
+        the group name will be the second one, the server port will be
+        the third one, and the server hostname will be the fourth one.
         if there are no arguments, the program will exit.
     */
-    if (argc == 3) {
-        host = argv[1];
-        userName = argv[2];
-        // SERVER_PORT = atoi(argv[2]);
-    } else if (argc == 2) {
-        host = "localhost";
+    if (argc == 5) {
         userName = argv[1];
+        groupName = argv[2];
+        SERVER_PORT = atoi(argv[3]);
+        host = argv[4];
+    } else if (argc == 4) {
+        userName = argv[1];
+        groupName = argv[2];
+        SERVER_PORT = atoi(argv[3]);
+        host = "localhost";
+    } else if (argc == 3) {
+        userName = argv[1];
+        groupName = argv[2];
+        SERVER_PORT = 7777;
+        host = "localhost";
     } else {
         fprintf(stderr, "usage:newclient username\n");
         exit(1);
@@ -152,6 +184,7 @@ int main(int argc, char *argv[]) {
     packet_reg.type = htons(121);
     strcpy(packet_reg.uName, userName);
     strcpy(packet_reg.mName, computerName);
+    strcpy(packet_reg.data, groupName);
 
     sendPacket(packet_reg);
     printPacket("Registration Packet 1 Sent", packet_reg, true);
@@ -160,45 +193,28 @@ int main(int argc, char *argv[]) {
     printPacket("Registration Packet 1 Acknowledged", packet_reg_confirm, false);
 
     /*
-     * Build, send, and get response for second registration packet.
-     * The server expects the first registration packet type to be 122
-     * The confirmation packet from the server should be packet type 222
+     * start thread to receive chat packets.
+     * this thread runs the receive_chat method
      */
-    packet_reg.type = htons(122);
-    strcpy(packet_reg.uName, userName);
-    strcpy(packet_reg.mName, computerName);
+    pthread_create(&receive_chat_thread, NULL, receive_chat, NULL);
 
-    sendPacket(packet_reg);
-    printPacket("Registration Packet 2 Sent", packet_reg, true);
-
-    packet_reg_confirm = receivePacket("Registration Confirmation Packet 2", packet_reg_confirm, 222);
-    printPacket("Registration Packet 2 Acknowledged", packet_reg_confirm, true);
-
-    /*
-     * Build, send, and get response for first registration packet.
-     * The server expects the first registration packet type to be 123
-     * The confirmation packet from the server should be packet type 223
-     */
-    packet_reg.type = htons(123);
-    strcpy(packet_reg.uName, userName);
-    strcpy(packet_reg.mName, computerName);
-
-    sendPacket(packet_reg);
-    printPacket("Registration Packet 3 Sent", packet_reg, true);
-
-    packet_reg_confirm = receivePacket("Registration Confirmation Packet 3", packet_reg_confirm, 223);
-    printPacket("Registration Complete", packet_reg_confirm, true);
-
-    /* main loop to get multicast packets */
-    while (true) {
-        printf("------------------------------------");
+    /* main thred to get user input */
+    while (fgets(buf, sizeof(buf), stdin)) {
+        buf[MAX_LINE - 1] = '\0';
         /*
-         * After the client receives the final acknowledgment packet
-         * it starts receiving the multicast from the server.
-         * It expects the multicast packet to be packet type 231
-         */
-        packet_multicast = receivePacket("Multicast Packet", packet_multicast, 231);
-        printPacket("Multicast Packet Received", packet_multicast, false);
-        printf("\n------------------------------------");
+            Constructing the chat packet.
+            This is the packet that will contain the chat message
+            It uses the code '131' indicating to the server it is a chat message.
+        */
+        packet_chat.type = htons(131);
+        strcpy(packet_chat.uName, userName);
+        strcpy(packet_chat.mName, computerName);
+        strcpy(packet_chat.data, buf);
+
+        /*
+            Send the chat packet to the server
+        */
+        sendPacket(packet_chat);
+        printPacket("Chat Packet Sent", packet_chat, true);
     }
 }

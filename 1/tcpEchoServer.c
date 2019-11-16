@@ -16,42 +16,63 @@
 #define MAXNAME 256
 #define TABLESIZE 10
 
-// number of threads the server must run
-pthread_t threads[2];
-
+// STRUCT DEFINITIONS
 /* structure of the packet */
 struct packet {
     short type;
     char uName[MAXNAME];
     char mName[MAXNAME];
     char data[MAXNAME];
-    short seqNumber;
 };
 
 /* structure of Registration Table */
 struct registrationTable {
     int port;
     int sockid;
-    char mName[MAXNAME];
     char uName[MAXNAME];
+    char mName[MAXNAME];
+};
+
+/* structure of Group Table */
+struct groupTable {
+    char name[MAXNAME];
+    /* these two variables are pointers because when we update then,
+     * we want to update them across all threads
+     * so we get the value the are pointing to, increase/add to it, then
+     * have them point to the new updated value.
+     */
+    struct registrationTable *registeredClients;
+    int *registrantCount;
+};
+
+/* structure of the information passed to the join handler */
+struct joinHandlerInfo {
+    struct registrationTable *clientData;
+    char groupName[MAXNAME];
 };
 
 /* make registration table global
  * 1) so methods outside of main can access it without needing to pass it as a parameter
  * 2) so all registrationTable values are initialized to default values (zero and empty string)
 */
-struct registrationTable table[TABLESIZE];
+struct groupTable groups[TABLESIZE];
+/*
+ * need to keep track of the number of groups in the group table for when we
+ * check if a group exists and when we add a group to the table.
+ * this needs to be global to the server because it is used accross threads
+ */
+int num_groups = 0;
 
 /* Declare a global mutex variable
- * When a thread wants to access the table, it will lock the
+ * When a thread wants to access a table, it will lock the
  * mutex variable first.
  * Then it will read/update the table.
  * The thread will unlock the mutex variable
 */
 pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-/* global table_index for the table */
-int table_index = 0;
+/* index for number of threads (one per client) */
+int num_clients = 0;
 
 /* helper method to concatenate two strings
  * it works by getting the size of each string,
@@ -74,16 +95,13 @@ static void printPacket(char *operation, struct packet p, bool isNtoHS) {
     short s;
     if (isNtoHS) {
         t = ntohs(p.type);
-        s = ntohs(p.seqNumber);
     } else {
         t = htons(p.type);
-        s = htons(p.seqNumber);
     }
     printf("\tType: %d\n", t);
     printf("\tUserName: %s\n", p.uName);
     printf("\tMachineName: %s\n", p.mName);
     printf("\tData: %s\n", p.data);
-    printf("\tSeqNumber: %d\n", s);
 }
 
 /* helper method used to send packet
@@ -115,131 +133,138 @@ static struct packet receivePacket(char *operation, struct packet p, int clientS
     return p;
 }
 
-/* chat multicaster method */
-void *chat_multicaster() {
-    char *filename;
-    char text[1000];
-    int fd;
-    bool clientRegistered;
-    struct packet packet_data;
-    int seqNumber = 1;
-
-    /* open the file */
-    filename = "input.txt";
-    fd = open(filename, O_RDONLY, 0);
-
-    /* continuously loop in order to send data to clients once they register */
-    while (true) {
-        clientRegistered = false;
-        /* Check whether any client is listed on the table
-         * If at least one client is listed, read 100 bytes of data
-         * from the file and store it in text
-         */
-
-        /* loops through the registration table looking for clients
-         * sets the clientRegistered flag to true if it finds one
-         */
-        int i;
-        for (i = 0; i < TABLESIZE; i++) {
-            if (table[i].port != 0) {
-                clientRegistered = true;
-                /* lock the table once we need it */
-                pthread_mutex_lock(&my_mutex);
-                break;
-            }
-        }
-
-        /* if a client is found start reading and sending data */
-        if (clientRegistered) {
-            ssize_t nread = read(fd, text, 100);
-
-            /* loop through the table and construct the data packet
-             * for each client in the table.
-             * once the packet is made, send it to the client
-             */
-            for (i = 0; i < TABLESIZE; i++) {
-                if (table[i].port != 0) {
-                    packet_data.type = htons(231);
-                    packet_data.seqNumber = htons(seqNumber);
-                    strcpy(packet_data.uName, table[i].uName);
-                    strcpy(packet_data.mName, table[i].mName);
-                    strcpy(packet_data.data, text);
-                    sendPacket(packet_data, table[i].sockid);
-                    printPacket("Data Packet Sent", packet_data, true);
-                }
-            }
-            seqNumber++;
-            /* unlock the table */
-            pthread_mutex_unlock(&my_mutex);
-            /* this pauses the sending of packets for 1 second.
-             * it is not required but helps to make the output readable
-             */
-            sleep(1);
+/* helper method used to get the index of the group from the groups table
+ * the method takes in a string as a parameter which is the groupd name to search for.
+ * it uses the num_groups variable to loop through the groups table and compares
+ * the group names with the input group name.
+ * if the names match, the method returns the table index value of that group
+ * if there is no match, the method returns -1
+ */
+static int getGroup(char *groupName) {
+    for (int i = 0; i < num_groups; i++) {
+        if (strcmp(groupName, groups[i].name) == 0) {
+            return i;
         }
     }
+    return -1;
 }
 
-// join handler method
-void *join_handler(struct registrationTable *clientData) {
+/*
+ * this method is run in a separate thread from the main thread
+ * and its purpose is to wait for a message from the client, then
+ * send the message to all members of the client's group.
+ * every client has this thread uniquely running
+ */
+void *join_handler(struct joinHandlerInfo *i) {
+    /* get the clients information from the method parameter */
+    struct joinHandlerInfo info = *i;
+    /* get the client data in the format of the registrationTable struct */
+    struct registrationTable clientData = *i->clientData;
+    char *groupName = info.groupName;
+
+    /* declare variables */
     int newsock;
     int newport;
     int rg_count;
     struct packet packet_reg;
     struct packet packet_reg_confirm;
-    newsock = clientData->sockid;
-    newport = clientData->port;
+    struct packet packet_message;
+    struct groupTable group;
+    /* there can be a maximum of 100 groups at a time */
+    struct registrationTable groupRegistrationTable[100];
+    newsock = clientData.sockid;
+    newport = clientData.port;
+
+    /* lock tables prior to reading/writing */
+    pthread_mutex_lock(&my_mutex);
+    /*
+     * Basic Outline
+     * 1. check if group exists
+     * 2. if it does, add this client to the group's registration table
+     * 3. if it does not, create the group in the groupTable and register this client
+     */
 
     /*
-     * Get second registration packet from client.
-     * The server expects the second registration packet type to be 122
+     * 1. check if group exists in groups table
      */
-    packet_reg = receivePacket("Registration Packet 2", packet_reg, newsock, 122);
-    printPacket("Registration Packet 2 Received", packet_reg, true);
-
+    int groupIndex = getGroup(groupName);
     /*
-     * Build and send confirmation for second registration packet.
-     * The client expects the second registration confirmation packet type to be 222
+     * 2. group exists, so add this client to the group's registration table
      */
-    packet_reg_confirm.type = htons(222);
-    strcpy(packet_reg_confirm.uName, packet_reg.uName);
-    strcpy(packet_reg_confirm.mName, packet_reg.mName);
-    sendPacket(packet_reg_confirm, newsock);
-    printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
-
+    if (groupIndex >= 0) {
+        group = groups[groupIndex];
+        int regCount = *group.registrantCount;
+        /* add this client to the group's registeredClients list */
+        group.registeredClients[regCount] = clientData;
+        regCount++;
+        /* point the group's registrantCount variable to the updated value */
+        groups[groupIndex].registrantCount = &regCount;
+    }
     /*
-     * Get third registration packet from client.
-     * The server expects the third registration packet type to be 123
+     * 3. group does not exist, so add the group name and create a new registration table for the group
      */
-    packet_reg = receivePacket("Registration Packet 3", packet_reg, newsock, 123);
-    printPacket("Registration Packet 3 Received", packet_reg, true);
+    else {
+        groupIndex = num_groups;
+        strcpy(group.name, groupName);
+        /* add this first client to the group's registration table */
+        groupRegistrationTable[0] = clientData;
+        group.registeredClients = groupRegistrationTable;
+        int registrantCount = 1;
+        /*
+         * point the registrantCount value in the groupTable to 
+         * the memory location of registrantCount
+         */
+        group.registrantCount = &registrantCount;
+        /* add this new group to the groups table and increment the number of groups by 1*/
+        groups[groupIndex] = group;
+        num_groups++;
+    }
+    /* unlock tables after reading/writing */
+    pthread_mutex_unlock(&my_mutex);
 
-    /*
-     * Build and send confirmation for third registration packet.
-     * The client expects the third registration confirmation packet type to be 223
-     */
-    packet_reg_confirm.type = htons(223);
-    strcpy(packet_reg_confirm.uName, packet_reg.uName);
-    strcpy(packet_reg_confirm.mName, packet_reg.mName);
-    sendPacket(packet_reg_confirm, newsock);
-    printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
+    // keep thread open for each client so they can send messages to broadcast
+    while (true) {
+        /*
+         * receive the information from the client, then 
+         * send it to everyone in the group's registration table
+         * the server is expecting a chat packet to have type 131
+         */
+        packet_message = receivePacket("Chat Packet", packet_message, newsock, 131);
+        printPacket("Chat Packet Received.", packet_message, false);
 
-    /* if the client makes it this far, reward them
-     * by registering them in the registration table
-     */
-    table[table_index].port = newport;
-    table[table_index].sockid = newsock;
-    strcpy(table[table_index].uName, packet_reg.uName);
-    strcpy(table[table_index].mName, packet_reg.mName);
-    table_index++;
+        /* lock tables prior to reading/writing */
+        pthread_mutex_lock(&my_mutex);
 
-    // Wait for more registration packets from the client
-    // Send acknowledgement/confirmation to the client
-    // Update the table
-    // Leave the thread
+        /* we already have this client's group from above, but we
+         * get it again incase any of the pointers have changed
+         */
+        group = groups[groupIndex];
+        struct registrationTable client;
+
+        // send the message to everyone in the group (but not to yourself) with type 231
+        packet_message.type = htons(231);
+        for (int i = 0; i < *group.registrantCount; i++) {
+            /* get the client from the group registeredClients table */
+            client = group.registeredClients[i];
+            /*
+             * check if it is us by comparing the entry's port number
+             * with our port number. If they are different, it's not us
+             * so send the message to them
+             */
+            if (client.port != newport) {
+                sendPacket(packet_message, client.sockid);
+                printPacket("Chat Packet Sent", packet_message, true);
+                printf("%s sent a message to group %s\n", client.uName, group.name);
+            }
+        }
+        /* unlock tables after reading/writing */
+        pthread_mutex_unlock(&my_mutex);
+    }
     pthread_exit(NULL);
 }
 
 int main(int argc, char *argv[]) {
+    /* declare variables */
     struct sockaddr_in sin;
     struct sockaddr_in clientAddr;
     char buf[MAX_LINE];
@@ -250,8 +275,9 @@ int main(int argc, char *argv[]) {
     struct packet packet_chat;
     struct packet packet_chat_response;
     struct registrationTable client_info;
+    struct joinHandlerInfo info;
     short SERVER_PORT;
-    pthread_t threads[2];
+    pthread_t threads[100];
 
     /*
         The following grabs the command line arguments.
@@ -284,9 +310,6 @@ int main(int argc, char *argv[]) {
 
     len = sizeof(struct sockaddr_in);
 
-    /* create the chat multicaster thread */
-    pthread_create(&threads[1], NULL, chat_multicaster, NULL);
-
     /* wait for connection, then start the registration process */
     while (1) {
         if ((new_s = accept(s, (struct sockaddr *) &clientAddr, &len)) < 0) {
@@ -301,7 +324,7 @@ int main(int argc, char *argv[]) {
          * The server expects the first registration packet type to be 121
          */
         packet_reg = receivePacket("Registration Packet 1", packet_reg, new_s, 121);
-        printPacket("Registration Packet 1 Received.", packet_reg, true);
+        printPacket("Registration Packet 1 Received.", packet_reg, false);
 
         /*
          * Build and send confirmation for first registration packet.
@@ -310,6 +333,7 @@ int main(int argc, char *argv[]) {
         packet_reg_confirm.type = htons(221);
         strcpy(packet_reg_confirm.uName, packet_reg.uName);
         strcpy(packet_reg_confirm.mName, packet_reg.mName);
+        strcpy(packet_reg_confirm.data, packet_reg.data);
         sendPacket(packet_reg_confirm, new_s);
         printPacket("Registration Confirmation Packet Sent", packet_reg_confirm, true);
 
@@ -319,14 +343,13 @@ int main(int argc, char *argv[]) {
         strcpy(client_info.uName, packet_reg.uName);
         strcpy(client_info.mName, packet_reg.mName);
 
-        /* pass client_info into join_handler thread */
-        pthread_create(&threads[0], NULL, join_handler, &client_info);
+        info.clientData = &client_info;
+        strcpy(info.groupName, packet_reg.data);
 
-        /* wait for the join_handler thread to complete
-         * exit_value is the value returned by the join_handler
-         */
-        void *exit_value;
-        pthread_join(threads[0], &exit_value);
+        /* pass client_info into join_handler thread */
+        pthread_create(&threads[num_clients], NULL, join_handler, &info);
+        /* increment the num_clients variable by one */
+        num_clients++;
     }
 }
 
