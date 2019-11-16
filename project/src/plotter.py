@@ -6,10 +6,7 @@ import argparse
 def run(filename):
 	runs = []
 	with open(filename) as file:
-		topology = file.readline().strip()
-		test = file.readline().strip()
-		stat = file.readline().strip()
-		nodes = file.readline().strip()
+		title = file.readline().strip()
 		run = file.readline().strip()
 		while run:
 			runs.append(round(float(run), 3))
@@ -19,11 +16,11 @@ def run(filename):
 	plt.plot(x_axis, runs, linestyle='--', marker='o')
 	for x_cor, y_cor in zip(x_axis, runs):
 		plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
-	plt.title(f'{stat.capitalize()}, {test.capitalize()} for {topology} with {nodes} nodes')
-	plt.ylabel('Ping RTT (ms)')
+	plt.title(f'{title}')
+	plt.ylabel('Time (ms)')
 	plt.xlabel('Runs')
-
-	plt.savefig(f'{topology}-{nodes}.png')
+ 
+	plt.savefig(f'{filename}.png')
 	# plt.show()
 
 if __name__ == '__main__':
