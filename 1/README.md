@@ -36,3 +36,4 @@ where:
 	* default value is `7777`
 * `a.b.com` is the hostname
 	* default is `localhost`
+* if `hostname` is specified, `port` must be specified before it
