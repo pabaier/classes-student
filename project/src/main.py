@@ -2,9 +2,9 @@ from program import Program
 from tests import tests
 import argparse
 
-def main():
+def cut_every_other(topology, num_switches):
 	# build and start network
-	a = Program().set_controller('default').set_number_of_switches(5).set_topology('mesh').build()
+	a = Program().set_controller('default').set_number_of_switches(num_switches).set_topology(topology.lower()).build()
 	net = a.net
 	net.start()
 
@@ -17,8 +17,9 @@ def main():
 	# for example if we want to break the links between s1 and s2, and s3 and s4
 	# the list would look like: [('s1', 's2'), ('s3', 's4')]
 	switches = []
-	for i in range(2,6):
-		switches.append(('s1', 's' + str(i)))
+	for i in range(1,num_switches + 1):
+		for j in range(i+2, num_switches + 1, 2):
+			switches.append(('s' + str(i), 's' + str(j)))
 
 	# initialize link strategy
 	links_down = tests['linkinterrupt'](net, switches, 'down')
@@ -28,7 +29,7 @@ def main():
 	testPlan = [pingAll, pingfull, links_down, pingAll, pingfull, links_up,  pingAll, pingfull]
 
 	#  open output file
-	f = openfile("mesh-5", "Average RTT for Mesh Topology With 5 Nodes")
+	f = openfile(topology + "-" + str(num_switches), "Average RTT for " + topology + " Topology With " + str(num_switches) + " Nodes")
 
 	# run test plan
 	for test in testPlan:
@@ -45,4 +46,6 @@ def openfile(fileName, title):
 	return f
 
 if __name__ == '__main__':
-	main()
+	cut_every_other('Mesh', 5)
+	cut_every_other('Mesh', 10)
+	cut_every_other('Mesh', 20)
