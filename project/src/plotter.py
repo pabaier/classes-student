@@ -5,7 +5,7 @@ import argparse
 
 def run(filename):
 	runs = []
-	with open(filename) as file:
+	with open("data/" + filename) as file:
 		title = file.readline().strip()
 		subtitle = file.readline().strip()
 		run = file.readline().strip()
@@ -22,7 +22,7 @@ def run(filename):
 	plt.ylabel('Time (ms)')
 	plt.xlabel('Runs')
  
-	plt.savefig(f'{filename}.png')
+	plt.savefig(f'img/{filename}.png')
 	# plt.show()
 
 if __name__ == '__main__':

@@ -29,7 +29,10 @@ def cut_every_other(topology, num_switches):
 	testPlan = [pingAll, pingfull, links_down, pingAll, pingfull, links_up,  pingAll, pingfull]
 
 	#  open output file
-	f = openfile(topology + "-" + str(num_switches), "Average RTT for " + topology + " Topology With " + str(num_switches) + " Nodes")
+	filename = topology + "-" + str(num_switches)
+	title = "Average RTT for " + topology + " Topology With " + str(num_switches) + " Nodes"
+	subtitle = "Test 2 Every Other Link Cut"
+	f = openfile(filename, title, subtitle)
 
 	# run test plan
 	for test in testPlan:
@@ -40,9 +43,10 @@ def cut_every_other(topology, num_switches):
 
 	net.stop()
 
-def openfile(fileName, title):
-	f = open(fileName, "w")
+def openfile(fileName, title, subtitle):
+	f = open("data/" + fileName, "w")
 	f.write("{}\n".format(title))
+	f.write("{}\n".format(subtitle))
 	return f
 
 if __name__ == '__main__':
