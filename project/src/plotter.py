@@ -27,26 +27,39 @@ def run():
 				run = file.readline().strip()
 		x_axis = list(range(1,len(runs)+1))
 
-		plt.plot(x_axis, runs, linestyle='--', marker='o', label='data')
-		plt.plot(x_axis, errors, linestyle='--', marker='x', label='errors')
-		plt.axvline(x=2.5, linestyle='-.', label='off')
-		plt.axvline(x=4.5, linestyle='-.', label='on')
+		fig, ax1 = plt.subplots()
+
+		ax2 = ax1.twinx()
+		# ax1.plot(x, y1, 'g-')
+		# ax2.plot(x, y2, 'b-')
+
+		# ax1.set_xlabel('X data')
+		# ax1.set_ylabel('Y1 data', color='g')
+		# ax2.set_ylabel('Y2 data', color='b')
+
+		# plt.show()
 
 
-		plt.legend()
+		l1, = ax1.plot(x_axis, runs, linestyle='-', marker='o', label='time', color='b', linewidth=4)
+		l2, = ax2.plot(x_axis, errors, linestyle='--', marker='x', label='errors', color='orange', linewidth=3)
+		l3 = ax1.axvline(x=2.5, linestyle=':', label='off')
+		l4 = ax1.axvline(x=4.5, linestyle=':', label='on')
 
+		# ax1.legend()
+		# ax2.legend()
+		plt.legend([l1, l2, l3, l4], ['time', 'errors', 'off', 'on'])
 
 		for x_cor, y_cor in zip(x_axis, runs):
-			plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
+			ax1.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
 		for x_cor, y_cor in zip(x_axis, errors):
-			print(x_cor)
 			if y_cor != 0:
-				plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
+				ax2.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
 		
 		plt.title(f'{title}\n{subtitle}')
 
-		plt.ylabel('Time (ms)')
-		plt.xlabel('Runs')
+		ax1.set_ylabel('Time (ms)')
+		ax2.set_ylabel('Errors')
+		ax1.set_xlabel('Runs')
 	
 		plt.savefig(f'img/{filename}.png')
 		plt.clf()
