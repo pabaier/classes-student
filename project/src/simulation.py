@@ -87,9 +87,9 @@ def cut_one(one, two):
 if __name__ == '__main__':
 	# topology, nodes, switch cuts, filename, subtitle
 	avgRtt('Mesh', 20, cut_one('s1', 's2'), 'mesh-20-avgrtt-one', 'Cut One Switch')
-	# avgRtt('Ring', 20, cut_one(), 'ring-20-avgrtt-one', 'Cut One Switch')
-	# avgRtt('Bus', 20, cut_one(), 'bus-20-avgrtt-one', 'Cut One Switch')
-	# avgRtt('Star', 20, cut_one(), 'star-20-avgrtt-one', 'Cut One Switch')
+	avgRtt('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgrtt-one', 'Cut One Switch')
+	avgRtt('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgrtt-one', 'Cut One Switch')
+	avgRtt('Star', 20, cut_one('s0', 's1'), 'star-20-avgrtt-one', 'Cut One Switch')
 
 	# avgSpeed('Mesh', 20, cut_one(), 'mesh-20-avgspeed-one', 'Cut One Switch')
 	# avgSpeed('Ring', 20, cut_one(), 'ring-20-avgspeed-one', 'Cut One Switch')
