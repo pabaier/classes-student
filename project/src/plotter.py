@@ -5,18 +5,29 @@ import argparse
 
 def run(filename):
 	runs = []
+	errors = []
+	flag = True
 	with open("data/" + filename) as file:
 		title = file.readline().strip()
 		subtitle = file.readline().strip()
 		run = file.readline().strip()
 		while run:
-			runs.append(round(float(run), 3))
+			if flag:
+				runs.append(round(float(run), 3))
+			else:
+				errors.append(int(run))
+			flag = not flag
 			run = file.readline().strip()
 	x_axis = list(range(1,len(runs)+1))
 
-	plt.plot(x_axis, runs, linestyle='--', marker='o')
+	plt.plot(x_axis, runs, linestyle='--', marker='o', label='data')
+	plt.plot(x_axis, errors, linestyle='--', marker='x', label='errors')
+
 	for x_cor, y_cor in zip(x_axis, runs):
 		plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
+	for x_cor, y_cor in zip(x_axis, errors):
+		plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
+	
 	plt.title(f'{title}\n{subtitle}')
 
 	plt.ylabel('Time (ms)')
