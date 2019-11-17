@@ -21,16 +21,14 @@ class PingAllFull:
 		return switch[stat.lower()]
 
 	def avgRTT(self):
-		pings = len(self.results)
 		successes, total_attempts = 0, 0
 		rtts = []
 		for element in self.results:
-			rtts.append(float(element[2][2]))
 			successes += element[2][1]
 			total_attempts += element[2][0]
-			if float(element[2][2] == 0):
-				rtts.append(3.0)
-		if pings <= 0:
+			if float(element[2][2] != 0):
+				rtts.append(float(element[2][2]))
+		if len(rtts) <= 0:
 			return 0
 		avgRtt = sum(rtts) / len(rtts)
 		return((avgRtt, successes, total_attempts))
