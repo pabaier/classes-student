@@ -22,6 +22,12 @@ def run(filename):
 
 	plt.plot(x_axis, runs, linestyle='--', marker='o', label='data')
 	plt.plot(x_axis, errors, linestyle='--', marker='x', label='errors')
+	plt.axvline(x=2.5, linestyle='-.', label='off')
+	plt.axvline(x=4.5, linestyle='-.', label='on')
+
+
+	plt.legend()
+
 
 	for x_cor, y_cor in zip(x_axis, runs):
 		plt.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
