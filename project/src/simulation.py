@@ -42,14 +42,14 @@ def avgSpeed(topology, num_switches, switches, filename, subtitle):
 
 	# initialize tests
 	pingAll = tests['pingall'](net)
-	pingfull = tests['iperf'](net)
+	iperf = tests['iperf'](net)
 
 	# initialize link strategy
 	links_down = tests['linkinterrupt'](net, switches, 'down')
 	links_up = tests['linkinterrupt'](net, switches, 'up')
 
 	# lay out test plan
-	testPlan = [pingAll, pingfull, links_down, pingAll, pingfull, links_up,  pingAll, pingfull]
+	testPlan = [iperf, iperf, links_down, pingAll, iperf, links_up,  pingAll, iperf]
 
 	#  open output file
 	title = "Average Speed for " + topology + " Topology With " + str(num_switches) + " Nodes"
@@ -59,10 +59,13 @@ def avgSpeed(topology, num_switches, switches, filename, subtitle):
 	for test in testPlan:
 		results = test.run()
 		if test.type == 'iperf':
-			avg = test.getStats('avgspeed') # avgspeed returns a float
-			f.write("{}\n".format(str(avg)))
-
-	net.stop()
+			avg = test.getStats('avgspeed') # avgspeed returns (average, errors)
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[1])))
+	try:
+		net.stop()
+	except:
+		print "**************** no *****************"
 
 def openfile(fileName, title, subtitle):
 	f = open("data/" + fileName, "w")
@@ -86,15 +89,15 @@ def cut_one(one, two):
 
 if __name__ == '__main__':
 	# topology, nodes, switch cuts, filename, subtitle
-	avgRtt('Mesh', 20, cut_one('s1', 's2'), 'mesh-20-avgrtt-one', 'Cut One Switch')
-	avgRtt('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgrtt-one', 'Cut One Switch')
-	avgRtt('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgrtt-one', 'Cut One Switch')
-	avgRtt('Star', 20, cut_one('s0', 's1'), 'star-20-avgrtt-one', 'Cut One Switch')
+	# avgRtt('Mesh', 20, cut_one('s1', 's2'), 'mesh-20-avgrtt-one', 'Cut One Switch')
+	# avgRtt('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgrtt-one', 'Cut One Switch')
+	# avgRtt('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgrtt-one', 'Cut One Switch')
+	# avgRtt('Star', 20, cut_one('s0', 's1'), 'star-20-avgrtt-one', 'Cut One Switch')
 
-	# avgSpeed('Mesh', 20, cut_one(), 'mesh-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Ring', 20, cut_one(), 'ring-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Bus', 20, cut_one(), 'bus-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Star', 20, cut_one(), 'star-20-avgspeed-one', 'Cut One Switch')
+	avgSpeed('Mesh', 20, cut_one('s1', 's2'), 'mesh-20-avgspeed-one', 'Cut One Switch')
+	# avgSpeed('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgspeed-one', 'Cut One Switch')
+	# avgSpeed('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgspeed-one', 'Cut One Switch')
+	# avgSpeed('Star', 20, cut_one('s0', 's1'), 'star-20-avgspeed-one', 'Cut One Switch')
 
 
 

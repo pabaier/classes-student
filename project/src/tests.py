@@ -63,16 +63,19 @@ class IPerf:
 		self.type = 'iperf'
 
 	def run(self):
-		test = 100
-		while test == 100: # if 100% of packets were dropped, do it again
-			test = self.net.pingAll()
+		# test = 100
+		# while test == 100: # if 100% of packets were dropped, do it again
+		# 	test = self.net.pingAll()
 		self.results = []
 		i = 0
 		while i < len(self.net.hosts):
 			for host in self.net.hosts[i+1:]:
-				res = self.net.iperf([self.net.hosts[i], host])
-				record = (float(res[0].split(' ')[0]), float(res[1].split(' ')[0]))
-				self.results.append(record)
+				try:
+					res = self.net.iperf([self.net.hosts[i], host]) # returns a tuple of speeds (24 gbps, 24 gbps)
+					record = (float(res[0].split(' ')[0]), float(res[1].split(' ')[0]))
+					self.results.append(record)
+				except:
+					self.results.append((0,0))
 			i += 1
 		return self.results
 
@@ -85,9 +88,17 @@ class IPerf:
 
 	def avgSpeed(self):
 		avg = 0
+		total = len(self.results)
+		errors = 0
 		for element in self.results:
-			avg += (element[0] + element[1])/2
-		return avg / len(self.results)
+			if element[0] == 0:
+				total -= 1
+				errors += 1
+			else:
+				avg += (element[0] + element[1])/2
+		if total > 0:
+			return (avg/total, errors)
+		return (0, errors)
 	
 	def totalSpeed(self):
 		total = 0
@@ -100,7 +111,7 @@ class LinkInterrupt:
 		self.net = net
 		self.links = links
 		self.linkStatus = linkStatus
-		self.type = 'linkinterrupt'
+		self.type = 'links_' + linkStatus
 
 	def run(self):
 		for link in self.links:
