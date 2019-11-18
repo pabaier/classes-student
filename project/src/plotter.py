@@ -9,8 +9,10 @@ def run():
 	for file in allFiles:
 		if file[0] == '.':
 			allFiles.remove(file)
-
 	for filename in allFiles:
+		speed = False
+		if filename.find('speed') > 0:
+			speed = True
 		runs = []
 		errors = []
 		flag = True
@@ -38,16 +40,28 @@ def run():
 		# ax2.set_ylabel('Y2 data', color='b')
 
 		# plt.show()
+		label1 = 'time'
+		label2 = 'errors'
+		axis1 = 'Time (ms)'
+		x1, x2 = 2.5, 4.5
+		color = 'orange'
+
+		if speed:
+			label1 = 'speed'
+			axis1 = 'Speed (Gbits/sec)'
+			x1, x2 = 1.5, 2.5
+			color = 'lime'
 
 
-		l1, = ax1.plot(x_axis, runs, linestyle='-', marker='o', label='time', color='b', linewidth=4)
-		l2, = ax2.plot(x_axis, errors, linestyle='--', marker='x', label='errors', color='orange', linewidth=3)
-		l3 = ax1.axvline(x=2.5, linestyle=':', label='off')
-		l4 = ax1.axvline(x=4.5, linestyle=':', label='on')
+
+		l1, = ax1.plot(x_axis, runs, linestyle='-', marker='o', label=label1, color='b', linewidth=4)
+		l2, = ax2.plot(x_axis, errors, linestyle='--', marker='x', label=label2, color=color, linewidth=3)
+		l3 = ax1.axvline(x=x1, linestyle=':', label='off')
+		l4 = ax1.axvline(x=x2, linestyle=':', label='on')
 
 		# ax1.legend()
 		# ax2.legend()
-		plt.legend([l1, l2, l3, l4], ['time', 'errors', 'off', 'on'])
+		plt.legend([l1, l2, l3, l4], [label1, label2, 'off', 'on'])
 
 		for x_cor, y_cor in zip(x_axis, runs):
 			ax1.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
@@ -57,7 +71,7 @@ def run():
 		
 		plt.title(f'{title}\n{subtitle}')
 
-		ax1.set_ylabel('Time (ms)')
+		ax1.set_ylabel(axis1)
 		ax2.set_ylabel('Errors')
 		ax1.set_xlabel('Runs')
 	
