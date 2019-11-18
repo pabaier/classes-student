@@ -49,7 +49,7 @@ def avgSpeed(topology, num_switches, switches, filename, subtitle):
 	links_up = tests['linkinterrupt'](net, switches, 'up')
 
 	# lay out test plan
-	testPlan = [iperf, iperf, links_down, pingAll, iperf, links_up,  pingAll, iperf]
+	testPlan = [iperf, links_down, iperf, links_up, iperf]
 
 	#  open output file
 	title = "Average Speed for " + topology + " Topology With " + str(num_switches) + " Nodes"
@@ -62,6 +62,11 @@ def avgSpeed(topology, num_switches, switches, filename, subtitle):
 			avg = test.getStats('avgspeed') # avgspeed returns (average, errors)
 			f.write("{}\n".format(str(avg[0])))
 			f.write("{}\n".format(str(avg[1])))
+		if test.type == 'links_up':
+			for node in net.values():
+				while node.waiting:
+					node.sendInt()
+					node.waitOutput()
 	try:
 		net.stop()
 	except:
@@ -95,9 +100,9 @@ if __name__ == '__main__':
 	# avgRtt('Star', 20, cut_one('s0', 's1'), 'star-20-avgrtt-one', 'Cut One Switch')
 
 	avgSpeed('Mesh', 20, cut_one('s1', 's2'), 'mesh-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Star', 20, cut_one('s0', 's1'), 'star-20-avgspeed-one', 'Cut One Switch')
+	avgSpeed('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgspeed-one', 'Cut One Switch')
+	avgSpeed('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgspeed-one', 'Cut One Switch')
+	avgSpeed('Star', 20, cut_one('s0', 's1'), 'star-3-avgspeed-one', 'Cut One Switch')
 
 
 
