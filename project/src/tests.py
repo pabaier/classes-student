@@ -117,11 +117,30 @@ class LinkInterrupt:
 		for link in self.links:
 			self.net.configLinkStatus(link[0], link[1], self.linkStatus)
 
+class SwitchInterrupt:
+	def __init__(self, net, switch, switchStatus):
+		self.net = net
+		self.switch = net.getNodeByName(switch)
+		self.switch_name = switch
+		self.switchStatus = switchStatus.lower()
+		self.type = 'switch_toggle'
+		self.intfs = self.switch.intfs
+
+	def run(self):
+		if self.switchStatus == 'on':
+			self.switchStatus == 'off'
+			self.switch.stop()
+		else:
+			self.switchStatus == 'on'
+			self.switch.start([self.net.controller])
+			self.switch.intfs = self.intfs 
+
 tests = { 
 	'pingall': ( lambda net: PingAll(net) ), 
 	'pingallfull': ( lambda net: PingAllFull(net) ), 
 	'iperf': ( lambda net: IPerf(net) ),
 	'linkinterrupt': ( lambda net, links, linkStatus: LinkInterrupt(net, links, linkStatus) ),
+	'switchinterrupt': ( lambda net, switch, switchStatus: SwitchInterrupt(net, switch, switchStatus) ),
 }
 
 
