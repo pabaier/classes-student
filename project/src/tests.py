@@ -29,7 +29,7 @@ class PingAllFull:
 			if float(element[2][2] != 0):
 				rtts.append(float(element[2][2]))
 		if len(rtts) <= 0:
-			return 0
+			return (0, 0, 0)
 		avgRtt = sum(rtts) / len(rtts)
 		return((avgRtt, successes, total_attempts))
 
