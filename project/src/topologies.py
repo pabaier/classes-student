@@ -66,7 +66,7 @@ class Highwinds( Topo ):
 
     def build( self ):
         # Add hosts and switches
-        for i in range(1,19):
+        for i in range(18):
             host = 'h' + str(i+1)
             switch = 's' + str(i+1)
             self.addHost(host)

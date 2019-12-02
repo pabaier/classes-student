@@ -98,16 +98,42 @@ def cut_one(one, two):
 
 def fault():
 	# build and start network
-	a = Network().set_controller('default').set_number_of_switches(num_switches).set_topology('highwinds').build()
+	a = Network().set_controller('default').set_topology('highwinds').build()
 	net = a.net
-	net.start()
+	c1 = net.addController( 'c1', port=6633 )
+	c2 = net.addController( 'c2', port=6634 )
+	c3 = net.addController( 'c3', port=6635 )
+	c4 = net.addController( 'c4', port=6637 )
+
+	net.build()
+	c1.start()
+	c2.start()
+	c3.start()
+	c4.start()
+	c1Switches = ['s1', 's2', 's3', 's4', 's5']
+	c2Switches = ['s6', 's7', 's8', 's9', 's10', 's11']
+	c3Switches = ['s12', 's13']
+	c4Switches = ['s14', 's15', 's16', 's17', 's18']
+	for s in c1Switches:
+		switch = net.getNodeByName(s)
+		switch.start([c1])
+	for s in c2Switches:
+		switch = net.getNodeByName(s)
+		switch.start([c2])
+	for s in c3Switches:
+		switch = net.getNodeByName(s)
+		switch.start([c3])
+	for s in c4Switches:
+		switch = net.getNodeByName(s)
+		switch.start([c4])
+
 	CLI (net)
 	net.stop()
-
 	
 if __name__ == '__main__':
+	fault()
 	# topology, nodes, switch cuts, filename, subtitle
-	avgRtt('Mesh', 3, cut_one('s1', 's2'), 'mesh-20-avgrtt-one', 'Cut One Switch')
+	# avgRtt('Mesh', 3, cut_one('s1', 's2'), 'mesh-20-avgrtt-one', 'Cut One Switch')
 	# avgRtt('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgrtt-one', 'Cut One Switch')
 	# avgRtt('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgrtt-one', 'Cut One Switch')
 	# avgRtt('Star', 20, cut_one('s0', 's1'), 'star-20-avgrtt-one', 'Cut One Switch')
