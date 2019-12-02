@@ -107,17 +107,123 @@ def main():
 			f.write("{}\n".format(str(avg[2] - avg[1])))
 
 	# c2 down
+	filename = "Highwinds-c2"
+	title = "Highwinds"
+	subtitle = "Average RTT with c2 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller2_toggle, pingfull, pingfull, controller2_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
 
 	# c3 down
+	filename = "Highwinds-c3"
+	title = "Highwinds"
+	subtitle = "Average RTT with c3 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller3_toggle, pingfull, pingfull, controller3_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
+
+	# c4 down
+	filename = "Highwinds-c4"
+	title = "Highwinds"
+	subtitle = "Average RTT with c4 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller4_toggle, pingfull, pingfull, controller4_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
 
 	# c1 and c2 down
+	filename = "Highwinds-c1-c2"
+	title = "Highwinds"
+	subtitle = "Average RTT with c1 and c2 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller1_toggle, controller2_toggle, pingfull, pingfull, controller1_toggle, controller2_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
 
 	# c1 and c3 down
+	filename = "Highwinds-c1-c3"
+	title = "Highwinds"
+	subtitle = "Average RTT with c1 and c3 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller1_toggle, controller3_toggle, pingfull, pingfull, controller1_toggle, controller3_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
+
+	# c1 and c4 down
+	filename = "Highwinds-c1-c4"
+	title = "Highwinds"
+	subtitle = "Average RTT with c1 and c4 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller1_toggle, controller4_toggle, pingfull, pingfull, controller1_toggle, controller4_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
 
 	# c2 and c3 down
+	filename = "Highwinds-c2-c3"
+	title = "Highwinds"
+	subtitle = "Average RTT with c2 and c3 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller2_toggle, controller3_toggle, pingfull, pingfull, controller2_toggle, controller3_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
 
+	# c2 and c4 down
+	filename = "Highwinds-c2-c4"
+	title = "Highwinds"
+	subtitle = "Average RTT with c2 and c4 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller2_toggle, controller4_toggle, pingfull, pingfull, controller2_toggle, controller4_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
 
-	CLI (net)
+	# c3 and c4 down
+	filename = "Highwinds-c3-c4"
+	title = "Highwinds"
+	subtitle = "Average RTT with c3 and c4 Down"
+	f = openfile(filename, title, subtitle)
+	plan = [pingfull, pingfull, controller3_toggle, controller4_toggle, pingfull, pingfull, controller3_toggle, controller4_toggle, pingfull, pingfull]
+	for test in plan:
+		test.run()
+		if test.type == 'pingallfull':
+			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+			f.write("{}\n".format(str(avg[0])))
+			f.write("{}\n".format(str(avg[2] - avg[1])))
+
+	# CLI (net)
 	net.stop()
 
 def openfile(fileName, title, subtitle):

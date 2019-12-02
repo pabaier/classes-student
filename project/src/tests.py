@@ -139,7 +139,8 @@ class ControllerInterrupt:
 	def __init__(self, net, controller):
 		self.net = net
 		self.controller = controller
-		self.up = True 
+		self.up = True
+		self.type = 'controllerInterrupt'
 
 	def run(self):
 		if self.up:
