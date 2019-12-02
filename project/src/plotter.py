@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import os
+from os.path import isfile
 
 def run():
 	allFiles = os.listdir('data')
 	for file in allFiles:
-		if file[0] == '.':
+		if file[0] == '.' or not isfile('data/' + file):
 			allFiles.remove(file)
 	for filename in allFiles:
 		speed = False
