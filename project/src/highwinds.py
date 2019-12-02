@@ -92,7 +92,7 @@ def main():
 	controller2_toggle = tests['controllerinterrupt'](net, c2)
 	controller3_toggle = tests['controllerinterrupt'](net, c3)
 	controller4_toggle = tests['controllerinterrupt'](net, c4)
-
+	net.pingAllFull()
 	# c1 down
 	filename = "Highwinds-c1"
 	title = "Highwinds"
