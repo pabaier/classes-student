@@ -1,6 +1,7 @@
 from network import Network
 from tests import tests
 import argparse
+from mininet.cli import CLI
 
 def avgRtt(topology, num_switches, switches, filename, subtitle):
 	# build and start network
@@ -95,6 +96,15 @@ def cut_every_other(num_switches):
 def cut_one(one, two):
 	return [(one, two)]
 
+def fault():
+	# build and start network
+	a = Network().set_controller('default').set_number_of_switches(num_switches).set_topology('highwinds').build()
+	net = a.net
+	net.start()
+	CLI (net)
+	net.stop()
+
+	
 if __name__ == '__main__':
 	# topology, nodes, switch cuts, filename, subtitle
 	avgRtt('Mesh', 3, cut_one('s1', 's2'), 'mesh-20-avgrtt-one', 'Cut One Switch')
