@@ -2,7 +2,7 @@ from network import Network
 from tests import tests
 import argparse
 from mininet.cli import CLI
-from mininet.node import Controller
+from mininet.node import Controller,OVSSwitch
 from mininet.net import Mininet
 import topologies
 
@@ -103,12 +103,24 @@ def fault():
 	# build and start network
 	# a = Network().set_controller('default').set_topology('highwinds').build()
 	# net = a.net
-	net = Mininet(topo=topologies.topos['highwinds'], controller=Controller, switch=OVSSwitch )
+	net = Mininet( controller=Controller, switch=OVSSwitch )
 
+	# controllers
 	c1 = net.addController( 'c1', port=6633 )
 	c2 = net.addController( 'c2', port=6634 )
 	c3 = net.addController( 'c3', port=6635 )
 	c4 = net.addController( 'c4', port=6637 )
+	# add switches
+	for i in range(18):
+		switch = 's' + str(i+1)
+		net.addSwitch(switch, stp=True, failMode='standalone')
+	# addhosts
+	for i in range(18):
+		host = 'h' + str(i+1)
+		net.addHost(host)
+	# links
+	for i in range(18):
+		self.addLink(net.hosts[i], switch[i])
 
 	net.build()
 	c1.start()
