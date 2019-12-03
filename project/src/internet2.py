@@ -19,8 +19,8 @@ def runTest(d):
 		filename = "Internet2-OSE3-5-c" + str(d[0]) + "-c" + str(d[1])
 		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
 	else:
-		filename = "Internet2-OSE3-5-c" + str(d)
-		subtitle = "Average RTT with c" + str(d) + " Down"
+		filename = "Internet2-OSE3-5-c" + str(d[0])
+		subtitle = "Average RTT with c" + str(d[0]) + " Down"
 	title = "Internet2-OSE3 5 Controllers"
 	f = open("data/" + filename, "a")
 	f.write("{}\n".format(title))
@@ -137,7 +137,7 @@ def runTest(d):
 		elif d[1]:
 			plan = [toggles[d[0]], toggles[d[1]], pingfull, pingfull]
 		else:
-			plan = [toggles[d], pingfull, pingfull]
+			plan = [toggles[d[0]], pingfull, pingfull]
 		for test in plan:
 			test.run()
 			if test.type == 'pingallfull':
