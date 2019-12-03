@@ -17,7 +17,7 @@ def main():
 	c2 = net.addController( 'c2', port=6634 )
 	c3 = net.addController( 'c3', port=6635 )
 	c4 = net.addController( 'c4', port=6637 )
-	c5 = net.addController( 'c4', port=6638 )
+	c5 = net.addController( 'c5', port=6638 )
 
 	# add switches
 	for i in range(32):
