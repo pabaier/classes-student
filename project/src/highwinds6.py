@@ -118,8 +118,8 @@ def main():
 				(2,3), (2,4), (2,5), (2,6),
 				(3,4), (3,5), (3,6), (4,5), (4,6), (5,6) ]
 	for d in down_singles:
-		filename = "Highwinds-c" + str(d)
-		title = "Highwinds"
+		filename = "Highwinds-6-c" + str(d)
+		title = "Highwinds 6 Controllers"
 		subtitle = "Average RTT with c" + str(d) + " Down"
 		f = openfile(filename, title, subtitle)
 		plan = [pingfull, pingfull, toggles[d], pingfull, pingfull, toggles[d], pingfull, pingfull]
@@ -132,8 +132,8 @@ def main():
 		f.close()
 
 	for d in down_pairs:
-		filename = "Highwinds-c" + str(d[0]) + "-c" + str(d[1])
-		title = "Highwinds"
+		filename = "Highwinds-6-c" + str(d[0]) + "-c" + str(d[1])
+		title = "Highwinds 6 Controllers"
 		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
 		f = openfile(filename, title, subtitle)
 		plan = [pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull]

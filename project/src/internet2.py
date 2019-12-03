@@ -120,8 +120,8 @@ def main():
 				(2,3), (2,4), (2,5),
 				(3,4), (3,5), (4,5) ]
 	for d in down_singles:
-		filename = "Internet2-OSE3-c" + str(d)
-		title = "Internet2-OSE3"
+		filename = "Internet2-OSE3-5-c" + str(d)
+		title = "Internet2-OSE3 5 Controllers"
 		subtitle = "Average RTT with c" + str(d) + " Down"
 		f = openfile(filename, title, subtitle)
 		plan = [pingfull, pingfull, toggles[d], pingfull, pingfull, toggles[d], pingfull, pingfull]
@@ -134,8 +134,8 @@ def main():
 		f.close()
 
 	for d in down_pairs:
-		filename = "Internet2-OSE3-c" + str(d[0]) + "-c" + str(d[1])
-		title = "Internet2-OSE3"
+		filename = "Internet2-OSE3-5-c" + str(d[0]) + "-c" + str(d[1])
+		title = "Internet2-OSE3 5 Controllers"
 		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
 		f = openfile(filename, title, subtitle)
 		plan = [pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull]
