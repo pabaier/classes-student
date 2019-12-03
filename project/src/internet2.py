@@ -7,23 +7,26 @@ from mininet.net import Mininet
 import topologies
 
 def main():
-	down_singles = [1,2,3,4,5]
-	down_pairs = [(1,2), (1,3), (1,4), (1,5),
+	down_pairs = [(1,None), (2,None), (3,None), (4,None), (5,None), 
+				(1,2), (1,3), (1,4), (1,5),
 				(2,3), (2,4), (2,5),
 				(3,4), (3,5), (4,5) ]
+	for d in down_pairs:
+		runTest(d)
 
-def runTest(down):
-	# for d in down_singles:
-	filename = "Internet2-OSE3-5-c" + str(d)
+def runTest(d):
+	if d[1]:
+		filename = "Internet2-OSE3-5-c" + str(d[0]) + "-c" + str(d[1])
+		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
+	else:
+		filename = "Internet2-OSE3-5-c" + str(d)
+		subtitle = "Average RTT with c" + str(d) + " Down"
 	title = "Internet2-OSE3 5 Controllers"
-	subtitle = "Average RTT with c" + str(d) + " Down"
 	f = open("data/" + filename, "a")
 	f.write("{}\n".format(title))
 	f.write("{}\n".format(subtitle))
 
-	filename = "Internet2-OSE3-5-c" + str(d[0]) + "-c" + str(d[1])
 	title = "Internet2-OSE3 5 Controllers"
-	subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
 
 	for test in range(2):
 		net = Mininet( controller=Controller, switch=OVSSwitch )
@@ -131,6 +134,8 @@ def runTest(down):
 
 		if test == 0:
 			plan = [pingfull, pingfull]
+		elif d[1]:
+			plan = [toggles[d[0]], toggles[d[1]], pingfull, pingfull]
 		else:
 			plan = [toggles[d], pingfull, pingfull]
 		for test in plan:
@@ -139,20 +144,6 @@ def runTest(down):
 				avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
 				f.write("{}\n".format(str(avg[0])))
 				f.write("{}\n".format(str(avg[2] - avg[1])))
-
-		for d in down_pairs:
-			filename = "Internet2-OSE3-5-c" + str(d[0]) + "-c" + str(d[1])
-			title = "Internet2-OSE3 5 Controllers"
-			subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
-			f = openfile(filename, title, subtitle)
-			plan = [pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull]
-			for test in plan:
-				test.run()
-				if test.type == 'pingallfull':
-					avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-					f.write("{}\n".format(str(avg[0])))
-					f.write("{}\n".format(str(avg[2] - avg[1])))
-			f.close()
 
 		# CLI (net)
 		net.stop()
