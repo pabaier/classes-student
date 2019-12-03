@@ -7,17 +7,63 @@ from mininet.net import Mininet
 import topologies
 
 def main():
-	# build and start network
-	# a = Network().set_controller('default').set_topology('highwinds').build()
-	# net = a.net
-	net = Mininet( controller=Controller, switch=OVSSwitch )
+	down_pairs = [(1,None), (2,None), (3,None), (4,None), (5,None), 
+				(1,2), (1,3), (1,4), (1,5),
+				(2,3), (2,4), (2,5),
+				(3,4), (3,5), (4,5)]
+	for d in down_pairs:
+		runTest(d)
 
+def runTest(d):
+	topologyName = "Highwinds-5"
+	if d[1]:
+		filename = topologyName + "-c" + str(d[0]) + "-c" + str(d[1])
+		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
+	else:
+		filename = topologyName + "-c" + str(d[0])
+		subtitle = "Average RTT with c" + str(d[0]) + " Down"
+	title = topologyName + " Controllers"
+	f = open("data/" + filename, "a")
+	f.write("{}\n".format(title))
+	f.write("{}\n".format(subtitle))
+
+	for test in range(2):
+		net = Mininet( controller=Controller, switch=OVSSwitch )
+		c1, c2, c3, c4, c5 = buildTopology(net)
+
+		# tests
+		pingfull = tests['pingallfull'](net)
+		controller1_toggle = tests['controllerinterrupt'](net, c1)
+		controller2_toggle = tests['controllerinterrupt'](net, c2)
+		controller3_toggle = tests['controllerinterrupt'](net, c3)
+		controller4_toggle = tests['controllerinterrupt'](net, c4)
+		controller5_toggle = tests['controllerinterrupt'](net, c5)
+		toggles = {1:controller1_toggle, 2:controller2_toggle, 3:controller3_toggle, 4:controller4_toggle, 5:controller5_toggle}
+
+		if test == 0:
+			plan = [pingfull, pingfull]
+		elif d[1]:
+			plan = [toggles[d[0]], toggles[d[1]], pingfull, pingfull]
+		else:
+			plan = [toggles[d[0]], pingfull, pingfull]
+		for test in plan:
+			test.run()
+			if test.type == 'pingallfull':
+				avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+				f.write("{}\n".format(str(avg[0])))
+				f.write("{}\n".format(str(avg[2] - avg[1])))
+
+		# CLI (net)
+		net.stop()
+
+def buildTopology(net):
 	# controllers
 	c1 = net.addController( 'c1', port=6633 )
 	c2 = net.addController( 'c2', port=6634 )
 	c3 = net.addController( 'c3', port=6635 )
 	c4 = net.addController( 'c4', port=6637 )
 	c5 = net.addController( 'c5', port=6638 )
+	controllers = (c1, c2, c3, c4, c5)
 
 	# add switches
 	for i in range(18):
@@ -93,58 +139,7 @@ def main():
 		switch = net.getNodeByName(s)
 		switch.start([c5])
 
-	# tests
-	pingAll = tests['pingall'](net)
-	pingfull = tests['pingallfull'](net)
-	controller1_toggle = tests['controllerinterrupt'](net, c1)
-	controller2_toggle = tests['controllerinterrupt'](net, c2)
-	controller3_toggle = tests['controllerinterrupt'](net, c3)
-	controller4_toggle = tests['controllerinterrupt'](net, c4)
-	controller5_toggle = tests['controllerinterrupt'](net, c5)
-	toggles = {1:controller1_toggle, 2:controller2_toggle, 3:controller3_toggle, 4:controller4_toggle, 5:controller5_toggle}
-
-	net.pingAllFull()
-	down_singles = [1,2,3,4,5]
-	down_pairs = [(1,2), (1,3), (1,4), (1,5),
-				(2,3), (2,4), (2,5),
-				(3,4), (3,5), (4,5) ]
-	for d in down_singles:
-		filename = "Highwinds-5-c" + str(d)
-		title = "Highwinds 5 Controllers"
-		subtitle = "Average RTT with c" + str(d) + " Down"
-		f = openfile(filename, title, subtitle)
-		plan = [pingfull, pingfull, toggles[d], pingfull, pingfull, toggles[d], pingfull, pingfull]
-		for test in plan:
-			test.run()
-			if test.type == 'pingallfull':
-				avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-				f.write("{}\n".format(str(avg[0])))
-				f.write("{}\n".format(str(avg[2] - avg[1])))
-		f.close()
-
-	for d in down_pairs:
-		filename = "Highwinds-5-c" + str(d[0]) + "-c" + str(d[1])
-		title = "Highwinds 5 Controllers"
-		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
-		f = openfile(filename, title, subtitle)
-		plan = [pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull]
-		for test in plan:
-			test.run()
-			if test.type == 'pingallfull':
-				avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-				f.write("{}\n".format(str(avg[0])))
-				f.write("{}\n".format(str(avg[2] - avg[1])))
-		f.close()
-
-	# CLI (net)
-	net.stop()
-
-def openfile(fileName, title, subtitle):
-	f = open("data/" + fileName, "w")
-	f.write("{}\n".format(title))
-	f.write("{}\n".format(subtitle))
-	return f
-
+	return controllers
+	
 if __name__ == '__main__':
 	main()
-
