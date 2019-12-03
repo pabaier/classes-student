@@ -17,6 +17,8 @@ def main():
 	c2 = net.addController( 'c2', port=6634 )
 	c3 = net.addController( 'c3', port=6635 )
 	c4 = net.addController( 'c4', port=6637 )
+	c5 = net.addController( 'c4', port=6638 )
+
 	# add switches
 	for i in range(32):
 		switch = 's' + str(i+1)
@@ -84,10 +86,13 @@ def main():
 	c2.start()
 	c3.start()
 	c4.start()
-	c1Switches = ['s1', 's2', 's4', 's5', 's6', 's7']
-	c2Switches = ['s3', 's8', 's9', 's9', 's10', 's11', 's12', 's13', 's14', 's15', 's16', 's17', 's18', 's19']
-	c3Switches = ['s20', 's23', 's24', 's26', 's27', 's32']
-	c4Switches = ['s21', 's22', 's25', 's28', 's29', 's30', 's31']
+	c5.start()
+	c1Switches = ['s1', 's2', 's3', 's7', 's8', 's9']
+	c2Switches = ['s10', 's11', 's12', 's13', 's14', 's15', 's19']
+	c3Switches = ['s4', 's5', 's6', 's16', 's17', 's18', 's21', 's22']
+	c4Switches = ['s28', 's29', 's30', 's31', 's32']
+	c5Switches = ['s20', 's23', 's24', 's25', 's26', 's27']
+
 	for s in c1Switches:
 		switch = net.getNodeByName(s)
 		switch.start([c1])
@@ -100,6 +105,9 @@ def main():
 	for s in c4Switches:
 		switch = net.getNodeByName(s)
 		switch.start([c4])
+	for s in c5Switches:
+		switch = net.getNodeByName(s)
+		switch.start([c5])
 
 	# tests
 	pingAll = tests['pingall'](net)
@@ -108,136 +116,41 @@ def main():
 	controller2_toggle = tests['controllerinterrupt'](net, c2)
 	controller3_toggle = tests['controllerinterrupt'](net, c3)
 	controller4_toggle = tests['controllerinterrupt'](net, c4)
+	controller5_toggle = tests['controllerinterrupt'](net, c5)
+	toggles = {1:controller1_toggle, 2:controller2_toggle, 3:controller3_toggle, 4:controller4_toggle, 5:controller5_toggle}
+
 	net.pingAllFull()
-	# c1 down
-	filename = "Bics-c1"
-	title = "Bics"
-	subtitle = "Average RTT with c1 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller1_toggle, pingfull, pingfull, controller1_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
+	down_singles = [1,2,3,4,5]
+	down_pairs = [(1,2), (1,3), (1,4), (1,5),
+				(2,3), (2,4), (2,5),
+				(3,4), (3,5), (4,5) ]
+	for d in down_singles:
+		filename = "Bics-c" + str(d)
+		title = "Bics"
+		subtitle = "Average RTT with c" + str(d) + " Down"
+		f = openfile(filename, title, subtitle)
+		plan = [pingfull, pingfull, toggles[d], pingfull, pingfull, toggles[d], pingfull, pingfull]
+		for test in plan:
+			test.run()
+			if test.type == 'pingallfull':
+				avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+				f.write("{}\n".format(str(avg[0])))
+				f.write("{}\n".format(str(avg[2] - avg[1])))
+		f.close()
 
-	# c2 down
-	filename = "Bics-c2"
-	title = "Bics"
-	subtitle = "Average RTT with c2 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller2_toggle, pingfull, pingfull, controller2_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c3 down
-	filename = "Bics-c3"
-	title = "Bics"
-	subtitle = "Average RTT with c3 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller3_toggle, pingfull, pingfull, controller3_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c4 down
-	filename = "Bics-c4"
-	title = "Bics"
-	subtitle = "Average RTT with c4 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller4_toggle, pingfull, pingfull, controller4_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c1 and c2 down
-	filename = "Bics-c1-c2"
-	title = "Bics"
-	subtitle = "Average RTT with c1 and c2 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller1_toggle, controller2_toggle, pingfull, pingfull, controller1_toggle, controller2_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c1 and c3 down
-	filename = "Bics-c1-c3"
-	title = "Bics"
-	subtitle = "Average RTT with c1 and c3 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller1_toggle, controller3_toggle, pingfull, pingfull, controller1_toggle, controller3_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c1 and c4 down
-	filename = "Bics-c1-c4"
-	title = "Bics"
-	subtitle = "Average RTT with c1 and c4 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller1_toggle, controller4_toggle, pingfull, pingfull, controller1_toggle, controller4_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c2 and c3 down
-	filename = "Bics-c2-c3"
-	title = "Bics"
-	subtitle = "Average RTT with c2 and c3 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller2_toggle, controller3_toggle, pingfull, pingfull, controller2_toggle, controller3_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c2 and c4 down
-	filename = "Bics-c2-c4"
-	title = "Bics"
-	subtitle = "Average RTT with c2 and c4 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller2_toggle, controller4_toggle, pingfull, pingfull, controller2_toggle, controller4_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
-
-	# c3 and c4 down
-	filename = "Bics-c3-c4"
-	title = "Bics"
-	subtitle = "Average RTT with c3 and c4 Down"
-	f = openfile(filename, title, subtitle)
-	plan = [pingfull, pingfull, controller3_toggle, controller4_toggle, pingfull, pingfull, controller3_toggle, controller4_toggle, pingfull, pingfull]
-	for test in plan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
+	for d in down_pairs:
+		filename = "Bics-c" + str(d[0]) + "-c" + str(d[1])
+		title = "Bics"
+		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
+		f = openfile(filename, title, subtitle)
+		plan = [pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull, toggles[d[0]], toggles[d[1]], pingfull, pingfull]
+		for test in plan:
+			test.run()
+			if test.type == 'pingallfull':
+				avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+				f.write("{}\n".format(str(avg[0])))
+				f.write("{}\n".format(str(avg[2] - avg[1])))
+		f.close()
 
 	# CLI (net)
 	net.stop()
