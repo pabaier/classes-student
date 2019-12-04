@@ -4,6 +4,7 @@ import argparse
 from mininet.cli import CLI
 from mininet.node import Controller,OVSSwitch
 from mininet.net import Mininet
+import topologies
 from topologies import topos
 
 def main():
@@ -29,13 +30,13 @@ def runTest(d):
 
 	for test in range(2):
 		net = Mininet( controller=Controller, switch=OVSSwitch )
-		controllers = topos['highwinds']().build(net, 5)
+		controllers = topologies.Highwinds(net, 5)
 
 		# tests
 		pingfull = tests['pingallfull'](net)
 		toggles = []
 		for c in controllers:
-			toggles.append(tests['controllerinterrup'](net, c))
+			toggles.append(tests['controllerinterrupt'](net, c))
 
 		if test == 0:
 			plan = [pingfull, pingfull]
