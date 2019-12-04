@@ -77,7 +77,7 @@ def run():
 		ax1.set_xlabel('Runs')
 	
 		plt.savefig(f'img/{filename}.png')
-		plt.clf()
+		plt.close()
 		# plt.show()
 
 if __name__ == '__main__':
