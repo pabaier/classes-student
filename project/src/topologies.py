@@ -326,5 +326,7 @@ topos = { 'bus': ( lambda: Bus() ),
 'mesh': ( lambda: Mesh() ), 
 'highwinds': Highwinds,
 'bics': Bics,
-'internet2': Internet2
+'internet2-OSE3': Internet2
 }
+
+topologies = ['highwinds', 'bics', 'internet2-OSE3']
