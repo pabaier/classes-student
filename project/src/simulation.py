@@ -8,16 +8,12 @@ import topologies
 from topologies import topos
 
 def main(topology, controller_count):
-	if controller_count == 5:
-		down_pairs = [(1,None), (2,None), (3,None), (4,None), (5,None), 
-			(1,2), (1,3), (1,4), (1,5),
-			(2,3), (2,4), (2,5),
-			(3,4), (3,5), (4,5)]
-	else:
-		down_pairs = [(1,None), (2,None), (3,None), (4,None), (5,None), (6, None),
-			(1,2), (1,3), (1,4), (1,5), (1,6),
-			(2,3), (2,4), (2,5), (2,6),
-			(3,4), (3,5), (3,6), (4,5), (4,6), (5,6)]
+	down_pairs = [(1,None), (2,None), (3,None), (4,None), (5,None), 
+		(1,2), (1,3), (1,4), (1,5),
+		(2,3), (2,4), (2,5),
+		(3,4), (3,5), (4,5)]
+	if controller_count == 6:
+		down_pairs += [(6, None), (1,6), (2,6), (3,6), (4,6), (5,6)]
 	for d in down_pairs:
 		runTest(d, topology, controller_count)
 
