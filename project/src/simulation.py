@@ -27,35 +27,35 @@ def runTest(d, topology='highwinds', controller_count=5, controller_group=1):
 		filename = topologyName + "-c" + str(d[0])
 		subtitle = "Average RTT with c" + str(d[0]) + " Down"
 	title = topologyName + " Controllers"
-	f = open("data/" + filename, "a")
-	f.write("{}\n".format(title))
-	f.write("{}\n".format(subtitle))
+	with open("data/" + filename, "a") as f:
+		f.write("{}\n".format(title))
+		f.write("{}\n".format(subtitle))
 
-	for test in range(2):
-		net = Mininet( controller=Controller, switch=OVSSwitch )
-		controllers = topos[topology](net, controller_count, controller_group)
+		for test in range(2):
+			net = Mininet( controller=Controller, switch=OVSSwitch )
+			controllers = topos[topology](net, controller_count, controller_group)
 
-		# tests
-		pingfull = tests['pingallfull'](net)
-		toggles = []
-		for c in controllers:
-			toggles.append(tests['controllerinterrupt'](net, c))
+			# tests
+			pingfull = tests['pingallfull'](net)
+			toggles = []
+			for c in controllers:
+				toggles.append(tests['controllerinterrupt'](net, c))
 
-		if test == 0:
-			plan = [pingfull, pingfull]
-		elif d[1]:
-			plan = [toggles[d[0]-1], toggles[d[1]-1], pingfull, pingfull]
-		else:
-			plan = [toggles[d[0]-1], pingfull, pingfull]
-		for test in plan:
-			test.run()
-			if test.type == 'pingallfull':
-				avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-				f.write("{}\n".format(str(avg[0])))
-				f.write("{}\n".format(str(avg[2] - avg[1])))
+			if test == 0:
+				plan = [pingfull, pingfull]
+			elif d[1]:
+				plan = [toggles[d[0]-1], toggles[d[1]-1], pingfull, pingfull]
+			else:
+				plan = [toggles[d[0]-1], pingfull, pingfull]
+			for test in plan:
+				test.run()
+				if test.type == 'pingallfull':
+					avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+					f.write("{}\n".format(str(avg[0])))
+					f.write("{}\n".format(str(avg[2] - avg[1])))
 
-		# CLI (net)
-		net.stop()
+			# CLI (net)
+			net.stop()
 
 if __name__ == '__main__':
 	main()
