@@ -6,6 +6,9 @@ from mininet.node import Controller,OVSSwitch
 from mininet.net import Mininet
 import topologies
 from topologies import topos
+import os
+
+allFiles = os.listdir('data')
 
 def main(topology, controller_count):
 	down_pairs = [(1,None), (2,None), (3,None), (4,None), (5,None), 
@@ -27,6 +30,10 @@ def runTest(d, topology='highwinds', controller_count=5, controller_group=1):
 		filename = topologyName + "-c" + str(d[0])
 		subtitle = "Average RTT with c" + str(d[0]) + " Down"
 	title = topologyName + " Controllers"
+
+	if filename in allFiles:
+		return
+
 	with open("data/" + filename, "a") as f:
 		f.write("{}\n".format(title))
 		f.write("{}\n".format(subtitle))
