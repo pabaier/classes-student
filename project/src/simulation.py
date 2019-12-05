@@ -15,10 +15,11 @@ def main(topology, controller_count):
 	if controller_count == 6:
 		down_pairs += [(6, None), (1,6), (2,6), (3,6), (4,6), (5,6)]
 	for d in down_pairs:
-		runTest(d, topology, controller_count)
+		for controllerg in range(3):
+			runTest(d, topology, controller_count, controllerg)
 
-def runTest(d, topology='highwinds', controller_count=5):
-	topologyName = topology.capitalize() + "-" + str(controller_count)
+def runTest(d, topology='highwinds', controller_count=5, controller_group=1):
+	topologyName = topology.capitalize() + "CG" + str(controller_group) + "-" + str(controller_count)
 	if d[1]:
 		filename = topologyName + "-c" + str(d[0]) + "-c" + str(d[1])
 		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
@@ -32,7 +33,7 @@ def runTest(d, topology='highwinds', controller_count=5):
 
 	for test in range(2):
 		net = Mininet( controller=Controller, switch=OVSSwitch )
-		controllers = topos[topology](net, controller_count)
+		controllers = topos[topology](net, controller_count, controller_group)
 
 		# tests
 		pingfull = tests['pingallfull'](net)
@@ -56,6 +57,5 @@ def runTest(d, topology='highwinds', controller_count=5):
 		# CLI (net)
 		net.stop()
 
-	
 if __name__ == '__main__':
 	main()
