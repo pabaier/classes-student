@@ -1,4 +1,5 @@
 from mininet.topo import Topo
+from math import ceil, floor
 
 num_switches = 5
 
@@ -62,7 +63,7 @@ class Mesh( Topo ):
                 self.addLink(switch, s)
             counter += 1
 
-def Highwinds( net, controller_amount ):
+def Highwinds( net, controller_amount, controllerGroup ):
     port = 6633
     controllers = []
     for i in range(controller_amount):
@@ -70,9 +71,12 @@ def Highwinds( net, controller_amount ):
         port += 1
 
     # add switches
+    switchNames = []
     for i in range(18):
         switch = 's' + str(i+1)
         net.addSwitch(switch, stp=True, failMode='standalone')
+        switchNames.append(switch)
+
     # addhosts
     for i in range(18):
         host = 'h' + str(i+1)
@@ -119,10 +123,12 @@ def Highwinds( net, controller_amount ):
     for controller in controllers:
         controller.start()
 
-    if controller_amount == 5:
-        switchMap = [['s1', 's2', 's3', 's4'],['s5', 's6', 's7'],['s8', 's9', 's10', 's11'], ['s12', 's13'],['s14', 's15', 's16', 's17', 's18'] ]
-    else:
-        switchMap = [['s1', 's2', 's3', 's4'],['s5', 's6', 's7'], ['s8', 's9', 's10', 's11'], ['s12', 's13'], ['s15', 's16'], ['s14', 's17', 's18']]
+	if controllerGroup == 0:
+		switchMap = chunk_consecutive(switchNames, controller_amount)
+	elif controllerGroup == 1:
+		switchMap = chunk_odds_evens(switchNames, controller_amount)
+	else:
+		switchMap = chunk_by_twos(switchNames, controller_amount)
 
     for i in range(len(switchMap)):
         for s in switchMap[i]:
@@ -131,7 +137,7 @@ def Highwinds( net, controller_amount ):
 
     return controllers
 
-def Bics( net, controller_amount ):
+def Bics( net, controller_amount, controllerGroup ):
     port = 6633
     controllers = []
     for i in range(controller_amount):
@@ -139,9 +145,12 @@ def Bics( net, controller_amount ):
         port += 1
 
 	# add switches
+	switchNames = []
 	for i in range(32):
 		switch = 's' + str(i+1)
 		net.addSwitch(switch, stp=True, failMode='standalone')
+		switchNames.append(switch)
+
 	# addhosts
 	for i in range(32):
 		host = 'h' + str(i+1)
@@ -204,21 +213,12 @@ def Bics( net, controller_amount ):
     for controller in controllers:
         controller.start()
 
-    if controller_amount == 5:
-        c1Switches = ['s1', 's2', 's3', 's7', 's8', 's9']
-        c2Switches = ['s10', 's11', 's12', 's13', 's14', 's15', 's19']
-        c3Switches = ['s4', 's5', 's6', 's16', 's17', 's18', 's21', 's22']
-        c4Switches = ['s28', 's29', 's30', 's31', 's32']
-        c5Switches = ['s20', 's23', 's24', 's25', 's26', 's27']
-        switchMap = [c1Switches, c2Switches, c3Switches, c4Switches, c5Switches]
-    else:
-        c1Switches = ['s1', 's2', 's3', 's7', 's8', 's9']
-        c2Switches = ['s10', 's11', 's12', 's13', 's14', 's15', 's19']
-        c3Switches = ['s16', 's18', 's21', 's22']
-        c4Switches = ['s28', 's29', 's30', 's31', 's32']
-        c5Switches = ['s20', 's23', 's24', 's25', 's26', 's27']
-        c6Switches = ['s4', 's5', 's6', 's17']
-        switchMap = [c1Switches, c2Switches, c3Switches, c4Switches, c5Switches, c6Switches]
+	if controllerGroup == 0:
+		switchMap = chunk_consecutive(switchNames, controller_amount)
+	elif controllerGroup == 1:
+		switchMap = chunk_odds_evens(switchNames, controller_amount)
+	else:
+		switchMap = chunk_by_twos(switchNames, controller_amount)
 
     for i in range(len(switchMap)):
         for s in switchMap[i]:
@@ -227,7 +227,7 @@ def Bics( net, controller_amount ):
 
     return controllers
 
-def Internet2( net, controller_amount ):
+def Internet2( net, controller_amount, controllerGroup ):
     port = 6633
     controllers = []
     for i in range(controller_amount):
@@ -235,9 +235,11 @@ def Internet2( net, controller_amount ):
         port += 1
 
 	# add switches
+	switchNames = []
 	for i in range(34):
 		switch = 's' + str(i+1)
 		net.addSwitch(switch, stp=True, failMode='standalone')
+        switchNames.append(switch)
 	# addhosts
 	for i in range(34):
 		host = 'h' + str(i+1)
@@ -296,21 +298,13 @@ def Internet2( net, controller_amount ):
     for controller in controllers:
         controller.start()
 
-    if controller_amount == 5:
-        c1Switches = ['s1', 's2', 's3', 's4', 's5', 's6', 's7']
-        c2Switches = ['s8', 's9', 's10', 's11', 's12']
-        c3Switches = ['s13', 's14', 's15', 's17', 's31', 's32', 's33', 's34']
-        c4Switches = ['s16', 's18', 's19', 's20', 's21', 's22', 's23']
-        c5Switches = ['s24', 's25', 's26', 's27', 's28', 's29', 's30']
-        switchMap = [c1Switches, c2Switches, c3Switches, c4Switches, c5Switches]
-    else:
-        c1Switches = ['s1', 's2', 's3', 's4']
-        c2Switches = ['s8', 's9', 's10', 's11', 's12']
-        c3Switches = ['s13', 's14', 's15', 's17', 's31', 's32', 's33', 's34']
-        c4Switches = ['s16', 's18', 's19', 's20', 's21', 's22', 's23']
-        c5Switches = ['s24', 's25', 's26', 's27', 's28', 's29', 's30']
-        c6Switches = ['s5', 's6', 's7']
-        switchMap = [c1Switches, c2Switches, c3Switches, c4Switches, c5Switches, c6Switches]
+	if controllerGroup == 0:
+		switchMap = chunk_consecutive(switchNames, controller_amount)
+	elif controllerGroup == 1:
+		switchMap = chunk_odds_evens(switchNames, controller_amount)
+	else:
+		switchMap = chunk_by_twos(switchNames, controller_amount)
+
 
     for i in range(len(switchMap)):
         for s in switchMap[i]:
@@ -318,6 +312,44 @@ def Internet2( net, controller_amount ):
             switch.start([controllers[i]])
 
     return controllers
+
+def chunk_consecutive(lst, num_controllers):
+	chunks = int(ceil(len(lst)/float(num_controllers)))
+	a = []
+	for i in range(0,len(lst),chunks):
+		a.append(lst[i:i+chunks])
+	return a
+
+def chunk_odds_evens(lst, num_controllers):
+	chunks = int(ceil(len(lst)/float(num_controllers)))
+	a = []
+	tempA = []
+	tempB = []
+	for i in range(0,len(lst)):
+		if i % 2 == 0:
+			tempA.append(lst[i])
+		else:
+			tempB.append(lst[i])
+	a += tempA
+	a += tempB
+	return chunk_consecutive(a,num_controllers)
+
+def chunk_by_twos(lst, num_controllers):
+	chunks = int(ceil(len(lst)/float(num_controllers)))
+	a = []
+	tempA = [lst[0]]
+	tempB = []
+	flag = True
+	for i in range(1,len(lst)):
+		if i % 2 == 0:
+			flag = not flag
+		if flag:
+			tempA.append(lst[i])
+		else:
+			tempB.append(lst[i])
+	a += tempA
+	a += tempB
+	return chunk_consecutive(a,num_controllers)
 
 
 topos = { 'bus': ( lambda: Bus() ), 
