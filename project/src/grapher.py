@@ -15,7 +15,7 @@ def autolabel(rects, ax):
             voffset = -12
         ax.annotate('{}'.format(height),
                     xy=(rect.get_x() + rect.get_width() / 2, height),
-                    xytext=(0, voffset),  # 3 points vertical offset
+                    xytext=(0, voffset),
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -40,18 +40,19 @@ def run(data=None):
 						else:
 							dataB.append(float('%.1f'%(optimalCG[controllerGroup][stat])))
 					toggle = not toggle
-				labels = ['Total', 'Max', 'Min', 'Avg']
+				labels = ['Max', 'Min', 'Avg']
 				x = np.arange(len(labels))  # the label locations
 				width = 0.35  # the width of the bars
-
+				dataA = dataA[1:]
+				dataB = dataB[1:]
 				fig, ax = plt.subplots()
 				rects1 = ax.bar(x - width/2, dataA, width, label=dataALabel)
 				rects2 = ax.bar(x + width/2, dataB, width, label=dataBLabel)
 
 				# Add some text for labels, title and custom x-axis tick labels, etc.
-				ax.set_ylabel('RTT (ms)')
-				ax.set_xlabel('Percentage Change')
-				ax.set_title(f"{topology}-{num_controllers} Controllers-{optimalCGName} Optimal")
+				ax.set_ylabel('Percent %')
+				ax.set_xlabel('Delta Statistic')
+				ax.set_title(f"{topology} | {num_controllers} Controllers | {optimalCGName} Optimal")
 				ax.set_xticks(x)
 				ax.set_xticklabels(labels, rotation=50)
 				ax.legend()
