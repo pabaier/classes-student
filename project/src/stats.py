@@ -161,8 +161,15 @@ def getData():
 	for file in allFiles:
 		if file[0] == '.' or not isfile('data/' + file):
 			allFiles.remove(file)
+
 	for filename in allFiles:
-		row = filename.split('-')
+		# this little bit of code is necessary to rename internet2 files to match the others
+		f = filename
+		if f.find("Internet") >= 0:
+			index = f.find("-")
+			f = f[:index] + f[index+1:]
+
+		row = f.split('-')
 		if len(row) == 4:
 			row[2] = row[2] + "-" + row.pop(3)
 
@@ -186,12 +193,13 @@ def getData():
 		row[0] = name
 		row.insert(1,controller_layout)
 		output = ",".join(row)
-		if name.lower() is "highwinds":
+		if name.lower() == "highwinds":
 			highwinds.append(row)
-		elif name.lower() is "bics":
-			highwinds.append(row)
+		elif name.lower() == "bics":
+			bics.append(row)
 		else:
 			internet2.append(row)
+	print(internet2)
 	return highwinds, bics, internet2
 
 if __name__ == '__main__':
