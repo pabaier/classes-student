@@ -6,13 +6,16 @@ import os
 from os.path import isfile
 import json
 
-def autolabel(rects):
+def autolabel(rects, ax):
     """Attach a text label above each bar in *rects*, displaying its height."""
     for rect in rects:
         height = rect.get_height()
+        voffset = 0
+        if height < 0:
+            voffset = -12
         ax.annotate('{}'.format(height),
                     xy=(rect.get_x() + rect.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset
+                    xytext=(0, voffset),  # 3 points vertical offset
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -33,14 +36,11 @@ def run(data=None):
 				for controllerGroup in optimalCG:
 					for stat in optimalCG[controllerGroup]:
 						if toggle:
-							dataA.append(optimalCG[controllerGroup[stat]])
+							dataA.append(float('%.1f'%(optimalCG[controllerGroup][stat])))
 						else:
-							dataB.append(optimalCG[controllerGroup[stat]])
+							dataB.append(float('%.1f'%(optimalCG[controllerGroup][stat])))
 					toggle = not toggle
-				labels = ['totalPercentageChange', 
-						'maxPercentageChange',
-						'minPercentageChange',
-						'avgPercentageChange']
+				labels = ['Total', 'Max', 'Min', 'Avg']
 				x = np.arange(len(labels))  # the label locations
 				width = 0.35  # the width of the bars
 
@@ -50,13 +50,14 @@ def run(data=None):
 
 				# Add some text for labels, title and custom x-axis tick labels, etc.
 				ax.set_ylabel('RTT (ms)')
+				ax.set_xlabel('Percentage Change')
 				ax.set_title(f"{topology}-{num_controllers} Controllers-{optimalCGName} Optimal")
 				ax.set_xticks(x)
-				ax.set_xticklabels(labels)
+				ax.set_xticklabels(labels, rotation=50)
 				ax.legend()
 
-				autolabel(rects1)
-				autolabel(rects2)
+				autolabel(rects1, ax)
+				autolabel(rects2, ax)
 
 				fig.tight_layout()
 
