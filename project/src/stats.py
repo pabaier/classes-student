@@ -71,14 +71,41 @@ def notes():
 	# }
 
 def run():
-	f = open("data/results.json", "w")
+	# f = open("data/results.json", "w")
 	results = {"Highwinds":{}, "Bics":{}, "Internet2":{}}
 	highwinds, bics, internet2 = getData()
 	data = {"Highwinds":highwinds, "Bics":bics, "Internet2":internet2}
 	for r in results:
-		results[r] = analyze(data[r])
+		# results[r] = analyze(data[r])
+		results[r] = analyze2(data[r])
 	print(results)
-	f.write(json.dumps(results))
+	# f.write(json.dumps(results))
+
+def analyze2(data):
+	res = {}
+	res[5]={}
+	res[6]={}
+	for controller_count in range(5,7):
+		print(controller_count)
+		controller_count_filtered_data = filterByControllerCount(data, controller_count)
+		optimalCG, avgRtt = computeOptimalControllerPlacement(controller_count_filtered_data)
+		topology = optimalCG[0][0]
+		cg = optimalCG[0][1]
+		res[controller_count][cg]={}
+		percentageChangeList = getPercentageChangeList(optimalCG, avgRtt)
+
+		totalPercentageChange = getTotalPercentageChange(percentageChangeList)
+		res[controller_count][cg]["totalPercentageChange"] = totalPercentageChange
+		res[controller_count][cg]["maxPercentageChange"] = getMaxPercentageChange(percentageChangeList)
+		res[controller_count][cg]["minPercentageChange"] = getMinPercentageChange(percentageChangeList)
+		res[controller_count][cg]["avgPercentageChange"] = getAveragePercentageChange(totalPercentageChange, len(percentageChangeList))
+
+		# print(f'{optimalCG[0][0]}-{controller_count}:')
+		# print(f'\t{totalPercentageChange}')
+		# print(f'\t{maxPercentageChange}')
+		# print(f'\t{minPercentageChange}')
+		# print(f'\t{avgPercentageChange}')
+	return res
 
 def analyze(data):
 	res = {}
@@ -139,6 +166,9 @@ def getMaxPercentageChange(lst):
 def getMinPercentageChange(lst):
 	return min(lst)
 
+def getAveragePercentageChange(total, length):
+	return total/length
+
 def getAvgRTT(lst, initialRTT=False):
 	index = 5
 	if initialRTT:
@@ -148,7 +178,20 @@ def getAvgRTT(lst, initialRTT=False):
 		summ += record[index]
 	return summ/len(lst)
 
-# returns a dict with the group name as the key and data list as the value
+# returns the data filtered by optimal congroller group and the avgRTT
+# optimal is the controller group with the lowest
+# average average RTT
+def computeOptimalControllerPlacement(topology):
+	cgs = filterByControllerGroup(topology)
+	res = {
+		'CG0': getAvgRTT(cgs['CG0']),
+		'CG1': getAvgRTT(cgs['CG1']),
+		'CG2': getAvgRTT(cgs['CG2'])
+	}
+	mini = min(res, key=res.get)
+	return cgs[mini], res[mini]
+
+# returns a dict with the controller group (CG0, CG1, ...) as the key and data list as the value
 def filterByControllerGroup(lst):
 	cg0 = list(filter(lambda x: x[1] == "CG0", lst))
 	cg1 = list(filter(lambda x: x[1] == "CG1", lst))
