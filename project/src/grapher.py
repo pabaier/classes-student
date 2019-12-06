@@ -50,8 +50,7 @@ def run(data=None):
 				rects2 = ax.bar(x + width/2, dataB, width, label=dataBLabel)
 
 				# Add some text for labels, title and custom x-axis tick labels, etc.
-				ax.set_ylabel('Percent %')
-				ax.set_xlabel('Delta Statistic')
+				ax.set_ylabel('Average RTT Percent Delta From Optimal')
 				ax.set_title(f"{topology} | {num_controllers} Controllers | {optimalCGName} Optimal")
 				ax.set_xticks(x)
 				ax.set_xticklabels(labels, rotation=50)
