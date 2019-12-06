@@ -3,6 +3,7 @@ import argparse
 import os
 from os.path import isfile
 from functools import reduce
+import json
 
 def notes():
 	pass
@@ -70,16 +71,19 @@ def notes():
 	# }
 
 def run():
+	f = open("data/results.json", "w")
 	results = {"Highwinds":{}, "Bics":{}, "Internet2":{}}
 	highwinds, bics, internet2 = getData()
 	data = {"Highwinds":highwinds, "Bics":bics, "Internet2":internet2}
 	for r in results:
 		results[r] = analyze(data[r])
 	print(results)
+	f.write(json.dumps(results))
 
 def analyze(data):
 	res = {}
 	for controller_count in range(5,7):
+		res[controller_count] = {}
 		# get data by controller (ex: get all controller 5 data from this one topology)
 		controller_count_filtered_data = filterByControllerCount(data, controller_count)
 		controller_group_names = [("CG0", "CG1", "CG2"),("CG1", "CG0", "CG2"),("CG2", "CG0", "CG1"), ]
@@ -102,6 +106,7 @@ def analyze(data):
 
 			avgPercentageChangeOne = totalPercentageChangeOne/len(controller_groups[controller_group[1]])
 			avgPercentageChangeTwo = totalPercentageChangeTwo/len(controller_groups[controller_group[2]])
+
 			res[controller_count][controller_group[0]] = {
 				controller_group[1]:{
 					"totalPercentageChange":totalPercentageChangeOne,
@@ -114,7 +119,7 @@ def analyze(data):
 					"maxPercentageChange":maxPercentageChangeTwo,
 					"minPercentageChange":minPercentageChangeTwo,
 					"avgPercentageChange":avgPercentageChangeTwo
-				},
+				}
 			}
 	return res
 
@@ -159,7 +164,7 @@ def getData():
 	internet2 = []
 	allFiles = os.listdir('data')
 	for file in allFiles:
-		if file[0] == '.' or not isfile('data/' + file):
+		if file[0] == '.' or not isfile('data/' + file) or file=="results.json":
 			allFiles.remove(file)
 
 	for filename in allFiles:
@@ -169,7 +174,8 @@ def getData():
 			index = f.find("-")
 			f = f[:index] + f[index+1:]
 
-		row = f.split('-')
+		row = f.split('-') #ex: bicscg2,5,c1,c2
+		row[1] = int(row[1])
 		if len(row) == 4:
 			row[2] = row[2] + "-" + row.pop(3)
 
@@ -180,26 +186,25 @@ def getData():
 			errors1 = file.readline().strip()
 			run2 = file.readline().strip()
 			errors2 = file.readline().strip()
-			row.insert(2, run2)
+			row.insert(2, float(run2))
 			run3 = file.readline().strip()
 			errors3 = file.readline().strip()
 			run4 = file.readline().strip()
 			errors4 = file.readline().strip()
-			row.append(run4)
+			row.append(float(run4))
 		
 		# split the name and the controller layout eg: HighwindsCG0 -> Highwinds, CG0
 		name = row[0][:-3]
 		controller_layout = row[0].split(name)[1]
 		row[0] = name
 		row.insert(1,controller_layout)
-		output = ",".join(row)
+		# output = ",".join(row)
 		if name.lower() == "highwinds":
 			highwinds.append(row)
 		elif name.lower() == "bics":
 			bics.append(row)
 		else:
 			internet2.append(row)
-	print(internet2)
 	return highwinds, bics, internet2
 
 if __name__ == '__main__':
