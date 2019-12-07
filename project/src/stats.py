@@ -71,7 +71,7 @@ def notes():
 	# }
 
 def run():
-	# f = open("data/results.json", "w")
+	f = open("data/results.json", "w")
 	results = {"Highwinds":{}, "Bics":{}, "Internet2":{}}
 	highwinds, bics, internet2 = getData()
 	data = {"Highwinds":highwinds, "Bics":bics, "Internet2":internet2}
@@ -79,7 +79,7 @@ def run():
 		# results[r] = analyze(data[r])
 		results[r] = analyze2(data[r])
 	print(results)
-	# f.write(json.dumps(results))
+	f.write(json.dumps(results))
 
 def analyze2(data):
 	res = {}

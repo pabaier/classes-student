@@ -1,271 +1,55 @@
 {
 	"Highwinds": {
 		"5": {
-			"CG0": {
-				"CG1": {
-					"totalPercentageChange": -244.131818506492,
-					"maxPercentageChange": 72.77014234965327,
-					"minPercentageChange": -35.73710341640406,
-					"avgPercentageChange": -16.275454567099466
-				},
-				"CG2": {
-					"totalPercentageChange": -258.31398257800936,
-					"maxPercentageChange": 27.095150734305847,
-					"minPercentageChange": -43.90694043029785,
-					"avgPercentageChange": -17.22093217186729
-				}
-			},
-			"CG1": {
-				"CG0": {
-					"totalPercentageChange": -220.99120799049288,
-					"maxPercentageChange": 28.918971702726136,
-					"minPercentageChange": -42.66103874853108,
-					"avgPercentageChange": -14.732747199366193
-				},
-				"CG2": {
-					"totalPercentageChange": -307.96770339770853,
-					"maxPercentageChange": 22.01274902924252,
-					"minPercentageChange": -46.1500430188085,
-					"avgPercentageChange": -20.531180226513904
-				}
-			},
 			"CG2": {
-				"CG0": {
-					"totalPercentageChange": -126.84674814404804,
-					"maxPercentageChange": 38.40835678806497,
-					"minPercentageChange": -38.44046921929859,
-					"avgPercentageChange": -8.456449876269868
-				},
-				"CG1": {
-					"totalPercentageChange": -205.6081527795214,
-					"maxPercentageChange": 78.06985398305416,
-					"minPercentageChange": -33.76584370689439,
-					"avgPercentageChange": -13.707210185301426
-				}
+				"totalPercentageChange": 1.4299672557172016e-13,
+				"maxPercentageChange": 53.53537321558506,
+				"minPercentageChange": -32.237628374647194,
+				"avgPercentageChange": 9.533115038114677e-15
 			}
 		},
 		"6": {
 			"CG0": {
-				"CG1": {
-					"totalPercentageChange": -294.4768729269641,
-					"maxPercentageChange": 68.12636020643693,
-					"minPercentageChange": -50.971555648408454,
-					"avgPercentageChange": -14.022708234617339
-				},
-				"CG2": {
-					"totalPercentageChange": -225.13271813219188,
-					"maxPercentageChange": 61.23642169482102,
-					"minPercentageChange": -42.76954658207434,
-					"avgPercentageChange": -10.72060562534247
-				}
-			},
-			"CG1": {
-				"CG0": {
-					"totalPercentageChange": -301.2138848472577,
-					"maxPercentageChange": 47.73774153178572,
-					"minPercentageChange": -48.321289854496065,
-					"avgPercentageChange": -14.34351832605989
-				},
-				"CG2": {
-					"totalPercentageChange": -223.91521064907658,
-					"maxPercentageChange": 61.34112593274905,
-					"minPercentageChange": -42.73238208196691,
-					"avgPercentageChange": -10.662629078527456
-				}
-			},
-			"CG2": {
-				"CG0": {
-					"totalPercentageChange": -469.85948141538194,
-					"maxPercentageChange": 33.88655636509364,
-					"minPercentageChange": -53.16643894083957,
-					"avgPercentageChange": -22.374261019780093
-				},
-				"CG1": {
-					"totalPercentageChange": -462.6915488165948,
-					"maxPercentageChange": 52.4625779116754,
-					"minPercentageChange": -55.53937521954051,
-					"avgPercentageChange": -22.032930896028322
-				}
+				"totalPercentageChange": -1.9184653865522705e-13,
+				"maxPercentageChange": 72.47701358335505,
+				"minPercentageChange": -39.6674844266613,
+				"avgPercentageChange": -9.135549459772717e-15
 			}
 		}
 	},
 	"Bics": {
 		"5": {
-			"CG0": {
-				"CG1": {
-					"totalPercentageChange": -8.866617953293868,
-					"maxPercentageChange": 13.850581232223877,
-					"minPercentageChange": -15.749384799557378,
-					"avgPercentageChange": -0.5911078635529246
-				},
-				"CG2": {
-					"totalPercentageChange": -75.93154623666352,
-					"maxPercentageChange": 11.31943463036768,
-					"minPercentageChange": -18.225079391585595,
-					"avgPercentageChange": -5.062103082444235
-				}
-			},
-			"CG1": {
-				"CG0": {
-					"totalPercentageChange": -50.681945836848634,
-					"maxPercentageChange": 10.60896995712744,
-					"minPercentageChange": -17.536682465561313,
-					"avgPercentageChange": -3.3787963891232424
-				},
-				"CG2": {
-					"totalPercentageChange": -66.82567468629883,
-					"maxPercentageChange": 12.031240632477045,
-					"minPercentageChange": -17.702188851363545,
-					"avgPercentageChange": -4.455044979086589
-				}
-			},
 			"CG2": {
-				"CG0": {
-					"totalPercentageChange": -83.67971479220166,
-					"maxPercentageChange": 8.090648168096576,
-					"minPercentageChange": -19.414189953636114,
-					"avgPercentageChange": -5.578647652813444
-				},
-				"CG1": {
-					"totalPercentageChange": -33.49881111513017,
-					"maxPercentageChange": 11.969871201676366,
-					"minPercentageChange": -17.141129798768883,
-					"avgPercentageChange": -2.2332540743420113
-				}
+				"totalPercentageChange": 5.197925423416905e-14,
+				"maxPercentageChange": 17.25500379162356,
+				"minPercentageChange": -13.86482820508665,
+				"avgPercentageChange": 3.4652836156112697e-15
 			}
 		},
 		"6": {
 			"CG0": {
-				"CG1": {
-					"totalPercentageChange": 14.546855355731198,
-					"maxPercentageChange": 92.72641337819077,
-					"minPercentageChange": -18.50847988573017,
-					"avgPercentageChange": 0.6927073978919618
-				},
-				"CG2": {
-					"totalPercentageChange": -119.65531954930069,
-					"maxPercentageChange": 11.469148006147853,
-					"minPercentageChange": -13.78120705360398,
-					"avgPercentageChange": -5.697872359490509
-				}
-			},
-			"CG1": {
-				"CG0": {
-					"totalPercentageChange": -128.80373055225863,
-					"maxPercentageChange": 27.039563152632994,
-					"minPercentageChange": -22.61777084320754,
-					"avgPercentageChange": -6.1335109786789825
-				},
-				"CG2": {
-					"totalPercentageChange": -110.44474432618068,
-					"maxPercentageChange": 11.987590569658595,
-					"minPercentageChange": -13.380203790930203,
-					"avgPercentageChange": -5.259273539341938
-				}
-			},
-			"CG2": {
-				"CG0": {
-					"totalPercentageChange": -112.5847595621857,
-					"maxPercentageChange": 28.084842621400135,
-					"minPercentageChange": -21.981071114573812,
-					"avgPercentageChange": -5.361179026770747
-				},
-				"CG1": {
-					"totalPercentageChange": 41.86098180550751,
-					"maxPercentageChange": 95.21590828434084,
-					"minPercentageChange": -17.455833698511395,
-					"avgPercentageChange": 1.993380085976548
-				}
+				"totalPercentageChange": 1.7763568394002505e-13,
+				"maxPercentageChange": 35.34069983567511,
+				"minPercentageChange": -17.561389625198704,
+				"avgPercentageChange": 8.458842092382145e-15
 			}
 		}
 	},
 	"Internet2": {
 		"5": {
-			"CG0": {
-				"CG1": {
-					"totalPercentageChange": -1010.312142888339,
-					"maxPercentageChange": -54.453713072529055,
-					"minPercentageChange": -80.89442384502043,
-					"avgPercentageChange": -67.3541428592226
-				},
-				"CG2": {
-					"totalPercentageChange": 445.35216364026894,
-					"maxPercentageChange": 1382.1275451385618,
-					"minPercentageChange": -80.03306237965734,
-					"avgPercentageChange": 29.690144242684596
-				}
-			},
 			"CG1": {
-				"CG0": {
-					"totalPercentageChange": 1081.1660413028821,
-					"maxPercentageChange": 1778.2491694686619,
-					"minPercentageChange": -73.1976267944702,
-					"avgPercentageChange": 72.0777360868588
-				},
-				"CG2": {
-					"totalPercentageChange": 1668.0870056877295,
-					"maxPercentageChange": 2313.7064251332217,
-					"minPercentageChange": -67.48301063391294,
-					"avgPercentageChange": 111.20580037918197
-				}
-			},
-			"CG2": {
-				"CG0": {
-					"totalPercentageChange": 521.1934742789397,
-					"maxPercentageChange": 1370.771311745468,
-					"minPercentageChange": -79.0122832272886,
-					"avgPercentageChange": 34.74623161859598
-				},
-				"CG1": {
-					"totalPercentageChange": -875.5320591154473,
-					"maxPercentageChange": -41.91770206372653,
-					"minPercentageChange": -75.63586756819952,
-					"avgPercentageChange": -58.36880394102982
-				}
+				"totalPercentageChange": 1.0658141036401503e-13,
+				"maxPercentageChange": 39.5162845045347,
+				"minPercentageChange": -41.476261221779595,
+				"avgPercentageChange": 7.105427357601002e-15
 			}
 		},
 		"6": {
-			"CG0": {
-				"CG1": {
-					"totalPercentageChange": -1552.8911672517493,
-					"maxPercentageChange": -60.67350756442298,
-					"minPercentageChange": -79.9077288763559,
-					"avgPercentageChange": -73.94719844055949
-				},
-				"CG2": {
-					"totalPercentageChange": -1561.0837290903314,
-					"maxPercentageChange": -60.45363032364149,
-					"minPercentageChange": -80.02035553780213,
-					"avgPercentageChange": -74.33732043287293
-				}
-			},
-			"CG1": {
-				"CG0": {
-					"totalPercentageChange": 1068.2395828353754,
-					"maxPercentageChange": 1265.099720577524,
-					"minPercentageChange": -46.50448324750393,
-					"avgPercentageChange": 50.8685515635893
-				},
-				"CG2": {
-					"totalPercentageChange": -461.93586684341125,
-					"maxPercentageChange": 20.203254680080647,
-					"minPercentageChange": -39.270827856981214,
-					"avgPercentageChange": -21.99694604016244
-				}
-			},
 			"CG2": {
-				"CG0": {
-					"totalPercentageChange": 96.64077893617487,
-					"maxPercentageChange": 846.4668422744021,
-					"minPercentageChange": -62.9098650791959,
-					"avgPercentageChange": 4.601941854103565
-				},
-				"CG1": {
-					"totalPercentageChange": -947.0131408989835,
-					"maxPercentageChange": -17.122652242720914,
-					"minPercentageChange": -57.6571914244415,
-					"avgPercentageChange": -45.09586385233255
-				}
+				"totalPercentageChange": 7.105427357601002e-14,
+				"maxPercentageChange": 54.10070321345528,
+				"minPercentageChange": -22.145135273437877,
+				"avgPercentageChange": 3.383536836952858e-15
 			}
 		}
 	}
