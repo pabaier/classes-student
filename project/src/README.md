@@ -1,11 +1,11 @@
-# Mininet application to Model And Test Different Network Topologies
+# Mininet application to Model And Test Different Network Topologies (python2.7)
 ## Includes a Plotter Script To Plot Test Output (requires python3 and matplotlib)
 ### Usage
-After logging in to mininet run the `simulation.py` script
+After logging in to mininet run the `main.py` script
 ```
-sudo python simulation.py
+sudo python main.py
 ```
-### network.py
+### simulation.py
 This contains all of the tools to build the network. Controllers, switches, and topologies are specified here (see `topologies.py` for topology details)
 ##### Controller Options
 * `remote`
@@ -26,6 +26,10 @@ This is a file with all test classes. Test classes must take a mininet network o
 	* `avgspeed` - average speed of all requests
 	* `totalspeed` - total speed to run all requests
 * `linkinterrupt`
+	* upon instantiation also takes a list of tuples containing the node pairs whose links will be altered and a linkStatus which will indicate whether to cut the link or add it.
+* `switchinterrupt`
+	* upon instantiation also takes a list of tuples containing the node pairs whose links will be altered and a linkStatus which will indicate whether to cut the link or add it.
+* `controllerinterrupt`
 	* upon instantiation also takes a list of tuples containing the node pairs whose links will be altered and a linkStatus which will indicate whether to cut the link or add it.
 ### topologies.py
 This is a file with all topology classes.
