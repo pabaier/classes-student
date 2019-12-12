@@ -135,12 +135,28 @@ class SwitchInterrupt:
 			self.switch.start([self.net.controller])
 			self.switch.intfs = self.intfs 
 
+class ControllerInterrupt:
+	def __init__(self, net, controller):
+		self.net = net
+		self.controller = controller
+		self.up = True
+		self.type = 'controllerInterrupt'
+
+	def run(self):
+		if self.up:
+			self.up = False
+			self.controller.stop()
+		else:
+			self.status = True
+			self.controller.start()
+
 tests = { 
 	'pingall': ( lambda net: PingAll(net) ), 
 	'pingallfull': ( lambda net: PingAllFull(net) ), 
 	'iperf': ( lambda net: IPerf(net) ),
 	'linkinterrupt': ( lambda net, links, linkStatus: LinkInterrupt(net, links, linkStatus) ),
 	'switchinterrupt': ( lambda net, switch, switchStatus: SwitchInterrupt(net, switch, switchStatus) ),
+	'controllerinterrupt': ( lambda net, controller: ControllerInterrupt(net, controller) )
 }
 
 

@@ -1,0 +1,56 @@
+{
+	"Highwinds": {
+		"5": {
+			"CG2": {
+				"totalPercentageChange": 1.4299672557172016e-13,
+				"maxPercentageChange": 53.53537321558506,
+				"minPercentageChange": -32.237628374647194,
+				"avgPercentageChange": 9.533115038114677e-15
+			}
+		},
+		"6": {
+			"CG0": {
+				"totalPercentageChange": -1.9184653865522705e-13,
+				"maxPercentageChange": 72.47701358335505,
+				"minPercentageChange": -39.6674844266613,
+				"avgPercentageChange": -9.135549459772717e-15
+			}
+		}
+	},
+	"Bics": {
+		"5": {
+			"CG2": {
+				"totalPercentageChange": 5.197925423416905e-14,
+				"maxPercentageChange": 17.25500379162356,
+				"minPercentageChange": -13.86482820508665,
+				"avgPercentageChange": 3.4652836156112697e-15
+			}
+		},
+		"6": {
+			"CG0": {
+				"totalPercentageChange": 1.7763568394002505e-13,
+				"maxPercentageChange": 35.34069983567511,
+				"minPercentageChange": -17.561389625198704,
+				"avgPercentageChange": 8.458842092382145e-15
+			}
+		}
+	},
+	"Internet2": {
+		"5": {
+			"CG1": {
+				"totalPercentageChange": 1.0658141036401503e-13,
+				"maxPercentageChange": 39.5162845045347,
+				"minPercentageChange": -41.476261221779595,
+				"avgPercentageChange": 7.105427357601002e-15
+			}
+		},
+		"6": {
+			"CG2": {
+				"totalPercentageChange": 7.105427357601002e-14,
+				"maxPercentageChange": 54.10070321345528,
+				"minPercentageChange": -22.145135273437877,
+				"avgPercentageChange": 3.383536836952858e-15
+			}
+		}
+	}
+}

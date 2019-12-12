@@ -3,11 +3,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import argparse
 import os
+from os.path import isfile
 
 def run():
 	allFiles = os.listdir('data')
 	for file in allFiles:
-		if file[0] == '.':
+		if file[0] == '.' or not isfile('data/' + file):
 			allFiles.remove(file)
 	for filename in allFiles:
 		speed = False
@@ -43,7 +44,7 @@ def run():
 		label1 = 'time'
 		label2 = 'errors'
 		axis1 = 'Time (ms)'
-		x1, x2 = 2.5, 4.5
+		x1 = 2.5
 		color = 'orange'
 
 		if speed:
@@ -56,18 +57,18 @@ def run():
 
 		l1, = ax1.plot(x_axis, runs, linestyle='-', marker='o', label=label1, color='b', linewidth=4)
 		l2, = ax2.plot(x_axis, errors, linestyle='--', marker='x', label=label2, color=color, linewidth=3)
-		l3 = ax1.axvline(x=x1, linestyle=':', label='off')
-		l4 = ax1.axvline(x=x2, linestyle=':', label='on')
+		l3 = ax1.axvline(x=x1, linestyle=':', label='Controller(s) Down')
 
 		# ax1.legend()
 		# ax2.legend()
-		plt.legend([l1, l2, l3, l4], [label1, label2, 'off', 'on'])
+		plt.legend([l1, l2, l3], [label1, label2, 'Controller(s)\nDown'], loc='lower left', bbox_to_anchor= (0.0, -0.01), ncol=1, 
+            borderaxespad=0, frameon=False)
 
 		for x_cor, y_cor in zip(x_axis, runs):
 			ax1.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
 		for x_cor, y_cor in zip(x_axis, errors):
 			if y_cor != 0:
-				ax2.text(x_cor, y_cor, ' {}'.format(str(y_cor)))
+				ax2.text(x_cor-0.175, y_cor-0.3, ' {}'.format(str(y_cor)))
 		
 		plt.title(f'{title}\n{subtitle}')
 
@@ -76,7 +77,7 @@ def run():
 		ax1.set_xlabel('Runs')
 	
 		plt.savefig(f'img/{filename}.png')
-		plt.clf()
+		plt.close()
 		# plt.show()
 
 if __name__ == '__main__':

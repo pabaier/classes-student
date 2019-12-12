@@ -1,111 +1,68 @@
 from network import Network
 from tests import tests
 import argparse
+from mininet.cli import CLI
+from mininet.node import Controller,OVSSwitch
+from mininet.net import Mininet
+import topologies
+from topologies import topos
+import os
 
-def avgRtt(topology, num_switches, switches, filename, subtitle):
-	# build and start network
-	a = Network().set_controller('default').set_number_of_switches(num_switches).set_topology(topology.lower()).build()
-	net = a.net
-	net.start()
+allFiles = os.listdir('data')
 
-	# initialize tests
-	pingAll = tests['pingall'](net)
-	pingfull = tests['pingallfull'](net)
+def main(topology, controller_count):
+	down_pairs = [(1,None), (2,None), (3,None), (4,None), (5,None), 
+		(1,2), (1,3), (1,4), (1,5),
+		(2,3), (2,4), (2,5),
+		(3,4), (3,5), (4,5)]
+	if controller_count == 6:
+		down_pairs += [(6, None), (1,6), (2,6), (3,6), (4,6), (5,6)]
+	for d in down_pairs:
+		for controllerg in range(3):
+			runTest(d, topology, controller_count, controllerg)
 
-	# initialize link strategy
-	links_down = tests['linkinterrupt'](net, switches, 'down')
-	links_up = tests['linkinterrupt'](net, switches, 'up')
-	switch_toggle = tests['switchinterrupt'](net, 's1', 'on')
+def runTest(d, topology='highwinds', controller_count=5, controller_group=1):
+	topologyName = topology.capitalize() + "CG" + str(controller_group) + "-" + str(controller_count)
+	if d[1]:
+		filename = topologyName + "-c" + str(d[0]) + "-c" + str(d[1])
+		subtitle = "Average RTT with c" + str(d[0]) + " and c" + str(d[1])+ " Down"
+	else:
+		filename = topologyName + "-c" + str(d[0])
+		subtitle = "Average RTT with c" + str(d[0]) + " Down"
+	title = topologyName + " Controllers"
 
+	if filename in allFiles:
+		return
 
-	# lay out test plan
-	# testPlan = [pingAll, pingfull, links_down, pingAll, pingfull, links_up,  pingAll, pingfull]
-	testPlan = [pingfull, pingfull, switch_toggle, pingfull, pingfull, switch_toggle,  pingfull, pingfull]
+	with open("data/" + filename, "a") as f:
+		f.write("{}\n".format(title))
+		f.write("{}\n".format(subtitle))
 
-	#  open output file
-	title = "Average RTT for " + topology + " Topology With " + str(num_switches) + " Nodes"
-	f = openfile(filename, title, subtitle)
+		for test in range(2):
+			net = Mininet( controller=Controller, switch=OVSSwitch )
+			controllers = topos[topology](net, controller_count, controller_group)
 
-	# run test plan
-	for test in testPlan:
-		test.run()
-		if test.type == 'pingallfull':
-			avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[2] - avg[1])))
+			# tests
+			pingfull = tests['pingallfull'](net)
+			toggles = []
+			for c in controllers:
+				toggles.append(tests['controllerinterrupt'](net, c))
 
-	net.stop()
+			if test == 0:
+				plan = [pingfull, pingfull]
+			elif d[1]:
+				plan = [toggles[d[0]-1], toggles[d[1]-1], pingfull, pingfull]
+			else:
+				plan = [toggles[d[0]-1], pingfull, pingfull]
+			for test in plan:
+				test.run()
+				if test.type == 'pingallfull':
+					avg = test.getStats('avgrtt') # avgrtt returns (average, successes, total) where failures count for 3 seconds
+					f.write("{}\n".format(str(avg[0])))
+					f.write("{}\n".format(str(avg[2] - avg[1])))
 
-def avgSpeed(topology, num_switches, switches, filename, subtitle):
-	# build and start network
-	a = Network().set_controller('default').set_number_of_switches(num_switches).set_topology(topology.lower()).build()
-	net = a.net
-	net.start()
-
-	# initialize tests
-	pingAll = tests['pingall'](net)
-	iperf = tests['iperf'](net)
-
-	# initialize link strategy
-	links_down = tests['linkinterrupt'](net, switches, 'down')
-	links_up = tests['linkinterrupt'](net, switches, 'up')
-	switch_toggle = tests['switchinterrupt'](net, 's1', 'on')
-
-	# lay out test plan
-	testPlan = [iperf, links_down, iperf, links_up, iperf]
-
-	#  open output file
-	title = "Average Speed for " + topology + " Topology With " + str(num_switches) + " Nodes"
-	f = openfile(filename, title, subtitle)
-
-	# run test plan
-	for test in testPlan:
-		results = test.run()
-		if test.type == 'iperf':
-			avg = test.getStats('avgspeed') # avgspeed returns (average, errors)
-			f.write("{}\n".format(str(avg[0])))
-			f.write("{}\n".format(str(avg[1])))
-		if test.type == 'links_up':
-			for node in net.values():
-				while node.waiting:
-					node.sendInt()
-					node.waitOutput()
-	try:
-		net.stop()
-	except:
-		print "**************** no *****************"
-
-def openfile(fileName, title, subtitle):
-	f = open("data/" + fileName, "w")
-	f.write("{}\n".format(title))
-	f.write("{}\n".format(subtitle))
-	return f
-
-def cut_every_other(num_switches):
-	# get links between switches to turn off/on
-	# this list is a list of tuples which are the switches between which the links will be turned off/on.
-	# for example if we want to break the links between s1 and s2, and s3 and s4
-	# the list would look like: [('s1', 's2'), ('s3', 's4')]
-	switches = []
-	for i in range(1,num_switches + 1):
-		for j in range(i+2, num_switches + 1, 2):
-			switches.append(('s' + str(i), 's' + str(j)))
-	return switches
-
-def cut_one(one, two):
-	return [(one, two)]
+			# CLI (net)
+			net.stop()
 
 if __name__ == '__main__':
-	# topology, nodes, switch cuts, filename, subtitle
-	avgRtt('Mesh', 3, cut_one('s1', 's2'), 'mesh-20-avgrtt-one', 'Cut One Switch')
-	# avgRtt('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgrtt-one', 'Cut One Switch')
-	# avgRtt('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgrtt-one', 'Cut One Switch')
-	# avgRtt('Star', 20, cut_one('s0', 's1'), 'star-20-avgrtt-one', 'Cut One Switch')
-
-	# avgSpeed('Mesh', 20, cut_one('s1', 's2'), 'mesh-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Ring', 20, cut_one('s1', 's2'), 'ring-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Bus', 20, cut_one('s1', 's2'), 'bus-20-avgspeed-one', 'Cut One Switch')
-	# avgSpeed('Star', 20, cut_one('s0', 's1'), 'star-3-avgspeed-one', 'Cut One Switch')
-
-
-
+	main()
