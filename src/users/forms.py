@@ -11,3 +11,6 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
         fields = ('username', 'email')
+
+class JoinGameForm(forms.Form):
+    gameId = forms.CharField(label='Game Id', max_length=100)
