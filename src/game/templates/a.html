@@ -1,0 +1,17 @@
+{% block content %}
+	<h2>Questions</h2>
+	<h3><a href="add.html">Create a New Question</a></h3>
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.text }}
+		<ul style="list-style-type:none">
+			{% for question in form.choices.field.queryset %}
+				<li><input type="checkbox" name="q{{ question.id }}" value="{{ question.id }}">{{ question.text }}</li>
+				<!-- <ul>
+					<li>{% if question.answer == 'a' %}<b>{{ question.a }}</b>{% else %}{{ question.a }}{% endif %}</li>
+				</ul> -->
+			{% endfor %}
+		</ul>
+		<input type="submit">
+	</form>
+{% endblock %}
