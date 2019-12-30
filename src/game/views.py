@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, View
 from game.models import Question, Game, Game_Question
 from .forms import AddQuestionsForm
-from django.http import HttpResponse
+from django.http import HttpResponse, QueryDict
 from users.models import CustomUser
 import json
 import logging
@@ -41,11 +41,24 @@ class QuestionList(ListView):
         return HttpResponse(json.dumps({'key': 'value'}))
         # return render(request, self.template_name, {'form': form})
 
-class GameList(ListView):
+class GameList(View):
     template_name = 'MyGames.html'
     # queryset = Game.objects.get(creator_user_id=request.user.id)
     queryset = Game.objects.all()
     context_object_name = 'games'
+
+    def get(self, request, *args, **kwargs):
+        games = Game.objects.filter(creator_user_id=request.user)
+        data = {}
+        for game in games:
+            data[game.id] = game.name
+        return render(request, self.template_name, {'data': data})
+
+    def delete(self, request, *args, **kwargs):
+        data = QueryDict(request.body)
+        logger.info(f'deleting game {data["id"]}')
+        Game.objects.filter(id=data["id"]).delete()
+        return HttpResponse(json.dumps({'key': 'value'}))
 
 class GameDetail(DetailView):
     model = Game
