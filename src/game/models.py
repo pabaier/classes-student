@@ -19,10 +19,12 @@ class Question(models.Model):
     d = models.CharField(max_length=30)
     answer = models.CharField(max_length=1, choices=ANSWER_CHOICES)
     public = models.BooleanField(default=False)
+    category = models.CharField(max_length=30)
     creator_user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 class Game(models.Model):
     creator_user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
 
 class Game_Question(models.Model):
     game_id = models.ForeignKey(Game, on_delete=models.CASCADE)
