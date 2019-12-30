@@ -1,6 +1,11 @@
 from django.urls import path
-from game.views import QuestionList
+from . import views
 
 urlpatterns = [
-    path('questions/', QuestionList.as_view(template_name = 'a.html')),
+    path('questions/', views.QuestionList.as_view()),
+    path('', views.GameList.as_view()),
+    path('game/<int:pk>', views.GameDetail.as_view(), name='contact_detail'),
+    path('create/', views.GameCreate.as_view(), name='game_create'),
+    path('update/<int:pk>', views.GameUpdate.as_view(success_url="/game"), name='contact_update'),
+    path('delete/<int:pk>', views.GameDelete.as_view(), name='contact_delete'),
 ]
