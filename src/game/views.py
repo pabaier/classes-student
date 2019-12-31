@@ -60,6 +60,16 @@ class GameList(View):
         Game.objects.filter(id=data["id"]).delete()
         return HttpResponse(json.dumps({'key': 'value'}))
 
+    def post(self, request, *args, **kwargs):
+        name = request.POST['name']
+        logger.info(f'name: {name}')
+        newGame = Game.objects.create(
+            creator_user_id = request.user,
+            name = name
+        )
+        newGame.save()
+        return HttpResponse(json.dumps({'name': name, 'id': newGame.id}))
+
 class GameDetail(DetailView):
     model = Game
 class GameCreate(CreateView):
