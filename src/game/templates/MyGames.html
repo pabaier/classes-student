@@ -25,40 +25,18 @@
 {% block extra_js %}
 	<script>
 		$("#list").on('click', '.edit', (e) => {
-			console.log($(this).attr('value'))
-			// var token = $("input[name=csrfmiddlewaretoken]").val();
-			// var questionIds = [];
-			// $.each($("input[class='question']:checked"), function(){
-			// 	// questionIds.push($(this).val());
-			// 	qName = $(this).attr('name');
-			// 	qId = $(this).attr('id');
-			// 	qValue = $(this).val();
-			// 	timeDropdown = $("#t" + qId);
-			// 	timeValue = timeDropdown.val();
-			// 	questionIds.push({'id':Number(qId), 'time':Number(timeValue)})
-			// });
-			// console.log(questionIds);
-			// console.log($("#name").val());
-			// $.ajax({
-			// 	type: "POST",
-			// 	url: "/game/questions/",
-			// 	data : {
-			// 		csrfmiddlewaretoken: token, 
-			// 		selected: JSON.stringify(questionIds), 
-			// 		gameName: $("#name").val(),
-			// 	},
-			// 	success: function(data) {
-			// 		console.log(data)
-			// 	},
-			// 	dataType: 'json',
-			// });
+			id = $(e.currentTarget).attr('value')
+			name = $(e.currentTarget).attr('name')
+			console.log(id)
 		});
 		$("#list").on('click', '.delete', (e) => {
 			var token = $("input[name=csrfmiddlewaretoken]").val();
-			console.log(token)
-			id = $(this).attr('value');
-			name = $(this).attr('name')
+			id = $(e.currentTarget).attr('value')
+			name = $(e.currentTarget).attr('name')
+			// id = $(this).attr('value');
+			// name = $(this).attr('name')
 			var confirmed = confirm(`delete ${name}?`);
+			console.log(id);
 			if(confirmed) {
 				$(`#l${id}`).remove();
 				$.ajax({
@@ -78,13 +56,19 @@
 			}
 		});
 		$("#list").on('click', '.play', (e) => {
-			id = $(this).attr('value');
-			name = $(this).attr('name')
+			id = $(e.currentTarget).attr('value')
+			name = $(e.currentTarget).attr('name')
+			// id = $(this).attr('value');
+			// name = $(this).attr('name')
 			console.log(`play ${name}`)
 		});
 		$("#newGame").click( (e) => {
 			name = $("#newName").val()
-			if(name.length == 0) {alert('nope'); return;}
+			if(name.length == 0) {
+				$('#newName').css('border-color', 'red');
+				alert('name is required'); 
+				return;
+			}
 			var token = $("input[name=csrfmiddlewaretoken]").val();
 			console.log(name);
 			$.ajax({
@@ -107,6 +91,7 @@
 							<a role="button" value="${id}" class="play"   name="${name}" id="p${id}"><img src="{% static '/game/img/icon-play.svg' %}"></a>
 						</li>`
 					);
+					$('#newName').val('');
 				},
 				dataType: 'json',
 			});
