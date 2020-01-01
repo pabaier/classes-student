@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Edit Game</h1>
+<h2>{{ data.name }}</h2>
+<form  method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input  type="submit"  value="Submit"  />
+</form>
+
+<a href='/game'>
+	<h5>Back to My Games</h5>
+  </a>
+{% endblock %}
+
+{% block extra_js %}
+	<script>
+	</script>
+{% endblock extra_js %}

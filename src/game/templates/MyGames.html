@@ -13,7 +13,7 @@
 			<li id="l{{ id }}">
 				{{ name }}
 				<a role="button" value="{{ id }}" class="delete" name="{{ name }}" id="d{{ id }}"><img src="{% static '/game/img/icon-deletelink.svg' %}"></a>
-				<a role="button" value="{{ id }}" class="edit" name="{{ name }}" id="e{{ id }}"><img src="{% static '/game/img/icon-changelink.svg' %}"></a>
+				<a href="/game/edit/{{ id }}" value="{{ id }}" class="edit" name="{{ name }}" id="e{{ id }}"><img src="{% static '/game/img/icon-changelink.svg' %}"></a>
 				<a role="button" value="{{ id }}" class="play" name="{{ name }}" id="p{{ id }}"><img src="{% static '/game/img/icon-play.svg' %}"></a>
 			</li>
 		{% empty %}

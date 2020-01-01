@@ -70,14 +70,25 @@ class GameList(View):
         newGame.save()
         return HttpResponse(json.dumps({'name': name, 'id': newGame.id}))
 
+class GameEdit(UpdateView):
+    template_name = 'EditGame.html'
+    fields = ['name']
+    model = Game
+
+    def get(self, request, *args, **kwargs):
+        gameId = kwargs['id']
+        game = Game.objects.get(id=gameId)
+        questions = Game_Question.objects.filter(game_id=gameId)
+        print(questions)
+        data = {}
+        # for game in games:
+        #     data[game.id] = game.name
+        return render(request, self.template_name, {'data': {'name':game.name}})
+
 class GameDetail(DetailView):
     model = Game
 class GameCreate(CreateView):
     template_name = 'game_create.html'
-    fields = ['name']
-    model = Game
-class GameUpdate(UpdateView):
-    template_name = 'game_update.html'
     fields = ['name']
     model = Game
 class GameDelete(DeleteView):
