@@ -2,20 +2,70 @@
 {% load static %}
 
 {% block content %}
-<h1>Edit Game</h1>
-<h2>{{ data.name }}</h2>
-<form  method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<input  type="submit"  value="Submit"  />
-</form>
+	<h1>Edit Game</h1>
+	<div id="gameNameWrapper">
+		<h2 id="gameNameText">
+			<span id="gameName" name="{{ data.name }}">
+				{{ data.name }}
+				<a role="button" id="gameNameEdit">
+					<img src="{% static '/game/img/icon-changelink.svg' %}">
+				</a>
+			</span>
+		</h2>
+	</div>
 
-<a href='/game'>
-	<h5>Back to My Games</h5>
-  </a>
+	<h3>Questions</h3>
+	<h3>My Questions</h3>
+	<h3>Public Questions</h3>
+
+
+	<form  method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="text" value="a">
+	<input  type="submit"  value="Submit"  />
+	</form>
+
+	<a href='/game'>
+		<h5>Back to My Games</h5>
+	</a>
 {% endblock %}
 
 {% block extra_js %}
 	<script>
+		$("#gameName").on('click', "#gameNameEdit", (e) => {
+			name = $("#gameName").text().trim();
+			console.log(name);
+			$("#gameName").html(`
+				<input id='gameNameInput' type='text' value='${name}'>
+				<img id='gameNameOk' src="{% static '/game/img/icon-yes.svg' %}">
+				<img id='gameNameNo' src="{% static '/game/img/icon-no.svg' %}">
+			`)
+		});
+
+		$("#gameName").on('click', '#gameNameOk', (e) => {
+			newName = $("#gameNameInput").val()
+			confirmName(newName)
+			$("#gameName").attr("name", newName);
+		});
+
+		// $("#gameName").on('focusout', '#gameNameInput', (e) => {
+		// 	confirmName($("#gameNameInput").val())
+		// });
+
+		$("#gameName").on('click', '#gameNameNo', (e) => {
+			confirmName($('#gameName').attr('name'))
+			console.log('no')
+		});
+
+		function confirmName(newName) {
+			$("#gameName").html(`
+				${newName}
+				<a role="button" id="gameNameEdit">
+					<img src="{% static '/game/img/icon-changelink.svg' %}">
+				</a>
+			`);
+			console.log('hiho');
+		}
 	</script>
 {% endblock extra_js %}
