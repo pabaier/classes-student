@@ -33,20 +33,22 @@
 
 {% block extra_js %}
 	<script>
+		$(document).ready( () => {
+			$("#gameName").data('id', '{{ data.id }}');
+		});
 		$("#gameName").on('click', "#gameNameEdit", (e) => {
 			name = $("#gameName").text().trim();
-			console.log(name);
 			$("#gameName").html(`
-				<input id='gameNameInput' type='text' value='${name}'>
+				<input id='gameNameInput' type='text'>
 				<img id='gameNameOk' src="{% static '/game/img/icon-yes.svg' %}">
 				<img id='gameNameNo' src="{% static '/game/img/icon-no.svg' %}">
 			`)
+			$("#gameNameInput").focus();
+			$("#gameNameInput").val(name);
 		});
 
 		$("#gameName").on('click', '#gameNameOk', (e) => {
-			newName = $("#gameNameInput").val()
-			confirmName(newName)
-			$("#gameName").attr("name", newName);
+			commitGameName();
 		});
 
 		// $("#gameName").on('focusout', '#gameNameInput', (e) => {
@@ -54,11 +56,40 @@
 		// });
 
 		$("#gameName").on('click', '#gameNameNo', (e) => {
-			confirmName($('#gameName').attr('name'))
-			console.log('no')
+			cancelGameName();
 		});
 
-		function confirmName(newName) {
+		document.onkeydown = function(evt) {
+			evt = evt || window.event;
+			var isEscape = false;
+			var isEnter = false;
+			if ("key" in evt) {
+				isEscape = (evt.key === "Escape" || evt.key === "Esc");
+				isEnter = (evt.key === "Enter")
+			}
+			if (isEscape) {
+				cancelGameName();
+			}
+			if (isEnter) {
+				commitGameName();
+			}
+		};
+
+		function cancelGameName() {
+			setGameName($('#gameName').attr('name'));
+		}
+
+		function commitGameName() {
+			newName = $("#gameNameInput").val();
+			oldName = $('#gameName').attr('name');
+			if(newName.length == 0 || oldName === newName) {cancelGameName(); return;}
+			setGameName(newName);
+			$("#gameName").attr("name", newName);
+			gameId = $('#gameName').data('id');
+			console.log(gameId);
+		}
+
+		function setGameName(newName) {
 			$("#gameName").html(`
 				${newName}
 				<a role="button" id="gameNameEdit">
