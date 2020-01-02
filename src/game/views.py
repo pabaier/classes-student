@@ -83,7 +83,7 @@ class GameEdit(UpdateView):
         data = {}
         # for game in games:
         #     data[game.id] = game.name
-        return render(request, self.template_name, {'data': {'name':game.name}})
+        return render(request, self.template_name, {'data': {'name':game.name, 'id':gameId}})
 
 class GameDetail(DetailView):
     model = Game
