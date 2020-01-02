@@ -80,6 +80,7 @@
 		}
 
 		function commitGameName() {
+			var token = $("input[name=csrfmiddlewaretoken]").val();
 			newName = $("#gameNameInput").val();
 			oldName = $('#gameName').attr('name');
 			if(newName.length == 0 || oldName === newName) {cancelGameName(); return;}
@@ -87,6 +88,10 @@
 			$("#gameName").attr("name", newName);
 			gameId = $('#gameName').data('id');
 			console.log(gameId);
+			url = `/game/edit/${gameId}`
+			data = {'hi':'ho'}
+			success = (e) => {console.log(e)};
+			postData(url, token, data, success)
 		}
 
 		function setGameName(newName) {

@@ -84,6 +84,12 @@ class GameEdit(UpdateView):
         # for game in games:
         #     data[game.id] = game.name
         return render(request, self.template_name, {'data': {'name':game.name, 'id':gameId}})
+    
+    def post(self, request, *args, **kwargs):
+        logger.info(f'received {request.POST}')
+        return HttpResponse(json.dumps({'name': 'hi'}))
+
+
 
 class GameDetail(DetailView):
     model = Game
