@@ -5,8 +5,8 @@
 	<h1>Edit Game</h1>
 	<div id="gameNameWrapper">
 		<h2 id="gameNameText">
-			<span id="gameName" name="{{ data.name }}">
-				{{ data.name }}
+			<span id="gameName" name="{{ data.gameName }}">
+				{{ data.gameName }}
 				<a role="button" id="gameNameEdit">
 					<img src="{% static '/game/img/icon-changelink.svg' %}">
 				</a>
@@ -18,7 +18,7 @@
 	<h3>My Questions</h3>
 	<h3>Public Questions</h3>
 
-
+	{{ data }}
 	<form  method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
@@ -34,7 +34,7 @@
 {% block extra_js %}
 	<script>
 		$(document).ready( () => {
-			$("#gameName").data('id', '{{ data.id }}');
+			$("#gameName").data('id', '{{ data.gameId }}');
 		});
 		$("#gameName").on('click', "#gameNameEdit", (e) => {
 			name = $("#gameName").text().trim();
@@ -89,7 +89,7 @@
 			gameId = $('#gameName').data('id');
 			console.log(gameId);
 			url = `/game/edit/${gameId}`
-			data = {'hi':'ho'}
+			data = {'id':gameId, 'name':newName}
 			success = (e) => {console.log(e)};
 			postData(url, token, data, success)
 		}

@@ -8,6 +8,8 @@ import json
 import logging
 from django.views.generic import ListView, DetailView 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core import serializers
+from django.forms.models import model_to_dict
 
 logger = logging.getLogger(__name__)
 
@@ -78,18 +80,35 @@ class GameEdit(UpdateView):
     def get(self, request, *args, **kwargs):
         gameId = kwargs['id']
         game = Game.objects.get(id=gameId)
-        questions = Game_Question.objects.filter(game_id=gameId)
-        print(questions)
-        data = {}
+        gameName = game.name
+
+        questions = self.getGameQuestions(gameId, gameName)
+
+            # print(f'***{question.text}')
+        data = {'gameId':gameId, 'gameName': gameName, 'questions': questions}
         # for game in games:
         #     data[game.id] = game.name
-        return render(request, self.template_name, {'data': {'name':game.name, 'id':gameId}})
+        return render(request, self.template_name, {'data': data})
     
     def post(self, request, *args, **kwargs):
         logger.info(f'received {request.POST}')
-        return HttpResponse(json.dumps({'name': 'hi'}))
+        id = request.POST['id']
+        newName = request.POST['name']
+        Game.objects.filter(id=id).update(name=newName)
+        return HttpResponse(json.dumps({'newName': newName}))
 
-
+    @staticmethod
+    def getGameQuestions(gameId, gameName):
+        questionIdObjects = Game_Question.objects.filter(game_id=gameId)
+        questions = []
+        for q in questionIdObjects:
+            question = Question.objects.get(id=q.question_id.id)
+            questionJson = json.dumps(model_to_dict(question))
+            questions.append({
+                'question': questionJson,
+                'time': q.time_limit
+            })
+        return questions
 
 class GameDetail(DetailView):
     model = Game
