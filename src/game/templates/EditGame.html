@@ -15,15 +15,29 @@
 	</div>
 
 	<h3>Questions</h3>
+		<ul id="gameQuestionsList">
+			{% for game in data.gameQuestions %}
+				<li>
+					{{ game.text }}
+					<select class="times" id="t{{ game.id }}" name="{{game.time}}"></select>
+					<a role="button" value="{{ game.id }}" class="delete" name="{{ game.id }}" id="d{{ game.id }}"><img src="{% static '/game/img/icon-deletelink.svg' %}"></a>
+					<a href="/game/edit/{{ id }}" value="{{ game.id }}" class="edit" name="{{ game.id }}" id="e{{ game.id }}"><img src="{% static '/game/img/icon-changelink.svg' %}"></a>
+				</li>
+			{% endfor %}		
+		</ul>
 	<h3>My Questions</h3>
+		<ul>
+			{% for game in data.userQuestions %}
+				<li>{{ game.text }}</li>
+			{% endfor %}
+		</ul>
 	<h3>Public Questions</h3>
 
-	{{ data }}
 	<form  method="post">
 	{% csrf_token %}
 	{{ form.as_p }}
 	<input type="text" value="a">
-	<input  type="submit"  value="Submit"  />
+	<input  type="button"  value="Submit" id="submit" />
 	</form>
 
 	<a href='/game'>
@@ -35,7 +49,16 @@
 	<script>
 		$(document).ready( () => {
 			$("#gameName").data('id', '{{ data.gameId }}');
+
+			// sets the correct time for each questions
+			$('.times').each( (_, item) => {
+				for (var i = 0; i <= 100; i++) {
+					i == item.name ? selected="selected" : selected='';
+					$(`#${item.id}`).append('<option value="' + i + '" ' + selected + '>' + i + '</option>');
+				}
+			});	
 		});
+
 		$("#gameName").on('click', "#gameNameEdit", (e) => {
 			name = $("#gameName").text().trim();
 			$("#gameName").html(`
@@ -49,6 +72,33 @@
 
 		$("#gameName").on('click', '#gameNameOk', (e) => {
 			commitGameName();
+		});
+
+		$("#gameQuestionsList").on('change', ".times", (e) => {
+			token = $("input[name=csrfmiddlewaretoken]").val();
+			gameId = $('#gameName').data('id');
+			newValue = e.target.value;
+			questionId = e.target.id.substr(1);
+			data = {questionId, newValue};
+			url = `/game/edit/${gameId}`;
+			success = (data) => console.log(data);
+			putData(url, token, data, success)
+		});
+
+		$("#submit").click( (e) => {
+			var token = $("input[name=csrfmiddlewaretoken]").val();
+			gameId = $('#gameName').data('id');
+			$.ajax({
+				type: "PUT",
+				url: `/game/edit/${gameId}`,
+				data : {'hi':'ho-hum'},
+				beforeSend: function(xhr) {
+						xhr.setRequestHeader("X-CSRFToken", token);
+				},
+				success: (e) => console.log(e),
+				dataType: 'json',
+			});
+			// console.log('click');
 		});
 
 		// $("#gameName").on('focusout', '#gameNameInput', (e) => {

@@ -12,3 +12,16 @@ const postData = (url, token, data, success) => {
 		dataType: 'json',
 	});
 }
+
+const putData = (url, token, data, success) => {
+	$.ajax({
+		type: "PUT",
+		url: url,
+		data : data,
+		beforeSend: function(xhr) {
+				xhr.setRequestHeader("X-CSRFToken", token);
+		},
+		success: success,
+		dataType: 'json',
+	});	
+}

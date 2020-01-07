@@ -82,10 +82,14 @@ class GameEdit(UpdateView):
         game = Game.objects.get(id=gameId)
         gameName = game.name
 
-        questions = self.getGameQuestions(gameId, gameName)
-
-            # print(f'***{question.text}')
-        data = {'gameId':gameId, 'gameName': gameName, 'questions': questions}
+        gameQuestions = self.getGameQuestions(gameId, gameName)
+        userQuestions = self.getUserQuestions(request.user)
+        data = {
+            'gameId':gameId, 
+            'gameName': gameName, 
+            'gameQuestions': gameQuestions,
+            'userQuestions': userQuestions
+        }
         # for game in games:
         #     data[game.id] = game.name
         return render(request, self.template_name, {'data': data})
@@ -97,17 +101,36 @@ class GameEdit(UpdateView):
         Game.objects.filter(id=id).update(name=newName)
         return HttpResponse(json.dumps({'newName': newName}))
 
+    def put(self, request, *args, **kwargs):
+        gameId = kwargs['id']
+        data = QueryDict(request.body)
+        questionId = data['questionId']
+        newValue = data['newValue']
+        gameQuestionObject = Game_Question.objects.get(game_id=gameId, question_id=questionId)
+        gameQuestionObject.time_limit = newValue
+        gameQuestionObject.save(update_fields=['time_limit'])
+        return HttpResponse(json.dumps({'success': True}))
+
+
     @staticmethod
     def getGameQuestions(gameId, gameName):
         questionIdObjects = Game_Question.objects.filter(game_id=gameId)
         questions = []
         for q in questionIdObjects:
             question = Question.objects.get(id=q.question_id.id)
-            questionJson = json.dumps(model_to_dict(question))
-            questions.append({
-                'question': questionJson,
-                'time': q.time_limit
-            })
+            questionDict = model_to_dict(question)
+            questionDict['time'] = q.time_limit
+            questions.append(questionDict)
+        return questions
+
+    @staticmethod
+    def getUserQuestions(user):
+        questionsObjects = Question.objects.filter(creator_user_id = user)
+        questions = []
+        for q in questionsObjects:
+            qd = model_to_dict(q)
+            questions.append(qd)
+        # j = serializers.serialize("json", questions)
         return questions
 
 class GameDetail(DetailView):
