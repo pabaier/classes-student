@@ -3,6 +3,26 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from users.forms import CustomUserCreationForm, JoinGameForm
 
+from django.contrib.auth.models import Group
+from users.models import CustomUser
+from rest_framework import viewsets
+from quizpy.serializers import UserSerializer, GroupSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = CustomUser.objects.all() #.order_by('-date_joined')
+    serializer_class = UserSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
 def home_view(request):
 	form = JoinGameForm(request.POST)
 	if form.is_valid():
