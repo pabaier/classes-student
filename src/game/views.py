@@ -11,7 +11,30 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core import serializers
 from django.forms.models import model_to_dict
 
+from game.models import Question, Game, Game_Question, Active_Game
+from rest_framework import viewsets, generics
+from game.serializers import QuestionSerializer
+
+
 logger = logging.getLogger(__name__)
+
+# class QuestionViewSet(viewsets.ModelViewSet):
+#     """
+#     API endpoint that allows questions to be viewed or edited.
+#     """
+#     queryset = Question.objects.all()
+#     serializer_class = QuestionSerializer
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows questions to be viewed or edited.
+    """
+    serializer_class = QuestionSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return Question.objects.filter(creator_user_id=user)
+
 
 class QuestionList(ListView):
     model = Question

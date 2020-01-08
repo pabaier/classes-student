@@ -16,5 +16,4 @@ urlpatterns = [
     path('game/', include('game.urls')),
     path('a', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-
 ]
