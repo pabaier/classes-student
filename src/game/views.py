@@ -3,12 +3,14 @@ from .serializers import GameSerializer
 import logging
 
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
 logger = logging.getLogger(__name__)
 
 class GameViewSet(ModelViewSet):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
+    permission_classes = (IsAuthenticated,)
 
 """
 
