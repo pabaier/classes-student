@@ -10,10 +10,10 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
+    # path('games/', include('games.urls')),
+    path('questions/', include('questions.urls')),
     path('admin/', admin.site.urls),
     path('', home_view, name="home"),
     path('signup/', signup_view, name="signup"),
-    path('game/', include('game.urls')),
-    path('a', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

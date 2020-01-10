@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'quizpy',
     'users.apps.UsersConfig',
-    'game'
+    'games',
+    'questions'
 ]
 
 MIDDLEWARE = [
