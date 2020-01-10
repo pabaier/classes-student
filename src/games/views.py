@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, View
-from games.models import Game, Game_Question
-from questions.models import Question
+from .models import Game, Game_Question
+from question.models import Question
 from .forms import AddQuestionsForm
 from django.http import HttpResponse, QueryDict
 from users.models import CustomUser

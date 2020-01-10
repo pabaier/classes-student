@@ -11,7 +11,7 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     # path('games/', include('games.urls')),
-    path('questions/', include('questions.urls')),
+    path('questions/', include('question.urls')),
     path('admin/', admin.site.urls),
     path('', home_view, name="home"),
     path('signup/', signup_view, name="signup"),

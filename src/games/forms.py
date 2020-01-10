@@ -1,6 +1,6 @@
 from django import forms
 from .models import Game
-from questions.models import Question
+from question.models import Question
 
 # class AddQuestionsForm(forms.ModelForm):
 

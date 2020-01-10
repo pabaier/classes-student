@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'quizpy',
     'users.apps.UsersConfig',
     'games',
-    'questions'
+    'question'
 ]
 
 MIDDLEWARE = [
