@@ -1,7 +1,7 @@
-from games.models import Game, Game_Question, Active_Game
+from .models import Game, Game_Question, Active_Game
 from rest_framework import serializers
 
-# class QuestionSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = Question
-#         fields = ['text', 'a', 'b', 'c', 'd', 'answer', 'public', 'category', 'creator_user_id']
+class GameSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Game
+		fields = "__all__"

@@ -1,13 +1,10 @@
 from django.urls import include, path
-from . import views
-
+from .views import GameViewSet
 from rest_framework import routers
-# from questions import views
 
-# router = routers.DefaultRouter()
-# router.register('', views.QuestionsViewSet, basename='QuestionsViewSet')
-# router.register('<int:pk>', views.QuestionViewSet, basename='QuestionViewSet')
+router = routers.DefaultRouter()
+router.register('', GameViewSet, basename='GameViewSet')
 
-# urlpatterns = [
-#     path('', include(router.urls)),
-# ]
+urlpatterns = [
+    path('', include(router.urls)),
+]
