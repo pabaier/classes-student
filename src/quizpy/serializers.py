@@ -1,4 +1,4 @@
-from users.models import CustomUser
+from user.models import CustomUser
 from django.contrib.auth.models import Group
 from rest_framework import serializers
 

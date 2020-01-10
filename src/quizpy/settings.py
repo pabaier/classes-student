@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'quizpy',
-    'users.apps.UsersConfig',
+    'user.apps.UsersConfig',
     'games',
     'question'
 ]
@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-AUTH_USER_MODEL = 'users.CustomUser'
+AUTH_USER_MODEL = 'user.CustomUser'
 
 LOGGING = {
     'version': 1,

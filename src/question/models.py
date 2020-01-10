@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import CustomUser
+from user.models import CustomUser
 
 class Question(models.Model):
     ANSWER_CHOICES = [

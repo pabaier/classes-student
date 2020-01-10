@@ -4,7 +4,7 @@ from .models import Game, Game_Question
 from question.models import Question
 from .forms import AddQuestionsForm
 from django.http import HttpResponse, QueryDict
-from users.models import CustomUser
+from user.models import CustomUser
 import json
 import logging
 from django.views.generic import ListView, DetailView 

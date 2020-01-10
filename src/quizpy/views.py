@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from users.forms import CustomUserCreationForm, JoinGameForm
+from user.forms import CustomUserCreationForm, JoinGameForm
 
 from django.contrib.auth.models import Group
-from users.models import CustomUser
+from user.models import CustomUser
 from rest_framework import viewsets
 from quizpy.serializers import UserSerializer, GroupSerializer
 

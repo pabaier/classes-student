@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import CustomUser
+from user.models import CustomUser
 from question.models import Question
 import random
 from django.utils.crypto import get_random_string
