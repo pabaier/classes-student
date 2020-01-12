@@ -1,5 +1,6 @@
 from .models import Game
-from .serializers import GameSerializer
+from .serializers import GameGetSerializer, GameEditSerializer
+from django.shortcuts import get_object_or_404
 import logging
 
 from rest_framework.viewsets import ModelViewSet
@@ -8,9 +9,24 @@ from rest_framework.permissions import IsAuthenticated
 logger = logging.getLogger(__name__)
 
 class GameViewSet(ModelViewSet):
-    serializer_class = GameSerializer
+    serializer_class = GameGetSerializer
     queryset = Game.objects.all()
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Game.objects.filter(creator=user)
+
+    # this is so that the user making the game is the creator
+    # it also prevents the creator from being changed in a PUT and PATCH
+    def perform_create(self, serializer):
+        serializer.save(creator= self.request.user)
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return GameGetSerializer
+        return GameEditSerializer
+
 
 """
 
