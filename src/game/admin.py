@@ -1,15 +1,8 @@
 from django.contrib import admin
 
-from .models import Game, Game_Question, Active_Game, Option, Game_Option
-
-
-class QuestionAdmin(admin.ModelAdmin):
-    fields = "__all__"
+from .models import Game, Active_Game, Option, Game_Option
 
 class GameAdmin(admin.ModelAdmin):
-    fields = "__all__"
-
-class GameQuestionAdmin(admin.ModelAdmin):
     fields = "__all__"
 
 class ActiveGame(admin.ModelAdmin):
@@ -25,6 +18,6 @@ class GameOptionAdmin(admin.ModelAdmin):
 # admin.site.register(Game, GameAdmin)
 # admin.site.register(Game_Question, GameQuestionAdmin)
 
-models = [Game, Game_Question, Active_Game, Option, Game_Option]
+models = [Game, Active_Game, Option, Game_Option]
 for model in models:
 	admin.site.register(model)

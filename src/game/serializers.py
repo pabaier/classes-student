@@ -1,4 +1,4 @@
-from .models import Game, Game_Question, Active_Game, Option, Game_Option
+from .models import Game, Active_Game, Option, Game_Option
 from rest_framework import serializers
 
 class GameSerializer(serializers.ModelSerializer):
@@ -6,11 +6,6 @@ class GameSerializer(serializers.ModelSerializer):
 		model = Game
 		fields = "__all__"
 		read_only_fields = ("creator",)
-
-class GameQuestionSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Game_Question
-		fields = "__all__"
 
 class ActiveGameSerializer(serializers.ModelSerializer):
 	class Meta:

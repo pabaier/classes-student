@@ -1,5 +1,5 @@
-from .models import Game, Game_Question, Active_Game, Option, Game_Option
-from .serializers import GameSerializer, GameQuestionSerializer, ActiveGameSerializer, OptionSerializer, GameOptionSerializer
+from .models import Game, Active_Game, Option, Game_Option
+from .serializers import GameSerializer, ActiveGameSerializer, OptionSerializer, GameOptionSerializer
 import logging
 
 from rest_framework.viewsets import ModelViewSet
@@ -20,11 +20,6 @@ class GameViewSet(ModelViewSet):
     # it also prevents the creator from being changed in a PUT and PATCH
     def perform_create(self, serializer):
         serializer.save(creator= self.request.user)
-
-class GameQuestionViewSet(ModelViewSet):
-    serializer_class = GameQuestionSerializer
-    queryset = Game_Question.objects.all()
-    permission_classes = (IsAuthenticated,)
 
 class ActiveGameViewSet(ModelViewSet):
     serializer_class = ActiveGameSerializer
