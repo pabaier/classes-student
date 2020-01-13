@@ -1,4 +1,4 @@
-from .models import Question, Question_Game, Question_Answer_Option
+from .models import Question, QuestionGame, QuestionAnswerOption
 from .serializers import QuestionSerializer, QuestionGameSerializer, QuestionAnswerOptionSerializer, \
     QuestionDetailSerializer
 from rest_framework.viewsets import ModelViewSet
@@ -20,11 +20,11 @@ class QuestionViewSet(ModelViewSet):
 
 class QuestionGameViewSet(ModelViewSet):
     serializer_class = QuestionGameSerializer
-    queryset = Question_Game.objects.all()
+    queryset = QuestionGame.objects.all()
     permission_classes = (IsAuthenticated,)
 
 
 class QuestionAnswerOptionViewSet(ModelViewSet):
     serializer_class = QuestionAnswerOptionSerializer
-    queryset = Question_Answer_Option.objects.all()
+    queryset = QuestionAnswerOption.objects.all()
     permission_classes = (IsAuthenticated,)

@@ -1,4 +1,4 @@
-from .models import Question, Question_Game, Question_Answer_Option
+from .models import Question, QuestionGame, QuestionAnswerOption
 from rest_framework.serializers import ModelSerializer
 
 
@@ -10,13 +10,13 @@ class QuestionSerializer(ModelSerializer):
 
 class QuestionGameSerializer(ModelSerializer):
     class Meta:
-        model = Question_Game
+        model = QuestionGame
         fields = "__all__"
 
 
 class QuestionAnswerOptionSerializer(ModelSerializer):
     class Meta:
-        model = Question_Answer_Option
+        model = QuestionAnswerOption
         fields = "__all__"
 
 
