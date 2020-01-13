@@ -1,23 +1,28 @@
 from django.contrib import admin
 
-from .models import Game, Active_Game, Option, Game_Option
+from .models import Game, ActiveGame, Option, GameOption
+
 
 class GameAdmin(admin.ModelAdmin):
     fields = "__all__"
 
-class ActiveGame(admin.ModelAdmin):
+
+class ActiveGameAdmin(admin.ModelAdmin):
     fields = "__all__"
+
 
 class OptionAdmin(admin.ModelAdmin):
     fields = "__all__"
 
+
 class GameOptionAdmin(admin.ModelAdmin):
     fields = "__all__"
+
 
 # admin.site.register(Question, QuestionAdmin)
 # admin.site.register(Game, GameAdmin)
 # admin.site.register(Game_Question, GameQuestionAdmin)
 
-models = [Game, Active_Game, Option, Game_Option]
+models = [Game, ActiveGame, Option, GameOption]
 for model in models:
-	admin.site.register(model)
+    admin.site.register(model)

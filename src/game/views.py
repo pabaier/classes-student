@@ -1,4 +1,4 @@
-from .models import Game, Active_Game, Option, Game_Option
+from .models import Game, ActiveGame, Option, GameOption
 from .serializers import GameSerializer, ActiveGameSerializer, OptionSerializer, GameOptionSerializer
 import logging
 
@@ -6,6 +6,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
 logger = logging.getLogger(__name__)
+
 
 class GameViewSet(ModelViewSet):
     serializer_class = GameSerializer
@@ -19,22 +20,26 @@ class GameViewSet(ModelViewSet):
     # this is so that the user making the game is the creator
     # it also prevents the creator from being changed in a PUT and PATCH
     def perform_create(self, serializer):
-        serializer.save(creator= self.request.user)
+        serializer.save(creator=self.request.user)
+
 
 class ActiveGameViewSet(ModelViewSet):
     serializer_class = ActiveGameSerializer
-    queryset = Active_Game.objects.all()
+    queryset = ActiveGame.objects.all()
     permission_classes = (IsAuthenticated,)
+
 
 class OptionViewSet(ModelViewSet):
     serializer_class = OptionSerializer
     queryset = Option.objects.all()
     permission_classes = (IsAuthenticated,)
 
+
 class GameOptionViewSet(ModelViewSet):
     serializer_class = GameOptionSerializer
-    queryset = Game_Option.objects.all()
+    queryset = GameOption.objects.all()
     permission_classes = (IsAuthenticated,)
+
 
 """
 
