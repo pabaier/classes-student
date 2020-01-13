@@ -13,9 +13,6 @@ class Question_Game(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     time_limit = models.IntegerField(default=15)
 
-    class Meta:
-        unique_together = ('question', 'game',)
-
 class Question_Answer_Option(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     option = models.CharField(max_length=256)
