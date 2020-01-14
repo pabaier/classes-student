@@ -26,3 +26,11 @@ class QuestionDetailSerializer(ModelSerializer):
     class Meta:
         model = Question
         fields = "__all__"
+
+
+class QuestionDetailPublicSerializer(ModelSerializer):
+    answerOptions = QuestionAnswerOptionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Question
+        fields = "__all__"
