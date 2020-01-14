@@ -12,6 +12,10 @@ class QuestionDetailViewSet(ModelViewSet):
     serializer_class = QuestionDetailSerializer
     permission_classes = (IsAuthenticated,)
 
+    def get_queryset(self):
+        user = self.request.user
+        return Question.objects.filter(creator=user)
+
 
 class QuestionDetailPublicViewSet(ModelViewSet):
     queryset = Question.objects.filter(public=True)
@@ -22,6 +26,10 @@ class QuestionViewSet(ModelViewSet):
     serializer_class = QuestionSerializer
     queryset = Question.objects.all()
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        user = self.request.user
+        return Question.objects.filter(creator=user)
 
 
 class QuestionGameViewSet(ModelViewSet):
