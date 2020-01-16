@@ -1,6 +1,5 @@
 from django.db import models
 from user.models import CustomUser
-from game.models import Game
 
 
 class Question(models.Model):
@@ -11,8 +10,8 @@ class Question(models.Model):
 
 
 class QuestionGame(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='questions', on_delete=models.CASCADE)
+    game = models.ForeignKey('game.Game', related_name='game', on_delete=models.CASCADE)
     time_limit = models.IntegerField(default=15)
 
 

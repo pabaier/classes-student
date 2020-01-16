@@ -2,11 +2,13 @@ from django.db import models
 from django.utils.crypto import get_random_string
 from django.db import IntegrityError
 from user.models import CustomUser
+from question.models import Question
 
 
 class Game(models.Model):
     creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
+    questions = models.ManyToManyField(Question, through='question.QuestionGame')
 
 
 class ActiveGame(models.Model):
