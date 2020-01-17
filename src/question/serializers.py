@@ -8,15 +8,15 @@ class QuestionSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class QuestionGameSerializer(ModelSerializer):
-    class Meta:
-        model = QuestionGame
-        fields = "__all__"
-
-
 class QuestionAnswerOptionSerializer(ModelSerializer):
     class Meta:
         model = QuestionAnswerOption
+        fields = "__all__"
+
+
+class QuestionGameSerializer(ModelSerializer):
+    class Meta:
+        model = QuestionGame
         fields = "__all__"
 
 
@@ -34,3 +34,11 @@ class QuestionDetailPublicSerializer(ModelSerializer):
     class Meta:
         model = Question
         fields = "__all__"
+
+
+class QuestionGameDetailsSerializer(ModelSerializer):
+    question = QuestionDetailSerializer(read_only=True)
+
+    class Meta:
+        model = QuestionGame
+        exclude = ("id", "game")

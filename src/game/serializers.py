@@ -1,5 +1,5 @@
 from .models import Game, ActiveGame, Option, GameOption
-from question.serializers import QuestionGameSerializer
+from question.serializers import QuestionGameDetailsSerializer
 from rest_framework import serializers
 
 
@@ -11,7 +11,7 @@ class GameSerializer(serializers.ModelSerializer):
 
 
 class GameDetailSerializer(serializers.ModelSerializer):
-    questions = QuestionGameSerializer(source="game_questions", many=True)
+    questions = QuestionGameDetailsSerializer(source="game_questions", many=True)
 
     class Meta:
         model = Game
