@@ -1,11 +1,11 @@
-from django.urls import path
-from . import views
+from django.urls import include, path
+from .views import GameViewSet, GameDetailViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'details', GameDetailViewSet, basename='GameDetailViewSet')
+router.register('', GameViewSet, basename='GameViewSet')
 
 urlpatterns = [
-    path('questions/', views.QuestionList.as_view()),
-    path('', views.GameList.as_view()),
-    path('game/<int:pk>', views.GameDetail.as_view(), name='contact_detail'),
-    path('create/', views.GameCreate.as_view(), name='game_create'),
-    path('update/<int:pk>', views.GameUpdate.as_view(success_url="/game"), name='contact_update'),
-    path('delete/<int:pk>', views.GameDelete.as_view(), name='contact_delete'),
+    path('', include(router.urls)),
 ]

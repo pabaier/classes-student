@@ -1,22 +1,28 @@
 from django.contrib import admin
 
-from .models import Question, Game, Game_Question
+from .models import Game, ActiveGame, Option, GameOption
 
-
-class QuestionAdmin(admin.ModelAdmin):
-    fields = ['text', 'a', 'b', 'c', 'd', 
-				'answer', 'public', 'creator_user_id']
 
 class GameAdmin(admin.ModelAdmin):
-    fields = ['creator_user_id', 'name']
+    fields = "__all__"
 
-class GameQuestionAdmin(admin.ModelAdmin):
-    fields = ['game_id', 'question_id', 'time_limit']
+
+class ActiveGameAdmin(admin.ModelAdmin):
+    fields = "__all__"
+
+
+class OptionAdmin(admin.ModelAdmin):
+    fields = "__all__"
+
+
+class GameOptionAdmin(admin.ModelAdmin):
+    fields = "__all__"
+
 
 # admin.site.register(Question, QuestionAdmin)
 # admin.site.register(Game, GameAdmin)
 # admin.site.register(Game_Question, GameQuestionAdmin)
 
-models = [Question, Game, Game_Question]
+models = [Game, ActiveGame, Option, GameOption]
 for model in models:
-	admin.site.register(model)
+    admin.site.register(model)
