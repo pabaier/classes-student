@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,31 +9,47 @@ import {
 } from "react-router-dom";
 import Navb from './components/Navb';
 import Login from './components/Login';
+import initialState from './reducers/index'
 
-const App = () => {
-  return (
-    <div>
-      <Router>
-        <Navb />
-        <div>
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/topics">
-              <Topics />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </div>
-  );
+class App extends Component {
+
+  componentDidMount() {
+    fetch('http://127.0.0.1:8000/questions/public')
+    .then(res => res.json())
+    .then((data) => {
+      initialState.questions = data;
+      this.setState({ questions: data })
+    })
+    .catch(console.log)
+  }
+
+  render() {
+    return (
+      <div>
+        {console.log(this.state)}
+        <Router>
+          <Navb />
+          <div>
+            <Switch>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/topics">
+                <Topics />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </div>
+    )
+  }
+
 }
 
 const Home = () => {
