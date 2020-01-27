@@ -12,6 +12,7 @@ const Navb = () => (
 		<Nav.Link as={NavLink} to='/' exact>Home</Nav.Link>
 		<Nav.Link as={NavLink} to='/about'>About</Nav.Link>
 		<Nav.Link as={NavLink} to='/login'>Login</Nav.Link>
+		<Nav.Link as={NavLink} to='/publicQuestions'>Public Questions</Nav.Link>
 		<NavDropdown title="Topics" id="basic-nav-dropdown" as={NavLink} to='/topics'>
 			<NavDropdown.Item as={NavLink} to="/topics/components">Components</NavDropdown.Item>
 			<NavDropdown.Item as={NavLink} to="/topics/props-v-state">Props v. State</NavDropdown.Item>

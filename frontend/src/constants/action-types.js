@@ -1,1 +1,2 @@
 export const LOG_IN = "LOG_IN";
+export const SET_PUBLIC_QUESTIONS = "SET_PUBLIC_QUESTIONS";

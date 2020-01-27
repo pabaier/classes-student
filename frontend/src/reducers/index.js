@@ -1,4 +1,4 @@
-import { LOG_IN } from "../constants/action-types";
+import { LOG_IN, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
 // import { combineReducers } from "redux";
 
 const initialState = {
@@ -10,14 +10,18 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
 	switch (action.type) {
-	  case LOG_IN:
-		return Object.assign({}, state, {
-		  user: {
-			  isLoggedIn: !state.user.isLoggedIn,
-		  }
-		})
-	  default:
-		return state;
+		case LOG_IN:
+			return Object.assign({}, state, {
+				user: {
+					isLoggedIn: !state.user.isLoggedIn,
+				}
+			})
+		case SET_PUBLIC_QUESTIONS:
+			return Object.assign({}, state, {
+				questions: action.payload.results
+			})
+		default:
+			return state;
 	}
   }
 
