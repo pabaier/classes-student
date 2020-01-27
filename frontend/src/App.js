@@ -8,6 +8,7 @@ import {
   useParams
 } from "react-router-dom";
 import Navb from './components/Navb';
+import Login from './components/Login';
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
             <Route path="/topics">
               <Topics />
             </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
             <Route path="/">
               <Home />
             </Route>
@@ -32,7 +36,7 @@ const App = () => {
   );
 }
 
-function Home() {
+const Home = () => {
   return <h2>Home</h2>;
 }
 
