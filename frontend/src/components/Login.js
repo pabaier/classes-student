@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { logIn } from "../actions/index"
+import { logIn } from "../actions/index";
 
 const mapStateToProps = state => {
-	return { isLoggedIn: state.user.isLoggedIn };
+	return { isLoggedIn: state.root.user.isLoggedIn };
 }
 
 const connectedLogin = ( {isLoggedIn, dispatch} ) => {

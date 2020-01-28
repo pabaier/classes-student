@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getPublicQuestions } from "../actions/index"
 
 const mapStateToProps = state => {
-	return { questions: state.questions };
+	return { questions: state.root.questions };
 }
 
 const connectedPublicQuestions = ( {questions, dispatch} ) => {
