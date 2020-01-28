@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { logIn } from "../actions/index";
+import { postLogIn, logOut } from "../actions/index";
 import LoginForm from "./LoginForm";
 
 const mapStateToProps = state => {
@@ -9,7 +9,7 @@ const mapStateToProps = state => {
 
 const connectedLogin = ( {isLoggedIn, dispatch} ) => {
 	const loginSubmit = values => {
-		dispatch(logIn())
+		dispatch(postLogIn(values))
 	}
 
 	return (
@@ -20,7 +20,7 @@ const connectedLogin = ( {isLoggedIn, dispatch} ) => {
 				isLoggedIn ? <h3>Logged In!</h3> : <LoginForm onSubmit={loginSubmit} />
 			}
 			{
-				isLoggedIn ? <button onClick={() => {dispatch(logIn())}}> Logout </button> : null
+				isLoggedIn ? <button onClick={() => {dispatch(logOut())}}> Logout </button> : null
 			}
 		</div>
 	);

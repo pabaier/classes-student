@@ -1,4 +1,4 @@
-import { LOG_IN, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
+import { LOG_IN, LOG_OUT, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
 import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
 
@@ -19,7 +19,13 @@ function appReducer(state = initialState, action) {
 		case LOG_IN:
 			return Object.assign({}, state, {
 				user: {
-					isLoggedIn: !state.user.isLoggedIn,
+					isLoggedIn: true,
+				}
+			})
+		case LOG_OUT:
+			return Object.assign({}, state, {
+				user: {
+					isLoggedIn: false,
 				}
 			})
 		case SET_PUBLIC_QUESTIONS:
