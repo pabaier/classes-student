@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { logIn } from "../actions/index";
+import LoginForm from "./LoginForm";
 
 const mapStateToProps = state => {
 	return { isLoggedIn: state.root.user.isLoggedIn };
 }
 
 const connectedLogin = ( {isLoggedIn, dispatch} ) => {
+	const loginSubmit = values => {
+		dispatch(logIn())
+	}
+
 	return (
 		<div>
 			<h2>Login</h2>
 			<br />
 			{
-				isLoggedIn ? <h3>Logged In!</h3> : <h3>Please log in...</h3>
+				isLoggedIn ? <h3>Logged In!</h3> : <LoginForm onSubmit={loginSubmit} />
 			}
-			<button onClick={() => {
-						dispatch(logIn())
-					}}>
-				click to {isLoggedIn ? 'log out' : 'log in'}
-			</button>
+			{
+				isLoggedIn ? <button onClick={() => {dispatch(logIn())}}> Logout </button> : null
+			}
 		</div>
 	);
 };
