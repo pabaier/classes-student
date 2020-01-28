@@ -4,7 +4,8 @@ import { reducer as formReducer } from 'redux-form';
 
 const initialState = {
 	user: {
-		isLoggedIn: true
+		isLoggedIn: true,
+		token:'',
 	},
 	questions: [],
 };
@@ -20,12 +21,15 @@ function appReducer(state = initialState, action) {
 			return Object.assign({}, state, {
 				user: {
 					isLoggedIn: true,
+					...action.payload
 				}
 			})
 		case LOG_OUT:
 			return Object.assign({}, state, {
 				user: {
+					...state.user,
 					isLoggedIn: false,
+					token: '',
 				}
 			})
 		case SET_PUBLIC_QUESTIONS:
