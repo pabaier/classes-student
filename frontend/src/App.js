@@ -9,36 +9,41 @@ import {
 } from "react-router-dom";
 import Navb from './components/Navb';
 import Login from './components/Login';
-import PublicQuestions from './components/PublicQuestions'
+import PublicQuestions from './components/PublicQuestions';
+import PrivateRoute from './components/PrivateRoute';
 
 const App = () => {
   return (
     <div>
       <Router>
-        <Navb />
         <div>
           <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/topics">
-              <Topics />
-            </Route>
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/publicQuestions">
-              <PublicQuestions />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
+            <PrivateRoute path="/" component={LoggedIn} />
           </Switch>
         </div>
       </Router>
     </div>
   )
 }
+
+const LoggedIn = () => (
+  <div>
+    <Navb />
+    <Route path="/about" component={About} />
+    <Route path="/topics">
+      <Topics />
+    </Route>
+    <Route path="/publicQuestions">
+      <PublicQuestions />
+    </Route>
+    <Route path="/home">
+      <Home />
+    </Route>
+  </div>
+)
 
 const Home = () => {
   return <h2>Home</h2>;

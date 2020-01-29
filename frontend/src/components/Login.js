@@ -1,31 +1,36 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { postLogIn, logOut } from "../actions/index";
+import { postLogIn } from "../actions/index";
 import LoginForm from "./LoginForm";
+import { useHistory } from "react-router-dom";
 
 const mapStateToProps = state => {
 	return { isLoggedIn: state.root.user.isLoggedIn };
 }
 
-const connectedLogin = ( {isLoggedIn, dispatch} ) => {
-	const loginSubmit = values => {
-		dispatch(postLogIn(values))
+const ConnectedLogin = ( {isLoggedIn, dispatch} ) => {
+	let history = useHistory();
+
+	const loginSubmit = creds => {
+		dispatch(postLogIn({
+			creds,
+			loginSuccess
+		}));
+	}
+
+	const loginSuccess = () => {
+		history.push("/");
 	}
 
 	return (
 		<div>
 			<h2>Login</h2>
 			<br />
-			{
-				isLoggedIn ? <h3>Logged In!</h3> : <LoginForm onSubmit={loginSubmit} />
-			}
-			{
-				isLoggedIn ? <button onClick={() => {dispatch(logOut())}}> Logout </button> : null
-			}
+			<LoginForm onSubmit={loginSubmit} />
 		</div>
 	);
 };
 
-const Login = connect(mapStateToProps)(connectedLogin)
+const Login = connect(mapStateToProps)(ConnectedLogin)
 
 export default Login;

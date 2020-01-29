@@ -31,10 +31,11 @@ const handleError = (e) => {
 export function postLogIn(payload) {
 	return function(dispatch, getState) {
 
-		postData(baseURL + 'auth/jwt-auth/', payload)
+		postData(baseURL + 'auth/jwt-auth/', payload.creds)
 		.then(res => res.ok? res.json() : handleError(res))
 		.then((data) => {
-			dispatch(logIn(data))
+			dispatch(logIn(data));
+			payload.loginSuccess()
 		})
 		.catch(console.log)
 		;
