@@ -1,4 +1,4 @@
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Modal, Container, Row, Col, FormText, Form, Field } from 'react-bootstrap'
 import React, { useState } from 'react';
 import Login from "./Login"
 
@@ -16,16 +16,33 @@ function Splash(props) {
 		onHide={handleClose}
 		show={show}
 	  >
-		<Modal.Header closeButton>
+		<Modal.Header>
 		  <Modal.Title id="contained-modal-title-vcenter">
 			Login
 		  </Modal.Title>
 		</Modal.Header>
 		<Modal.Body>
-			<Login />
+			<Container>
+				<Row className="show-grid text-center" >
+					<Col className="border-right">
+						<Login />
+						<br />
+					</Col>
+					<Col className="align-self-center">
+						<Button  onClick={handleClose}>Sign Up!</Button>
+					</Col>
+				</Row>
+			</Container>
 		</Modal.Body>
-		<Modal.Footer>
-		  <Button  onClick={handleClose}>Close</Button>
+		<Modal.Footer className="d-block">
+			<Form.Row >
+					<Col>
+						<Form.Control type="text" placeholder="Enter Game ID" />
+					</Col>
+					<Col>
+						<Button className="show-grid text-left" onClick={handleClose}>Join Game</Button>
+					</Col>
+			</Form.Row>
 		</Modal.Footer>
 	  </Modal>
 	);
