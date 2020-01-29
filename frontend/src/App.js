@@ -8,9 +8,9 @@ import {
   useParams
 } from "react-router-dom";
 import Navb from './components/Navb';
-import Login from './components/Login';
 import PublicQuestions from './components/PublicQuestions';
 import PrivateRoute from './components/PrivateRoute';
+import Splash from './components/Splash'
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
         <div>
           <Switch>
             <Route path="/login">
-              <Login />
+              <Splash />
             </Route>
             <PrivateRoute path="/" component={LoggedIn} />
           </Switch>
@@ -39,7 +39,7 @@ const LoggedIn = () => (
     <Route path="/publicQuestions">
       <PublicQuestions />
     </Route>
-    <Route path="/home">
+    <Route exact path="/">
       <Home />
     </Route>
   </div>
