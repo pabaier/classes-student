@@ -26,7 +26,7 @@ SECRET_KEY = 'bhp&1!a($5%n8sdo1*v$pd^hp48dy-q)5aundp=3(d)yq=!g4)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,12 +42,14 @@ INSTALLED_APPS = [
     'quizpy',
     'user.apps.UsersConfig',
     'game',
-    'question'
+    'question',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -167,3 +169,5 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=300),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
