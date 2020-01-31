@@ -26,7 +26,7 @@ const ConnectedLogin = ( {isLoggedIn, dispatch} ) => {
 		<div>
 			<h2>Login</h2>
 			<br />
-			<LoginForm onSubmit={loginSubmit} />
+			<LoginForm handleSubmit={loginSubmit} />
 		</div>
 	);
 };
