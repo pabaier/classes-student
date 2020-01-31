@@ -31,7 +31,7 @@ const handleError = (e) => {
 export function postLogIn(payload) {
 	return function(dispatch, getState) {
 
-		postData(baseURL + 'auth/jwt-auth/', payload.creds)
+		postData(baseURL + 'auth/jwt-token/', payload.creds)
 		.then(res => res.ok? res.json() : handleError(res))
 		.then((data) => {
 			dispatch(logIn(data));
