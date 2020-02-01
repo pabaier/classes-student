@@ -4,7 +4,8 @@ import { combineReducers } from "redux";
 const initialState = {
 	user: {
 		isLoggedIn: true,
-		token:'',
+		access: '',
+		refresh: '',
 	},
 	questions: [],
 };
@@ -18,6 +19,7 @@ function appReducer(state = initialState, action) {
 		case LOG_IN:
 			return Object.assign({}, state, {
 				user: {
+					...state.user,
 					isLoggedIn: true,
 					...action.payload
 				}
@@ -27,7 +29,8 @@ function appReducer(state = initialState, action) {
 				user: {
 					...state.user,
 					isLoggedIn: false,
-					token: '',
+					access: '',
+					refresh: '',
 				}
 			})
 		case SET_PUBLIC_QUESTIONS:

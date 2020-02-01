@@ -6,6 +6,10 @@ export function logIn(payload) {
 	return { type: LOG_IN, payload}
 }
 
+export function logOut(payload) {
+	return { type: LOG_OUT, payload}
+}
+
 async function postData(url = '', data = {}) {
 	// Default options are marked with *
 	const response = await fetch(url, {
@@ -41,10 +45,6 @@ export function postLogIn(payload) {
 		;
 	}
 };
-
-export function logOut(payload) {
-	return { type: LOG_OUT, payload}
-}
 
 export function setPublicQuestions(payload) {
 	return { type: SET_PUBLIC_QUESTIONS, payload}
