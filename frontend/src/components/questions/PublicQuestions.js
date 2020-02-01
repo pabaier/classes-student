@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getPublicQuestions } from "../actions/index"
+import { getPublicQuestions } from "../../actions/index"
 
 const mapStateToProps = state => {
 	return { questions: state.root.questions };
