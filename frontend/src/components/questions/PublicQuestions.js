@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getPublicQuestions } from "../../actions/index"
+import { getPublicQuestions } from "../../actions/questions"
 import { Button } from 'react-bootstrap'
 
 const mapStateToProps = state => {

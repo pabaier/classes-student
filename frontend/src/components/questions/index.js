@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { getQuestions } from "../../actions/index"
+import { getQuestions } from "../../actions/questions"
 
 
 const mapStateToProps = state => {
