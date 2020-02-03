@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Form } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
-import Logout from "./Logout"
+import Logout from "./auth/Logout"
 
 const Navb = () => (
 	<Navbar bg="light" expand="lg">

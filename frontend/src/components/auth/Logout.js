@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { logOut } from "../actions/index";
+import { logOut } from "../../actions/auth";
 import { useHistory } from "react-router-dom";
 import { Button } from 'react-bootstrap'
 
