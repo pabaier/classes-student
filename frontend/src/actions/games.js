@@ -1,4 +1,5 @@
 import { SET_GAMES } from "../constants/action-types";
+import * as api from "./api"
 
 const baseURL = 'http://127.0.0.1:8000/'
 
@@ -8,14 +9,13 @@ const handleError = (e) => {
 
 export function getGames() {
 	return (dispatch, getState) => {
-	  const token = getState().root.user.access;
-	  dispatch(getGameData(token));
+	  dispatch(getGameData());
 	}
 }
 
-const getGameData = token => {
+const getGameData = () => {
 	return function(dispatch, getState) {
-		getData(baseURL + 'games/details', token)
+		api.getData(baseURL + 'games/details', getState().root.user.access)
 		.then(res => res.ok? res.json() : handleError(res))
 		.then((data) => {
 			dispatch(setGames(data));
@@ -26,21 +26,4 @@ const getGameData = token => {
 
 export function setGames(payload) {
 	return { type: SET_GAMES, payload}
-}
-
-async function getData(url = '', token = '') {
-	const response = await fetch(url, {
-		method: 'GET', // *GET, POST, PUT, DELETE, etc.
-		mode: 'cors', // no-cors, *cors, same-origin
-		cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-		credentials: 'same-origin', // include, *same-origin, omit
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'Bearer ' + token,
-			// 'Content-Type': 'application/x-www-form-urlencoded',
-		},
-		redirect: 'follow', // manual, *follow, error
-		referrerPolicy: 'no-referrer', // no-referrer, *client
-	});
-	return response;
 }
