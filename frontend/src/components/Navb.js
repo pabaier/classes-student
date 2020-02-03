@@ -27,8 +27,10 @@ const Navb = () => (
 			</NavDropdown>
 		</Nav>
 		<Form inline>
-			<Nav.Link as={NavLink} to='/login'>Login</Nav.Link>
-			<Logout />
+			<Nav>
+				<Nav.Link as={NavLink} to='/login'>Settings</Nav.Link>
+				<Logout />
+			</Nav>
 		</Form>
 	</Navbar.Collapse>
 	</Navbar>

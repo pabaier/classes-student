@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
+import { LOG_IN, LOG_OUT, SET_QUESTIONS, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
 
 const baseURL = 'http://127.0.0.1:8000/'
 
@@ -59,4 +59,43 @@ export function getPublicQuestions() {
 		})
 		.catch(console.log)
 	}
+}
+
+export function getQuestions() {
+	return (dispatch, getState) => {
+	  const token = getState().root.user.access;
+	  dispatch(getQuestionData(token));
+	}
+}
+
+const getQuestionData = token => {
+	return function(dispatch, getState) {
+		getData(baseURL + 'questions/details', token)
+		.then(res => res.ok? res.json() : handleError(res))
+		.then((data) => {
+			dispatch(setQuestions(data));
+		})
+		.catch(console.log);
+	}
+}
+
+export function setQuestions(payload) {
+	return { type: SET_QUESTIONS, payload}
+}
+
+async function getData(url = '', token = '') {
+	const response = await fetch(url, {
+		method: 'GET', // *GET, POST, PUT, DELETE, etc.
+		mode: 'cors', // no-cors, *cors, same-origin
+		cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+		credentials: 'same-origin', // include, *same-origin, omit
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Bearer ' + token,
+			// 'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		redirect: 'follow', // manual, *follow, error
+		referrerPolicy: 'no-referrer', // no-referrer, *client
+	});
+	return response;
 }

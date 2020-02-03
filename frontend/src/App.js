@@ -13,7 +13,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Splash from './components/Splash'
 import Games from './components/games'
 import PublicGames from './components/games/PublicGames'
-import Questions from "./components/questions";
+import Questions from "./components/questions/index";
 
 const App = () => {
   return (

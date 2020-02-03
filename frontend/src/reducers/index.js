@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
+import { LOG_IN, LOG_OUT, SET_QUESTIONS, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
 import { combineReducers } from "redux";
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
 		refresh: '',
 	},
 	questions: [],
+	publicQuestions: [],
 };
 
 const rootReducer = combineReducers({
@@ -33,9 +34,13 @@ function appReducer(state = initialState, action) {
 					refresh: '',
 				}
 			})
-		case SET_PUBLIC_QUESTIONS:
+		case SET_QUESTIONS:
 			return Object.assign({}, state, {
 				questions: action.payload.results
+			})
+		case SET_PUBLIC_QUESTIONS:
+			return Object.assign({}, state, {
+				publicQuestions: action.payload.results
 			})
 		default:
 			return state;
