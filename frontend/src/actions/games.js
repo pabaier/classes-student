@@ -7,6 +7,15 @@ const handleError = (e) => {
 	throw Error(e.statusText)
 }
 
+export function getGame() {
+	return (dispatch, getState) => {
+		const games = getState().root.games
+		if(games.length <= 0) {
+			dispatch(getGameData());
+		}
+	}
+}
+
 export function getGames() {
 	return (dispatch, getState) => {
 	  dispatch(getGameData());

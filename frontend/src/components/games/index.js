@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getGames } from "../../actions/games"
-
+import { Link } from "react-router-dom";
 
 const mapStateToProps = state => {
 	return { games: state.root.games };
@@ -9,12 +9,15 @@ const mapStateToProps = state => {
 
 const ConnectedGames = ( {games=[], dispatch} ) => {
 	useEffect(() => {
-		// {console.log(games)}
 		dispatch(getGames());
 	}, [dispatch]);
 
 	const listItems = games.map( (g) => (
-	<li key={'g'+g.id}>{g.name} - {g.questions.length} questions</li>
+		<li key={'g'+g.id}>
+			<Link to={'/games/' + g.id}>
+				{g.name} - {g.questions.length} questions
+			</Link>
+		</li>
 	));
 
 	return (

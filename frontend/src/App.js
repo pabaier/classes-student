@@ -12,7 +12,8 @@ import PublicQuestions from './components/questions/PublicQuestions';
 import PrivateRoute from './components/PrivateRoute';
 import Splash from './components/Splash'
 import Games from './components/games'
-import PublicGames from './components/games/PublicGames'
+import Game from './components/games/game'
+import PublicGames from './components/games'
 import Questions from "./components/questions/index";
 
 const App = () => {
@@ -36,6 +37,7 @@ const LoggedIn = () => (
   <div>
     <Navb />
     <Route path="/games" component={Games} exact />
+    <Route path="/games/:id" component={Game} />
     <Route path="/games/public" component={PublicGames} />
     <Route exact path="/questions">
       <Questions />
