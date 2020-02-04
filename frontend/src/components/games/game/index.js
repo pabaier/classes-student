@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { useParams } from 'react-router-dom'
-import { getGame } from "../../actions/games"
-
-// const Game = ( props ) => {
-// 	{console.log(props.location.game)}
-// 	return (
-// 		<h3>Game</h3>
-// 	)
-// }
+import { getGame } from "../../../actions/games"
+import Game from "./game"
 
 const mapStateToProps = state => {
 	return { games: state.root.games };
@@ -26,18 +20,13 @@ const ConnectedGame = ( {games, dispatch}) => {
 		return (
 			<div>
 				<h2>This is Game #{game.id} </h2>
-				<div>
-					{
-						console.log(game),
-						game.name
-					}
-				</div>
+				<Game game={game}></Game>
 			</div>
 		);
 	}
 	return <h2> No Games </h2>;
   }
 
-const Game = connect(mapStateToProps)(ConnectedGame)
+const GamePage = connect(mapStateToProps)(ConnectedGame)
 
-export default Game;
+export default GamePage;
