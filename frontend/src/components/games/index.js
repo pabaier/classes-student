@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getGames } from "../../actions/games"
-import { Link } from "react-router-dom";
+import { ListGroup } from 'react-bootstrap';
 
 const mapStateToProps = state => {
 	return { games: state.root.games };
@@ -13,20 +13,17 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 	}, [dispatch]);
 
 	const listItems = games.map( (g) => (
-		<li key={'g'+g.id}>
-			<Link to={'/games/' + g.id}>
-				{g.name} - {g.questions.length} questions
-			</Link>
-		</li>
+		<ListGroup.Item action href={'/games/' + g.id} key={'g'+g.id}>
+			{g.name} - {g.questions.length} questions
+		</ListGroup.Item>
 	));
 
 	return (
 		<div>
 			<h2>Games</h2>
-			<ul>
-				{ listItems }
-			</ul>
-			<br />
+			<ListGroup defaultActiveKey="#link1">
+					{listItems}
+			</ListGroup>
 		</div>
 	);
 };
