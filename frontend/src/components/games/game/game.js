@@ -1,11 +1,15 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { CardColumns, CardDeck, Col, Container, Row } from 'react-bootstrap';
 import Question from '../../questions/question'
 
 
 const Game = ( {game} ) => {
 	const questions = game.questions.map( (q) =>
-		<Col key={"gq" + q.question.id}><Question question={q.question} />{q.time_limit}</Col>
+		<Col>
+			<Question key={"gq" + q.question.id} question={q.question}>
+				{q.time_limit}
+			</Question>
+		</Col>
 	)
 
 	return (
@@ -13,7 +17,9 @@ const Game = ( {game} ) => {
 			<h3>{game.name}</h3>
 			<Container>
 				<Row>
-					{questions}
+					<CardDeck>
+						{questions}
+					</CardDeck>
 				</Row>
 			</Container>
 		</div>
