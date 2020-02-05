@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardColumns, CardDeck, Col, Container, Row } from 'react-bootstrap';
+import { CardDeck, Col, Container, Row } from 'react-bootstrap';
 import Question from '../../questions/question'
 
 
@@ -13,16 +13,13 @@ const Game = ( {game} ) => {
 	)
 
 	return (
-		<div>
-			<h3>{game.name}</h3>
-			<Container>
-				<Row>
-					<CardDeck>
-						{questions}
-					</CardDeck>
-				</Row>
-			</Container>
-		</div>
+		<Container>
+			<Row>
+				<CardDeck>
+					{questions}
+				</CardDeck>
+			</Row>
+		</Container>
 	)
 }
 

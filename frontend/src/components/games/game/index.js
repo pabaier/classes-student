@@ -19,7 +19,7 @@ const ConnectedGame = ( {games, dispatch}) => {
 	if (game) {
 		return (
 			<div>
-				<h2>This is Game #{game.id} </h2>
+				<h2>{game.name}</h2>
 				<Game game={game}></Game>
 			</div>
 		);
