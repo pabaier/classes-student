@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getQuestions } from "../../actions/questions"
 import Question from "./question"
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, CardDeck } from 'react-bootstrap';
 
 const mapStateToProps = state => {
 	return { questions: state.root.questions };
@@ -14,15 +14,19 @@ const ConnectedQuestions = ( {questions=[], dispatch} ) => {
 	}, [dispatch]);
 
 	const listItems = questions.map( (q) => (
-		<Col key={"gq" + q.id}><Question question={q} /></Col>
+		<Col>
+			<Question key={"gq" + q.id} question={q} />
+		</Col>
 	));
 
 	return (
 		<div>
-			<h2>Questions</h2>
+			<h3>Questions</h3>
 			<Container>
 				<Row>
-					{listItems}
+					<CardDeck>
+						{listItems}
+					</CardDeck>
 				</Row>
 			</Container>
 		</div>
