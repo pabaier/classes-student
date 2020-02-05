@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getQuestions } from "../../actions/questions"
-
+import Question from "./question"
+import { Container, Row, Col } from 'react-bootstrap';
 
 const mapStateToProps = state => {
 	return { questions: state.root.questions };
@@ -13,24 +14,17 @@ const ConnectedQuestions = ( {questions=[], dispatch} ) => {
 	}, [dispatch]);
 
 	const listItems = questions.map( (q) => (
-		<li key={'q'+q.id}>{q.text}
-			<ul>
-				{
-					q.answerOptions.map( (a) => (
-						<li key={'a'+a.id}>{a.option} {a.isAnswer? "*" : ""}</li>
-					))
-				}
-			</ul>
-		</li>
+		<Col key={"gq" + q.id}><Question question={q} /></Col>
 	));
 
 	return (
 		<div>
 			<h2>Questions</h2>
-			<ul>
-				{ listItems }
-			</ul>
-			<br />
+			<Container>
+				<Row>
+					{listItems}
+				</Row>
+			</Container>
 		</div>
 	);
 };
