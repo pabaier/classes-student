@@ -12,11 +12,17 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 		dispatch(getGames());
 	}, [dispatch]);
 
-	const listItems = games.map( (g) => (
-		<ListGroup.Item action href={'/games/' + g.id} key={'g'+g.id}>
+	let i = 0;
+	const listItems = games.map( (g) => {
+		i = i + 1;
+		if(i>3){i=0}
+		return (
+		<ListGroup.Item action href={'/games/' + g.id} key={'g'+g.id}
+			variant={i%4===0 ? 'warning' : i%3===0 ? 'info' : i%2===0 ? 'secondary' : null}
+		>
 			{g.name} - {g.questions.length} questions
-		</ListGroup.Item>
-	));
+		</ListGroup.Item>)
+	});
 
 	return (
 		<div>
