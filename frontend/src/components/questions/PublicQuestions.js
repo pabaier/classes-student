@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getPublicQuestions } from "../actions/index"
+import { getPublicQuestions } from "../../actions/questions"
+import { Button } from 'react-bootstrap'
 
 const mapStateToProps = state => {
-	return { questions: state.root.questions };
+	return { questions: state.root.publicQuestions };
 }
 
 const connectedPublicQuestions = ( {questions, dispatch} ) => {
@@ -26,7 +27,7 @@ const connectedPublicQuestions = ( {questions, dispatch} ) => {
 				{ listItems }
 			</ul>
 			<br />
-			<button onClick={ () => { dispatch(getPublicQuestions()) } }>Get Public Questions</button>
+			<Button onClick={ () => { dispatch(getPublicQuestions()) } }>Get Public Questions</Button>
 		</div>
 	);
 };

@@ -1,12 +1,15 @@
-import { LOG_IN, LOG_OUT, SET_PUBLIC_QUESTIONS } from "../constants/action-types";
+import { LOG_IN, LOG_OUT, SET_QUESTIONS, SET_PUBLIC_QUESTIONS, SET_GAMES } from "../constants/action-types";
 import { combineReducers } from "redux";
 
 const initialState = {
 	user: {
 		isLoggedIn: true,
-		token:'',
+		access: '',
+		refresh: '',
 	},
 	questions: [],
+	publicQuestions: [],
+	games: []
 };
 
 const rootReducer = combineReducers({
@@ -18,6 +21,7 @@ function appReducer(state = initialState, action) {
 		case LOG_IN:
 			return Object.assign({}, state, {
 				user: {
+					...state.user,
 					isLoggedIn: true,
 					...action.payload
 				}
@@ -27,12 +31,21 @@ function appReducer(state = initialState, action) {
 				user: {
 					...state.user,
 					isLoggedIn: false,
-					token: '',
+					access: '',
+					refresh: '',
 				}
+			})
+		case SET_QUESTIONS:
+			return Object.assign({}, state, {
+				questions: action.payload.results
 			})
 		case SET_PUBLIC_QUESTIONS:
 			return Object.assign({}, state, {
-				questions: action.payload.results
+				publicQuestions: action.payload.results
+			})
+		case SET_GAMES:
+			return Object.assign({}, state, {
+				games: action.payload.results
 			})
 		default:
 			return state;
