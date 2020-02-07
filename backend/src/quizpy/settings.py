@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'user.apps.UsersConfig',
     'game',
     'question',
-    'corsheaders'
+    'corsheaders',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'quizpy.wsgi.application'
-
+ASGI_APPLICATION = "quizpy.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
