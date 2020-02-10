@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'user.apps.UsersConfig',
     'game',
     'question',
-    'corsheaders'
+    'play',
+    'corsheaders',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +78,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'quizpy.wsgi.application'
+ASGI_APPLICATION = "quizpy.routing.application"
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases

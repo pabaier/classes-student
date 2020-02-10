@@ -15,4 +15,5 @@ urlpatterns = [
     path('auth/jwt-token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth/jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/jwt-verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('play/', include('play.urls')),
 ]
