@@ -5,11 +5,12 @@ import json
 class HostConsumer(WebsocketConsumer):
     def connect(self):
         self.game_token = self.scope['url_route']['kwargs']['game_token']
-        self.room_group_name = 'chat_%s' % self.game_token
+        self.host_group_name = 'host_%s' % self.game_token
+        self.players_group_name = 'players_%s' % self.game_token
 
         # Join room group
         async_to_sync(self.channel_layer.group_add)(
-            self.room_group_name,
+            self.host_group_name,
             self.channel_name
         )
 
@@ -18,7 +19,7 @@ class HostConsumer(WebsocketConsumer):
     def disconnect(self, close_code):
         # Leave room group
         async_to_sync(self.channel_layer.group_discard)(
-            self.room_group_name,
+            self.host_group_name,
             self.channel_name
         )
 
@@ -29,7 +30,7 @@ class HostConsumer(WebsocketConsumer):
 
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(
-            self.room_group_name,
+            self.players_group_name,
             {
                 'type': 'chat_message',
                 'message': message + " hihohiho"
