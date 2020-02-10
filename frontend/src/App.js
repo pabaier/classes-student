@@ -15,6 +15,7 @@ import Games from './components/games'
 import GamePage from './components/games/game/index'
 import PublicGames from './components/games'
 import Questions from "./components/questions/index";
+import Play from "./components/play";
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const LoggedIn = () => (
     <Route path="/games" component={Games} exact />
     <Route path="/games/:id" component={GamePage} />
     <Route path="/games/public" component={PublicGames} />
+    <Route path="/play/:id" component={Play} />
     <Route exact path="/questions">
       <Questions />
     </Route>
