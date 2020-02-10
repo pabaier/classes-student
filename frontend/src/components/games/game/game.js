@@ -5,8 +5,8 @@ import Question from '../../questions/question'
 
 const Game = ( {game} ) => {
 	const questions = game.questions.map( (q) =>
-		<Col>
-			<Question key={"gq" + q.question.id} question={q.question}>
+		<Col key={"gcol" + q.question.id}>
+			<Question question={q.question}>
 				{q.time_limit}
 			</Question>
 		</Col>

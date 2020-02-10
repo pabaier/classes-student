@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getGames } from "../../actions/games"
 import { ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => {
 	return { games: state.root.games };
@@ -17,10 +18,12 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 		i = i + 1;
 		if(i>3){i=0}
 		return (
-		<ListGroup.Item action href={'/games/' + g.id} key={'g'+g.id}
+		<ListGroup.Item key={'g'+g.id}
 			variant={i%4===0 ? 'warning' : i%3===0 ? 'info' : i%2===0 ? 'secondary' : null}
 		>
-			{g.name} - {g.questions.length} questions
+			<Link to={`/games/${g.id}`}  key={'gl'+g.id}>
+				{g.name} - {g.questions.length} questions
+			</Link>
 		</ListGroup.Item>)
 	});
 
