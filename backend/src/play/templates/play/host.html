@@ -11,6 +11,8 @@
 </body>
 <script>
     var gameToken = "{{ game_token|escapejs }}";
+    document.querySelector('#chat-log').value = ('game id: ' + gameToken + '\n');
+
 
     var playSocket = new WebSocket(
         'ws://' + window.location.host +

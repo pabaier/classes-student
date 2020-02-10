@@ -5,25 +5,16 @@
     <title>Games</title>
 </head>
 <body>
-    What game would you like to start?<br/>
-    <input id="game-host-input" type="text" size="100"/><br/>
-    <input id="game-host-submit" type="button" value="Enter"/>
+    Start a Game<br/>
+    <input id="game-host-submit" type="button" value="Start Game"/>
     <br><br>
-    What game would you like to join?<br/>
+    Join a Game<br/>
     <input id="game-join-input" type="text" size="100"/><br/>
     <input id="game-join-submit" type="button" value="Enter"/>
 
     <script>
-        document.querySelector('#game-host-input').focus();
-        document.querySelector('#game-host-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#game-host-submit').click();
-            }
-        };
-
         document.querySelector('#game-host-submit').onclick = function(e) {
-            var gameHost = document.querySelector('#game-host-input').value;
-            window.location.pathname = '/play/host/' + gameHost + '/';
+            window.location.pathname = '/play/host/';
         };
 
         document.querySelector('#game-join-submit').onclick = function(e) {
