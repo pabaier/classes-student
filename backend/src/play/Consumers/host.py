@@ -33,7 +33,7 @@ class HostConsumer(WebsocketConsumer):
             self.players_group_name,
             {
                 'type': 'chat_message',
-                'message': message + " hihohiho"
+                'message': message
             }
         )
 

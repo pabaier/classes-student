@@ -6,6 +6,7 @@
 </head>
 <body>
     Start a Game<br/>
+    <input id="game-host-input" type="text" size="100"/><br/>
     <input id="game-host-submit" type="button" value="Start Game"/>
     <br><br>
     Join a Game<br/>
@@ -14,7 +15,8 @@
 
     <script>
         document.querySelector('#game-host-submit').onclick = function(e) {
-            window.location.pathname = '/play/host/';
+            var gameId = document.querySelector('#game-host-input').value;
+            window.location.pathname = '/play/host/' + gameId + '/';
         };
 
         document.querySelector('#game-join-submit').onclick = function(e) {
