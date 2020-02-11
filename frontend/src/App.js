@@ -11,9 +11,7 @@ import Navb from './components/Navb';
 import PublicQuestions from './components/questions/PublicQuestions';
 import PrivateRoute from './components/PrivateRoute';
 import Splash from './components/Splash'
-import Games from './components/games'
-import GamePage from './components/games/game/index'
-import PublicGames from './components/games'
+import { Games, PublicGames, GamePage } from './components/games'
 import Questions from "./components/questions/index";
 import { Host } from "./components/play";
 
