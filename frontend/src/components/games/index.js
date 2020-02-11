@@ -18,7 +18,7 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 		i = i + 1;
 		if(i>3){i=0}
 		const linkTo = {
-			pathname: `/play/${g.id}`,
+			pathname: `/play/host/${g.id}`,
 			game: g
 		}
 		return (
