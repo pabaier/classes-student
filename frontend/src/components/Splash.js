@@ -1,6 +1,7 @@
-import { Button, Modal, Container, Row, Col, Form } from 'react-bootstrap'
+import { Button, Modal, Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react';
 import { Login } from './auth/'
+import JoinForm from './joinForm'
 
 function Splash(props) {
 	const [show, setShow] = useState(true);
@@ -34,16 +35,7 @@ function Splash(props) {
 			</Container>
 		</Modal.Body>
 		<Modal.Footer className="d-block">
-			<Form>
-				<Form.Row >
-						<Col>
-							<Form.Control type="text" placeholder="Enter Game ID" />
-						</Col>
-						<Col>
-							<Button className="show-grid text-left" onClick={handleClose}>Join Game</Button>
-						</Col>
-				</Form.Row>
-			</Form>
+			<JoinForm />
 		</Modal.Footer>
 	  </Modal>
 	);
