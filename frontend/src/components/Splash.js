@@ -1,6 +1,6 @@
 import { Button, Modal, Container, Row, Col, Form } from 'react-bootstrap'
 import React, { useState } from 'react';
-import Login from "./auth/Login"
+import { Login } from './auth/'
 
 function Splash(props) {
 	const [show, setShow] = useState(true);
