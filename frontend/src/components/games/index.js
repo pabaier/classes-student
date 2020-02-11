@@ -17,11 +17,15 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 	const listItems = games.map( (g) => {
 		i = i + 1;
 		if(i>3){i=0}
+		const linkTo = {
+			pathname: `/play/${g.id}`,
+			game: g
+		}
 		return (
 		<ListGroup.Item key={'g'+g.id}
 			variant={i%4===0 ? 'warning' : i%3===0 ? 'info' : i%2===0 ? 'secondary' : null}
 		>
-			<Link to={`/play/${g.id}`}>
+			<Link to={linkTo}>
 				{g.name} - {g.questions.length} questions
 			</Link>
 			-
