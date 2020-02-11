@@ -8,11 +8,10 @@ import {
   useParams
 } from "react-router-dom";
 import Navb from './components/Navb';
-import PublicQuestions from './components/questions/PublicQuestions';
 import PrivateRoute from './components/PrivateRoute';
 import Splash from './components/Splash'
 import { Games, PublicGames, GamePage } from './components/games'
-import Questions from "./components/questions/index";
+import { Questions, PublicQuestions } from "./components/questions";
 import { Host } from "./components/play";
 
 const App = () => {
