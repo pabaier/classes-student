@@ -16,41 +16,49 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		if(!activeGame){
 			dispatch(activateGame(id));
 		}
-		if(activeGame){
+	}, [activeGame]);
+
+	useEffect(() => {
+		if(activeGame && !ws){
 			setWs(new WebSocket(`ws://localhost:8000/ws/host/${activeGame.slug}/`))
 		}
-	}, [dispatch, id, activeGame]);
-
-	if(activeGame && ws) {
-		ws.onopen = () => {
-		// on connecting, do nothing but log it to the console
-			console.log('client connected')
+		return function cleanup() {
+			if(ws){
+				ws.close();
+			}
 		}
+	}, [activeGame, ws]);
 
-		ws.onmessage = e => {
-			// listen to data sent from the websocket server
-			const data = JSON.parse(e.data)
-			var message = data['message'];
-			// this.setState({dataFromServer: message})
-			setPlayers(`${players} ${message}`)
-			console.log(message)
-		}
-
-		ws.onclose = () => {
-			console.log('disconnected')
-			// automatically try to reconnect on connection loss
-		}
-
-		return (
-			<div>
-				<h3>Play Game {game ? game.name : ''}</h3>
-				<h5>pin: {activeGame.slug}</h5>
-				<div id='players'>{players}</div>
-			</div>
-		)
+	if(!(activeGame && ws)) {
+		return (<div></div>)
 	}
-	return (<div></div>)
-	
+
+	ws.onopen = () => {
+	// on connecting, do nothing but log it to the console
+		console.log('client connected')
+	}
+
+	ws.onmessage = e => {
+		// listen to data sent from the websocket server
+		const data = JSON.parse(e.data)
+		var message = data['message'];
+		// this.setState({dataFromServer: message})
+		setPlayers(`${players} ${message}`)
+		console.log(message)
+	}
+
+	ws.onclose = () => {
+		console.log('disconnected')
+		// automatically try to reconnect on connection loss
+	}
+
+	return (
+		<div>
+			<h3>Play Game {game ? game.name : ''}</h3>
+			<h5>pin: {activeGame.slug}</h5>
+			<div id='players'>{players}</div>
+		</div>
+	)
 }
 
 const Host = connect(mapStateToProps)(ConnectedHost)
