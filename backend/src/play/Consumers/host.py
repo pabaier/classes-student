@@ -1,5 +1,6 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from game.models import ActiveGame
 import json
 
 class HostConsumer(WebsocketConsumer):
@@ -22,6 +23,7 @@ class HostConsumer(WebsocketConsumer):
             self.host_group_name,
             self.channel_name
         )
+        ActiveGame.objects.filter(slug=self.game_token).delete()
 
     # Receive message from WebSocket
     def receive(self, text_data):
