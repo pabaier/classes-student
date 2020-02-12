@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import * as states from './client/states'
 
 // const mapStateToProps = state => {
 // 	return { isLoggedIn: state.root.user.isLoggedIn };
@@ -9,23 +9,43 @@ import { Button } from 'react-bootstrap'
 // const ConnectedJoin = ( {dispatch} ) => {
 const Join = () => {
 	let { token } = useParams()
+	const [clientState, setclientState] = useState(states.ENTERING_NAME);
+	const [ws, setWs] = useState(null);
 
-	const ws = new WebSocket(`ws://localhost:8000/ws/join/${token}/`)
+	useEffect(() => {
+		if(!ws){
+			setWs(new WebSocket(`ws://localhost:8000/ws/join/${token}/`))
+		}
 
-	const sendMessage = () => {
+		return function cleanup() {
+			if(ws){
+				ws.close();
+			}
+		}
+	}, [ws]);
+
+	const sendMessage = (data) => {
 		try {
 			ws.send(JSON.stringify({
-				'message': 'hiho'
+				'message': data
 			}));
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
+	if(!ws) {
+		return (<div></div>)
+	}
+	ws.onclose = () => {
+		console.log('disconnected')
+		// automatically try to reconnect on connection loss
+	}
+
 	return (
 		<div>
 			<h2>Game Joined</h2>
-			<Button onClick={sendMessage}>Send</Button>
+			{states.ClientState(clientState, {ws, sendMessage, setclientState})}
 		</div>
 	);
 };
