@@ -8,6 +8,7 @@ class HostConsumer(WebsocketConsumer):
         self.game_token = self.scope['url_route']['kwargs']['game_token']
         self.host_group_name = 'host_%s' % self.game_token
         self.players_group_name = 'players_%s' % self.game_token
+        self.player_list = []
 
         # Join room group
         async_to_sync(self.channel_layer.group_add)(
@@ -38,6 +39,23 @@ class HostConsumer(WebsocketConsumer):
                 'message': message
             }
         )
+
+    def registration_message(self, event):
+        name = event['name']
+        print(f'event: {event}')
+        new_player = {'channel_name':name, 'player_name':'', 'state':'naming'}
+        self.player_list.append(new_player)
+        print(f'registered {name}')
+
+        print(f'{self.player_list}')
+
+        # async_to_sync(self.channel_layer.send)(
+        #     name,
+        #     {
+        #         'type': 'chat_message',
+        #         'message': 'you are now registered'
+        #     }
+        # )
 
     # Receive message from room group
     def chat_message(self, event):

@@ -16,6 +16,9 @@ class PlayerConsumer(WebsocketConsumer):
 
         self.accept()
 
+        # register player's channel name with host
+        self.send_to_host('registration')
+
     def disconnect(self, close_code):
         # Leave room group
         async_to_sync(self.channel_layer.group_discard)(
@@ -26,7 +29,20 @@ class PlayerConsumer(WebsocketConsumer):
     # Receive message from WebSocket
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
+        type = text_data_json['type']
         message = text_data_json['message']
+
+        if type == 'registration':
+            print('registering!')
+            # Send message to room group
+            async_to_sync(self.channel_layer.group_send)(
+                self.host_group_name,
+                {
+                    'type': 'registration_message',
+                    'name': self.channel_name,
+                    'message': message
+                }
+            )
 
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(
@@ -45,3 +61,13 @@ class PlayerConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps({
             'message': message
         }))
+
+    def send_to_host(self, type, data={}):
+        async_to_sync(self.channel_layer.group_send)(
+            self.host_group_name,
+            {
+                'name': self.channel_name,
+                'type': f'{type}_message',
+                'data': data
+            }
+        )
