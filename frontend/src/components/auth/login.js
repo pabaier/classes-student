@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { postLogIn } from "../../actions/auth";
-import LoginForm from "./LoginForm";
+import LoginForm from "./loginForm";
 import { useHistory } from "react-router-dom";
 
 const mapStateToProps = state => {

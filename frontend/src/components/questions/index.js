@@ -1,38 +1,7 @@
-import React, { useEffect } from 'react';
-import { connect } from "react-redux";
-import { getQuestions } from "../../actions/questions"
-import Question from "./question"
-import { Container, Row, Col, CardDeck } from 'react-bootstrap';
+import Questions from './questions'
+import PublicQuestions from './publicQuestions'
 
-const mapStateToProps = state => {
-	return { questions: state.root.questions };
+export {
+	Questions,
+	PublicQuestions,
 }
-
-const ConnectedQuestions = ( {questions=[], dispatch} ) => {
-	useEffect(() => {
-		dispatch(getQuestions());
-	}, [dispatch]);
-
-	const listItems = questions.map( (q) => (
-		<Col>
-			<Question key={"gq" + q.id} question={q} />
-		</Col>
-	));
-
-	return (
-		<div>
-			<h3>Questions</h3>
-			<Container>
-				<Row>
-					<CardDeck>
-						{listItems}
-					</CardDeck>
-				</Row>
-			</Container>
-		</div>
-	);
-};
-
-const Questions = connect(mapStateToProps)(ConnectedQuestions)
-
-export default Questions;

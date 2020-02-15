@@ -8,13 +8,11 @@ import {
   useParams
 } from "react-router-dom";
 import Navb from './components/Navb';
-import PublicQuestions from './components/questions/PublicQuestions';
 import PrivateRoute from './components/PrivateRoute';
 import Splash from './components/Splash'
-import Games from './components/games'
-import GamePage from './components/games/game/index'
-import PublicGames from './components/games'
-import Questions from "./components/questions/index";
+import { Games, PublicGames, GamePage } from './components/games'
+import { Questions, PublicQuestions } from "./components/questions";
+import { Host, Client } from "./components/play";
 
 const App = () => {
   return (
@@ -39,6 +37,8 @@ const LoggedIn = () => (
     <Route path="/games" component={Games} exact />
     <Route path="/games/:id" component={GamePage} />
     <Route path="/games/public" component={PublicGames} />
+    <Route path="/play/host/:id" component={Host} />
+    <Route path="/play/join/:token" component={Client} />
     <Route exact path="/questions">
       <Questions />
     </Route>
