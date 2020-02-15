@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import * as states from './client/states'
+import * as states from './states'
 
 // const mapStateToProps = state => {
 // 	return { isLoggedIn: state.root.user.isLoggedIn };
 // }
 
 // const ConnectedJoin = ( {dispatch} ) => {
-const Join = () => {
+const Client = () => {
 	let { token } = useParams()
 	const [clientState, setclientState] = useState(states.ENTERING_NAME);
 	const [ws, setWs] = useState(null);
@@ -22,7 +22,7 @@ const Join = () => {
 				ws.close();
 			}
 		}
-	}, [ws]);
+	}, [ws, token]);
 
 	const sendMessage = (data) => {
 		try {
@@ -52,4 +52,4 @@ const Join = () => {
 
 // const Join = connect(mapStateToProps)(ConnectedJoin)
 
-export default Join;
+export default Client;

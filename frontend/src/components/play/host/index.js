@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { useParams } from 'react-router-dom'
-import { activateGame } from "../../actions/play"
+import { activateGame } from "../../../actions/play"
 
 const mapStateToProps = (state, {location: {game}}) => {
 	return { activeGame: state.root.activeGame, game };
@@ -16,7 +16,7 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		if(!activeGame){
 			dispatch(activateGame(id));
 		}
-	}, [activeGame]);
+	}, [activeGame, dispatch, id]);
 
 	useEffect(() => {
 		if(activeGame && !ws){
@@ -34,7 +34,7 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 	}
 
 	ws.onopen = () => {
-	// on connecting, do nothing but log it to the console
+		// on connecting, do nothing but log it to the console
 		console.log('client connected')
 	}
 

@@ -1,7 +1,7 @@
-import Host from "./host"
-import Join from "./join"
+import Host from "./host/"
+import Client from "./client/"
 
 export {
 	Host, 
-	Join,
+	Client,
 };

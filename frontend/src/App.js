@@ -12,7 +12,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Splash from './components/Splash'
 import { Games, PublicGames, GamePage } from './components/games'
 import { Questions, PublicQuestions } from "./components/questions";
-import { Host, Join } from "./components/play";
+import { Host, Client } from "./components/play";
 
 const App = () => {
   return (
@@ -38,7 +38,7 @@ const LoggedIn = () => (
     <Route path="/games/:id" component={GamePage} />
     <Route path="/games/public" component={PublicGames} />
     <Route path="/play/host/:id" component={Host} />
-    <Route path="/play/join/:token" component={Join} />
+    <Route path="/play/join/:token" component={Client} />
     <Route exact path="/questions">
       <Questions />
     </Route>
