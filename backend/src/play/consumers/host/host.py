@@ -1,6 +1,8 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from game.models import ActiveGame
+from . import actions
+
 import json
 
 class HostConsumer(WebsocketConsumer):
@@ -30,6 +32,7 @@ class HostConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
+        type = text_data_json['type']
 
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(
