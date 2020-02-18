@@ -1,27 +1,40 @@
-from enum import Enum
-
-class State(Enum):
-    REGISTRATION=0
-    PRE_QUESTION=1
-    QUESTION=2
-    POST_QUESTION=3
-    FINISHED=4
+from game.models import Game, ActiveGame
+from question.models import Question, QuestionGame, QuestionAnswerOption
+from .state import State
 
 class Game:
-    def __init__(self):
-        self.questions = None
-        self.players = None
+    def __init__(self, game_token):
+        self.active_game = None
+        self.questions = self.get_questions(game_token)
+        self.question_index = 0
+        self.players = []
         self.teamCount = None
         self.teams = None
         self.state = State.REGISTRATION
+        self.results = []
 
-    def set_questions(self, questions):
-        self.questions = questions
-        return self
+    # [{id, text, time, answers{option:true}},...]
+    def get_questions(self, game_token):
+        self.active_game = ActiveGame.objects.get(slug=game_token)
+        qg = QuestionGame.objects.all().select_related('game', 'question').filter(game=self.active_game.game)
+        questions = []
+        for e in qg:
+            answerOptions = QuestionAnswerOption.objects.all().select_related('question').filter(question=e.question)
+            question = {
+                'id': e.question.id,
+                'text': e.question.text,
+                'time': e.time_limit
+            }
+            answers = {}
+            for a in answerOptions:
+                answers[a.option] = a.isAnswer
+            question['answers']=answers
+            questions.append(question)
+        return questions
 
-    def set_number_of_players(self, num):
-        self.playerCount = num
-        return self
+    def get_next_question(self):
+        self.question_index += 1
+        return self.questions[self.question_index-1]
 
     def set_number_of_teams(self, num):
         self.teamCount = num
@@ -42,15 +55,28 @@ class Game:
     def set_teams(self, set_teams_lambda):
         set_teams_lambda(self)
 
-    def pre_question(self, pre_question_lambda):
-        pre_question_lambda(self)
+    def pre_question(self):
+        # get and execute code from db
+        pass
 
     def change_states(self, new_state):
-        switcher = {
-            State.REGISTRATION: '1',
-            State.PRE_QUESTION: '2',
-            State.QUESTION: '3',
-            State.POST_QUESTION: '4',
-            State.FINISHED: '5'
-        }
-        switcher[new_state]
+        if new_state is State.REGISTRATION:
+            pass
+        elif new_state is State.POST_REGISTRATION:
+            pass
+        elif new_state is State.PRE_QUESTION:
+            return self.pre_question()
+        elif new_state is State.QUESTION:
+            return self.get_next_question()
+        elif new_state is State.POST_QUESTION:
+            pass
+        elif new_state is State.FINISHED:
+            pass
+        else:
+            pass
+
+    def add_player(self, player):
+        self.players.append(player)
+
+    def deactivate(self):
+        self.active_game.delete()
