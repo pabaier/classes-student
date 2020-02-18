@@ -5,7 +5,7 @@ from .state import State
 class Game:
     def __init__(self, game_token):
         self.active_game = None
-        self.questions = self.get_questions(game_token)
+        self.questions, self.answers = self.get_questions_and_answers(game_token)
         self.question_index = 0
         self.players = []
         self.teamCount = None
@@ -13,11 +13,12 @@ class Game:
         self.state = State.REGISTRATION
         self.results = []
 
-    # [{id, text, time, answers{option:true}},...]
-    def get_questions(self, game_token):
+    # [{id, text, time, answers[option, option,...]},...], [['yes'], ['hi', 'ho'],...]
+    def get_questions_and_answers(self, game_token):
         self.active_game = ActiveGame.objects.get(slug=game_token)
         qg = QuestionGame.objects.all().select_related('game', 'question').filter(game=self.active_game.game)
         questions = []
+        answers = []
         for e in qg:
             answerOptions = QuestionAnswerOption.objects.all().select_related('question').filter(question=e.question)
             question = {
@@ -25,12 +26,19 @@ class Game:
                 'text': e.question.text,
                 'time': e.time_limit
             }
-            answers = {}
+            answerOptionList = []
+            answer = []
             for a in answerOptions:
-                answers[a.option] = a.isAnswer
-            question['answers']=answers
+                answerOptionList.append(a.option)
+                if a.isAnswer:
+                    answer.append(a.option)
+            question['answers']=answerOptionList
+            answers.append(answer)
             questions.append(question)
-        return questions
+        return (questions, answers)
+
+    def check_answer(self, answer):
+        return answer in self.answers[self.question_index]
 
     def get_next_question(self):
         self.question_index += 1
