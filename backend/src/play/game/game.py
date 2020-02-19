@@ -6,12 +6,18 @@ class Game:
     def __init__(self, game_token):
         self.active_game = None
         self.questions, self.answers = self.get_questions_and_answers(game_token)
-        self.question_index = 0
         self.players = []
         self.teamCount = None
         self.teams = None
-        self.state = State.REGISTRATION
+        self.states = self.make_game()
         self.results = []
+
+    def make_game(self):
+        states = [State.REGISTRATION, State.POST_REGISTRATION]
+        for i in range(0,len(self.questions)):
+            states += [State.PRE_QUESTION,State.QUESTION,State.POST_QUESTION]
+        states += [State.FINISHED, State.GAME_OVER]
+        return states
 
     # [{id, text, time, answers[option, option,...]},...], [['yes'], ['hi', 'ho'],...]
     def get_questions_and_answers(self, game_token):
@@ -38,11 +44,17 @@ class Game:
         return (questions, answers)
 
     def check_answer(self, answer):
-        return answer in self.answers[self.question_index]
+        return answer in self.answers[0]
 
-    def get_next_question(self):
-        self.question_index += 1
-        return self.questions[self.question_index-1]
+    def next_question(self):
+        self.answers.pop(0)
+        return self.questions.pop(0)
+
+    def next_state(self):
+        return self.states.pop(0)
+
+    def get_state(self):
+        return self.states[0]
 
     def set_number_of_teams(self, num):
         self.teamCount = num
@@ -63,28 +75,47 @@ class Game:
     def set_teams(self, set_teams_lambda):
         set_teams_lambda(self)
 
-    def pre_question(self):
-        # get and execute code from db
-        pass
-
-    def change_states(self, new_state):
-        if new_state is State.REGISTRATION:
-            pass
-        elif new_state is State.POST_REGISTRATION:
-            pass
-        elif new_state is State.PRE_QUESTION:
-            return self.pre_question()
-        elif new_state is State.QUESTION:
-            return self.get_next_question()
-        elif new_state is State.POST_QUESTION:
-            pass
-        elif new_state is State.FINISHED:
-            pass
-        else:
-            pass
-
     def add_player(self, player):
         self.players.append(player)
 
     def deactivate(self):
         self.active_game.delete()
+
+    def post_registration(self):
+        pass
+
+    def pre_question(self):
+        # get and execute code from db
+        pass
+
+    def post_question(self):
+        # get and execute code from db
+        pass
+
+    def get_results(self):
+        # get and execute code from db
+        pass
+
+    def change_state(self, new_state):
+        if new_state is State.REGISTRATION:
+            pass
+        elif new_state is State.POST_REGISTRATION:
+            print('post registration method')
+            self.post_registration()
+            return self.change_state(self.next_state())
+        elif new_state is State.PRE_QUESTION:
+            print('pre question method')
+            self.pre_question()
+            return self.change_state(self.next_state())
+        elif new_state is State.QUESTION:
+            print('asking question...')
+            return self.next_question()
+        elif new_state is State.POST_QUESTION:
+            print('post question method')
+            self.post_question()
+            return self.change_state(self.next_state())
+        elif new_state is State.FINISHED:
+            print('calculating results')
+            return self.get_results()
+        else:
+            print('passing')

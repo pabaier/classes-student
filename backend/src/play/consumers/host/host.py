@@ -33,9 +33,13 @@ class HostConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
+        new_state = self.game.next_state()
 
-        # receiving a message from the front end means
-        # to proceed to the next step of the game
+        output = self.game.change_state(new_state)
+        current_state = self.game.get_state()
+        self.send_to_all_players(current_state, output)
+        self.send_to_frontend(current_state, output)
+
 
     def registration_message(self, event):
         name = event['name']
@@ -72,3 +76,9 @@ class HostConsumer(WebsocketConsumer):
                 'data': data
             }
         )
+
+    def send_to_frontend(self, state, data={}):
+        self.send(text_data=json.dumps({
+            'state': state,
+            'data': data
+        }))

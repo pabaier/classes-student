@@ -8,3 +8,4 @@ class State(str, Enum):
     STANDBY = 'standby'
     POST_QUESTION = 'post_question'
     FINISHED = 'finished'
+    GAME_OVER = 'game_over'
