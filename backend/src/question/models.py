@@ -13,6 +13,8 @@ class QuestionGame(models.Model):
     question = models.ForeignKey(Question, related_name='question_games', on_delete=models.CASCADE)
     game = models.ForeignKey('game.Game', related_name='game_questions', on_delete=models.CASCADE)
     time_limit = models.IntegerField(default=15)
+    pre_question_hook = models.TextField(blank=True)
+    post_question_hook = models.TextField(blank=True)
 
 
 class QuestionAnswerOption(models.Model):
