@@ -1,6 +1,5 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-from . import actions
 from play.game.game import Game
 from play.game.state import State
 
@@ -48,7 +47,7 @@ class HostConsumer(WebsocketConsumer):
         self.game.add_player(new_player)
         print(f'registered {name}')
         message = 'waiting for game to start...'
-        self.send_to_player(name, State.POST_REGISTRATION, message)
+        self.send_to_player(name, self.game.get_state(), message)
 
     def answer_message(self, event):
         name = event['name']
