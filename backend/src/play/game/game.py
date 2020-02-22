@@ -5,7 +5,7 @@ from .state import State
 class Game:
     def __init__(self, game_token):
         self.active_game = None
-        self.questions, self.answers = self.get_questions_and_answers(game_token)
+        self.questions, self.answers, self.question_hooks = self.get_questions_and_answers(game_token)
         self.players = []
         self.teamCount = None
         self.teams = None
@@ -26,6 +26,7 @@ class Game:
         qg = QuestionGame.objects.all().select_related('game', 'question').filter(game=self.active_game.game)
         questions = []
         answers = []
+        hooks = []
         for e in qg:
             answerOptions = QuestionAnswerOption.objects.all().select_related('question').filter(question=e.question)
             question = {
@@ -41,15 +42,23 @@ class Game:
                     answer.append(a.option)
             question['answers']=answerOptionList
             answers.append(answer)
+            hooks.append([e.pre_question_hook, e.post_question_hook])
             questions.append(question)
-        return (questions, answers)
+        return (questions, answers, hooks)
 
     def check_answer(self, answer):
         return answer in self.answers[0]
 
     def next_question(self):
         self.answers.pop(0)
-        return self.questions.pop(0)
+        self.question_hooks.pop(0)
+        self.questions.pop(0)
+        return self.get_question()
+
+    def get_question(self):
+        if len(self.questions) == 0:
+                return None
+        return self.questions[0]
 
     def next_state(self):
         self.states.pop(0)
@@ -89,12 +98,10 @@ class Game:
         pass
 
     def pre_question(self):
-        # get and execute code from db
-        pass
+        exec(self.question_hooks[0][0])
 
     def post_question(self):
-        # get and execute code from db
-        pass
+        exec(self.question_hooks[0][1])
 
     def get_results(self):
         return 1
@@ -111,10 +118,11 @@ class Game:
             self.pre_question()
         elif new_state is State.QUESTION:
             print('asking question...')
-            self.output = self.next_question()
+            self.output = self.get_question()
         elif new_state is State.POST_QUESTION:
             print('post question method')
             self.post_question()
+            self.next_question()
         elif new_state is State.FINISHED:
             print('calculating results')
             self.output = self.get_results()
