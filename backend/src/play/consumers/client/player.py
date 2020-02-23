@@ -35,7 +35,7 @@ class PlayerConsumer(WebsocketConsumer):
 
         if type == 'answer':
             print('answered')
-            self.send_to_host('answer', {'answer': message})
+            self.send_to_host('answer', message)
             self.send_to_frontend(State.STANDBY, 'waiting for everyone to answer...')
 
     def send_to_host(self, type, data={}):
