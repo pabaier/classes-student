@@ -42,27 +42,27 @@ class HostConsumer(WebsocketConsumer):
         self.send_to_frontend(current_state, output)
 
     def registration_message(self, event):
-        name = event['name']
+        channel = event['channel']
         print(f'event: {event}')
-        new_player = {'channel':name, 'name':'', 'state':'naming'}
+        new_player = {'channel':channel, 'name':'', 'state':'naming'}
         self.game.add_player(new_player)
-        print(f'registered {name}')
+        print(f'registered {channel}')
         message = 'waiting for game to start...'
-        self.send_to_player(name, self.game.get_state(), message)
+        self.send_to_player(channel, self.game.get_state(), message)
 
     def answer_message(self, event):
-        name = event['name']
+        channel = event['channel']
         answer = event['data']
-        self.game.log_answer(name, answer)
+        self.game.log_answer(channel, answer)
         if self.game.all_answers_in():
             self.receive(json.dumps({'message': 'done'}))
         else:
             message = 'waiting for everyone to answer...'
-            self.send_to_player(name, State.STANDBY, message)
+            self.send_to_player(channel, State.STANDBY, message)
 
-    def send_to_player(self, name, state, data={}, type='change_state_message'):
+    def send_to_player(self, channel, state, data={}, type='change_state_message'):
         async_to_sync(self.channel_layer.send)(
-            name,
+            channel,
             {
                 'type': type,
                 'state': state,

@@ -42,7 +42,7 @@ class PlayerConsumer(WebsocketConsumer):
         async_to_sync(self.channel_layer.group_send)(
             self.host_group_name,
             {
-                'name': self.channel_name,
+                'channel': self.channel_name,
                 'type': f'{type}_message',
                 'data': data
             }
