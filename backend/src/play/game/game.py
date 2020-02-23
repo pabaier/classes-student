@@ -1,6 +1,8 @@
 from game.models import Game, ActiveGame
 from question.models import Question, QuestionGame, QuestionAnswerOption
 from .state import State
+import threading
+import time
 
 class Game:
     def __init__(self, game_token):
@@ -12,6 +14,9 @@ class Game:
         self.states = self.make_game()
         self.results = []
         self.output = None
+        self.timer = None
+        self.start_time = None
+        self.round_results = []
 
     def make_game(self):
         states = [State.REGISTRATION, State.POST_REGISTRATION]
@@ -106,6 +111,20 @@ class Game:
     def get_results(self):
         return 1
 
+    def log_answer(self, name, answer):
+        time_taken = time.time() - self.start_time
+        self.round_results.append({'name':name, 'answer':answer, 'time': time_taken})
+
+    def all_answers_in(self):
+        all_in = len(self.round_results) == len(self.players)
+        if all_in:
+            self.timer.cancel()
+        return all_in
+
+    def set_times_up_function(self, f):
+        self.times_up = f
+
+
     def change_state(self, new_state):
         self.output = None
         if new_state is State.REGISTRATION:
@@ -119,6 +138,10 @@ class Game:
         elif new_state is State.QUESTION:
             print('asking question...')
             self.output = self.get_question()
+            self.round_results = []
+            self.timer = threading.Timer(self.output['time'], self.times_up, ['timesup'])
+            self.timer.start()
+            self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')
             self.post_question()
