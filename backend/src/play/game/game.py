@@ -3,6 +3,7 @@ from question.models import Question, QuestionGame, QuestionAnswerOption
 from .state import State
 import threading
 import time
+from math import ceil
 
 class Game:
     def __init__(self, game_token):
@@ -12,7 +13,7 @@ class Game:
         self.teamCount = None
         self.teams = None
         self.states = self.make_game()
-        self.results = []
+        self.scores = {}
         self.output = None
         self.timer = None
         self.start_time = None
@@ -95,6 +96,7 @@ class Game:
 
     def add_player(self, player):
         self.players.append(player)
+        self.scores[player['channel']] = 0
 
     def deactivate(self):
         self.active_game.delete()
@@ -111,9 +113,18 @@ class Game:
     def get_results(self):
         return 1
 
-    def log_answer(self, name, answer):
+    def calculate_question_results(self):
+        time = self.get_question()['time']
+        for result in self.round_results:
+            channel = result['channel']
+            if result['correct']:
+                result[channel] += ceil((time-result['time'])/time*1000)
+
+    def log_answer(self, channel, answer):
         time_taken = time.time() - self.start_time
-        self.round_results.append({'name':name, 'answer':answer, 'time': time_taken})
+        correct = answer in self.answers[0]
+        self.round_results.append({'channel':channel, 'answer':answer, 'time': time_taken, 'correct': correct})
+        print(self.round_results)
 
     def all_answers_in(self):
         all_in = len(self.round_results) == len(self.players)
@@ -144,6 +155,7 @@ class Game:
             self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')
+            self.output = self.calculate_question_results()
             self.post_question()
             self.next_question()
         elif new_state is State.FINISHED:
