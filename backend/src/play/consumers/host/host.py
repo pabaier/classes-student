@@ -38,8 +38,12 @@ class HostConsumer(WebsocketConsumer):
         output = self.game.change_state(new_state)
         current_state = self.game.get_state()
 
-        self.send_to_all_players(current_state, output)
-        self.send_to_frontend(current_state, output)
+        if output['host']:
+            self.send_to_frontend(current_state, output['host'])
+        if output['group']:
+            self.send_to_group(current_state, output['group'])
+        else:
+            self.send_to_all_players(current_state, output['players'])
 
     def registration_message(self, event):
         channel = event['channel']
@@ -70,7 +74,7 @@ class HostConsumer(WebsocketConsumer):
             }
         )
 
-    def send_to_all_players(self, state, data={}, type='change_state_message'):
+    def send_to_group(self, state, data={}, type='change_state_message'):
         async_to_sync(self.channel_layer.group_send)(
             self.players_group_name,
             {
@@ -79,6 +83,10 @@ class HostConsumer(WebsocketConsumer):
                 'data': data
             }
         )
+
+    def send_to_all_players(self, state, data={}, type='change_state_message'):
+        for player in data:
+            self.send_to_player(player['channel'], player['data'])
 
     def send_to_frontend(self, state, data={}):
         self.send(text_data=json.dumps({

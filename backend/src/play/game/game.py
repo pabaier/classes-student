@@ -14,7 +14,7 @@ class Game:
         self.teams = None
         self.states = self.make_game()
         self.scores = {}
-        self.output = None
+        self.output = self.reset_output()
         self.timer = None
         self.start_time = None
         self.round_results = []
@@ -122,9 +122,8 @@ class Game:
 
     def log_answer(self, channel, answer):
         time_taken = time.time() - self.start_time
-        correct = answer in self.answers[0]
+        correct = self.check_answer(answer)
         self.round_results.append({'channel':channel, 'answer':answer, 'time': time_taken, 'correct': correct})
-        print(self.round_results)
 
     def all_answers_in(self):
         all_in = len(self.round_results) == len(self.players)
@@ -135,9 +134,11 @@ class Game:
     def set_times_up_function(self, f):
         self.times_up = f
 
+    def reset_output(self):
+        self.output = {'players': None, 'group': None, 'host': None}
 
     def change_state(self, new_state):
-        self.output = None
+        self.output = self.reset_output()
         if new_state is State.REGISTRATION:
             pass
         elif new_state is State.POST_REGISTRATION:
@@ -148,7 +149,7 @@ class Game:
             self.pre_question()
         elif new_state is State.QUESTION:
             print('asking question...')
-            self.output = self.get_question()
+            self.output['host'] = self.output['group'] = self.get_question()
             self.round_results = []
             self.timer = threading.Timer(self.output['time'], self.times_up, ['timesup'])
             self.timer.start()
@@ -164,6 +165,6 @@ class Game:
         else:
             print('passing')
 
-        if self.output:
+        if self.output['host'] or self.output['group'] or self.output['players']:
             return self.output
         return self.change_state(self.next_state())
