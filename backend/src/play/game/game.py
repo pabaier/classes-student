@@ -8,7 +8,7 @@ from math import ceil
 class Game:
     def __init__(self, game_token):
         self.active_game = None
-        self.questions, self.answers, self.question_hooks = self.get_questions_and_answers(game_token)
+        self.questions, self.answers, self.question_hooks, self.scoring_hook = self.get_game(game_token)
         self.players = []
         self.teamCount = None
         self.teams = None
@@ -27,12 +27,19 @@ class Game:
         return states
 
     # [{id, text, time, answers[option, option,...]},...], [['yes'], ['hi', 'ho'],...]
-    def get_questions_and_answers(self, game_token):
+    def get_game(self, game_token):
         self.active_game = ActiveGame.objects.get(slug=game_token)
         qg = QuestionGame.objects.all().select_related('game', 'question').filter(game=self.active_game.game)
+
+        scoring_hook = None
         questions = []
         answers = []
         hooks = []
+
+        scoring = qg.first().game.scoring
+        if scoring:
+            scoring_hook = scoring.hook
+
         for e in qg:
             answerOptions = QuestionAnswerOption.objects.all().select_related('question').filter(question=e.question)
             question = {
@@ -50,7 +57,7 @@ class Game:
             answers.append(answer)
             hooks.append([e.pre_question_hook, e.post_question_hook])
             questions.append(question)
-        return (questions, answers, hooks)
+        return questions, answers, hooks, scoring_hook
 
     def check_answer(self, answer):
         return answer in self.answers[0]
@@ -123,7 +130,9 @@ class Game:
     def log_answer(self, channel, answer):
         time_taken = time.time() - self.start_time
         correct = self.check_answer(answer)
-        self.round_results.append({'channel':channel, 'answer':answer, 'time': time_taken, 'correct': correct})
+        result = {'channel':channel, 'answer':answer, 'time': time_taken, 'correct': correct}
+        self.round_results.append(result)
+        return result
 
     def all_answers_in(self):
         all_in = len(self.round_results) == len(self.players)
