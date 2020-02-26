@@ -57,7 +57,7 @@ class HostConsumer(WebsocketConsumer):
     def answer_message(self, event):
         channel = event['channel']
         answer = event['data']
-        self.game.log_answer(channel, answer)
+        self.game.score_answer(channel, answer)
         if self.game.all_answers_in():
             self.receive(json.dumps({'message': 'done'}))
         else:

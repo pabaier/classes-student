@@ -18,6 +18,14 @@ class Game:
         self.timer = None
         self.start_time = None
         self.round_results = []
+        self.calculate_score = self.custom_individual_scoring if self.scoring_hook else self.default_individual_scoring
+
+    def custom_individual_scoring(self, result):
+        exec(self.scoring_hook, {'results': result})
+
+    def default_individual_scoring(self, result):
+        time = self.get_question()['time']
+        return ceil((time-result['time'])/time*1000)
 
     def make_game(self):
         states = [State.REGISTRATION, State.POST_REGISTRATION]
@@ -120,19 +128,15 @@ class Game:
     def get_results(self):
         return 1
 
-    def calculate_question_results(self):
-        time = self.get_question()['time']
-        for result in self.round_results:
-            channel = result['channel']
-            if result['correct']:
-                result[channel] += ceil((time-result['time'])/time*1000)
-
-    def log_answer(self, channel, answer):
+    def score_answer(self, channel, answer):
         time_taken = time.time() - self.start_time
         correct = self.check_answer(answer)
-        result = {'channel':channel, 'answer':answer, 'time': time_taken, 'correct': correct}
+        score = 0
+        if correct:
+            score = self.calculate_score({'answer':answer, 'time': time_taken, 'correct': correct})
+        result = {channel: {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}}
+        self.scores[channel] += score
         self.round_results.append(result)
-        return result
 
     def all_answers_in(self):
         all_in = len(self.round_results) == len(self.players)
@@ -145,6 +149,9 @@ class Game:
 
     def reset_output(self):
         self.output = {'players': None, 'group': None, 'host': None}
+
+    def generate_leaderboard(self):
+        pass
 
     def change_state(self, new_state):
         self.output = self.reset_output()
@@ -165,7 +172,7 @@ class Game:
             self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')
-            self.output = self.calculate_question_results()
+            self.output = self.generate_leaderboard()
             self.post_question()
             self.next_question()
         elif new_state is State.FINISHED:
