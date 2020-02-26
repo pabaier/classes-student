@@ -48,7 +48,7 @@ class HostConsumer(WebsocketConsumer):
     def registration_message(self, event):
         channel = event['channel']
         print(f'event: {event}')
-        new_player = {'channel':channel, 'name':'', 'state':'naming'}
+        new_player = {channel: {'name':'', 'state':'naming'}}
         self.game.add_player(new_player)
         print(f'registered {channel}')
         message = 'waiting for game to start...'
@@ -84,9 +84,9 @@ class HostConsumer(WebsocketConsumer):
             }
         )
 
-    def send_to_all_players(self, state, data={}, type='change_state_message'):
-        for player in data:
-            self.send_to_player(player['channel'], player['data'])
+    def send_to_all_players(self, state, players={}, type='change_state_message'):
+        for channel in players:
+            self.send_to_player(channel, players[channel])
 
     def send_to_frontend(self, state, data={}):
         self.send(text_data=json.dumps({

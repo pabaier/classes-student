@@ -9,7 +9,7 @@ class Game:
     def __init__(self, game_token):
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.scoring_hook = self.get_game(game_token)
-        self.players = []
+        self.players = {}
         self.teamCount = None
         self.teams = None
         self.states = self.make_game()
@@ -17,7 +17,7 @@ class Game:
         self.output = self.reset_output()
         self.timer = None
         self.start_time = None
-        self.round_results = []
+        self.round_results = {}
         self.calculate_score = self.custom_individual_scoring if self.scoring_hook else self.default_individual_scoring
 
     def custom_individual_scoring(self, result):
@@ -110,8 +110,9 @@ class Game:
         set_teams_lambda(self)
 
     def add_player(self, player):
-        self.players.append(player)
-        self.scores[player['channel']] = 0
+        for channel in player:
+            self.players[channel] = player[channel]
+            self.scores[channel] = 0
 
     def deactivate(self):
         self.active_game.delete()
@@ -134,9 +135,8 @@ class Game:
         score = 0
         if correct:
             score = self.calculate_score({'answer':answer, 'time': time_taken, 'correct': correct})
-        result = {channel: {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}}
+        self.round_results[channel] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
         self.scores[channel] += score
-        self.round_results.append(result)
 
     def all_answers_in(self):
         all_in = len(self.round_results) == len(self.players)
@@ -148,14 +148,19 @@ class Game:
         self.times_up = f
 
     def reset_output(self):
-        self.output = {'players': None, 'group': None, 'host': None}
+        return {'players': None, 'group': None, 'host': None}
+
+    def reset_round_results(self):
+        for channel in self.players:
+            self.round_results[channel] = {'answer': None, 'time': None, 'correct': False, 'score': 0}
 
     def generate_leaderboard(self):
-        pass
+        return {'scores': self.scores, 'roundResults': self.round_results}, self.round_results
 
     def change_state(self, new_state):
         self.output = self.reset_output()
         if new_state is State.REGISTRATION:
+            print('registration method')
             pass
         elif new_state is State.POST_REGISTRATION:
             print('post registration method')
@@ -166,18 +171,18 @@ class Game:
         elif new_state is State.QUESTION:
             print('asking question...')
             self.output['host'] = self.output['group'] = self.get_question()
-            self.round_results = []
-            self.timer = threading.Timer(self.output['time'], self.times_up, ['timesup'])
+            self.reset_round_results()
+            self.timer = threading.Timer(self.output['host']['time'], self.times_up, ['timesup'])
             self.timer.start()
             self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')
-            self.output = self.generate_leaderboard()
+            self.output['host'], self.output['players'] = self.generate_leaderboard()
             self.post_question()
             self.next_question()
         elif new_state is State.FINISHED:
             print('calculating results')
-            self.output = self.get_results()
+            self.output['host'] = self.get_results()
         else:
             print('passing')
 
