@@ -1,7 +1,6 @@
 from game.models import Game, ActiveGame
 from question.models import Question, QuestionGame, QuestionAnswerOption
 from .state import State
-import threading
 import time
 from math import ceil
 
@@ -15,7 +14,6 @@ class Game:
         self.states = self.make_game()
         self.scores = {}
         self.output = self.reset_output()
-        self.timer = None
         self.start_time = None
         self.round_results = {}
         self.calculate_score = self.custom_individual_scoring if self.scoring_hook else self.default_individual_scoring
@@ -139,13 +137,7 @@ class Game:
         self.scores[channel] += score
 
     def all_answers_in(self):
-        all_in = len(self.round_results) == len(self.players)
-        if all_in:
-            self.timer.cancel()
-        return all_in
-
-    def set_times_up_function(self, f):
-        self.times_up = f
+        return len(self.round_results) == len(self.players)
 
     def reset_output(self):
         return {'players': None, 'group': None, 'host': None}
@@ -172,8 +164,6 @@ class Game:
             print('asking question...')
             self.output['host'] = self.output['group'] = self.get_question()
             self.reset_round_results()
-            self.timer = threading.Timer(self.output['host']['time'], self.times_up, ['timesup'])
-            self.timer.start()
             self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')

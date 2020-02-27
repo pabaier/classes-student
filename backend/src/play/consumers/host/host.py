@@ -10,7 +10,6 @@ class HostConsumer(WebsocketConsumer):
         self.host_group_name = 'host_%s' % self.game_token
         self.players_group_name = 'players_%s' % self.game_token
         self.game = Game(self.game_token)
-        self.game.set_times_up_function(self.send_to_frontend)
         self.round_results = []
 
         # Join room group
@@ -42,7 +41,7 @@ class HostConsumer(WebsocketConsumer):
             self.send_to_frontend(current_state, output['host'])
         if output['group']:
             self.send_to_group(current_state, output['group'])
-        else:
+        elif output['players']:
             self.send_to_all_players(current_state, output['players'])
 
     def registration_message(self, event):
@@ -60,6 +59,7 @@ class HostConsumer(WebsocketConsumer):
         self.game.score_answer(channel, answer)
         if self.game.all_answers_in():
             self.receive(json.dumps({'message': 'done'}))
+            self.send_to_frontend(self.game.get_state, {'message': 'done'})
         else:
             message = 'waiting for everyone to answer...'
             self.send_to_player(channel, State.STANDBY, message)
