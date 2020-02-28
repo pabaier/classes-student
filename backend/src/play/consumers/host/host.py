@@ -37,11 +37,11 @@ class HostConsumer(WebsocketConsumer):
         output = self.game.change_state(new_state)
         current_state = self.game.get_state()
 
-        if output['host']:
+        if output['host']['data']:
             self.send_to_frontend(current_state, output['host'])
-        if output['group']:
+        if output['group']['data']:
             self.send_to_group(current_state, output['group'])
-        elif output['players']:
+        elif output['players']['data']:
             self.send_to_all_players(current_state, output['players'])
 
     def registration_message(self, event):

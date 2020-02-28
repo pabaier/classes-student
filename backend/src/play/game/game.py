@@ -140,7 +140,7 @@ class Game:
         return len(self.round_results) == len(self.players)
 
     def reset_output(self):
-        return {'players': None, 'group': None, 'host': None}
+        return {'players': {'data': None}, 'group': {'data': None}, 'host': {'data': None, 'timer': None}}
 
     def reset_round_results(self):
         for channel in self.players:
@@ -162,20 +162,20 @@ class Game:
             self.pre_question()
         elif new_state is State.QUESTION:
             print('asking question...')
-            self.output['host'] = self.output['group'] = self.get_question()
+            self.output['host']['data'] = self.output['group']['data'] = self.get_question()
             self.reset_round_results()
             self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')
-            self.output['host'], self.output['players'] = self.generate_leaderboard()
+            self.output['host']['data'], self.output['players']['data'] = self.generate_leaderboard()
             self.post_question()
             self.next_question()
         elif new_state is State.FINISHED:
             print('calculating results')
-            self.output['host'] = self.get_results()
+            self.output['host']['data'] = self.get_results()
         else:
             print('passing')
 
-        if self.output['host'] or self.output['group'] or self.output['players']:
+        if self.output['host']['data'] or self.output['group']['data'] or self.output['players']['data']:
             return self.output
         return self.change_state(self.next_state())
