@@ -1,5 +1,6 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
+from play.game.state import State
 import json
 
 class PlayerConsumer(WebsocketConsumer):
@@ -16,6 +17,9 @@ class PlayerConsumer(WebsocketConsumer):
 
         self.accept()
 
+        # register player's channel name with host
+        self.send_to_host('registration')
+
     def disconnect(self, close_code):
         # Leave room group
         async_to_sync(self.channel_layer.group_discard)(
@@ -26,22 +30,32 @@ class PlayerConsumer(WebsocketConsumer):
     # Receive message from WebSocket
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
+        type = text_data_json['type']
         message = text_data_json['message']
 
-        # Send message to room group
+        if type == 'answer':
+            print('answered')
+            self.send_to_host('answer', message)
+            self.send_to_frontend(State.STANDBY, 'waiting for everyone to answer...')
+
+    def send_to_host(self, type, data={}):
         async_to_sync(self.channel_layer.group_send)(
             self.host_group_name,
             {
-                'type': 'chat_message',
-                'message': message
+                'channel': self.channel_name,
+                'type': f'{type}_message',
+                'data': data
             }
         )
 
-    # Receive message from room group
-    def chat_message(self, event):
-        message = event['message']
-
-        # Send message to WebSocket
+    def send_to_frontend(self, state, data={}):
         self.send(text_data=json.dumps({
-            'message': message
+            'state': state,
+            'data': data
         }))
+
+    def change_state_message(self, event):
+        state = event['state']
+        data = event.get('data', '')
+
+        self.send_to_frontend(state, data)

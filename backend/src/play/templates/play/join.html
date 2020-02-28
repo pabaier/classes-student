@@ -37,7 +37,8 @@
         var messageInputDom = document.querySelector('#chat-message-input');
         var message = messageInputDom.value;
         playSocket.send(JSON.stringify({
-            'message': message
+            'message': message,
+            'type': 'registration'
         }));
 
         messageInputDom.value = '';
