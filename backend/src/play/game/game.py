@@ -26,7 +26,7 @@ class Game:
         return ceil((time-result['time'])/time*1000)
 
     def make_game(self):
-        states = [State.REGISTRATION, State.POST_REGISTRATION]
+        states = [State.CONNECT, State.REGISTRATION, State.POST_REGISTRATION]
         for i in range(0,len(self.questions)):
             states += [State.PRE_QUESTION,State.QUESTION,State.POST_QUESTION]
         states += [State.FINISHED, State.GAME_OVER]
@@ -112,6 +112,9 @@ class Game:
             self.players[channel] = player[channel]
             self.scores[channel] = 0
 
+    def set_player_name(self, channel, name):
+        self.players[channel]['name'] = name
+
     def deactivate(self):
         self.active_game.delete()
 
@@ -135,6 +138,7 @@ class Game:
             score = self.calculate_score({'answer':answer, 'time': time_taken, 'correct': correct})
         self.round_results[channel] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
         self.scores[channel] += score
+        return self.all_answers_in()
 
     def all_answers_in(self):
         return len(self.round_results) == len(self.players)
@@ -151,7 +155,10 @@ class Game:
 
     def change_state(self, new_state):
         self.output = self.reset_output()
-        if new_state is State.REGISTRATION:
+        if new_state is State.CONNECT:
+            print('connect method')
+            pass
+        elif new_state is State.REGISTRATION:
             print('registration method')
             pass
         elif new_state is State.POST_REGISTRATION:
