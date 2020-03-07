@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { activateGame } from "../../../actions/play"
+import { Button } from 'react-bootstrap'
+import { CONNECT } from '../state'
 
 const mapStateToProps = (state, {location: {game}}) => {
 	return { activeGame: state.root.activeGame, game };
@@ -11,6 +13,8 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 	let { id } = useParams()
 	const [players, setPlayers] = useState('');
 	const [ws, setWs] = useState(null);
+	const [state, setState] = useState(CONNECT);
+	const [data, setData] = useState({});
 
 	useEffect(() => {
 		if(!activeGame){
@@ -40,11 +44,10 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 
 	ws.onmessage = e => {
 		// listen to data sent from the websocket server
-		const data = JSON.parse(e.data)
-		var message = data['message'];
-		// this.setState({dataFromServer: message})
+		var message = JSON.parse(e.data);
+		setState(message['state']);
+		setData(message['data']);
 		setPlayers(`${players} ${message}`)
-		console.log(message)
 	}
 
 	ws.onclose = () => {
@@ -52,11 +55,27 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		// automatically try to reconnect on connection loss
 	}
 
+	const sendMessage = (message) => {
+		try {
+			ws.send(JSON.stringify({
+				'message': message,
+			}));
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	const nextState = () => {
+		sendMessage('next');
+	}
+
 	return (
 		<div>
 			<h3>Play Game {game ? game.name : ''}</h3>
 			<h5>pin: {activeGame.slug}</h5>
+			<Button  onClick={nextState}>Next State</Button>
 			<div id='players'>{players}</div>
+			<div id='state'>{state}</div>
 		</div>
 	)
 }
