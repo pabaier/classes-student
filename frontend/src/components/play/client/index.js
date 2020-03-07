@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
-import * as states from './states'
+import { CONNECT } from '../state'
 
-// const mapStateToProps = state => {
-// 	return { isLoggedIn: state.root.user.isLoggedIn };
-// }
-
-// const ConnectedJoin = ( {dispatch} ) => {
 const Client = () => {
 	let { token } = useParams()
-	const [clientState, setclientState] = useState(states.ENTERING_NAME);
+	const [state, setState] = useState(CONNECT);
 	const [ws, setWs] = useState(null);
 
 	useEffect(() => {
@@ -24,10 +19,11 @@ const Client = () => {
 		}
 	}, [ws, token]);
 
-	const sendMessage = (data) => {
+	const sendMessage = (data, type) => {
 		try {
 			ws.send(JSON.stringify({
-				'message': data
+				'data': data,
+				'type': type,
 			}));
 		} catch (error) {
 			console.log(error);
@@ -37,6 +33,14 @@ const Client = () => {
 	if(!ws) {
 		return (<div></div>)
 	}
+
+	ws.onmessage = e => {
+		const data = JSON.parse(e.data);
+		const newState = data['state'];
+		setState(newState);
+		console.log(data);
+	}
+
 	ws.onclose = () => {
 		console.log('disconnected')
 		// automatically try to reconnect on connection loss
@@ -45,11 +49,9 @@ const Client = () => {
 	return (
 		<div>
 			<h2>Game Joined</h2>
-			{states.ClientState(clientState, {ws, sendMessage, setclientState})}
+			{/* {states.ClientState(state, {ws, sendMessage, setclientState})} */}
 		</div>
 	);
 };
-
-// const Join = connect(mapStateToProps)(ConnectedJoin)
 
 export default Client;
