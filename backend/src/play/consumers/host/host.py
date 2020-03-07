@@ -51,7 +51,7 @@ class HostConsumer(WebsocketConsumer):
         self.game.add_player(new_player)
         print(f'connected {channel}')
         message = 'now register...'
-        self.send_to_player(channel, self.game.get_state(), message)
+        self.send_to_player(channel, State.REGISTRATION, message)
 
     def registration_message(self, event):
         channel = event['channel']
