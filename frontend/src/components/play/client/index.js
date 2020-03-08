@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
-import { CONNECT } from '../state'
+import { useParams } from 'react-router-dom';
+import { CONNECT } from '../state';
+import Page from './page';
 
 const Client = () => {
 	let { token } = useParams()
 	const [state, setState] = useState(CONNECT);
+	const [data, setData] = useState({});
 	const [ws, setWs] = useState(null);
 
 	useEffect(() => {
@@ -35,10 +37,9 @@ const Client = () => {
 	}
 
 	ws.onmessage = e => {
-		const data = JSON.parse(e.data);
-		const newState = data['state'];
-		setState(newState);
-		console.log(data);
+		const receivedData = JSON.parse(e.data);
+		setState(receivedData['state']);
+		setData(receivedData['data']);
 	}
 
 	ws.onclose = () => {
@@ -46,10 +47,17 @@ const Client = () => {
 		// automatically try to reconnect on connection loss
 	}
 
+	const packageData = () => {
+		return {
+			data,
+			sendMessage,
+		}
+	}
+
 	return (
 		<div>
 			<h2>Game Joined</h2>
-			{/* {states.ClientState(state, {ws, sendMessage, setclientState})} */}
+			<Page currentState={state} data={packageData()}></Page>
 		</div>
 	);
 };
