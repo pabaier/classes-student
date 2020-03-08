@@ -19,6 +19,7 @@ class HostConsumer(WebsocketConsumer):
         )
 
         self.accept()
+        self.send_to_frontend(State.CONNECT, {'message': 'waiting for connections and registrations...'})
 
     def disconnect(self, close_code):
         # Leave room group
@@ -42,7 +43,7 @@ class HostConsumer(WebsocketConsumer):
         if output['group']['data']:
             self.send_to_group(current_state, output['group'])
         elif output['players']['data']:
-            self.send_to_all_players(current_state, output['players'])
+            self.send_to_all_individual_players(current_state, output['players'])
 
     def connect_message(self, event):
         channel = event['channel']
@@ -91,9 +92,9 @@ class HostConsumer(WebsocketConsumer):
             }
         )
 
-    def send_to_all_players(self, state, players={}, type='change_state_message'):
-        for channel in players:
-            self.send_to_player(channel, players[channel])
+    def send_to_all_individual_players(self, state, players={}, type='change_state_message'):
+        for channel in players['data']:
+            self.send_to_player(channel, state, players['data'][channel])
 
     def send_to_frontend(self, state, data={}):
         self.send(text_data=json.dumps({
