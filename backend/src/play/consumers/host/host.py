@@ -61,6 +61,7 @@ class HostConsumer(WebsocketConsumer):
         self.game.set_player_name(channel, name)
         message = f'welcome {name}'
         self.send_to_player(channel, State.STANDBY, message)
+        self.send_to_frontend(State.REGISTRATION, {'name': name})
 
     def answer_message(self, event):
         channel = event['channel']

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { activateGame } from "../../../actions/play"
 import { Button } from 'react-bootstrap'
-import { CONNECT } from '../state'
+import { CONNECT, REGISTRATION } from '../state'
 
 const mapStateToProps = (state, {location: {game}}) => {
 	return { activeGame: state.root.activeGame, game };
@@ -45,9 +45,13 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 	ws.onmessage = e => {
 		// listen to data sent from the websocket server
 		var message = JSON.parse(e.data);
-		setState(message['state']);
-		setData(message['data']);
-		setPlayers(`${players} ${message}`)
+		if(message.state === REGISTRATION) {
+			setPlayers(`${players} ${message.data.name}`)
+		}
+		else{
+			setState(message['state']);
+			setData(message['data']);
+		}
 	}
 
 	ws.onclose = () => {
