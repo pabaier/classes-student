@@ -1,14 +1,13 @@
 import React from 'react';
-import * as state from '../state'
+import * as state from '../../state'
+import Registration from './registration'
 
-const Page = (props) => {
-	switch(props.currentState) {
+const Page = ({currentState, data}) => {
+	switch(currentState) {
 		case state.STANDBY:
 			return <div>Stand By</div>;
-			// return <Wait ws={websocket}/>;
 		case state.REGISTRATION:
-			return <div>Registration</div>;
-			// return <EnterName ws={websocket} callback={callback} setState={setclientState}/>;
+			return <Registration {...data}></Registration>;
 		case state.POST_REGISTRATION:
 			return <div>Post Registration</div>;
 		case state.PRE_QUESTION:

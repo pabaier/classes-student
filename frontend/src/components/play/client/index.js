@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CONNECT } from '../state';
-import Page from './page';
+import Page from './pages';
 
 const Client = () => {
 	let { token } = useParams()
