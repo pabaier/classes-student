@@ -60,7 +60,7 @@ class HostConsumer(WebsocketConsumer):
         name = event['data']
         self.game.set_player_name(channel, name)
         message = f'welcome {name}'
-        self.send_to_player(channel, self.game.get_state(), message)
+        self.send_to_player(channel, State.STANDBY, message)
 
     def answer_message(self, event):
         channel = event['channel']
