@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { activateGame } from "../../../actions/play"
 import { Button } from 'react-bootstrap'
 import { CONNECT, REGISTRATION } from '../state'
+import Page from './pages';
 
 const mapStateToProps = (state, {location: {game}}) => {
 	return { activeGame: state.root.activeGame, game };
@@ -73,13 +74,17 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		sendMessage('next');
 	}
 
+	const packageData = {
+		currentState:state,
+		data,
+		sendMessage,
+	}
+
 	return (
 		<div>
-			<h3>Play Game {game ? game.name : ''}</h3>
-			<h5>pin: {activeGame.slug}</h5>
-			<Button  onClick={nextState}>Next State</Button>
-			<div id='players'>{players}</div>
-			<div id='state'>{state}</div>
+			<h5>Game pin: {activeGame.slug}</h5>
+			<Page {...packageData}></Page>
+			<Button size='sm' onClick={nextState}>Next State</Button>
 		</div>
 	)
 }
