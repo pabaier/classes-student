@@ -1,7 +1,21 @@
 import React from 'react';
+import { Button } from 'react-bootstrap'
 import * as state from '../../state';
 import Connect from './connect';
 import Question from './question';
+
+const defaultPage = (name, sendMessage) => {
+	const next = () => {
+		sendMessage('next');
+	}
+
+	return (
+		<div>
+			<div>{name}</div>
+			<Button size='sm' onClick={next}>next</Button>
+		</div>
+	)
+}
 
 const Page = (props) => {
 	switch(props.currentState) {
@@ -10,21 +24,21 @@ const Page = (props) => {
 		case state.CONNECT:
 			return <Connect {...props} />;
 		case state.REGISTRATION:
-			return <div>Registration</div>
+			return defaultPage('Registration', props.sendMessage)
 		case state.POST_REGISTRATION:
-			return <div>Post Registration</div>;
+			return defaultPage('Post-Registration', props.sendMessage)
 		case state.PRE_QUESTION:
-			return <div>Pre Question</div>;
+			return defaultPage('Pre-Question', props.sendMessage)
 		case state.QUESTION:
 			return <Question {...props} />;
 		case state.POST_QUESTION:
-			return <div>Post Question</div>;
+			return defaultPage('Post-Question', props.sendMessage)
 		case state.GAME_OVER:
-			return <div>Game Over</div>;
+			return defaultPage('Game Over', props.sendMessage)
 		case state.FINISHED:
-			return <div>Finished</div>;																		
+			return defaultPage('Finished', props.sendMessage)
 		default:
-			return <div>Default</div>;
+			return defaultPage('Default', props.sendMessage)
 	}
 }
 
