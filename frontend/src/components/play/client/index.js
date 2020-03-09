@@ -38,8 +38,8 @@ const Client = () => {
 
 	ws.onmessage = e => {
 		const receivedData = JSON.parse(e.data);
-		setState(receivedData['state']);
-		setData(receivedData['data']);
+		setState(receivedData.state);
+		setData({...receivedData.data});
 	}
 
 	ws.onclose = () => {
@@ -47,17 +47,15 @@ const Client = () => {
 		// automatically try to reconnect on connection loss
 	}
 
-	const packageData = () => {
-		return {
-			data,
-			sendMessage,
-		}
+	const packageData = {
+		currentState:state,
+		data,
+		sendMessage,
 	}
 
 	return (
 		<div>
-			<h2>Game Joined</h2>
-			<Page currentState={state} data={packageData()}></Page>
+			<Page {...packageData}></Page>
 		</div>
 	);
 };

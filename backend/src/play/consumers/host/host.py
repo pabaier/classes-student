@@ -39,11 +39,11 @@ class HostConsumer(WebsocketConsumer):
         current_state = self.game.get_state()
 
         if output['host']['data']:
-            self.send_to_frontend(current_state, output['host'])
+            self.send_to_frontend(current_state, output['host']['data'])
         if output['group']['data']:
-            self.send_to_group(current_state, output['group'])
+            self.send_to_group(current_state, output['group']['data'])
         elif output['players']['data']:
-            self.send_to_all_individual_players(current_state, output['players'])
+            self.send_to_all_individual_players(current_state, output['players']['data'])
 
     def connect_message(self, event):
         channel = event['channel']
@@ -52,7 +52,7 @@ class HostConsumer(WebsocketConsumer):
         self.game.add_player(new_player)
         print(f'connected {channel}')
         message = 'now register...'
-        self.send_to_player(channel, State.REGISTRATION, message)
+        self.send_to_player(channel, State.REGISTRATION, {'message': message})
 
     def registration_message(self, event):
         channel = event['channel']
@@ -60,7 +60,7 @@ class HostConsumer(WebsocketConsumer):
         name = event['data']
         self.game.set_player_name(channel, name)
         message = f'welcome {name}'
-        self.send_to_player(channel, State.STANDBY, message)
+        self.send_to_player(channel, State.STANDBY, {'message': message})
         self.send_to_frontend(State.REGISTRATION, {'name': name})
 
     def answer_message(self, event):
@@ -71,7 +71,7 @@ class HostConsumer(WebsocketConsumer):
             self.receive(json.dumps({'message': 'done'}))
         else:
             message = 'waiting for everyone to answer...'
-            self.send_to_player(channel, State.STANDBY, message)
+            self.send_to_player(channel, State.STANDBY, {'message': message})
 
     def send_to_player(self, channel, state, data={}, type='change_state_message'):
         async_to_sync(self.channel_layer.send)(
@@ -94,8 +94,8 @@ class HostConsumer(WebsocketConsumer):
         )
 
     def send_to_all_individual_players(self, state, players={}, type='change_state_message'):
-        for channel in players['data']:
-            self.send_to_player(channel, state, players['data'][channel])
+        for channel in players:
+            self.send_to_player(channel, state, players[channel])
 
     def send_to_frontend(self, state, data={}):
         self.send(text_data=json.dumps({
