@@ -74,17 +74,19 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		sendMessage('next');
 	}
 
-	const packageData = {
-		currentState:state,
-		data,
-		sendMessage,
+	const packageData = () => {
+		data.players = players;
+		return{
+			currentState:state,
+			data,
+			sendMessage,
+		}	
 	}
 
 	return (
 		<div>
 			<h5>Game pin: {activeGame.slug}</h5>
-			<Page {...packageData}></Page>
-			<Button size='sm' onClick={nextState}>Next State</Button>
+			<Page {...packageData()}></Page>
 		</div>
 	)
 }

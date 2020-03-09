@@ -1,5 +1,6 @@
 import React from 'react';
 import * as state from '../../state';
+import Connect from './connect';
 // import Registration from './registration';
 // import Question from './question';
 
@@ -8,7 +9,7 @@ const Page = (props) => {
 		case state.STANDBY:
 			return <div>Stand By</div>;
 		case state.CONNECT:
-			return <div>Connect</div>;
+			return <Connect {...props} />;
 		case state.REGISTRATION:
 			return <div>Registration</div>
 		// return <Registration {...props} />;
