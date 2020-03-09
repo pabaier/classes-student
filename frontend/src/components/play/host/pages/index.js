@@ -1,8 +1,7 @@
 import React from 'react';
 import * as state from '../../state';
 import Connect from './connect';
-// import Registration from './registration';
-// import Question from './question';
+import Question from './question';
 
 const Page = (props) => {
 	switch(props.currentState) {
@@ -12,14 +11,12 @@ const Page = (props) => {
 			return <Connect {...props} />;
 		case state.REGISTRATION:
 			return <div>Registration</div>
-		// return <Registration {...props} />;
 		case state.POST_REGISTRATION:
 			return <div>Post Registration</div>;
 		case state.PRE_QUESTION:
 			return <div>Pre Question</div>;
 		case state.QUESTION:
-			return <div>Questions</div>
-			// return <Question {...props} />;
+			return <Question {...props} />;
 		case state.POST_QUESTION:
 			return <div>Post Question</div>;
 		case state.GAME_OVER:
