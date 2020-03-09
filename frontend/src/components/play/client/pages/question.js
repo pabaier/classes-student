@@ -1,24 +1,25 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 const Question = ({data, sendMessage}) => {
 
 	const onSubmit = e => {
 		e.preventDefault();
-		const playerName = e.target.elements.playerName.value;
-		sendMessage(playerName, 'registration');
+		const answer = e.target.value;
+		sendMessage(answer, 'answer');
+	}
+
+	const makeRows = () => {
+		if(!data.answers) return;
+		var key = 0;
+		return data.answers.map(x => (
+			<Button key={key++} onClick={onSubmit} value={x} block>{x}</Button>
+		));
 	}
 
 	return (
 		<div>
-			<h3>{data.text}</h3>
-
-			{/* <Form onSubmit={ e => onSubmit(e)}>
-				<Form.Row >
-					<Form.Control type="text" name="playerName" placeholder="Enter Name" />
-					<Button  type="submit">Enter</Button>
-				</Form.Row>
-			</Form> */}
+			{makeRows()}
 		</div>
 	)
 }
