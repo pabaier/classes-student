@@ -1,11 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap'
 
-const Question = ({data, sendMessage}) => {
-
-	const stop = () => {
-		sendMessage('next')
-	}
+const Question = ({data}) => {
 
 	const makeRows = () => {
 		if(!data.answers) return;
@@ -19,7 +15,6 @@ const Question = ({data, sendMessage}) => {
 		<div>
 			<h3>{data.text ? data.text : ''}</h3>
 			{makeRows()}
-			<Button size='sm' onClick={stop}>Times Up!</Button>
 		</div>
 	)
 }

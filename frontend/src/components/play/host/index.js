@@ -88,11 +88,17 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		}	
 	}
 
+	const timerOrButton = () => {
+		if(stateAndData.data.time)
+			return <Timer time={stateAndData.data.time} sendMessage={sendMessage} />
+		return <Button size='sm' onClick={nextState}>ready</Button>
+	}
+
 	return (
 		<div>
 			<h5>Game pin: {activeGame.slug}</h5>
 			<Page {...packageData()}></Page>
-			{stateAndData.data.time ? <Timer time={stateAndData.data.time} sendMessage={sendMessage} /> : ''}
+			{ timerOrButton() }
 		</div>
 	)
 }
