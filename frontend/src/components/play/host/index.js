@@ -5,6 +5,7 @@ import { activateGame } from "../../../actions/play"
 import { Button } from 'react-bootstrap'
 import { CONNECT, REGISTRATION } from '../state'
 import Page from './pages';
+import Timer from '../timer';
 
 const mapStateToProps = (state, {location: {game}}) => {
 	return { activeGame: state.root.activeGame, game };
@@ -14,8 +15,10 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 	let { id } = useParams()
 	const [players, setPlayers] = useState('');
 	const [ws, setWs] = useState(null);
-	const [state, setState] = useState(CONNECT);
-	const [data, setData] = useState({});
+	const [stateAndData, setStateAndData] = useState({
+		state: CONNECT,
+		data: {}
+	});
 
 	useEffect(() => {
 		if(!activeGame){
@@ -50,8 +53,10 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 			setPlayers(`${players} ${message.data.name}`)
 		}
 		else{
-			setState(message['state']);
-			setData(message['data']);
+			setStateAndData({
+				state: message['state'],
+				data: message['data']
+			});
 		}
 	}
 
@@ -75,10 +80,10 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 	}
 
 	const packageData = () => {
-		data.players = players;
+		stateAndData.data.players = players;
 		return{
-			currentState:state,
-			data,
+			currentState:stateAndData.state,
+			data: stateAndData.data,
 			sendMessage,
 		}	
 	}
@@ -87,6 +92,7 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		<div>
 			<h5>Game pin: {activeGame.slug}</h5>
 			<Page {...packageData()}></Page>
+			{stateAndData.data.time ? <Timer time={stateAndData.data.time} sendMessage={sendMessage} /> : ''}
 		</div>
 	)
 }
