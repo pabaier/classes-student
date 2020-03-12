@@ -1,11 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const Timer = ({time, sendMessage}) => {
+const Timer = ({time, start, sendMessage}) => {
 	const [timeLeft, setTimeLeft] = useState(time);
-	const timeStart = useRef(Date.now());
 	
 	const calculateTimeLeft = () => {
-		var millis = Date.now() - timeStart.current;
+		var millis = Date.now() - start;
 		var left = time - Math.floor(millis/1000)
 		setTimeLeft(left);
 		if(left <= 0){

@@ -55,7 +55,8 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		else{
 			setStateAndData({
 				state: message['state'],
-				data: message['data']
+				data: message['data'],
+				start: Date.now(),
 			});
 		}
 	}
@@ -90,7 +91,7 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 
 	const timerOrButton = () => {
 		if(stateAndData.data.time)
-			return <Timer time={stateAndData.data.time} sendMessage={sendMessage} />
+			return <Timer time={stateAndData.data.time} start={stateAndData.start} sendMessage={sendMessage} />
 		return <Button size='sm' onClick={nextState}>ready</Button>
 	}
 
