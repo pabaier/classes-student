@@ -90,9 +90,7 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 
 	const timerOrButton = () => {
 		if(stateAndData.data.time) {
-			const d = Date.now()
-			console.log('run timer', d)
-			return <Timer time={stateAndData.data.time} sendMessage={sendMessage} startTime={d}/>
+			return <Timer time={stateAndData.data.time} sendMessage={sendMessage} startTime={Date.now()}/>
 		}
 		return <Button size='sm' onClick={nextState}>ready</Button>
 	}
