@@ -17,6 +17,7 @@ class Game:
         self.start_time = None
         self.round_results = {}
         self.calculate_score = self.custom_individual_scoring if self.scoring_hook else self.default_individual_scoring
+        self.number_of_answers = 0
 
     def custom_individual_scoring(self, result):
         exec(self.scoring_hook, {'results': result})
@@ -138,10 +139,14 @@ class Game:
             score = self.calculate_score({'answer':answer, 'time': time_taken, 'correct': correct})
         self.round_results[channel] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
         self.scores[channel] += score
-        return self.all_answers_in()
+        self.number_of_answers += 1
+        all_in = self.all_answers_in()
+        if all_in:
+            self.number_of_answers = 0
+        return all_in
 
     def all_answers_in(self):
-        return len(self.round_results) == len(self.players)
+        return len(self.players) == self.number_of_answers
 
     def reset_output(self):
         return {'players': {'data': None}, 'group': {'data': None}, 'host': {'data': None, 'timer': None}}
