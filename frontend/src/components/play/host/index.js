@@ -85,6 +85,7 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 			currentState:stateAndData.state,
 			data: stateAndData.data,
 			sendMessage,
+			pin: activeGame.slug
 		}	
 	}
 
@@ -97,7 +98,6 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 
 	return (
 		<div>
-			<h5>Game pin: {activeGame.slug}</h5>
 			<Page {...packageData()}></Page>
 			{ timerOrButton() }
 		</div>
