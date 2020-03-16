@@ -9,12 +9,15 @@ const handleError = (e) => {
 
 export function activateGame(gameId) {
 	return function(dispatch, getState) {
-		api.getData(baseURL + `play/host/${gameId}/`, getState().root.user.access)
-		.then(res => res.ok? res.json() : handleError(res))
-		.then((data) => {
-			dispatch(setActiveGame(data));
+		return new Promise((resolve, reject) => {
+			api.getData(baseURL + `play/host/${gameId}/`, getState().root.user.access)
+			.then(res => res.ok? res.json() : handleError(res))
+			.then((data) => {
+				dispatch(setActiveGame(data));
+				resolve(data);
+			})
+			.catch(console.log);
 		})
-		.catch(console.log);
 	}
 }
 

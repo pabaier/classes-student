@@ -22,20 +22,16 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 
 	useEffect(() => {
 		if(!activeGame){
-			dispatch(activateGame(id));
-		}
-	}, [activeGame, dispatch, id]);
-
-	useEffect(() => {
-		if(activeGame && !ws){
-			setWs(new WebSocket(`ws://localhost:8000/ws/host/${activeGame.slug}/`))
+			dispatch(activateGame(id)).then((response) => {
+				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/`))
+			});
 		}
 		return function cleanup() {
 			if(ws){
 				ws.close();
 			}
 		}
-	}, [activeGame, ws]);
+	}, [activeGame, dispatch, id, ws]);
 
 	if(!(activeGame && ws)) {
 		return (<div></div>)
