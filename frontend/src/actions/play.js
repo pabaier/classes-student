@@ -1,4 +1,4 @@
-import { SET_ACTIVE_GAME } from "../constants/action-types";
+import { SET_ACTIVE_GAME, DEACTIVATE_GAME} from "../constants/action-types";
 import * as api from "./api"
 
 const baseURL = 'http://127.0.0.1:8000/'
@@ -24,3 +24,7 @@ export function activateGame(gameId) {
 function setActiveGame(payload){
 	return { type: SET_ACTIVE_GAME, payload}
 }
+
+export function deactivateGame() {
+	return { type: DEACTIVATE_GAME}
+} 

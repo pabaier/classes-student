@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from "react-redux";
 import { useParams } from 'react-router-dom'
-import { activateGame } from "../../../actions/play"
+import { activateGame, deactivateGame } from "../../../actions/play"
 import { Button } from 'react-bootstrap'
 import { CONNECT, REGISTRATION } from '../state'
 import Page from './pages';
@@ -29,9 +29,10 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		return function cleanup() {
 			if(ws){
 				ws.close();
+				dispatch(deactivateGame());
 			}
 		}
-	}, [activeGame, dispatch, id, ws]);
+	}, [ws]);
 
 	if(!(activeGame && ws)) {
 		return (<div></div>)

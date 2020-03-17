@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SET_QUESTIONS, SET_PUBLIC_QUESTIONS, SET_GAMES, SET_ACTIVE_GAME } from "../constants/action-types";
+import { LOG_IN, LOG_OUT, SET_QUESTIONS, SET_PUBLIC_QUESTIONS, SET_GAMES, SET_ACTIVE_GAME, DEACTIVATE_GAME } from "../constants/action-types";
 import { combineReducers } from "redux";
 
 const initialState = {
@@ -51,6 +51,10 @@ function appReducer(state = initialState, action) {
 		case SET_ACTIVE_GAME:
 			return Object.assign({}, state, {
 				activeGame: action.payload
+			})
+		case DEACTIVATE_GAME:
+			return Object.assign({}, state, {
+				activeGame: null
 			})
 		default:
 			return state;
