@@ -24,7 +24,10 @@ class Game:
 
     def default_individual_scoring(self, result):
         time = self.get_question()['time']
-        return ceil((time-result['time'])/time*1000)
+        score = ceil((time-result['time'])/time*1000)
+        if score < 100:
+            score = 100
+        return score
 
     def make_game(self):
         states = [State.CONNECT, State.REGISTRATION, State.POST_REGISTRATION]
