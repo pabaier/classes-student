@@ -12,10 +12,8 @@ class Game:
         self.teamCount = None
         self.teams = None
         self.states = self.make_game()
-        self.scores = {}
         self.output = self.reset_output()
         self.start_time = None
-        self.round_results = {}
         self.calculate_score = self.custom_individual_scoring if self.scoring_hook else self.default_individual_scoring
         self.number_of_answers = 0
 
@@ -111,10 +109,8 @@ class Game:
     def set_teams(self, set_teams_lambda):
         set_teams_lambda(self)
 
-    def add_player(self, player):
-        for channel in player:
-            self.players[channel] = player[channel]
-            self.scores[channel] = 0
+    def add_player(self, channel):
+        self.players[channel] = {'name':'', 'totalScore':0, 'roundResult': self.empty_round_result()}
 
     def set_player_name(self, channel, name):
         self.players[channel]['name'] = name
@@ -135,13 +131,14 @@ class Game:
         return 1
 
     def score_answer(self, channel, answer):
+        player = self.players[channel]
         time_taken = time.time() - self.start_time
         correct = self.check_answer(answer)
         score = 0
         if correct:
             score = self.calculate_score({'answer':answer, 'time': time_taken, 'correct': correct})
-        self.round_results[channel] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
-        self.scores[channel] += score
+        player['roundResult'] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
+        player['totalScore'] += score
         self.number_of_answers += 1
         all_in = self.all_answers_in()
         if all_in:
@@ -156,10 +153,15 @@ class Game:
 
     def reset_round_results(self):
         for channel in self.players:
-            self.round_results[channel] = {'answer': None, 'time': None, 'correct': False, 'score': 0}
+            self.players[channel]['roundResult'] = self.empty_round_result()
+
+    @staticmethod
+    def empty_round_result():
+        return {'answer': None, 'time': None, 'correct': False, 'score': 0}
 
     def generate_leaderboard(self):
-        return {'scores': self.scores, 'roundResults': self.round_results}, self.round_results
+        sorted_players = [self.players[k[0]] for k in sorted(self.players.items(), key=lambda player: player[1]['totalScore'], reverse=True)]
+        return sorted_players, self.players
 
     def change_state(self, new_state):
         self.output = self.reset_output()
