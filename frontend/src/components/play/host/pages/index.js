@@ -2,6 +2,7 @@ import React from 'react';
 import * as state from '../../state';
 import Connect from './connect';
 import Question from './question';
+import PostQuestion from './postQuestion';
 
 const Page = (props) => {
 	switch(props.currentState) {
@@ -18,7 +19,7 @@ const Page = (props) => {
 		case state.QUESTION:
 			return <Question {...props} />;
 		case state.POST_QUESTION:
-			return <div>Post-Question</div>;
+			return <PostQuestion {...props} />;
 		case state.GAME_OVER:
 			return <div>Game Over</div>;
 		case state.FINISHED:
