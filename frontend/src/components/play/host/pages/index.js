@@ -3,6 +3,7 @@ import * as state from '../../state';
 import Connect from './connect';
 import Question from './question';
 import PostQuestion from './postQuestion';
+import Finished from './finished';
 
 const Page = (props) => {
 	switch(props.currentState) {
@@ -23,7 +24,7 @@ const Page = (props) => {
 		case state.GAME_OVER:
 			return <div>Game Over</div>;
 		case state.FINISHED:
-			return <div>Finished</div>;
+			return <Finished {...props} />;
 		default:
 			return <div>Default</div>;
 	}

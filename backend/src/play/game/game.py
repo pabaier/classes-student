@@ -128,7 +128,7 @@ class Game:
         exec(self.question_hooks[0][1])
 
     def get_results(self):
-        return 1
+        return self.generate_leaderboard()
 
     def score_answer(self, channel, answer):
         player = self.players[channel]
@@ -189,7 +189,7 @@ class Game:
             self.next_question()
         elif new_state is State.FINISHED:
             print('calculating results')
-            self.output['host']['data'] = self.get_results()
+            self.output['host']['data'], self.output['players']['data'] = self.get_results()
         else:
             print('passing')
 
