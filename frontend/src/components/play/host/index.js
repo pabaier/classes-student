@@ -3,15 +3,16 @@ import { connect } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { activateGame, deactivateGame } from "../../../actions/play"
 import { Button } from 'react-bootstrap'
-import { CONNECT, REGISTRATION } from '../state'
+import { CONNECT, REGISTRATION, FINISHED } from '../state'
 import Page from './pages';
 import Timer from '../timer';
+import { useHistory } from "react-router-dom";
 
-const mapStateToProps = (state, {location: {game}}) => {
+const mapStateToProps = (state, { location: { game } }) => {
 	return { activeGame: state.root.activeGame, game };
 }
 
-const ConnectedHost = ( {activeGame, game, dispatch} ) => {
+const ConnectedHost = ({ activeGame, game, dispatch }) => {
 	let { id } = useParams()
 	const [players, setPlayers] = useState('');
 	const [ws, setWs] = useState(null);
@@ -19,22 +20,23 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		state: CONNECT,
 		data: {}
 	});
+	let history = useHistory();
 
 	useEffect(() => {
-		if(!activeGame){
+		if (!activeGame) {
 			dispatch(activateGame(id)).then((response) => {
 				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/`))
 			});
 		}
 		return function cleanup() {
-			if(ws){
+			if (ws) {
 				ws.close();
 				dispatch(deactivateGame());
 			}
 		}
 	}, [ws]);
 
-	if(!(activeGame && ws)) {
+	if (!(activeGame && ws)) {
 		return (<div></div>)
 	}
 
@@ -46,10 +48,10 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 	ws.onmessage = e => {
 		// listen to data sent from the websocket server
 		var message = JSON.parse(e.data);
-		if(message.state === REGISTRATION) {
+		if (message.state === REGISTRATION) {
 			setPlayers(`${players} ${message.data.name}`)
 		}
-		else{
+		else {
 			setStateAndData({
 				state: message['state'],
 				data: message['data'],
@@ -76,27 +78,36 @@ const ConnectedHost = ( {activeGame, game, dispatch} ) => {
 		sendMessage('next');
 	}
 
+	const finish = () => {
+		history.push(`/games`);
+	}
+
 	const packageData = () => {
 		stateAndData.data.players = players;
-		return{
-			currentState:stateAndData.state,
+		return {
+			currentState: stateAndData.state,
 			data: stateAndData.data,
 			sendMessage,
 			pin: activeGame.slug
-		}	
+		}
 	}
 
 	const timerOrButton = () => {
-		if(stateAndData.data.time) {
-			return <Timer time={stateAndData.data.time} sendMessage={sendMessage} startTime={Date.now()}/>
+		if (stateAndData.data.time) {
+			return <Timer time={stateAndData.data.time} sendMessage={sendMessage} startTime={Date.now()} />
 		}
-		return <Button size='sm' onClick={nextState}>ready</Button>
+		else {
+			if (stateAndData.state === FINISHED)
+				return <Button size='sm' onClick={finish}>Done</Button>
+			return <Button size='sm' onClick={nextState}>ready</Button>
+
+		}
 	}
 
 	return (
 		<div>
 			<Page {...packageData()}></Page>
-			{ timerOrButton() }
+			{timerOrButton()}
 		</div>
 	)
 }
