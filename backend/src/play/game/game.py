@@ -110,7 +110,7 @@ class Game:
         set_teams_lambda(self)
 
     def add_player(self, channel):
-        self.players[channel] = {'name':'', 'totalScore':0, 'roundResult': self.empty_round_result()}
+        self.players[channel] = {'name':'', 'totalScore':0, 'roundResult': self.empty_round_result(), 'rank':0}
 
     def set_player_name(self, channel, name):
         self.players[channel]['name'] = name
@@ -160,7 +160,10 @@ class Game:
         return {'answer': None, 'time': None, 'correct': False, 'score': 0}
 
     def generate_leaderboard(self):
-        sorted_players = [self.players[k[0]] for k in sorted(self.players.items(), key=lambda player: player[1]['totalScore'], reverse=True)]
+        sorted_players = []
+        for index, player_tuple_id_value in enumerate(sorted(self.players.items(), key=lambda player: player[1]['totalScore'], reverse=True), start=1):
+            self.players[player_tuple_id_value[0]]['rank'] = index
+            sorted_players.append(self.players[player_tuple_id_value[0]])
         return sorted_players, self.players
 
     def change_state(self, new_state):
