@@ -10,12 +10,12 @@ const Client = () => {
 	const [ws, setWs] = useState(null);
 
 	useEffect(() => {
-		if(!ws){
+		if (!ws) {
 			setWs(new WebSocket(`ws://localhost:8000/ws/join/${token}/`))
 		}
 
 		return function cleanup() {
-			if(ws){
+			if (ws) {
 				ws.close();
 			}
 		}
@@ -32,14 +32,14 @@ const Client = () => {
 		}
 	}
 
-	if(!ws) {
+	if (!ws) {
 		return (<div></div>)
 	}
 
 	ws.onmessage = e => {
 		const receivedData = JSON.parse(e.data);
 		setState(receivedData.state);
-		setData({...receivedData.data});
+		setData({ ...receivedData.data });
 	}
 
 	ws.onclose = () => {
@@ -48,7 +48,7 @@ const Client = () => {
 	}
 
 	const packageData = {
-		currentState:state,
+		currentState: state,
 		data,
 		sendMessage,
 	}

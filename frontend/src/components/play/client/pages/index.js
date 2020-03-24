@@ -2,9 +2,10 @@ import React from 'react';
 import * as state from '../../state';
 import Registration from './registration';
 import Question from './question';
+import PostQuestion from './postQuestion'
 
 const Page = (props) => {
-	switch(props.currentState) {
+	switch (props.currentState) {
 		case state.STANDBY:
 			return <div>Stand By</div>;
 		case state.REGISTRATION:
@@ -16,11 +17,11 @@ const Page = (props) => {
 		case state.QUESTION:
 			return <Question {...props} />;
 		case state.POST_QUESTION:
-			return <div>Post Question</div>;
+			return <PostQuestion {...props} />;
 		case state.GAME_OVER:
 			return <div>Game Over</div>;
 		case state.FINISHED:
-			return <div>Finished</div>;																		
+			return <div>Finished</div>;
 		default:
 			return <div>Default</div>;
 	}
