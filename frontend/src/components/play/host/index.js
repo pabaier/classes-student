@@ -14,7 +14,7 @@ const mapStateToProps = (state, { location: { game } }) => {
 
 const ConnectedHost = ({ activeGame, game, dispatch }) => {
 	let { id } = useParams()
-	const [players, setPlayers] = useState('');
+	const [players, setPlayers] = useState([]);
 	const [ws, setWs] = useState(null);
 	const [stateAndData, setStateAndData] = useState({
 		state: CONNECT,
@@ -49,7 +49,7 @@ const ConnectedHost = ({ activeGame, game, dispatch }) => {
 		// listen to data sent from the websocket server
 		var message = JSON.parse(e.data);
 		if (message.state === REGISTRATION) {
-			setPlayers(`${players} ${message.data.name}`)
+			setPlayers(players.concat(message.data.name));
 		}
 		else {
 			setStateAndData({
