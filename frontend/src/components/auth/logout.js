@@ -8,8 +8,9 @@ const ConnectedLogout = ( {dispatch} ) => {
 	let history = useHistory();
 
 	const logoutSubmit = () => {
-		dispatch(logOut());
-		logoutSuccess();
+		dispatch(logOut()).then(() => {
+			logoutSuccess();
+		});
 	}
 
 	const logoutSuccess = () => {

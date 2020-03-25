@@ -23,6 +23,7 @@ const App = () => {
             <Route path="/login">
               <Splash />
             </Route>
+            <Route path="/play/join/:token" component={Client} />
             <PrivateRoute path="/" component={LoggedIn} />
           </Switch>
         </div>
@@ -38,7 +39,6 @@ const LoggedIn = () => (
     <Route path="/games/:id" component={GamePage} />
     <Route path="/games/public" component={PublicGames} />
     <Route path="/play/host/:id" component={Host} />
-    <Route path="/play/join/:token" component={Client} />
     <Route exact path="/questions">
       <Questions />
     </Route>

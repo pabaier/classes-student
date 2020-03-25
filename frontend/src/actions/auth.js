@@ -8,8 +8,12 @@ export function logIn(payload) {
 }
 
 export function logOut(payload) {
-	return { type: LOG_OUT, payload}
-}
+	return function (dispatch) {
+		return new Promise((resolve, reject) => {
+			dispatch( {type: LOG_OUT, payload} )
+			resolve();
+		})
+}}
 
 const handleError = (e) => {
 	throw Error(e.statusText)

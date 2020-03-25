@@ -58,6 +58,6 @@ class PlayerConsumer(WebsocketConsumer):
 
     def change_state_message(self, event):
         state = event['state']
-        data = event.get('data', '')
+        data = event.get('data', {})
 
         self.send_to_frontend(state, data)
