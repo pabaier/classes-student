@@ -7,9 +7,8 @@ from math import ceil
 class Game:
     def __init__(self, game_token):
         self.active_game = None
-        self.questions, self.answers, self.question_hooks, self.scoring_hook = self.get_game(game_token)
+        self.questions, self.answers, self.question_hooks, self.scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = {}
-        self.teamCount = None
         self.teams = None
         self.states = self.make_game()
         self.output = self.reset_output()
@@ -40,6 +39,7 @@ class Game:
         qg = QuestionGame.objects.all().select_related('game', 'question').filter(game=self.active_game.game)
 
         scoring_hook = None
+        post_registration_hook = None
         questions = []
         answers = []
         hooks = []
@@ -47,6 +47,10 @@ class Game:
         scoring = qg.first().game.scoring
         if scoring:
             scoring_hook = scoring.hook
+
+        post_registration_hook_text = qg.first().game.post_registration_hook.hook
+        if post_registration_hook_text:
+            post_registration_hook = post_registration_hook_text
 
         for e in qg:
             answerOptions = QuestionAnswerOption.objects.all().select_related('question').filter(question=e.question)
@@ -65,7 +69,7 @@ class Game:
             answers.append(answer)
             hooks.append([e.pre_question_hook, e.post_question_hook])
             questions.append(question)
-        return questions, answers, hooks, scoring_hook
+        return questions, answers, hooks, scoring_hook, post_registration_hook
 
     def check_answer(self, answer):
         return answer in self.answers[0]
@@ -89,10 +93,6 @@ class Game:
         if len(self.states) == 0:
             return None
         return self.states[0]
-
-    def set_number_of_teams(self, num):
-        self.teamCount = num
-        return self
 
     # >>> a = Game()
     # >>> a.set_number_of_players(3).set_number_of_teams(2)
@@ -119,7 +119,8 @@ class Game:
         self.active_game.delete()
 
     def post_registration(self):
-        pass
+        if(self.post_registration_hook):
+            exec(self.post_registration_hook)
 
     def pre_question(self):
         exec(self.question_hooks[0][0])
