@@ -15,9 +15,11 @@ class Game:
         self.start_time = None
         self.calculate_score = self.custom_individual_scoring if self.scoring_hook else self.default_individual_scoring
         self.number_of_answers = 0
+        self.custom_individual_scoring_return = 0
 
     def custom_individual_scoring(self, result):
-        exec(self.scoring_hook, {'results': result})
+        exec(self.scoring_hook, {'results': result, 'self': self})
+        return self.custom_individual_scoring_return
 
     def default_individual_scoring(self, result):
         time = self.get_question()['time']
