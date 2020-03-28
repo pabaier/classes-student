@@ -67,7 +67,12 @@ class Game:
                     answer.append(a.option)
             question['answers']=answerOptionList
             answers.append(answer)
-            hooks.append([e.pre_question_hook, e.post_question_hook])
+            hooks_pair = ['', '']
+            if e.pre_hook:
+                hooks_pair[0] = e.pre_hook.code
+            if e.post_hook:
+                hooks_pair[1] = e.pre_hook.code
+            hooks.append(hooks_pair)
             questions.append(question)
         return questions, answers, hooks, scoring_hook, post_registration_hook
 
@@ -123,10 +128,12 @@ class Game:
             exec(self.post_registration_hook)
 
     def pre_question(self):
-        exec(self.question_hooks[0][0])
+        if(self.question_hooks[0][0]):
+            exec(self.question_hooks[0][0])
 
     def post_question(self):
-        exec(self.question_hooks[0][1])
+        if(self.question_hooks[0][1]):
+            exec(self.question_hooks[0][1])
 
     def get_results(self):
         return self.generate_leaderboard()
