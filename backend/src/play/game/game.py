@@ -44,13 +44,13 @@ class Game:
         answers = []
         hooks = []
 
-        scoring = qg.first().game.scoring
+        scoring = qg.first().game.scoring_hook
         if scoring:
-            scoring_hook = scoring.hook
+            scoring_hook = scoring.code
 
-        post_registration_hook_text = qg.first().game.post_registration_hook.hook
-        if post_registration_hook_text:
-            post_registration_hook = post_registration_hook_text
+        post_registration = qg.first().game.post_registration_hook
+        if post_registration:
+            post_registration_hook = post_registration.code
 
         for e in qg:
             answerOptions = QuestionAnswerOption.objects.all().select_related('question').filter(question=e.question)
