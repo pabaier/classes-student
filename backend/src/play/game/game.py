@@ -5,7 +5,7 @@ import time
 from math import ceil
 
 class Game:
-    def __init__(self, game_token):
+    def __init__(self, game_token, isTeam):
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = {}

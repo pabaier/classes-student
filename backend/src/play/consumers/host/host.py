@@ -7,9 +7,11 @@ import json
 class HostConsumer(WebsocketConsumer):
     def connect(self):
         self.game_token = self.scope['url_route']['kwargs']['game_token']
+        isTeam = self.isTeam(self.scope['query_string'])
+
         self.host_group_name = 'host_%s' % self.game_token
         self.players_group_name = 'players_%s' % self.game_token
-        self.game = Game(self.game_token)
+        self.game = Game(self.game_token, isTeam)
         self.round_results = []
 
         # Join room group
@@ -101,3 +103,7 @@ class HostConsumer(WebsocketConsumer):
             'state': state,
             'data': data
         }))
+
+    def isTeam(self, raw_query_string):
+        query_string = raw_query_string.decode("utf-8")
+        return query_string == 'team'
