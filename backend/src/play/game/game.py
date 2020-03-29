@@ -6,19 +6,37 @@ from math import ceil
 
 class Game:
     def __init__(self, game_token, isTeam):
+        self.isTeam = isTeam
         self.active_game = None
-        self.questions, self.answers, self.question_hooks, self.scoring_hook, self.post_registration_hook = self.get_game(game_token)
+        self.questions, self.answers, self.question_hooks, self.individual_scoring_hook, self.team_scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = {}
         self.teams = None
         self.states = self.make_game()
         self.output = self.reset_output()
         self.start_time = None
-        self.calculate_score = self.custom_individual_scoring if self.scoring_hook else self.default_individual_scoring
+        self.calculate_individual_score = self.set_individual_scoring_function()
+        self.calculate_team_score = self.set_team_scoring_function()
         self.number_of_answers = 0
         self.custom_individual_scoring_return = 0
 
+    def set_team_scoring_function(self):
+        if self.team_scoring_hook:
+            return self.custom_team_scoring
+        return self.default_team_scoring
+
+    def custom_team_scoring(self):
+        exec(self.team_scoring_hook)
+
+    def default_team_scoring(self):
+        pass
+
+    def set_individual_scoring_function(self):
+        if self.individual_scoring_hook:
+            return self.custom_individual_scoring
+        return self.default_individual_scoring
+
     def custom_individual_scoring(self, result):
-        exec(self.scoring_hook, {'results': result, 'self': self})
+        exec(self.individual_scoring_hook, {'results': result, 'self': self})
         return self.custom_individual_scoring_return
 
     def default_individual_scoring(self, result):
@@ -40,15 +58,19 @@ class Game:
         self.active_game = ActiveGame.objects.get(slug=game_token)
         qg = QuestionGame.objects.all().select_related('game', 'question').filter(game=self.active_game.game)
 
-        scoring_hook = None
+        individual_scoring_hook = None
+        team_scoring_hook = None
         post_registration_hook = None
         questions = []
         answers = []
         hooks = []
 
-        scoring = qg.first().game.individual_scoring_hook
-        if scoring:
-            scoring_hook = scoring.code
+        team_scoring = qg.first().game.team_scoring_hook
+        if team_scoring:
+            team_scoring_hook = team_scoring.code
+        individual_scoring = qg.first().game.individual_scoring_hook
+        if individual_scoring:
+            individual_scoring_hook = individual_scoring.code
 
         post_registration = qg.first().game.post_registration_hook
         if post_registration:
@@ -76,7 +98,7 @@ class Game:
                 hooks_pair[1] = e.pre_hook.code
             hooks.append(hooks_pair)
             questions.append(question)
-        return questions, answers, hooks, scoring_hook, post_registration_hook
+        return questions, answers, hooks, individual_scoring_hook, team_scoring_hook, post_registration_hook
 
     def check_answer(self, answer):
         return answer in self.answers[0]
@@ -146,7 +168,7 @@ class Game:
         correct = self.check_answer(answer)
         score = 0
         if correct:
-            score = self.calculate_score({'answer':answer, 'time': time_taken, 'correct': correct})
+            score = self.calculate_individual_score({'answer':answer, 'time': time_taken, 'correct': correct})
         player['roundResult'] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
         player['totalScore'] += score
         self.number_of_answers += 1
