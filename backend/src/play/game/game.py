@@ -46,7 +46,7 @@ class Game:
         answers = []
         hooks = []
 
-        scoring = qg.first().game.scoring_hook
+        scoring = qg.first().game.individual_scoring_hook
         if scoring:
             scoring_hook = scoring.code
 
