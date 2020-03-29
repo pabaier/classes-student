@@ -8,11 +8,11 @@ import Page from './pages';
 import Timer from '../timer';
 import { useHistory } from "react-router-dom";
 
-const mapStateToProps = (state, { location: { game } }) => {
-	return { activeGame: state.root.activeGame, game };
+const mapStateToProps = (state, props) => {
+	return { activeGame: state.root.activeGame, team: props.location.team };
 }
 
-const ConnectedHost = ({ activeGame, game, dispatch }) => {
+const ConnectedHost = ({ activeGame, team, dispatch }) => {
 	let { id } = useParams()
 	const [players, setPlayers] = useState([]);
 	const [ws, setWs] = useState(null);
@@ -23,9 +23,10 @@ const ConnectedHost = ({ activeGame, game, dispatch }) => {
 	let history = useHistory();
 
 	useEffect(() => {
+		var qp = team ? 'team' : 'individual'
 		if (!activeGame) {
 			dispatch(activateGame(id)).then((response) => {
-				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/`))
+				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/?${qp}`))
 			});
 		}
 		return function cleanup() {
