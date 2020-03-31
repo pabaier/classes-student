@@ -2,15 +2,17 @@ from game.models import Game, ActiveGame
 from question.models import Question, QuestionGame, QuestionAnswerOption
 from .state import State
 import time
-from math import ceil
+from math import ceil, floor
+import random
 
 class Game:
-    def __init__(self, game_token, isTeam):
+    def __init__(self, game_token, isTeam, number_of_teams = 2):
         self.isTeam = isTeam
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.individual_scoring_hook, self.team_scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = {}
         self.teams = None
+        self.number_of_teams = number_of_teams
         self.states = self.make_game()
         self.output = self.reset_output()
         self.start_time = None
@@ -198,6 +200,37 @@ class Game:
             sorted_players.append(self.players[player_tuple_id_value[0]])
         return sorted_players, self.players
 
+    def make_teams(self, number_of_teams):
+
+        team_colors = ["Silver" ,"White" ,"Grey" ,"Black" ,"Navy" ,"Blue" ,"Cerulean" ,"Azure" ,"Turquoise" ,"Teal" ,"Cyan" ,"Green" ,"Lime" ,"Chartreuse" ,"Purlple" ,"Yellow" ,"Red" ,"Orange" ,"Indego" ,"Violet"]
+        team_numbers = ["zero" ,"one" ,"two" ,"three" ,"four" ,"five" ,"six" ,"seven" ,"eight" ,"nine" ,"ten" ,"eleven" ,"twelve" ,"thirteen" ,"fourteen" ,"fifteen" ,"sixteen" ,"seventeen" ,"eighteen" ,"nineteen" ,"twenty" ,"twenty-one" ,"twenty-two" ,"twenty-three" ,"twenty-four" ,"twenty-five" ,"twenty-six" ,"twenty-seven" ,"twenty-eight" ,"twenty-nine" ,"thirty" ,"thirty-one" ,"thirty-two" ,"thirty-three" ,"thirty-four" ,"thirty-five" ,"thirty-six" ,"thirty-seven" ,"thirty-eight" ,"thirty-nine" ,"forty" ,"forty-one" ,"forty-two" ,"forty-three" ,"forty-four" ,"forty-five" ,"forty-six" ,"forty-seven" ,"forty-eight" ,"forty-nine" ,"fifty"]
+
+        team_name_array = team_colors
+        if random.randint(0,1) == 0:
+            team_name_array = team_numbers
+
+        team_names = random.sample(team_name_array, number_of_teams)
+        players_per_team = floor(len(self.players)/number_of_teams)
+        players_left = list(self.players.keys())
+        teams = {}
+
+        # assign a group of players to each team
+        for team in team_names:
+            teams[team] = []
+            team_players = random.sample(players_left, players_per_team)
+            for player in team_players:
+                teams[team].append(player)
+                self.players[player]['team'] = team
+                players_left.remove(player)
+
+        # if the teams are uneven, add each left over player to a team
+        for index, player in enumerate(players_left):
+            self.players[player]['team'] = team_names[index]
+            teams[team_names[index]].append(player)
+
+        return teams
+
+
     def change_state(self, new_state):
         self.output = self.reset_output()
         if new_state is State.CONNECT:
@@ -208,6 +241,8 @@ class Game:
             pass
         elif new_state is State.POST_REGISTRATION:
             print('post registration method')
+            if self.isTeam:
+                self.make_teams(self.number_of_teams)
             self.post_registration()
         elif new_state is State.PRE_QUESTION:
             print('pre question method')
