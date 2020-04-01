@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap'
 
-const Connect = ({data, pin}) => {
-	console.log(data)
+const Registration = ({data, pin}) => {
 	const [players, setPlayers] = useState([]);
 
 	useEffect(() => {
-		setPlayers(data.players)
-	}, [data.players]);
+		if(data.name)
+			setPlayers([...players, data.name])
+	}, [data.name]);
 
 	var printPlayers = () => {
 		return players.map( (value, index) => (
@@ -26,4 +25,4 @@ const Connect = ({data, pin}) => {
 	)
 }
 
-export default Connect;
+export default Registration;

@@ -21,7 +21,7 @@ class HostConsumer(WebsocketConsumer):
         )
 
         self.accept()
-        self.send_to_frontend(State.CONNECT, {'message': 'waiting for connections and registrations...'})
+        self.send_to_frontend(State.REGISTRATION, {'message': 'waiting for connections and registrations...'})
 
     def disconnect(self, close_code):
         # Leave room group

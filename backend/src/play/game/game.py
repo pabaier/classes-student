@@ -49,7 +49,7 @@ class Game:
         return score
 
     def make_game(self):
-        states = [State.CONNECT, State.REGISTRATION, State.MAKE_TEAMS, State.POST_REGISTRATION]
+        states = [State.REGISTRATION, State.MAKE_TEAMS, State.POST_REGISTRATION]
         for i in range(0,len(self.questions)):
             states += [State.PRE_QUESTION,State.QUESTION,State.POST_QUESTION]
         states += [State.FINISHED, State.GAME_OVER]
@@ -231,10 +231,7 @@ class Game:
 
     def change_state(self, new_state):
         self.output = self.reset_output()
-        if new_state is State.CONNECT:
-            print('connect method')
-            pass
-        elif new_state is State.REGISTRATION:
+        if new_state is State.REGISTRATION:
             print('registration method')
             pass
         elif new_state is State.POST_REGISTRATION:
