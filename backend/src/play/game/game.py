@@ -11,7 +11,7 @@ class Game:
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.individual_scoring_hook, self.team_scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = {}
-        self.teams = None
+        self.teams = {}
         self.number_of_teams = number_of_teams
         self.states = self.make_game()
         self.output = self.reset_output()
@@ -49,7 +49,7 @@ class Game:
         return score
 
     def make_game(self):
-        states = [State.CONNECT, State.REGISTRATION, State.POST_REGISTRATION]
+        states = [State.CONNECT, State.REGISTRATION, State.MAKE_TEAMS, State.POST_REGISTRATION]
         for i in range(0,len(self.questions)):
             states += [State.PRE_QUESTION,State.QUESTION,State.POST_QUESTION]
         states += [State.FINISHED, State.GAME_OVER]
@@ -212,23 +212,21 @@ class Game:
         team_names = random.sample(team_name_array, number_of_teams)
         players_per_team = floor(len(self.players)/number_of_teams)
         players_left = list(self.players.keys())
-        teams = {}
 
         # assign a group of players to each team
         for team in team_names:
-            teams[team] = []
+            self.teams[team] = []
             team_players = random.sample(players_left, players_per_team)
             for player in team_players:
-                teams[team].append(player)
+                self.teams[team].append(player)
                 self.players[player]['team'] = team
                 players_left.remove(player)
 
         # if the teams are uneven, add each left over player to a team
         for index, player in enumerate(players_left):
             self.players[player]['team'] = team_names[index]
-            teams[team_names[index]].append(player)
-
-        return teams
+            self.teams[team_names[index]].append(player)
+        return self.teams
 
 
     def change_state(self, new_state):
@@ -241,9 +239,11 @@ class Game:
             pass
         elif new_state is State.POST_REGISTRATION:
             print('post registration method')
-            if self.isTeam:
-                self.make_teams(self.number_of_teams)
             self.post_registration()
+        elif new_state is State.MAKE_TEAMS:
+            print('make teams method')
+            if self.isTeam:
+                self.output['host']['data'] = self.make_teams(self.number_of_teams)
         elif new_state is State.PRE_QUESTION:
             print('pre question method')
             self.pre_question()
