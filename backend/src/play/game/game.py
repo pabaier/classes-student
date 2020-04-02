@@ -241,6 +241,7 @@ class Game:
             print('make teams method')
             if self.isTeam:
                 self.output['host']['data'] = self.make_teams(self.number_of_teams)
+                self.output['players']['data'] = self.players
         elif new_state is State.PRE_QUESTION:
             print('pre question method')
             self.pre_question()
