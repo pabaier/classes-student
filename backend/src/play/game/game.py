@@ -37,11 +37,11 @@ class Game:
             return self.custom_individual_scoring
         return self.default_individual_scoring
 
-    def custom_individual_scoring(self, result):
-        exec(self.individual_scoring_hook, {'results': result, 'self': self})
+    def custom_individual_scoring(self, result, channel):
+        exec(self.individual_scoring_hook, {'results': result, 'channel': channel, 'self': self})
         return self.custom_individual_scoring_return
 
-    def default_individual_scoring(self, result):
+    def default_individual_scoring(self, result, channel):
         time = self.get_question()['time']
         score = ceil((time-result['time'])/time*1000)
         if score < 100:
@@ -170,7 +170,7 @@ class Game:
         correct = self.check_answer(answer)
         score = 0
         if correct:
-            score = self.calculate_individual_score({'answer':answer, 'time': time_taken, 'correct': correct})
+            score = self.calculate_individual_score({'answer':answer, 'time': time_taken, 'correct': correct}, channel)
         player['roundResult'] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
         player['totalScore'] += score
         self.number_of_answers += 1
