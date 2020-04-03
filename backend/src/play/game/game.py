@@ -215,17 +215,17 @@ class Game:
 
         # assign a group of players to each team
         for team in team_names:
-            self.teams[team] = []
+            self.teams[team] = {'players': [], 'roundScore':0, 'totalScore': 0}
             team_players = random.sample(players_left, players_per_team)
             for player in team_players:
-                self.teams[team].append(self.players[player]['name'])
+                self.teams[team]['players'].append(self.players[player]['name'])
                 self.players[player]['team'] = team
                 players_left.remove(player)
 
         # if the teams are uneven, add each left over player to a team
         for index, player in enumerate(players_left):
             self.players[player]['team'] = team_names[index]
-            self.teams[team_names[index]].append(self.players[player]['name'])
+            self.teams[team_names[index]]['players'].append(self.players[player]['name'])
         return self.teams
 
 

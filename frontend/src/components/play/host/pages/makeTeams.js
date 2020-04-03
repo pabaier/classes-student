@@ -22,9 +22,9 @@ const MakeTeams = ({data}) => {
 		)
 	}
 
-	var listPlayers = (team) => {
+	var listPlayers = ({players}) => {
 		return (
-			team.map((player, j) => (
+			players.map((player, j) => (
 				<li key={j}>{player}</li>
 			))	
 		)
