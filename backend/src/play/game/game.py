@@ -5,6 +5,7 @@ import time
 from math import ceil, floor
 import random
 from .models.player import Player, Players
+from .models.teams import Teams
 from .models.round_result import RoundResult
 
 
@@ -14,7 +15,7 @@ class Game:
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.individual_scoring_hook, self.team_scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = Players()
-        self.teams = {}
+        self.teams = Teams()
         self.number_of_teams = number_of_teams
         self.states = self.make_game()
         self.output = self.reset_output()
@@ -36,8 +37,8 @@ class Game:
         for player in self.players:
             team = player.team
             score = player.roundResult.score
-            self.teams[team]['totalScore'] += score
-            self.teams[team]['roundScore'] += score
+            self.teams.get(team).totalScore += score
+            self.teams.get(team).roundScore += score
 
     def set_individual_scoring_function(self):
         if self.individual_scoring_hook:
@@ -199,7 +200,7 @@ class Game:
         for player in self.players:
             player.roundResults = RoundResult()
         for team in self.teams:
-            self.teams[team]['roundScore'] = 0
+            team.roundScore = 0
 
     @staticmethod
     def empty_round_result():
@@ -210,15 +211,7 @@ class Game:
         sorted_players = self.players.sort_by_total_score()
 
         if self.isTeam:
-            sorted_teams = []
-            for index, team_tuple_id_value in enumerate(sorted(self.teams.items(), key=lambda team: team[1]['totalScore'], reverse=True), start=1):
-                team_name = team_tuple_id_value[0]
-                team_total_score = self.teams[team_tuple_id_value[0]]['totalScore']
-                sorted_teams.append({
-                    'name': team_name,
-                    'totalScore': team_total_score
-                })
-            return sorted_teams
+            return self.teams.sort_by_total_score()
 
         return sorted_players
 
@@ -236,21 +229,20 @@ class Game:
         players_left = self.players.get_player_keys()
 
         # assign a group of players to each team
-        for team in team_names:
-            self.teams[team] = {'players': [], 'roundScore':0, 'totalScore': 0}
+        for name in team_names:
+            team = self.teams.add(name)
             team_players = random.sample(players_left, players_per_team)
             for channel in team_players:
                 player = self.players.get(channel)
-                self.teams[team]['players'].append(player.name)
-                player.team = team
+                team.players.append(player.name)
+                player.team = name
                 players_left.remove(channel)
 
         # if the teams are uneven, add each left over player to a team
         for index, channel in enumerate(players_left):
             player = self.players.get(channel)
             player.team = team_names[index]
-            self.teams[team_names[index]]['players'].append(player.name)
-        return self.teams
+            self.teams.get(team_names[index]).players.append(player.name)
 
 
     def change_state(self, new_state):
@@ -264,7 +256,8 @@ class Game:
         elif new_state is State.MAKE_TEAMS:
             print('make teams method')
             if self.isTeam:
-                self.output['host']['data'] = self.make_teams(self.number_of_teams)
+                self.make_teams(self.number_of_teams)
+                self.output['host']['data'] = self.teams.toDict()
                 self.output['players']['data'] = self.players.toDict()
         elif new_state is State.PRE_QUESTION:
             print('pre question method')
