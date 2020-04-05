@@ -73,8 +73,8 @@ class Teams():
             team_players = random.sample(players_left, players_per_team)
             for channel in team_players:
                 player = players.get(channel)
-                team.players.append(player.name)
-                player.team = team
+                team.players.append(player)
+                player.team = name
                 players_left.remove(channel)
 
         # if the teams are uneven, add each left over player to a team

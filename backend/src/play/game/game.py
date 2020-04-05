@@ -1,13 +1,14 @@
-from game.models import Game, ActiveGame
-from question.models import Question, QuestionGame, QuestionAnswerOption
-from .state import State
 import time
-from math import ceil, floor
-import random
-from .models.player import Players
-from .models.teams import Teams
-from .models.round_result import RoundResult
+from math import ceil
+
+from game.models import ActiveGame
+from question.models import QuestionGame, QuestionAnswerOption
+
 from .models.output import Output
+from .models.player import Players
+from .models.round_result import RoundResult
+from .models.teams import Teams
+from .state import State
 
 
 class Game:
@@ -34,11 +35,11 @@ class Game:
         exec(self.team_scoring_hook)
 
     def default_team_scoring(self):
-        for player in self.players:
-            team = player.team
-            score = player.roundResult.score
-            team.totalScore += score
-            team.roundScore += score
+        for team in self.teams:
+            for player in team.players:
+                score = player.roundResult.score
+                team.totalScore += score
+                team.roundScore += score
 
     def set_individual_scoring_function(self):
         if self.individual_scoring_hook:

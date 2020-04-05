@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap'
 
 const MakeTeams = ({data}) => {
 
@@ -25,7 +24,7 @@ const MakeTeams = ({data}) => {
 	var listPlayers = ({players}) => {
 		return (
 			players.map((player, j) => (
-				<li key={j}>{player}</li>
+				<li key={j}>{player.name}</li>
 			))	
 		)
 	}

@@ -10,7 +10,7 @@ const MakeTeams = ({data}) => {
 						<center>
 							Team
 							<br/>
-							<h1>{data.team.name}</h1>
+							<h1>{data.team}</h1>
 						</center>
 					</div>
 				: ''

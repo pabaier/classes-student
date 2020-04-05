@@ -7,7 +7,7 @@ class Player():
     def __init__(self):
         self.channel = ''
         self.name = ''
-        self.team = None
+        self.team = ''
         self.totalScore = 0
         self.rank = 0
         self.roundResult = RoundResult()
