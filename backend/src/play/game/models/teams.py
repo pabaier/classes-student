@@ -2,10 +2,11 @@ import json
 
 
 class Team():
-    def __init__(self):
+    def __init__(self, name=''):
         self.players = []
         self.roundScore = 0
         self.totalScore = 0
+        self.name = name
 
 
 class Teams():
@@ -15,8 +16,9 @@ class Teams():
     def add(self, name, team=None) -> Team:
         if not team:
             team = Team()
+        team.name = name
         self.teams[name] = team
-        return self.teams[name]
+        return team
 
     def get(self, name) -> Team:
         return self.teams[name]

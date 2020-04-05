@@ -37,8 +37,8 @@ class Game:
         for player in self.players:
             team = player.team
             score = player.roundResult.score
-            self.teams.get(team).totalScore += score
-            self.teams.get(team).roundScore += score
+            team.totalScore += score
+            team.roundScore += score
 
     def set_individual_scoring_function(self):
         if self.individual_scoring_hook:
@@ -235,14 +235,14 @@ class Game:
             for channel in team_players:
                 player = self.players.get(channel)
                 team.players.append(player.name)
-                player.team = name
+                player.team = team
                 players_left.remove(channel)
 
         # if the teams are uneven, add each left over player to a team
         for index, channel in enumerate(players_left):
             player = self.players.get(channel)
-            player.team = team_names[index]
-            self.teams.get(team_names[index]).players.append(player.name)
+            player.team = self.teams.get(team_names[index])
+            player.team.players.append(player.name)
 
 
     def change_state(self, new_state):
