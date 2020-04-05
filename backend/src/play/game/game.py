@@ -4,13 +4,16 @@ from .state import State
 import time
 from math import ceil, floor
 import random
+from .models.player import Player, Players
+from .models.round_result import RoundResult
+
 
 class Game:
     def __init__(self, game_token, isTeam, number_of_teams = 2):
         self.isTeam = isTeam
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.individual_scoring_hook, self.team_scoring_hook, self.post_registration_hook = self.get_game(game_token)
-        self.players = {}
+        self.players = Players()
         self.teams = {}
         self.number_of_teams = number_of_teams
         self.states = self.make_game()
@@ -31,8 +34,8 @@ class Game:
 
     def default_team_scoring(self):
         for player in self.players:
-            team = self.players[player]['team']
-            score = self.players[player]['roundResult']['score']
+            team = player.team
+            score = player.roundResult.score
             self.teams[team]['totalScore'] += score
             self.teams[team]['roundScore'] += score
 
@@ -47,7 +50,7 @@ class Game:
 
     def default_individual_scoring(self, result, channel):
         time = self.get_question()['time']
-        score = ceil((time-result['time'])/time*1000)
+        score = ceil((time-result.time)/time*1000)
         if score < 100:
             score = 100
         return score
@@ -145,10 +148,11 @@ class Game:
         set_teams_lambda(self)
 
     def add_player(self, channel):
-        self.players[channel] = {'name':'', 'totalScore':0, 'roundResult': self.empty_round_result(), 'rank':0}
+        self.players.add(channel)
 
     def set_player_name(self, channel, name):
-        self.players[channel]['name'] = name
+        player = self.players.get(channel)
+        self.players.get(channel).name = name
 
     def deactivate(self):
         self.active_game.delete()
@@ -169,14 +173,16 @@ class Game:
         return self.generate_leaderboard()
 
     def score_answer(self, channel, answer):
-        player = self.players[channel]
+        player = self.players.get(channel)
         time_taken = time.time() - self.start_time
         correct = self.check_answer(answer)
         score = 0
+        round_result = RoundResult(answer=answer, correct=correct, time=time_taken)
         if correct:
-            score = self.calculate_individual_score({'answer':answer, 'time': time_taken, 'correct': correct}, channel)
-        player['roundResult'] = {'answer':answer, 'time': time_taken, 'correct': correct, 'score': score}
-        player['totalScore'] += score
+            score = self.calculate_individual_score(round_result, channel)
+            round_result.score = score
+        player.roundResult = round_result
+        player.totalScore += score
         self.number_of_answers += 1
         all_in = self.all_answers_in()
         if all_in:
@@ -190,8 +196,8 @@ class Game:
         return {'players': {'data': None}, 'group': {'data': None}, 'host': {'data': None, 'timer': None}}
 
     def reset_round_results(self):
-        for channel in self.players:
-            self.players[channel]['roundResult'] = self.empty_round_result()
+        for player in self.players:
+            player.roundResults = RoundResult()
         for team in self.teams:
             self.teams[team]['roundScore'] = 0
 
@@ -200,13 +206,8 @@ class Game:
         return {'answer': None, 'time': None, 'correct': False, 'score': 0}
 
     def generate_leaderboard(self):
-        sorted_players = []
-        for index, player_tuple_id_value in enumerate(sorted(self.players.items(), key=lambda player: player[1]['totalScore'], reverse=True), start=1):
-            self.players[player_tuple_id_value[0]]['rank'] = index
-            sorted_players.append({
-                'name': self.players[player_tuple_id_value[0]]['name'],
-                'totalScore': self.players[player_tuple_id_value[0]]['totalScore']
-            })
+
+        sorted_players = self.players.sort_by_total_score()
 
         if self.isTeam:
             sorted_teams = []
@@ -232,21 +233,23 @@ class Game:
 
         team_names = random.sample(team_name_array, number_of_teams)
         players_per_team = floor(len(self.players)/number_of_teams)
-        players_left = list(self.players.keys())
+        players_left = self.players.get_player_keys()
 
         # assign a group of players to each team
         for team in team_names:
             self.teams[team] = {'players': [], 'roundScore':0, 'totalScore': 0}
             team_players = random.sample(players_left, players_per_team)
-            for player in team_players:
-                self.teams[team]['players'].append(self.players[player]['name'])
-                self.players[player]['team'] = team
-                players_left.remove(player)
+            for channel in team_players:
+                player = self.players.get(channel)
+                self.teams[team]['players'].append(player.name)
+                player.team = team
+                players_left.remove(channel)
 
         # if the teams are uneven, add each left over player to a team
-        for index, player in enumerate(players_left):
-            self.players[player]['team'] = team_names[index]
-            self.teams[team_names[index]]['players'].append(self.players[player]['name'])
+        for index, channel in enumerate(players_left):
+            player = self.players.get(channel)
+            player.team = team_names[index]
+            self.teams[team_names[index]]['players'].append(player.name)
         return self.teams
 
 
@@ -262,7 +265,7 @@ class Game:
             print('make teams method')
             if self.isTeam:
                 self.output['host']['data'] = self.make_teams(self.number_of_teams)
-                self.output['players']['data'] = self.players
+                self.output['players']['data'] = self.players.toDict()
         elif new_state is State.PRE_QUESTION:
             print('pre question method')
             self.pre_question()
@@ -276,13 +279,13 @@ class Game:
             if self.isTeam:
                 self.calculate_team_score()
             self.output['host']['data'] = self.generate_leaderboard()
-            self.output['players']['data'] = self.players
+            self.output['players']['data'] = self.players.toDict()
             self.post_question()
             self.next_question()
         elif new_state is State.FINISHED:
             print('calculating results')
             self.output['host']['data'] = self.generate_leaderboard()
-            self.output['players']['data'] = self.players
+            self.output['players']['data'] = self.players.toDict()
         else:
             print('passing')
 
