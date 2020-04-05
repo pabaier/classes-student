@@ -4,7 +4,7 @@ from .state import State
 import time
 from math import ceil, floor
 import random
-from .models.player import Player, Players
+from .models.player import Players
 from .models.teams import Teams
 from .models.round_result import RoundResult
 from .models.output import Output
@@ -16,8 +16,7 @@ class Game:
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.individual_scoring_hook, self.team_scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = Players()
-        self.teams = Teams()
-        self.number_of_teams = number_of_teams
+        self.teams = Teams(number_of_teams)
         self.states = self.make_game()
         self.output = Output()
         self.start_time = None
@@ -200,10 +199,6 @@ class Game:
         for team in self.teams:
             team.roundScore = 0
 
-    @staticmethod
-    def empty_round_result():
-        return {'answer': None, 'time': None, 'correct': False, 'score': 0}
-
     def generate_leaderboard(self):
 
         sorted_players = self.players.sort_by_total_score()
@@ -212,36 +207,6 @@ class Game:
             return self.teams.sort_by_total_score()
 
         return sorted_players
-
-    def make_teams(self, number_of_teams):
-
-        team_colors = ["Silver" ,"White" ,"Grey" ,"Black" ,"Navy" ,"Blue" ,"Cerulean" ,"Azure" ,"Turquoise" ,"Teal" ,"Cyan" ,"Green" ,"Lime" ,"Chartreuse" ,"Purlple" ,"Yellow" ,"Red" ,"Orange" ,"Indego" ,"Violet"]
-        team_numbers = ["zero" ,"one" ,"two" ,"three" ,"four" ,"five" ,"six" ,"seven" ,"eight" ,"nine" ,"ten" ,"eleven" ,"twelve" ,"thirteen" ,"fourteen" ,"fifteen" ,"sixteen" ,"seventeen" ,"eighteen" ,"nineteen" ,"twenty" ,"twenty-one" ,"twenty-two" ,"twenty-three" ,"twenty-four" ,"twenty-five" ,"twenty-six" ,"twenty-seven" ,"twenty-eight" ,"twenty-nine" ,"thirty" ,"thirty-one" ,"thirty-two" ,"thirty-three" ,"thirty-four" ,"thirty-five" ,"thirty-six" ,"thirty-seven" ,"thirty-eight" ,"thirty-nine" ,"forty" ,"forty-one" ,"forty-two" ,"forty-three" ,"forty-four" ,"forty-five" ,"forty-six" ,"forty-seven" ,"forty-eight" ,"forty-nine" ,"fifty"]
-
-        team_name_array = team_colors
-        if random.randint(0,1) == 0:
-            team_name_array = team_numbers
-
-        team_names = random.sample(team_name_array, number_of_teams)
-        players_per_team = floor(len(self.players)/number_of_teams)
-        players_left = self.players.get_player_keys()
-
-        # assign a group of players to each team
-        for name in team_names:
-            team = self.teams.add(name)
-            team_players = random.sample(players_left, players_per_team)
-            for channel in team_players:
-                player = self.players.get(channel)
-                team.players.append(player.name)
-                player.team = team
-                players_left.remove(channel)
-
-        # if the teams are uneven, add each left over player to a team
-        for index, channel in enumerate(players_left):
-            player = self.players.get(channel)
-            player.team = self.teams.get(team_names[index])
-            player.team.players.append(player.name)
-
 
     def change_state(self, new_state):
         self.output.reset()
@@ -254,7 +219,7 @@ class Game:
         elif new_state is State.MAKE_TEAMS:
             print('make teams method')
             if self.isTeam:
-                self.make_teams(self.number_of_teams)
+                self.teams.make_teams(self.players)
                 self.output.host['data'] = self.teams.toDict()
                 self.output.players['data'] = self.players.toDict()
         elif new_state is State.PRE_QUESTION:
