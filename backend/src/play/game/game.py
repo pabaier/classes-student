@@ -30,7 +30,11 @@ class Game:
         exec(self.team_scoring_hook)
 
     def default_team_scoring(self):
-        pass
+        for player in self.players:
+            team = self.players[player]['team']
+            score = self.players[player]['roundResult']['score']
+            self.teams[team]['totalScore'] += score
+            self.teams[team]['roundScore'] += score
 
     def set_individual_scoring_function(self):
         if self.individual_scoring_hook:
@@ -188,6 +192,8 @@ class Game:
     def reset_round_results(self):
         for channel in self.players:
             self.players[channel]['roundResult'] = self.empty_round_result()
+        for team in self.teams:
+            self.teams[team]['roundScore'] = 0
 
     @staticmethod
     def empty_round_result():
@@ -197,8 +203,23 @@ class Game:
         sorted_players = []
         for index, player_tuple_id_value in enumerate(sorted(self.players.items(), key=lambda player: player[1]['totalScore'], reverse=True), start=1):
             self.players[player_tuple_id_value[0]]['rank'] = index
-            sorted_players.append(self.players[player_tuple_id_value[0]])
-        return sorted_players, self.players
+            sorted_players.append({
+                'name': self.players[player_tuple_id_value[0]]['name'],
+                'totalScore': self.players[player_tuple_id_value[0]]['totalScore']
+            })
+
+        if self.isTeam:
+            sorted_teams = []
+            for index, team_tuple_id_value in enumerate(sorted(self.teams.items(), key=lambda team: team[1]['totalScore'], reverse=True), start=1):
+                team_name = team_tuple_id_value[0]
+                team_total_score = self.teams[team_tuple_id_value[0]]['totalScore']
+                sorted_teams.append({
+                    'name': team_name,
+                    'totalScore': team_total_score
+                })
+            return sorted_teams
+
+        return sorted_players
 
     def make_teams(self, number_of_teams):
 
@@ -252,12 +273,16 @@ class Game:
             self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')
-            self.output['host']['data'], self.output['players']['data'] = self.generate_leaderboard()
+            if self.isTeam:
+                self.calculate_team_score()
+            self.output['host']['data'] = self.generate_leaderboard()
+            self.output['players']['data'] = self.players
             self.post_question()
             self.next_question()
         elif new_state is State.FINISHED:
             print('calculating results')
-            self.output['host']['data'], self.output['players']['data'] = self.get_results()
+            self.output['host']['data'] = self.generate_leaderboard()
+            self.output['players']['data'] = self.players
         else:
             print('passing')
 
