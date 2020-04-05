@@ -7,6 +7,7 @@ import random
 from .models.player import Player, Players
 from .models.teams import Teams
 from .models.round_result import RoundResult
+from .models.output import Output
 
 
 class Game:
@@ -18,7 +19,7 @@ class Game:
         self.teams = Teams()
         self.number_of_teams = number_of_teams
         self.states = self.make_game()
-        self.output = self.reset_output()
+        self.output = Output()
         self.start_time = None
         self.calculate_individual_score = self.set_individual_scoring_function()
         self.calculate_team_score = self.set_team_scoring_function()
@@ -193,9 +194,6 @@ class Game:
     def all_answers_in(self):
         return len(self.players) == self.number_of_answers
 
-    def reset_output(self):
-        return {'players': {'data': None}, 'group': {'data': None}, 'host': {'data': None, 'timer': None}}
-
     def reset_round_results(self):
         for player in self.players:
             player.roundResults = RoundResult()
@@ -246,7 +244,7 @@ class Game:
 
 
     def change_state(self, new_state):
-        self.output = self.reset_output()
+        self.output.reset()
         if new_state is State.REGISTRATION:
             print('registration method')
             pass
@@ -257,31 +255,31 @@ class Game:
             print('make teams method')
             if self.isTeam:
                 self.make_teams(self.number_of_teams)
-                self.output['host']['data'] = self.teams.toDict()
-                self.output['players']['data'] = self.players.toDict()
+                self.output.host['data'] = self.teams.toDict()
+                self.output.players['data'] = self.players.toDict()
         elif new_state is State.PRE_QUESTION:
             print('pre question method')
             self.pre_question()
         elif new_state is State.QUESTION:
             print('asking question...')
-            self.output['host']['data'] = self.output['group']['data'] = self.get_question()
+            self.output.host['data'] = self.output.group['data'] = self.get_question()
             self.reset_round_results()
             self.start_time = time.time()
         elif new_state is State.POST_QUESTION:
             print('post question method')
             if self.isTeam:
                 self.calculate_team_score()
-            self.output['host']['data'] = self.generate_leaderboard()
-            self.output['players']['data'] = self.players.toDict()
+            self.output.host['data'] = self.generate_leaderboard()
+            self.output.players['data'] = self.players.toDict()
             self.post_question()
             self.next_question()
         elif new_state is State.FINISHED:
             print('calculating results')
-            self.output['host']['data'] = self.generate_leaderboard()
-            self.output['players']['data'] = self.players.toDict()
+            self.output.host['data'] = self.generate_leaderboard()
+            self.output.players['data'] = self.players.toDict()
         else:
             print('passing')
 
-        if self.output['host']['data'] or self.output['group']['data'] or self.output['players']['data']:
+        if self.output.has_something_to_send():
             return self.output
         return self.change_state(self.next_state())

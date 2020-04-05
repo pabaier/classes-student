@@ -40,12 +40,12 @@ class HostConsumer(WebsocketConsumer):
         output = self.game.change_state(new_state)
         current_state = self.game.get_state()
 
-        if output['host']['data']:
-            self.send_to_frontend(current_state, output['host']['data'])
-        if output['group']['data']:
-            self.send_to_group(current_state, output['group']['data'])
-        elif output['players']['data']:
-            self.send_to_all_individual_players(current_state, output['players']['data'])
+        if output.has_host_data():
+            self.send_to_frontend(current_state, output.host['data'])
+        if output.has_group_data():
+            self.send_to_group(current_state, output.group['data'])
+        elif output.has_players_data():
+            self.send_to_all_individual_players(current_state, output.players['data'])
 
     def connect_message(self, event):
         channel = event['channel']
