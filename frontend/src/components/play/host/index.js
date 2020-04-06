@@ -22,7 +22,7 @@ const ConnectedHost = ({ activeGame, team, teamNumber, dispatch }) => {
 	let history = useHistory();
 
 	useEffect(() => {
-		var qp = team ? 'team' : 'individual'
+		var qp = `isTeam=${team}&teamNumber=${teamNumber}`
 		if (!activeGame) {
 			dispatch(activateGame(id)).then((response) => {
 				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/?${qp}`))
