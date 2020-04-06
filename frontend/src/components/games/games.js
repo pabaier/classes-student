@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getGames } from "../../actions/games"
-import { ListGroup, Button, Form, Container, Row, Col } from 'react-bootstrap';
+import { ListGroup, Button, Form, Container, Row, Col, Dropdown, SplitButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
 
@@ -16,30 +16,21 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 
 	let history = useHistory();
 
-	const dropdown = () => {
-			let a = []
-			for(let i = 2; i<=20; i++ ) {
-				a.push(<option key={i} value={i}>{i}</option>)
-			}
-			return a
-	}
-
-	const onSubmit = (e) => {
-		e.preventDefault();
-		var teamNumber = 0
-
-		const name = e.target.elements[0].name;
-		const nameArray = name.split('-');
-		const gameId = nameArray[0];
-		const gameType = nameArray[1]
-		const team = gameType === 'team' 
-		if (team)
-			teamNumber = e.target.elements[1].value
-
+	const navigateToGame = (gameId, teamNumber) => {
 		history.push({
 			pathname: `/play/host/${gameId}`,
 			teamNumber
 		})
+	}
+
+	const dropdown = (gameId) => {
+			let a = [<Dropdown.Item disabled={true} key={1}>Select Number of Teams</Dropdown.Item>]
+			for(let i = 2; i<=20; i++ ) {
+				a.push(
+					<Dropdown.Item name="time" key={i} onSelect = { () => navigateToGame(gameId, i)}>{i}</Dropdown.Item>
+				)
+			}
+			return a
 	}
 
 	const listItems = games.map( (g, index) => {
@@ -54,22 +45,14 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 				<Container>
 					<Row>
 						<Col>
-							<Form onSubmit={ e => onSubmit(e)}>
-								<Button  variant="outline-info" name={g.id + '-team'} type='submit'>
-									play team
-								</Button><br/>
-								<Form.Label>Number of teams: </Form.Label>
-								<Form.Control as="select" size="sm" style={{ width: '25%' }} name={g.id + '-team-amount'}>
-									{dropdown()}
-								</Form.Control>
-							</Form>
+								<SplitButton variant="outline-info" title='Team Game' drop={'down'} onClick={() => navigateToGame(g.id, 2)}>
+									{dropdown(g.id)}
+								</SplitButton>
 						</Col>
 						<Col>
-							<Form onSubmit={ e => onSubmit(e)}>
-								<Button  variant="outline-warning"  name={g.id + '-individual' } type='submit'>
+								<Button  variant="outline-warning"	 onClick={() => navigateToGame(g.id, 0) } >
 									play individual
 								</Button>
-							</Form>
 						</Col>
 					</Row>
 				</Container>
