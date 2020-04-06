@@ -79,9 +79,10 @@ class Teams():
 
         # if the teams are uneven, add each left over player to a team
         for index, channel in enumerate(players_left):
+            team = self.get(team_names[index])
             player = players.get(channel)
-            player.team = self.get(team_names[index])
-            player.team.players.append(player.name)
+            player.team = team.name
+            team.players.append(player)
 
     def __iter__(self):
         ''' returns the Iterator object '''
