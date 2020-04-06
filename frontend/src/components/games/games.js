@@ -38,7 +38,6 @@ const ConnectedGames = ( {games=[], dispatch} ) => {
 
 		history.push({
 			pathname: `/play/host/${gameId}`,
-			team,
 			teamNumber
 		})
 	}

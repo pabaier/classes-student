@@ -12,8 +12,8 @@ from .state import State
 
 
 class Game:
-    def __init__(self, game_token, isTeam, number_of_teams = 2):
-        self.isTeam = isTeam
+    def __init__(self, game_token, number_of_teams):
+        self.isTeam = number_of_teams > 0
         self.active_game = None
         self.questions, self.answers, self.question_hooks, self.individual_scoring_hook, self.team_scoring_hook, self.post_registration_hook = self.get_game(game_token)
         self.players = Players()

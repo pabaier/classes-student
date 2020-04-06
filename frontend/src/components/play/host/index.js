@@ -9,10 +9,10 @@ import Timer from '../timer';
 import { useHistory } from "react-router-dom";
 
 const mapStateToProps = (state, props) => {
-	return { activeGame: state.root.activeGame, team: props.location.team, teamNumber: props.location.teamNumber };
+	return { activeGame: state.root.activeGame, teamNumber: props.location.teamNumber };
 }
 
-const ConnectedHost = ({ activeGame, team, teamNumber, dispatch }) => {
+const ConnectedHost = ({ activeGame, teamNumber, dispatch }) => {
 	let { id } = useParams()
 	const [ws, setWs] = useState(null);
 	const [stateAndData, setStateAndData] = useState({
@@ -22,7 +22,7 @@ const ConnectedHost = ({ activeGame, team, teamNumber, dispatch }) => {
 	let history = useHistory();
 
 	useEffect(() => {
-		var qp = `isTeam=${team}&teamNumber=${teamNumber}`
+		var qp = `teamNumber=${teamNumber}`
 		if (!activeGame) {
 			dispatch(activateGame(id)).then((response) => {
 				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/?${qp}`))
