@@ -9,10 +9,10 @@ import Timer from '../timer';
 import { useHistory } from "react-router-dom";
 
 const mapStateToProps = (state, props) => {
-	return { activeGame: state.root.activeGame, team: props.location.team };
+	return { activeGame: state.root.activeGame, team: props.location.team, teamNumber: props.location.teamNumber };
 }
 
-const ConnectedHost = ({ activeGame, team, dispatch }) => {
+const ConnectedHost = ({ activeGame, team, teamNumber, dispatch }) => {
 	let { id } = useParams()
 	const [ws, setWs] = useState(null);
 	const [stateAndData, setStateAndData] = useState({
