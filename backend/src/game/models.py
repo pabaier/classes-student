@@ -5,14 +5,19 @@ from user.models import CustomUser
 from question.models import Question
 
 
-class Scoring(models.Model):
-    hook = models.TextField(blank=True)
+class ScoringHook(models.Model):
+    code = models.TextField(blank=True)
+
+class GameHook(models.Model):
+    code = models.TextField(blank=True)
 
 class Game(models.Model):
     creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     questions = models.ManyToManyField(Question, through='question.QuestionGame')
-    scoring = models.ForeignKey(Scoring, related_name='game_scoring', on_delete=models.CASCADE, blank=True, null=True)
+    individual_scoring_hook = models.ForeignKey(ScoringHook, related_name='game_individual_scoring_hook', on_delete=models.CASCADE, blank=True, null=True)
+    team_scoring_hook = models.ForeignKey(ScoringHook, related_name='game_team_scoring_hook', on_delete=models.CASCADE, blank=True, null=True)
+    post_registration_hook = models.ForeignKey(GameHook, related_name='game_post_registration_hook', on_delete=models.CASCADE, blank=True, null=True)
 
 class ActiveGame(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)

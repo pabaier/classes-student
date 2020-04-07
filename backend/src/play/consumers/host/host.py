@@ -6,10 +6,19 @@ import json
 
 class HostConsumer(WebsocketConsumer):
     def connect(self):
+
+        def checkTeamNumber(qp):
+            try:
+                return int(qp['teamNumber'])
+            except:
+                return 0
+
         self.game_token = self.scope['url_route']['kwargs']['game_token']
+        query_parameters = self.processQueryString(self.scope['query_string'])
+        teamNumber = checkTeamNumber(query_parameters)
         self.host_group_name = 'host_%s' % self.game_token
         self.players_group_name = 'players_%s' % self.game_token
-        self.game = Game(self.game_token)
+        self.game = Game(self.game_token, teamNumber)
         self.round_results = []
 
         # Join room group
@@ -19,7 +28,7 @@ class HostConsumer(WebsocketConsumer):
         )
 
         self.accept()
-        self.send_to_frontend(State.CONNECT, {'message': 'waiting for connections and registrations...'})
+        self.send_to_frontend(State.REGISTRATION, {'message': 'waiting for connections and registrations...'})
 
     def disconnect(self, close_code):
         # Leave room group
@@ -38,12 +47,12 @@ class HostConsumer(WebsocketConsumer):
         output = self.game.change_state(new_state)
         current_state = self.game.get_state()
 
-        if output['host']['data']:
-            self.send_to_frontend(current_state, output['host']['data'])
-        if output['group']['data']:
-            self.send_to_group(current_state, output['group']['data'])
-        elif output['players']['data']:
-            self.send_to_all_individual_players(current_state, output['players']['data'])
+        if output.has_host_data():
+            self.send_to_frontend(current_state, output.host['data'])
+        if output.has_group_data():
+            self.send_to_group(current_state, output.group['data'])
+        elif output.has_players_data():
+            self.send_to_all_individual_players(current_state, output.players['data'])
 
     def connect_message(self, event):
         channel = event['channel']
@@ -101,3 +110,12 @@ class HostConsumer(WebsocketConsumer):
             'state': state,
             'data': data
         }))
+
+    def processQueryString(self, raw_query_string):
+        query_parameters = {}
+        query_string = raw_query_string.decode("utf-8")
+        args = query_string.split('&')
+        for arg in args:
+            kv = arg.split('=')
+            query_parameters[kv[0]] = kv[1]
+        return query_parameters

@@ -1,8 +1,8 @@
 from enum import Enum
 
 class State(str, Enum):
-    CONNECT = 'connect'
     REGISTRATION = 'registration'
+    MAKE_TEAMS = 'makeTeams'
     POST_REGISTRATION = 'postRegistration'
     PRE_QUESTION = 'preQuestion'
     QUESTION = 'question'

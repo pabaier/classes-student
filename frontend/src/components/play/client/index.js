@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CONNECT } from '../state';
+import { REGISTRATION } from '../state';
 import Page from './pages';
 
 const Client = () => {
 	let { token } = useParams()
-	const [state, setState] = useState(CONNECT);
+	const [state, setState] = useState(REGISTRATION);
 	const [data, setData] = useState({});
 	const [ws, setWs] = useState(null);
 

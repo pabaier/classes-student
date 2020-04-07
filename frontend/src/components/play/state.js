@@ -1,5 +1,5 @@
-export const CONNECT = 'connect'
 export const REGISTRATION = 'registration'
+export const MAKE_TEAMS = 'makeTeams'
 export const POST_REGISTRATION = 'postRegistration'
 export const PRE_QUESTION = 'preQuestion'
 export const QUESTION = 'question'

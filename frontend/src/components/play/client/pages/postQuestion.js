@@ -1,9 +1,10 @@
 import React from 'react';
 
-const displayTotalScore = (score, rank) => {
+const displayTotalScore = (score, rank, team) => {
 	return (
 		<div>
 			You are in {rank}{placeSuffix(rank)} place{rank === 1 ? '!' : ''}<br />
+			{team ? <span>Team: {team}<br /></span> : ''}
 			Total Score: {score}
 		</div>
 	)
@@ -40,8 +41,7 @@ const PostQuestion = ({ data }) => {
 
 	return (
 		<div>
-			<h3>Post Question</h3>
-			<h5>{data.totalScore || data.totalScore >= 0 ? displayTotalScore(data.totalScore, data.rank) : ''}</h5>
+			<h5>{data.totalScore || data.totalScore >= 0 ? displayTotalScore(data.totalScore, data.rank, data.team) : ''}</h5>
 			<h5>{data.roundResult ? displayRoundScore(data.roundResult) : ''}</h5>
 		</div>
 	)

@@ -1,18 +1,19 @@
 import React from 'react';
 import * as state from '../../state';
-import Connect from './connect';
+import Registration from './registration';
 import Question from './question';
 import PostQuestion from './postQuestion';
 import Finished from './finished';
+import MakeTeams from './makeTeams';
 
 const Page = (props) => {
 	switch(props.currentState) {
 		case state.STANDBY:
 			return <div>Stand By</div>;
-		case state.CONNECT:
-			return <Connect {...props} />;
 		case state.REGISTRATION:
-			return <div>Registration</div>;
+			return <Registration {...props} />;
+		case state.MAKE_TEAMS:
+			return <MakeTeams {...props} />;
 		case state.POST_REGISTRATION:
 			return <div>Post-Registration</div>;
 		case state.PRE_QUESTION:

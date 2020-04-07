@@ -3,29 +3,29 @@ import { connect } from "react-redux";
 import { useParams } from 'react-router-dom'
 import { activateGame, deactivateGame } from "../../../actions/play"
 import { Button } from 'react-bootstrap'
-import { CONNECT, REGISTRATION, FINISHED } from '../state'
+import { REGISTRATION, FINISHED } from '../state'
 import Page from './pages';
 import Timer from '../timer';
 import { useHistory } from "react-router-dom";
 
-const mapStateToProps = (state, { location: { game } }) => {
-	return { activeGame: state.root.activeGame, game };
+const mapStateToProps = (state, props) => {
+	return { activeGame: state.root.activeGame, teamNumber: props.location.teamNumber };
 }
 
-const ConnectedHost = ({ activeGame, game, dispatch }) => {
+const ConnectedHost = ({ activeGame, teamNumber, dispatch }) => {
 	let { id } = useParams()
-	const [players, setPlayers] = useState('');
 	const [ws, setWs] = useState(null);
 	const [stateAndData, setStateAndData] = useState({
-		state: CONNECT,
+		state: REGISTRATION,
 		data: {}
 	});
 	let history = useHistory();
 
 	useEffect(() => {
+		var qp = `teamNumber=${teamNumber}`
 		if (!activeGame) {
 			dispatch(activateGame(id)).then((response) => {
-				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/`))
+				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/?${qp}`))
 			});
 		}
 		return function cleanup() {
@@ -48,15 +48,10 @@ const ConnectedHost = ({ activeGame, game, dispatch }) => {
 	ws.onmessage = e => {
 		// listen to data sent from the websocket server
 		var message = JSON.parse(e.data);
-		if (message.state === REGISTRATION) {
-			setPlayers(`${players} ${message.data.name}`)
-		}
-		else {
-			setStateAndData({
-				state: message['state'],
-				data: message['data'],
-			});
-		}
+		setStateAndData({
+			state: message['state'],
+			data: message['data'],
+		});
 	}
 
 	ws.onclose = () => {
@@ -83,7 +78,6 @@ const ConnectedHost = ({ activeGame, game, dispatch }) => {
 	}
 
 	const packageData = () => {
-		stateAndData.data.players = players;
 		return {
 			currentState: stateAndData.state,
 			data: stateAndData.data,
