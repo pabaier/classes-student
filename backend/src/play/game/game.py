@@ -8,7 +8,7 @@ from .models.output import Output
 from .models.player import Players
 from .models.round_result import RoundResult
 from .models.teams import Teams
-from .state import State
+from .models.states import State
 
 
 class Game:
