@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class State(str, Enum):
+    HOOK = 'hook'
     REGISTRATION = 'registration'
     MAKE_TEAMS = 'makeTeams'
     POST_REGISTRATION = 'postRegistration'

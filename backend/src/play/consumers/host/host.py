@@ -42,10 +42,9 @@ class HostConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
-        new_state = self.game.next_state()
 
-        output = self.game.change_state(new_state)
-        current_state = self.game.get_state()
+        output = self.game.change_state()
+        current_state = self.game.get_state().state
 
         if output.has_host_data():
             self.send_to_frontend(current_state, output.host['data'])
