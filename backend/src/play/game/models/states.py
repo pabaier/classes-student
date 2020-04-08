@@ -5,8 +5,6 @@ class State(str, Enum):
     HOOK = 'hook'
     REGISTRATION = 'registration'
     MAKE_TEAMS = 'makeTeams'
-    POST_REGISTRATION = 'postRegistration'
-    PRE_QUESTION = 'preQuestion'
     QUESTION = 'question'
     STANDBY = 'standby'
     POST_QUESTION = 'postQuestion'
