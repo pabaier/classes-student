@@ -1,7 +1,7 @@
 import time
 from math import ceil
 
-from game.models import ActiveGame
+from game.models import ActiveGame, GameHook
 from question.models import QuestionGame, QuestionAnswerOption
 
 from .models.game_outline import GameOutline
@@ -22,6 +22,7 @@ class Game:
         self.teams = Teams(number_of_teams)
 
         self.outline = self.get_outline(self.active_game.game)
+        self.hooks = self.get_hooks(self.active_game.game)
 
         self.output = Output()
         self.start_time = None
@@ -60,6 +61,13 @@ class Game:
         if score < 100:
             score = 100
         return score
+
+    def get_hooks(self, game):
+        hooks = []
+        game_hooks = GameHook.objects.filter(game=game).order_by('ordinal')
+        for gamehook in game_hooks:
+            hooks.append(gamehook.hook.code)
+        return hooks
 
     def get_outline(self, game) -> GameOutline:
         outlineString = game.outline
@@ -172,9 +180,8 @@ class Game:
         return sorted_players
 
     def execute_hook(self):
-        # hook = self.hooks.pop(0)
-        # exec(hook)
-        pass
+        hook = self.hooks.pop(0)
+        exec(hook)
 
     def change_state(self):
         gameState = self.next_state()
