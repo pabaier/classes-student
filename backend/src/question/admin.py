@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Question, QuestionGame, QuestionAnswerOption, QuestionHook
+from .models import Question, QuestionGame, QuestionAnswerOption
 
 
 class QuestionAdmin(admin.ModelAdmin):
@@ -15,10 +15,6 @@ class QuestionAnswerOptionAdmin(admin.ModelAdmin):
     fields = "__all__"
 
 
-class QuestionHookAdmin(admin.ModelAdmin):
-    fields = "__all__"
-
-
-models = [Question, QuestionGame, QuestionAnswerOption, QuestionHook]
+models = [Question, QuestionGame, QuestionAnswerOption]
 for model in models:
     admin.site.register(model)
