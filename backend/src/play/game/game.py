@@ -1,7 +1,7 @@
 import time
 from math import ceil
 
-from game.models import ActiveGame, GameHook
+from game.models import ActiveGame
 from question.models import QuestionGame, QuestionAnswerOption
 
 from .models.game_outline import GameOutline
@@ -62,12 +62,13 @@ class Game:
             score = 100
         return score
 
-    def get_hooks(self, game):
-        hooks = []
-        game_hooks = GameHook.objects.filter(game=game).order_by('ordinal')
-        for gamehook in game_hooks:
-            hooks.append(gamehook.hook.code)
-        return hooks
+    # def get_hooks(self, game):
+    #     hooks = {}
+    #     game_hooks = GameHook.objects.filter(game=game, name__in = [])
+    #     for gamehook in game_hooks:
+    #         hooks[gamehook.name] = gamehook.hook.code
+    #         hooks.append(gamehook.hook.code)
+    #     return hooks
 
     def get_outline(self, game) -> GameOutline:
         outlineString = game.outline
@@ -206,13 +207,13 @@ class Game:
             self.output.host['data'] = self.output.group['data'] = self.get_question()
             self.reset_round_results()
             self.start_time = time.time()
+            self.next_question()
         elif state is State.POST_QUESTION:
             print('post question method')
             if self.isTeam:
                 self.calculate_team_score()
             self.output.host['data'] = self.generate_leaderboard()
             self.output.players['data'] = self.players.toDict()
-            self.next_question()
         elif state is State.FINISHED:
             print('calculating results')
             self.output.host['data'] = self.generate_leaderboard()

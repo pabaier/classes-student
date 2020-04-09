@@ -6,11 +6,17 @@ from user.models import CustomUser
 
 
 class ScoringHook(models.Model):
-    code = models.TextField(blank=True)
+    code = models.TextField()
 
 
 class Hook(models.Model):
-    code = models.TextField(blank=True)
+    code = models.TextField()
+    creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        unique_together = ('creator', 'name')
 
 
 class Game(models.Model):
@@ -34,15 +40,6 @@ class ActiveGame(models.Model):
             super().save(*args, **kwargs)
         except IntegrityError:
             self.save(*args, **kwargs)
-
-
-class GameHook(models.Model):
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    hook = models.ForeignKey(Hook, on_delete=models.CASCADE)
-    ordinal = models.PositiveSmallIntegerField()
-
-    class Meta:
-        unique_together = ('game', 'ordinal')
 
 
 class Option(models.Model):
