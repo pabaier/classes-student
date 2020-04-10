@@ -1,5 +1,7 @@
 from enum import Enum
 
+from .hook import Hook
+
 
 class State(str, Enum):
     HOOK = 'hook'
@@ -13,7 +15,15 @@ class State(str, Enum):
 
 
 class GameState:
-    def __init__(self, state, has_pre_hook=False, has_post_hook=False):
-        self.has_pre_hook = has_pre_hook
+    def __init__(self, state, pre_hook_name=None, post_hook_name=None, hook_name=None):
+        self.pre_hook = self.proccess_hook_name(pre_hook_name)
         self.state = state
-        self.has_post_hook = has_post_hook
+        self.hook = self.proccess_hook_name(hook_name)
+        self.post_hook = self.proccess_hook_name(post_hook_name)
+
+    def proccess_hook_name(self, hook_name) -> Hook:
+        if not hook_name: return None
+        parts = hook_name.split('.')
+        if len(parts) is 2:
+            return Hook(parts[1], parts[0])
+        return Hook(parts[0])

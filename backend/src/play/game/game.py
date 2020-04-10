@@ -21,8 +21,7 @@ class Game:
         self.players = Players()
         self.teams = Teams(number_of_teams)
 
-        self.outline = self.get_outline(self.active_game.game)
-        self.hooks = self.get_hooks(self.active_game.game)
+        self.outline = self.get_outline(self.active_game.game.outline)
 
         self.output = Output()
         self.start_time = None
@@ -62,17 +61,8 @@ class Game:
             score = 100
         return score
 
-    # def get_hooks(self, game):
-    #     hooks = {}
-    #     game_hooks = GameHook.objects.filter(game=game, name__in = [])
-    #     for gamehook in game_hooks:
-    #         hooks[gamehook.name] = gamehook.hook.code
-    #         hooks.append(gamehook.hook.code)
-    #     return hooks
-
-    def get_outline(self, game) -> GameOutline:
-        outlineString = game.outline
-        outline = GameOutline.create_game_outline(outlineString)
+    def get_outline(self, outline_string) -> GameOutline:
+        outline = GameOutline.create_game_outline(outline_string)
         return outline
 
     # [{id, text, time, answers[option, option,...]},...], [['yes'], ['hi', 'ho'],...]
@@ -114,7 +104,6 @@ class Game:
         return answer in self.answers[0]
 
     def next_question(self):
-        self.answers.pop(0)
         self.questions.pop(0)
         return self.get_question()
 
@@ -122,9 +111,6 @@ class Game:
         if len(self.questions) == 0:
             return None
         return self.questions[0]
-
-    def next_state(self) -> GameState:
-        return self.outline.next_state()
 
     def get_state(self) -> GameState:
         return self.outline.get_current_state()
@@ -159,6 +145,7 @@ class Game:
         self.number_of_answers += 1
         all_in = self.all_answers_in()
         if all_in:
+            self.answers.pop(0)
             self.number_of_answers = 0
         return all_in
 
@@ -180,22 +167,21 @@ class Game:
 
         return sorted_players
 
-    def execute_hook(self):
-        hook = self.hooks.pop(0)
-        exec(hook)
+    def execute_hook(self, code):
+        exec(code)
 
     def change_state(self):
-        gameState = self.next_state()
+        gameState = self.outline.next_state()
         state = gameState.state
         self.output.reset()
 
-        if gameState.has_pre_hook:
+        if gameState.pre_hook:
             print('pre hook')
-            self.execute_hook()
+            self.execute_hook(self.outline.hooks.get(gameState.pre_hook.creator_id, gameState.pre_hook.name).code)
 
         if state is State.HOOK:
             print('hook method')
-            self.execute_hook()
+            self.execute_hook(self.outline.hooks.get(gameState.hook.creator_id, gameState.hook.name).code)
         elif state is State.MAKE_TEAMS:
             print('make teams method')
             if self.isTeam:
@@ -221,9 +207,9 @@ class Game:
         else:
             print('passing')
 
-        if gameState.has_post_hook:
+        if gameState.post_hook:
             print('post hook')
-            self.execute_hook()
+            self.execute_hook(self.outline.hooks.get(gameState.post_hook.creator_id, gameState.post_hook.name).code)
 
         if self.output.has_something_to_send():
             return self.output

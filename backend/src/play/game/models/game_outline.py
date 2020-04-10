@@ -1,5 +1,8 @@
 import json
 
+from game.models import Hook
+
+from .hook import Hooks
 from .states import GameState, State
 
 
@@ -8,6 +11,8 @@ class GameOutline:
         self.states = states
         self.past_states = []
         self.current_state = None
+        self.hooks = Hooks()
+        self.hook_names_by_creator = {}
 
     def add_state(self, state):
         self.states.append(state)
@@ -32,6 +37,30 @@ class GameOutline:
     def to_json_string(self):
         return json.dumps(self.states, default=lambda x: x.__dict__)
 
+    def process_hooks(self, game_state):
+        if game_state.pre_hook:
+            self.hooks.add(game_state.pre_hook)
+            self.hook_names_by_creator_insert(game_state.pre_hook)
+        if game_state.hook:
+            self.hooks.add(game_state.hook)
+            self.hook_names_by_creator_insert(game_state.hook)
+        if game_state.post_hook:
+            self.hooks.add(game_state.post_hook)
+            self.hook_names_by_creator_insert(game_state.post_hook)
+
+    def hook_names_by_creator_insert(self, hook):
+        if hook.creator_id in self.hook_names_by_creator:
+            if hook.name not in self.hook_names_by_creator[hook.creator_id]:
+                self.hook_names_by_creator[hook.creator_id].append(hook.name)
+        else:
+            self.hook_names_by_creator[hook.creator_id] = [hook.name]
+
+    def set_hooks_code(self):
+        for creator_id, hook_names in self.hook_names_by_creator.items():
+            hooks_query_set = Hook.objects.filter(creator__id=creator_id, name__in = hook_names)
+            for hook_model in hooks_query_set:
+                self.hooks.get(creator_id, hook_model.name).code = hook_model.code
+
     @staticmethod
     def create_game_outline(gameOutlineString):
         game_outline = GameOutline()
@@ -39,8 +68,11 @@ class GameOutline:
         for state in game_states_dict:
             game_state = GameState(
                 State(state['state']),
-                state['has_pre_hook'],
-                state['has_post_hook']
+                state.get('pre_hook_name', None),
+                state.get('post_hook_name', None),
+                state.get('hook_name', None)
             )
             game_outline.states.append(game_state)
+            game_outline.process_hooks(game_state)
+        game_outline.set_hooks_code()
         return game_outline
