@@ -29,6 +29,7 @@ class Game:
         self.calculate_team_score = self.set_team_scoring_function()
         self.number_of_answers = 0
         self.custom_individual_scoring_return = 0
+        self.answering_question = False
 
     def set_team_scoring_function(self):
         if self.team_scoring_hook:
@@ -104,6 +105,7 @@ class Game:
         return answer in self.answers[0]
 
     def next_question(self):
+        self.answers.pop(0)
         self.questions.pop(0)
         return self.get_question()
 
@@ -145,7 +147,6 @@ class Game:
         self.number_of_answers += 1
         all_in = self.all_answers_in()
         if all_in:
-            self.answers.pop(0)
             self.number_of_answers = 0
         return all_in
 
@@ -174,6 +175,9 @@ class Game:
         gameState = self.outline.next_state()
         state = gameState.state
         self.output.reset()
+        if self.answering_question:
+            self.answering_question = False
+            self.next_question()
 
         if gameState.pre_hook:
             print('pre hook')
@@ -190,10 +194,10 @@ class Game:
                 self.output.players['data'] = self.players.toDict()
         elif state is State.QUESTION:
             print('asking question...')
+            self.answering_question = True
             self.output.host['data'] = self.output.group['data'] = self.get_question()
             self.reset_round_results()
             self.start_time = time.time()
-            self.next_question()
         elif state is State.POST_QUESTION:
             print('post question method')
             if self.isTeam:
