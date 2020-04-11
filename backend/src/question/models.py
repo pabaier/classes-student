@@ -3,7 +3,7 @@ from user.models import CustomUser
 
 
 class Question(models.Model):
-    text = models.CharField(max_length=30)
+    text = models.TextField()
     public = models.BooleanField(default=False)
     category = models.CharField(max_length=30)
     creator = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
