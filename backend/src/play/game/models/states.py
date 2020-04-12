@@ -9,7 +9,7 @@ class State(str, Enum):
     MAKE_TEAMS = 'makeTeams'
     QUESTION = 'question'
     STANDBY = 'standby'
-    POST_QUESTION = 'postQuestion'
+    LEADERBOARD = 'leaderboard'
     FINISHED = 'finished'
     GAME_OVER = 'gameOver'
 

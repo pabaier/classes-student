@@ -105,9 +105,10 @@ class Game:
         return answer in self.answers[0]
 
     def next_question(self):
-        self.answers.pop(0)
-        self.questions.pop(0)
-        return self.get_question()
+        if len(self.questions) > 0:
+            self.answers.pop(0)
+            self.questions.pop(0)
+            return self.get_question()
 
     def get_question(self):
         if len(self.questions) == 0:
@@ -198,8 +199,8 @@ class Game:
             self.output.host['data'] = self.output.group['data'] = self.get_question()
             self.reset_round_results()
             self.start_time = time.time()
-        elif state is State.POST_QUESTION:
-            print('post question method')
+        elif state is State.LEADERBOARD:
+            print('leaderboard method')
             if self.isTeam:
                 self.calculate_team_score()
             self.output.host['data'] = self.generate_leaderboard()

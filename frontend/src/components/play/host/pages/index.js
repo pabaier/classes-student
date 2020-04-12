@@ -2,7 +2,7 @@ import React from 'react';
 import * as state from '../../state';
 import Registration from './registration';
 import Question from './question';
-import PostQuestion from './postQuestion';
+import Leaderboard from './leaderboard';
 import Finished from './finished';
 import MakeTeams from './makeTeams';
 import Hook from './hook';
@@ -19,8 +19,8 @@ const Page = (props) => {
 			return <MakeTeams {...props} />;
 		case state.QUESTION:
 			return <Question {...props} />;
-		case state.POST_QUESTION:
-			return <PostQuestion {...props} />;
+		case state.LEADERBOARD:
+			return <Leaderboard {...props} />;
 		case state.GAME_OVER:
 			return <div>Game Over</div>;
 		case state.FINISHED:

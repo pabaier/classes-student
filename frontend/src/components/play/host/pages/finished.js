@@ -1,10 +1,10 @@
 import React from 'react';
-import LeaderBoard from '../../leaderboard'
+import Standings from '../../standings'
 
 const Finished = ({data}) => {
 
 	return (
-		<LeaderBoard data={data} title={'Final Results'}></LeaderBoard>
+		<Standings data={data} title={'Final Results'}></Standings>
 	)
 }
 
