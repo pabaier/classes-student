@@ -130,6 +130,12 @@ class Game:
 
     def deactivate(self):
         self.active_game.delete()
+        self.output.host['data'] = self.generate_leaderboard()
+        self.output.players['data'] = self.players.toDict()
+        self.output.group['data'] = None
+        self.outline = GameOutline()
+        self.questions = self.answers = []
+        return self.output
 
     def get_results(self):
         return self.generate_leaderboard()

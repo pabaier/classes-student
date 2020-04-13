@@ -7,8 +7,8 @@ from .states import GameState, State
 
 
 class GameOutline:
-    def __init__(self, states=[]):
-        self.states = states
+    def __init__(self):
+        self.states = []
         self.past_states = []
         self.current_state = None
         self.hooks = Hooks()
@@ -68,9 +68,9 @@ class GameOutline:
         for state in game_states_dict:
             game_state = GameState(
                 State(state['state']),
-                state.get('pre_hook_name', None),
-                state.get('post_hook_name', None),
-                state.get('hook_name', None)
+                state.get('pre_hook', None),
+                state.get('post_hook', None),
+                state.get('name', None)
             )
             game_outline.states.append(game_state)
             game_outline.process_hooks(game_state)
