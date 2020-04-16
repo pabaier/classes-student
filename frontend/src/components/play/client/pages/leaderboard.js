@@ -37,7 +37,7 @@ const placeSuffix = (value) => {
 	}
 }
 
-const PostQuestion = ({ data }) => {
+const Leaderboard = ({ data }) => {
 
 	return (
 		<div>
@@ -47,4 +47,4 @@ const PostQuestion = ({ data }) => {
 	)
 }
 
-export default PostQuestion
+export default Leaderboard

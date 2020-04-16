@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Leaderboard = ({data, title}) => {
+const Standings = ({data, title}) => {
 	const leaderboard = () => {
 		return data.map((entry, i) => (
 			<li key={i}>{entry.name}.......{entry.totalScore}</li>
@@ -16,4 +16,4 @@ const Leaderboard = ({data, title}) => {
 	)
 }
 
-export default Leaderboard;
+export default Standings;

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Game, ActiveGame, Option, GameOption, ScoringHook, GameHook
+from .models import Game, ActiveGame, Option, GameOption, ScoringHook, Hook
 
 
 class GameAdmin(admin.ModelAdmin):
@@ -22,14 +22,16 @@ class GameOptionAdmin(admin.ModelAdmin):
 class ScoringHookAdmin(admin.ModelAdmin):
     fields = "__all__"
 
-class GameHookAdmin(admin.ModelAdmin):
+
+class HookAdmin(admin.ModelAdmin):
     fields = "__all__"
+
 
 # admin.site.register(Question, QuestionAdmin)
 # admin.site.register(Game, GameAdmin)
 # admin.site.register(Game_Question, GameQuestionAdmin)
 
 
-models = [Game, ActiveGame, Option, GameOption, ScoringHook, GameHook]
+models = [Game, ActiveGame, Option, GameOption, ScoringHook, Hook]
 for model in models:
     admin.site.register(model)

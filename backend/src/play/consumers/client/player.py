@@ -1,6 +1,6 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
-from play.game.state import State
+from play.game.models.states import State
 import json
 
 class PlayerConsumer(WebsocketConsumer):

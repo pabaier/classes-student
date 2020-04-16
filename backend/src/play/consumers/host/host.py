@@ -1,7 +1,7 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 from play.game.game import Game
-from play.game.state import State
+from play.game.models.states import State
 import json
 
 class HostConsumer(WebsocketConsumer):
@@ -19,7 +19,6 @@ class HostConsumer(WebsocketConsumer):
         self.host_group_name = 'host_%s' % self.game_token
         self.players_group_name = 'players_%s' % self.game_token
         self.game = Game(self.game_token, teamNumber)
-        self.round_results = []
 
         # Join room group
         async_to_sync(self.channel_layer.group_add)(
@@ -36,16 +35,17 @@ class HostConsumer(WebsocketConsumer):
             self.host_group_name,
             self.channel_name
         )
-        self.game.deactivate()
+        output = self.game.deactivate()
+        self.send_to_frontend(State.FINISHED, output.host['data'])
+        # self.send_to_all_individual_players(State.FINISHED, output.players['data'])
 
     # Receive message from WebSocket
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
-        new_state = self.game.next_state()
 
-        output = self.game.change_state(new_state)
-        current_state = self.game.get_state()
+        output = self.game.change_state()
+        current_state = self.game.get_state().state
 
         if output.has_host_data():
             self.send_to_frontend(current_state, output.host['data'])
