@@ -99,17 +99,36 @@ Figure \ref{fig:quizlet-team} shows an example of one player's screen with two a
 To illustrate the point further, if there were 10 questions and two people on one team, then each person on that team would see five answers on their screen. Each answer is the answer to one of the questions but because the answers are divided across all team members, a player will not always have the answer to a question on their screen. It is up to the player with the correct answer to answer the question. Once the question is answered correctly a check mark appears where that answer used to be and the next question is displayed.
 
 \subsection{Quipid}
-Quipid is a tool that was presented at the FIE 2017 conference. Its purpose is to provide students with rapid feedback on assessments and teachers with a simple way to create and assign assessments. It is not a game, so it does not directly relate to our platform, however it allows teachers to create custom questions and has a programmable element which makes it related and unique relative to other platforms we looked at.
+A tool that was presented at the FIE 2017 conference is called Quipid. Its purpose is to provide students with rapid feedback on assessments and teachers with a simple way to create and assign assessments. It is not a game, so it does not directly relate to our platform, however it allows teachers to create custom questions and has a programmable element which makes it related and unique relative to other platforms we looked at.
 \smallskip
 
+Quipid uses Google Sheets and Google Forms as a front end for the platform. The teacher uses Google Sheets to formulate questions and organize them into a quiz. The quiz is exported to a Google Form where the students go to take the quiz. Once complete, the students are able to see their score along with feedback. Teachers can also see real time results once a student submits their work.
+\smallskip
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \centering
+    \includegraphics[width=0.25\textwidth]{images/quipid-problem.png}
+    \caption{Quipid Problem Structure \cite{quipid}}
+    \label{fig:quipid-problem}
+\end{wrapfigure}
+\indent A main goal for Quipid is to provide teachers with an easy way to assess students. Google Sheets is the backbone to achieving this goal. Quipid is designed with two sheets, a ``Problem'' sheet and a ``Formulation'' sheet. The Problem sheet is a library of questions and is linked to the formulation sheet. As figure \ref{fig:quipid-problem} shows, a problem is made up of three parts: a ``question steam'', an optional ``figure'', and ``alternatives'', which are the multiple choice options for the question. The link between the formulation sheet and the problem sheet allows the formulation sheet to be programmed in such a way that when a teacher changes the parameters in the question stem, the alternatives are automatically updated.
+\smallskip
+
+Along with the formulation sheet, Quipid offers more programmability simply by virtue of using Google's G Suite (Google Sheets and Google Forms). Part of G Suite is a scripting language called Google Apps Script. This allows the user to program the Sheets and Forms with virtually infinite possibilities. Quipid leverages Apps Script to create the quiz in Google Forms based on the questions in Google Sheets, but a user of Quipid could program the tool to do any number of different tasks including integrating with third party tools, at which point the possibilities would be endless.  
 
 \subsection{Dysgu}
+The last work, Dysgu, is a concept more than an application. It was presented at FIE 2018 in a ``work in progress'' paper. It is presented as a collection of high level ideas without any concrete implementation. We mention it here because it is a platform in development with gamification features and some interesting ideas on student engagement.
+\smallskip
 
+Dysgu is described as an application for teachers to assign activities to students and track their progress. Students can sign in, interact with each other, and complete the assignments. There are three notable gamification features presented: scores and points, badges, and social awareness.
+\smallskip
 
+The paper describes the difference between scores and points as ``Scores are utilized to calculate student’s grade, whereas, points are used as currency in the system'' \cite{dysgu}. All students receive scores for completing activities, but they can earn points by achieving certain goals within the activities, such as being the first to complete an activity. The points earned can then be used in various ways throughout the system, like a time extension on an activity. 
+\smallskip
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Badges are similar to points. They are awarded for certain accomplishments and unlock features for the student like getting a sneak peek into an activity.   
+\smallskip
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+The social aspect of the platform allows students to see how they are doing relative to the rest of the class. While everything is done anonymously, certain general statistics are made available to each student. For example each student can see the number of students to have completed an activity and each student will know which place they are in relative to their points. Also each student will be able to see the others' badges. 
 
 \section{Design}
 	\subsection{Languages}
