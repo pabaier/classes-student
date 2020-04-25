@@ -3,6 +3,8 @@
 \usepackage{hyperref}
 
 \usepackage{graphicx}
+\usepackage{subcaption}
+
 \graphicspath{ {./images/} }
 \usepackage{wrapfig}
 
@@ -28,7 +30,44 @@ sorting=ynt
 \maketitle
 
 \section{Introduction}
-A student response system (SRS) is one used in classrooms to get student feedback. There are many SRS games, which we refer to as student response games (SRG).
+A student response system (SRS) is a tool used in classrooms to get student feedback in real time. Typically it would be an online tool that teachers can set up with questions and present to students, and students can connect and answer the questions providing real time results. Gamification is the process of applying learning outcomes to games. The goal of this project is to create a fully customizable and programmable gamified SRS platform. We categorize such a system as a ``student response game'' (SRG). 
+
+\subsection{Kahoot}
+Our system is based off an existing commercial platform called ``Kahoot!''. Kahoot is a platform that allows teachers to write questions and organize them together to create a game called a ``kahoot''. When played, the teacher projects the questions to the students, as seen in figure \ref{fig:kahoot-question} and the students answer the questions on their own devices. The quicker a student answers the question, the more points they get. No points are awarded or subtracted for incorrect answers. After each question the results are displayed for that question and then the scoreboard with each player's cumulative score is displayed, as in figures \ref{fig:kahoot-post_question} and \ref{fig:kahoot-scoreboard} respectively. When the game is finished an animation plays and the final results are displayed as shown in figure \ref{fig:kahoot-final}.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{images/kahoot-question.png}
+        \caption{Multiple Choice Question}
+        \label{fig:kahoot-question}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{images/kahoot-post_question.png}
+        \caption{Question Results}
+        \label{fig:kahoot-post_question}
+    \end{subfigure}
+    \\
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{images/kahoot-scoreboard.png}
+        \caption{Scoreboard}
+        \label{fig:kahoot-scoreboard}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{images/kahoot-finished.png}
+        \caption{Final Results}
+        \label{fig:kahoot-final}
+    \end{subfigure}
+    \caption{Kahoot Screens \cite{kahoot}}\label{fig:kahoot}
+\end{figure}
+
+When creating questions teachers are given six choices for the type of question they want to create: multiple choice, true/false, open-ended (players write in their answer), puzzle (players need to order the answers correctly), poll (no points awarded, simply polling the players), and slide, which is not a question but rather a screen with text to display more information. Each question has text and teachers are given the option to include a picture or YouTube video.
+\smallskip
+
+A Kahoot can be played live in the classroom or assigned to students to complete at their own pace. If assigned, the teacher needs to enter a due date and can set a few game options including randomize the questions, randomize the answers in each question, and use the question timer. Live games can be played in either classic mode, where students compete individually, or team mode. The difference between the two modes is that students share a device in team mode. Game options include randomizing the question and answers (like in the assigned option) and automatically moving through the questions instead of the teacher needing to click the ``next'' button as seen in figure \ref{fig:kahoot-scoreboard}.
+
+\subsection{Motivation}
+We decided to create a flexible, programmable SGR because we like the idea of Kahoot but find it limiting in the game options it offers. The idea originated with student collaboration in mind - creating a platform like kahoot but more collaborative - because Kahoot's team mode leaves a lot to be desired. As we iterated over different designs and features to include we eventually arrived at the idea that users (teachers) should be able to program the game and its features to do whatever they want it to do. With this concept at the core of our platform, we designed an open system with all of the game logic and data exposed to the user. There are default behaviors built into the system for those that want a hassle free experience, but for the more ambitious and/or particular, the default behavior can be overridden and programmed in any number of different ways.  
 
 \section{Literature Review}
 In order to identify prior work in the area of educational games we looked at roughly 2000 proceedings from the Frontiers in Education (FIE) conference from 2015-2019. We started our search with the word ``kahoot'' because our platform's functional design is based off of Kahoot. Within the search results we identified other platforms mentioned that were similar to Kahoot (and therefore also similar to our platform) and recursively searched for those other platforms as well within the proceedings. This search method allowed us to determine other popular platforms researchers were testing that are comparable to Kahoot as well as other SRS/SRG platforms in development. Our search revealed some of the most popular and relevant SRGs currently in production in addition to Kahoot are Socrative \cite{socrative}, Quizizz \cite{quizizz}, and Quizlet \cite{quizlet}. There were also two platforms in development by researchers called Quipid \cite{quipid} and Dysgu \cite{dysgu}.
