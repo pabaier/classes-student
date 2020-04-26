@@ -7,6 +7,7 @@
 
 \graphicspath{ {./images/} }
 \usepackage{wrapfig}
+\usepackage{float}
 
 \usepackage{caption}
 \captionsetup[figure]{font=footnotesize}
@@ -36,7 +37,7 @@ sorting=ynt
 \title{Collaborative Learning: \\
 \normalsize Strategies and Platform Development
 }
-\author{Paul Baier}
+\author{Paul A. Baier}
 \date{April 20, 2020}
 
 \begin{document}
@@ -44,7 +45,7 @@ sorting=ynt
 \maketitle
 
 \section{Introduction}
-A student response system (SRS) is a tool used in classrooms to get student feedback in real time. Typically it would be an online tool that teachers can set up with questions and present to students, and students can connect and answer the questions providing real time results. Gamification is the process of applying learning outcomes to games. The goal of this project is to create a fully customizable and programmable gamified SRS platform. We categorize such a system as a ``student response game'' (SRG). 
+    A student response system (SRS) is a tool used in classrooms to get student feedback in real time. Typically it would be an online tool that teachers can set up with questions and present to students, and students can connect and answer the questions providing real time results. Gamification is the process of applying learning outcomes to games. The goal of this project is to create a fully customizable and programmable gamified SRS platform. We categorize such a system as a ``student response game'' (SRG). 
 
     \subsection{Kahoot}
         Our system is based off an existing commercial platform called ``Kahoot!''. Kahoot is a platform that allows teachers to write questions and organize them together to create a game called a ``kahoot''. When played, the teacher projects the questions to the students, as seen in figure \ref{fig:kahoot-question} and the students answer the questions on their own devices. The quicker a student answers the question, the more points they get. No points are awarded or subtracted for incorrect answers. After each question the results are displayed for that question and then the scoreboard with each player's cumulative score is displayed, as in figures \ref{fig:kahoot-post_question} and \ref{fig:kahoot-scoreboard} respectively. When the game is finished an animation plays and the final results are displayed as shown in figure \ref{fig:kahoot-final}.
@@ -84,7 +85,7 @@ A student response system (SRS) is a tool used in classrooms to get student feed
         We decided to create a flexible, programmable SGR because we like the idea of Kahoot but find it limiting in the game options it offers. The idea originated with student collaboration in mind - creating a platform like kahoot but more collaborative - because Kahoot's team mode leaves a lot to be desired. As we iterated over different designs and features to include we eventually arrived at the idea that users (teachers) should be able to program the game and its features to do whatever they want it to do. With this concept at the core of our platform, we designed an open system with all of the game logic and data exposed to the user. There are default behaviors built into the system for those that want a hassle free experience, but for the more ambitious and/or particular, the default behavior can be overridden and programmed in any number of different ways.  
 
 \section{Literature Review}
-In order to identify prior work in the area of educational games we looked at roughly 2000 proceedings from the Frontiers in Education (FIE) conference from 2015-2019. We started our search with the word ``kahoot'' because our platform's functional design is based off of Kahoot. Within the search results we identified other platforms mentioned that were similar to Kahoot (and therefore also similar to our platform) and recursively searched for those other platforms as well within the proceedings. This search method allowed us to determine other popular platforms researchers were testing that are comparable to Kahoot as well as other SRS/SRG platforms in development. Our search revealed some of the most popular and relevant SRGs currently in production in addition to Kahoot are Socrative \cite{socrative}, Quizizz \cite{quizizz}, and Quizlet \cite{quizlet}. There were also two platforms in development by researchers called Quipid \cite{quipid} and Dysgu \cite{dysgu}.
+    In order to identify prior work in the area of educational games we looked at roughly 2000 proceedings from the Frontiers in Education (FIE) conference from 2015-2019. We started our search with the word ``kahoot'' because our platform's functional design is based off of Kahoot. Within the search results we identified other platforms mentioned that were similar to Kahoot (and therefore also similar to our platform) and recursively searched for those other platforms as well within the proceedings. This search method allowed us to determine other popular platforms researchers were testing that are comparable to Kahoot as well as other SRS/SRG platforms in development. Our search revealed some of the most popular and relevant SRGs currently in production in addition to Kahoot are Socrative \cite{socrative}, Quizizz \cite{quizizz}, and Quizlet \cite{quizlet}. There were also two platforms in development by researchers called Quipid \cite{quipid} and Dysgu \cite{dysgu}.
 
     \subsection{Quizizz}
         Of the existing platforms Quizizz most resembles Kahoot and has many customizable features. The main difference between it and Kahoot or our platform is that students move through the quiz at their own pace, limited by the time assigned to each question.
@@ -184,13 +185,13 @@ In order to identify prior work in the area of educational games we looked at ro
         The social aspect of the platform allows students to see how they are doing relative to the rest of the class. While everything is done anonymously, certain general statistics are made available to each student. For example each student can see the number of students to have completed an activity and each student will know which place they are in relative to their points. Also each student will be able to see the others' badges. 
 
 \section{Design}
-Our platform is divided into a backend and a frontend. The backend handles the basic web app functionality along with all of the game logic and data storage. The frontend is responsible for dispaying data provided by the backend and processing user interaction. There is a very loose coupling between the backend and frontend. One advantage of having a loosely coupled back and front end is that they can be developed independently once an application programming interface (API) is agreed upon, allowing for quicker, parallel development. Another advantage is that either can be swapped out for a different technology should the need or desire arise as long as the new technology follows the same API.
-\smallskip
-
-An alternative approach would have been to write the frontend using the web framework's view implementation. The advantage with that approach is that the frontend would have greater visibility into and knowledge of the backend's data. This greater visibility comes at the cost of a potentially bloated system that could become difficult to change over time.
-\smallskip
-
-The overall platform design follows the microservice/model-view-template (MVT) pattern. Both patterns are well known and therefore will not be the focus of this paper (although we will briefly discuss certain architectural elements). Rather the design elements discussed here will be those specific to the actual game and not the surrounding architecture. In our implementation the backend is written in Python Django and the frontend is React.
+    Our platform is divided into a backend and a frontend. The backend handles the basic web app functionality along with all of the game logic and data storage. The frontend is responsible for dispaying data provided by the backend and processing user interaction. There is a very loose coupling between the backend and frontend. One advantage of having a loosely coupled back and front end is that they can be developed independently once an application programming interface (API) is agreed upon, allowing for quicker, parallel development. Another advantage is that either can be swapped out for a different technology should the need or desire arise as long as the new technology follows the same API.
+    \smallskip
+    
+    An alternative approach would have been to write the frontend using the web framework's view implementation. The advantage with that approach is that the frontend would have greater visibility into and knowledge of the backend's data. This greater visibility comes at the cost of a potentially bloated system that could become difficult to change over time.
+    \smallskip
+    
+    The overall platform design follows the microservice/model-view-template (MVT) pattern. Both patterns are well known and therefore will not be the focus of this paper (although we will briefly discuss certain architectural elements). Rather the design elements discussed here will be those specific to the actual game and not the surrounding architecture. In our implementation the backend is written in Python Django and the frontend is React.
 
 	\subsection{Game Architecture}\label{architecture}
 	    A game, at its core, is made of states, each representing a moment in the game with a specific functionality. We refer to this as Flow and Functionality. Flow is the progression from state to state and functionality is the operations that happen within each state. Our goal is to provide a flexible, programmable platform, so our focus throughout development has been to abstract out the flow and functionality of a game to provide as much control as possible to the user.
@@ -228,11 +229,10 @@ The overall platform design follows the microservice/model-view-template (MVT) p
             Figure \ref{fig:functionality-hook} shows how a functionality hook can be added to a game flow to run before the leaderboard state in order to double every player's points for the previous question. The user would need to define the algorithm for how they want to double all of the scores, but the example illustrates that this type of hook only alters the game's underlying data and does not require it's own state with a frontend view like a flow hook. Functionality hooks can be run before or after any state. Each state should only need to run at most one hook before it an one hook after it, however it would be possible to insert empty flow hooks to run more hooks before or after a particular state.
 
 	\subsection{Backend}
-        \subsubsection{Architecture}
-    	    The server side code is written in Python using the Django web framework. We chose Django for our base framework for a number of reasons. First, Python is a familiar language that is good for rapid development because there is not a lot of boilerplate code required. Second, Python is a popular and well documented language and Django is a popular framework so any issues or gaps in our knowledge would likely have easily accessible solutions in either online forums or the Django documentation. Third, because of Django's popularity there are many external libraries that help extended its functionality. Two such libraries that we relied upon are Django REST framework (DRF) and Django Channels.
-    	    \smallskip
+	    The server side code is written in Python using the Django web framework. We chose Django for our base framework for a number of reasons. First, Python is a familiar language that is good for rapid development because there is not a lot of boilerplate code required. Second, Python is a popular and well documented language and Django is a popular framework so any issues or gaps in our knowledge would likely have easily accessible solutions in either online forums or the Django documentation. Third, because of Django's popularity there are many external libraries that help extended its functionality. Two such libraries that we relied upon are Django REST framework (DRF) and Django Channels.
+	    \smallskip
 
-            During a game, communication between the client and server uses the websockets protocol. In the OSI model websockets is a layer 7 protocol and an alternative to HTTP. The reason for using this protocol is that it maintains a client/server connection, giving the server the ability to send data to the client without the client requesting it. This allows for two-way, real time communication between the client and the server and is a crucial part of a real time, interactive game like ours. Because websockets is a standard protocol, the implementations on both the front and back ends are straightforward. On the frontend no extra tooling is required - websockets support is build into React. On the backend, Django Channels abstracts out many of the finer details of websockets, providing an easy library to  utilize the protocol.
+        During a game, communication between the client and server uses the websockets protocol. In the OSI model websockets is a layer 7 protocol and an alternative to HTTP. The reason for using this protocol is that it maintains a client/server connection, giving the server the ability to send data to the client without the client requesting it. This allows for two-way, real time communication between the client and the server and is a crucial part of a real time, interactive game like ours. Because websockets is a standard protocol, the implementations on both the front and back ends are straightforward. On the frontend no extra tooling is required - websockets support is build into React. On the backend, Django Channels abstracts out many of the finer details of websockets, providing an easy library to utilize the protocol.
         
         \subsubsection{The Game Object}\label{game-object}
             The brain of a game is the Game object. It is responsible for all game logic and communication. When first initialized it fetches all of the data from the database needed to run the game. This includes all of the questions, answers, game settings, and any custom code like functionality hooks. The game object extracts the game flow from the database and organizes the game accordingly. It runs through the states, from registering users to asking questions to scoring answers, and organizes the data that will be sent to the host and to the players for each state.
@@ -272,70 +272,156 @@ The overall platform design follows the microservice/model-view-template (MVT) p
 	        \smallskip
 	        
 		\subsubsection{Database}\label{database}
-		Part of the backend's responsibilities is storing all of the system's data. This includes user names and passwords, games, game settings, questions, and answers. The database was designed with the goal of reusing as many objects as possible and follows third normal form as there are no funcitonal dependencies between table attributes. Figure \ref{fig:database-er_diagram} shows the Entity Relationship (ER) diagram of our database design.
-		
-        \begin{figure}[ht]
-            \centering
-            \includegraphics[width=0.9\textwidth]{images/database-er_diagram.png}
-            \caption{Database Entity Relationship Diagram}
-            \label{fig:database-er_diagram}
-        \end{figure}
-        
-        It is helpful to think of the database as split into two sides, the question side, as in figure \ref{fig:question-tables}, and the game side, as in figure \ref{fig:game-tables}. The idea with this approach is that questions can be assigned to multiple games without the need to duplicate the question in the database.
-        
-        \begin{figure}[ht]
-            \centering
-            \begin{subfigure}[b]{0.45\textwidth}
-                \includegraphics[width=\textwidth]{images/database-questions.png}
-                \caption{Question Tables}
-                \label{fig:question-tables}
-            \end{subfigure}
-            \begin{subfigure}[b]{0.45\textwidth}
-                \begin{separator}
-                    \includegraphics[width=\textwidth]{images/database-game.png}
-                    \caption{Game Tables}
-                    \label{fig:game-tables}
-                \end{separator}
-            \end{subfigure}
-            \\
-            \begin{subfigure}[b]{0.9\textwidth}
-                \includegraphics[width=\textwidth]{images/database-game_questions.png}
-                \caption{Question and Game Tables Relationship}
-                \label{fig:question-game-tables}
-            \end{subfigure}
-            \caption{Database Sections}\label{fig:database-sections}
-        \end{figure}
-		
-		A question is made up of text, a category, and whether it can be publicly shared or private. A question's answer options are stored in a separate table with a foreign key (FK) relationship to the question. This design allows a question to have, in theory, an infinite amount of answer options. In the prior work referenced, answer options were typically limited to four or less, but our design removes that restriction. Answer options are assigned to a specific question and have a bit value indicating if they represent the answer to the question. This allows single questions to have multiple answer options.
-		\smallskip
-		
-		A flaw in this design is that the same answer option cannot be shared between questions because each option has a question id FK field.  To normalize this further we could add a junction table between the question and answer option so that the same answer options would not be duplicated in the database, however this approach seemed impractical because we did not want users having to search through existing answer options in order to add them to a question.
-		\smallskip
-		
-		The main game table contains game properties and customization features. The two scoring hook fields (individual and team) FK to the scoring hook table as shown in figure \ref{fig:game-tables}. This allows for custom scoring algorithms to be written by our users and, if specified, will override the default scoring of our system as mentioned in section \ref{game-object}. The reason scoring hooks are in a separate table is so that the user can reuse the same code in multiple games. For example, if a user writes an algorithm in a scoring hook to assign points based on the order the answers were submitted, they could write that once to the scoring hook table and then assign that same hook to multiple games.
-		\smallskip
-		
-		The outline column in the game table is where the game flow is stored. The functionality of the game flow is discussed in section \ref{flow}. There are many ways the game flow could be stored in the database. One option would have been to create a separate table with an FK to the game table, an ordinal column indicating the order of the states, and a state column indicating the specific state. It would also need some way, either with more columns or another table, in order to reference functionality hooks. This approach was considered but ultimately declined because of the complexity. The approach chosen seemed reasonable and much more concise, although we loose data integrity validation in exchange for the simplicity.
-		\smallskip
-		
-		Our approach simply stores the game flow as a JSON string. While it is easier to corrupt this data, it provides much less overhead when storing and retrieving it and more importantly, allows for a more flexible shape of the data. Rather than relying on the database to ensure the data's integrity, we offload that responsibility to the front and back ends. When a game is fetched from the database, the game flow is retrieved from the outline column as a string and deserialized into its own data type.
-		\smallskip
-		
-		This approach works well because it does not require any joins when retrieving the data and it allows for the shape of the data to be fluid. For example, each state in the flow may or may not have a functional hook before it and after it. By storing the flow as a string, if these values are not present, we can ignore them completely by not including them in the JSON string. If this were stored relationally we would have needed nullable pre-hook and post-hook columns for each state, adding a lot of potentially wasted space.
-		\smallskip
-		
-		There are three tables in the database that are related to the game table which are the active game, the scoring hook, and the hook tables. Active games are games that are currently being played. They have an auto generated slug field that acts as the game pin so users can connect to it. The scoring hook table FKs to the game table and is used to store the code for both custom individual and team scoring.
-		\smallskip
-		
-		The last table related to the game table is the hook table. Interestingly the hook table has no FKs to any other table (with the exception of the user table). This is because hooks do not belong to any one game and a game will have an unknown number of hooks. A junction table could be possible to connect hooks to games, but because of our outline design we elected for a different approach. In the hook table the creator and name fields must be unique together. That means that a single user cannot create two hooks with the same name. Because functional hooks are specified in the outline, it is there that the hook is referenced, namespaced using dot notation as ``creatorId.name''. For example if user 7 defined and wanted to use a functional hook called ``doublescore'' they would include it in the outline JSON as ``7.doublescore''. This way when the outline is deserialized, the hooks are parsed and the hook table is queried by creator id and name in order to fetch the hook's code.
-		
-		The question and game tables are joined using the question-game junction table, illustrated in figure \ref{fig:question-game-tables}. This table represents questions being assigned to games. It has time limit field as well so that question times are only specific to games and not questions. This allows the same question object to be used more flexibly. If a question's time limit was specified in the question table, then a duplicate tuple would need to be created just to change the time.
+    		Part of the backend's responsibilities is storing all of the system's data. This includes user names and passwords, games, game settings, questions, and answers. The database was designed with the goal of reusing as many objects as possible and follows third normal form as there are no funcitonal dependencies between table attributes. Figure \ref{fig:database-er_diagram} shows the Entity Relationship (ER) diagram of our database design.
+    		
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[width=0.9\textwidth]{images/database-er_diagram.png}
+                \caption{Database Entity Relationship Diagram}
+                \label{fig:database-er_diagram}
+            \end{figure}
+            
+            It is helpful to think of the database as split into two sides, the question side, as in figure \ref{fig:question-tables}, and the game side, as in figure \ref{fig:game-tables}. The idea with this approach is that questions can be assigned to multiple games without the need to duplicate the question in the database.
+            
+            \begin{figure}[ht]
+                \centering
+                \begin{subfigure}[b]{0.45\textwidth}
+                    \includegraphics[width=\textwidth]{images/database-questions.png}
+                    \caption{Question Tables}
+                    \label{fig:question-tables}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.45\textwidth}
+                    \begin{separator}
+                        \includegraphics[width=\textwidth]{images/database-game.png}
+                        \caption{Game Tables}
+                        \label{fig:game-tables}
+                    \end{separator}
+                \end{subfigure}
+                \\
+                \begin{subfigure}[b]{0.9\textwidth}
+                    \includegraphics[width=\textwidth]{images/database-game_questions.png}
+                    \caption{Question and Game Tables Relationship}
+                    \label{fig:question-game-tables}
+                \end{subfigure}
+                \caption{Database Sections}\label{fig:database-sections}
+            \end{figure}
+    		
+    		A question is made up of text, a category, and whether it can be publicly shared or private. A question's answer options are stored in a separate table with a foreign key (FK) relationship to the question. This design allows a question to have, in theory, an infinite amount of answer options. In the prior work referenced, answer options were typically limited to four or less, but our design removes that restriction. Answer options are assigned to a specific question and have a bit value indicating if they represent the answer to the question. This allows single questions to have multiple answer options.
+    		\smallskip
+    		
+    		A flaw in this design is that the same answer option cannot be shared between questions because each option has a question id FK field.  To normalize this further we could add a junction table between the question and answer option so that the same answer options would not be duplicated in the database, however this approach seemed impractical because we did not want users having to search through existing answer options in order to add them to a question.
+    		\smallskip
+    		
+    		The main game table contains game properties and customization features. The two scoring hook fields (individual and team) FK to the scoring hook table as shown in figure \ref{fig:game-tables}. This allows for custom scoring algorithms to be written by our users and, if specified, will override the default scoring of our system as mentioned in section \ref{game-object}. The reason scoring hooks are in a separate table is so that the user can reuse the same code in multiple games. For example, if a user writes an algorithm in a scoring hook to assign points based on the order the answers were submitted, they could write that once to the scoring hook table and then assign that same hook to multiple games.
+    		\smallskip
+    		
+    		The outline column in the game table is where the game flow is stored. The functionality of the game flow is discussed in section \ref{flow}. There are many ways the game flow could be stored in the database. One option would have been to create a separate table with an FK to the game table, an ordinal column indicating the order of the states, and a state column indicating the specific state. It would also need some way, either with more columns or another table, in order to reference functionality hooks. This approach was considered but ultimately declined because of the complexity. The approach chosen seemed reasonable and much more concise, although we loose data integrity validation in exchange for the simplicity.
+    		\smallskip
+    		
+    		Our approach simply stores the game flow as a JSON string. While it is easier to corrupt this data, it provides much less overhead when storing and retrieving it and more importantly, allows for a more flexible shape of the data. Rather than relying on the database to ensure the data's integrity, we offload that responsibility to the front and back ends. When a game is fetched from the database, the game flow is retrieved from the outline column as a string and deserialized into its own data type.
+    		\smallskip
+    		
+    		This approach works well because it does not require any joins when retrieving the data and it allows for the shape of the data to be fluid. For example, each state in the flow may or may not have a functional hook before it and after it. By storing the flow as a string, if these values are not present, we can ignore them completely by not including them in the JSON string. If this were stored relationally we would have needed nullable pre-hook and post-hook columns for each state, adding a lot of potentially wasted space.
+    		\smallskip
+    		
+    		There are three tables in the database that are related to the game table which are the active game, the scoring hook, and the hook tables. Active games are games that are currently being played. They have an auto generated slug field that acts as the game pin so users can connect to it. The scoring hook table FKs to the game table and is used to store the code for both custom individual and team scoring.
+    		\smallskip
+    		
+    		The last table related to the game table is the hook table. Interestingly the hook table has no FKs to any other table (with the exception of the user table). This is because hooks do not belong to any one game and a game will have an unknown number of hooks. A junction table could be possible to connect hooks to games, but because of our outline design we elected for a different approach. In the hook table the creator and name fields must be unique together. That means that a single user cannot create two hooks with the same name. Because functional hooks are specified in the outline, it is there that the hook is referenced, namespaced using dot notation as ``creatorId.name''. For example if user 7 defined and wanted to use a functional hook called ``doublescore'' they would include it in the outline JSON as ``7.doublescore''. This way when the outline is deserialized, the hooks are parsed and the hook table is queried by creator id and name in order to fetch the hook's code.
+    		
+    		The question and game tables are joined using the question-game junction table, illustrated in figure \ref{fig:question-game-tables}. This table represents questions being assigned to games. It has time limit field as well so that question times are only specific to games and not questions. This allows the same question object to be used more flexibly. If a question's time limit was specified in the question table, then a duplicate tuple would need to be created just to change the time.
 
 	\subsection{Frontend}
+	    The frontend is written in React with Redux. There is little logic in the frontend related to gameplay because the game is controlled on the server side. The frontend's main purpose is to present information from the server to the users and send input from the users to the server. We chose React as our frontend architecture because it is a modern frontend framework and therefor designed to consume APIs. It also helps keep our frontend code organized and React components allow us to reuse code, ultimately leading to a cleaner code base and more rapid development. Starting this project we also understood that React had a reputation for fast rendering which is an appealing feature when creating an online game like ours.
+	    \smallskip
+	    
+	    At this stage in development Redux is not widely used throughout our system. We use it on the ``non game/non websockets'' side of the frontend to make information globally available to components. One such use case is with the user's JWT. It is useful to have this value available globally because it is needed for every HTTP API call. When playing the game itself, however, we do not use Redux at all. The reason for this is that during a game information typically comes from the backend when it is needed and discarded when the game state changes, so there is no need to use a global store for information. That is not to say that it is not possible to use Redux within the game, but a decision to do so would be more stylistic than functional.
+	    
+	    \subsubsection{User Experience}
+	        There are two different types of users for our system, a host (sometimes referred to as a teacher) and a client (sometimes called a player or a student). The role of the user will determine the user experience. Upon first entering the site users are given the option to login or join a game, as shown in figure \ref{fig:frontend-login}. If a user has an account they are assumed to be a teacher and can host a game. If they want to join a game they assume the player role. We have future plans to allow non-teachers to login as well, which will be discussed in greater detail in section \ref{future-work}.
+	        
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[width=0.8\textwidth]{images/frontend-login.png}
+                \caption{Login Modal}
+                \label{fig:frontend-login}
+            \end{figure}
+            
+            Once a host logs in they are presented with their home dashboard. In our current state not all dashboard functionality is implemented, however in theory the host would be able to create, read, update, and delete (CRUD) all of their games, questions, and hooks. In addition they could search for, copy, and play public games.
+            \smallskip
+            
+            In order to play a game they would navigate from their home dashboard to their game dashboard. Shown in figure \ref{fig:frontend-games_dashboard}, the host is able to select which game they want to play and which mode to play it in, team or individual. Team mode defaults to two teams, but with the dropdown menu they can select up to 20. Once the game is selected, a websocket connection is established between the host and the server and the game object is instantiated with all of the game's information.  
+            
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.5\textwidth]{images/frontend-games_dashboard.png}
+                \caption{Host Game Dashboard}
+                \label{fig:frontend-games_dashboard}
+            \end{figure}
+            
+            The flow of the game once it is instantiated depends entirely on how the host programmed the game. The following explanation describes the default behavior for states and their outputs, however this behavior is easily overridden at which point the game could progress completely differently.
+            \smallskip
+            
+            The game would then likely move to the registration state where players are presented with the game pin and able to join, as seen in figure \ref{fig:frontend-join_game}. After entering their names, players enter the standby state. Once the host is ready, they click the ``ready'' button and the game progresses to the next state. This would typically be either make teams if it is a team game, or the question state if it is an individual game, although this is not required. When in the make teams state, after the teams are organized by the server, the host will display all of the teams and their rosters while the players will each receive the name of their team on their devices. 
+
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{images/frontend-join_game.png}
+                    \caption{Join Game}
+                    \label{fig:frontend-join_game}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=0.9\textwidth]{images/frontend-question.png}
+                    \caption{Game Question}
+                    \label{fig:frontend-question}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \vspace{3mm}
+                    \includegraphics[width=0.35\textwidth]{images/frontend-standings.png}
+                    \caption{Game Standings}
+                    \label{fig:frontend-standings}
+                \end{subfigure}
+                \begin{subfigure}[b]{0.49\textwidth}
+                    \centering
+                    \includegraphics[width=0.9\textwidth]{images/frontend-player_summary.png}
+                    \caption{Post Question Player Summary}
+                    \label{fig:frontend-player_summary}
+                \end{subfigure}
+                \caption{In Game Views}\label{fig:frontend-user_interface}
+            \end{figure}
+            
+            
+	        In the question state the view is the same for the host and students, as shown in figure \ref{fig:frontend-question}, except students do not see the timer on their screen. Once all of the students answer or time runs out, the game progresses to the next state. If that is the leaderboard state, then the standings page displays the player rankings on the host screen, seen in figure \ref{fig:frontend-standings}. At the same time each player can see their own personal summary on their device, shown in figure \ref{fig:frontend-player_summary}. When the finished state runs, the view for the host and players is similar to that of the leaderboard state.
+	    
+	    \subsubsection{Game Architecture}
+            The game architecture is split into two sections, the host and the client. The two sides are similar because they both need to process and display the same state data, however there are minor differences, like for example when the host needs to display a timer. The host and clients also receive differently shaped data for any given state, so it is necessary to split them, mirroring the backend architecture.
+            \smallskip
+            
+            Data coming in on both sides goes through the same filtering process in order to render the correct page. The payload includes a state field that is read and matched on, forwarding the data to and rendering the corresponding frontend page, as illustrated by figure \ref{fig:frontend-pages}. The frontend always responds to the state is is sent and never sets its own state. This structure allows the server to be in full control of the game, always aware of which state the game is in and always able to change the state at any time.
+
+            \begin{figure}[ht]
+                \centering
+                \includegraphics[width=0.9\textwidth]{images/frontend-pages.png}
+                \caption{Filtering Data to Pages}
+                \label{fig:frontend-pages}
+            \end{figure}
+            
+            It is important to distinguish between the server controlling the state and the frontend sending events to the server, like time running out during a question or the host clicking a button to start the game. These events are registered on the frontend and sent to the server, but it is the server, not the frontend, that decides how to process these events and what the next state of the game will be.
+            
+            \smallskip
+            There are three ways for the frontend to indicate the completion of a state to the server. The host can hit the ``next'' (or ``ready'' depending on the page) button, all of the students could have submitted an answer during a question, or the timer can run out during a question (or any other state as it is possible to add a timer to any host page through the use of hooks).
 
 \section{Development}
+    Development for this platform took place over a 14 week period. When starting we did not have a plan to follow any traditional development processes, nor did we adopt one as the project grew, however as we progressed our own process organically emerged that shares similarities to Agile.
+    \smallskip
+    
+    Traditional development processes can be difficult to implement by one or two people just starting a project. For example, Waterfall requires designs up front and releases when a feature is complete but for a new project its design and direction may be unclear and there might be nothing to release once a feature is complete. Agile tends to be quicker iterations to implement features but new features in a new project may require more or less time than a standard Agile sprint.  
 \section{Features}
-\section{Future Work}
+\section{Future Work}\label{future-work}
 
 \printbibliography[title={Bibliography}]
 
