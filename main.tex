@@ -50,7 +50,7 @@ sorting=ynt
 \section{Introduction}
     A student response system (SRS) is a tool used in classrooms to get student feedback in real time. Typically it would be an online tool that teachers can set up with questions and present to students, and students can connect and answer the questions providing real time results. Gamification is the process of applying learning outcomes to games. The goal of this project is to create a fully customizable and programmable gamified SRS platform. We categorize such a system as a ``student response game'' (SRG). 
 
-    \subsection{Kahoot}
+    \subsection{Kahoot} \label{kahoot}
         Our system is based off an existing commercial platform called ``Kahoot!''. Kahoot is a platform that allows teachers to write questions and organize them together to create a game called a ``kahoot''. When played, the teacher projects the questions to the students, as seen in figure \ref{fig:kahoot-question} and the students answer the questions on their own devices. The quicker a student answers the question, the more points they get. No points are awarded or subtracted for incorrect answers. After each question the results are displayed for that question and then the scoreboard with each player's cumulative score is displayed, as in figures \ref{fig:kahoot-post_question} and \ref{fig:kahoot-scoreboard} respectively. When the game is finished an animation plays and the final results are displayed as shown in figure \ref{fig:kahoot-final}.
         
         \begin{figure}[ht]
@@ -217,7 +217,7 @@ sorting=ynt
                 \caption{Sample Game Flows}\label{fig:architecutre-game_flows}
             \end{figure}
 
-            The ``hook'' state, called a flow hook, acts as a blank state where any behavior can be programmed to run when that state runs. Currently the flow hook backend state maps to the flow hook frontend state by specifying certain key values in the backend output in order to display it on the frontend. For example, specifying a value for the ``h1'' key in the payload from the backend will display that key's value in an h1 tag on the frontend. The current key options are h1, h3, h5, and p. We are hoping in the future to make the entire hook frontend page customizable.
+            The ``hook'' state, called a flow hook, acts as a blank state where any behavior can be programmed to run when that state runs. Currently the flow hook backend state maps to the flow hook frontend state by specifying certain key values in the backend output in order to display it on the frontend. For example, specifying a value for the ``h1'' key in the payload from the backend will display that key's value in an h1 tag on the frontend. The current key options are h1, h3, h5, and p. We are hoping in the future to make the entire hook frontend page customizable as discussed in section \ref{future-work}.
         
         \subsubsection{Functionality}\label{functionality}
             Functionality is the algorithms that run during each state. To give users access to the underlying functionality of a game we have introduced the idea of hooks. A hook is a piece of user defined python code that will run when the user specifies it to run within the game flow. It is important to make a distinction between functionality hooks and flow hooks mentioned above. A flow hook is to be used when the user wants a custom view to be displayed during the game. A functionality hook is not a state itself, but rather runs in addition to the current
@@ -340,7 +340,7 @@ sorting=ynt
 	    
 	    At this stage in development Redux is not widely used throughout our system. We use it on the ``non game/non websockets'' side of the frontend to make information globally available to components. One such use case is with the user's JWT. It is useful to have this value available globally because it is needed for every HTTP API call. When playing the game itself, however, we do not use Redux at all. The reason for this is that during a game information typically comes from the backend when it is needed and discarded when the game state changes, so there is no need to use a global store for information. That is not to say that it is not possible to use Redux within the game, but a decision to do so would be more stylistic than functional.
 	    
-	    \subsubsection{User Experience}
+	    \subsubsection{User Experience} \label{ux}
 	        There are two different types of users for our system, a host (sometimes referred to as a teacher) and a client (sometimes called a player or a student). The role of the user will determine the user experience. Upon first entering the site users are given the option to login or join a game, as shown in figure \ref{fig:frontend-login}. If a user has an account they are assumed to be a teacher and can host a game. If they want to join a game they assume the player role. We have future plans to allow non-teachers to login as well, which will be discussed in greater detail in section \ref{future-work}.
 	        
             \begin{figure}[ht]
@@ -431,6 +431,58 @@ sorting=ynt
     In some sense this process could be considered Agile. Our sprints lasted one week and Dr. Hajja's role could be compared to an Agile Product Owner because he would give feedback about how features were implemented and what features were to be added next. My role would certainly be considered the developer as I mostly implemented features. We did not have any way of tracking or pointing features as one would expect in Agile, but I did keep an informal list of features in a text document that I would occasionally reference when looking for the next feature to add.
     
 \section{Future Work}\label{future-work}
+    As the US Defense Innovation Board says, "software is never done" \cite{mcquade}. The only reason we stopped development when we did was because of time and scheduling constraints, however there is a virtually endless list of features that can be added to the system. Here we highlight some of the more interesting and pressing features that we hope to add in the future.
+    \\\\
+    \noindent{\emph{User Interface}}
+    \smallskip
+    
+    Our focus up to this point has been on game functionality. The user interface (UI) that currently exists was stood up quickly just so we could test new features. It will be necessary to develop the UI further so we maximize the overall user experience.
+    \\\\
+    \noindent{\emph{Deployment}}
+    \smallskip
+
+    All of the work for this project has been done locally. There have been no attempts up to this point to deploy the application. Of course, we will need to deploy it at some point if we want a usable product. We will likely use Heroku as our hosting platform because it requires relatively little setup and they offer free accounts.
+    \smallskip
+    
+    There are a few concerns for when we deploy. The first is that using websockets could complicate our Heroku configuration. We will have environment variables such as websocket URLs that will likely need to be automatically set and loaded from a configuration file. Also, in addition to our standard database, Django Channels uses Redis so we will need to figure out how to deploy and connect to Redis using Heroku. 
+    \\\\
+    \noindent{\emph{Finish API}}
+    \smallskip
+    
+    Since building out the API our design has changed but the API did not get updated. In order to finish the UI it will be important to first finish the API. This means making all appropriate endpoints so users can CRUD their data. 
+    \\\\
+    \noindent{\emph{Premade Hooks}}
+    \smallskip
+    
+    With the amount of programmability in our system we run the risk of alienating non-technical users. Ideally we would like our platform to be used by technical and non-technical users alike, allowing them as much control and programmability as they want. At this point we offer customization but we do not have any resources for users that just want it to work without any programming. Therefor we would like to include pre-made code that packages certain functionality, such as different scoring hooks, that can be easily dropped into any game so the non-technical user does not have to worry about programming but could still change default functionality.
+    \\\\
+    \noindent{\emph{State Hook Frontend}}
+    \smallskip
+    
+    As mentioned in section \ref{flow}, we offer a programmable flow hook but the frontend can only display certain text/fields. We would like to open up the frontend to be completely programmable as well, however more research needs to be done as to how to actually implement this. Some questions that needs answers are: our frontend is in React, so would to user write custom react, or would we limit it to HTML? If HTML, could we use javascript inside of it? With either implementation, how would variables coming from the backend be handled? What kind of security would we need to put in place to avoid bad actors or good actors that made a mistake? Currently we do not have a proof of concept for this work, so we have many questions as to the feasibility of this idea as well as how it would be implemented.
+    \\\\
+    \noindent{\emph{Question Types and Media}}
+    \smallskip
+    
+    We saw in section \ref{kahoot} about Kahoot that their platform offers a variety of different question types along with an option to add images and videos to the question. We like this feature and would also like to extend our platform to offer similar options. Because we want to give users as much control as possible, an idea would be to allow the user to program their own question type, however this idea is in its infancy and further testing would need to happen in order to determine its viability.
+    \\\\
+    \noindent{\emph{Change Answer}}
+    \smallskip
+    
+    When a student answers a question their state automatically changes to the standby state. This means that it is not possible for a player to change their answer, even if the host tried to program this functionality in a hook. It would be nice to give the host the option to allow students to change their answer while there is still time left on the question. And ideally the host would be able to set a limit to how many times a student could change their answer or make it unlimited. Implementing this feature would not be a small amount of work because we would need to revisit the process for what happens when a student answers a question and potentially make big changes to this process. There is also a chance that we would have to introduce another state. Lastly, there is currently no customizable way for the host and players' states to be different. As mentioned, when a player answers their state moves to standby while the host remains in question, but this happens automatically. This feature would possibly require the host to be able to specify the host state and the player state at any given time, a customization that currently does not exits.
+    \\\\
+    \noindent{\emph{Move Backwards}}
+    \smallskip
+    
+    Another feature related to states is the ability for the host to move backward in the game. There are questions that arise from this idea, such as if they move back to a question, do the redo the question or just see it? But in anticipation for this feature we already keep a list of previous states in the game object, so while that is by no means a major step towards implementing this feature, it does provide some scaffolding for future work.
+    \\\\
+    \noindent{\emph{Player Accounts}}
+    \smallskip
+    
+    As discussed in section \ref{ux} we would like players to be able to join a game under their own account rather than anonymously. This could provide an explosion of more features related to teachers grouping students into classes and tracking their progress. In order to implement this feature we would need to include an optional user id in the game object alongside the player's name, this way the game would know who is playing the game and be able to report their performance accordingly.
+    
+\section{Conclusion}
+    We have explained how our platform works and looked at existing platforms and the features they offer. While there are similarities between ours and those that exist, there is not one that offers as much flexibility and customization as ours. Our novel idea of giving users access to the underlying game data through the use of hooks sets our platform apart and allows users more options than any other product we have seen. By offering this flexibility we hope that teachers will be able to further engage their students in creative ways that we have not considered. 
 
 \printbibliography[title={Bibliography}]
 
