@@ -138,18 +138,19 @@ sorting=ynt
         
         \begin{figure}[ht]
             \centering
-            \includegraphics[width=0.6\textwidth]{images/quizlet-live.png}
+            \includegraphics[width=0.5\textwidth]{images/quizlet-live.png}
             \caption{Quizlet Live Dashboard \cite{quizlet}}
             \label{fig:quizlet-live}
         \end{figure}
         
-        In team mode the number of teams is automatically generated based on the number of players. Students are assigned to a team randomly and the teams can be shuffled by the teacher before the game starts. In the game, the answers to each question are split equally between each member of the team and always displayed on the screen. There are no wrong answers displayed in team mode.
-        \begin{wrapfigure}{l}{0.25\textwidth}
+        In team mode the number of teams is automatically generated based on the number of players. Students are assigned to a team randomly and the teams
+        \begin{wrapfigure}{l}{0.20\textwidth}
             \centering
-            \includegraphics[width=0.15\textwidth]{images/quizlet-team.png}
+            \includegraphics[width=0.10\textwidth]{images/quizlet-team.png}
             \caption{Quizlet Team View \cite{quizlet}}
             \label{fig:quizlet-team}
         \end{wrapfigure}
+        can be shuffled by the teacher before the game starts. In the game, the answers to each question are split equally between each member of the team and always displayed on the screen. There are no wrong answers displayed in team mode.
         Figure \ref{fig:quizlet-team} shows an example of one player's screen with two answer options, one of which has already been submitted correctly and replaced with a check mark. The other answer option, ``4'', will need to be used in an upcoming question.
         \smallskip
         
@@ -194,7 +195,7 @@ sorting=ynt
     An alternative approach would have been to write the frontend using the web framework's view implementation. The advantage with that approach is that the frontend would have greater visibility into and knowledge of the backend's data. This greater visibility comes at the cost of a potentially bloated system that could become difficult to change over time.
     \smallskip
     
-    The overall platform design follows the microservice/model-view-template (MVT) pattern. Both patterns are well known and therefore will not be the focus of this paper (although we will briefly discuss certain architectural elements). Rather the design elements discussed here will be those specific to the actual game and not the surrounding architecture. In our implementation the backend is written in Python Django and the frontend is React.
+    The overall platform design follows the microservice/model-view-template (MVT) pattern. Both patterns are well known and therefore will not be the focus of this paper (although we will briefly discuss certain architectural elements). Rather the design elements discussed here will be those specific to the actual game and not the surrounding architecture. In our implementation the backend is written in Python Django \cite{django} and the frontend is React \cite{react}.
 
 	\subsection{Game Architecture}\label{architecture}
 	    A game, at its core, is made of states, each representing a moment in the game with a specific functionality. We refer to this as Flow and Functionality. Flow is the progression from state to state and functionality is the operations that happen within each state. Our goal is to provide a flexible, programmable platform, so our focus throughout development has been to abstract out the flow and functionality of a game to provide as much control as possible to the user.
@@ -205,11 +206,13 @@ sorting=ynt
             \begin{figure}[ht]
                 \centering
                 \begin{subfigure}[b]{0.45\textwidth}
+                    \centering
                     \includegraphics[width=0.8\textwidth]{images/architecture-flow.png}
                     \caption{Sample Game Flow Outline}
                     \label{fig:architecutre-flow}
                 \end{subfigure}
                 \begin{subfigure}[b]{0.45\textwidth}
+                    \centering
                     \includegraphics[width=0.8\textwidth]{images/architecture-flow2.png}
                     \caption{Sample Game Flow Outline Without Leaderboard State}
                     \label{fig:architecutre-flow2}
@@ -232,7 +235,7 @@ sorting=ynt
             Figure \ref{fig:functionality-hook} shows how a functionality hook can be added to a game flow to run before the leaderboard state in order to double every player's points for the previous question. The user would need to define the algorithm for how they want to double all of the scores, but the example illustrates that this type of hook only alters the game's underlying data and does not require it's own state with a frontend view like a flow hook. Functionality hooks can be run before or after any state. Each state should only need to run at most one hook before it an one hook after it, however it would be possible to insert empty flow hooks to run more hooks before or after a particular state.
 
 	\subsection{Backend}
-	    The server side code is written in Python using the Django web framework. We chose Django for our base framework for a number of reasons. First, Python is a familiar language that is good for rapid development because there is not a lot of boilerplate code required. Second, Python is a popular and well documented language and Django is a popular framework so any issues or gaps in our knowledge would likely have easily accessible solutions in either online forums or the Django documentation. Third, because of Django's popularity there are many external libraries that help extended its functionality. Two such libraries that we relied upon are Django REST framework (DRF) and Django Channels.
+	    The server side code is written in Python using the Django web framework. We chose Django for our base framework for a number of reasons. First, Python is a familiar language that is good for rapid development because there is not a lot of boilerplate code required. Second, Python is a popular and well documented language and Django is a popular framework so any issues or gaps in our knowledge would likely have easily accessible solutions in either online forums or the Django documentation. Third, because of Django's popularity there are many external libraries that help extended its functionality. Two such libraries that we relied upon are Django REST framework (DRF) \cite{drf} and Django Channels \cite{channels}.
 	    \smallskip
 
         During a game, communication between the client and server uses the websockets protocol. In the OSI model websockets is a layer 7 protocol and an alternative to HTTP. The reason for using this protocol is that it maintains a client/server connection, giving the server the ability to send data to the client without the client requesting it. This allows for two-way, real time communication between the client and the server and is a crucial part of a real time, interactive game like ours. Because websockets is a standard protocol, the implementations on both the front and back ends are straightforward. On the frontend no extra tooling is required - websockets support is build into React. On the backend, Django Channels abstracts out many of the finer details of websockets, providing an easy library to utilize the protocol.
@@ -289,11 +292,13 @@ sorting=ynt
             \begin{figure}[ht]
                 \centering
                 \begin{subfigure}[b]{0.45\textwidth}
+                    \centering
                     \includegraphics[width=\textwidth]{images/database-questions.png}
                     \caption{Question Tables}
                     \label{fig:question-tables}
                 \end{subfigure}
                 \begin{subfigure}[b]{0.45\textwidth}
+                    \centering
                     \begin{separator}
                         \includegraphics[width=\textwidth]{images/database-game.png}
                         \caption{Game Tables}
@@ -302,6 +307,7 @@ sorting=ynt
                 \end{subfigure}
                 \\
                 \begin{subfigure}[b]{0.9\textwidth}
+                    \centering
                     \includegraphics[width=\textwidth]{images/database-game_questions.png}
                     \caption{Question and Game Tables Relationship}
                     \label{fig:question-game-tables}
@@ -335,7 +341,7 @@ sorting=ynt
     		The question and game tables are joined using the question-game junction table, illustrated in figure \ref{fig:question-game-tables}. This table represents questions being assigned to games. It has time limit field as well so that question times are only specific to games and not questions. This allows the same question object to be used more flexibly. If a question's time limit was specified in the question table, then a duplicate tuple would need to be created just to change the time.
 
 	\subsection{Frontend}
-	    The frontend is written in React with Redux. There is little logic in the frontend related to gameplay because the game is controlled on the server side. The frontend's main purpose is to present information from the server to the users and send input from the users to the server. We chose React as our frontend architecture because it is a modern frontend framework and therefor designed to consume APIs. It also helps keep our frontend code organized and React components allow us to reuse code, ultimately leading to a cleaner code base and more rapid development. Starting this project we also understood that React had a reputation for fast rendering which is an appealing feature when creating an online game like ours.
+	    The frontend is written in React with Redux \cite{redux}. There is little logic in the frontend related to gameplay because the game is controlled on the server side. The frontend's main purpose is to present information from the server to the users and send input from the users to the server. We chose React as our frontend architecture because it is a modern frontend framework and therefor designed to consume APIs. It also helps keep our frontend code organized and React components allow us to reuse code, ultimately leading to a cleaner code base and more rapid development. Starting this project we also understood that React had a reputation for fast rendering which is an appealing feature when creating an online game like ours.
 	    \smallskip
 	    
 	    At this stage in development Redux is not widely used throughout our system. We use it on the ``non game/non websockets'' side of the frontend to make information globally available to components. One such use case is with the user's JWT. It is useful to have this value available globally because it is needed for every HTTP API call. When playing the game itself, however, we do not use Redux at all. The reason for this is that during a game information typically comes from the backend when it is needed and discarded when the game state changes, so there is no need to use a global store for information. That is not to say that it is not possible to use Redux within the game, but a decision to do so would be more stylistic than functional.
