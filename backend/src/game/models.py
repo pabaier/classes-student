@@ -40,15 +40,3 @@ class ActiveGame(models.Model):
             super().save(*args, **kwargs)
         except IntegrityError:
             self.save(*args, **kwargs)
-
-
-class Option(models.Model):
-    type = models.CharField(max_length=20, unique=True)
-
-
-class GameOption(models.Model):
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    option = models.ForeignKey(Option, on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('game', 'option',)
