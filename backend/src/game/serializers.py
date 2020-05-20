@@ -1,4 +1,4 @@
-from .models import Game, ActiveGame, Option, GameOption
+from .models import Game, ActiveGame, Hook, Option, GameOption
 from question.serializers import QuestionGameDetailsSerializer
 from rest_framework import serializers
 
@@ -21,6 +21,12 @@ class GameDetailSerializer(serializers.ModelSerializer):
 class ActiveGameSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActiveGame
+        fields = "__all__"
+
+
+class HookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hook
         fields = "__all__"
 
 
