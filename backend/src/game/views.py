@@ -1,5 +1,5 @@
-from .models import Game, ActiveGame, Option, GameOption
-from .serializers import GameSerializer, ActiveGameSerializer, OptionSerializer, GameOptionSerializer, GameDetailSerializer
+from .models import Game, ActiveGame, Hook, ScoringHook
+from .serializers import GameSerializer, ActiveGameSerializer, HookSerializer, ScoringHookSerializer, GameDetailSerializer
 import logging
 
 from rest_framework.viewsets import ModelViewSet
@@ -35,17 +35,16 @@ class ActiveGameViewSet(ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
 
-class OptionViewSet(ModelViewSet):
-    serializer_class = OptionSerializer
-    queryset = Option.objects.all()
+class HookViewSet(ModelViewSet):
+    serializer_class = HookSerializer
+    queryset = Hook.objects.all()
     permission_classes = (IsAuthenticated,)
 
 
-class GameOptionViewSet(ModelViewSet):
-    serializer_class = GameOptionSerializer
-    queryset = GameOption.objects.all()
+class ScoringHookViewSet(ModelViewSet):
+    serializer_class = ScoringHookSerializer
+    queryset = ScoringHook.objects.all()
     permission_classes = (IsAuthenticated,)
-
 
 """
 
