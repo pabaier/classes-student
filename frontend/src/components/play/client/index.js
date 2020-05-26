@@ -11,7 +11,7 @@ const Client = () => {
 
 	useEffect(() => {
 		if (!ws) {
-			setWs(new WebSocket(`ws://localhost:8000/ws/join/${token}/`))
+			setWs(new WebSocket(process.env.REACT_APP_WS_BASE_URL + `ws/join/${token}/`))
 		}
 
 		return function cleanup() {

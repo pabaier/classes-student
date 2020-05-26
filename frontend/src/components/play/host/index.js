@@ -25,7 +25,7 @@ const ConnectedHost = ({ activeGame, teamNumber, dispatch }) => {
 		var qp = `teamNumber=${teamNumber}`
 		if (!activeGame) {
 			dispatch(activateGame(id)).then((response) => {
-				setWs(new WebSocket(`ws://localhost:8000/ws/host/${response.slug}/?${qp}`))
+				setWs(new WebSocket(process.env.REACT_APP_WS_BASE_URL + `ws/host/${response.slug}/?${qp}`))
 			});
 		}
 		return function cleanup() {
