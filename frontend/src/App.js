@@ -7,8 +7,8 @@ import {
 import Navb from './components/Navb';
 import PrivateRoute from './components/PrivateRoute';
 import Splash from './components/Splash'
-import { Games, PublicGames, GamePage } from './components/games'
-import { Questions, PublicQuestions } from "./components/questions";
+import { Games, PublicGames, GamePage, Create as CreateGame } from './components/games'
+import { Questions, PublicQuestions, Create as CreateQuestion } from "./components/questions";
 import { Host, Client } from "./components/play";
 
 const App = () => {
@@ -32,19 +32,19 @@ const App = () => {
 const LoggedIn = () => (
   <div>
     <Navb />
-    <Route path="/games" component={Games} exact />
-    <Route path="/games/:id" component={GamePage} />
-    <Route path="/games/public" component={PublicGames} />
-    <Route path="/play/host/:id" component={Host} />
-    <Route exact path="/questions">
-      <Questions />
-    </Route>
-    <Route path="/questions/public">
-      <PublicQuestions />
-    </Route>
-    <Route exact path="/">
-      <Home />
-    </Route>
+    <Switch>
+      <Route exact path="/games" component={Games} />
+      <Route path="/games/create" component={CreateGame} />
+      <Route path="/games/:id" component={GamePage} />
+      <Route path="/games/public" component={PublicGames} />
+
+      <Route exact path="/questions" component={Questions} />
+      <Route path="/questions/public" component={PublicQuestions} />
+      <Route path="/questions/create" component={CreateQuestion} />
+
+      <Route path="/play/host/:id" component={Host} />
+      <Route exact path="/" component={Home} />
+    </Switch>
   </div>
 )
 
