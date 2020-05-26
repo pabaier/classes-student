@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 
 const initialState = {
 	user: {
-		isLoggedIn: true,
+		isLoggedIn: false,
 		access: '',
 		refresh: '',
 	},

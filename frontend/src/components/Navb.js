@@ -18,13 +18,6 @@ const Navb = () => (
 				<NavDropdown.Item as={NavLink} to="/questions" exact>My Questions</NavDropdown.Item>
 				<NavDropdown.Item as={NavLink} to="/questions/public">Public Questions</NavDropdown.Item>
 			</NavDropdown>
-			<NavDropdown title="Topics" id="basic-nav-dropdown" as={NavLink} to='/topics'>
-				<NavDropdown.Item as={NavLink} to="/topics/components">Components</NavDropdown.Item>
-				<NavDropdown.Item as={NavLink} to="/topics/props-v-state">Props v. State</NavDropdown.Item>
-				<NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-				<NavDropdown.Divider />
-				<NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-			</NavDropdown>
 		</Nav>
 		<Form inline>
 			<Nav>
