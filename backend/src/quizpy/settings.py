@@ -84,7 +84,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('redis://h:p99fc54818dac1734013a53cb1ceb10ce1865501cc1d6a934f67dc6e0a6510914@ec2-3-228-108-5.compute-1.amazonaws.com:14929')],
         },
     },
 }
@@ -94,8 +94,12 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ddgpr2jttvilkd',
+        'USER': 'ajsfsjivsszhtw',
+        'PASSWORD': 'c1e0af8e01f29a5ae91a7f54119a21e01c8b5628e63027496e1ee3b634655ef5',
+        'HOST': 'ec2-34-200-72-77.compute-1.amazonaws.com',
+        'PORT': '',
     }
 }
 
@@ -136,8 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-# STATIC_ROOT= 'static'
-STATIC_URL = '/static/'
+
 # this is the static files folder name which you created in django project root folder. This is different from above STATIC_URL. 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -202,3 +205,9 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+import django_heroku
+django_heroku.settings(locals(), logging=False)
