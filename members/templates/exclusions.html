@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if success %}
+<div class="container">
+  <div class="row">
+    <span class='col-4'></span>
+    <h2 class='col bg-white text-danger border border-success rounded'>{{requested.username}} Exclusions</h2>
+    <span class='col-4'></span>
+  </div>
+    
+  <br>
+  <div style="text-align:left" class="bg-light border border-success rounded p-4" id="formContainer">
+  {% for group in data %}
+    <form class="bg-light" id="{{ group.id }}">
+      <h3 class="text-danger">{{ group.name }}</h3>
+      {% for member in group.members %}
+        <a href="/members/exclusions/{{member.id}}" class="text-success">
+        {{member.firstName}} {{member.lastName}} ({{member.username}})</a> 
+        {% if member.excluded %}
+          <input type="checkbox" name="{{member.id}}" value="{{member.username}}" checked>
+        {% else %}
+          <input type="checkbox" name="{{member.id}}" value="{{member.username}}">
+        {% endif %}
+        <br>
+      {% endfor %}
+    </form><br>
+  {% endfor %}
+  </div>
+  <button type="submit" class="btn btn-danger" id='btn-save'>Save</button>
+  <button type="submit" class="btn btn-success" id='btn-mine'>My Exclusions</button>
+{% else %}
+
+{{ message }}
+
+{% endif %}
+
+<script>
+  $("#btn-mine").click( () => {
+    location.href = '/members/exclusions/{{user.id}}'
+  });
+
+  $("#btn-save").click( (e) => {
+    var output = [];
+    var allGroups = $("#formContainer").children("form");
+    allGroups.each( (a) => {
+      var inputs = allGroups[a];
+      var groupOutput = {'id': inputs.id, 'exclusions': []}
+      for( k in Object.keys(inputs)) {
+        var inp = inputs[k];
+        if(inp.checked)
+          groupOutput.exclusions.push(inp.name);
+      }
+      output.push(groupOutput);
+    });
+    
+    console.log(JSON.stringify(output))
+    $.ajax({
+      url: `/members/exclusions/{{requested.id}}/`,
+      type:"POST",
+      data: JSON.stringify(output),
+      dataType: 'json',
+      contentType: "application/json",
+      success: (returnData) => {
+        console.log(returnData);
+        if (!returnData.success) {
+          $('#result-modal').prop('class', 'alert alert-danger');
+          $('#result-message').html(`Error updating record.<br>${returnData.message}.`);
+          $('#resultModal').modal('show');
+        }
+        else {
+          $('#result-modal').prop('class', 'alert alert-success');
+          $('#result-message').html('Success!');
+          $('#resultModal').modal('show');
+        }
+      }
+    });
+  });
+
+  var getJsonData = () => {
+    var dataString = document.getElementById('data').value.replace(/'/g, '"');
+    var dataStringFormatted = dataString.replace(/: None/g, ': null');
+    var dataJson = JSON.parse(dataStringFormatted);
+    return Object.keys(dataJson);
+  }
+  
+</script>
+
+
+{% endblock content %}

@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+          th, td {
+            border: 2px solid #5cb85c;
+          }
+
+          table {
+            border-collapse:  collapse;
+          }
+
+
+    </style>
+    <meta charset='utf-8'>
+    <title> Forms </title>
+
+</head>
+<body>
+
+<h1>Welcome!</h1>
+
+<div class="container">
+    <h2>Groups You Manage: </h2>
+    <table bgcolor="white">
+        <th>Group Name</th>
+        <th>Ship Date</th>
+        <th>End Date</th>
+        <th colspan="2"></th>
+        <th>Add Member by Username </th>
+        {%for gr in myManaged %}
+        <tr>
+            <ul class="list-group">
+                <td>
+                   <li class="list-group-item"><a href={% url 'create_group:editgroup' gr.id %}> {{gr.group_name}}</a></li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.ship_date}}</li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.end_date}}</li>
+                </td>
+            </ul>
+            <td>
+                <button class="btn btn-success btn-make" id="{{gr.id}}-mk">Make Pairings</button>
+            </td>
+            <td>
+                <button class="btn btn-danger btn-send" id="{{gr.id}}-snd">Send Pairings</button>
+            </td>
+            <td>
+              <input id="{{gr.id}}-add-input" type="text">
+              <button class="btn btn-success btn-add" id="{{gr.id}}-add">Add</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h1><font size="2"> <a class="nav-link" href="{% url 'create_group:creategroup' %}">Start a New Group!</a></font>
+    </h1>
+    <h2>Groups You Are a Member of: </h2>
+    <table bgcolor="white">
+        <th>Group Name</th>
+        <th>Group Creator</th>
+        <th>Ship Date</th>
+        <th>End Date</th>
+        {%for gr in myMembership %}
+        <tr>
+            <ul class="list-group">
+                <td>
+                    <li class="list-group-item"><a href={% url 'create_group:editgroup' gr.id %}>
+                        {{gr.group_name}}</a></li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.created_by}}</li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.ship_date}}</li>
+                </td>
+                <td>
+                    <li class="list-group-item"> {{gr.end_date}}</li>
+                </td>
+
+            </ul>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+$('.btn-add').click( (e) => {
+  groupId = e.target.id.split('-')[0];
+  username = $(`#${groupId}-add-input`).val();
+  $.ajax({
+    url: `/groups/add/${groupId}/${username}`,
+    type:"GET",
+    contentType: "application/json",
+    success: (returnData) => {
+      if (!returnData.success) {
+        $('#result-modal').prop('class', 'alert alert-danger');
+        $('#result-message').html(`${returnData.message}.`);
+        $('#resultModal').modal('show');
+      }
+      else {
+        $('#result-modal').prop('class', 'alert alert-success');
+        $('#result-message').html('Success!');
+        $('#resultModal').modal('show');
+      }
+      $(`#${groupId}-add-input`).val('');
+    }
+  });
+});
+
+$('.btn-make').click( (e) => {
+  groupId = e.target.id.split('-')[0];
+  $(e.target).prop("disabled", true);
+
+  $.ajax({
+    url: `/groups/${groupId}/pair`,
+    type:"GET",
+    contentType: "application/json",
+    success: (returnData) => {
+      if (!returnData.success) {
+        $('#result-modal').prop('class', 'alert alert-danger');
+        $('#result-message').html(`${returnData.message}.`);
+        $('#resultModal').modal('show');
+      }
+      else {
+        $('#result-modal').prop('class', 'alert alert-success');
+        $('#result-message').html('Success!');
+        $('#resultModal').modal('show');
+      }
+    $(e.target).prop("disabled", false);
+    }
+  });
+});
+
+$('.btn-send').click( (e) => {
+  groupId = e.target.id.split('-')[0];
+  $(e.target).prop("disabled", true);
+
+  $.ajax({
+    url: `/comms/pairings/${groupId}`,
+    type:"GET",
+    contentType: "application/json",
+    success: (returnData) => {
+      var successes = returnData.success;
+      var failures = returnData.failure;
+      if(successes.length > 0 && failures.length > 0){
+        $('#result-modal').prop('class', 'alert alert-secondary');
+        $('#result-message').html(`We had ${successes.length} successes and ${failures.length} failures.`);
+        $('#resultModal').modal('show');
+      }
+      else if(successes.length > 0){
+        $('#result-modal').prop('class', 'alert alert-success');
+        $('#result-message').html(`Success!`);
+        $('#resultModal').modal('show');
+      }
+      else{
+        $('#result-modal').prop('class', 'alert alert-danger');
+        $('#result-message').html(`Nothing seems to have worked`);
+        $('#resultModal').modal('show');
+      }
+      $(e.target).prop("disabled", false);
+    }
+  });
+});
+
+
+</script>
+
+</body>
+</html>
+{% endblock %}
