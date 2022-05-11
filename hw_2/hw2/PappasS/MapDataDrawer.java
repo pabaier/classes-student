@@ -1,0 +1,187 @@
+/**
+ * CSCI 221, HW 2 (McCauley)
+ * Base code provided by instructor and updated by:
+ *
+ * Stephen Pappas
+ */
+
+import java.util.*;
+import java.io.*;
+import java.awt.*;
+
+public class MapDataDrawer
+{
+    // store map data in grid array
+    private int[][] grid;
+
+    // Read 2D array into grid. Data in file "filename", grid is rows x cols
+    public MapDataDrawer(String filename, int rows, int cols) throws Exception{
+        // initialize grid
+        grid = new int[rows][cols];
+        //read the data from the file into the grid
+        Scanner S = new Scanner(new File(filename));
+
+        for(int row=0; row < grid.length; row++){
+            for(int col=0; col<grid[0].length; col++){
+                grid[row][col] = S.nextInt();
+            }
+        }
+
+    }
+
+
+    /**
+     * @return the min value in the entire grid
+     */
+    public int findMin(){
+        int min = grid[0][0];
+        for(int row = 0; row < grid.length; row++) {
+            for(int col = 0; col < grid[0].length; col++) {
+                if(min > grid[row][col])
+                    min = grid[row][col];
+            }
+        }
+
+        return min;
+    }
+
+    /**
+     * @return the max value in the entire grid
+     */
+    public int findMax(){
+        int max = grid[0][0];
+        for(int row = 0; row < grid.length; row++) {
+            for(int col = 0; col < grid[0].length; col++) {
+                if(max < grid[row][col])
+                    max = grid[row][col];
+            }
+        }
+
+        return max;
+    }
+
+    /**
+     * @param col the column of the grid to check
+     * @return the index of the row with the lowest value in the given col for the grid
+     */
+    public  int indexOfMinRow(int col){
+        int min = grid[0][col];
+        int minRow = 0;
+
+        for(int row = 0; row < grid.length; row++) {
+            if(min > grid[row][col]) {
+                min = grid[row][col];
+                minRow = row;
+            }
+        }
+        return minRow;
+    }
+
+
+    /**
+     * DON'T CHANGE THIS CODE
+     * Draws the grid using the given Graphics object.
+     * Colors should be grayscale values 0-255, scaled based on min/max values in grid
+     *
+     * ALERT:Until your findMin and findMax methods work, your output will
+     * be a completely black graph.
+     */
+    public void drawMap(Graphics g){
+
+        int minVal = findMin();
+        int maxVal = findMax();
+        double range = maxVal - minVal;
+
+        for(int row=0; row < grid.length; row++){
+            for(int col=0; col<grid[0].length; col++){
+                int val = (int)(((grid[row][col]-minVal)/range) * 255);
+                //g.setColor(new Color(val,255-val,255-val));
+                g.setColor(new Color(val,val,val));
+                g.fillRect(col,row,1,1);
+            }
+        }
+    }
+
+
+    /**
+     * Find a path from West-to-East starting at given row.
+     * Choose a foward step out of 3 possible forward locations, using greedy method described in assignment.
+     * @return the total change in elevation traveled from West-to-East
+     */
+    public int drawLowestElevPath(Graphics g, int row){
+        int currY = row; // row in grid of step one
+        int totalElevChange = 0;
+        // draw initial step - column 0, current row (sent in as parameter)
+        g.fillRect(0,row,1,1);
+
+        // Code to compute next step
+        for(int col = 1; col < grid[0].length; col++) {
+            currY = row;
+            int rMinus = findMax();
+            int r;
+            int rPlus = findMax();
+
+            r = Math.abs((grid[currY][col-1] - grid[currY][col]));
+
+            if(currY - 1 >= 0)
+                rMinus = Math.abs((grid[currY][col-1] - grid[currY-1][col]));
+
+            if(currY + 1 < grid.length)
+                rPlus = Math.abs((grid[currY][col-1] - grid[currY+1][col]));
+
+            int next[] = {rMinus, r, rPlus};
+            int tog = 0;
+            int min = next[0];
+            for(int i = 0; i < 3; i++) {
+                if(next[i] < min) {
+                    min = next[i];
+                    tog = i;
+                } else if(next[i] == min){
+                    int tmp = (int) Math.round(Math.random()*1 +1);
+                    switch(tmp){
+                        case 1: break;
+                        case 2: min = next[i];
+                                tog = i;
+                                break;
+                    }
+                }
+            }
+            switch(tog){
+                case 0: row--;
+                        totalElevChange += rMinus;
+                        break;
+                case 1: totalElevChange += r;
+                        break;
+                case 2: row++;
+                        totalElevChange += rPlus;
+            }
+
+
+
+
+            // draw next step where x is currently column and currY is row in grid
+            // the value of x will be generated by a loop that goes through the
+            // columns, but for now, need something to put in "paint" statement
+            g.fillRect(col,currY,1,1);
+        }
+
+        return totalElevChange; // computed change in elevation
+    }
+
+    /**
+     * @return the index of the starting row for the lowest-elevation-change path in the entire grid.
+     */
+    public int indexOfLowestElevPath(Graphics g){
+        int indexofLeast = 0;
+        for(int row = 0; row < grid.length; row++){
+            if(drawLowestElevPath(g, indexofLeast) > drawLowestElevPath(g, row)){
+                indexofLeast = row;
+            }
+        }
+
+        return indexofLeast; // row of path with lowest elevation
+
+    }
+
+
+}

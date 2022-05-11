@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Appointment
+comment0.text=\n\ Models\ appointments\ with\ employees,\ recording\ a\ date\ and\ employee\ info\n\n\ McCauley\n
+comment1.params=d\ e
+comment1.target=Appointment(CalendarDate,\ Employee)
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Appointment\n
+comment2.params=
+comment2.target=Employee\ getEmployee()
+comment3.params=
+comment3.target=CalendarDate\ getDate()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5

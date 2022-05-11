@@ -1,0 +1,13 @@
+WinsteadK zipped entire Eclipse project folder which was called Lab 4
+    java file was called Lav4.java
+LingenfelterA named the java file lab4.java instead of Lab4.java
+    also included a package declaration
+RodriguezA zipped entire Eclipse project folder which was called Lab4
+    also called java file Lab4Class.java
+    compiling error
+WashingtonM called the java file Lab3.java which was empty
+DunlapJ submitted a 7z file
+    runtime error
+AndersonJ zipped the java file without putting it in a folder
+    Compile Error
+GrayW zipped the java file without putting it in a folder

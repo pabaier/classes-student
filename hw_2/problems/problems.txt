@@ -1,0 +1,5 @@
+Veloff
+	zip named "Archive.zip"
+MooreW
+	HW2 zipped within submitted zip along with hw 1 and lab 4
+	In hw2 zip was eclipse file structure

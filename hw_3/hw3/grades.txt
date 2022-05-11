@@ -1,0 +1,1634 @@
+ 
+AndersonJ 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 260
+			Expected Output: [264, HAPPYBIRTHDAY]
+		Correct HAPPYBIRTHDAY - 3/3
+		5/6
+	Testing daysOld()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 10483
+			Expected Output: 10708
+		2/3
+ Section Total: 25/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		One day off - 5/6
+			Your Output: SUNDAY
+			Expected Output: SATURDAY
+		5/6
+	Testing isLeapYear()
+		Method ran but wrong output - 1/3
+			Your output for year 1797: true
+			Expected output for year 1797: false
+		Correct true - 3/3
+		4/6
+	Testing nextDay()
+		Method ran but wrong output - 1/3
+			Your output with day change 1924/9/12
+			Expected output with day change 1924/9/13
+		Method ran but wrong output - 1/3
+			Your output with month change 1969/4/30
+			Expected output with month change 1969/5/1
+		Method ran but wrong output - 1/3
+			Your output with year change 1998/12/31
+			Expected output with year change 1999/1/2
+		3/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 24/33
+Total Grade: 49/60
+ 
+ 
+BarberC 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+BarrettR 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+CraggD 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Three days off - 3/6
+			Your Output: TUESDAY
+			Expected Output: SATURDAY
+		3/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 30/33
+Total Grade: 57/60
+ 
+ 
+DudleyM 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+DzierzkoA 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Three days off - 3/6
+			Your Output: WEDNESDAY
+			Expected Output: SATURDAY
+		3/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Error running CalendarDate.isLeapYear()
+		0/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 21/33
+Total Grade: 48/60
+ 
+ 
+GabrielA 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+GandyWellsO 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Unable to get value from method - 0/3
+			Your Output: 
+			Expected Output: [264, HAPPYBIRTHDAY]
+		Unable to get value from method - 0/3
+			Your Output: 
+			Expected Output: [264, HAPPYBIRTHDAY]
+		0/6
+	Testing daysOld()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 0
+			Expected Output: 10708
+		2/3
+ Section Total: 20/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		One day off - 5/6
+			Your Output: SUNDAY
+			Expected Output: SATURDAY
+		5/6
+	Testing isLeapYear()
+		Method ran but wrong output - 1/3
+			Your output for year 1797: true
+			Expected output for year 1797: false
+		Correct true - 3/3
+		4/6
+	Testing nextDay()
+		Method ran but wrong output - 1/3
+			Your output with day change 1924/9/12
+			Expected output with day change 1924/9/13
+		Method ran but wrong output - 1/3
+			Your output with month change 1969/4/30
+			Expected output with month change 1969/5/1
+		Method ran but wrong output - 1/3
+			Your output with year change 1998/12/31
+			Expected output with year change 1999/1/2
+		3/9
+	Testing toString()
+		Method ran but incorrect date returned - 1/3
+			Your output Happy Day
+			Expected output 1976/5/4
+		1/3
+ Section Total: 22/33
+Total Grade: 42/60
+ 
+ 
+GerwatowskiC 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+GrayT 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+HaleyJ 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 265
+			Expected Output: [264, HAPPYBIRTHDAY]
+		Correct HAPPYBIRTHDAY - 3/3
+		5/6
+	Testing daysOld()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 10707
+			Expected Output: 10708
+		2/3
+ Section Total: 25/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 58/60
+ 
+ 
+HancockM 
+BirthDate Class Tests:
+        Testing getBirthdate()
+                Unable to run getBirthdate()
+                0/9
+        Testing details()
+                Correct 2004/11/18 - 3/3
+                Correct THURSDAY - 3/3
+                Correct LEAPYEAR - 3/3
+                9/9
+        Testing daysUntilBirthday()
+                Correct 264 - 3/3
+                Correct HAPPYBIRTHDAY - 3/3
+                6/6
+        Testing daysOld()
+                Correct 10708 - 3/3
+                3/3
+ Section Total: 18/27
+
+CalendarDate Class Tests:
+        Testing getDay()
+                Correct 21 - 3/3
+                3/3
+        Testing getMonth()
+                Correct 10 - 3/3
+                3/3
+        Testing getYear()
+                Correct 1954 - 3/3
+                3/3
+        Testing getDayOfWeek()
+                Correct SATURDAY - 6/6
+                6/6
+        Testing isLeapYear()
+                Correct false - 3/3
+                Correct true - 3/3
+                6/6
+        Testing nextDay()
+                Correct 1924/9/13 - 3/3
+                Correct 1969/5/1 - 3/3
+                Correct 1999/1/2 - 3/3
+                9/9
+        Testing toString()
+                Correct 1976/5/4 - 3/3
+                3/3
+ Section Total: 33/33
+Total Grade: 51/60 
+ 
+Hartungl 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		One day off - 5/6
+			Your Output: FRIDAY
+			Expected Output: SATURDAY
+		5/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 32/33
+Total Grade: 59/60
+ 
+ 
+HigginsS 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+JureckiG 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 158
+			Expected Output: [264, HAPPYBIRTHDAY]
+		Correct HAPPYBIRTHDAY - 3/3
+		5/6
+	Testing daysOld()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 10702
+			Expected Output: 10708
+		2/3
+ Section Total: 25/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		One day off - 5/6
+			Your Output: FRIDAY
+			Expected Output: SATURDAY
+		5/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 32/33
+Total Grade: 57/60
+ 
+ 
+Lingenfeltera 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 40
+			Expected Output: [264, HAPPYBIRTHDAY]
+		Correct HAPPYBIRTHDAY - 3/3
+		5/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 26/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Two days off - 4/6
+			Your Output: THURSDAY
+			Expected Output: SATURDAY
+		4/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 31/33
+Total Grade: 57/60
+ 
+ 
+MainarS 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 10709
+			Expected Output: 10708
+		2/3
+ Section Total: 26/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+57
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		OK, but pay attention to format next time! 5/4/1976 - 3/3
+			Your output 5/4/1976
+			Expected output 1976/5/4
+		3/3
+ Section Total: 33/33
+Total Grade: 59/60
+ 
+ 
+MarshallR 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+MattoxJ 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+MooreW
+BirthDate Class Tests:
+        Testing getBirthdate()
+                Correct Day - 3/3
+                Correct Month - 3/3
+                Correct Year - 3/3
+                9/9
+        Testing details()
+                Correct 2004/11/18 - 3/3
+                Correct THURSDAY - 3/3
+                Correct LEAPYEAR - 3/3
+                9/9
+        Testing daysUntilBirthday()
+                Unable to get value from method - 0/3
+                        Your Output:
+                        Expected Output: [264, HAPPYBIRTHDAY]
+                Correct HAPPYBIRTHDAY - 3/3
+                3/6
+        Testing daysOld()
+                Method ran but incorrect value returned - 2/3
+                        Your Output: 0
+                        Expected Output: 10708
+                2/3
+ Section Total: 23/27
+
+CalendarDate Class Tests:
+        Testing getDay()
+                Correct 21 - 3/3
+                3/3
+        Testing getMonth()
+                Correct 10 - 3/3
+                3/3
+        Testing getYear()
+                Correct 1954 - 3/3
+                3/3
+        Testing getDayOfWeek()
+                Two days off - 4/6
+                        Your Output: MONDAY
+                        Expected Output: SATURDAY
+                4/6
+        Testing isLeapYear()
+                Correct false - 3/3
+                Correct true - 3/3
+                6/6
+        Testing nextDay()
+                Correct 1924/9/13 - 3/3
+                Correct 1969/5/1 - 3/3
+                Correct 1999/1/2 - 3/3
+                9/9
+        Testing toString()
+                Correct 1976/5/4 - 3/3
+                3/3
+ Section Total: 31/33
+Total Grade: 54/60 
+ 
+ 
+PappasS 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+PerrymanA 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+RabiuJ 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+RobinsonA 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+TaylorC 
+BirthDate Class Tests:
+        Testing getBirthdate()
+                Correct Day - 3/3
+                Correct Month - 3/3
+                Correct Year - 3/3
+                9/9
+        Testing details()
+                Correct 2004/11/18 - 3/3
+                Correct THURSDAY - 3/3
+                Correct LEAPYEAR - 3/3
+                9/9
+        Testing daysUntilBirthday()
+                Unable to get value from method - 0/3
+                        Your Output:
+                        Expected Output: [264, HAPPYBIRTHDAY]
+                Correct HAPPYBIRTHDAY - 3/3
+                3/6
+        Testing daysOld()
+                Method ran but incorrect value returned - 2/3
+                        Your Output: 0
+                        Expected Output: 10708
+                2/3
+ Section Total: 23/27
+
+CalendarDate Class Tests:
+        Testing getDay()
+                Correct 21 - 3/3
+                3/3
+        Testing getMonth()
+                Correct 10 - 3/3
+                3/3
+        Testing getYear()
+                Correct 1954 - 3/3
+                3/3
+        Testing getDayOfWeek()
+                Two days off - 4/6
+                        Your Output: MONDAY
+                        Expected Output: SATURDAY
+                4/6
+        Testing isLeapYear()
+                Correct false - 3/3
+                Correct true - 3/3
+                6/6
+        Testing nextDay()
+                Correct 1924/9/13 - 3/3
+                Correct 1969/5/1 - 3/3
+                Correct 1999/1/2 - 3/3
+                9/9
+        Testing toString()
+                Correct 1976/5/4 - 3/3
+                3/3
+ Section Total: 31/33
+Total Grade: 54/60
+ 
+ 
+VeloffS 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Three days off - 3/6
+			Your Output: TUESDAY
+			Expected Output: SATURDAY
+		3/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 30/33
+Total Grade: 57/60
+ 
+ 
+WashingtonM 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+WinsteadK 
+BirthDate Class Tests:
+        Testing getBirthdate()
+                Correct Day - 3/3
+                Correct Month - 3/3
+                Correct Year - 3/3
+                9/9
+        Testing details()
+                Correct 2004/11/18 - 3/3
+                Correct THURSDAY - 3/3
+                Correct LEAPYEAR - 3/3
+                9/9
+        Testing daysUntilBirthday()
+                Correct 264 - 3/3
+                Correct HAPPYBIRTHDAY - 3/3
+                6/6
+        Testing daysOld()
+                Correct 10708 - 3/3
+                3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+        Testing getDay()
+                Correct 21 - 3/3
+                3/3
+        Testing getMonth()
+                Correct 10 - 3/3
+                3/3
+        Testing getYear()
+                Correct 1954 - 3/3
+                3/3
+        Testing getDayOfWeek()
+                Three days off - 3/6
+                        Your Output: TUESDAY
+                        Expected Output: SATURDAY
+                3/6
+        Testing isLeapYear()
+                Correct false - 3/3
+                Correct true - 3/3
+                6/6
+        Testing nextDay()
+                Correct 1924/9/13 - 3/3
+                Correct 1969/5/1 - 3/3
+                Correct 1999/1/2 - 3/3
+                9/9
+        Testing toString()
+                Correct 1976/5/4 - 3/3
+                3/3
+ Section Total: 30/33
+Total Grade: 57/60
+ 
+ 
+WoodsA 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Correct 10708 - 3/3
+		3/3
+ Section Total: 27/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		Correct SATURDAY - 6/6
+		6/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Correct true - 3/3
+		6/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 33/33
+Total Grade: 60/60
+ 
+ 
+YibJ 
+BirthDate Class Tests:
+        Testing getBirthdate()
+                Correct Day - 3/3
+                Correct Month - 3/3
+                Correct Year - 3/3
+                9/9
+        Testing details()
+                Correct 2004/11/18 - 3/3
+                Correct THURSDAY - 3/3
+                Correct LEAPYEAR - 3/3
+                9/9
+        Testing daysUntilBirthday()
+                Correct 264 - 3/3
+                Correct HAPPYBIRTHDAY - 3/3
+                6/6
+        Testing daysOld()
+                Correct 10708 - 3/3
+                3/3
+ Section Total: 27/27
+
+
+CalendarDate Class Tests:
+        Testing getDay()
+                Correct 21 - 3/3
+                -2 Infinite loop 
+                1/3
+        Testing getMonth()
+                Correct 10 - 3/3
+                -2 Infinite loop 
+                1/3
+        Testing getYear()
+                Correct 1954 - 3/3
+                -2 Infinite loop 
+                1/3
+        Testing getDayOfWeek()
+                Infinite Loop - 0/6
+                0/6
+        Testing isLeapYear()
+                Correct false - 3/3
+                Correct true - 3/3
+                6/6
+        Testing nextDay()
+                Method ran but wrong output - 1/3
+                        Your output with day change 1924/9/12
+                        Expected output with day change 1924/9/13
+                Method ran but wrong output - 1/3
+                        Your output with month change 1969/4/30
+                        Expected output with month change 1969/5/1
+                Method ran but wrong output - 1/3
+                        Your output with year change 1998/12/31
+                        Expected output with year change 1999/1/2
+                3/9
+        Testing toString()
+                Correct 1976/5/4 - 3/3
+                3/3
+ Section Total: 15/33
+Total Grade: 42/60
+ 
+jacksons 
+BirthDate Class Tests:
+	Testing getBirthdate()
+		Correct Day - 3/3
+		Correct Month - 3/3
+		Correct Year - 3/3
+		9/9
+	Testing details()
+		Correct 2004/11/18 - 3/3
+		Correct THURSDAY - 3/3
+		Correct LEAPYEAR - 3/3
+		9/9
+	Testing daysUntilBirthday()
+		Correct 264 - 3/3
+		Correct HAPPYBIRTHDAY - 3/3
+		6/6
+	Testing daysOld()
+		Method ran but incorrect value returned - 2/3
+			Your Output: 10696
+			Expected Output: 10708
+		2/3
+ Section Total: 26/27
+
+CalendarDate Class Tests:
+	Testing getDay()
+		Correct 21 - 3/3
+		3/3
+	Testing getMonth()
+		Correct 10 - 3/3
+		3/3
+	Testing getYear()
+		Correct 1954 - 3/3
+		3/3
+	Testing getDayOfWeek()
+		One day off - 5/6
+			Your Output: SUNDAY
+			Expected Output: SATURDAY
+		5/6
+	Testing isLeapYear()
+		Correct false - 3/3
+		Method ran but wrong output - 1/3
+			Your output for year 1872: false
+			Expected output for year 1872: true
+		4/6
+	Testing nextDay()
+		Correct 1924/9/13 - 3/3
+		Correct 1969/5/1 - 3/3
+		Correct 1999/1/2 - 3/3
+		9/9
+	Testing toString()
+		Correct 1976/5/4 - 3/3
+		3/3
+ Section Total: 30/33
+Total Grade: 56/60
+ 
+ 

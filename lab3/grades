@@ -1,0 +1,675 @@
+Gabe Jurecki - 1.7/6
+	Part 1 - 1/1
+
+	Part 2 - (2/3)/5
+		Part 1 - (2/3)/1
+			Enter jersey # - 1/3
+				You need to get the user input before checking it. 
+			Check if jersey is in roster - 1/3
+				Instead of listing out every possibility in the if statement, use a loop to check each array value
+			Update rating - 0/3
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+Bailey Kindrick - 3.5/6
+	Part 1 - 1/1
+
+	Part 2 - 2.5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 1.5/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 0/2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+Bryan Ko 1.7/6
+	Part 1 - 1/1
+
+	Part 2 - 0.7/5
+		Part 1 - (2/3)/1
+			Enter jersey # - 1/3
+				Better to prompt the user for input before taking the input (line 29/30)
+			Check if jersey is in roster - 1/3
+			Update rating - 0/3	
+				On line 36 you are setting the jersey number to the input rating instead of setting the rating to the new rating.
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+Richard Marshall - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+			Very well done. 
+
+Jacob Mattox - 5.7/6
+	Part 1 - 1/1
+
+	Part 2 - 4.7/5
+		Part 1 - (2/3)/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 0/3
+				There are a few issues with updating the rating. Maybe the biggest thing is that you set the rating to userInput (line 45), which changes the rating to a character value. Another issue you would have if you used nextUserInput is that because you are storing the new value in the same variable that is in the if statement (line 43), if the new rating is the same as a jersey number in your list, then that will trigger the program to wait for another user input. It is better to either ask for user input once outside of the loop and/or use different variables for different user inputs. 
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+			Notes:
+
+Ethan Mayers - 1.5/6
+	Part 1 - 1/1
+
+	Part 2 - (1/3)/5
+		Part 1 - (1/3)/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 0/3
+			Update rating - 0/3
+				You set the jersey number to its original rating (line 41), but you should set the original rating to the new user input rating. 
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			
+	Notes:
+		Getting compiling errors: One issue on line 35 is in your for loop "i" is not defined - need "int i". On line 36 and 48, testing equality requires double equals sign ==. Line 40 uses the variable "userRating" which is defined in line 38 inside a different if statement. If a variable is define within an if statement, you cannot use it outside of that if statement.
+
+Elex Moore - 2/6
+	Part 1 - 1/1
+
+	Part 2 - 1/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+Riley Moore - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 1.5/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 0/3
+			Update entry - 0/2
+		Notes:
+
+Stephen Pappas - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+
+Elizabeth Pemberton - 1/6
+	Part 1 - 1/1
+
+	Part 2 - 0/5
+		Part 1 - 0/1
+			Enter jersey # - /3
+			Check if jersey is in roster - /3
+			Update rating - /3
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - /2
+			Enter jersey # - 0/3
+				This should take an int from the user (input.nextInt())
+			Check if jersey is in roster - 0/2
+			Enter new number - 0/3
+			Enter new rating - 0/3
+			Update entry - 0/2
+		Notes:
+			If you are unsure where to begin, ask for help in class and someone will be happy to point you in the right direction!
+
+Corey Taylor - 3.5/6
+	Part 1 - 1/1
+
+	Part 2 - 2.5/5
+		Part 1 - (2/3)/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 0/3
+				The index of the rating array should be "i".
+		Part 2 - (1/2)/2
+			Enter rating - 1/2
+			Check player rating - 0/1
+			Print results - 0/2
+		Part 3 - 1/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 0/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 0/2
+		Notes:
+			It looks like your array values got changed, not quite sure how that happened.
+
+Ashley Woods - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+			For part 3, you should not keep looping until the use enters a valid jersey number. If they enter a bad number, the entire process should start over. Regardless, the logic is well done. Good job.
+
+Connor Yates - 1/6
+	Part 1 - 1/1
+
+	Part 2 - 0/5 - No Submission
+		Part 1 - /1
+			Enter jersey # - /3
+			Check if jersey is in roster - /3
+			Update rating - /3
+		Part 2 - /2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - /2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+
+12:30
+
+Jonathan Anderson - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+
+Ryan Barrett - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+			Notes:
+
+Dustin Cragg - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+			Notes:
+
+Thomas Dunlap - 1/6
+	Part 1 - 1/1
+
+	Part 2 - 0/5 - No Submission
+		Part 1 - /1
+			Enter jersey # - /3
+			Check if jersey is in roster - /3
+			Update rating - /3
+		Part 2 - /2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - /2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+Adam Dzierzko 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 1.5/2
+			Enter jersey # -1 /3
+			Check if jersey is in roster - 0/2
+				Your "isInArray" method is a great idea but does not check the last value in the array (the loop ends too early). You also check if the jersey is in the array twice, once in your method, and once on line 83. You do not need the check on line 83 because at that point you should already know that the jersey number is in the array.
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+			You method is a great idea.
+
+Darian Gibson 1/6
+	Part 1 - 1/1
+
+	Part 2 - 0/5 - No Submission
+		Part 1 - /1
+			Enter jersey # - /3
+			Check if jersey is in roster - /3
+			Update rating - /3
+		Part 2 - /2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - /2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+Tyler Gray - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 13
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+
+Lexus Hartung - 6/6
+	Part 1 - 1/1
+
+	Part 2 - 5/5
+		Part 1 - 1/1
+			Enter jersey # - 13
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+
+Andrea Lingenfelter - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - /11
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 1.5/2
+			Enter rating - 1/2
+			Check player rating - 0.5/1
+				You test for >= but it should only be if the player is greater than the input rating.
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+
+Shaina Mae Mainar - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 1.5/2
+			Enter rating - 1/2
+			Check player rating - 0.5/1
+				You test if the player's rating is less than the input rating. It should test if the player's rating is greater than the input rating.
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+			Notes:
+
+Connor Matthews - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 1.5/2
+			Enter rating - 1/2
+			Check player rating - 0.5/1
+				This checks if the player's rating is greater than or equal, but it should only test if the rating is greater than.
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+			In part 3, your for loop on line 61 did not have the right conditions in it and jerseyNumber on line 62 was not spelled correctly.	
+
+Asa Perryman - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 1.5/2
+			Enter rating - 1/2
+			Check player rating - 0.5/1
+				This checks if the player's rating is greater than or equal, but it should only test if the rating is greater than.
+			Print results - 1/2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+
+Jonathan Rabiu - 2.7/6
+	Part 1 - 1/1
+
+	Part 2 - 1.7/5
+		Part 1 - (2/3)/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 0/3
+				You get the new rating, but you never replace the old rating in the array.
+		Part 2 - 1/2
+			Enter rating - 1/2
+			Check player rating - 0.5/1
+				This checks if the player's rating is less than the user input, but it should check if the player's rating is greater than the user input.
+			Print results - 0/2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+			Notes:
+
+Ariel Robinson - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - (2/3)/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 0/3
+				You need to switch the order of this statement on line 41. rating[i] = newRating;
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 1.5/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 0/2
+				You are testing if the rating value is the same as the player's number. Should test if the user input is in the jerseyNumber array.
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+			Notes:
+
+Angelica Rodriguez - 2/6
+	Part 1 - 1/1
+
+	Part 2 - 1/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+		Notes:
+			Part 1 looks good. No part 2 or 3.
+
+Stefan Veloff - 2/6
+	Part 1 - 1/1
+
+	Part 2 - 1/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - 0/2
+			Enter jersey # - /3
+			Check if jersey is in roster - /2
+			Enter new number - /3
+			Enter new rating - /3
+			Update entry - /2
+		Notes:
+			Take a look at the code provided to you. The name of the scanner is "input", so you need to calls input.nextInt() instead of sc.nextInt().
+
+Mary Washington - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - (2/3)/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 0/3
+				You get the new rating, but you never replace the old rating in the array.
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 1.5/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 0/2
+				Same as above, you get the input but never update the array entries. You could also run into problems by using the same variable for input as the one you are checking in your if statement on line 63. I suggest using a different variable.
+		Notes:
+
+Kyle Winstead - 4/6
+	Part 1 - 1/1
+
+	Part 2 - 3/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+		Part 2 - 0/2
+			Enter rating - /2
+			Check player rating - /1
+			Print results - /2
+		Part 3 - 2/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 1/2
+		Notes:
+			Parts 1 and 3 look good. Part 2 not submitted.
+
+Julie Yib - 5.5/6
+	Part 1 - 1/1
+
+	Part 2 - 4.5/5
+		Part 1 - 1/1
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/3
+			Update rating - 1/3
+
+		Part 2 - 2/2
+			Enter rating - 1/2
+			Check player rating - 1/1
+			Print results - 1/2
+		Part 3 - 1.5/2
+			Enter jersey # - 1/3
+			Check if jersey is in roster - 1/2
+			Enter new number - 1/3
+			Enter new rating - 1/3
+			Update entry - 0/2
+		Notes:
+
+

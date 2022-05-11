@@ -1,0 +1,428 @@
+
+compiling...
+D:\School\221\hw_1\hw1_submissions\WoodsA\HW1Part2.java:10: error: class HWPart2 is public, should be declared in a file named HWPart2.java
+public class HWPart2
+       ^
+1 error
+
+compiling...
+D:\School\221\hw_1\hw1_submissions\JacksonS\HW1Part2.java:111: error: ';' expected
+            System.out.println("" + sum + "");
+                  ^
+1 error
+Done!
+
+compiling...
+D:\School\221\hw_1\hw1_submissions\BarberC\HW1Part2.java:13: error: non-static method getString() cannot be referenced from a static context
+        val1 = getString();
+               ^
+D:\School\221\hw_1\hw1_submissions\BarberC\HW1Part2.java:15: error: non-static method getString() cannot be referenced from a static context
+        val2 = getString();
+               ^
+D:\School\221\hw_1\hw1_submissions\BarberC\HW1Part2.java:16: error: non-static method stringAddition(String,String) cannot be referenced from a static context
+        String answer = stringAddition(val1,val2);
+                        ^
+3 errors
+Done!
+
+compiling...
+D:\School\221\hw_1\hw1_submissions\PembertonE\HW1Part1.java:35: error: incompatible types: String cannot be converted to char
+          if (isaVowel(wordArray[i]) == true){
+                                ^
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+1 error
+Done!
+compiling...
+D:\School\221\hw_1\hw1_submissions\MayersE\HW1Part1.java:29: error: incompatible types: char cannot be converted to String
+            if ((finalWord = 'a') || (finalWord = 'e') || (finalWord = 'i') ||
+                             ^
+D:\School\221\hw_1\hw1_submissions\MayersE\HW1Part1.java:29: error: incompatible types: char cannot be converted to String
+            if ((finalWord = 'a') || (finalWord = 'e') || (finalWord = 'i') ||
+                                                  ^
+D:\School\221\hw_1\hw1_submissions\MayersE\HW1Part1.java:29: error: bad operand types for binary operator '||'
+            if ((finalWord = 'a') || (finalWord = 'e') || (finalWord = 'i') ||
+                                  ^
+  first type:  String
+  second type: String
+D:\School\221\hw_1\hw1_submissions\MayersE\HW1Part1.java:29: error: incompatible types: char cannot be converted to String
+            if ((finalWord = 'a') || (finalWord = 'e') || (finalWord = 'i') ||
+                                                                       ^
+D:\School\221\hw_1\hw1_submissions\MayersE\HW1Part1.java:30: error: incompatible types: char cannot be converted to String
+            (finalWord = 'o') || (finalWord = 'u') || (finalWord = 'y')){
+                         ^
+D:\School\221\hw_1\hw1_submissions\MayersE\HW1Part1.java:30: error: incompatible types: char cannot be converted to String
+            (finalWord = 'o') || (finalWord = 'u') || (finalWord = 'y')){
+                                              ^
+D:\School\221\hw_1\hw1_submissions\MayersE\HW1Part1.java:30: error: incompatible types: char cannot be converted to String
+            (finalWord = 'o') || (finalWord = 'u') || (finalWord = 'y')){
+                                                                   ^
+7 errors
+Done!
+
+compiling...
+D:\School\221\hw_1\hw1_submissions\HodgesM\HW1Part1.java:25: error: char cannot be dereferenced
+                if (userWord.charAt(i).isAlphabetic()) {
+                                      ^
+1 error
+Done!
+
+
+------------------------------------------------------------------
+
+
+D:\School\221\grading>python GradingHW1Part2.py
+D:\School\221\hw_1\hw1_submissions\PappasS\
+D:\School\221\hw_1\hw1_submissions\PappasS\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\YibJ\
+D:\School\221\hw_1\hw1_submissions\YibJ\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\CordobaG\
+D:\School\221\hw_1\hw1_submissions\CordobaG\HW1Part2.java
+Exception in thread "main" java.lang.NumberFormatException: For input string: "b"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.parseInt(Integer.java:615)
+        at HW1Part2.main(HW1Part2.java:26)
+Exception in thread "main" java.lang.NumberFormatException: For input string: "7g7"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.parseInt(Integer.java:615)
+        at HW1Part2.main(HW1Part2.java:26)
+D:\School\221\hw_1\hw1_submissions\GerwatowskiC\
+D:\School\221\hw_1\hw1_submissions\GerwatowskiC\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\RobinsonA\
+D:\School\221\hw_1\hw1_submissions\RobinsonA\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\MatthewsC\
+D:\School\221\hw_1\hw1_submissions\MatthewsC\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\MarshallR\
+D:\School\221\hw_1\hw1_submissions\MarshallR\HW1Part2.java
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:39)
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:39)
+D:\School\221\hw_1\hw1_submissions\GandyWellsO\
+D:\School\221\hw_1\hw1_submissions\GandyWellsO\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\RabiuJ\
+D:\School\221\hw_1\hw1_submissions\RabiuJ\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\LingenfelterA\
+D:\School\221\hw_1\hw1_submissions\LingenfelterA\HW1Part2.java
+Exception in thread "main" java.lang.NumberFormatException: For input string: "b"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.parseInt(Integer.java:615)
+        at HW1Part2.main(HW1Part2.java:101)
+Exception in thread "main" java.lang.NumberFormatException: For input string: "g"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.parseInt(Integer.java:615)
+        at HW1Part2.main(HW1Part2.java:101)
+D:\School\221\hw_1\hw1_submissions\HaleyJ\
+D:\School\221\hw_1\hw1_submissions\WoodsA\
+D:\School\221\hw_1\hw1_submissions\WoodsA\HW1Part2.java
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+D:\School\221\hw_1\hw1_submissions\MainarS\
+D:\School\221\hw_1\hw1_submissions\MainarS\HW1Part2.java
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:21)
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:21)
+D:\School\221\hw_1\hw1_submissions\DudleyM\
+D:\School\221\hw_1\hw1_submissions\DudleyM\HW1Part2.java
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 1
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.addString(HW1Part2.java:14)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 1
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.addString(HW1Part2.java:14)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 2
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.addString(HW1Part2.java:14)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 2
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.addString(HW1Part2.java:14)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 2
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.addString(HW1Part2.java:14)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 9
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.addString(HW1Part2.java:14)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 1
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.addString(HW1Part2.java:14)
+        at HW1Part2.main(HW1Part2.java:38)
+D:\School\221\hw_1\hw1_submissions\HigginsS\
+D:\School\221\hw_1\hw1_submissions\HigginsS\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\AndersonJ\
+D:\School\221\hw_1\hw1_submissions\KoB\
+D:\School\221\hw_1\hw1_submissions\KoB\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\JacksonS\
+D:\School\221\hw_1\hw1_submissions\JacksonS\HW1Part2.java
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+D:\School\221\hw_1\hw1_submissions\HartungL\
+D:\School\221\hw_1\hw1_submissions\HartungL\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\MattoxJ\
+D:\School\221\hw_1\hw1_submissions\MattoxJ\HW1Part2.java
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:43)
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:43)
+D:\School\221\hw_1\hw1_submissions\GrayT\
+D:\School\221\hw_1\hw1_submissions\GrayT\HW1Part2.java
+Exception in thread "main" java.util.NoSuchElementException: No line found
+        at java.util.Scanner.nextLine(Scanner.java:1540)
+        at HW1Part2.main(HW1Part2.java:45)
+Exception in thread "main" java.util.NoSuchElementException: No line found
+        at java.util.Scanner.nextLine(Scanner.java:1540)
+        at HW1Part2.main(HW1Part2.java:45)
+D:\School\221\hw_1\hw1_submissions\BarberC\
+D:\School\221\hw_1\hw1_submissions\BarberC\HW1Part2.java
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+D:\School\221\hw_1\hw1_submissions\TaylorC\
+D:\School\221\hw_1\hw1_submissions\BarrettR\
+D:\School\221\hw_1\hw1_submissions\BarrettR\HW1Part2.java
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+D:\School\221\hw_1\hw1_submissions\WashingtonM\
+D:\School\221\hw_1\hw1_submissions\WashingtonM\HW1Part2.java
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+Error: Could not find or load main class HW1Part2
+D:\School\221\hw_1\hw1_submissions\GabrielA\
+D:\School\221\hw_1\hw1_submissions\GabrielA\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\DzierzkoA\
+D:\School\221\hw_1\hw1_submissions\DzierzkoA\HW1Part2.java
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:24)
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:24)
+D:\School\221\hw_1\hw1_submissions\RodriguezA\
+D:\School\221\hw_1\hw1_submissions\RodriguezA\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\JureckiG\
+D:\School\221\hw_1\hw1_submissions\JureckiG\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\PerrymanA\
+D:\School\221\hw_1\hw1_submissions\PerrymanA\HW1Part2.java
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 1
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:82)
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:48)
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW1Part2.main(HW1Part2.java:48)
+D:\School\221\hw_1\hw1_submissions\HancockM\
+D:\School\221\hw_1\hw1_submissions\HancockM\HW1Part2.java
+D:\School\221\hw_1\hw1_submissions\MooreR\
+D:\School\221\hw_1\hw1_submissions\MooreR\HW1Part2.java
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+Error: Main method not found in class HW1Part2, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+D:\School\221\hw_1\hw1_submissions\PembertonE\
+D:\School\221\hw_1\hw1_submissions\MayersE\
+D:\School\221\hw_1\hw1_submissions\VellofS\
+D:\School\221\hw_1\hw1_submissions\VellofS\HW1Part2.java
+Exception in thread "main" java.lang.NumberFormatException: For input string: "b"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.parseInt(Integer.java:615)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.NumberFormatException: For input string: "7g7"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.parseInt(Integer.java:615)
+        at HW1Part2.main(HW1Part2.java:38)
+D:\School\221\hw_1\hw1_submissions\WinsteadK\
+D:\School\221\hw_1\hw1_submissions\WinsteadK\HW1Part2.java
+Exception in thread "main" java.lang.NumberFormatException: For input string: "b"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.valueOf(Integer.java:766)
+        at HW1Part2.main(HW1Part2.java:38)
+Exception in thread "main" java.lang.NumberFormatException: For input string: "7g7"
+        at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+        at java.lang.Integer.parseInt(Integer.java:580)
+        at java.lang.Integer.valueOf(Integer.java:766)
+        at HW1Part2.main(HW1Part2.java:38)
+D:\School\221\hw_1\hw1_submissions\HodgesM\
+D:\School\221\hw_1\hw1_submissions\HodgesM\HW1Part2.java
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.substring(String.java:1967)
+        at HW1Part2.main(HW1Part2.java:146)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.substring(String.java:1967)
+        at HW1Part2.main(HW1Part2.java:146)
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.charAt(String.java:658)
+        at HW1Part2.main(HW1Part2.java:127)

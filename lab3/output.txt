@@ -1,0 +1,71 @@
+[84, 23, 4, 30, 66]
+[9, 30, 5, 1, 15]
+
+Enter a rating: ABOVE 1
+Player 1 -- Jersey number: 84, Rating: 7
+Player 2 -- Jersey number: 23, Rating: 4
+Player 3 -- Jersey number: 4, Rating: 5
+Player 4 -- Jersey number: 30, Rating: 2
+Player 5 -- Jersey number: 66, Rating: 9
+
+Enter a rating: ABOVE 4
+Player 1 -- Jersey number: 84, Rating: 7
+Player 3 -- Jersey number: 4, Rating: 5
+Player 5 -- Jersey number: 66, Rating: 9
+
+Enter a rating: ABOVE 7
+Player 5 -- Jersey number: 66, Rating: 9
+
+Enter a rating: ABOVE 10
+
+Enter a rating: ABOVE 9
+
+Enter a rating: ABOVE 8
+Player 5 -- Jersey number: 66, Rating: 9
+
+Enter a rating: ABOVE 6
+Player 1 -- Jersey number: 84, Rating: 7
+Player 5 -- Jersey number: 66, Rating: 9
+
+Enter a rating: ABOVE 5
+Player 1 -- Jersey number: 84, Rating: 7
+Player 5 -- Jersey number: 66, Rating: 9
+
+Enter a rating: ABOVE 3
+Player 1 -- Jersey number: 84, Rating: 7
+Player 2 -- Jersey number: 23, Rating: 4
+Player 3 -- Jersey number: 4, Rating: 5
+Player 5 -- Jersey number: 66, Rating: 9
+
+Enter a rating: ABOVE 2
+Player 1 -- Jersey number: 84, Rating: 7
+Player 2 -- Jersey number: 23, Rating: 4
+Player 3 -- Jersey number: 4, Rating: 5
+Player 5 -- Jersey number: 66, Rating: 9
+
+[84, 10, 5, 2, 66]
+[7, 9, 10, 9, 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

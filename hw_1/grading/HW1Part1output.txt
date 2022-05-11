@@ -1,0 +1,1882 @@
+	PappasS
+Enter a string
+1
+Enter a string
+1
+Enter a string
+1
+Enter a string
+2
+Enter a string
+2
+Enter a string
+1
+Enter a string
+1
+Enter a string
+1
+Enter a string
+2
+Enter a string
+2
+Enter a string
+2
+Enter a string
+1
+Enter a string
+2
+Enter a string
+1
+Enter a string
+1
+Enter a string
+2
+Enter a string
+2
+Enter a string
+3
+Enter a string
+1
+Enter a string
+13
+	YibJ
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+act: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+splat: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+spy: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+apply: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+commit: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+fruit: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+aim: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+plea: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+agio: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+audio: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+agile: -5 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+great: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+egret: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+guage: -5 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+street: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+treaty: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+tester: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+container: 0 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+eye: -3 syllables
+Enter a word: 
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+Enter a word that does not have any characters.
+supercalifragilisticexpialidocious: 0 syllables
+	CordobaG
+	GerwatowskiC
+act
+1
+There is 1 syllable in act
+splat
+1
+There is 1 syllable in splat
+spy
+1
+There is 1 syllable in spy
+apply
+2
+There are 2 syllables in apply
+commit
+2
+There are 2 syllables in commit
+fruit
+1
+There is 1 syllable in fruit
+aim
+1
+There is 1 syllable in aim
+plea
+1
+There is 1 syllable in plea
+agio
+2
+There are 2 syllables in agio
+audio
+2
+There are 2 syllables in audio
+agile
+2
+There are 2 syllables in agile
+great
+1
+There is 1 syllable in great
+egret
+2
+There are 2 syllables in egret
+guage
+1
+There is 1 syllable in guage
+street
+1
+There is 1 syllable in street
+treaty
+2
+There are 2 syllables in treaty
+tester
+2
+There are 2 syllables in tester
+container
+3
+There are 3 syllables in container
+eye
+1
+There is 1 syllable in eye
+supercalifragilisticexpialidocious
+13
+There are 13 syllables in supercalifragilisticexpialidocious
+	RobinsonA
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 2
+Please enter a word
+Number of syllables: 3
+Please enter a word
+Number of syllables: 1
+Please enter a word
+Number of syllables: 13
+	MatthewsC
+Enter a single word: 
+act
+Number of syllables: 1
+Enter a single word: 
+splat
+Number of syllables: 1
+Enter a single word: 
+spy
+Number of syllables: 1
+Enter a single word: 
+apply
+Number of syllables: 2
+Enter a single word: 
+commit
+Number of syllables: 2
+Enter a single word: 
+fruit
+Number of syllables: 1
+Enter a single word: 
+aim
+Number of syllables: 1
+Enter a single word: 
+plea
+Number of syllables: 1
+Enter a single word: 
+agio
+Number of syllables: 2
+Enter a single word: 
+audio
+Number of syllables: 2
+Enter a single word: 
+agile
+Number of syllables: 2
+Enter a single word: 
+great
+Number of syllables: 1
+Enter a single word: 
+egret
+Number of syllables: 2
+Enter a single word: 
+guage
+Number of syllables: 1
+Enter a single word: 
+street
+Number of syllables: 1
+Enter a single word: 
+treaty
+Number of syllables: 2
+Enter a single word: 
+tester
+Number of syllables: 2
+Enter a single word: 
+container
+Number of syllables: 3
+Enter a single word: 
+eye
+Number of syllables: 1
+Enter a single word: 
+supercalifragilisticexpialidocious
+Number of syllables: 13
+	MarshallR
+	GandyWellsO
+Enter a word: 
+Syllable(s) in your word: 1
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 3
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 1
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 1
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 1
+Enter a word: 
+Syllable(s) in your word: 2
+Enter a word: 
+Syllable(s) in your word: 3
+Enter a word: 
+Syllable(s) in your word: 3
+Enter a word: 
+Syllable(s) in your word: 4
+Enter a word: 
+Syllable(s) in your word: 1
+Enter a word: 
+Syllable(s) in your word: 20
+	RabiuJ
+Enter a word to count its syllables
+act: 0 syllables
+Enter a word to count its syllables
+splat: 1 syllables
+Enter a word to count its syllables
+spy: 1 syllables
+Enter a word to count its syllables
+apply: 1 syllables
+Enter a word to count its syllables
+commit: 2 syllables
+Enter a word to count its syllables
+fruit: 1 syllables
+Enter a word to count its syllables
+aim: 0 syllables
+Enter a word to count its syllables
+plea: 1 syllables
+Enter a word to count its syllables
+agio: 1 syllables
+Enter a word to count its syllables
+audio: 1 syllables
+Enter a word to count its syllables
+agile: 2 syllables
+Enter a word to count its syllables
+great: 1 syllables
+Enter a word to count its syllables
+egret: 0 syllables
+Enter a word to count its syllables
+guage: 2 syllables
+Enter a word to count its syllables
+street: 1 syllables
+Enter a word to count its syllables
+treaty: 2 syllables
+Enter a word to count its syllables
+tester: 2 syllables
+Enter a word to count its syllables
+container: 3 syllables
+Enter a word to count its syllables
+eye: 0 syllables
+Enter a word to count its syllables
+supercalifragilisticexpialidocious: 13 syllables
+	LingenfelterA
+	CollaborationHW.docx
+	HW1Part1
+Enter a word: 
+act: 1 syllablesEnter a word: 
+splat: 1 syllablesEnter a word: 
+spy: 1 syllablesEnter a word: 
+apply: 1 syllablesEnter a word: 
+commit: 2 syllablesEnter a word: 
+fruit: 1 syllablesEnter a word: 
+aim: 1 syllablesEnter a word: 
+plea: 1 syllablesEnter a word: 
+agio: 2 syllablesEnter a word: 
+audio: 2 syllablesEnter a word: 
+agile: 2 syllablesEnter a word: 
+great: 1 syllablesEnter a word: 
+egret: 2 syllablesEnter a word: 
+guage: 1 syllablesEnter a word: 
+street: 1 syllablesEnter a word: 
+treaty: 1 syllablesEnter a word: 
+tester: 2 syllablesEnter a word: 
+container: 3 syllablesEnter a word: 
+eye: 1 syllablesEnter a word: 
+supercalifragilisticexpialidocious: 14 syllables	HW1Part2
+	HaleyJ
+Enter a word: 
+Syllable counter: 1
+Enter a word: 
+Syllable counter: 1
+Enter a word: 
+Syllable counter: 1
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 3
+Enter a word: 
+Syllable counter: 4
+Enter a word: 
+Syllable counter: 3
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 3
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 3
+Enter a word: 
+Syllable counter: 2
+Enter a word: 
+Syllable counter: 4
+Enter a word: 
+Syllable counter: 3
+Enter a word: 
+Syllable counter: 16
+	WoodsA
+Please enter one word: 
+1 syllable
+Please enter one word: 
+1 syllable
+Please enter one word: 
+1 syllable
+Please enter one word: 
+2 syllables
+Please enter one word: 
+2 syllables
+Please enter one word: 
+1 syllable
+Please enter one word: 
+1 syllable
+Please enter one word: 
+1 syllable
+Please enter one word: 
+2 syllables
+Please enter one word: 
+2 syllables
+Please enter one word: 
+3 syllables
+Please enter one word: 
+1 syllable
+Please enter one word: 
+2 syllables
+Please enter one word: 
+2 syllables
+Please enter one word: 
+1 syllable
+Please enter one word: 
+2 syllables
+Please enter one word: 
+2 syllables
+Please enter one word: 
+3 syllables
+Please enter one word: 
+1 syllable
+Please enter one word: 
+13 syllables
+	MainarS
+	DudleyM
+Enter a word!
+act: 1 Syllables
+Enter a word!
+splat: 1 Syllables
+Enter a word!
+spy: 1 Syllables
+Enter a word!
+apply: 2 Syllables
+Enter a word!
+commit: 2 Syllables
+Enter a word!
+fruit: 1 Syllables
+Enter a word!
+aim: 1 Syllables
+Enter a word!
+plea: 2 Syllables
+Enter a word!
+agio: 3 Syllables
+Enter a word!
+audio: 3 Syllables
+Enter a word!
+agile: 2 Syllables
+Enter a word!
+great: 1 Syllables
+Enter a word!
+egret: 2 Syllables
+Enter a word!
+guage: 1 Syllables
+Enter a word!
+street: 1 Syllables
+Enter a word!
+treaty: 2 Syllables
+Enter a word!
+tester: 2 Syllables
+Enter a word!
+container: 3 Syllables
+Enter a word!
+eye: 1 Syllables
+Enter a word!
+supercalifragilisticexpialidocious: 13 Syllables
+	HigginsS
+	AndersonJ
+Input word: 1 
+act has 1 syllables.Input word: 1 
+splat has 1 syllables.Input word: 1 
+spy has 1 syllables.Input word: 1 
+2 
+apply has 2 syllables.Input word: 1 
+2 
+commit has 2 syllables.Input word: 1 
+2 
+1 
+fruit has 1 syllables.Input word: 1 
+2 
+1 
+aim has 1 syllables.Input word: 1 
+2 
+1 
+plea has 1 syllables.Input word: 1 
+2 
+3 
+2 
+agio has 2 syllables.Input word: 1 
+2 
+1 
+2 
+3 
+2 
+audio has 2 syllables.Input word: 1 
+2 
+3 
+agile has 2 syllables.Input word: 1 
+2 
+1 
+great has 1 syllables.Input word: 1 
+2 
+egret has 2 syllables.Input word: 1 
+2 
+1 
+2 
+guage has 1 syllables.Input word: 1 
+2 
+1 
+street has 1 syllables.Input word: 1 
+2 
+1 
+2 
+treaty has 2 syllables.Input word: 1 
+2 
+tester has 2 syllables.Input word: 1 
+2 
+3 
+2 
+3 
+container has 3 syllables.Input word: 1 
+2 
+1 
+2 
+1 
+eye has 1 syllables.Input word: 1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+10 
+11 
+12 
+13 
+14 
+13 
+14 
+13 
+supercalifragilisticexpialidocious has 13 syllables.	KoB
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+2
+Please enter a word to count it's Syllable: 
+3
+Please enter a word to count it's Syllable: 
+1
+Please enter a word to count it's Syllable: 
+13
+	JacksonS
+	HartungL
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 1
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 3
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 3
+Give me a word so that I can guess the number of syllables 
+The syllable count is 3
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 3
+Give me a word so that I can guess the number of syllables 
+The syllable count is 1
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 2
+Give me a word so that I can guess the number of syllables 
+The syllable count is 3
+Give me a word so that I can guess the number of syllables 
+The syllable count is 4
+Give me a word so that I can guess the number of syllables 
+The syllable count is 1
+Give me a word so that I can guess the number of syllables 
+The syllable count is 14
+	MattoxJ
+	GrayT
+	BarberC
+	TaylorC
+Please enter a word.
+Your word, act, has 1 syllable.
+Please enter a word.
+Your word, splat, has 1 syllable.
+Please enter a word.
+Your word, spy, has 1 syllable.
+Please enter a word.
+Your word, apply, has 1 syllable.
+Please enter a word.
+Your word, commit, has 2 syllables.
+Please enter a word.
+Your word, fruit, has 1 syllable.
+Please enter a word.
+Your word, aim, has 1 syllable.
+Please enter a word.
+Your word, plea, has 1 syllable.
+Please enter a word.
+Your word, agio, has 1 syllable.
+Please enter a word.
+Your word, audio, has 1 syllable.
+Please enter a word.
+Your word, agile, has 2 syllables.
+Please enter a word.
+Your word, great, has 1 syllable.
+Please enter a word.
+Your word, egret, has 2 syllables.
+Please enter a word.
+Your word, guage, has 1 syllable.
+Please enter a word.
+Your word, street, has 1 syllable.
+Please enter a word.
+Your word, treaty, has 1 syllable.
+Please enter a word.
+Your word, tester, has 2 syllables.
+Please enter a word.
+Your word, container, has 3 syllables.
+Please enter a word.
+Your word, eye, has 1 syllable.
+Please enter a word.
+Your word, supercalifragilisticexpialidocious, has 13 syllables.
+	BarrettR
+	WashingtonM
+	GabrielA
+Enter any word.
+The amount of syllables in act is 1
+Enter any word.
+The amount of syllables in splat is 1
+Enter any word.
+The amount of syllables in spy is 1
+Enter any word.
+The amount of syllables in apply is 2
+Enter any word.
+The amount of syllables in commit is 2
+Enter any word.
+The amount of syllables in fruit is 1
+Enter any word.
+The amount of syllables in aim is 1
+Enter any word.
+The amount of syllables in plea is 1
+Enter any word.
+The amount of syllables in agio is 2
+Enter any word.
+The amount of syllables in audio is 2
+Enter any word.
+The amount of syllables in agile is 2
+Enter any word.
+The amount of syllables in great is 1
+Enter any word.
+The amount of syllables in egret is 2
+Enter any word.
+The amount of syllables in guage is 1
+Enter any word.
+The amount of syllables in street is 1
+Enter any word.
+The amount of syllables in treaty is 2
+Enter any word.
+The amount of syllables in tester is 2
+Enter any word.
+The amount of syllables in container is 3
+Enter any word.
+The amount of syllables in eye is 1
+Enter any word.
+The amount of syllables in supercalifragilisticexpialidocious is 13
+	READ ME.txt
+	DzierzkoA
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: act
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: splat
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: spy
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: apply
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: commit
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: fruit
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: aim
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: plea
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: agio
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: audio
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: agile
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: great
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: egret
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: guage
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: street
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: treaty
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: tester
+It contains 2 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: container
+It contains 3 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: eye
+It contains 1 syllable(s)
+This program will count the number of syllables in a given word
+Please enter single word: 
+The wold you typed is: supercalifragilisticexpialidocious
+It contains 13 syllable(s)
+	RodriguezA
+Enter word: act
+Number of Syllables: 1
+Enter word: splat
+Number of Syllables: 1
+Enter word: spy
+Number of Syllables: 0
+ErrorEnter word: apply
+Number of Syllables: 1
+Enter word: commit
+Number of Syllables: 2
+Enter word: fruit
+Number of Syllables: 2
+Enter word: aim
+Number of Syllables: 2
+Enter word: plea
+Number of Syllables: 1
+Enter word: agio
+Number of Syllables: 2
+Enter word: audio
+Number of Syllables: 3
+Enter word: agile
+Number of Syllables: 2
+Enter word: great
+Number of Syllables: 2
+Enter word: egret
+Number of Syllables: 2
+Enter word: guage
+Number of Syllables: 2
+Enter word: street
+Number of Syllables: 2
+Enter word: treaty
+Number of Syllables: 2
+Enter word: tester
+Number of Syllables: 2
+Enter word: container
+Number of Syllables: 4
+Enter word: eye
+Number of Syllables: 2
+Enter word: supercalifragilisticexpialidocious
+Number of Syllables: 16
+	JureckiG
+Please enter a string:The word act has 2 syllables.Please enter a string:The word splat has 1 syllables.Please enter a string:The word spy has 1 syllables.Please enter a string:The word apply has 4 syllables.Please enter a string:The word commit has 2 syllables.Please enter a string:The word fruit has 1 syllables.Please enter a string:The word aim has 2 syllables.Please enter a string:The word plea has 1 syllables.Please enter a string:The word agio has 3 syllables.Please enter a string:The word audio has 4 syllables.Please enter a string:The word agile has 3 syllables.Please enter a string:The word great has 1 syllables.Please enter a string:The word egret has 4 syllables.Please enter a string:The word guage has 1 syllables.Please enter a string:The word street has 1 syllables.Please enter a string:The word treaty has 2 syllables.Please enter a string:The word tester has 2 syllables.Please enter a string:The word container has 4 syllables.Please enter a string:The word eye has 1 syllables.Please enter a string:The word supercalifragilisticexpialidocious has 13 syllables.	PerrymanA
+Enter any word: 
+act has 1 syllable.
+Enter any word: 
+splat has 1 syllable.
+Enter any word: 
+spy has 1 syllable.
+Enter any word: 
+apply has 2 syllables.
+Enter any word: 
+commit has 2 syllables.
+Enter any word: 
+fruit has 1 syllable.
+Enter any word: 
+aim has 1 syllable.
+Enter any word: 
+plea has 1 syllable.
+Enter any word: 
+agio has 2 syllables.
+Enter any word: 
+audio has 2 syllables.
+Enter any word: 
+agile has 2 syllables.
+Enter any word: 
+great has 1 syllable.
+Enter any word: 
+egret has 2 syllables.
+Enter any word: 
+guage has 1 syllable.
+Enter any word: 
+street has 1 syllable.
+Enter any word: 
+treaty has 2 syllables.
+Enter any word: 
+tester has 2 syllables.
+Enter any word: 
+container has 3 syllables.
+Enter any word: 
+eye has 1 syllable.
+Enter any word: 
+supercalifragilisticexpialidocious has 13 syllables.
+	HancockM
+Enter a single word: 
+act: 1 syllable
+Enter a single word: 
+splat: 1 syllable
+Enter a single word: 
+spy: 1 syllable
+Enter a single word: 
+apply: 2 syllables
+Enter a single word: 
+commit: 2 syllables
+Enter a single word: 
+fruit: 1 syllable
+Enter a single word: 
+aim: 1 syllable
+Enter a single word: 
+plea: 1 syllable
+Enter a single word: 
+agio: 2 syllables
+Enter a single word: 
+audio: 2 syllables
+Enter a single word: 
+agile: 2 syllables
+Enter a single word: 
+great: 1 syllable
+Enter a single word: 
+egret: 2 syllables
+Enter a single word: 
+guage: 1 syllable
+Enter a single word: 
+street: 1 syllable
+Enter a single word: 
+treaty: 2 syllables
+Enter a single word: 
+tester: 2 syllables
+Enter a single word: 
+container: 3 syllables
+Enter a single word: 
+eye: 1 syllable
+Enter a single word: 
+supercalifragilisticexpialidocious: 13 syllables
+	MooreR
+	PembertonE
+	MayersE
+	WinsteadK
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 2
+Enter one word: 
+Syllable count: 2
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 2
+Enter one word: 
+Syllable count: 3
+Enter one word: 
+Syllable count: 3
+Enter one word: 
+Syllable count: 2
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 2
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 2
+Enter one word: 
+Syllable count: 2
+Enter one word: 
+Syllable count: 3
+Enter one word: 
+Syllable count: 1
+Enter one word: 
+Syllable count: 13
+
+	PerrymanA
+Enter any word: 
+act has 1 syllable.
+Enter any word: 
+splat has 1 syllable.
+Enter any word: 
+spy has 1 syllable.
+Enter any word: 
+apply has 2 syllables.
+Enter any word: 
+commit has 2 syllables.
+Enter any word: 
+fruit has 1 syllable.
+Enter any word: 
+aim has 1 syllable.
+Enter any word: 
+plea has 1 syllable.
+Enter any word: 
+agio has 2 syllables.
+Enter any word: 
+audio has 2 syllables.
+Enter any word: 
+agile has 2 syllables.
+Enter any word: 
+great has 1 syllable.
+Enter any word: 
+egret has 2 syllables.
+Enter any word: 
+guage has 1 syllable.
+Enter any word: 
+street has 1 syllable.
+Enter any word: 
+treaty has 2 syllables.
+Enter any word: 
+tester has 2 syllables.
+Enter any word: 
+container has 3 syllables.
+Enter any word: 
+eye has 1 syllable.
+Enter any word: 
+supercalifragilisticexpialidocious has 13 syllables.
+
+	MooreR
+Enter a single word to determine the amount of syllables are in your word
+The word act has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word splat has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word spy has 0 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word apply has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word commit has 2 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word fruit has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word aim has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word plea has 0 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word agio has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word audio has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word agile has 3 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word great has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word egret has 2 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word guage has 2 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word street has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word treaty has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word tester has 2 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word container has 3 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word eye has 1 syllables.
+Enter a single word to determine the amount of syllables are in your word
+The word supercalifragilisticexpialidocious has 13 syllables.
+
+	WashingtonM
+Please enter a word.
+1
+Please enter a word.
+1
+Please enter a word.
+1
+Please enter a word.
+2
+Please enter a word.
+2
+Please enter a word.
+1
+Please enter a word.
+1
+Please enter a word.
+1
+Please enter a word.
+2
+Please enter a word.
+2
+Please enter a word.
+2
+Please enter a word.
+1
+Please enter a word.
+2
+Please enter a word.
+1
+Please enter a word.
+1
+Please enter a word.
+2
+Please enter a word.
+2
+Please enter a word.
+3
+Please enter a word.
+1
+Please enter a word.
+13
+	BarrettR
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 2
+Enter a word: The number of syllables in the word is 3
+Enter a word: The number of syllables in the word is 1
+Enter a word: The number of syllables in the word is 14
+
+BarberC
+Please enter a word
+"act" has 1 vowel(s).
+Please enter a word
+"splat" has 1 vowel(s).
+Please enter a word
+"spy" has 1 vowel(s).
+Please enter a word
+"apply" has 2 vowel(s).
+Please enter a word
+"commit" has 2 vowel(s).
+Please enter a word
+"fruit" has 1 vowel(s).
+Please enter a word
+"aim" has 1 vowel(s).
+Please enter a word
+"plea" has 1 vowel(s).
+Please enter a word
+"agio" has 2 vowel(s).
+Please enter a word
+"audio" has 2 vowel(s).
+Please enter a word
+"agile" has 2 vowel(s).
+Please enter a word
+"great" has 1 vowel(s).
+Please enter a word
+"egret" has 2 vowel(s).
+Please enter a word
+"guage" has 1 vowel(s).
+Please enter a word
+"street" has 1 vowel(s).
+Please enter a word
+"treaty" has 2 vowel(s).
+Please enter a word
+"tester" has 2 vowel(s).
+Please enter a word
+"container" has 3 vowel(s).
+Please enter a word
+"eye" has 1 vowel(s).
+Please enter a word
+"supercalifragilisticexpialidocious" has 13 vowel(s).
+
+	GrayT
+Please enter a word
+act has 1 syllable(s)
+Please enter a word
+splat has 1 syllable(s)
+Please enter a word
+spy has 1 syllable(s)
+Please enter a word
+apply has 2 syllable(s)
+Please enter a word
+commit has 2 syllable(s)
+Please enter a word
+fruit has 1 syllable(s)
+Please enter a word
+aim has 1 syllable(s)
+Please enter a word
+plea has 1 syllable(s)
+Please enter a word
+agio has 2 syllable(s)
+Please enter a word
+audio has 2 syllable(s)
+Please enter a word
+agile has 2 syllable(s)
+Please enter a word
+great has 1 syllable(s)
+Please enter a word
+egret has 2 syllable(s)
+Please enter a word
+guage has 1 syllable(s)
+Please enter a word
+street has 1 syllable(s)
+Please enter a word
+treaty has 2 syllable(s)
+Please enter a word
+tester has 2 syllable(s)
+Please enter a word
+container has 3 syllable(s)
+Please enter a word
+eye has 1 syllable(s)
+Please enter a word
+supercalifragilisticexpialidocious has 13 syllable(s)
+
+	MattoxJ
+This program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 2 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 3 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 1 syllablesThis program counts the number of syllables in entered word
+
+Please enter a word (only letters): 13 syllables
+
+	JacksonS
+Type a word: 
+act has 1 syllable(s).
+Type a word: 
+Type a word: 
+splat has 1 syllable(s).
+Type a word: 
+Type a word: 
+spy has 1 syllable(s).
+Type a word: 
+Type a word: 
+apply has 2 syllable(s).
+Type a word: 
+Type a word: 
+commit has 2 syllable(s).
+Type a word: 
+Type a word: 
+fruit has 1 syllable(s).
+Type a word: 
+Type a word: 
+aim has 1 syllable(s).
+Type a word: 
+Type a word: 
+plea has 2 syllable(s).
+Type a word: 
+Type a word: 
+agio has 3 syllable(s).
+Type a word: 
+Type a word: 
+audio has 3 syllable(s).
+Type a word: 
+Type a word: 
+agile has 2 syllable(s).
+Type a word: 
+Type a word: 
+great has 1 syllable(s).
+Type a word: 
+Type a word: 
+egret has 2 syllable(s).
+Type a word: 
+Type a word: 
+guage has 1 syllable(s).
+Type a word: 
+Type a word: 
+street has 1 syllable(s).
+Type a word: 
+Type a word: 
+treaty has 2 syllable(s).
+Type a word: 
+Type a word: 
+tester has 2 syllable(s).
+Type a word: 
+Type a word: 
+container has 3 syllable(s).
+Type a word: 
+Type a word: 
+eye has 1 syllable(s).
+Type a word: 
+Type a word: 
+supercalifragilisticexpialidocious has 13 syllable(s).
+Type a word: 
+
+	HigginsS
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 2
+Enter a single Word to count the Syllables
+The Number of Syllables is: 3
+Enter a single Word to count the Syllables
+The Number of Syllables is: 1
+Enter a single Word to count the Syllables
+The Number of Syllables is: 13
+	MainarS
+Enter a word: 
+There are 1 syllables in "act"
+Enter a word: 
+There are 1 syllables in "splat"
+Enter a word: 
+There are 1 syllables in "spy"
+Enter a word: 
+There are 2 syllables in "apply"
+Enter a word: 
+There are 2 syllables in "commit"
+Enter a word: 
+There are 1 syllables in "fruit"
+Enter a word: 
+There are 1 syllables in "aim"
+Enter a word: 
+There are 1 syllables in "plea"
+Enter a word: 
+There are 2 syllables in "agio"
+Enter a word: 
+There are 2 syllables in "audio"
+Enter a word: 
+There are 2 syllables in "agile"
+Enter a word: 
+There are 1 syllables in "great"
+Enter a word: 
+There are 2 syllables in "egret"
+Enter a word: 
+There are 1 syllables in "guage"
+Enter a word: 
+There are 1 syllables in "street"
+Enter a word: 
+There are 2 syllables in "treaty"
+Enter a word: 
+There are 2 syllables in "tester"
+Enter a word: 
+There are 3 syllables in "container"
+Enter a word: 
+There are 1 syllables in "eye"
+Enter a word: 
+There are 13 syllables in "supercalifragilisticexpialidocious"
+	LingenfelterA
+Please enter a word: 
+a is a valid char
+c is a valid char
+t is a valid char
+1
+act
+Please enter a word: 
+s is a valid char
+p is a valid char
+l is a valid char
+a is a valid char
+t is a valid char
+1
+splat
+Please enter a word: 
+s is a valid char
+p is a valid char
+y is a valid char
+1
+spy
+Please enter a word: 
+a is a valid char
+p is a valid char
+p is a valid char
+l is a valid char
+y is a valid char
+1
+2
+apply
+Please enter a word: 
+c is a valid char
+o is a valid char
+m is a valid char
+m is a valid char
+i is a valid char
+t is a valid char
+1
+2
+commit
+Please enter a word: 
+f is a valid char
+r is a valid char
+u is a valid char
+i is a valid char
+t is a valid char
+1
+2
+fruit
+Please enter a word: 
+a is a valid char
+i is a valid char
+m is a valid char
+1
+2
+aim
+Please enter a word: 
+p is a valid char
+l is a valid char
+e is a valid char
+a is a valid char
+1
+2
+plea
+Please enter a word: 
+a is a valid char
+g is a valid char
+i is a valid char
+o is a valid char
+1
+2
+3
+agio
+Please enter a word: 
+a is a valid char
+u is a valid char
+d is a valid char
+i is a valid char
+o is a valid char
+1
+2
+3
+4
+audio
+Please enter a word: 
+a is a valid char
+g is a valid char
+i is a valid char
+l is a valid char
+e is a valid char
+1
+2
+3
+Vowel Count with final e: 3
+Updated Vowel Count: 2
+agile
+Please enter a word: 
+g is a valid char
+r is a valid char
+e is a valid char
+a is a valid char
+t is a valid char
+1
+2
+great
+Please enter a word: 
+e is a valid char
+g is a valid char
+r is a valid char
+e is a valid char
+t is a valid char
+1
+2
+egret
+Please enter a word: 
+g is a valid char
+u is a valid char
+a is a valid char
+g is a valid char
+e is a valid char
+1
+2
+3
+Vowel Count with final e: 3
+Updated Vowel Count: 2
+guage
+Please enter a word: 
+s is a valid char
+t is a valid char
+r is a valid char
+e is a valid char
+e is a valid char
+t is a valid char
+1
+2
+street
+Please enter a word: 
+t is a valid char
+r is a valid char
+e is a valid char
+a is a valid char
+t is a valid char
+y is a valid char
+1
+2
+3
+treaty
+Please enter a word: 
+t is a valid char
+e is a valid char
+s is a valid char
+t is a valid char
+e is a valid char
+r is a valid char
+1
+2
+tester
+Please enter a word: 
+c is a valid char
+o is a valid char
+n is a valid char
+t is a valid char
+a is a valid char
+i is a valid char
+n is a valid char
+e is a valid char
+r is a valid char
+1
+2
+3
+4
+container
+Please enter a word: 
+e is a valid char
+y is a valid char
+e is a valid char
+1
+2
+3
+Vowel Count with final e: 3
+Updated Vowel Count: 2
+eye
+Please enter a word: 
+s is a valid char
+u is a valid char
+p is a valid char
+e is a valid char
+r is a valid char
+c is a valid char
+a is a valid char
+l is a valid char
+i is a valid char
+f is a valid char
+r is a valid char
+a is a valid char
+g is a valid char
+i is a valid char
+l is a valid char
+i is a valid char
+s is a valid char
+t is a valid char
+i is a valid char
+c is a valid char
+e is a valid char
+x is a valid char
+p is a valid char
+i is a valid char
+a is a valid char
+l is a valid char
+i is a valid char
+d is a valid char
+o is a valid char
+c is a valid char
+i is a valid char
+o is a valid char
+u is a valid char
+s is a valid char
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+supercalifragilisticexpialidocious
+
+	MarshallR
+Please enter a word:
+act has 1 syllable(s).
+Please enter a word:
+splat has 1 syllable(s).
+Please enter a word:
+spy has 1 syllable(s).
+Please enter a word:
+apply has 2 syllable(s).
+Please enter a word:
+commit has 2 syllable(s).
+Please enter a word:
+fruit has 1 syllable(s).
+Please enter a word:
+aim has 1 syllable(s).
+Please enter a word:
+plea has 1 syllable(s).
+Please enter a word:
+agio has 2 syllable(s).
+Please enter a word:
+audio has 2 syllable(s).
+Please enter a word:
+agile has 2 syllable(s).
+Please enter a word:
+great has 1 syllable(s).
+Please enter a word:
+egret has 2 syllable(s).
+Please enter a word:
+guage has 1 syllable(s).
+Please enter a word:
+street has 1 syllable(s).
+Please enter a word:
+treaty has 2 syllable(s).
+Please enter a word:
+tester has 2 syllable(s).
+Please enter a word:
+container has 3 syllable(s).
+Please enter a word:
+eye has 1 syllable(s).
+Please enter a word:
+supercalifragilisticexpialidocious has 13 syllable(s).
+
+	CordobaG
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 2
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 2
+Enter word
+syllables: 1
+Enter word
+syllables: 2
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 1
+Enter word
+syllables: 2
+Enter word
+syllables: 3
+Enter word
+syllables: 1
+Enter word
+syllables: 13
+
+
+CraggD
+Please enter a word: act
+act: 1
+Please enter a word: splat
+splat: 1
+Please enter a word: spy
+spy: 1
+Please enter a word: apply
+apply: 2
+Please enter a word: commit
+commit: 2
+Please enter a word: fruit
+fruit: 1
+Please enter a word: aim
+aim: 1
+Please enter a word: plea
+plea: 1
+Please enter a word: agio
+agio: 2
+Please enter a word: audio
+audio: 2
+Please enter a word: agile
+agile: 2
+Please enter a word: great
+great: 1
+Please enter a word: egret
+egret: 2
+Please enter a word: guage
+guage: 2
+Please enter a word: street
+street: 1
+Please enter a word: treaty
+treaty: 2
+Please enter a word: tester
+tester: 2
+Please enter a word: container
+container: 3
+Please enter a word: eye
+eye: 2
+Please enter a word: supercalifragilisticexpialidocious
+supercalifragilisticexpialidocious: 14

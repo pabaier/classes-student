@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=HW1Part1
+comment0.text=\r\n\ by\:\ Michael\ Dudley\r\n\ Description\:\ Checks\ to\ see\ how\ many\ syllables\ are\ in\ a\ word.\r\n
+comment1.params=ch
+comment1.target=boolean\ isAVowel(char)
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+numComments=3

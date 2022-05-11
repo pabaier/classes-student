@@ -1,0 +1,46 @@
+    Moore
+
+
+Ones with problems that I graded:
+	HartungL submitted folers within folders
+	Kyle Windstead zipped an eclipse folder
+	Veloff - I think it is his that came in with no name.
+	PappasS had files named HW1Part1.java.java
+	Matt Hancock did not put his files properly into a zip folder with his name on it
+	MatthewsC had a file named HW1Part1 copy.java
+	RodriguezA had files in folders named HW1Part1
+	TaylerC had files in a folder called HW1Part2.java
+	WoodsA had files in folders called HW1Part1
+	Asa Perryman zipped her entire bluej program (190 mb)
+	R Moore had zipped HomeWork1 folder instead of his folder
+		public static void HW1Part1() - no main method
+	WashingtonM - package header
+	BarrettR - package header
+	BarberC - no main method
+		methods not static
+	GrayT - package header
+	MattoxJ - no arguments in main method
+	JacksonS - wrong class name (HWPart1 instead of HW1Part1)
+		does not give error for bad input
+		loops through input instead of one and done
+	HigginsS - no main method
+	MainarS had files in folders named HW1Part1
+		main not static
+		other methods not static
+	LingenfelterA - Had a package header
+	MarshallR - Main method without String[] args
+	CordobaG - No Main Method
+	
+	x Mark Hodges submitted a rar file, named his file correctly but called his class "main"
+		then said public static void HW1Part1
+		compile error - scanner spelled incorrectly
+		compile error - (userWord.charAt(i).isAlphabetic())
+	x Ethen Meyers named his folder HWPart1
+		compile error (line 29, 30)
+	x Elizabeth Pemberton did not put her files in a zipped folder
+		does not compile (line 35)
+
+
+
+
+

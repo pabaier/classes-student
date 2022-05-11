@@ -1,0 +1,22 @@
+------------------------------------------------------------------------
+This is the project README file. Here, you should describe your project.
+Tell the reader (someone who does not know anything about this project)
+all he/she needs to know. The comments should usually include at least:
+------------------------------------------------------------------------
+
+PROJECT TITLE:HW1Part1.java
+PURPOSE OF PROJECT:Syllables 
+VERSION or DATE:Sept 25 
+HOW TO START THIS PROJECT: I started the program but when to the tutor lab to get 
+help on the boolean class as I had trouble trying to call on it. The tutor also guided me 
+on how to see if two syllables were back to back. 
+
+
+AUTHORS:Julie Yib 
+USER INSTRUCTIONS:
+
+/**
+*HW1Part1
+*Julie Yib
+*/
+

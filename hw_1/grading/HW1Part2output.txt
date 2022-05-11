@@ -1,0 +1,20 @@
+    HartungL
+
+
+D:\School\221\hw_1\hw1_submissions\JacksonS\
+    Had a compiling error on line 111.
+    program hangs when second number is bigger than first
+
+
+D:\School\221\hw_1\hw1_submissions\TaylorC\
+    Just adding integers...
+    Do not make multiple scanners for input, one will do.
+
+D:\School\221\hw_1\hw1_submissions\RodriguezA\
+    Just adding integers...
+
+D:\School\221\hw_1\hw1_submissions\AndersonJ\
+D:\School\221\hw_1\hw1_submissions\JureckiG\
+D:\School\221\hw_1\hw1_submissions\HancockM\
+D:\School\221\hw_1\hw1_submissions\PembertonE\
+D:\School\221\hw_1\hw1_submissions\MayersE\

@@ -1,0 +1,340 @@
+
+    PappasS
+Part 1:
++0 Name In File
++2 Submitted Correctly 
+Part 2:
++0 Name In File
++2 Submitted Correctly
+    files named HW1Part1.java.java
+
+    YibJ
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    CordobaG
+Part 1:
++0 Name In File
++5 Submitted Correctly 
+Part 2:
++0 Name In File
++5 Submitted Correctly
+
+
+    GerwatowskiC
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    RobinsonA
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    MatthewsC
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    MarshallR
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    GandyWellsO
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    RabiuJ
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    LingenfelterA
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+    MainarS
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    files in folders with wrong names
+
+
+    DudleyM
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+    AndersonJ
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++0 Name In File
++0 Submitted Correctly
+    Part 2 not submitted
+
+    HigginsS
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    KoB
+Part 1:
++0 Name In File
++5 Submitted Correctly 
+Part 2:
++0 Name In File
++5 Submitted Correctly
+
+
+    HartungL
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    Folders within folders in submission
+
+
+    MattoxJ
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    GrayT
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    GabrielA
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    DzierzkoA
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    PerrymanA
+Part 1:
++5 Name In File
++0 Submitted Correctly 
+Part 2:
++5 Name In File
++0 Submitted Correctly
+    Submitted bluj program
+
+    VellofS
+Part 1:
++0 Name In File
++2 Submitted Correctly 
+Part 2:
++0 Name In File
++2 Submitted Correctly
+    Submitted folder within folders
+
+JureckiG
+Part 1:
++0 Name In File
++5 Submitted Correctly 
+Part 2:
++0 Name In File
++5 Submitted Correctly
+
+    HancockM
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    Folders not properly named in submission
+
+    WinsteadK
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+
+
+    HodgesM
+Part 1:
++5 Name In File
++0 Submitted Correctly 
+Part 2:
++5 Name In File
++0 Submitted Correctly
+    Submitted .rar file, part1 would not compile
+
+
+    HaleyJ
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    WoodsA
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    Submitted folders within folders
+
+    MooreR
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    Submitted folder not properly named
+
+    WashingtonM
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    BarrettR
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    TaylorC
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    folders named incorrectly in submission
+
+
+    BarberC
+Part 1:
++5 Name In File
++5 Submitted Correctly 
+Part 2:
++5 Name In File
++5 Submitted Correctly
+
+
+    JacksonS
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    Files were not named correctly
+
+    MayersE
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++0 Name In File
++0 Submitted Correctly
+
+    PembertonE
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++0 Name In File
++0 Submitted Correctly
+    
+    RodriguezA
+Part 1:
++5 Name In File
++2 Submitted Correctly 
+Part 2:
++5 Name In File
++2 Submitted Correctly
+    folders within folders - incorrect submission
+
+    MooreW
+Part 1:
++0 Name In File
++0 Submitted Correctly 
+Part 2:
++0 Name In File
++0 Submitted Correctly

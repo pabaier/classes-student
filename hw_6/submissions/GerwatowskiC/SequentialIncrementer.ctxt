@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=SequentialIncrementer
+comment0.text=\n\ Increments\ a\ value\ starting\ at\ 0\n\n\ Claire\ Gerwatowski\n
+comment1.params=
+comment1.target=SequentialIncrementer()
+comment2.params=
+comment2.target=void\ increment()
+comment3.params=
+comment3.target=int\ getValue()
+numComments=4

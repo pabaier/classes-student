@@ -1,0 +1,87 @@
+D:\School\221\lab4\individuals\WashingtonM
+
+	WashingtonM
+
+D:\School\221\lab4\individuals\WashingtonM
+
+	WashingtonM
+
+D:\School\221\lab4\individuals\WashingtonM
+
+	WashingtonM
+
+D:\School\221\lab4\individuals\WashingtonM
+
+	WashingtonM
++50 for submission
+Min = -3.300, Max = 12.200, Mean = 2.050, Variance = 686.282
+
+Test 1
+[-5.0, 200.0, 1.0, 3.0, 5.0, 7.0]
+	+1 Minimum Method Passed!
+	+1 Maximum Method Passed!
+	+0 Average Method Failed
+		Expected Value: 35.166666666666664
+		Returned Value: 34.166666666666664
+	+0 Variance Method Failed
+		Expected Value: 5448.138888888889
+		Returned Value: 3.2138760885179807E59
+
+Test 2
+[-73.0, -23.0, -65.0, -2.0, -7.0, 0.0]
+	+1 Minimum Method Passed!
+	+1 Maximum Method Passed!
+	+0 Average Method Failed
+		Expected Value: -28.333333333333332
+		Returned Value: -29.333333333333332
+	+0 Variance Method Failed
+		Expected Value: 886.5555555555557
+		Returned Value: 29.58489585717519
+
+Test 3
+[123.0, 456.0, -2.0, 76.0, 98.0, 67.0, 2.0, 5432.0, 54.0, 2.0, 76.0, 163.0]
+	+1 Minimum Method Passed!
+	+1 Maximum Method Passed!
+	+0 Average Method Failed
+		Expected Value: 545.5833333333334
+		Returned Value: 544.5833333333334
+	+0 Variance Method Failed
+		Expected Value: 2184408.076388889
+		Returned Value: Infinity
+
+Test 4
+[5000.0, -700.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+1 Minimum Method Passed!
+	+1 Maximum Method Passed!
+	+0 Average Method Failed
+		Expected Value: 481.90909090909093
+		Returned Value: 480.90909090909093
+	+0 Variance Method Failed
+		Expected Value: 2154904.628099174
+		Returned Value: Infinity
+
+Test 5
+[5000.0, 7.0, 43.0, 5.0, 7.0, 7.0, 45.0, 2.0, 25.0, 874.0, -7.0]
+	+1 Minimum Method Passed!
+	+1 Maximum Method Passed!
+	+0 Average Method Failed
+		Expected Value: 546.1818181818181
+		Returned Value: 545.1818181818181
+	+0 Variance Method Failed
+		Expected Value: 2044285.4214876038
+		Returned Value: Infinity
+
+Test 6
+[234.0, 43.0, 22.0, 5234.0, 54.0, 1.0, 2543.0, 7.0, 54.0, 345.0, 243.0]
+	+0 Minimum Method Failed
+		Expected Value: 1.0
+		Returned Value: 0.0
+	+1 Maximum Method Passed!
+	+0 Average Method Failed
+		Expected Value: 798.1818181818181
+		Returned Value: 797.1818181818181
+	+0 Variance Method Failed
+		Expected Value: 2463146.6942148763
+		Returned Value: Infinity
+Total: 61
+

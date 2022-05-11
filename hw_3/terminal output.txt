@@ -1,0 +1,261 @@
+processing AndersonJ
+D:\School\221\hw_3\hw3\AndersonJ\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\AndersonJ\CalendarDate.java
+1 File(s) copied
+"done"
+processing BarberC
+D:\School\221\hw_3\hw3\BarberC\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\BarberC\CalendarDate.java
+1 File(s) copied
+"done"
+processing BarrettR
+D:\School\221\hw_3\hw3\BarrettR\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\BarrettR\CalendarDate.java
+1 File(s) copied
+"done"
+processing CraggD
+D:\School\221\hw_3\hw3\CraggD\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\CraggD\CalendarDate.java
+1 File(s) copied
+"done"
+processing DudleyM
+D:\School\221\hw_3\hw3\DudleyM\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\DudleyM\CalendarDate.java
+1 File(s) copied
+"done"
+processing DzierzkoA
+D:\School\221\hw_3\hw3\DzierzkoA\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\DzierzkoA\CalendarDate.java
+1 File(s) copied
+"done"
+processing GabrielA
+D:\School\221\hw_3\hw3\GabrielA\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\GabrielA\CalendarDate.java
+1 File(s) copied
+"done"
+processing GandyWellsO
+D:\School\221\hw_3\hw3\GandyWellsO\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\GandyWellsO\CalendarDate.java
+1 File(s) copied
+"done"
+processing GerwatowskiC
+D:\School\221\hw_3\hw3\GerwatowskiC\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\GerwatowskiC\CalendarDate.java
+1 File(s) copied
+"done"
+processing GrayT
+D:\School\221\hw_3\hw3\GrayT\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\GrayT\CalendarDate.java
+1 File(s) copied
+"done"
+processing HaleyJ
+D:\School\221\hw_3\hw3\HaleyJ\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\HaleyJ\CalendarDate.java
+1 File(s) copied
+"done"
+processing HancockM
+D:\School\221\hw_3\hw3\HancockM\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\HancockM\CalendarDate.java
+1 File(s) copied
+BirthDate.java:42: error: missing return statement
+    }
+    ^
+1 error
+Error: A JNI error has occurred, please check your installation and try again
+Exception in thread "main" java.lang.NoClassDefFoundError: BirthDate
+        at java.lang.Class.getDeclaredMethods0(Native Method)
+        at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+        at java.lang.Class.privateGetMethodRecursive(Class.java:3048)
+        at java.lang.Class.getMethod0(Class.java:3018)
+        at java.lang.Class.getMethod(Class.java:1784)
+        at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:544)
+        at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:526)
+Caused by: java.lang.ClassNotFoundException: BirthDate
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:335)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+        ... 7 more
+"done"
+processing Hartungl
+Could Not Find D:\School\221\hw_3\grader\BirthDate.class
+D:\School\221\hw_3\hw3\Hartungl\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\Hartungl\CalendarDate.java
+1 File(s) copied
+"done"
+processing HigginsS
+D:\School\221\hw_3\hw3\HigginsS\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\HigginsS\CalendarDate.java
+1 File(s) copied
+"done"
+processing JureckiG
+D:\School\221\hw_3\hw3\JureckiG\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\JureckiG\CalendarDate.java
+1 File(s) copied
+"done"
+processing Lingenfeltera
+D:\School\221\hw_3\hw3\Lingenfeltera\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\Lingenfeltera\CalendarDate.java
+1 File(s) copied
+"done"
+processing MainarS
+D:\School\221\hw_3\hw3\MainarS\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\MainarS\CalendarDate.java
+1 File(s) copied
+"done"
+processing MarshallR
+D:\School\221\hw_3\hw3\MarshallR\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\MarshallR\CalendarDate.java
+1 File(s) copied
+"done"
+processing MattoxJ
+D:\School\221\hw_3\hw3\MattoxJ\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\MattoxJ\CalendarDate.java
+1 File(s) copied
+"done"
+processing MooreW
+D:\School\221\hw_3\hw3\MooreW\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\MooreW\CalendarDate.java
+1 File(s) copied
+CalendarDate.java:128: error: method isLeapYear in class CalendarDate cannot be applied to given types;
+        if (this.mon == 2 && this.isLeapYear() == true){
+                                 ^
+  required: int
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+Error: A JNI error has occurred, please check your installation and try again
+Exception in thread "main" java.lang.NoClassDefFoundError: CalendarDate
+        at java.lang.Class.getDeclaredMethods0(Native Method)
+        at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+        at java.lang.Class.privateGetMethodRecursive(Class.java:3048)
+        at java.lang.Class.getMethod0(Class.java:3018)
+        at java.lang.Class.getMethod(Class.java:1784)
+        at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:544)
+        at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:526)
+Caused by: java.lang.ClassNotFoundException: CalendarDate
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:335)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+        ... 7 more
+"done"
+processing PappasS
+Could Not Find D:\School\221\hw_3\grader\CalendarDate.class
+D:\School\221\hw_3\hw3\PappasS\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\PappasS\CalendarDate.java
+1 File(s) copied
+"done"
+processing PerrymanA
+D:\School\221\hw_3\hw3\PerrymanA\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\PerrymanA\CalendarDate.java
+1 File(s) copied
+"done"
+processing RabiuJ
+D:\School\221\hw_3\hw3\RabiuJ\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\RabiuJ\CalendarDate.java
+1 File(s) copied
+"done"
+processing RobinsonA
+D:\School\221\hw_3\hw3\RobinsonA\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\RobinsonA\CalendarDate.java
+1 File(s) copied
+"done"
+processing TaylorC
+D:\School\221\hw_3\hw3\TaylorC\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\TaylorC\CalendarDate.java
+1 File(s) copied
+CalendarDate.java:128: error: method isLeapYear in class CalendarDate cannot be applied to given types;
+        if (this.month == 2 && this.isLeapYear() == true){
+                                   ^
+  required: int
+  found: no arguments
+  reason: actual and formal argument lists differ in length
+1 error
+Error: A JNI error has occurred, please check your installation and try again
+Exception in thread "main" java.lang.NoClassDefFoundError: CalendarDate
+        at java.lang.Class.getDeclaredMethods0(Native Method)
+        at java.lang.Class.privateGetDeclaredMethods(Class.java:2701)
+        at java.lang.Class.privateGetMethodRecursive(Class.java:3048)
+        at java.lang.Class.getMethod0(Class.java:3018)
+        at java.lang.Class.getMethod(Class.java:1784)
+        at sun.launcher.LauncherHelper.validateMainClass(LauncherHelper.java:544)
+        at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:526)
+Caused by: java.lang.ClassNotFoundException: CalendarDate
+        at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+        at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:335)
+        at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+        ... 7 more
+"done"
+processing VeloffS
+Could Not Find D:\School\221\hw_3\grader\CalendarDate.class
+D:\School\221\hw_3\hw3\VeloffS\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\VeloffS\CalendarDate.java
+1 File(s) copied
+"done"
+processing WashingtonM
+D:\School\221\hw_3\hw3\WashingtonM\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\WashingtonM\CalendarDate.java
+1 File(s) copied
+"done"
+processing WinsteadK
+D:\School\221\hw_3\hw3\WinsteadK\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\WinsteadK\CalendarDate.java
+1 File(s) copied
+Exception in thread "main" java.lang.NoSuchMethodError: BirthDate.getBirthdate()LSampleDate;
+        at BirthDate_Grader.getBirthDateTest(BirthDate_Grader.java:617)
+        at BirthDate_Grader.main(BirthDate_Grader.java:55)
+"done"
+processing WoodsA
+D:\School\221\hw_3\hw3\WoodsA\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\WoodsA\CalendarDate.java
+1 File(s) copied
+"done"
+processing YibJ
+D:\School\221\hw_3\hw3\YibJ\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\YibJ\CalendarDate.java
+1 File(s) copied
+Note: CalendarDate.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Exception in thread "main" java.lang.StackOverflowError
+        at CalendarDate.getDay(CalendarDate.java:57)
+        at CalendarDate.getDay(CalendarDate.java:57)
+        ...
+"done"
+processing jacksons
+D:\School\221\hw_3\hw3\jacksons\BirthDate.java
+1 File(s) copied
+D:\School\221\hw_3\hw3\jacksons\CalendarDate.java
+1 File(s) copied
+"done"

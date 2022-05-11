@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=WalkUpTicket
+comment1.params=s\ d
+comment1.target=WalkUpTicket(java.lang.String,\ CalendarDate)
+comment2.params=
+comment2.target=double\ getPrice()
+comment3.params=
+comment3.target=java.lang.String\ toString()
+numComments=4

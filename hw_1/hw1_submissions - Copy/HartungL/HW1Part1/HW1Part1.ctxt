@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=HW1Part1
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=ch
+comment2.target=boolean\ isAVowel(char)
+comment3.params=check
+comment3.target=boolean\ isDoubleVowel(java.lang.String)
+comment4.params=e
+comment4.target=boolean\ endingE(char)
+numComments=5

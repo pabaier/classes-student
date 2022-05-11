@@ -1,0 +1,424 @@
+1111 Barber
+2213 Barrett
+1111 dudley
+1111 dzierzko
+1111 grandywells
+1111 gerwatoswki
+3333 GrayT
+3233 Hancock
+2113 hartung
+3333 higgins
+3313 jackson
+1111 jurecki
+1111 Lingenfelter
+3233 mainar
+1111 marshall
+1111 Mattox
+1111 pappas
+1111 perryman
+3113 rabiu
+3333 robinson
+1111 taylor
+3211 veloff
+3333 washington
+3333 windstead
+1111 MooreW
+1111 woods
+3333 yibj
+
+MooreW
+HW4.java:13: error: <identifier> expected
+                catch(FileNotFoundException){
+                                           ^
+1 error
+Error: Could not find or load main class HW4
+
+
+veloff
+Please enter a file name: D:\School\221\hw_4\grader\testinput.txt
+[1971/10/1 Magic Kingdom]
+[1971/10/1 Magic Kingdom]Do you want to cancel an appointment? Type C for yes or Q to quit: C
+Enter a name to cancel appointment: Update complete:
+Enter a name to cancel appointment: Epcot
+Update complete:
+Enter a name to cancel appointment: Epcot
+Update complete:
+Enter a name to cancel appointment: Animal Kingdom
+Update complete:
+Enter a name to cancel appointment: Magic Kingdom
+Update complete:
+Enter a name to cancel appointment: C
+Update complete:
+Enter a name to cancel appointment: Q
+
+BarberC/
+Please type the name of the file to be read.
+D:\School\221\hw_4\grader\testinput.txt
+Exception in thread "main" java.util.InputMismatchException
+        at java.util.Scanner.throwFor(Scanner.java:864)
+        at java.util.Scanner.next(Scanner.java:1485)
+        at java.util.Scanner.nextInt(Scanner.java:2117)
+        at java.util.Scanner.nextInt(Scanner.java:2076)
+        at HW4.main(HW4.java:20)
+BarrettR/
+Enter a file name to be read: D:\School\221\hw_4\grader\testinput.txt
+Incorrect input.
+1998/4/22 Name: Animal Kingdom
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+C
+Enter the name of the employee you wish to cancel an appointment with:
+Animal Kingdom
+1989/5/1 Name: Hollywood Studios
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+Hollywood Studios
+1989/5/1 Name: Hollywood Studios
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+1989/5/1 Name: Hollywood Studios
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+James
+1989/5/1 Name: Hollywood Studios
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+asdf
+1989/5/1 Name: Hollywood Studios
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+Hollywood Studios
+1989/5/1 Name: Hollywood Studios
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+1989/5/1 Name: Hollywood Studios
+Enter Q if you wish to quit or enter C if you wish to cancel an appointment:
+Q
+DudleyM/
+D:\School\221\hw_4\grader\testinput.txt
+File Invalid
+DzierzkoA/
+Please enter the name of the file:
+D:\School\221\hw_4\grader\testinput.txt
+Exception in thread "main" java.util.InputMismatchException
+        at java.util.Scanner.throwFor(Scanner.java:864)
+        at java.util.Scanner.next(Scanner.java:1485)
+        at java.util.Scanner.nextInt(Scanner.java:2117)
+        at java.util.Scanner.nextInt(Scanner.java:2076)
+        at HW4.main(HW4.java:29)
+GandyWellsO/
+Enter the file name:
+D:\School\221\hw_4\grader\testinput.txt
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW4.main(HW4.java:25)
+GerwatowskiC/
+Enter valid file name: D:\School\221\hw_4\grader\testinput.txt
+Opening file D:\School\221\hw_4\grader\testinput.txt.
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        at java.lang.String.substring(String.java:1967)
+        at HW4.main(HW4.java:49)
+GrayT/
+Please enter the input file name
+D:\School\221\hw_4\grader\testinput.txt
+Couldnt Create Appointment: Invalid Date
+Appointment List - 3 Appointments
+*******************
+1971/10/1 Magic Kingdom
+1989/5/1 Hollywood Studios
+1998/4/22 Animal Kingdom
+
+C - Cancel Appointment
+Q - Quit Program
+
+C
+Please enter the name of the person who's appointment you want canceled:
+
+Hollywood Studios
+Appointment List - 2 Appointments
+*******************
+1971/10/1 Magic Kingdom
+1998/4/22 Animal Kingdom
+
+C - Cancel Appointment
+Q - Quit Program
+
+Q
+Thanks for using the AppointmentList Tracker. Good-Bye!
+HancockM/
+Provide the name of your input file
+D:\School\221\hw_4\grader\testinput.txt
+Invalid Date
+Cannot complete appointment list
+Invalid Date
+Cannot complete appointment list
+Invalid Date
+Cannot complete appointment list
+13
+Cannot complete appointment list
+this is the appointment list
+1971/10/1 Name: Magic Kingdom
+1989/5/1 Name: Hollywood Studios
+1998/4/22 Name: Animal Kingdom
+1982/13/1 Name: Epcot
+If you wish to cancel an appointment, enter C, otherwise, enter Q to quit.
+C
+Type the name that you wish to cancel:
+Epcot
+this is the appointment list
+1971/10/1 Name: Magic Kingdom
+1989/5/1 Name: Hollywood Studios
+1998/4/22 Name: Animal Kingdom
+If you wish to cancel an appointment, enter /'C/', otherwise, enter /'Q/' to quit.
+C
+Type the name that you wish to cancel:
+Hollywood Studios
+this is the appointment list
+1971/10/1 Name: Magic Kingdom
+1998/4/22 Name: Animal Kingdom
+If you wish to cancel an appointment, enter /'C/', otherwise, enter /'Q/' to quit.
+Q
+Quitting
+HartungL/
+Please provide an input file:
+D:\School\221\hw_4\grader\testinput.txt
+File not found
+
+Press q to quit, Press c to cancle an appointment
+c
+Name of employee for cancellation?
+Magic Kingdom
+Magic Kingdom
+
+q to quit, c to cancle another appointment
+c
+Name of employee for cancellation?
+asdf
+asdf
+
+q to quit, c to cancle another appointment
+c
+Name of employee for cancellation?
+Hollywood Studios
+Hollywood Studios
+
+q to quit, c to cancle another appointment
+q
+HigginsS/
+Enter a file name.
+D:\School\221\hw_4\grader\testinput.txt
+Invalid date was in the file it has been ignored.
+
+Enter c to cancel an appointment.
+Enter g to get the appointment date for someone.
+Enter q to quit.
+
+1971/10/1 Magic Kingdom
+1989/5/1 Hollywood Studios
+1998/4/22 Animal Kingdom
+c
+Whos appointment are you canceling?
+Magic Kingdom
+Enter c to cancel an appointment.
+Enter g to get the appointment date for someone.
+Enter q to quit.
+
+1989/5/1 Hollywood Studios
+1998/4/22 Animal Kingdom
+c
+Whos appointment are you canceling?
+Animal Kingdom
+Enter c to cancel an appointment.
+Enter g to get the appointment date for someone.
+Enter q to quit.
+
+1989/5/1 Hollywood Studios
+q
+Quitting Program...
+jacksons/
+Enter a file to be read:
+D:\School\221\hw_4\grader\testinput.txt
+Invalid date.
+1971/10/1  Magic Kingdom
+1989/5/1  Hollywood Studios
+1998/4/22  Animal Kingdom
+
+Enter 'c' to cancel an appointment or 'q' to quit.
+c
+Employee name for appointment cancellation:
+Magic Kingdom
+1971/10/1  Magic Kingdom
+1989/5/1  Hollywood Studios
+1998/4/22  Animal Kingdom
+
+Enter 'c' to cancel an appointment or 'q' to quit.
+c
+Employee name for appointment cancellation:
+Hollywood Studios
+1971/10/1  Magic Kingdom
+1989/5/1  Hollywood Studios
+1998/4/22  Animal Kingdom
+
+Enter 'c' to cancel an appointment or 'q' to quit.
+q
+JureckiG/
+enter
+D:\School\221\hw_4\grader\testinput.txt
+Exception in thread "main" java.util.NoSuchElementException
+        at java.util.Scanner.throwFor(Scanner.java:862)
+        at java.util.Scanner.next(Scanner.java:1371)
+        at HW4.main(HW4.java:23)
+LingenfelterA/
+Error: Could not find or load main class HW4
+MainarS/
+Enter file name (+.txt):
+D:\School\221\hw_4\grader\testinput.txt
+------------Printing List------------
+10/1/1971 Name: Magic Kingdom
+5/1/1989 Name: Hollywood Studios
+4/22/1998 Name: Animal Kingdom
+13/1/1982 Name: Epcot
+
+Enter "Q" to quit or "C" to cancel an appointment: C
+Enter name to cancel: Epcot
+10/1/1971 Name: Magic Kingdom
+5/1/1989 Name: Hollywood Studios
+4/22/1998 Name: Animal Kingdom
+Enter "Q" to quit or "C" to cancel an appointment: C
+Enter name to cancel: Hollywood Studios
+10/1/1971 Name: Magic Kingdom
+4/22/1998 Name: Animal Kingdom
+Enter "Q" to quit or "C" to cancel an appointment: Not valid
+Enter "Q" to quit or "C" to cancel an appointment: Q
+Exiting...
+MarshallR/
+Error: Main method not found in class HW4, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+MattoxJ/
+Error: Main method not found in class HW4, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+PappasS/
+Enter a name of an input file
+D:\School\221\hw_4\grader\testinput.txt
+Exception in thread "main" java.util.InputMismatchException
+        at java.util.Scanner.throwFor(Scanner.java:864)
+        at java.util.Scanner.next(Scanner.java:1485)
+        at java.util.Scanner.nextInt(Scanner.java:2117)
+        at java.util.Scanner.nextInt(Scanner.java:2076)
+        at HW4.main(HW4.java:21)
+PerrymanA/
+Error: Could not find or load main class HW4
+RabiuJ/
+Enter the name of the file to be read
+D:\School\221\hw_4\grader\testinput.txt
+1971/10/1  Magic Kingdom
+Press q to quit or press c to cancel an appointment
+c
+Enter the name of the appointment to cancel
+Hollywood Studios
+Press q to quit or press c to cancel an appointment
+c
+Enter the name of the appointment to cancel
+asdfasd
+Press q to quit or press c to cancel an appointment
+c
+Enter the name of the appointment to cancel
+Magic Kingdom
+Press q to quit or press c to cancel an appointment
+c
+Enter the name of the appointment to cancel
+c
+Press q to quit or press c to cancel an appointment
+q
+RobinsonA/
+Enter file name:
+D:\School\221\hw_4\grader\testinput.txt
+Not a valid date: 1982/13/1
+
+List of appointments:
+
+1971/10/1 Magic Kingdom
+1989/5/1 Hollywood Studios
+1998/4/22 Animal Kingdom
+
+If you want to quit enter Q. To cancel an appointment enter C.
+C
+Please enter the employee's name:
+Hollywood Studios
+List of appointments:
+1971/10/1 Magic Kingdom
+1998/4/22 Animal Kingdom
+
+
+Do you want to quit or cancel an appointment?
+Q
+taylorC/
+Error: Could not find or load main class HW4
+VeloffS/
+Error: Could not find or load main class HW4
+WashingtonM/
+Please enter in your file name.
+D:\School\221\hw_4\grader\testinput.txt
+Invalid date exception: 1982/13/1
+Appointment List:
+1971/10/1   Magic Kingdom
+1989/5/1   Hollywood Studios
+1998/4/22   Animal Kingdom
+
+Please select an option below.
+C: cancel appointments.
+Q: quit the program.
+C
+Whose appointment would you like to cancel?
+Hollywood Studios
+New appointment list:
+1971/10/1   Magic Kingdom
+1998/4/22   Animal Kingdom
+
+Please select an option below.
+C: cancel appointments.
+Q: quit the program.
+Q
+WinsteadK/
+Enter file name ending in .txt:
+D:\School\221\hw_4\grader\testinput.txt
+Printing list...........
+1971/10/1 Magic Kingdom
+1989/5/1 Hollywood Studios
+1998/4/22 Animal Kingdom
+
+Enter "Q" to quit or "C" to cancel an appointment: C
+Enter name to cancel: Hollywood Studios
+1971/10/1 Magic Kingdom
+1998/4/22 Animal Kingdom
+Enter "Q" to quit or "C" to cancel an appointment: Not valid
+Enter "Q" to quit or "C" to cancel an appointment: asdf
+Not valid
+Enter "Q" to quit or "C" to cancel an appointment:
+asdf
+Not valid
+Enter "Q" to quit or "C" to cancel an appointment: C
+Enter name to cancel: Animal Kingdom
+1971/10/1 Magic Kingdom
+Enter "Q" to quit or "C" to cancel an appointment: Not valid
+Enter "Q" to quit or "C" to cancel an appointment: Q
+Exiting...
+WoodsA/
+Error: Main method not found in class HW4, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+YibJ/
+Please insert a file name:
+D:\School\221\hw_4\grader\testinput.txt
+Invalid date exception: 1982/13/1Appointment List:
+1971/10/1 Name: Magic Kingdom
+1989/5/1 Name: Hollywood Studios
+1998/4/22 Name: Animal Kingdom
+
+Choose 'C': to cancel appointment or 'Q': to quit the program
+C
+Enter the appointment's name for cancellation:
+Hollywood Studios
+Updated Appointment List:
+1971/10/1 Name: Magic Kingdom
+1998/4/22 Name: Animal Kingdom
+
+Choose 'C': to cancel appointment or 'Q': to quit the program
+Q
+Please try again.

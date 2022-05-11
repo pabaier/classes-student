@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=HW1Part2
+comment0.text=\r\n\ by\:\ Michael\ Dudley\r\n\ Description\:\ Add\ numbers\ as\ strings.\r\n
+comment1.params=num1\ num2
+comment1.target=java.lang.String\ addString(java.lang.String,\ java.lang.String)
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+numComments=3

@@ -1,0 +1,1 @@
+I discussed my appointmentList class and the issues I was having with getting a particular appointment and HW4 class and the issues I had with the exceptions in the class with Professor McCauley. 
