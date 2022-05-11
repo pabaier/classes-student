@@ -1,3 +1,4 @@
+%h5 Welcome, #{@user.first_name}
 .row
   -if @user.status == "Admin"
     .back_nav= link_to 'Users', users_path
