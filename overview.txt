@@ -1,0 +1,43 @@
+Collections - Insert and Delete Items
+	Stack
+	Queue
+	Randomized Queue
+	Priority Queue
+
+Search/Sort Algorithms
+-sequential search
+-binary search
+-selection sort
+-insertion sort
+-shell sort
+-quick sort
+-merge sort
+-heap sort
+
+Data Structures
+(Nodes vs Arrays)
+-Heap
+-Stack
+-Queue
+-Priority Queue (automatically sorted by min/max on top, going down to opposite min/max on bottom)
+-Binary Search Tree
+-Balanced Search Tree
+-2-3 Trees
+-Left Leaning Red Black BST
+-B trees
+	Concerns:
+		Search
+		Insert
+		Remove
+		Min/Max
+		Find Floor (Largest Value Less Than Argument)
+		Find Ceil (Closest Value Greater Than Arguement)
+		Rank (How many values less than arguement)
+		Select (Find thee xth key)
+		Size
+		Ordered Iteration (Get the set of values in order)
+
+Symbol Table Operations:
+	search
+	insert
+	delete
