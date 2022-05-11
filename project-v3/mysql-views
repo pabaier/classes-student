@@ -1,0 +1,30 @@
+CREATE VIEW WeightChange AS
+
+// get first week
+SELECT (Participantsid, Weight) as w1
+FROM WeeklyResults
+WHERE WeekNumber = 1
+
+// get latest week for each participant
+SELECT (Participantsid, Max(WeekNumber) as maxWeek) as wMax
+FROM WeeklyResults
+
+// get latest week's weight
+SELECT Participantid, Weight as latest
+FROM WeeklyResults
+INNER JOIN wMax on latest.Participantid = wMax.Participantid
+
+// get week1 weight and latest weight
+SELECT lastest.Participantid, w1.Weight, latest.Weight
+FROM latest
+INNER JOIN w1 on latest.Participantid = w1.Participantid
+
+//THE IDEA IS
+Generates list of each participant's total weight change.
+Needs to: Get each participant's first week weight (where week  = 1)
+                Get each participant's most recent week
+                Get each participant's most recent weight (based on most recent week)
+                Join the first week weight and most recent week's weight
+                Get the difference between the weeks
+                
+----------------------------------

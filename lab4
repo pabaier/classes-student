@@ -1,0 +1,29 @@
+1.
+SELECT AVG(price)
+FROM Sells
+INNER JOIN Bars on name = bar
+WHERE city = "Chicago" AND beer = "Budweiser"
+
+2.
+SELECT COUNT(distinct bars.name)
+FROM Beers
+INNER JOIN Likes on beer = name
+INNER JOIN Sells on Likes.beer = Sells.beer
+INNER JOIN Bars on bar = Bars.name
+WHERE drinker = "John" AND Bars.city = "Chicago" AND price < 5.00
+
+3.
+SELECT s2.bar
+FROM Sells s2
+INNER JOIN Bars b2 on s2.bar = b2.name
+WHERE b2.city = "Boston" AND s2.beer = "Budweiser"
+AND s2.price = 
+(SELECT MIN(s1.price)
+FROM Bars b1
+INNER JOIN Sells s1 on s1.bar = b1.name
+WHERE b1.city = "Boston" AND s1.beer = "Budweiser")
+
+
+What is the average price of 'Budweiser' in 'Chicago'?
+How many bars in 'Chicago' sell a beer liked by 'John' for less than 5.00?
+Find the names of the bars in 'Boston' that sell 'Budweiser' for the cheapest price (compared with other bars in 'Boston').

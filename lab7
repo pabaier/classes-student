@@ -1,0 +1,24 @@
+1.
+SELECT sc.taughtby
+FROM Students st
+INNER JOIN Enrollments e ON st.name = e.student
+INNER JOIN Schedule sc ON e.course = sc.course
+WHERE st.name = 'MICHAEL MOORE'
+GROUP BY sc.taughtby
+
+2.
+SELECT c.code, c.name, c.units, e.grade
+FROM Students st
+INNER JOIN Enrollments e ON st.name = e.student
+INNER JOIN Schedule sc ON e.course = sc.course
+INNER JOIN Courses c ON c.code = sc.course
+WHERE st.name = 'MICHAEL MOORE' AND sc.term = 'SPRING'
+GROUP BY c.code
+
+3.
+SELECT e.course, e.term, AVG(g.gradepoints)
+FROM Schedule s
+INNER JOIN Enrollments e ON s.course = e.course
+INNER JOIN Gradescale g ON e.grade = g.lettergrade
+WHERE s.year = 2002 AND e.year = 2002
+GROUP BY e.course, e.term

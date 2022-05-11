@@ -1,0 +1,37 @@
+1.
+SELECT title
+FROM Books
+WHERE Author = "EDMUND MORGAN"
+AND
+Year >= 1990
+
+2.
+SELECT Books.title, Books.author, Pricing.price
+FROM Books
+INNER JOIN Pricing ON Books.bookid = Pricing.bookid
+WHERE Books.title LIKE ('%CIVIL WAR%' )
+AND
+Pricing.format = 'AUDIO'
+GROUP BY Books.title
+
+3.
+SELECT p.year, COUNT(*)
+FROM Customers c
+INNER JOIN Purchases p ON c.customerid = p.customerid
+WHERE c.name = 'JOHN CHAMBERS'
+GROUP BY p.year
+
+4.
+SELECT c.name, c.email
+FROM Customers c
+INNER JOIN Purchases p ON c.customerid = p.customerid
+WHERE p.year = 2003
+GROUP BY p.customerid
+HAVING COUNT(*) > 1
+
+5.
+SELECT b.title, b.author, AVG(r.rating)
+FROM Books b
+INNER JOIN Reviews r ON b.bookid = r.bookid
+WHERE b.title LIKE('%CIVIL WAR%')
+GROUP BY b.title
