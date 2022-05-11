@@ -1,0 +1,40 @@
+%h5 Welcome, #{@user.first_name}
+.row
+  -if @user.status == "Admin"
+    .back_nav= link_to 'Users', users_path
+  .logout= link_to 'Log out', login_path
+
+%h2 Welcome, #{@user.first_name} #{@user.last_name}!
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Status
+      %th Graduation Date
+      %th Groups
+  %tbody
+    %tr
+      %td= @user.first_name
+      %td= @user.last_name
+      %td= @user.email
+      %td= @user.status
+      %td= @user.graduation_date
+      %td= @user.groups.map(&:title).join(", ")
+
+= form_for(@user) do |f|
+  //empty field because starting with a field for collection check boxes breaks it for some reason
+  .field
+  .field
+    = f.label "Groups"
+    = f.collection_check_boxes :group_ids, Group.all, :id, :title do |b|
+      .collection-check-box
+        = b.check_box
+        = b.label
+  .actions
+    = f.submit
+  
+-if @user.status == "Admin"
+  = link_to 'Edit detail', edit_user_path(@user)

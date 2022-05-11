@@ -1,0 +1,7 @@
+.row
+  .back_nav= link_to 'Users', users_path
+  .logout= link_to 'Log out', login_path
+
+%body
+  %tr
+    %td= @emails.compact.join(@delimiter + " ")

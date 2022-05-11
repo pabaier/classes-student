@@ -1,0 +1,22 @@
+.row
+  .back_nav= link_to 'Back', groups_path
+  .logout= link_to 'Log out', login_path
+
+
+%h2 Create New Group
+
+= form_tag groups_path do
+
+  .field
+    = label :group, :title, 'Title'
+    = text_field :group, 'title'
+
+  .field
+    = label :group, :description, 'Description'
+    = text_field :group, 'description'
+
+  = submit_tag 'Confirm'
+  
+  =link_to 'Cancel', groups_path
+  
+.bottom-margin

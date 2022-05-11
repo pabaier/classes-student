@@ -1,0 +1,61 @@
+.row
+  .back_nav= link_to 'Groups', groups_path
+  .logout= link_to 'Log out', login_path
+
+
+%h2 All Users
+
+= form_tag users_path, :method => :get do
+  All Available Groups: 
+  - @all_groups.each do |group|
+    = check_box_tag "groups[#{group.title}]", group.id, @selected_groups.include?(group.title), :id => "groups_#{group.id}"
+    = label_tag "groups_#{group.id}", group.title
+  = submit_tag 'Refresh'
+
+= link_to 'Create new user', new_user_path
+
+%p
+%table.table.table-bordered
+  %thead
+    %tr
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Status
+      %th Graduation Date
+      %th Groups
+      %th{:colspan => "2"} Modify
+        
+  %tbody
+    - @selected_users.each do |user|
+      %tr
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.email
+        %td= user.status
+        %td= user.graduation_date
+        %td= user.groups.map(&:title).join(", ")
+        %td= button_to 'Edit details', edit_user_path(user), :method => :get
+        %td= button_to 'Delete User', "/users/#{user.id}", :id => "del_#{user.email}", :method => :delete, data: { confirm: 'are you sure?' }
+        
+%p
+= form_tag export_path, :method => :get do
+  = field_set_tag do
+    = submit_tag "Export table"
+    with delimiter
+    = select_tag("delimiter", options_for_select(@all_delimiters, :delimiter))
+
+%br
+%div
+%br
+  %h2 Bulk Import Student List
+  %br 
+  Format without Heading
+  First Name | Last Name | Email | Password | Status | Graduation Date (mm/dd/yyyy)
+  %br
+  %br 
+  = form_tag import_users_path, multipart: true do
+    = file_field_tag :file
+    = submit_tag "Import CSV"
+
+.bottom-margin

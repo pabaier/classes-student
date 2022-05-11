@@ -1,0 +1,32 @@
+-# edit.html.haml using partial
+.row
+  .back_nav= link_to 'Users', users_path
+  .logout= link_to 'Log out', login_path
+
+
+
+%h2 Edit Student Subscription
+
+= form_for(@user) do |f|
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :graduation_date
+    = f.date_select :graduation_date
+  .field
+    = f.label "Groups"
+    = f.collection_check_boxes :group_ids, Group.all, :id, :title do |b|
+      .collection-check-box
+        = b.check_box
+        = b.label
+  .actions
+    = f.submit
+    
+.bottom-margin

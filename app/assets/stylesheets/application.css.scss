@@ -1,0 +1,110 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.table-header {
+  margin-top: 15px;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  padding: 20px;
+}
+
+ul, li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+/*  #96C0CE
+    #FEF6EB
+*/
+
+h1 {color: #525564;}
+h2 {color: #C25B56;}
+
+
+tr:nth-child(even) {background: #EEE}
+/*tr:nth-child(odd) {background: #FFF}*/
+tr:hover {background-color: #BEB9B5;}
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align:center;
+    background-color: #74828F;
+    color: white;
+}
+
+td{
+  text-align:center;
+}
+
+.back_nav{
+  float:left;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 25px;
+  text-align:left;
+}
+.back_nav:hover{
+  font-size: 200%;
+}
+
+
+.logout{
+  float:right;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 25px;
+  text-align:right;
+}
+.logout:hover {
+  font-size: 200%;
+}
+
+.field {
+  padding: 10px;
+}
+
+.row{
+  border-bottom: 5px solid #74828F;
+}
+
+.bottom-margin{
+  position: fixed;
+  padding-top: 10px;
+  width: 100%;
+  border-bottom: 5px solid #74828F;
+}
+
+a {
+  padding: 10px;
+}
+
+input {
+  margin: 10px;
+}
