@@ -1,0 +1,15 @@
+# Scala-IDE specific
+.scala_dependencies
+.worksheet
+.idea
+
+#vsCode specific
+.vscode
+
+*.pdf
+presentation
+
+# Random Folders
+unused-files
+slides
+.DS_Store

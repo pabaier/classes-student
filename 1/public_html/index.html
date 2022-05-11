@@ -1,0 +1,284 @@
+<!-- https://stackoverflow.com/questions/1007965/how-to-organize-page-layout-with-divs -->
+
+<html>
+    <head>
+        <title>Paul's Puzzle Page</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <div id=header>
+                <h1>Sudoku</h1>
+        </div>
+        <div id=middle>
+
+            <div class=columns id=sidebar>
+                Chose your difficulty:<br/>
+                <select id=level>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                </select>
+            </div>
+            
+            <div class=columns id=gameWrapper>
+                <div id=game> 
+                    <table>
+                        <tr id=row1>
+                            <td><span id=cell1></span></td>
+                            <td><span id=cell2></span></td>
+                            <td class=col3><span id=cell3></span></td>
+                            <td><span id=cell4></span></td>
+                            <td><span id=cell5></span></td>
+                            <td class=col6><span id=cell6></span></td>
+                            <td><span id=cell7></span></td>
+                            <td><span id=cell8></span></td>
+                            <td><span id=cell9></span></td>
+                        </tr>
+                        <tr id=row2>
+                            <td><span id=cell10></span></td>
+                            <td><span id=cell11></span></td>
+                            <td class=col3><span id=cell12></span></td>
+                            <td><span id=cell13></span></td>
+                            <td><span id=cell14></span></td>
+                            <td class=col6><span id=cell15></span></td>
+                            <td><span id=cell16></span></td>
+                            <td><span id=cell17></span></td>
+                            <td><span id=cell18></span></td>
+                        </tr>
+                        <tr id=row3>
+                            <td><span id=cell19></span></td>
+                            <td><span id=cell20></span></td>
+                            <td class=col3><span id=cell21></span></td>
+                            <td><span id=cell22></span></td>
+                            <td><span id=cell23></span></td>
+                            <td class=col6><span id=cell24></span></td>
+                            <td><span id=cell25></span></td>
+                            <td><span id=cell26></span></td>
+                            <td><span id=cell27></span></td>
+                        </tr>
+                        <tr id=row4>
+                            <td><span id=cell28></span></td>
+                            <td><span id=cell29></span></td>
+                            <td class=col3><span id=cell30></span></td>
+                            <td><span id=cell31></span></td>
+                            <td><span id=cell32></span></td>
+                            <td class=col6><span id=cell33></span></td>
+                            <td><span id=cell34></span></td>
+                            <td><span id=cell35></span></td>
+                            <td><span id=cell36></span></td>
+                        </tr>
+                        <tr id=row5>
+                            <td><span id=cell37></span></td>
+                            <td><span id=cell38></span></td>
+                            <td class=col3><span id=cell39></span></td>
+                            <td><span id=cell40></span></td>
+                            <td><span id=cell41></span></td>
+                            <td class=col6><span id=cell42></span></td>
+                            <td><span id=cell43></span></td>
+                            <td><span id=cell44></span></td>
+                            <td><span id=cell45></span></td>
+                        </tr>
+                        <tr id=row6>
+                            <td><span id=cell46></span></td>
+                            <td><span id=cell47></span></td>
+                            <td class=col3><span id=cell48></span></td>
+                            <td><span id=cell49></span></td>
+                            <td><span id=cell50></span></td>
+                            <td class=col6><span id=cell51></span></td>
+                            <td><span id=cell52></span></td>
+                            <td><span id=cell53></span></td>
+                            <td><span id=cell54></span></td>
+                        </tr>
+                        <tr id=row7>
+                            <td><span id=cell55></span></td>
+                            <td><span id=cell56></span></td>
+                            <td class=col3><span id=cell57></span></td>
+                            <td><span id=cell58></span></td>
+                            <td><span id=cell59></span></td>
+                            <td class=col6><span id=cell60></span></td>
+                            <td><span id=cell61></span></td>
+                            <td><span id=cell62></span></td>
+                            <td><span id=cell63></span></td>
+                        </tr>
+                        <tr id=row8>
+                            <td><span id=cell64></span></td>
+                            <td><span id=cell65></span></td>
+                            <td class=col3><span id=cell66></span></td>
+                            <td><span id=cell67></span></td>
+                            <td><span id=cell68></span></td>
+                            <td class=col6><span id=cell69></span></td>
+                            <td><span id=cell70></span></td>
+                            <td><span id=cell71></span></td>
+                            <td><span id=cell72></span></td>
+                        </tr>
+                        <tr id=row9>
+                            <td><span id=cell73></span></td>
+                            <td><span id=cell74></span></td>
+                            <td class=col3><span id=cell75></span></td>
+                            <td><span id=cell76></span></td>
+                            <td><span id=cell77></span></td>
+                            <td class=col6><span id=cell78></span></td>
+                            <td><span id=cell79></span></td>
+                            <td><span id=cell80></span></td>
+                            <td><span id=cell81></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class=columns id=numbers>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <button type="button" id=newGame onclick="genBoard('game')">
+                        New Game
+                    </button>
+                    <br/>
+                    <br/>
+                    <button type="button" id=hint>
+                            Hint
+                    </button>
+                <!-- Numbers Left:<br/>
+                1<br>2<br>3<br>4 -->
+            </div>
+            
+        </div>
+
+        <div id=footer>
+           &weierp;owered by &weierp;aul 
+        </div>
+
+
+        <script>
+            function genBoard(id) {
+                var elem = document.getElementById(id)
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var nums = this.responseText;
+                        for(cell = 1; cell <= 81; cell++){
+                            var value = nums.charAt(cell-1);
+                            if(value == '0') {
+                                value = "<input type='text' class=numInput>";
+                            }
+                            document.getElementById("cell"+cell).innerHTML = value;//nums.charAt(cell-1);
+                        }
+                    }
+                };
+                var levelElement = document.getElementById("level");
+                var level = levelElement.options[levelElement.selectedIndex].text;
+                xhttp.open("GET", "functions.php?fn=genBoard&level="+level, true);
+                xhttp.send();
+            }
+        </script>
+
+    
+    </body>
+
+<!-- 
+<table>
+                        <tr id=row1>
+                            <td><span id=cell1></span></td>
+                            <td><span id=cell2></span></td>
+                            <td class=col3><span id=cell3></span></td>
+                            <td><span id=cell4></span></td>
+                            <td><span id=cell5></span></td>
+                            <td class=col6><span id=cell6></span></td>
+                            <td><span id=cell7></span></td>
+                            <td><span id=cell8></span></td>
+                            <td><span id=cell9></span></td>
+                        </tr>
+                        <tr id=row2>
+                            <td><span id=cell10></span></td>
+                            <td><span id=cell11></span></td>
+                            <td class=col3><span id=cell12></span></td>
+                            <td><span id=cell13></span></td>
+                            <td><span id=cell14></span></td>
+                            <td class=col6><span id=cell15></span></td>
+                            <td><span id=cell16></span></td>
+                            <td><span id=cell17></span></td>
+                            <td><span id=cell18></span></td>
+                        </tr>
+                        <tr id=row3>
+                            <td><span id=cell19></span></td>
+                            <td><span id=cell20></span></td>
+                            <td class=col3><span id=cell21></span></td>
+                            <td><span id=cell22></span></td>
+                            <td><span id=cell23></span></td>
+                            <td class=col6><span id=cell24></span></td>
+                            <td><span id=cell25></span></td>
+                            <td><span id=cell26></span></td>
+                            <td><span id=cell27></span></td>
+                        </tr>
+                        <tr id=row4>
+                            <td><span id=cell28></span></td>
+                            <td><span id=cell29></span></td>
+                            <td class=col3><span id=cell30></span></td>
+                            <td><span id=cell31></span></td>
+                            <td><span id=cell32></span></td>
+                            <td class=col6><span id=cell33></span></td>
+                            <td><span id=cell34></span></td>
+                            <td><span id=cell35></span></td>
+                            <td><span id=cell36></span></td>
+                        </tr>
+                        <tr id=row5>
+                            <td><span id=cell37></span></td>
+                            <td><span id=cell38></span></td>
+                            <td class=col3><span id=cell39></span></td>
+                            <td><span id=cell40></span></td>
+                            <td><span id=cell41></span></td>
+                            <td class=col6><span id=cell42></span></td>
+                            <td><span id=cell43></span></td>
+                            <td><span id=cell44></span></td>
+                            <td><span id=cell45></span></td>
+                        </tr>
+                        <tr id=row6>
+                            <td><span id=cell46></span></td>
+                            <td><span id=cell47></span></td>
+                            <td class=col3><span id=cell48></span></td>
+                            <td><span id=cell49></span></td>
+                            <td><span id=cell50></span></td>
+                            <td class=col6><span id=cell51></span></td>
+                            <td><span id=cell52></span></td>
+                            <td><span id=cell53></span></td>
+                            <td><span id=cell54></span></td>
+                        </tr>
+                        <tr id=row7>
+                            <td><span id=cell55></span></td>
+                            <td><span id=cell56></span></td>
+                            <td class=col3><span id=cell57></span></td>
+                            <td><span id=cell58></span></td>
+                            <td><span id=cell59></span></td>
+                            <td class=col6><span id=cell60></span></td>
+                            <td><span id=cell61></span></td>
+                            <td><span id=cell62></span></td>
+                            <td><span id=cell63></span></td>
+                        </tr>
+                        <tr id=row8>
+                            <td><span id=cell64></span></td>
+                            <td><span id=cell65></span></td>
+                            <td class=col3><span id=cell66></span></td>
+                            <td><span id=cell67></span></td>
+                            <td><span id=cell68></span></td>
+                            <td class=col6><span id=cell69></span></td>
+                            <td><span id=cell70></span></td>
+                            <td><span id=cell71></span></td>
+                            <td><span id=cell72></span></td>
+                        </tr>
+                        <tr id=row9>
+                            <td><span id=cell73></span></td>
+                            <td><span id=cell74></span></td>
+                            <td class=col3><span id=cell75></span></td>
+                            <td><span id=cell76></span></td>
+                            <td><span id=cell77></span></td>
+                            <td class=col6><span id=cell78></span></td>
+                            <td><span id=cell79></span></td>
+                            <td><span id=cell80></span></td>
+                            <td><span id=cell81></span></td>
+                        </tr>
+                    </table>
+ -->
+
+</html>

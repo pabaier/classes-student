@@ -1,0 +1,222 @@
+<!-- https://stackoverflow.com/questions/1007965/how-to-organize-page-layout-with-divs -->
+
+<html>
+    <head>
+        <title>Paul's Puzzle Page</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" media="screen">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id=header>
+                <h1>Sudoku</h1>
+        </div>
+
+        <div class=columns id=sidebar>
+            Chose your difficulty:<br/>
+            <select id=level onchange="genBoard('genBoard')">
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+            </select>
+            <br/>
+            <br/>
+        </div>
+        
+        <div class=columns id=gameWrapper>
+            <div id=game> 
+            </div>
+        </div>
+
+        <div class=columns id=numbers>
+                <br/>
+                <br/>
+                <br/>
+                <button type="button" id=newGame onclick="genBoard('genBoard')">
+                    New Game
+                </button>
+                <br/>
+                <br/>
+                <button type="button" id=hint onclick="getHint()">
+                    Hint
+                </button>
+                <br/>
+                <br/>
+                Last Move:<br/>
+                <div id="time"></div>
+        </div>
+        
+        <div id=footer>
+           &weierp;owered by &weierp;aul 
+        </div>
+
+
+        <script>
+            window.onload = function() {
+                genBoard('loadBoard');
+            }
+
+            function gameWon(){
+                if (confirm("You win!\nWould you like to play again?")) {
+                    genBoard('genBoard');
+                }
+                else{
+                    document.getElementById('hint').style.visibility = 'hidden';
+                }
+            }
+            // gets the cell index and value to enter
+            function getHint() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "functions.php?fn=getHint", true);
+                xhttp.send();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var jsonData = JSON.parse(this.responseText);
+                        var cell = jsonData['cell'];
+                        var value = jsonData['value'];
+                        var winner = jsonData['winner'];
+                        var element = document.getElementById(cell);
+                        element.innerHTML = value;
+                        element.parentElement.style.background = 'rgba(209, 194, 31, 1)';
+                        resetBG(element.parentElement);
+                        if(winner){
+                            gameWon();
+                        }
+                    }
+                };
+            }
+            function getTime(){
+                var date = new Date();
+                var hours = date.getHours()%12;
+                if(hours == 0)
+                    hours = 12;
+                var minutes = date.getMinutes();
+                var ampm = "am";
+                if(date.getHours() > 11)
+                    ampm = "pm";
+                if (minutes < 10)
+                    minutes = "0" + minutes;
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
+                var year = date.getFullYear();
+                var dateString = hours + ":" + minutes + " " + ampm + "<br>" 
+                + month + "/" + day + "/" + year;
+                return dateString;
+            }
+            // sends cell index (num) and value
+            // gets json
+                // result: (true/false)
+                // time: -
+                // winner: (true/false)
+                //true or false
+            function checkValue(num) {
+                var xhttp = new XMLHttpRequest();
+                var value = document.getElementById(num).firstChild.value;
+                var time = getTime();
+                xhttp.open("GET", "functions.php?fn=checkValue&index="+num+"&value="+value+"&time="+time, true);
+                xhttp.send();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var jsonData = JSON.parse(this.responseText);
+                        var element = document.getElementById(num);
+                        if(jsonData['result']){
+                            element.innerHTML = value;
+                            element.parentElement.style.background = 'rgba(160,190,126,1)';
+                            resetBG(element.parentElement);
+                        }
+                        else{
+                            document.getElementById(num).firstChild.value = "";
+                            element.firstChild.style.background = 'rgba(200,90,26,1)';
+                            resetBG(element.firstChild);
+                        }
+
+                        document.getElementById('time').innerHTML = time;
+
+                        var winner = jsonData['winner'];
+                        if(winner){
+                            gameWon();
+                        }
+                    }
+                };
+            }
+            // resets the background
+            function resetBG(element){
+                    var alpha = 0.9;
+                    var color = element.style.background;
+                    var commas = [color.indexOf("(") + 1];
+                    for(var i = 0; i < color.length; i++){
+                        if(color[i] == ',')
+                        commas.push(i + 1);
+                    }
+                    var r = color.substring(commas[0],commas[1]);
+                    var g = color.substring(commas[1],commas[2]);
+                    var b = color.substring(commas[2],color.length - 1)+",";
+
+                    var fadeEffect =  setInterval(function () {
+                        if(alpha < 0)
+                            clearInterval(fadeEffect);
+                        element.style.background = "rgba("+r+g+b+alpha+")";
+                        alpha = alpha - 0.1;
+                        }, 50);
+            }
+            function getHTML(jsonData) {
+                var board = "<table>";
+                    var cellCount = 0;
+                    for(row = 0; row < 9; row++) {
+                        board += "<tr id=row" + row + ">"
+                        for(col = 0; col < 9; col++) {
+                            if(col == 2 || col == 5){
+                                board += "<td class=col3>";
+                            }
+                            else {
+                                board += "<td>";
+                            }
+                            var digit = jsonData['row'+row][col];
+                            if(digit == 0) {
+                                board += "<span id='" + cellCount + "' onkeyup=\"checkValue('" + cellCount + "')\"><input type='number' class=numInput></span>";
+                            }
+                            else {
+                                board += digit;
+                            }
+                            cellCount++;
+                            board += "</td>"
+                        }
+                        board += "</tr>"
+                    }
+                board += "</table>";
+                return board;
+            }
+            // sends level
+            // gets board as json
+                // row0 : [<cols>],
+                // row1 : [<cols>],
+                // ...
+                // time : -
+                // level : -
+            function genBoard(func) {
+                var xhttp = new XMLHttpRequest();
+                var levelElement = document.getElementById("level");
+                document.getElementById('hint').style.visibility = 'visible';
+                var level = levelElement.options[levelElement.selectedIndex].text;
+                xhttp.open("GET", "functions.php?fn="+func+"&level="+level, true);
+                xhttp.send();
+                var message = "generating board...";
+                if(func == 'loadBoard')
+                    message = "retrieving previous board...";
+                document.getElementById("game").innerHTML = message;
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var jsonData = JSON.parse(this.responseText);
+                        var board = getHTML(jsonData);
+                        document.getElementById("game").innerHTML = board;
+                        // console.log(jsonData);
+                        document.getElementById('time').innerHTML = jsonData['time'];
+                        document.getElementById('level').value = jsonData['level'];
+
+                    }
+                };
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+Best for ssh
+ssh CSIS604h@153.9.205.25
+*******
+Best for ftp
+lftp sftp://CSIS604h@153.9.205.25
+mirror -R <folder> to transfer folder to remote
+*******
+Best for SQL
+ssh CSIS604h@153.9.205.25
+mysql -p
+show databases;
+use CSIS604h
+show tables;
+describe [table name]
+create table [name] ([field name] [type], ...)
+    types:
+        varchar(20)
+insert into [table name] ([field name]) values ([value])
+select * from [table name]
+ALTER TABLE sudoku CHANGE COLUMN last_move lastMove VARCHAR(255);
+UPDATE sudoku SET lastMove = "hit";
+ALTER TABLE sudoku ADD lastMove varchar(255);
+*******
+
+
+
+8709
+153.9.205.25/~CSIS604h
+
+sftp CSIS604h@153.9.205.25
+put -r public_html 
+
