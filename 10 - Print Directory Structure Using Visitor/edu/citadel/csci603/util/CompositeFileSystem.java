@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
 
+/**
+ * The interface for a tree structure.
+ * A compositeFileSystem contains files (leafs) and folders (composites)
+ * This system can also be sorted
+ */
 public abstract class CompositeFileSystem implements Comparable<CompositeFileSystem> {
 
     String name;
