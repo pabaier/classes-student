@@ -1,0 +1,90 @@
+Script started on 2019-11-16 11:19:13-0500
+>./client jerry a
+
+ Registration Packet 1 Sent:
+	Type: 121
+	UserName: jerry
+	MachineName: paul
+	Data: a
+
+ Registration Packet 1 Acknowledged:
+	Type: 221
+	UserName: jerry
+	MachineName: paul
+	Data: a
+
+ Chapt Packet Received:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: hi jerry
+
+	johnny: hi jerry
+hi johnny
+
+ Chat Packet Sent:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: hi johnny
+
+how are you?
+
+ Chat Packet Sent:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: how are you?
+
+
+ Chapt Packet Received:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: i'm well, how are you?
+
+	johnny: i'm well, how are you?
+doing just fine johnny
+
+ Chat Packet Sent:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: doing just fine johnny
+
+where's joey?
+
+ Chat Packet Sent:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: where's joey?
+
+
+ Chapt Packet Received:
+	Type: 231
+	UserName: joey
+	MachineName: paul
+	Data: hi jerry! hi johnny!
+
+	joey: hi jerry! hi johnny!
+hi joey
+
+ Chat Packet Sent:
+	Type: 131
+	UserName: jerry
+	MachineName: paul
+	Data: hi joey
+
+
+ Chapt Packet Received:
+	Type: 231
+	UserName: johnny
+	MachineName: paul
+	Data: hi joey
+
+	johnny: hi joey
+
+^C
+>exit
+Script done on 2019-11-16 11:24:11-0500

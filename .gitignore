@@ -1,0 +1,8 @@
+.idea/
+!project/
+project/*
+!project/src/
+client
+server
+*.pdf
+.vscode/
