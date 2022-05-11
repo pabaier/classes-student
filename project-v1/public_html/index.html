@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>MUSC Healthy Charleston Challenge</title>
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script src="scripts/jsScript.js"></script>
+
+        <div class="container">
+        <header>
+                <h1>
+                        <img id="headerImg" src="images/MUSC_logo_white_mobile.png">
+                        Welcome to the HCC Console
+                </h1>
+        </header>
+        
+        <div id="sidebar">
+            <ul>
+                <li><div class="fake-link" onclick="load('Teams')">Teams</div></li>
+                <li><div class="fake-link" onclick="load('Registration')">Registration</div></li>
+                <li><div class="fake-link" onclick="load('Trainers')">Trainers</div></li>
+                <li><div class="fake-link" onclick="load('Mentors')">Mentors</div></li>
+                <li><div class="fake-link" onclick="load('Interns')">Interns</div></li>
+                <li><div class="fake-link" onclick="load('Sponsors')">Sponsors</div></li>
+                <li><div class="fake-link" onclick="load('Participants')">Participants</div></li>
+                <li><div class="fake-link" onclick="load('Results')">Results</div></li>
+            </ul>
+        </div>
+
+        <div id="content">
+            <div id="timeframe">
+                Select a year and season:
+                <select id='year' name='Year'>
+                    <option>All</option>
+                    <option>2018</option>
+                    <option>2017</option>
+                    <option>2016</option>
+                </select>
+                <select id='season' name='Season'><option>All</option><option>Fall</option><option>Spring</option></select>
+
+            </div>
+            <div id="content-top"></div>
+            <div id="content-bottom"></div>
+        </div>
+
+        <footer>
+            &copy;Medical University of South Carolina 171 Ashley Avenue, Charleston SC 29425
+            <br>
+            <img src="images/MUSC_logo_white_mobile.png">
+        </footer>
+
+        </div>
+
+    </body>
+</html>

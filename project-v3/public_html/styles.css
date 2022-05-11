@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, Helvetica, sans-serif
+}
+table.homepage th {
+    background: #00447C;
+    padding: 0em;
+}
+table.homepage td {
+    padding: 1ch;
+}
+
+#headerImg {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+}
+
+div.container {
+    width: 100%;
+}
+#allInfoTable {
+    border-collapse: collapse;
+    /* border: 1px solid black; */
+    text-align: center;
+}
+td {
+    padding: 1em;
+}
+tr:nth-child(odd) {background: #CCC}
+tr:nth-child(even) {background: #FFF}
+th {
+    background: #00447C;
+    /* border: 1px solid #00447C; */
+    color: #CCC;
+    padding: 1em;
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: #00447C;
+    clear: left;
+    text-align: center;
+}
+
+#sidebar {
+    float: left;
+    width: 15%;
+    max-width: 160px;
+    margin: 0;
+    overflow: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+   
+ul a {
+    text-decoration: none;
+}
+
+#content {
+    width: 75%;
+    padding-left: 5%;
+    border-left: 1px solid gray;
+    overflow: hidden;
+    padding-bottom: 1em;
+}
+
+.fake-link {
+    color: #00447C;
+    text-decoration: underline;
+    cursor: pointer;
+    
+}
+
+.fake-link:hover {
+    background-color: gray;
+    text-decoration: none;
+    color: white;
+    
+}
