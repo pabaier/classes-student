@@ -1,7 +1,7 @@
 import { SET_ACTIVE_GAME, DEACTIVATE_GAME} from "../constants/action-types";
 import * as api from "./api"
 
-const baseURL = 'http://127.0.0.1:8000/'
+const baseURL = process.env.REACT_APP_BASE_URL;
 
 const handleError = (e) => {
 	throw Error(e.statusText)

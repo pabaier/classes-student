@@ -20,7 +20,7 @@ const Timer = ({time, sendMessage, startTime}) => {
 		// 
 		// if the startTime changed that means this is a new render from the host, so reset the local state
 		// to the new state values
-		if(startTime != vars.startTime) {
+		if(startTime !== vars.startTime) {
 			setVars({'timeLeft': time, 'startTime': startTime});
 		}
 		// if the startTime did not change, then this is an internal render so start the timer

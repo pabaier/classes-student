@@ -1,7 +1,7 @@
 import { LOG_IN, LOG_OUT } from "../constants/action-types";
 import * as api from './api';
 
-const baseURL = 'http://127.0.0.1:8000/'
+const baseURL = process.env.REACT_APP_BASE_URL;
 
 export function logIn(payload) {
 	return { type: LOG_IN, payload}
